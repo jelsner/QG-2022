@@ -1,20 +1,18 @@
 # Tuesday, August 23, 2022 {-}
 
-* Is it getting hotter in Tallahassee?
-* Are hurricanes getting stronger?
+* Is it getting hotter here in Tallahassee?
+* Are Atlantic hurricanes getting stronger?
 
-Data science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge.
+Data science (formerly known as 'statistics') is an exciting discipline that allows you to turn data into understanding, insight, and knowledge.
 
 ## Today {-}
 
 - Understand what this course is about, how it is structured, and my expectations for you
-- Start working with RStudio Cloud
-
-## Syllabus {-}
+- Start working with RStudio and R.
 
 ## What is this course? {-}
 
-This is a first course on data science for geographers.
+This is designed as first course in data science for geographers.
 
 **Q - What statistics background does this course assume?**  
 A - None.
@@ -32,7 +30,7 @@ A - No, but many themes are shared.
 A - R.
 
 **Q - Why not language some other language?**  
-A - We can discuss that over coffee (Zoom only).
+A - We can discuss that over coffee.
 
 ## Where are the materials for this course? {-}
 
@@ -66,9 +64,40 @@ Other research:
 
 ## Tallahassee Daily Temperatures {-}
 
-- Click on the project `01_Lesson` and launch it. When you access a project created by someone else, RStudio Cloud automatically creates a temporary copy of the original project for you. You can play with and make edits to it, but none of your changes will be reflected in the original. 
-- To keep the changes you’ve made, just save a copy of the project for yourself by pressing the Save a Permanent Copy button.
-- In the Files pane in the bottom right corner, locate the file called `Tallahassee_Temperatures.Rmd`. Open it, and then click on the "Knit" button.
-- Go back to the file and change your name on top (in the `yaml` -- we'll talk about what this means later) and knit again.
-- Then, change the temperature from `TMAX` to `TMIN`. Make other adjustments accordingly. Knit again. Voila, your first data visualization!
-- Any questions? Use chat or unmute.
+- Packages > Install
+- In the Packages window, type tidyverse, lubridate, here, ggplot2 then select Install
+
+Get the data into your environment.
+```{r, get the data}
+TLH.df <- readr::read_csv(file = here::here('data', 'TLH_SOD1892.csv'),
+                          show_col_types = FALSE) |>
+      dplyr::filter(STATION == 'USW00093805') |>
+      dplyr::mutate(Date = as.Date(DATE)) |>
+      dplyr::mutate(Year = lubridate::year(Date), 
+             Month = lubridate::month(Date), 
+             Day = lubridate::day(Date),
+             doy = lubridate::yday(Date)) |>
+      dplyr::select(Date, Year, Month, Day, doy, TMAX, TMIN, PRCP)
+```
+
+Package name :: function name
+
+Or, load the packages by name with the `library()` function in the file above where they are first used.
+
+Create a plot of the frequency of high temperatures by temperature values.
+```{r, create a plot}
+library(dplyr)
+library(ggplot2)
+
+TLH.df |>
+  group_by(TMAX) |>
+  summarize(nH = n()) |>
+ggplot(mapping = aes(x = TMAX, y = nH)) +
+  geom_col(col = 'white', fill = "gray70") +
+  labs(title = "Frequency of Daily High Temperatures",
+       subtitle = "Tallahassee, FL, USA (1940-2018)",
+       x = "Daily High Temperature (°F)",
+       y = "Number of Days") +
+ scale_x_continuous(breaks = seq(from = 20, to = 110, by = 10)) +
+ theme_minimal()
+```

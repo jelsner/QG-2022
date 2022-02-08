@@ -103,6 +103,8 @@ If you keep your notes in this way, you will be able to see the code you wrote, 
 
 This is how we will do everything in this course. In the end you will have a set of notes that you can turn into a book with `bookdown`.
 
+[Everything markdown](https://bookdown.org/yihui/rmarkdown/)
+
 ## Visualizing data {-}
 
 To help motivate your interest in this course, we start by making a graph. There are three things to learn:
