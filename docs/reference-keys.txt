@@ -1,5 +1,0 @@
-where-is-this-course
-join-rstudio-cloud
-examples
-course-syllabus
-tallahassee-daily-temperatures

@@ -1,4 +1,4 @@
-# August 25, 2022 {-}
+# Tuesday, August 23, 2022 {-}
 
 * Is it getting hotter in Tallahassee?
 * Are hurricanes getting stronger?
@@ -9,6 +9,8 @@ Data science is an exciting discipline that allows you to turn raw data into und
 
 - Understand what this course is about, how it is structured, and my expectations for you
 - Start working with RStudio Cloud
+
+## Syllabus {-}
 
 ## What is this course? {-}
 
@@ -32,16 +34,16 @@ A - R.
 **Q - Why not language some other language?**  
 A - We can discuss that over coffee (Zoom only).
 
-## Where is this course?
+## Where are the materials for this course? {-}
 
 [RStudio Cloud](https://rstudio.cloud)
 
-### Join RStudio Cloud
+### Join RStudio Cloud {-}
 
 * Go to [RStudio Cloud](https://rstudio.cloud), and log in.
 * Click on this link https://rstudio.cloud/spaces/75344/join?access_code=drxxMUzCFzMd2hUzGi5EZZaR9CgXY2jJVC6mz54L to join the Quantitative Geography Using R Space on RStudio Cloud.
 
-### Examples
+### Examples {-}
 
 Some of my recent research:
 
@@ -53,14 +55,14 @@ Other research:
 - [A year as told by fitbit](http://livefreeordichotomize.com/2017/12/27/a-year-as-told-by-fitbit/) by Nick Strayer
 - [R-Ladies global tour](http://www.masalmon.eu/2017/10/06/globalrladiestour/) by Maelle Salmon
 
-### Course Syllabus
+### Course Syllabus {-}
 
 - Log on to RStudio Cloud and click on this course's Space (Quantitative Geography Using R).
 - Click on the project `00_Syllabus` and launch it.
 - Open the `00-Syllabus.Rmd` file (lower-right panel), and then click on the "Knit" button.
 - Review
 
-### Tallahassee Daily Temperatures
+### Tallahassee Daily Temperatures {-}
 
 - Click on the project `01_Lesson` and launch it. When you access a project created by someone else, RStudio Cloud automatically creates a temporary copy of the original project for you. You can play with and make edits to it, but none of your changes will be reflected in the original. 
 - To keep the changes you’ve made, just save a copy of the project for yourself by pressing the Save a Permanent Copy button.
@@ -68,4 +70,3 @@ Other research:
 - Go back to the file and change your name on top (in the `yaml` -- we'll talk about what this means later) and knit again.
 - Then, change the temperature from `TMAX` to `TMIN`. Make other adjustments accordingly. Knit again. Voila, your first data visualization!
 - Any questions? Use chat or unmute.
-

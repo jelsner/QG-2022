@@ -1,0 +1,884 @@
+---
+title: The Increasing Intensity of Strong Tropical Cyclones
+subtitle: Validating Elsner et al. (2008)
+author: James B. Elsner
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: html_document
+bibliography: References.bib
+editor_options: 
+  chunk_output_type: console
+---
+
+Literature:
+https://www.nature.com/articles/s41467-019-08471-z
+https://journals.ametsoc.org/doi/full/10.1175/JCLI-D-17-0898.1?journalCode=clim
+
+Science gets validated through predictions. Using satellite derived wind speed estimates from tropical cyclones @ElsnerKossinJagger2008 showed that the strongest hurricanes were getting stronger through the period 1981-2006. In particular, they found that 15% (85th quantile) of all named storms across the North Atlantic had wind speeds exceeding 48.9 m/s (Table 1 in @ElsnerKossinJagger2008 ) with an upward trend of .63 m/s/yr in this quantile wind speed. They related this increase to a corresponding rise in ocean temperatures consistent with theory [@Emanuel1988]. The oceans have continued to warm since that paper was published so we would predict that the upward trend in the intensity of the strongest hurricanes has continued. 
+
+Load the functions.
+```{r}
+library(dplyr)
+library(tidyr)
+library(lubridate)
+library(ggplot2)
+```
+
+### Start with hurricanes in the North Atlantic
+
+Import the IBTrACS version 4 data: 
+```{r}
+NA.df <- read.csv(file = "https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access/csv/ibtracs.NA.list.v04r00.csv",
+                  header = TRUE,
+                  stringsAsFactors = FALSE,
+                  na.strings = " ")
+
+NA.df <- NA.df %>%
+  filter(SEASON != "Year") %>%
+  mutate(Season = as.integer(SEASON)) %>%
+  filter(Season >= 1981) %>%
+  mutate(Time = as.Date(ISO_TIME),
+         WindKt = as.numeric(USA_WIND),
+         WindMS = WindKt * .5144447) %>%
+  select(SID, Season, NUMBER, BASIN, NAME, ISO_TIME, Time, WindKt, WindMS)
+
+write.csv(NA.df, file = "NA.csv")
+```
+
+Get wind speed quantiles for tropical cyclones with winds at least 33 m/s. First get per storm fastest wind speed.
+```{r}
+PerStormMax.df <- NA.df %>%
+  group_by(SID) %>%
+  summarize(Year = first(Season),
+            Name = first(NAME),
+            KTS = max(WindKt, na.rm = TRUE),
+            MPS = KTS * .5144447,
+            MPH = KTS * 1.15078,
+            EarlyLate = Year > 2006) 
+
+LMI.df <- PerStormMax.df %>%
+  filter(KTS >= 64)
+
+Change.df <- LMI.df %>%
+  group_by(EarlyLate) %>%
+  summarize(q75 = quantile(MPS, probs = .75),
+            q90 = quantile(MPS, probs = .9),
+            q95 = quantile(MPS, probs = .95),
+            nH = n())
+
+Change.df %>%
+  select(-nH) %>%
+  pivot_longer(cols = c(q75, q90, q95)) %>%
+  pivot_wider(values_from = value,
+              names_from = EarlyLate) %>%
+  group_by(name) %>%
+  mutate(pChange = (`TRUE` - `FALSE`)/`TRUE` * 100)
+```
+
+Plot a slope graph. Original code from https://acaird.github.io/computers/r/2013/11/27/slopegraphs-ggplot Data Source: IBTrACS v4 (Knapp et al. 2018)
+```{r}
+months <- 24
+Early <- round(as.vector(unlist(Change.df[1, 2:4], use.names = FALSE)), 1)
+Late <- round(as.vector(unlist(Change.df[2, 2:4], use.names = FALSE)), 1)
+Group <- c("75th", "90th", "95th")
+df <- data.frame(Early, Late, Group)
+
+#l11 <- paste(df$Group, paste(df$Early, "m/s", sep = " "), sep = "\n")
+l11 <- paste(df$Early, "m/s", sep = " ")
+#l12 <- paste(df$Group, paste(df$Late, "m/s", sep = " "), sep = "\n")
+l12 <- paste(df$Late, "m/s", sep = " ")
+pNA <- ggplot(df) + 
+  geom_segment(aes(x = 0, xend = months, y = Early, yend = Late, color = Group), size = .75, show.legend = FALSE) +
+  scale_color_manual(values=c("gray50", "gray30", "black")) +
+  theme(panel.background = element_blank()) +
+  theme(panel.grid=element_blank()) +
+  theme(axis.ticks=element_blank()) +
+  theme(axis.text=element_blank()) +
+  theme(panel.border=element_blank()) +
+  xlab("") + ylab("") +
+  xlim((0-12), (months + 12)) +
+  ylim(55, 87) +
+  geom_text(label = l12, y = df$Late, x = rep.int(months, ncol(df)), hjust = -.2, size = 3) +
+  geom_text(label = l11, y = df$Early, x = rep.int(0, ncol(df)), hjust = 1.2, size = 3) +
+  geom_text(label = paste0("1981-2006\n(n = ", Change.df[1, 5], ")"), x = 0, y = 85, hjust = 1.2, size = 4) +
+  geom_text(label = paste0("2007-2019\n(n = ", Change.df[2, 5], ")"), x = months, y = 85, hjust = 0, size = 4) 
+
+( pNA <- pNA + ggtitle("North Atlantic Hurricanes") )
+#  ggtitle("Percentile Wind Speeds", subtitle = "North Atlantic Ocean hurricanes [Data Source: IBTrACS v4 (Knapp et al. 2018)]")
+```
+
+Plot annual counts and test for significant difference in the number of hurricanes.
+```{r}
+AnnualCount.df <- PerStormMax.df %>%
+  filter(KTS > 64) %>%
+  group_by(Year) %>%
+  summarize(NH = sum(KTS >= 64),
+            MH = sum(KTS >= 96),
+            EarlyLate = first(EarlyLate))
+
+ggplot(data = AnnualCount.df, aes(x = Year, y = NH)) +
+  geom_point() + geom_line() +
+  geom_smooth(method = lm)
+
+wilcox.test(NH ~ EarlyLate, 
+            data = AnnualCount.df,
+            exact = FALSE)
+```
+
+### Repeat for typhoons in the Western North Pacific
+```{r}
+WP.df <- read.csv(file = "https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access/csv/ibtracs.WP.list.v04r00.csv",
+                   header = TRUE,
+                   stringsAsFactors = FALSE,
+                   na.strings = " ")
+
+WP.df <- WP.df %>%
+  filter(SEASON != "Year") %>%
+  mutate(Season = as.integer(SEASON)) %>%
+  filter(Season >= 1981) %>%
+  mutate(Time = as.Date(ISO_TIME),
+         WindKt = as.numeric(USA_WIND),
+         WindMS = WindKt * .5144447) %>%
+  select(SID, Season, NUMBER, BASIN, NAME, ISO_TIME, Time, WindKt, WindMS)
+
+write.csv(WP.df, file = "WP.csv")
+```
+
+```{r}
+PerStormMax.df <- WP.df %>%
+  group_by(SID) %>%
+  summarize(Year = first(Season),
+            Name = first(NAME),
+            KTS = max(WindKt, na.rm = TRUE),
+            MPS = KTS * .5144447,
+            MPH = KTS * 1.15078,
+            EarlyLate = Year > 2006) 
+
+LMI.df <- PerStormMax.df %>%
+  filter(KTS >= 64)
+
+Change.df <- LMI.df %>%
+  group_by(EarlyLate) %>%
+  summarize(q75 = quantile(MPS, probs = .75),
+            q90 = quantile(MPS, probs = .9),
+            q95 = quantile(MPS, probs = .95),
+            nH = n())
+
+Change.df %>%
+  select(-nH) %>%
+  pivot_longer(cols = c(q75, q90, q95)) %>%
+  pivot_wider(values_from = value,
+              names_from = EarlyLate) %>%
+  group_by(name) %>%
+  mutate(pChange = (`TRUE` - `FALSE`)/`TRUE` * 100)
+
+months <- 24
+Early <- round(as.vector(unlist(Change.df[1, 2:4], use.names = FALSE)), 1)
+Late <- round(as.vector(unlist(Change.df[2, 2:4], use.names = FALSE)), 1)
+Group <- c("75th", "90th", "95th")
+df <- data.frame(Early, Late, Group)
+
+#l11 <- paste(df$Group, paste(df$Early, "m/s", sep = " "), sep = "\n")
+#l12 <- paste(df$Group, paste(df$Late, "m/s", sep = " "), sep = "\n")
+l11 <- paste(df$Early, "m/s", sep = " ")
+l12 <- paste(df$Late, "m/s", sep = " ")
+
+pWP <- ggplot(df) + 
+  geom_segment(aes(x = 0, xend = months, y = Early, yend = Late, color = Group), size = .75, show.legend = FALSE) +
+  scale_color_manual(values=c("gray50", "gray30", "black")) +
+  theme(panel.background = element_blank()) +
+  theme(panel.grid=element_blank()) +
+  theme(axis.ticks=element_blank()) +
+  theme(axis.text=element_blank()) +
+  theme(panel.border=element_blank()) +
+  xlab("") + ylab("") +
+  xlim((0-12), (months + 12)) +
+  ylim(55, 87) +
+  geom_text(label = l12, y = df$Late, x = rep.int(months, ncol(df)), hjust = -.2, size = 3) +
+  geom_text(label = l11, y = df$Early, x = rep.int(0, ncol(df)), hjust = 1.2, size = 3) +
+  geom_text(label = paste0("1981-2006\n(n = ", Change.df[1, 5], ")"), x = 0, y = 85, hjust = 1.2, size = 4) +
+  geom_text(label = paste0("2007-2019\n(n = ", Change.df[2, 5], ")"), x = months, y = 85, hjust = 0, size = 4) 
+
+( pWP <- pWP + ggtitle("Western North Pacific Typhoons") )
+```
+
+Plot annual counts and test for significant difference in the number of hurricanes.
+```{r}
+AnnualCount.df <- PerStormMax.df %>%
+  filter(KTS > 64) %>%
+  group_by(Year) %>%
+  summarize(NH = sum(KTS >= 64),
+            MH = sum(KTS >= 96),
+            EarlyLate = first(EarlyLate))
+
+ggplot(data = AnnualCount.df, aes(x = Year, y = NH)) +
+  geom_point() + geom_line() +
+  geom_smooth(method = lm)
+
+wilcox.test(NH ~ EarlyLate, 
+            data = AnnualCount.df, 
+            exact = FALSE)
+t.test(NH ~ EarlyLate, 
+       data = AnnualCount.df)
+```
+
+### Repeat for hurricanes in the Eastern North Pacific
+```{r}
+EP.df <- read.csv(file = "https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access/csv/ibtracs.EP.list.v04r00.csv",
+                   header = TRUE,
+                   stringsAsFactors = FALSE,
+                   na.strings = " ")
+
+EP.df <- EP.df %>%
+  filter(SEASON != "Year") %>%
+  mutate(Season = as.integer(SEASON)) %>%
+  filter(Season >= 1981) %>%
+  mutate(Time = as.Date(ISO_TIME),
+         WindKt = as.numeric(USA_WIND),
+         WindMS = WindKt * .5144447) %>%
+  select(SID, Season, NUMBER, BASIN, NAME, ISO_TIME, Time, WindKt, WindMS)
+
+write.csv(EP.df, file = "EP.csv")
+```
+
+```{r}
+PerStormMax.df <- EP.df %>%
+  group_by(SID) %>%
+  summarize(Year = first(Season),
+            Name = first(NAME),
+            KTS = max(WindKt, na.rm = TRUE),
+            MPS = KTS * .5144447,
+            MPH = KTS * 1.15078,
+            EarlyLate = Year > 2006) 
+
+LMI.df <- PerStormMax.df %>%
+  filter(KTS >= 64)
+
+Change.df <- LMI.df %>%
+  group_by(EarlyLate) %>%
+  summarize(q75 = quantile(MPS, probs = .75),
+            q90 = quantile(MPS, probs = .9),
+            q95 = quantile(MPS, probs = .95),
+            nH = n())
+
+Change.df %>%
+  select(-nH) %>%
+  pivot_longer(cols = c(q75, q90, q95)) %>%
+  pivot_wider(values_from = value,
+              names_from = EarlyLate) %>%
+  group_by(name) %>%
+  mutate(pChange = (`TRUE` - `FALSE`)/`TRUE` * 100)
+
+months <- 24
+Early <- round(as.vector(unlist(Change.df[1, 2:4], use.names = FALSE)), 1)
+Late <- round(as.vector(unlist(Change.df[2, 2:4], use.names = FALSE)), 1)
+Group <- c("75th", "90th", "95th")
+df <- data.frame(Early, Late, Group)
+
+#l11 <- paste(df$Group, paste(df$Early, "m/s", sep = " "), sep = "\n")
+#l12 <- paste(df$Group, paste(df$Late, "m/s", sep = " "), sep = "\n")
+l11 <- paste(df$Early, "m/s", sep = " ")
+l12 <- paste(df$Late, "m/s", sep = " ")
+pEP <- ggplot(df) + 
+  geom_segment(aes(x = 0, xend = months, y = Early, yend = Late, color = Group), size = .75, show.legend = FALSE) +
+  scale_color_manual(values=c("gray50", "gray30", "black")) +
+  theme(panel.background = element_blank()) +
+  theme(panel.grid=element_blank()) +
+  theme(axis.ticks=element_blank()) +
+  theme(axis.text=element_blank()) +
+  theme(panel.border=element_blank()) +
+  xlab("") + ylab("") +
+  xlim((0-12), (months + 12)) +
+  ylim(55, 87) +
+  geom_text(label = l12, y = df$Late, x = rep.int(months, ncol(df)), hjust = -.2, size = 3) +
+  geom_text(label = l11, y = df$Early, x = rep.int(0, ncol(df)), hjust = 1.2, size = 3) +
+  geom_text(label = paste0("1981-2006\n(n = ", Change.df[1, 5], ")"), x = 0, y = 85, hjust = 1.2, size = 4) +
+  geom_text(label = paste0("2007-2019\n(n = ", Change.df[2, 5], ")"), x = months, y = 85, hjust = 0, size = 4) 
+
+( pEP <- pEP + ggtitle("Eastern North Pacific Hurricanes") )
+```
+
+Plot annual counts and test for significant difference in the number of hurricanes.
+```{r}
+AnnualCount.df <- PerStormMax.df %>%
+  filter(KTS > 64) %>%
+  group_by(Year) %>%
+  summarize(NH = sum(KTS >= 64),
+            MH = sum(KTS >= 96),
+            EarlyLate = first(EarlyLate))
+
+ggplot(data = AnnualCount.df, aes(x = Year, y = NH)) +
+  geom_point() + geom_line() +
+  geom_smooth(method = lm)
+
+wilcox.test(NH ~ EarlyLate, 
+            data = AnnualCount.df, 
+            exact = FALSE)
+```
+
+### Repeat for Southern Indian
+```{r}
+SI.df <- read.csv(file = "https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access/csv/ibtracs.SI.list.v04r00.csv",
+                   header = TRUE,
+                   stringsAsFactors = FALSE,
+                   na.strings = " ")
+
+SI.df <- SI.df %>%
+  filter(SEASON != "Year") %>%
+  mutate(Season = as.integer(SEASON)) %>%
+  filter(Season >= 1981 & Season < 2020) %>%
+  mutate(Time = as.Date(ISO_TIME),
+         WindKt = as.numeric(USA_WIND),
+         WindMS = WindKt * .5144447) %>%
+  select(SID, Season, NUMBER, BASIN, NAME, ISO_TIME, Time, WindKt, WindMS)
+
+write.csv(SI.df, file = "SI.csv")
+```
+
+```{r}
+PerStormMax.df <- SI.df %>%
+  group_by(SID) %>%
+  summarize(Year = first(Season),
+            Name = first(NAME),
+            KTS = max(WindKt, na.rm = TRUE),
+            MPS = KTS * .5144447,
+            MPH = KTS * 1.15078,
+            EarlyLate = Year > 2006) 
+
+LMI.df <- PerStormMax.df %>%
+  filter(KTS >= 64)
+
+Change.df <- LMI.df %>%
+  group_by(EarlyLate) %>%
+  summarize(q75 = quantile(MPS, probs = .75),
+            q90 = quantile(MPS, probs = .9),
+            q95 = quantile(MPS, probs = .95),
+            nH = n()) 
+
+Change.df %>%
+  select(-nH) %>%
+  pivot_longer(cols = c(q75, q90, q95)) %>%
+  pivot_wider(values_from = value,
+              names_from = EarlyLate) %>%
+  group_by(name) %>%
+  mutate(pChange = (`TRUE` - `FALSE`)/`TRUE` * 100)
+
+months <- 24
+Early <- round(as.vector(unlist(Change.df[1, 2:4], use.names = FALSE)), 1)
+Late <- round(as.vector(unlist(Change.df[2, 2:4], use.names = FALSE)), 1)
+Group <- c("75th", "90th", "95th")
+df <- data.frame(Early, Late, Group)
+
+#l11 <- paste(df$Group, paste(df$Early, "m/s", sep = " "), sep = "\n")
+#l12 <- paste(df$Group, paste(df$Late, "m/s", sep = " "), sep = "\n")
+l11 <- paste(df$Early, "m/s", sep = " ")
+l12 <- paste(df$Late, "m/s", sep = " ")
+pSI <- ggplot(df) + 
+  geom_segment(aes(x = 0, xend = months, y = Early, yend = Late, color = Group), size = .75, show.legend = FALSE) +
+  scale_color_manual(values=c("gray50", "gray30", "black")) +
+  theme(panel.background = element_blank()) +
+  theme(panel.grid=element_blank()) +
+  theme(axis.ticks=element_blank()) +
+  theme(axis.text=element_blank()) +
+  theme(panel.border=element_blank()) +
+  xlab("") + ylab("") +
+  xlim((0-12), (months + 12)) +
+  ylim(55, 87) +
+  geom_text(label = l12, y = df$Late, x = rep.int(months, ncol(df)), hjust = -.2, size = 3) +
+  geom_text(label = l11, y = df$Early, x = rep.int(0, ncol(df)), hjust = 1.2, size = 3) +
+  geom_text(label = paste0("1981-2006\n(n = ", Change.df[1, 5], ")"), x = 0, y = 85, hjust = 1.2, size = 4) +
+  geom_text(label = paste0("2007-2019\n(n = ", Change.df[2, 5], ")"), x = months, y = 85, hjust = 0, size = 4) 
+
+( pSI <- pSI + ggtitle("Southern Indian Cyclones") )
+```
+
+Plot annual counts and test for significant difference in the number of hurricanes.
+```{r}
+AnnualCount.df <- PerStormMax.df %>%
+  filter(KTS > 64) %>%
+  group_by(Year) %>%
+  summarize(NH = sum(KTS >= 64),
+            MH = sum(KTS >= 96),
+            EarlyLate = first(EarlyLate))
+
+ggplot(data = AnnualCount.df, aes(x = Year, y = NH)) +
+  geom_point() + geom_line() +
+  geom_smooth(method = lm)
+
+wilcox.test(NH ~ EarlyLate, 
+            data = AnnualCount.df, 
+            exact = FALSE)
+```
+
+### Repeat for South Pacific
+```{r}
+SP.df <- read.csv(file = "https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access/csv/ibtracs.SP.list.v04r00.csv",
+                   header = TRUE,
+                   stringsAsFactors = FALSE,
+                   na.strings = " ")
+
+SP.df <- SP.df %>%
+  filter(SEASON != "Year") %>%
+  mutate(Season = as.integer(SEASON)) %>%
+  filter(Season >= 1981 & Season < 2020) %>%
+  mutate(Time = as.Date(ISO_TIME),
+         WindKt = as.numeric(USA_WIND),
+         WindMS = WindKt * .5144447) %>%
+  select(SID, Season, NUMBER, BASIN, NAME, ISO_TIME, Time, WindKt, WindMS)
+
+write.csv(SP.df, file = "SP.csv")
+```
+
+```{r}
+PerStormMax.df <- SP.df %>%
+  group_by(SID) %>%
+  summarize(Year = first(Season),
+            Name = first(NAME),
+            KTS = max(WindKt, na.rm = TRUE),
+            MPS = KTS * .5144447,
+            MPH = KTS * 1.15078,
+            EarlyLate = Year > 2006) 
+
+LMI.df <- PerStormMax.df %>%
+  filter(KTS >= 64)
+
+Change.df <- LMI.df %>%
+  group_by(EarlyLate) %>%
+  summarize(q75 = quantile(MPS, probs = .75),
+            q90 = quantile(MPS, probs = .9),
+            q95 = quantile(MPS, probs = .95),
+            nH = n())
+
+Change.df %>%
+  select(-nH) %>%
+  pivot_longer(cols = c(q75, q90, q95)) %>%
+  pivot_wider(values_from = value,
+              names_from = EarlyLate) %>%
+  group_by(name) %>%
+  mutate(pChange = (`TRUE` - `FALSE`)/`TRUE` * 100)
+
+
+months <- 24
+Early <- round(as.vector(unlist(Change.df[1, 2:4], use.names = FALSE)), 1)
+Late <- round(as.vector(unlist(Change.df[2, 2:4], use.names = FALSE)), 1)
+Group <- c("75th", "90th", "95th")
+df <- data.frame(Early, Late, Group)
+
+#l11 <- paste(df$Group, paste(df$Early, "m/s", sep = " "), sep = "\n")
+#l12 <- paste(df$Group, paste(df$Late, "m/s", sep = " "), sep = "\n")
+l11 <- paste(df$Early, "m/s", sep = " ")
+l12 <- paste(df$Late, "m/s", sep = " ")
+pSP <- ggplot(df) + 
+  geom_segment(aes(x = 0, xend = months, y = Early, yend = Late, color = Group), size = .75, show.legend = FALSE) +
+  scale_color_manual(values=c("gray50", "gray30", "black")) +
+  theme(panel.background = element_blank()) +
+  theme(panel.grid=element_blank()) +
+  theme(axis.ticks=element_blank()) +
+  theme(axis.text=element_blank()) +
+  theme(panel.border=element_blank()) +
+  xlab("") + ylab("") +
+  xlim((0-12), (months + 12)) +
+  ylim(55, 87) +
+  geom_text(label = l12, y = df$Late, x = rep.int(months, ncol(df)), hjust = -.2, size = 3) +
+  geom_text(label = l11, y = df$Early, x = rep.int(0, ncol(df)), hjust = 1.2, size = 3) +
+  geom_text(label = paste0("1981-2006\n(n = ", Change.df[1, 5], ")"), x = 0, y = 85, hjust = 1.2, size = 4) +
+  geom_text(label = paste0("2007-2019\n(n = ", Change.df[2, 5], ")"), x = months, y = 85, hjust = 0, size = 4) 
+
+( pSP <- pSP + ggtitle("South Pacific Cyclones") )
+```
+
+Plot annual counts and test for significant difference in the number of hurricanes.
+```{r}
+AnnualCount.df <- PerStormMax.df %>%
+  filter(KTS > 64) %>%
+  group_by(Year) %>%
+  summarize(NH = sum(KTS >= 64),
+            MH = sum(KTS >= 96),
+            EarlyLate = first(EarlyLate))
+
+ggplot(data = AnnualCount.df, aes(x = Year, y = NH)) +
+  geom_point() + geom_line() +
+  geom_smooth(method = lm)
+
+wilcox.test(NH ~ EarlyLate, 
+            data = AnnualCount.df, 
+            exact = FALSE)
+```
+
+### Repeat for Northern Indian
+```{r}
+NI.df <- read.csv(file = "https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access/csv/ibtracs.NI.list.v04r00.csv",
+                   header = TRUE,
+                   stringsAsFactors = FALSE,
+                   na.strings = " ")
+
+NI.df <- NI.df %>%
+  filter(SEASON != "Year") %>%
+  mutate(Season = as.integer(SEASON)) %>%
+  filter(Season >= 1981) %>%
+  mutate(Time = as.Date(ISO_TIME),
+         WindKt = as.numeric(USA_WIND),
+         WindMS = WindKt * .5144447) %>%
+  select(SID, Season, NUMBER, BASIN, NAME, ISO_TIME, Time, WindKt, WindMS)
+
+write.csv(NI.df, file = "NI.csv")
+```
+
+```{r}
+PerStormMax.df <- NI.df %>%
+  group_by(SID) %>%
+  summarize(Year = first(Season),
+            Name = first(NAME),
+            KTS = max(WindKt, na.rm = TRUE),
+            MPS = KTS * .5144447,
+            MPH = KTS * 1.15078,
+            EarlyLate = Year > 2006) 
+
+LMI.df <- PerStormMax.df %>%
+  filter(KTS >= 64)
+
+Change.df <- LMI.df %>%
+  group_by(EarlyLate) %>%
+  summarize(q75 = quantile(MPS, probs = .75),
+            q90 = quantile(MPS, probs = .9),
+            q95 = quantile(MPS, probs = .95),
+            nH = n())
+
+Change.df %>%
+  select(-nH) %>%
+  pivot_longer(cols = c(q75, q90, q95)) %>%
+  pivot_wider(values_from = value,
+              names_from = EarlyLate) %>%
+  group_by(name) %>%
+  mutate(pChange = (`TRUE` - `FALSE`)/`TRUE` * 100)
+
+
+months <- 24
+Early <- round(as.vector(unlist(Change.df[1, 2:4], use.names = FALSE)), 1)
+Late <- round(as.vector(unlist(Change.df[2, 2:4], use.names = FALSE)), 1)
+Group <- c("75th", "90th", "95th")
+df <- data.frame(Early, Late, Group)
+
+#l11 <- paste(df$Group, paste(df$Early, "m/s", sep = " "), sep = "\n")
+#l12 <- paste(df$Group, paste(df$Late, "m/s", sep = " "), sep = "\n")
+l11 <- paste(df$Early, "m/s", sep = " ")
+l12 <- paste(df$Late, "m/s", sep = " ")
+pNI <- ggplot(df) + 
+  geom_segment(aes(x = 0, xend = months, y = Early, yend = Late, color = Group), size = .75, show.legend = FALSE) +
+  scale_color_manual(values=c("gray50", "gray30", "black")) +
+  theme(panel.background = element_blank()) +
+  theme(panel.grid=element_blank()) +
+  theme(axis.ticks=element_blank()) +
+  theme(axis.text=element_blank()) +
+  theme(panel.border=element_blank()) +
+  xlab("") + ylab("") +
+  xlim((0-12), (months + 12)) +
+  ylim(55, 87) +
+  geom_text(label = l12, y = df$Late, x = rep.int(months, ncol(df)), hjust = -.2, size = 3) +
+  geom_text(label = l11, y = df$Early, x = rep.int(0, ncol(df)), hjust = 1.2, size = 3) +
+  geom_text(label = paste0("1981-2006\n(n = ", Change.df[1, 5], ")"), x = 0, y = 85, hjust = 1.2, size = 4) +
+  geom_text(label = paste0("2007-2019\n(n = ", Change.df[2, 5], ")"), x = months, y = 85, hjust = 0, size = 4) 
+
+( pNI <- pNI + ggtitle("Northern Indian Cyclones") )
+```
+
+Plot annual counts and test for significant difference in the number of hurricanes.
+```{r}
+AnnualCount.df <- PerStormMax.df %>%
+  filter(KTS > 64) %>%
+  group_by(Year) %>%
+  summarize(NH = sum(KTS >= 64),
+            MH = sum(KTS >= 96),
+            EarlyLate = first(EarlyLate))
+
+ggplot(data = AnnualCount.df, aes(x = Year, y = NH)) +
+  geom_point() + geom_line() +
+  geom_smooth(method = lm)
+
+wilcox.test(NH ~ EarlyLate, 
+            data = AnnualCount.df, 
+            exact = FALSE)
+```
+
+Plot together using {patchwork}. Use 9 by 7.5 on pdf landscape
+```{r}
+library(patchwork)
+
+(pWP + pEP)/(pSI + pNA)/(pSP + pNI)
+```
+
+All six basins (globally)
+```{r}
+AllSix.df <- rbind(WP.df, EP.df, SI.df, NA.df, SP.df, NI.df)
+  
+PerStormMax.df <- AllSix.df %>%
+  group_by(SID) %>%
+  summarize(Year = first(Season),
+            Name = first(NAME),
+            KTS = max(WindKt, na.rm = TRUE),
+            MPS = KTS * .5144447,
+            MPH = KTS * 1.15078,
+            EarlyLate = Year > 2006) 
+
+LMI.df <- PerStormMax.df %>%
+  filter(KTS >= 64)
+
+Change.df <- LMI.df %>%
+  group_by(EarlyLate) %>%
+  summarize(q75 = quantile(MPS, probs = .75),
+            q90 = quantile(MPS, probs = .9),
+            q95 = quantile(MPS, probs = .95),
+            nH = n())
+
+Change.df %>%
+  select(-nH) %>%
+  pivot_longer(cols = c(q75, q90, q95)) %>%
+  pivot_wider(values_from = value,
+              names_from = EarlyLate) %>%
+  group_by(name) %>%
+  mutate(pChange = (`TRUE` - `FALSE`)/`TRUE` * 100)
+
+AnnualCount.df <- PerStormMax.df %>%
+  filter(KTS > 64) %>%
+  group_by(Year) %>%
+  summarize(NH = sum(KTS >= 64),
+            MH = sum(KTS >= 96),
+            EarlyLate = first(EarlyLate))
+
+ggplot(data = AnnualCount.df, aes(x = Year, y = NH)) +
+  geom_point() + geom_line() +
+  geom_smooth(method = lm)
+
+wilcox.test(NH ~ EarlyLate, 
+            data = AnnualCount.df, 
+            exact = FALSE)
+```
+```
+
+
+### Old stuff
+
+To check this, consider all North Atlantic named storms (tropical storms and hurricanes) over the 13-year period 2007--2019 [data taken from Wikipedia]. `NS` and `MH` are the annual number of named storms and major hurricanes respectively.
+```{r}
+Year <- c(2007, 2007, 2008, 2008, 2008, 2008, 2008, 2009, 2009, 2010, 2010, 2010, 2010, 2010,
+          2011, 2011, 2011, 2011, 2012, 2012, 2014, 2014, 2015, 2015, 2016, 2016, 2016, 2016,
+          2017, 2017, 2017, 2017, 2017, 2017, 2018, 2018, 2019, 2019, 2019)
+Name <- c("Dean", "Felix", "Bertha", "Gustav", "Ike", "Omar", "Paloma", "Bill", "Fred",
+          "Danielle", "Earl", "Igor", "Julia", "Karl", "Irene", "Katia", "Ophelia", "Rina",
+          "Michael", "Sandy", "Edouard", "Gonzalo", "Danny", "Joaquin", "Gaston", "Matthew",
+          "Nicole", "Otto", "Harvey", "Irma", "Jose", "Lee", "Maria", "Ophelia", "Florence",
+          "Michael", "Dorian", "Humburto", "Lorenzo")
+MPH <- c(175, 175, 125, 150, 145, 130, 140, 130, 120, 130, 145, 155, 140, 125, 120, 140, 140,
+         115, 115, 115, 120, 145, 125, 155, 120, 165, 140, 115, 130, 180, 155, 115, 175, 115, 
+         150, 160, 185, 125, 160)
+LMI.df <- data.frame(Year, Name, MPH, MPS = MPH * .44704)
+
+NS <- c(15, 16, 9, 19, 19, 19, 14, 8, 11, 15, 17, 15, 18)
+MH <- c(2, 5, 2, 5, 4, 2, 0, 2, 2, 4, 6, 2, 3)
+Year <- 2007:2019
+
+Counts.df <- data.frame(Year, NS, MH)
+# sum(MH)/sum(NS) * 100
+```
+
+We note that `r round(sum(MH)/sum(NS) * 100, 0)`% of them had wind speeds exceeding 48.9 m/s. An increase of 5 percentage points over the earlier period examined in @ElsnerKossinJagger2008.
+
+```{r}
+library(dplyr)
+
+LMI.df %>%
+  arrange(desc(MPS))
+```
+
+Plot as an ordered bar plot.
+```{r}
+LMI.df <- LMI.df %>%
+  mutate(NAME = paste(Year, Name))
+
+#library(forcats)
+
+ggplot(data = LMI.df) +
+  geom_segment(aes(x = reorder(NAME, MPS), y = 50,
+                   xend = reorder(NAME, MPS), yend = MPS, 
+                   color = MPS), size = 2.5) +
+  coord_flip() + 
+  scale_y_continuous(position = 'right') +
+  xlab("") + ylab("Lifetime Highest Intensity (m/s)") +
+  theme_minimal() +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        legend.position = "none")
+```
+
+```{r}
+percentile <- (cumsum(table(LMI.df$MPS)) + (sum(NS) - sum(MH)))/sum(NS)
+percentile.df <- as.data.frame(percentile)
+percentile.df$MPS <- as.numeric(rownames(percentile.df))
+
+( p85ws <- round(approx(x = percentile.df$percentile, y = percentile.df$MPS, xout = .85)$y, 1) )
+```
+
+Further we note that the 85th quantile wind speed has increased from 48.9 m/s to `r p85ws` m/s which is an increase of `r p85ws - 48.9` m/s and which matches an extrapolation that takes the trend of .63 m/s/yr from Table 1 in @ElsnerKossinJagger2008 and multiplies it by 7 (mid point number of years in a 13-year period). [48.9 + .63 * 7 = 53.3 m/s].
+
+```{r}
+p95 <- round(approx(x = percentile.df$MPS, y = percentile.df$percentile, xout = 60.3)$y, 1)
+p95ws <- round(approx(x = percentile.df$percentile, y = percentile.df$MPS, xout = .95)$y, 1)
+```
+
+Furthermore we note that 5% of the storms exceeded 60.3 m/s over the earlier period (Table 1, 95th quantile) but has increased to `r (1 - p95) * 100`% over the later period. The 95th quantile wind speed has increased from 60.3 m/s to `r p95ws` m/s, which is somewhat stronger than the extrapolated trend [60.3 + .81 * 7 = 66 m/s].
+
+It is hard to argue against this straightforward post publication analysis and the results raise the question of why @ElsnerKossinJagger2008 was largely ignored or discounted when writing "state-of-the-knowledge" reports on hurricanes and climate change (e.g., @KnutsonEtAl2019).
+
+```{r}
+( pws <- round(approx(x = percentile.df$percentile, y = percentile.df$MPS, xout = c(.85, .9, .95, .975, .99))$y, 1) )
+Q <- c(.85, .9, .95, .975, .99)
+OldWindQ <- c(48.9, 54.8, 60.3, 72.7, 77.8)  # From Elsner et al. 2008
+Trend <- c 
+SE <- c(.228, .226, .449, .356, .356)
+
+CompareATL.df <- data.frame(Quantile = Q,
+                            NewWindQ = pws,
+                            OldWindQ = OldWindQ,
+                            Trend = Trend,
+                            ExtrapWindQ = OldWindQ + Trend * 7,
+                            QHi = OldWindQ + (Trend + SE) * 7,
+                            QLo = OldWindQ + (Trend - SE) * 7)
+```
+
+#### Repeat for Western Pacific typhoons
+
+Get data from IBTrACS http://ibtracs.unca.edu/index.php?name=browse-year-basin
+```{r}
+Year <- c(2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007,
+          2008, 2008, 2008, 2008, 2008, 2008, 2008, 2008,
+          2009, 2009, 2009, 2009, 2009, 2009, 2009,
+          2010, 2010, 2010, 2010,
+          2011, 2011, 2011, 2011, 2011, 2011, 2011,
+          2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012, 2012,
+          2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013,
+          2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014,
+          2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015,
+          2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016,
+          2017, 2017, 2017, 2017, 2017,
+          2018, 2018, 2018, 2018, 2018, 2018, 2018, 2018, 2018,
+          2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019) 
+Name <- c("Kong-Rey", "Yutu", "Man-Yi", "Usagi", "Sepat", "Nari", "Wipha", "Krosa", "Kijiki", 
+          "Neoguri", "Rammansun", "Nakri", "Fengshen", "Nuri", "Sinlaku", "Hagupit", "Jangmi",
+          "Kujira", "Vamco", "Choi-Wan", "Parma", "Melor", "Lupit", "Nida",
+          "Kompasu", "Fanapi", "Megi", "Chaba",
+          "Songda", "Ma-on", "Muifa", "Nanmadol", "Roke", "Nesat", "Nalgae",
+          "Mawar", "Guchol", "Vicente", "Tembin", "Bolaven", "Sanba", "Jelawat", "Prapiroon", "Son-Tinh", "Bopha",
+          "Soulik", "Utor", "Usagi", "Wutip", "Danas", "Nari", "Wipha", "Francisco", "Lekima", "Krosa", "Haiyan",
+          "Neoguri", "Rammansun", "Genevieve", "Halong", "Phanfone", "Vongfong", "Nuri", "Hagupit",
+          "Higos", "Maysak", "Noul", "Dolphin", "Chan-Hom", "Nangka", "Soudelor", "Goni", "Atsani", "Krovanh", "Dujuan", "Mujigae", "Koppu", "Champi", "In-Fa", "Melor",
+          "Nepartak", "LionRock", "Namtheun", "Meranti", "Malakas", "Megi", "Chaba", "Songda", "Sarika", "Haima", "Nock-Ten",
+          "Noru", "Banyan", "Hato", "Talim", "Lan",
+          "Jelawat", "Maria", "Soulik", "Cimaron", "Jebi", "Mangkhut", "Trami", "Kong-Rey", "Yutu",
+          "Wutip", "Lekima", "Krosa", "Lingling", "Faxai", "Hagibis", "Bauloi", "Halong", "Fengshen", "Kammuri")
+
+KNT <- c(100, 130, 125, 120, 140, 125, 135, 130, 115,
+         100, 135, 125, 110, 100, 125, 125, 140,
+         115, 120, 140, 135, 150, 140, 155,
+         105, 105, 160, 115,
+         140, 115, 140, 140, 115, 115, 130,
+         105, 130, 115, 120, 125, 155, 140, 105, 105, 150,
+         125, 130, 135, 100, 120, 100, 120, 140, 140, 105, 170,
+         140, 140, 140, 140, 135, 155, 155, 155,
+         130, 150, 140, 140, 120, 135, 155, 120, 140, 100, 130, 115, 130, 125, 120, 125,
+         155, 120, 100, 170, 115, 120, 150, 130, 115, 145, 140,
+         135, 110, 101, 120, 135,
+         130, 145, 105, 115, 155, 155, 140, 150, 150,
+         138, 128, 99, 119, 115, 138, 124, 154, 109, 115)
+
+LMI.df <- data.frame(Year, Name, KNT, MPS = KNT * .5144)
+
+NS <- c(24, 22, 22, 14, 21, 25, 31, 23, 27, 26, 27, 29, 29)
+
+library(dplyr)
+
+MH <- LMI.df %>%
+  group_by(Year) %>%
+  summarize(MH = n()) %>%
+  pull(MH)
+
+Year <- 2007:2019
+
+Counts.df <- data.frame(Year, NS, MH)
+
+sum(MH)/sum(NS) * 100
+```
+
+Named storms: https://en.wikipedia.org/wiki/Tropical_cyclones_by_year
+
+```{r}
+percentile <- (cumsum(table(LMI.df$MPS)) + (sum(NS) - sum(MH)))/sum(NS)
+percentile.df <- as.data.frame(percentile)
+percentile.df$MPS <- as.numeric(rownames(percentile.df))
+
+( pws <- round(approx(x = percentile.df$percentile, y = percentile.df$MPS, xout = c(.85, .9, .95, .975, .99))$y, 1) )
+
+Q <- c(.85, .9, .95, .975, .99)
+OldWindQ <- c(58.9, 63.7, 69.6, 73.1, 77.6)  # From Elsner et al. 2008
+Trend <- c(.12,  .14,  .09,  .29,  .36)
+SE <- c(.190, .177, .192, .116, .230)
+
+CompareNWP.df <- data.frame(Quantile = Q,
+                            NewWindQ = pws,
+                            OldWindQ = OldWindQ,
+                            Trend = Trend,
+                            ExtrapWindQ = OldWindQ + Trend * 7,
+                            QHi = OldWindQ + (Trend + SE) * 7,
+                            QLo = OldWindQ + (Trend - SE) * 7)
+```
+
+67.5 71.4 75.9 79.4 79.7
+
+Compare with:
+58.9 63.7 69.6 73.1 77.6 *Table 1: Elsner et al. 2008
+.12  .14  .09  .29  .36
+
+#### Repeat for Eastern Pacific hurricanes
+```{r}
+Year <- c(2007,
+          2008, 2008,
+          2009, 2009, 2009, 2009, 2009,
+          2010, 2010,
+          2011, 2011, 2011, 2011, 2011, 2011,
+          2012, 2012, 2012, 2012, 2012,
+          2013,
+          2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014,
+          2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015,
+          2016, 2016, 2016, 2016, 2016, 2016,
+          2017, 2017, 2017, 2017,
+          2018, 2018, 2018, 2018, 2018, 2018, 2018, 2018, 2018, 2018,
+          2019, 2019, 2019, 2019)
+  
+Name <- c("Flossie",
+          "Hernan", "Norbert",
+          "Felicia", "Guillermo", "Jimena", "Rick", "Neki",
+          "Celia", "Darby",
+          "Adrian", "Dora", "Eugene", "Hilary", "Jova", "Kenneth",
+          "Bud", "Daniel", "Emilia", "Mariam", "Paul",
+          "Raymond",
+          "Amanda", "Christina", "Iselle", "Julio", "Marie", "Norbert", "Odille", "Simon",
+          "Andres", "Blanca", "Dolores", "Hilda", "Kilo", "Ignacio", "Jimena", "Linda", "Olaf", "Patricia", "Sandra",
+          "Blas", "Darby", "Georgette", "Lester", "Madeline", "Seymour",
+          "Eugene", "Fernanda", "Kenneth", "Otis",
+          "Aletta", "Bud", "Hector", "Lane", "Norman", "Olivia", "Rosa", "Walaka", "Sergio", "Willa",
+          "Barbara", "Erick", "Juliette", "Kiko")
+          
+KNT <- c(120,
+         105, 115,
+         125, 110, 135, 155, 110,
+         140, 105,
+         120, 135, 120, 125, 110, 125,
+         100, 100, 120, 105, 105,
+         110,
+         135, 130, 120, 105, 140, 110, 120, 115,
+         125, 125, 115, 125, 120, 125, 135, 110, 130, 185, 130,
+         120, 105, 115, 125, 115, 130,
+         100, 125, 115, 100,
+         120, 120, 135, 140, 130, 115, 130, 140, 120, 140,
+         135, 115, 110, 115)
+```
+
+### References
