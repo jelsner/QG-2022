@@ -1,1 +1,1 @@
-# QG-2022
+# This repo is for lesson notes and assignments used in the course Quantitative Geography, Fall 2022.
