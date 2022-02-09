@@ -103,3 +103,19 @@ Assignment | Due Date (no later than 5 pm)
 11         | December 3
 
 ## Other materials to check out {-}
+
+## Julia programming language {-}
+Julia programming language https://julialang.org/
+Download > Open
+import Pkg; Pkg.add("Pluto")
+import Pluto
+Pluto.run()
+
+md"""
+# This notebook is a test.
+"""
+begin
+a = [1, 4, 7, 22]
+	a * 10
+end
+

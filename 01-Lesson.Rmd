@@ -80,11 +80,11 @@ TLH.df <- readr::read_csv(file = here::here('data', 'TLH_SOD1892.csv'),
       dplyr::select(Date, Year, Month, Day, doy, TMAX, TMIN, PRCP)
 ```
 
-Package name :: function name
+package::function  (`::` is called a library specifier).
 
-Or, load the packages by name with the `library()` function in the file above where they are first used.
+Or, load the packages into your current environment with the `library()` function in the file above where they are first used.
 
-Create a plot of the frequency of high temperatures by temperature values.
+Create a plot of the frequency of high temperatures.
 ```{r, create a plot}
 library(dplyr)
 library(ggplot2)
