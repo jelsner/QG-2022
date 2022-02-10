@@ -107,27 +107,27 @@ Assignment | Due Date (no later than 5 pm)
 ## Other materials to check out {-}
 
 ## Julia programming language {-}
+
 Julia programming language https://julialang.org/
 Download > Open
 
-Anaconda > Individual > Download > Install
-
-In the Julia REPL type:
-
+Jupyter Notebook
+(1) Anaconda > Individual > Download > Install
+(2) In the Julia REPL type:
 using Pkg
 Pkg.add("IJulia")
-
-Then click on the Anaconda-Navigator icon and Launch Jupyter Notebook
-Click on the New button and select Julia.
-
+(3) Then click on the Anaconda-Navigator icon and Launch Jupyter Notebook
+(4) Click on the New button and select Julia.
 Problems? watch https://www.youtube.com/watch?v=oyx8M1yoboY
 
+Pluto Notebook
+In the Julia REPL type:
 import Pkg; Pkg.add("Pluto")
 import Pluto
 Pluto.run()
 
 md"""
-# This notebook is a test.
+# This Pluto notebook is a test.
 """
 begin
 a = [1, 4, 7, 22]
