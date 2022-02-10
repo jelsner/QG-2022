@@ -1,5 +1,5 @@
 ---
-title: "GEO5156: Quantitative Geography Fall 2022"
+title: "GEO5156: Quantitative Geography (Fall 2022)"
 author: "James B. Elsner"
 date: "`r Sys.Date()`"
 bibliography: ["References.bib"]

@@ -1,11 +1,13 @@
 # Syllabus {-}
 
+## GEO5165C: Quantitative Geography {-}
+
 ## Contact information {-}
 
 * Instructor Name: Professor James B. Elsner (he/him/his)
 * Instructor Location: Bellamy Building, Room 323a
-* Lesson Hours: MWF 9:05-9:55 a.m.
-* Student Hours: MWF 10-10:30 a.m.
+* Lesson Hours: TR 3:05-4:20 p.m.
+* Student Hours: TR 9-10 a.m., 2-3 p.m.
 
 Email: <jelsner@fsu.edu>
 
@@ -107,6 +109,19 @@ Assignment | Due Date (no later than 5 pm)
 ## Julia programming language {-}
 Julia programming language https://julialang.org/
 Download > Open
+
+Anaconda > Individual > Download > Install
+
+In the Julia REPL type:
+
+using Pkg
+Pkg.add("IJulia")
+
+Then click on the Anaconda-Navigator icon and Launch Jupyter Notebook
+Click on the New button and select Julia.
+
+Problems? watch https://www.youtube.com/watch?v=oyx8M1yoboY
+
 import Pkg; Pkg.add("Pluto")
 import Pluto
 Pluto.run()
