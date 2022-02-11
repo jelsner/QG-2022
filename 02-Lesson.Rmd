@@ -17,7 +17,7 @@
 
 ## Data Analysis  {-}
 
-Quantitative geography is done on a computer. You have two choices: use a spreadsheet or write code. 
+Data analytics are done on a computer. You have two choices: use a spreadsheet or write code. 
 
 A spreadsheet is convenient, but they make the three conditions for a good data analysis _reproducibility_, _communication_, and _automation_ difficult to achieve.
 
