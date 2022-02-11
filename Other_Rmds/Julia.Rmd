@@ -1,0 +1,40 @@
+---
+title: "Julia Language"
+output: html_document
+---
+
+## Julia programming language {-}
+
+Julia programming language https://julialang.org/
+Download > Open
+
+Jupyter Notebook
+(1) Anaconda > Individual > Download > Install
+(2) In the Julia REPL type:
+using Pkg
+Pkg.add("IJulia")
+(3) Then click on the Anaconda-Navigator icon and Launch Jupyter Notebook
+(4) Click on the New button and select Julia.
+Problems? watch https://www.youtube.com/watch?v=oyx8M1yoboY
+
+Pluto Notebook
+In the Julia REPL type:
+import Pkg; Pkg.add("Pluto")
+import Pluto
+Pluto.run()
+
+md"""
+# This Pluto notebook is a test.
+"""
+begin
+a = [1, 4, 7, 22]
+	a * 10
+end
+
+## Exploratory analysing using Julia {-}
+
+https://github.com/mohdsanadzakirizvi/Data-Science-with-Julia
+
+## Image processing using Julia {-}
+
+https://github.com/acgeospatial/Julia_Geospatial
