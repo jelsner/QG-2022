@@ -9,18 +9,19 @@ If your analysis is to be a convincing, the trail from data to final output must
 
 ## Scatter plots {-}
 
-Functions from the {ggplot2} package are used to make graphs. We make these graphing functions available for a given session of R (every time we open RStudio) with the `library(ggplot2)` function.
+Functions from the {ggplot2} package are used to make graphs. You make these graphing functions available for a given session of R (every time you open RStudio) with the `library(ggplot2)` function.
 
-As an example, consider the `airquality` data frame. The data contains daily air quality measurements from a location in New York City between May and September of 1973.
+As an example, consider the data frame called `airquality`. The data contains daily air quality measurements from a location in New York City between May and September of 1973.
 
-Follow along by pressing the green arrows when we get to a code chunk.
+Follow along by pressing the green arrows when you get to a code chunk.
 ```{r}
-airquality
+head(airquality)
+dim(airquality)
 ```
 
 The data contains 153 rows and 6 columns. Each row is a set of measurements across six variables on a given day.
 
-Most data we will work with are like this. Each row is a set of measurements (a case) and each column is a variable.
+Most data you will work with are like this. Each row is a set of measurements (a case) and each column is a variable.
 
 The columns (variables) include the measurements of ozone concentration (`Ozone`) (ppm), solar radiation (`Solar.R`) (langley), wind speed (`Wind`) (mph), temperature (`Temp`) (F), as well as `Month` and `Day`.
 
@@ -28,9 +29,9 @@ Question: Are ozone concentrations higher on warmer days? Let's see what the dat
 
 The scatter plot is one of the most useful statistical graphs. It describes the _relationship_ between two variables. It is made by plotting the variables in a plane defined by the values of the variables. 
 
-Using the {ggplot2} functions, we answer the question above by mapping the `Temp` variable to the x aesthetic and the `Ozone` variable to the y aesthetic.
+Using the {ggplot2} functions, you answer the question above by mapping the `Temp` variable to the x aesthetic and the `Ozone` variable to the y aesthetic.
 
-More simply we could say that we plot `Temp` on the x axis and `Ozone` on the y axis. Put we want to recognize that the axes are aesthetics (there are other aesthetics like color, size, etc).
+More simply you could say that you plot `Temp` on the x axis and `Ozone` on the y axis. Put you want to recognize that the axes are aesthetics (there are other aesthetics like color, size, etc).
 ```{r}
 library(ggplot2)
 
@@ -40,49 +41,57 @@ ggplot(data = airquality) +
 
 What do you see? Why the warning?
 
-To help us better describe the relationship we add another layer. This layer is defined by `geom_smooth()` which takes the same aesthetics.
+To suppress the warning, you add the argument `na.rm = TRUE` in the `geom_point()` function.
 ```{r}
 ggplot(data = airquality) + 
-  geom_point(mapping =  aes(x = Temp, y = Ozone)) +
-  geom_smooth(mapping =  aes(x = Temp, y = Ozone))
+  geom_point(mapping =  aes(x = Temp, y = Ozone), 
+             na.rm = TRUE)
+```
+
+
+To help us better describe the relationship you add another layer. This layer is defined by `geom_smooth()` which takes the same aesthetics.
+```{r}
+ggplot(data = airquality) + 
+  geom_point(mapping =  aes(x = Temp, y = Ozone), na.rm = TRUE) +
+  geom_smooth(mapping =  aes(x = Temp, y = Ozone), na.rm = TRUE)
 ```
 
 The smooth line describes how the average ozone concentration varies with temperature. For lower temperatures there is not much change in ozone concentrations as temperatures increase, but for higher temperatures the increase in ozone concentrations is more pronounced.
 
-In the above code we used the same mapping for the point layer and the smooth layer. We can simplify the code by putting the `mapping =` argument into the `ggplot()` function.
+In the above code you used the same mapping for the point layer and the smooth layer. You can simplify the code by putting the `mapping =` argument into the `ggplot()` function.
 ```{r}
 ggplot(data = airquality,
        mapping =  aes(x = Temp, y = Ozone)) + 
-  geom_point() +
-  geom_smooth()
+  geom_point(na.rm = TRUE) +
+  geom_smooth(na.rm = TRUE)
 ```
 
 Question: On average is ozone concentration higher on windy days? Create a graph to help you answer this question.
 ```{r}
 ggplot(data = airquality, 
        mapping = aes(x = Wind, y = Ozone)) + 
-  geom_point() +
-  geom_smooth()
+  geom_point(na.rm = TRUE) +
+  geom_smooth(na.rm = TRUE)
 ```
 
 What is the answer?
 
-We can use a label instead of a dot for the locations in this two-dimensional scatter plot by adding the `label` aesthetic and using `geom_text`. 
+You can use a label instead of a dot for the locations in this two-dimensional scatter plot by adding the `label` aesthetic and using `geom_text`. 
 ```{r}
 ggplot(data = airquality, 
        mapping = aes(x = Wind, y = Ozone, label = Ozone)) +
-  geom_text()
+  geom_text(na.rm = TRUE)
 ```
 
 To map an aesthetic to a variable, associate the name of the aesthetic to the name of the variable inside `aes()`.
 
-We can make the plot interactive by using the `ggplotly()` function from the {plotly} package. We simply put the above code inside this function.
+You can make the plot interactive by using the `ggplotly()` function from the {plotly} package. You simply put the above code inside this function.
 ```{r}
 plotly::ggplotly(
   ggplot(data = airquality, 
          mapping =  aes(x = Temp, y = Ozone)) + 
-  geom_point() +
-  geom_smooth()
+  geom_point(na.rm = TRUE) +
+  geom_smooth(na.rm = TRUE)
 )
 ```
 
@@ -90,35 +99,35 @@ Hover/zoom etc.
 
 As another example, consider the Palmer penguin data set from https://education.rstudio.com/blog/2020/07/palmerpenguins-cran/. 
 
-The data are located on the web at the following URL. We first save the location as an object called `loc`.
+The data are located on the web at the following URL. You first save the location as an object called `loc`.
 ```{r}
 loc <- "https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/inst/extdata/penguins.csv"
 ```
 
 Note that this object is now located in our environment. It is simply a string of characters (letters, backslashes, etc) in quotes. A character object.
 
-Next we get the data and save it as an object called `penguins` with the `read.csv()` function. Inside the parentheses of the function we put the name of the location. 
+Next you get the data and save it as an object called `penguins` with the `read_csv()` function from the {readr} package. Inside the parentheses of the function you put the name of the location. 
 ```{r}
-penguins <- read.csv(loc)
+penguins <- readr::read_csv(loc)
 ```
 
-We note that the object `penguins` is now in our environment. It is a data frame containing 344 rows (observations) and 8 variables. We list the first 10 rows and 7 columns by typing the name of the object as follows.
+Note that the object `penguins` is now in your environment. It is a data frame containing 344 rows (observations) and 8 variables. You list the first 10 rows and 7 columns by typing the name of the object as follows.
 ```{r}
 penguins
 ```
 
 The data are 344 individual penguins each described by species (Adelie, Chinstrap, Gentoo), where it was found (island name), length of bill (mm), depth of bill (mm), body mass (g), male or female, and year.
 
-Each penguin belongs to one of three species. To see how many of the 344 penguins are in each species we use the `table()` function. Between the parentheses of this function we put the name of the data `penguins` followed by the `$` sign followed by the name of the column `species`.
+Each penguin belongs to one of three species. To see how many of the 344 penguins are in each species you use the `table()` function. Between the parentheses of this function you put the name of the data `penguins` followed by the `$` sign followed by the name of the column `species`.
 ```{r}
 table(penguins$species)
 ```
 
-Said another way, we reference columns in the data with the `$` sign so that `penguins$species` is how we refer to the column `species` in the data object named `penguins`.
+Said another way, you reference columns in the data with the `$` sign so that `penguins$species` is how you refer to the column `species` in the data object named `penguins`.
 
 There are 152 Adelie, 68 Chinstrap, and 124 Gentoo penguins.
 
-We plot the relationship between flipper length and body mass for each of the three species.
+You plot the relationship between flipper length and body mass for each of the three species.
 ```{r}
 ggplot(data = penguins, 
        mapping = aes(x = flipper_length_mm, y = body_mass_g)) + 
@@ -129,7 +138,7 @@ Penguin flipper length and body mass show a positive relationship (association).
 
 How does this positive relationship vary by species?
 
-We answer this question with another aesthetic. We assign a level of the aesthetic (here a color) to each unique value of the variable, a process known as scaling. The `ggplot()` function also adds a legend that explains which levels correspond to which values.
+You answer this question with another aesthetic. You assign a level of the aesthetic (here a color) to each unique value of the variable, a process known as scaling. The `ggplot()` function also adds a legend that explains which levels correspond to which values.
 
 ```{r}
 ggplot(data = penguins, 
@@ -147,7 +156,7 @@ ggplot(data = mpg,
 
 The colors reveal that the unusual points (on the right side of the plot) are two-seaters. Sports cars have large engines like SUVs and pickup trucks, but small bodies like midsize and compact cars, which improves their gas mileage. In hindsight, these cars were unlikely to be hybrids since they have large engines.
 
-In the above example, we mapped `class` to the color aesthetic, but we could have mapped `class` to the shape aesthetic, which controls point shapes.
+In the above example, you mapped `class` to the color aesthetic, but you could have mapped `class` to the shape aesthetic, which controls point shapes.
 ```{r}
 ggplot(data = mpg,
        mapping = aes(x = displ, y = hwy, shape = class)) + 
@@ -161,7 +170,7 @@ For each aesthetic, you use `aes()` to associate the name of the aesthetic with 
 
 The syntax highlights a useful insight about `x` and `y`: the x and y locations of a point are themselves aesthetics, visual properties that you can map to variables to display information about the data. 
 
-We can also set the aesthetic properties of your geom manually. For example, we can make all of the points in our plot blue.
+You can also set the aesthetic properties of your geom manually. For example, you can make all of the points in our plot blue.
 ```{r}
 ggplot(data = mpg,
        mapping = aes(x = displ, y = hwy)) + 
@@ -178,16 +187,18 @@ R has 25 shapes that are identified by numbers. There are some seeming duplicate
 
 ### Facets {-}
 
-Another way to add additional variables which is useful for categorical variables, is to split the plot into facets (subplots that each display one subset of the data). A categorical variable is one that can take only a limited, and usually fixed, number of possible values.
+Another way to add additional variables useful for categorical variables is to split the plot into facets. A facet is a subplot on one subset of the data. 
 
-To facet your plot by a categorical variable, use `facet_wrap()`. The first argument of `facet_wrap()` is a formula, which you create with `~` followed by a variable name (here "formula" is the name of a data structure in R). The variable that you pass to `facet_wrap()` should only have a limited number of values (categorical). 
+A categorical variable is one that can take only a limited, and usually fixed, number of possible values so you can split the plot for each value of the categorical variable.
+
+You can use `facet_wrap()` to create a faceted plot. The first argument of `facet_wrap()` is a formula, which you create with `~` followed by a variable name (here "formula" is the name of a data structure in R). The variable that you pass to `facet_wrap()` should only have a limited number of values (categorical). 
 
 The variable `class` in the data frame `mpg` is a character string. You can see this by typing
 ```{r}
 str(mpg)
 ```
 
-There are seven car classes. We put `class` in the `facet_wrap()` function. Everything is the same as before on the first two code lines but we add the `facet_wrap()` function.
+There are seven car classes. You put `class` in the `facet_wrap()` function. Everything is the same as before on the first two code lines but you add the `facet_wrap()` function.
 ```{r}
 ggplot(data = mpg,
        mapping = aes(x = displ, y = hwy)) + 
@@ -195,11 +206,11 @@ ggplot(data = mpg,
   facet_wrap(~ class, nrow = 2) 
 ```
 
-The plot shows separate scatter plots one for each of the seven classes. More on graphs later.
+The output produces separate scatter plots one for each of the seven classes. More on graphs later.
 
 ## Calculations {-}
 
-Let's see how we can do some arithmetic in R.
+Let's see how you can do some arithmetic in R.
 
 R evaluates commands typed at the prompt and returns the result to the screen. The prompt is the blue greater than symbol (`>`). To find the sum of the square root of 25 and 2, at the prompt type
 ```{r}
@@ -309,7 +320,9 @@ counts <- c(2, 3, 0, 3, 1, 0, 0, 1, 2, 1)
 counts
 ```
 
-Notice a few things. You assigned the values to an object called counts. The assignment operator is an equal sign (`=`). Values do not print. They are assigned to an object name. They are printed by typing the object name as we did on the second line. Finally, the values when printed are prefaced with a `[1]`. This indicates that the object is a vector and the first entry in the vector is a value of 2 (The number immediately to the right of [1]). More on this later.
+Notice a few things. You assigned the values to an object called counts. The assignment operator is an equal sign (`=`). Values do not print. They are assigned to an object name. 
+
+They are printed by typing the object name as you did on the second line. Finally, the values when printed are prefaced with a `[1]`. This indicates that the object is a vector and the first entry in the vector is a value of 2 (The number immediately to the right of [1]). More on this later.
 
 You can save some typing by using the arrow keys to retrieve previous commands.  Each command is stored in a history file and the up arrow key will move backwards through the history file and the down arrow forwards.  The left and right arrow keys will work as expected.
  

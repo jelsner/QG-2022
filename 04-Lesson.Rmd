@@ -1,0 +1,371 @@
+# Lesson 4
+
+This week: Two lessons and _No assignment_
+
+Today: (1) Data as vectors, (2) Getting data into R, and (3) Data frames
+
+## Data as vectors
+
+The `c()` function is used to get small amounts of data into R. The function combines (concatenates) items (elements). Example: consider a set of hypothetical annual land falling hurricane counts over a ten-year period.
+
+2  3  0  3  1  0  0  1  2  1
+
+To save these values in our environment as a data object, type
+```{r}
+counts <- c(2, 3, 0, 3, 1, 0, 0, 1, 2, 1)
+counts
+```
+
+Once data are stored as an object, we use functions on them. Some common functions used on simple data objects include
+```{r}
+sum(counts)
+length(counts)
+sum(counts)/length(counts)
+```
+
+For this example, the `sum()` function returns the total number of hurricanes making landfall. The `length()` function returns the number of years, and `sum(counts)/length(counts)` returns the average number of hurricanes per year.
+
+### Mean
+
+The average (or mean) value of a set of numbers ($x$'s) is defined as:
+$$
+\bar x = \frac{x_1 + x_2 + \cdots + x_n}{n}
+$$
+
+Note: The formula is given as LaTeX math code with the double dollar signs starting (and ending) the math mode. It's a bit hard to read but it translates exactly to math as we would read it in a scientific article or textbook.
+
+The function `mean()` makes this calculation on your set of counts.
+```{r}
+mean(counts)
+```
+
+The `counts` data is stored as a vector. R keeps track of the order that the data were entered. First element, second element, and so on. This is good for a couple of reasons. Here the data have a natural order - year 1, year 2, etc. You don't want to mix these. You would like to be able to make changes to the data item by item instead of entering the entire data again. Also vectors are math objects making them easy to manipulate.
+
+Suppose `counts` contain the annual number of land-falling hurricanes from the first decade of a longer record. You want to keep track of counts over other decades. This could be done by the following, example.
+```{r}
+cD1 <- counts
+cD2 <- c(0, 5, 4, 2, 3, 0, 3, 3, 2, 1)
+```
+ 
+Note that you make a duplicate copy of the vector called `counts` giving it a different name.
+
+Most functions operate on each element of the data vector at the same time.
+```{r}
+cD1 + cD2
+```
+
+The first year of the first decade is added to the first year of the second decade and so on.
+
+What happens if we apply the `c()` function to these two vectors?
+```{r}
+c(cD1, cD2)
+```
+
+If we are interested in each year's count as a difference from the decade mean, you type:
+```{r}
+cD1 - mean(cD1)
+```
+
+In this case a single number (the mean of the first decade) is subtracted from each element of the vector of counts.
+
+This is an example of data recycling. R repeats values from one vector so that the length of this vector matches the other, longer vector. Here the mean is repeated 10 times.
+
+### Variance
+
+Suppose we are interested in by how much the set of annual landfall counts varies from year to year. The formula for the variance is given by:
+$$
+\hbox{var}(x) = \frac{(x_1 - \bar x)^2 + (x_2 - \bar x)^2 + \cdots + (x_n - \bar x)^2}{n-1}
+$$
+
+Although the `var()` function will compute this, here we see how it can be computed from other simpler functions. The first step is to find the squared difference between each value and the mean. To simplify things first create a new vector `x` and assign the mean of the `x`'s to `xbar`.
+```{r}
+x <- cD1
+xbar <- mean(x)
+x - xbar
+(x - xbar)^2
+```
+
+The sum of the differences is zero, but not the sum of the squared differences.
+```{r}
+sum((x - xbar)^2)
+n <- length(x)
+n
+sum((x - xbar)^2)/(n - 1)
+```
+
+So the variance is 1.344. To verify with the `var()` function type
+```{r}
+var(x)
+```
+
+### Median
+
+Recall that the mean is a statistic calculated on our data. Typically there are more data values close to the mean than far from it. A normal random variable is within two standard deviations of its mean about 95% of the time.
+
+The median is a statistic defined exactly as the middle value.
+
+For example, consider a set of seven data values. Here the seven values are generated randomly. The `set.seed()` function guarantees that everyone (with a particular seed number) will get the same set of values.
+```{r}
+set.seed(3043)
+
+y <- rnorm(n = 7)
+sort(y)
+```
+The argument value `n = 7` guarantees seven values. They are sorted from lowest on the left to highest on the right with the `sort()` function. The middle value is the fourth value from the left in the ordered list of data values.
+```{r}
+median(y)
+```
+
+The median divides the data set into the top half (50%) of the data values and the bottom half of the data values.
+
+With an odd number of values, the median is the middle one; with an even number of values, the median is the average of the two middle values.
+```{r}
+y <- rnorm(n = 8)
+sort(y)
+median(y)
+```
+
+We check to see this is true no matter what the values are or what even number of values we choose.
+```{r}
+N = 20
+y <- rnorm(n = N)
+y_sorted <- sort(y)
+median(y) == (y_sorted[N/2] + y_sorted[N/2 + 1]) / 2
+```
+
+The median value, as a statistic representing the middle of a set of data values, is said to be resistant to extreme values (outliers).
+
+Consider the wealth (in 1000s of $) of five bar patrons.
+```{r}
+patrons <- c(50, 60, 100, 75, 200)
+```
+
+Now consider the same bar and patrons after a multimillionaire walks in.
+```{r}
+patrons_with_mm <- c(patrons, 50000)
+```
+
+```{r}
+mean(patrons)
+mean(patrons_with_mm)
+median(patrons)
+median(patrons_with_mm)
+```
+
+The difference in the mean wealth with and without the millionaire present is substantial while the difference in median wealth with and without the millionaire is small. 
+
+Statistics that are not greatly influenced be a few values far from the bulk of the data are called _resistant_.
+
+The `cfb` data set from the {UsingR} package has data from the Survey of Consumer Finances conducted by the U.S. Federal Reserve Board (in 2001). Some of the income values are much higher than the bulk of the data. This tendency is common in income distributions. A few people tend to accumulate enormous wealth.
+
+Make the data available with the `library()` function, then show the first ten rows and ten columns by typing the name of the data object (`cfb`).
+```{r}
+library(UsingR)
+cfb
+```
+
+Next, assign to `income` the column `INCOME` in the `cfb` data frame, and determine the mean and median income values.
+```{r}
+income <- cfb$INCOME
+mean(income)
+median(income)
+```
+
+The first output is the mean income and the second is the median income. Mean income is greater than median income. This indicates there are more small income values than large income values, but some of the large income values are very large.
+
+This 'skewness' in the distribution of values can be seen on a histogram. A histogram is a plot that displays the frequency of the values using intervals that divide the values into equal bins. 
+
+This is done with the `hist()` function. Here we specify the number of intervals with the `breaks = ` argument.
+```{r}
+hist(income, 
+     breaks = 25)
+```
+
+The distribution is said to be right skewed. It has a long right tail.
+
+Note: Some packages come with data sets. To see what data is available in a package, type
+```{r, eval=FALSE}
+data(package = "UsingR")
+```
+
+### Spread
+
+A simple measure of the spread of data values is the range. The range is given by the minimum and maximum value or by the difference between them.
+```{r}
+range(income)
+diff(range(income))
+```
+
+Or using the central tendency as the center of a set of values, we can define spread in terms of deviations from the center. As we've seen the sum of the squared deviations from the center divided by sample length minus one is the sample variance.
+```{r}
+var(income)
+sqrt(var(income))
+sd(income)
+```
+
+To illustrate consider two sets of test scores.
+```{r}
+ts1 <- c(80, 85, 75, 77, 87, 82, 88)
+ts2 <- c(100, 90, 50, 57, 82, 100, 86)
+```
+
+Some test score statistics are
+```{r}
+mean(ts1)
+mean(ts2)
+var(ts1)
+var(ts2)
+```
+
+### Vector types
+
+All the elements of a vector must have the same type. That is we can't mix numbers with character strings.
+
+Consider the following character strings.
+```{r}
+simpsons <- c("Homer", "Marge", "Bart", "Lisa", "Maggie")
+simpsons
+```
+
+Note that character strings are made with matching quotes, either double, ", or single, '.
+
+If we mix element types within a data vector, all elements will change into the 'lowest' common type, which is usually a character. Arithmetic does not work on character elements.
+
+Returning to the land falling hurricane counts.
+```{r}
+cD1 <- c(2, 3, 0, 3, 1, 0, 0, 1, 2, 1)   
+cD2 <- c(0, 5, 4, 2, 3, 0, 3, 3, 2, 1)
+```
+
+Now suppose the National Hurricane Center (NHC) reanalyzes a storm, and that the 6th year of the 2nd decade is a 1 rather than a 0 for the number of landfalls. In this case we type
+```{r}
+cD2[6] <- 1
+```
+
+The assignment to the 6th element in the vector `cD2` is done by referencing the 6th element of the vector with square brackets `[]`. 
+
+It's important to keep this in mind: Parentheses `()` are used for functions and square brackets `[]` are used to get values from vectors (and arrays, lists, etc). REPEAT: `[]` are used to extract or subset values from vectors, data frames, matrices, etc.
+
+Print out all the elements of a data vector, print the 2nd element, the 4th element, all but the 4th element, all odd number elements.
+```{r}
+cD2
+cD2[2]  
+cD2[4]
+cD2[-4]
+cD2[c(1, 3, 5, 7, 9)] 
+```
+
+R's console keeps a history of our commands. The previous commands are accessed using the up and down arrow keys. Repeatedly pushing the up arrow will scroll backward through the history so we can reuse previous commands.
+
+Many times we wish to change only a small part of a previous command, such as when a typo is made. With the arrow keys we can access the previous command then edit it as desired.
+
+### Structured data
+
+When data are in a pattern; for instance the integers 1 through 99. The colon `:` function is used for creating simple sequences.
+```{r}
+1:100
+rev(1:100)
+100:1
+```
+
+It's often necessary to specify either the step size and the starting and ending points or the starting and ending points and the length of the sequence. The `seq()` function does this.
+```{r}
+seq(from = 1, to = 9, by = 2)
+seq(from = 1, to = 10, by = 2)
+seq(from = 1, to = 9, length = 5)
+```
+
+To create a vector with each element having the same value use the `rep()` function (replicate). The simplest usage is to replicate the first argument a specified number of times.
+```{r}
+rep(1, times = 10)
+rep(1:3, times = 3)
+```
+
+More complicated patterns can be repeated by specifying pairs of equal-sized vectors. In this case, each element of the first vector is repeated the corresponding number of times specified by the element in the second vector.
+```{r}
+rep(c("long", "short"), times = c(1, 2))
+```
+
+### Asking questions
+
+To find the most landfalls in the first decade, type:
+```{r}
+max(cD1)
+```
+
+Which years had the most?
+```{r}
+cD1 == 3
+```
+
+Notice the double equals signs (`==`). This tests each value (element) in `cD1` to see if it is equal to 3. The 2nd and 4th values are equal to 3 so TRUEs are returned. Think of this as asking R a question. Is the value equal to 3?  R answers all at once with a vector of TRUEs and FALSEs.
+
+How do we get the vector element corresponding to the TRUE values?  That is, which years have 3 landfalls?
+```{r}
+which(cD1 == 3)
+```
+
+The function `which.max()` can be used to get the first maximum.
+```{r}
+which.max(cD1)
+```
+
+We might also want to know the total number of landfalls in each decade and the number of years in a decade without a landfall. Or how about the ratio of the mean number of landfalls over the two decades.
+```{r}
+sum(cD1)
+sum(cD2)
+```
+
+```{r}
+sum(cD1 == 0)
+sum(cD2 == 0)
+```
+
+```{r}
+mean(cD2) / mean(cD1)
+```
+
+There are 85% more landfalls during the second decade. Is this increase statistically significant?
+
+To remove an object from the environment we use the `rm()` function. Usually not needed unless we have very large objects (e.g., million cases).
+```{r}
+rm(cD1, cD2)
+```
+
+### Tables and summaries
+
+As mentioned, all elements of a vector must be of the same type. For example, the vectors `A`, `B`, and `C` below are constructed as numeric, logical, and character, respectively.
+
+First create the vectors then check the class.
+```{r}
+A <- c(1, 2.2, 3.6, -2.8) 
+B <- c(TRUE, TRUE, FALSE, TRUE)
+C <- c("Cat 1", "Cat 2", "Cat 3")
+class(A)
+class(B)
+class(C)
+```
+
+With logical and character vectors the `table()` function indicates how many occurrences for each element type. For instance, let the vector `wx` denote the weather conditions for five forecast periods as character data.
+```{r}
+wx <- c("sunny", "clear", "cloudy", "cloudy", "rain")
+class(wx)
+table(wx)
+```
+
+The output is a list of the character strings and the corresponding number of occurrences of each string.
+
+As another example, let the vector `ss` denote the Saffir-Simpson category for a set of five hurricanes.
+```{r}
+ss <- c("Cat 3", "Cat 2", "Cat 1", "Cat 3", "Cat 3")
+table(ss)
+```
+
+Here the character strings correspond to different intensity levels as ordered categories with Cat 1 < Cat 2 < Cat 3.  In this case convert the character vector to an ordered factor with levels. This is done with the function `factor()`.
+```{r}
+ss <- factor(ss, order = TRUE)
+class(ss)
+ss
+```
+
+The vector object is now an ordered factor. Printing the object results in a list of the elements in the vector and a list of the levels in order.  Note: if we do the same for the `wx` object, the order is alphabetical by default. Try it.
