@@ -8,6 +8,16 @@ link-citations: yes
 github-repo: jelsner/QG-2022
 site: "bookdown::bookdown_site"
 documentclass: book
+editor_options: 
+  chunk_output_type: console
 ---
 
 # {-}
+
+```{r}
+DiagrammeR::grViz("digraph rmarkdown {
+L -> W
+H -> W
+}
+", height = 100)
+```
