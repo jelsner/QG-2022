@@ -1,10 +1,13 @@
-# Lesson 4
+# Thursday, September 1, 2022 {-}
 
-This week: Two lessons and _No assignment_
+## Today
 
-Today: (1) Data as vectors, (2) Getting data into R, and (3) Data frames
+- Data as vectors
+- Sample statistics
+- Structured data
+- Tables and summaries
 
-## Data as vectors
+## Data as vectors {-}
 
 The `c()` function is used to get small amounts of data into R. The function combines (concatenates) items (elements). Example: consider a set of hypothetical annual land falling hurricane counts over a ten-year period.
 
@@ -16,7 +19,7 @@ counts <- c(2, 3, 0, 3, 1, 0, 0, 1, 2, 1)
 counts
 ```
 
-Once data are stored as an object, we use functions on them. Some common functions used on simple data objects include
+Once data are stored as an object, you use functions on them. Some common functions used on simple data objects include
 ```{r}
 sum(counts)
 length(counts)
@@ -25,14 +28,14 @@ sum(counts)/length(counts)
 
 For this example, the `sum()` function returns the total number of hurricanes making landfall. The `length()` function returns the number of years, and `sum(counts)/length(counts)` returns the average number of hurricanes per year.
 
-### Mean
+## Mean {-}
 
 The average (or mean) value of a set of numbers ($x$'s) is defined as:
 $$
 \bar x = \frac{x_1 + x_2 + \cdots + x_n}{n}
 $$
 
-Note: The formula is given as LaTeX math code with the double dollar signs starting (and ending) the math mode. It's a bit hard to read but it translates exactly to math as we would read it in a scientific article or textbook.
+Note: The formula is given as LaTeX math code with the double dollar signs starting (and ending) the math mode. It's a bit hard to read but it translates exactly to math as you would read in a scientific article or textbook.
 
 The function `mean()` makes this calculation on your set of counts.
 ```{r}
@@ -56,12 +59,12 @@ cD1 + cD2
 
 The first year of the first decade is added to the first year of the second decade and so on.
 
-What happens if we apply the `c()` function to these two vectors?
+What happens if you apply the `c()` function to these two vectors?
 ```{r}
 c(cD1, cD2)
 ```
 
-If we are interested in each year's count as a difference from the decade mean, you type:
+If you are interested in each year's count as a difference from the decade mean, you type:
 ```{r}
 cD1 - mean(cD1)
 ```
@@ -70,14 +73,14 @@ In this case a single number (the mean of the first decade) is subtracted from e
 
 This is an example of data recycling. R repeats values from one vector so that the length of this vector matches the other, longer vector. Here the mean is repeated 10 times.
 
-### Variance
+## Variance {-}
 
-Suppose we are interested in by how much the set of annual landfall counts varies from year to year. The formula for the variance is given by:
+Suppose you are interested in by how much the set of annual landfall counts varies from year to year. The formula for the variance is given by:
 $$
 \hbox{var}(x) = \frac{(x_1 - \bar x)^2 + (x_2 - \bar x)^2 + \cdots + (x_n - \bar x)^2}{n-1}
 $$
 
-Although the `var()` function will compute this, here we see how it can be computed from other simpler functions. The first step is to find the squared difference between each value and the mean. To simplify things first create a new vector `x` and assign the mean of the `x`'s to `xbar`.
+Although the `var()` function will compute this, here you see how it can be computed from other simpler functions. The first step is to find the squared difference between each value and the mean. To simplify things first create a new vector `x` and assign the mean of the `x`'s to `xbar`.
 ```{r}
 x <- cD1
 xbar <- mean(x)
@@ -98,7 +101,7 @@ So the variance is 1.344. To verify with the `var()` function type
 var(x)
 ```
 
-### Median
+## Median {-}
 
 Recall that the mean is a statistic calculated on our data. Typically there are more data values close to the mean than far from it. A normal random variable is within two standard deviations of its mean about 95% of the time.
 
@@ -125,7 +128,7 @@ sort(y)
 median(y)
 ```
 
-We check to see this is true no matter what the values are or what even number of values we choose.
+You check to see this is true no matter what the values are or what even number of values you choose.
 ```{r}
 N = 20
 y <- rnorm(n = N)
@@ -175,7 +178,7 @@ The first output is the mean income and the second is the median income. Mean in
 
 This 'skewness' in the distribution of values can be seen on a histogram. A histogram is a plot that displays the frequency of the values using intervals that divide the values into equal bins. 
 
-This is done with the `hist()` function. Here we specify the number of intervals with the `breaks = ` argument.
+This is done with the `hist()` function. Here you specify the number of intervals with the `breaks = ` argument.
 ```{r}
 hist(income, 
      breaks = 25)
@@ -188,7 +191,7 @@ Note: Some packages come with data sets. To see what data is available in a pack
 data(package = "UsingR")
 ```
 
-### Spread
+## Spread {-}
 
 A simple measure of the spread of data values is the range. The range is given by the minimum and maximum value or by the difference between them.
 ```{r}
@@ -196,7 +199,9 @@ range(income)
 diff(range(income))
 ```
 
-Or using the central tendency as the center of a set of values, we can define spread in terms of deviations from the center. As we've seen the sum of the squared deviations from the center divided by sample length minus one is the sample variance.
+Or using the central tendency as the center of a set of values, you can define spread in terms of deviations from the center. 
+
+The sum of the squared deviations from the center divided by sample length minus one is the sample variance.
 ```{r}
 var(income)
 sqrt(var(income))
@@ -217,9 +222,9 @@ var(ts1)
 var(ts2)
 ```
 
-### Vector types
+## Vector types {-}
 
-All the elements of a vector must have the same type. That is we can't mix numbers with character strings.
+All the elements of a vector must have the same type. That is you can't mix numbers with character strings.
 
 Consider the following character strings.
 ```{r}
@@ -229,7 +234,7 @@ simpsons
 
 Note that character strings are made with matching quotes, either double, ", or single, '.
 
-If we mix element types within a data vector, all elements will change into the 'lowest' common type, which is usually a character. Arithmetic does not work on character elements.
+If you mix element types within a data vector, all elements will change into the 'lowest' common type, which is usually a character. Arithmetic does not work on character elements.
 
 Returning to the land falling hurricane counts.
 ```{r}
@@ -237,7 +242,7 @@ cD1 <- c(2, 3, 0, 3, 1, 0, 0, 1, 2, 1)
 cD2 <- c(0, 5, 4, 2, 3, 0, 3, 3, 2, 1)
 ```
 
-Now suppose the National Hurricane Center (NHC) reanalyzes a storm, and that the 6th year of the 2nd decade is a 1 rather than a 0 for the number of landfalls. In this case we type
+Now suppose the National Hurricane Center (NHC) reanalyzes a storm, and that the 6th year of the 2nd decade is a 1 rather than a 0 for the number of landfalls. In this case you type
 ```{r}
 cD2[6] <- 1
 ```
@@ -255,11 +260,11 @@ cD2[-4]
 cD2[c(1, 3, 5, 7, 9)] 
 ```
 
-R's console keeps a history of our commands. The previous commands are accessed using the up and down arrow keys. Repeatedly pushing the up arrow will scroll backward through the history so we can reuse previous commands.
+R's console keeps a history of our commands. The previous commands are accessed using the up and down arrow keys. Repeatedly pushing the up arrow will scroll backward through the history so you can reuse previous commands.
 
-Many times we wish to change only a small part of a previous command, such as when a typo is made. With the arrow keys we can access the previous command then edit it as desired.
+Many times you wish to change only a small part of a previous command, such as when a typo is made. With the arrow keys you access the previous command then edit it as desired.
 
-### Structured data
+## Structured data {-}
 
 When data are in a pattern; for instance the integers 1 through 99. The colon `:` function is used for creating simple sequences.
 ```{r}
@@ -286,7 +291,7 @@ More complicated patterns can be repeated by specifying pairs of equal-sized vec
 rep(c("long", "short"), times = c(1, 2))
 ```
 
-### Asking questions
+## Asking questions {-}
 
 To find the most landfalls in the first decade, type:
 ```{r}
@@ -300,7 +305,7 @@ cD1 == 3
 
 Notice the double equals signs (`==`). This tests each value (element) in `cD1` to see if it is equal to 3. The 2nd and 4th values are equal to 3 so TRUEs are returned. Think of this as asking R a question. Is the value equal to 3?  R answers all at once with a vector of TRUEs and FALSEs.
 
-How do we get the vector element corresponding to the TRUE values?  That is, which years have 3 landfalls?
+How do you get the vector element corresponding to the TRUE values?  That is, which years have 3 landfalls?
 ```{r}
 which(cD1 == 3)
 ```
@@ -310,7 +315,7 @@ The function `which.max()` can be used to get the first maximum.
 which.max(cD1)
 ```
 
-We might also want to know the total number of landfalls in each decade and the number of years in a decade without a landfall. Or how about the ratio of the mean number of landfalls over the two decades.
+You might also want to know the total number of landfalls in each decade and the number of years in a decade without a landfall. Or how about the ratio of the mean number of landfalls over the two decades.
 ```{r}
 sum(cD1)
 sum(cD2)
@@ -327,14 +332,14 @@ mean(cD2) / mean(cD1)
 
 There are 85% more landfalls during the second decade. Is this increase statistically significant?
 
-To remove an object from the environment we use the `rm()` function. Usually not needed unless we have very large objects (e.g., million cases).
+To remove an object from the current environment you use the `rm()` function. Usually not needed unless you have very large objects (e.g., million cases).
 ```{r}
 rm(cD1, cD2)
 ```
 
-### Tables and summaries
+## Tables and summaries {-}
 
-As mentioned, all elements of a vector must be of the same type. For example, the vectors `A`, `B`, and `C` below are constructed as numeric, logical, and character, respectively.
+All elements of a vector must be of the same type. For example, the vectors `A`, `B`, and `C` below are constructed as numeric, logical, and character, respectively.
 
 First create the vectors then check the class.
 ```{r}
@@ -368,4 +373,4 @@ class(ss)
 ss
 ```
 
-The vector object is now an ordered factor. Printing the object results in a list of the elements in the vector and a list of the levels in order.  Note: if we do the same for the `wx` object, the order is alphabetical by default. Try it.
+The vector object is now an ordered factor. Printing the object results in a list of the elements in the vector and a list of the levels in order.  Note: if you do the same for the `wx` object, the order is alphabetical by default. Try it.

@@ -1,0 +1,10 @@
+Things to change when moving lessons from 2020 to 2022.
+
+First pass
+1. Add {-} to section headings
+2. Change `we` to `you`
+3. Change pipes `%>%` to `|>`
+
+Second pass
+1. Change `read.table (read.csv)` to `readr::read_table` (05-Lesson)
+2. Update example data sets
