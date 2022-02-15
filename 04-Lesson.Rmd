@@ -1,6 +1,6 @@
 # Thursday, September 1, 2022 {-}
 
-## Today
+## Today {-}
 
 - Data as vectors
 - Sample statistics
@@ -14,7 +14,7 @@ The `c()` function is used to get small amounts of data into R. The function com
 2  3  0  3  1  0  0  1  2  1
 
 To save these values in our environment as a data object, type
-```{r}
+```{r, test}
 counts <- c(2, 3, 0, 3, 1, 0, 0, 1, 2, 1)
 counts
 ```

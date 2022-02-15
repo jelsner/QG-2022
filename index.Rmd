@@ -9,15 +9,22 @@ github-repo: jelsner/QG-2022
 site: "bookdown::bookdown_site"
 documentclass: book
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 ---
 
 # {-}
 
-```{r}
+```{r, echo=FALSE}
 DiagrammeR::grViz("digraph rmarkdown {
-L -> W
-H -> W
+
+D [shape = square]
+A [shape = square]
+L [shape = circle]
+H [shape = circle]
+W [shape = circle, color = orange]
+
+{D A L H} -> W
+
 }
-", height = 100)
+", height = 250)
 ```

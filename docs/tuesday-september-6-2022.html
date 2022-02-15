@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Tuesday, September 6, 2022 | GEO5156: Quantitative Geography (Fall 2022)</title>
+  <meta name="description" content="Tuesday, September 6, 2022 | GEO5156: Quantitative Geography (Fall 2022)" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Tuesday, September 6, 2022 | GEO5156: Quantitative Geography (Fall 2022)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="jelsner/QG-2022" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Tuesday, September 6, 2022 | GEO5156: Quantitative Geography (Fall 2022)" />
+  
+  
+  
+
+<meta name="author" content="James B. Elsner" />
+
+
+<meta name="date" content="2022-02-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="thursday-september-1-2022.html"/>
+<link rel="next" href="thursday-september-8-2022.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.8/grViz.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Quantitative Geography</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html"><i class="fa fa-check"></i>Tuesday, August 23, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#today"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#what-is-this-course"><i class="fa fa-check"></i>What is this course?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#where-are-the-materials-for-this-course"><i class="fa fa-check"></i>Where are the materials for this course?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#join-rstudio-cloud"><i class="fa fa-check"></i>Join RStudio Cloud</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#examples"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#course-syllabus"><i class="fa fa-check"></i>Course Syllabus</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#tallahassee-daily-temperatures"><i class="fa fa-check"></i>Tallahassee Daily Temperatures</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html"><i class="fa fa-check"></i>Thursday, August 25, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#today-1"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#data-analysis"><i class="fa fa-check"></i>Data Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#reproducibility"><i class="fa fa-check"></i>Reproducibility</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#communication"><i class="fa fa-check"></i>Communication</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#automation"><i class="fa fa-check"></i>Automation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#the-r-programming-language"><i class="fa fa-check"></i>The R programming language</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#overview-of-this-course"><i class="fa fa-check"></i>Overview of this course</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#work-in-plain-text-using-r-markdown"><i class="fa fa-check"></i>Work in plain text, using R Markdown</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#visualizing-data"><i class="fa fa-check"></i>Visualizing data</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-code-template"><i class="fa fa-check"></i>A code template</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#the-code"><i class="fa fa-check"></i>The code</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-graphing-workflow"><i class="fa fa-check"></i>A graphing workflow</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-graphing-template"><i class="fa fa-check"></i>A graphing template</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#common-problems"><i class="fa fa-check"></i>Common problems</a></li>
+<li><a href="thursday-august-25-2022.html#location-of-the-sign">location of the <code>+</code> sign</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#help"><i class="fa fa-check"></i>help</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#things-to-know"><i class="fa fa-check"></i>Things to know</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#everything-has-a-name"><i class="fa fa-check"></i>Everything has a name</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#everything-is-an-object"><i class="fa fa-check"></i>Everything is an object</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#you-do-things-using-functions"><i class="fa fa-check"></i>You do things using functions</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#functions-come-in-packages-libraries"><i class="fa fa-check"></i>Functions come in packages (libraries)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#your-turn"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html"><i class="fa fa-check"></i>Tuesday, August 30, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#today-2"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#scatter-plots"><i class="fa fa-check"></i>Scatter plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#facets"><i class="fa fa-check"></i>Facets</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#calculations"><i class="fa fa-check"></i>Calculations</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#functions"><i class="fa fa-check"></i>Functions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#syntax-is-important"><i class="fa fa-check"></i>Syntax is important</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#saving-an-object"><i class="fa fa-check"></i>Saving an object</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#object-names"><i class="fa fa-check"></i>Object names</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#entering-data"><i class="fa fa-check"></i>Entering data</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#applying-a-function"><i class="fa fa-check"></i>Applying a function</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#averge"><i class="fa fa-check"></i>Averge</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#data-vectors"><i class="fa fa-check"></i>Data vectors</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#variance"><i class="fa fa-check"></i>Variance</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#data-vectors-have-a-type"><i class="fa fa-check"></i>Data vectors have a type</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#working-smarter"><i class="fa fa-check"></i>Working smarter</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html"><i class="fa fa-check"></i>Thursday, September 1, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#today-3"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#data-as-vectors"><i class="fa fa-check"></i>Data as vectors</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#mean"><i class="fa fa-check"></i>Mean</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#variance-1"><i class="fa fa-check"></i>Variance</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#median"><i class="fa fa-check"></i>Median</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#spread"><i class="fa fa-check"></i>Spread</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#vector-types"><i class="fa fa-check"></i>Vector types</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#structured-data"><i class="fa fa-check"></i>Structured data</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#asking-questions"><i class="fa fa-check"></i>Asking questions</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#tables-and-summaries"><i class="fa fa-check"></i>Tables and summaries</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html"><i class="fa fa-check"></i>Tuesday, September 6, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#today-4"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#getting-data-into-r"><i class="fa fa-check"></i>Getting data into R</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#data-frames"><i class="fa fa-check"></i>Data frames</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#quantiles"><i class="fa fa-check"></i>Quantiles</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-a-data-frame"><i class="fa fa-check"></i>Creating a data frame</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#pipes"><i class="fa fa-check"></i>Pipes</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#your-turn-1"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html"><i class="fa fa-check"></i>Thursday, September 8, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#today-5"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#pipe-operator"><i class="fa fa-check"></i>Pipe operator</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#wrangling-data-frames"><i class="fa fa-check"></i>Wrangling data frames</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#selecting-and-filtering"><i class="fa fa-check"></i>Selecting and filtering</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#example-palmer-penguins"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#stringing-functions-together"><i class="fa fa-check"></i>Stringing functions together</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#summarize"><i class="fa fa-check"></i>Summarize</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#grouping"><i class="fa fa-check"></i>Grouping</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#your-turn-2"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GEO5156: Quantitative Geography (Fall 2022)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tuesday-september-6-2022" class="section level1 unnumbered">
+<h1>Tuesday, September 6, 2022</h1>
+<div id="today-4" class="section level2 unnumbered">
+<h2>Today</h2>
+<ul>
+<li>Getting data into R</li>
+<li>Data frames</li>
+<li>Quantiles</li>
+<li>Pipes</li>
+</ul>
+<p>More information about how to use RStudio and markdown files is available here:
+<a href="https://www.pipinghotdata.com/posts/2020-09-07-introducing-the-rstudio-ide-and-r-markdown/" class="uri">https://www.pipinghotdata.com/posts/2020-09-07-introducing-the-rstudio-ide-and-r-markdown/</a></p>
+</div>
+<div id="getting-data-into-r" class="section level2 unnumbered">
+<h2>Getting data into R</h2>
+<p>You need to know two thing: (1) where the data are located, and (2) what type of data file is it.</p>
+<p>Consider the file <code>US.txt</code> located in your project folder. It is in the same folder as this file (<code>05-Lesson.Rmd</code>). Click on the file name. It opens a file tab that shows a portion of the file.</p>
+<p>It is a file with the column headings <code>Year</code>, <code>All</code>, <code>MUS</code>, <code>G</code>, <code>FL</code>, <code>E</code>. Each row is a year and the count is the number of hurricanes making landfall in the United States. <code>All</code> indicates anywhere in the continental U.S, <code>MUS</code> indicates at major hurricane intensity (at least 33 m/s). Each column is separated by a space.</p>
+<p>To create a data object you use the <code>read.table()</code> function. The two arguments to this function are <code>file =</code> and <code>header =</code>.</p>
+<p>You put the name of the file in quotes. And set the header argument to <code>TRUE</code> since the first row in the file is not data.</p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="tuesday-september-6-2022.html#cb307-1" aria-hidden="true" tabindex="-1"></a>LH.df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">&quot;data/US.txt&quot;</span>,</span>
+<span id="cb307-2"><a href="tuesday-september-6-2022.html#cb307-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>An data object called <code>LH.df</code> is now in your Environment under Data.</p>
+<p>In this case the file name is simple because <code>US.txt</code> is in the same directory as your Rmd file.</p>
+<p>Data files for an analysis are often kept somewhere else. Here for example note the folder called <code>data</code>? Click on the folder name. To read the data from that location you need to change file string name to <code>"data/US.txt"</code>.</p>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="tuesday-september-6-2022.html#cb308-1" aria-hidden="true" tabindex="-1"></a>LH.df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> <span class="st">&quot;data/US.txt&quot;</span>,</span>
+<span id="cb308-2"><a href="tuesday-september-6-2022.html#cb308-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>The <code>file =</code> argument is where R looks for your data. The <code>header =</code> argument tells R that the first row is not data but instead column names.</p>
+<p>If you get an error message it is likely because the data file is not where you think it is.</p>
+<p>If your file has comma’s between columns then use the argument <code>sep = ","</code> in the function.</p>
+<p>Note: No changes are made to your original data file.</p>
+<p>If there are missing values in the data file they should be coded as <code>NA</code>. If they are coded as something else then you specify the coding with the <code>na.strings =</code> argument. For example, if the missing value character in our file is coded as <code>99</code>, you specify <code>na.strings = "99"</code>.</p>
+<p>There are variants of <code>read.table()</code> that differ only in the default argument settings. <code>read.csv()</code> has settings that are suitable for comma delimited (csv) files that have been exported from a spreadsheet.</p>
+<p>A typical work flow might be to export data from a spreadsheet using the csv file format then import it to R using the <code>read.csv()</code> function.</p>
+<p>You import data from the web by specifying the URL instead of the local file name.</p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="tuesday-september-6-2022.html#cb309-1" aria-hidden="true" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="st">&quot;http://myweb.fsu.edu/jelsner/temp/data/US.txt&quot;</span></span>
+<span id="cb309-2"><a href="tuesday-september-6-2022.html#cb309-2" aria-hidden="true" tabindex="-1"></a>LH.df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">file =</span> loc, </span>
+<span id="cb309-3"><a href="tuesday-september-6-2022.html#cb309-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Recall that you reference the columns using the <code>$</code> syntax. For example, type</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="tuesday-september-6-2022.html#cb310-1" aria-hidden="true" tabindex="-1"></a>LH.df<span class="sc">$</span>FL</span></code></pre></div>
+<pre><code>##   [1] 1 2 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 1 2 0 2 1 0 1 2 1 0 3 0 2 0 0 0 3 1
+##  [38] 2 0 0 0 0 1 2 0 3 1 1 1 0 1 0 1 0 0 2 0 0 1 1 1 0 0 0 1 2 1 0 1 0 1 0 0 2
+##  [75] 1 2 0 2 1 0 0 0 2 2 2 1 0 0 1 0 1 2 0 1 2 1 2 2 1 2 0 0 1 0 0 1 0 0 0 1 0
+## [112] 0 0 3 1 2 1 1 0 0 0 1 0 0 1 0 0 0 1 0 0 0 0 0 2 0 1 0 1 0 0 1 0 0 2 0 0 2
+## [149] 1 0 0 0 0 4 3 0 0 0 0 0 0 0 0 0 0 1</code></pre>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="tuesday-september-6-2022.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(LH.df<span class="sc">$</span>FL)</span></code></pre></div>
+<pre><code>## [1] 110</code></pre>
+<p>The number of years with 0, 1, 2, … Florida hurricanes is obtained by typing</p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="tuesday-september-6-2022.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(LH.df<span class="sc">$</span>FL)</span></code></pre></div>
+<pre><code>## 
+##  0  1  2  3  4 
+## 93 43 24  5  1</code></pre>
+<p>There are 93 years without a FL hurricane, 43 years with one hurricanes, 24 years with two hurricanes, and so on.</p>
+</div>
+<div id="data-frames" class="section level2 unnumbered">
+<h2>Data frames</h2>
+<p>The functions <code>read.table()</code> and <code>read.csv()</code> import data into our environment as a data frame. For example, <code>LH.df</code> is a data frame. You see the data object is a data frame in your Environment.</p>
+<p>A data frame is like a spreadsheet. Values are arranged in rows and columns. Rows are the cases (observations) and columns are the variables.</p>
+<p>The <code>dim()</code> function returns the size of the data frame in terms of how many rows (first number) and how many columns.</p>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="tuesday-september-6-2022.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(LH.df)</span></code></pre></div>
+<pre><code>## [1] 166   6</code></pre>
+<p>There are 166 rows and 6 columns in the data frame.</p>
+<p>Note the use of inline code. Open with a single back tick (grave accent) followed by the letter r and close with a single back tick. Inline code allows content in your report to be dynamic. There is no need to retype values when the data changes. Open <code>05-Lesson.html</code> in a browser.</p>
+<p>To list the first six lines of the data object, type</p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="tuesday-september-6-2022.html#cb318-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(LH.df)</span></code></pre></div>
+<pre><code>##   Year All MUS G FL E
+## 1 1851   1   1 0  1 0
+## 2 1852   3   1 1  2 0
+## 3 1853   0   0 0  0 0
+## 4 1854   2   1 1  0 1
+## 5 1855   1   1 1  0 0
+## 6 1856   2   1 1  1 0</code></pre>
+<p>The columns include year, number of hurricanes, number of major hurricanes, number of Gulf coast hurricanes, number of Florida hurricanes, and number of East coast hurricanes in order. Column names are printed as well.</p>
+<p>The last six lines of the data frame are listed similarly using the <code>tail()</code> function. The number of lines listed is changed using the argument <code>n =</code>.</p>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="tuesday-september-6-2022.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(LH.df, <span class="at">n =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##     Year All MUS G FL E
+## 164 2014   1   0 0  0 1
+## 165 2015   0   0 0  0 0
+## 166 2016   2   0 0  1 1</code></pre>
+<p>The number of years in the record is assigned to the object <code>nY</code> and the annual average number of hurricanes (rate) is assigned to the object <code>rate</code>.</p>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="tuesday-september-6-2022.html#cb322-1" aria-hidden="true" tabindex="-1"></a>nY <span class="ot">&lt;-</span> <span class="fu">length</span>(LH.df<span class="sc">$</span>All)</span>
+<span id="cb322-2"><a href="tuesday-september-6-2022.html#cb322-2" aria-hidden="true" tabindex="-1"></a>rate <span class="ot">&lt;-</span> <span class="fu">mean</span>(LH.df<span class="sc">$</span>All)</span></code></pre></div>
+<p>By typing the names of the saved objects, the values are printed.</p>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="tuesday-september-6-2022.html#cb323-1" aria-hidden="true" tabindex="-1"></a>nY</span></code></pre></div>
+<pre><code>## [1] 166</code></pre>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="tuesday-september-6-2022.html#cb325-1" aria-hidden="true" tabindex="-1"></a>rate</span></code></pre></div>
+<pre><code>## [1] 1.668675</code></pre>
+<p>Thus over the 166 years of data the average number of hurricanes per year is 1.67.</p>
+<p>If you want to change the names of the columns in the data frame, type</p>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="tuesday-september-6-2022.html#cb327-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(LH.df)[<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="st">&quot;GC&quot;</span></span>
+<span id="cb327-2"><a href="tuesday-september-6-2022.html#cb327-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(LH.df)</span></code></pre></div>
+<pre><code>## [1] &quot;Year&quot; &quot;All&quot;  &quot;MUS&quot;  &quot;GC&quot;   &quot;FL&quot;   &quot;E&quot;</code></pre>
+<p>This changes the 4th column name from G to GC. Note that this change occurs to the data frame in R and not to your original data file.</p>
+<p>You will work almost exclusively with data frames. A data frame has rows and columns.</p>
+<ul>
+<li>Columns have names</li>
+<li>Columns are vectors</li>
+<li>Columns must be of the same length</li>
+<li>Columns must be of the same data type</li>
+</ul>
+<p>Each element is indexed by a row number and a column number in that order and separated by a comma. So if <code>df</code> is a data frame then <code>df[2, 3]</code> is the second row of the third column.</p>
+<p>To print the second row of the first column of the data frame <code>LH.df</code> you type</p>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="tuesday-september-6-2022.html#cb329-1" aria-hidden="true" tabindex="-1"></a>LH.df[<span class="dv">2</span>, <span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] 1852</code></pre>
+<p>If you want all the values in a column, you leave the row number blank.</p>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="tuesday-september-6-2022.html#cb331-1" aria-hidden="true" tabindex="-1"></a>LH.df[ , <span class="dv">1</span>]</span></code></pre></div>
+<pre><code>##   [1] 1851 1852 1853 1854 1855 1856 1857 1858 1859 1860 1861 1862 1863 1864 1865
+##  [16] 1866 1867 1868 1869 1870 1871 1872 1873 1874 1875 1876 1877 1878 1879 1880
+##  [31] 1881 1882 1883 1884 1885 1886 1887 1888 1889 1890 1891 1892 1893 1894 1895
+##  [46] 1896 1897 1898 1899 1900 1901 1902 1903 1904 1905 1906 1907 1908 1909 1910
+##  [61] 1911 1912 1913 1914 1915 1916 1917 1918 1919 1920 1921 1922 1923 1924 1925
+##  [76] 1926 1927 1928 1929 1930 1931 1932 1933 1934 1935 1936 1937 1938 1939 1940
+##  [91] 1941 1942 1943 1944 1945 1946 1947 1948 1949 1950 1951 1952 1953 1954 1955
+## [106] 1956 1957 1958 1959 1960 1961 1962 1963 1964 1965 1966 1967 1968 1969 1970
+## [121] 1971 1972 1973 1974 1975 1976 1977 1978 1979 1980 1981 1982 1983 1984 1985
+## [136] 1986 1987 1988 1989 1990 1991 1992 1993 1994 1995 1996 1997 1998 1999 2000
+## [151] 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015
+## [166] 2016</code></pre>
+<p>You can also reference the column by name <code>LH.df$Year</code>.</p>
+<p>Data frames have two indexes indicating the rows and columns in that order.</p>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="tuesday-september-6-2022.html#cb333-1" aria-hidden="true" tabindex="-1"></a>LH.df[<span class="dv">10</span>, <span class="dv">4</span>]</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<ul>
+<li><p>To a statistician a data frame is a table of observations. Each row contains one observation. Each observation must contain the same variables. These variables are called columns, and you can refer to them by name. You can also refer to the contents of the data frame by row number and column number (like a matrix).</p></li>
+<li><p>To an Excel user a data frame is a worksheet (or a range within a worksheet). A data frame is more restrictive in that each column can only be of one data type (e.g., character, numeric, etc).</p></li>
+</ul>
+<p>As an example, consider monthly precipitation from the state of Florida. Source: Monthly climate series. <a href="http://www.esrl.noaa.gov/psd/data/timeseries/" class="uri">http://www.esrl.noaa.gov/psd/data/timeseries/</a>. Get monthly precipitation values for the state back to the year 1895. Copy/paste into a text editor (notepad) then import using the <code>read.table()</code> function.</p>
+<p>Here I did it for Florida and put the file on my website. Missing values are coded as -9.900 so you add the argument <code>na.string = "-9.900"</code> to the function.</p>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="tuesday-september-6-2022.html#cb335-1" aria-hidden="true" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="st">&quot;http://myweb.fsu.edu/jelsner/temp/data/FLprecip.txt&quot;</span></span>
+<span id="cb335-2"><a href="tuesday-september-6-2022.html#cb335-2" aria-hidden="true" tabindex="-1"></a>FLp.df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(loc, </span>
+<span id="cb335-3"><a href="tuesday-september-6-2022.html#cb335-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb335-4"><a href="tuesday-september-6-2022.html#cb335-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">na.string =</span> <span class="st">&quot;-9.900&quot;</span>)</span></code></pre></div>
+<p>Plot a time series graph.</p>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="tuesday-september-6-2022.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb336-2"><a href="tuesday-september-6-2022.html#cb336-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb336-3"><a href="tuesday-september-6-2022.html#cb336-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> FLp.df, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Jan)) <span class="sc">+</span></span>
+<span id="cb336-4"><a href="tuesday-september-6-2022.html#cb336-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb336-5"><a href="tuesday-september-6-2022.html#cb336-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Inches&quot;</span>) <span class="sc">+</span></span>
+<span id="cb336-6"><a href="tuesday-september-6-2022.html#cb336-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="at">label =</span> <span class="st">&quot;January Precipitation in Florida&quot;</span>,</span>
+<span id="cb336-7"><a href="tuesday-september-6-2022.html#cb336-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle =</span> <span class="st">&quot;1895-2012&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
+<p>A minimal, complete, reproducible example.</p>
+</div>
+<div id="quantiles" class="section level2 unnumbered">
+<h2>Quantiles</h2>
+<p>The median value cuts a set of ordered data values into two equal parts. Values larger than the median and values less than the median. The ordering comes from arranging the data from lowest to highest.</p>
+<p><em>Quantiles</em> cut a set of ordered data into arbitrary number of equal-sized parts. The quantile corresponding to cutting the data into two halves is called the median. Fifty percent of the data have values less than or equal to the median value. The median is the 50th percentile (.5 quantile).</p>
+<p>Quantiles corresponding to cutting the ordered data into quarters are called <em>quartiles</em>. The lower (first) quartile cuts the data into the lower 25% and upper 75% of the data. The lower quartile is the .25 quantile or the 25th percentile indicating that 25% of the data have values less than this quantile value.</p>
+<p>Correspondingly, the upper (third) quartile corresponding to the .75 quantile (75th percentile), indicates that 75% of the data have values less than this quantile value.</p>
+<p>The <code>quantile()</code> function calculates quantiles on a vector of data. For example, consider Florida precipitation for the month of June. First apply the <code>sort()</code> function on the June values (column indicated by the label Jun).</p>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="tuesday-september-6-2022.html#cb337-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(FLp.df<span class="sc">$</span>Jun)</span></code></pre></div>
+<pre><code>##   [1]  2.303  2.445  3.292  3.643  3.673  3.898  3.908  4.089  4.202  4.401
+##  [11]  4.500  4.598  4.739  4.747  4.820  4.838  4.965  5.098  5.099  5.160
+##  [21]  5.182  5.221  5.321  5.349  5.362  5.422  5.440  5.531  5.588  5.602
+##  [31]  5.607  5.614  5.696  5.718  5.724  5.752  5.803  5.866  5.887  5.896
+##  [41]  5.931  5.971  5.998  6.142  6.147  6.171  6.220  6.258  6.269  6.281
+##  [51]  6.351  6.392  6.392  6.470  6.540  6.541  6.591  6.739  6.789  6.900
+##  [61]  6.991  6.998  7.002  7.009  7.012  7.049  7.057  7.098  7.118  7.208
+##  [71]  7.306  7.348  7.450  7.451  7.481  7.666  7.707  7.748  7.876  8.000
+##  [81]  8.040  8.158  8.168  8.243  8.317  8.378  8.389  8.432  8.488  8.578
+##  [91]  8.663  8.874  8.880  8.940  8.969  8.976  9.106  9.308  9.349  9.481
+## [101]  9.734  9.865  9.939  9.993 10.032 10.276 10.280 10.288 10.309 10.360
+## [111] 10.529 10.858 11.014 11.228 11.824 12.034 12.379</code></pre>
+<p>Again, note the use of the dollar sign to indicate the column in the data frame.</p>
+<p>To find the 50th percentile you use the <code>median()</code> function directly or the <code>quantile()</code> function and specify the quantile with the <code>probs =</code> argument.</p>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="tuesday-september-6-2022.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(FLp.df<span class="sc">$</span>Jun)</span></code></pre></div>
+<pre><code>## [1] 6.789</code></pre>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="tuesday-september-6-2022.html#cb341-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(FLp.df<span class="sc">$</span>Jun,</span>
+<span id="cb341-2"><a href="tuesday-september-6-2022.html#cb341-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">probs =</span> .<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>##   50% 
+## 6.789</code></pre>
+<p>To retrieve the 25th and 75th percentile values</p>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="tuesday-september-6-2022.html#cb343-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(FLp.df<span class="sc">$</span>Jun, </span>
+<span id="cb343-2"><a href="tuesday-september-6-2022.html#cb343-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">probs =</span> <span class="fu">c</span>(.<span class="dv">25</span>, .<span class="dv">75</span>))</span></code></pre></div>
+<pre><code>##   25%   75% 
+## 5.602 8.432</code></pre>
+<p>Of the 117 monthly precipitation values, 25% of them are less than 5.6 inches, 50% are less than 6.79 inches.</p>
+<p>Thus there are an equal number of years with June precipitation between 5.6 and 6.79 inches.</p>
+<p>The difference between the first and third quartile values is called the interquartile range (IQR). Fifty percent of the data values lie within the IQR. The IQR is obtained using the <code>IQR()</code> function.</p>
+<p>Another example: Consider the set of North Atlantic Oscillation (NAO) index values for the month of June from the period 1851–2010. The NAO is a variation in the climate over the North Atlantic Ocean featuring fluctuations in the difference of atmospheric pressure at sea level between the Iceland and the Azores.</p>
+<p>The index is computed as the difference in standardized sea-level pressures. The standardization is done by subtracting the mean and dividing by the standard deviation. The index has units of standard deviation.</p>
+<p>First read the data consisting of monthly NAO values, then list the column names and the first few data lines.</p>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="tuesday-september-6-2022.html#cb345-1" aria-hidden="true" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="st">&quot;http://myweb.fsu.edu/jelsner/temp/data/NAO.txt&quot;</span></span>
+<span id="cb345-2"><a href="tuesday-september-6-2022.html#cb345-2" aria-hidden="true" tabindex="-1"></a>NAO.df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(loc, </span>
+<span id="cb345-3"><a href="tuesday-september-6-2022.html#cb345-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb345-4"><a href="tuesday-september-6-2022.html#cb345-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(NAO.df)</span></code></pre></div>
+<pre><code>##   Year   Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov   Dec
+## 1 1851  3.29  1.03  1.50 -1.66 -1.53 -1.62 -5.39  4.68  1.85  0.78 -1.77  1.74
+## 2 1852  1.46  0.41 -2.50 -1.60  0.25  0.09 -1.13  2.94 -2.02 -1.65 -0.93  1.03
+## 3 1853  1.31 -4.04 -0.32  0.76 -3.17  1.09  1.76 -2.36 -0.22 -0.47  0.51 -4.28
+## 4 1854  1.28  1.72  2.67  0.88  0.04 -0.06 -1.92 -0.03  2.62  1.11 -1.56  2.42
+## 5 1855 -1.84 -3.80 -0.05  0.99 -2.28  0.78 -2.61  3.81  0.79 -1.09 -2.42 -1.66
+## 6 1856 -1.25 -0.10 -2.27  2.00 -0.70  2.03 -0.16 -0.44 -0.50  1.12 -1.69 -0.23</code></pre>
+<p>Determine the 5th and 95th percentile values for the month of June.</p>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="tuesday-september-6-2022.html#cb347-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(NAO.df<span class="sc">$</span>Jun, </span>
+<span id="cb347-2"><a href="tuesday-september-6-2022.html#cb347-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">prob =</span> <span class="fu">c</span>(.<span class="dv">05</span>, .<span class="dv">95</span>))</span></code></pre></div>
+<pre><code>##     5%    95% 
+## -2.808  1.891</code></pre>
+<p>The <code>summary()</code> function provides summary statistics for each column in your data frame. The statistics include output the mean, median, minimum, maximum, along with the first quartile and third quartile values.</p>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="tuesday-september-6-2022.html#cb349-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(FLp.df)</span></code></pre></div>
+<pre><code>##       Year           Jan             Feb             Mar             Apr       
+##  Min.   :1895   Min.   :0.340   Min.   :0.288   Min.   :0.496   Min.   :0.408  
+##  1st Qu.:1924   1st Qu.:1.798   1st Qu.:2.009   1st Qu.:2.142   1st Qu.:1.659  
+##  Median :1953   Median :2.696   Median :3.099   Median :3.349   Median :2.677  
+##  Mean   :1953   Mean   :2.916   Mean   :3.164   Mean   :3.663   Mean   :2.926  
+##  3rd Qu.:1982   3rd Qu.:4.010   3rd Qu.:4.171   3rd Qu.:5.097   3rd Qu.:4.163  
+##  Max.   :2011   Max.   :8.361   Max.   :8.577   Max.   :8.701   Max.   :7.457  
+##       May             Jun              Jul              Aug        
+##  Min.   :0.900   Min.   : 2.303   Min.   : 4.050   Min.   : 4.053  
+##  1st Qu.:2.483   1st Qu.: 5.602   1st Qu.: 6.427   1st Qu.: 6.164  
+##  Median :3.758   Median : 6.789   Median : 7.522   Median : 7.102  
+##  Mean   :3.845   Mean   : 7.046   Mean   : 7.505   Mean   : 7.345  
+##  3rd Qu.:4.765   3rd Qu.: 8.432   3rd Qu.: 8.358   3rd Qu.: 8.310  
+##  Max.   :9.848   Max.   :12.379   Max.   :11.263   Max.   :13.090  
+##       Sep              Oct             Nov             Dec       
+##  Min.   : 2.126   Min.   :0.471   Min.   :0.370   Min.   :0.610  
+##  1st Qu.: 4.930   1st Qu.:2.479   1st Qu.:1.370   1st Qu.:1.549  
+##  Median : 6.680   Median :3.541   Median :2.139   Median :2.558  
+##  Mean   : 6.704   Mean   :3.803   Mean   :2.308   Mean   :2.718  
+##  3rd Qu.: 7.955   3rd Qu.:4.899   3rd Qu.:3.110   3rd Qu.:3.521  
+##  Max.   :12.978   Max.   :9.556   Max.   :6.236   Max.   :7.668</code></pre>
+<p>Columns with missing values get a row output from the <code>summary()</code> function indicating the number of them (NA’s).</p>
+</div>
+<div id="creating-a-data-frame" class="section level2 unnumbered">
+<h2>Creating a data frame</h2>
+<p>The <code>data.frame()</code> function creates a data frame from a set of vectors.</p>
+<p>Consider ice volume (10<span class="math inline">\(^3\)</span> km<span class="math inline">\(^3\)</span>) measurements from the arctic from 2002 to 2012. The measurements are taken on January 1st each year and are available from <a href="http://psc.apl.washington.edu/wordpress/research/projects/arctic-sea-ice-volume-anomaly/data/" class="uri">http://psc.apl.washington.edu/wordpress/research/projects/arctic-sea-ice-volume-anomaly/data/</a></p>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="tuesday-september-6-2022.html#cb351-1" aria-hidden="true" tabindex="-1"></a>Volume <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">20.233</span>, <span class="fl">19.659</span>, <span class="fl">18.597</span>, <span class="fl">18.948</span>, <span class="fl">17.820</span>, </span>
+<span id="cb351-2"><a href="tuesday-september-6-2022.html#cb351-2" aria-hidden="true" tabindex="-1"></a>           <span class="fl">16.736</span>, <span class="fl">16.648</span>, <span class="fl">17.068</span>, <span class="fl">15.916</span>, <span class="fl">14.455</span>, </span>
+<span id="cb351-3"><a href="tuesday-september-6-2022.html#cb351-3" aria-hidden="true" tabindex="-1"></a>           <span class="fl">14.569</span>)</span></code></pre></div>
+<p>Since the data have a sequential order you create a data frame with year in the first column and volume in the second.</p>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="tuesday-september-6-2022.html#cb352-1" aria-hidden="true" tabindex="-1"></a>Year <span class="ot">&lt;-</span> <span class="dv">2002</span><span class="sc">:</span><span class="dv">2012</span></span>
+<span id="cb352-2"><a href="tuesday-september-6-2022.html#cb352-2" aria-hidden="true" tabindex="-1"></a>Ice.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Year, Volume)</span>
+<span id="cb352-3"><a href="tuesday-september-6-2022.html#cb352-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Ice.df)</span></code></pre></div>
+<pre><code>##   Year Volume
+## 1 2002 20.233
+## 2 2003 19.659
+## 3 2004 18.597
+## 4 2005 18.948
+## 5 2006 17.820
+## 6 2007 16.736</code></pre>
+<p>What year had the minimum ice volume?</p>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="tuesday-september-6-2022.html#cb354-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>(Ice.df<span class="sc">$</span>Volume)</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="tuesday-september-6-2022.html#cb356-1" aria-hidden="true" tabindex="-1"></a>Ice.df[<span class="dv">10</span>, ]</span></code></pre></div>
+<pre><code>##    Year Volume
+## 10 2011 14.455</code></pre>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="tuesday-september-6-2022.html#cb358-1" aria-hidden="true" tabindex="-1"></a>Ice.df<span class="sc">$</span>Year[<span class="fu">which.min</span>(Ice.df<span class="sc">$</span>Volume)]</span></code></pre></div>
+<pre><code>## [1] 2011</code></pre>
+<p>To change a vector to a data frame use the function <code>as.data.frame()</code>. For example, let counts be a vector of integers.</p>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="tuesday-september-6-2022.html#cb360-1" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="at">n =</span> <span class="dv">100</span>, </span>
+<span id="cb360-2"><a href="tuesday-september-6-2022.html#cb360-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">lambda =</span> <span class="fl">1.66</span>)</span>
+<span id="cb360-3"><a href="tuesday-september-6-2022.html#cb360-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(counts)</span></code></pre></div>
+<pre><code>## [1] 1 2 2 3 0 3</code></pre>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="tuesday-september-6-2022.html#cb362-1" aria-hidden="true" tabindex="-1"></a>H.df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(counts)</span>
+<span id="cb362-2"><a href="tuesday-september-6-2022.html#cb362-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(H.df)</span></code></pre></div>
+<pre><code>##   counts
+## 1      1
+## 2      2
+## 3      2
+## 4      3
+## 5      0
+## 6      3</code></pre>
+<p>The column name in the data frame is the name of the vector.</p>
+</div>
+<div id="pipes" class="section level2 unnumbered">
+<h2>Pipes</h2>
+<p>So far you have computed statistics on data stored as vectors (mean, median, quantiles, etc). But you often import data as data frames so you need to know how to manipulate them.</p>
+<p>The {dplyr} package has functions (‘verbs’) that manipulate data frames in a friendly and logical way. Manipulations include, selecting columns, filtering rows, re-ordering rows, adding new columns, and summarizing data.</p>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="tuesday-september-6-2022.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<p>Let’s look at these using the <code>airquality</code> data frame. Recall the object <code>airquality</code> is a data frame containing New York air quality measurements from May to September 1973. (<code>?airquality</code>).</p>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="tuesday-september-6-2022.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(airquality)</span></code></pre></div>
+<pre><code>##   Ozone Solar.R Wind Temp Month Day
+## 1    41     190  7.4   67     5   1
+## 2    36     118  8.0   72     5   2
+## 3    12     149 12.6   74     5   3
+## 4    18     313 11.5   62     5   4
+## 5    NA      NA 14.3   56     5   5
+## 6    28      NA 14.9   66     5   6</code></pre>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="tuesday-september-6-2022.html#cb367-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(airquality)</span></code></pre></div>
+<pre><code>## [1] 153   6</code></pre>
+<p>The columns include <code>Ozone</code> (ozone concentration in ppb), <code>Solar.R</code> (solar radiation in langleys), <code>Wind</code> (wind speed in mph), <code>Temp</code> (air temperature in degrees F), <code>Month</code>, and <code>Day</code>.</p>
+<p>You summarize the values in each column with the <code>summary()</code> method.</p>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="tuesday-september-6-2022.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(airquality)</span></code></pre></div>
+<pre><code>##      Ozone           Solar.R           Wind             Temp      
+##  Min.   :  1.00   Min.   :  7.0   Min.   : 1.700   Min.   :56.00  
+##  1st Qu.: 18.00   1st Qu.:115.8   1st Qu.: 7.400   1st Qu.:72.00  
+##  Median : 31.50   Median :205.0   Median : 9.700   Median :79.00  
+##  Mean   : 42.13   Mean   :185.9   Mean   : 9.958   Mean   :77.88  
+##  3rd Qu.: 63.25   3rd Qu.:258.8   3rd Qu.:11.500   3rd Qu.:85.00  
+##  Max.   :168.00   Max.   :334.0   Max.   :20.700   Max.   :97.00  
+##  NA&#39;s   :37       NA&#39;s   :7                                       
+##      Month            Day      
+##  Min.   :5.000   Min.   : 1.0  
+##  1st Qu.:6.000   1st Qu.: 8.0  
+##  Median :7.000   Median :16.0  
+##  Mean   :6.993   Mean   :15.8  
+##  3rd Qu.:8.000   3rd Qu.:23.0  
+##  Max.   :9.000   Max.   :31.0  
+## </code></pre>
+<p>Note that columns that have missing values are tabulated. For example, there are 37 missing ozone measurements and 7 missing radiation measurements.</p>
+<p>Importantly you can apply the <code>summary()</code> function using the pipe operator (<code>|&gt;</code> or <code>%&gt;%</code>). The pipe operator is part of the {dplyr} package.</p>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="tuesday-september-6-2022.html#cb371-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span> </span>
+<span id="cb371-2"><a href="tuesday-september-6-2022.html#cb371-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
+<pre><code>##      Ozone           Solar.R           Wind             Temp      
+##  Min.   :  1.00   Min.   :  7.0   Min.   : 1.700   Min.   :56.00  
+##  1st Qu.: 18.00   1st Qu.:115.8   1st Qu.: 7.400   1st Qu.:72.00  
+##  Median : 31.50   Median :205.0   Median : 9.700   Median :79.00  
+##  Mean   : 42.13   Mean   :185.9   Mean   : 9.958   Mean   :77.88  
+##  3rd Qu.: 63.25   3rd Qu.:258.8   3rd Qu.:11.500   3rd Qu.:85.00  
+##  Max.   :168.00   Max.   :334.0   Max.   :20.700   Max.   :97.00  
+##  NA&#39;s   :37       NA&#39;s   :7                                       
+##      Month            Day      
+##  Min.   :5.000   Min.   : 1.0  
+##  1st Qu.:6.000   1st Qu.: 8.0  
+##  Median :7.000   Median :16.0  
+##  Mean   :6.993   Mean   :15.8  
+##  3rd Qu.:8.000   3rd Qu.:23.0  
+##  Max.   :9.000   Max.   :31.0  
+## </code></pre>
+<p>You read the pipe as THEN. “airquality data frame THEN summarize.”</p>
+<p>The pipe operator allows us to string together a bunch of functions that makes it easy for humans to understand what was done. This is a key point. You want your code to be readable by a computer (correct syntax) but also readable to other humans.</p>
+<p>For example, suppose the object of interest is called <code>me</code> and suppose there is a function called <code>wake_up()</code>. I could apply the function in two ways.</p>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="tuesday-september-6-2022.html#cb373-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wake_up</span>(me)</span>
+<span id="cb373-2"><a href="tuesday-september-6-2022.html#cb373-2" aria-hidden="true" tabindex="-1"></a>me <span class="sc">|&gt;</span> </span>
+<span id="cb373-3"><a href="tuesday-september-6-2022.html#cb373-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wake_up</span>()</span></code></pre></div>
+<p>The second way involves a bit more typing but it is easier for a human to read and thus it is easier to understand. This becomes clear when stringing together many functions.</p>
+<p>For example, what happens to the result of <code>me</code> after the function <code>wake_up()</code> has been applied? How about <code>get_out_of_bed()</code> and the <code>get_dressed()</code>? Again, I can apply these functions in two ways.</p>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="tuesday-september-6-2022.html#cb374-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_dressed</span>(<span class="fu">get_out_of_bed</span>(<span class="fu">wake_up</span>(me)))</span>
+<span id="cb374-2"><a href="tuesday-september-6-2022.html#cb374-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb374-3"><a href="tuesday-september-6-2022.html#cb374-3" aria-hidden="true" tabindex="-1"></a>me <span class="sc">|&gt;</span></span>
+<span id="cb374-4"><a href="tuesday-september-6-2022.html#cb374-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wake_up</span>() <span class="sc">|&gt;</span></span>
+<span id="cb374-5"><a href="tuesday-september-6-2022.html#cb374-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_out_of_bed</span>() <span class="sc">|&gt;</span></span>
+<span id="cb374-6"><a href="tuesday-september-6-2022.html#cb374-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_dressed</span>()</span></code></pre></div>
+<p>Continuing</p>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="tuesday-september-6-2022.html#cb375-1" aria-hidden="true" tabindex="-1"></a>me <span class="sc">|&gt;</span></span>
+<span id="cb375-2"><a href="tuesday-september-6-2022.html#cb375-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wake_up</span>() <span class="sc">|&gt;</span></span>
+<span id="cb375-3"><a href="tuesday-september-6-2022.html#cb375-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_out_of_bed</span>() <span class="sc">|&gt;</span></span>
+<span id="cb375-4"><a href="tuesday-september-6-2022.html#cb375-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_dressed</span>() <span class="sc">|&gt;</span></span>
+<span id="cb375-5"><a href="tuesday-september-6-2022.html#cb375-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">make_coffee</span>() <span class="sc">|&gt;</span></span>
+<span id="cb375-6"><a href="tuesday-september-6-2022.html#cb375-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drink_coffee</span>() <span class="sc">|&gt;</span></span>
+<span id="cb375-7"><a href="tuesday-september-6-2022.html#cb375-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">leave_house</span>()</span></code></pre></div>
+<p>Which is much better in terms of ‘readability’ then <code>leave_house(drink_coffee(make_coffee(get_dressed(get_out_of_bed(wake_up(me))))))</code>.</p>
+<p>Consider again the <code>FLp.df</code>. How would you use the above syntax to compute the mean value of June precipitation?</p>
+<p>You ask three questions: what function, applied to what variable, from what data frame? Answers: <code>mean()</code>, <code>Jun</code>, <code>FLp.df</code>. You then write the code starting with the answer to the last question first.</p>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="tuesday-september-6-2022.html#cb376-1" aria-hidden="true" tabindex="-1"></a>FLp.df <span class="sc">|&gt;</span></span>
+<span id="cb376-2"><a href="tuesday-september-6-2022.html#cb376-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Jun)</span></code></pre></div>
+<pre><code>##   [1]  4.500 11.228  5.221  3.292  5.803  9.993 10.360  6.220  7.012  6.591
+##  [11]  5.160  8.040  6.392  6.351  6.739 10.288  4.820 12.379  5.531  4.202
+##  [21]  5.321  6.541  5.362  5.349  7.481  6.258  3.673  6.540  9.308  6.470
+##  [31]  6.281  8.168  7.450  7.057  8.158 10.858  2.303  8.378  5.182  9.865
+##  [41]  5.099  8.940  5.931  6.998  9.734  7.049  7.707 10.529  7.348  5.607
+##  [51]  8.578  7.098  9.106  3.908  8.000  4.089  4.747  3.643  7.876  5.588
+##  [61]  6.392  5.422  7.748  6.147  8.389  6.789  5.896  8.317  7.118  5.614
+##  [71] 10.032  8.880  8.488  9.939  6.142  5.866  5.602  8.432  5.887 10.276
+##  [81]  6.269  7.002  4.401  6.900  3.898  4.838  5.718 10.280  8.969  5.098
+##  [91]  7.009  7.451  5.696  4.739  8.976  5.724  7.666 12.034  4.598  9.349
+## [101]  8.874  7.306  7.208  2.445  9.481  5.971  8.663 10.309 11.014  8.243
+## [111] 11.824  5.752  5.998  6.991  6.171  5.440  4.965</code></pre>
+<p>The function <code>pull()</code> from the {dplyr} packages pulls out the column named <code>Jun</code> as a vector.</p>
+<p>Then the <code>mean()</code> function takes these 118 values and computes the average.</p>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="tuesday-september-6-2022.html#cb378-1" aria-hidden="true" tabindex="-1"></a>FLp.df <span class="sc">|&gt;</span></span>
+<span id="cb378-2"><a href="tuesday-september-6-2022.html#cb378-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Jun) <span class="sc">|&gt;</span></span>
+<span id="cb378-3"><a href="tuesday-september-6-2022.html#cb378-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>()</span></code></pre></div>
+<pre><code>## [1] 7.045692</code></pre>
+<p>Note that the next function in the sequence receives the output from the previous function as its FIRST argument so the function <code>mean()</code> has nothing inside the parentheses.</p>
+</div>
+<div id="your-turn-1" class="section level2 unnumbered">
+<h2>Your turn</h2>
+<ol style="list-style-type: decimal">
+<li>Use the piping operator and compute the average wind speed in the <code>airquality</code> data frame.</li>
+<li>Use the piping operator and compute the 10th and 90th percentiles (lower and upper decile values) of May precipitation in Florida.</li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="thursday-september-1-2022.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="thursday-september-8-2022.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
