@@ -2,21 +2,18 @@
 
 ## Today {-}
 
-Examples of data munging with functions from the {dplyr} package.
-```{r}
-library(dplyr)
-```
+- Examples of data munging with functions from the {dplyr} package
 
 You work with data frames. The functions are verbs. The verbs include:
 
 Verb          | Description
 -------------:|:-----------
-`select()`    | selects columns; pick variables by their names
-`filter()`    | filters rows; pick observations by their values
-`arrange()`   | reorders rows
-`mutate()`    | creates new columns; create new variables with functions of existing variables
-`summarize()` | summarizes values; collapse many values down to a single summary
-`group_by()`  | allows operations to be grouped
+`dplyr::select()`    | selects columns; pick variables by their names
+`dplyr::filter()`    | filters rows; pick observations by their values
+`dplyr::arrange()`   | reorders rows
+`dplyr::mutate()`    | creates new columns; create new variables with functions of existing variables
+`dplyr::summarize()` | summarizes values; collapse many values down to a single summary
+`dplyr::group_by()`  | allows operations to be grouped
 
 Syntax for the verb functions are the same:
 
@@ -138,8 +135,8 @@ Determine the number of distinct planes and flights by destination location.
 ```{r}
 flights |>
   dplyr::group_by(dest) |>
-  dplyr::summarize(planes = n_distinct(tailnum),
-            flights = n())
+  dplyr::summarize(planes = dplyr::n_distinct(tailnum),
+            flights = dplyr::n())
 ```
 
 Repeat but arrange from most to fewest planes.
@@ -197,7 +194,7 @@ Now what if you want to know how many hot days (90F or higher) by year? You use 
 ```{r}
 TLH90.df <- TLH.df |>
   dplyr::group_by(Year) |>
-  dplyr::summarize(nHotDays = n())
+  dplyr::summarize(nHotDays = dplyr::n())
 
 TLH90.df
 ```
@@ -208,7 +205,7 @@ Repeat but this time group by `Month`.
 ```{r}
 TLH.df |>
   dplyr::group_by(Month) |>
-  dplyr::summarize(nHotDays = n())
+  dplyr::summarize(nHotDays = dplyr::n())
 ```
 
 As expected the number of 90F+ days is highest in July and August. Note that you've had 90F+ days in October. 
@@ -217,7 +214,7 @@ Would you expect there to be more hot days on the weekend? How would you check t
 ```{r}
 TLH.df |>
   dplyr::group_by(Year, DoW) |>
-  dplyr::summarize(nHotDays = n())
+  dplyr::summarize(nHotDays = dplyr::n())
 ```
   
 You can group by more than one variable. For example, add the variable `Year` to the `group_by()` function above.

@@ -1,0 +1,7 @@
+graphical-analysis
+bar-chart
+pie-preference
+histogram
+density-plot
+box-plot
+side-by-side-box-plots
