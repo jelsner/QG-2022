@@ -9,14 +9,14 @@ Data wrangling, sometimes called data munging, is the process of transforming da
 
 The {dplyr} package includes functions that wrangle data frames in a friendly and logical way. You were introduced to data frames last week. 
 
-The functions perform operations on data frames and return data frames. Operations include selecting columns, filtering rows, re-ordering rows, adding new columns, and summarizing data.
+The functions operate on data frames and return data frames. Operations include selecting columns, filtering rows, re-ordering rows, adding new columns, and summarizing data.
 ```{r}
 library(dplyr)
 ```
 
-Let's look at these using the `airquality` data frame. Recall the object `airquality` is a data frame containing New York air quality measurements from May to September 1973. (`?airquality`). 
+Recall the object `airquality` is a data frame containing New York air quality measurements from May to September 1973. (`?airquality`). 
 
-You summarize the values in each column with the `summary()` method.
+You get a statistical summary of the values in each column with the `summary()` method.
 ```{r}
 summary(airquality)
 ```
