@@ -267,7 +267,7 @@ On days when the temperature is below 60 F add a column giving the apparent temp
 airquality |>
   dplyr::filter(Temp < 60) |>
   dplyr::mutate(TempAp = 35.74 + .6215 * Temp - 35.75 * Wind^.16 + .4275 * Temp * Wind^.16) |>
-  dplyr::darrange(TempAp)
+  dplyr::arrange(TempAp)
 ```
 
 ## Summarize {-}

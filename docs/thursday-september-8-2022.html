@@ -174,7 +174,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#join-rstudio-cloud"><i class="fa fa-check"></i>Join RStudio Cloud</a></li>
 <li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#examples"><i class="fa fa-check"></i>Examples</a></li>
 <li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#course-syllabus"><i class="fa fa-check"></i>Course Syllabus</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#tallahassee-daily-temperatures"><i class="fa fa-check"></i>Tallahassee Daily Temperatures</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#tallahassee-daily-temperatures"><i class="fa fa-check"></i>Tallahassee daily temperatures</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html"><i class="fa fa-check"></i>Thursday, August 25, 2022</a>
 <ul>
@@ -271,6 +271,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#example-3-food-consumption-and-co2-emissions"><i class="fa fa-check"></i>Example 3: Food consumption and CO2 emissions</a></li>
 <li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#summary"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html"><i class="fa fa-check"></i>Thursday, September 14, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#today-7"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#bar-chart"><i class="fa fa-check"></i>Bar chart</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#pie-preference"><i class="fa fa-check"></i>Pie preference</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#histogram"><i class="fa fa-check"></i>Histogram</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#density-plot"><i class="fa fa-check"></i>Density plot</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#box-plot"><i class="fa fa-check"></i>Box plot</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#side-by-side-box-plots"><i class="fa fa-check"></i>Side-by-side box plots</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -299,9 +309,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Pipe operator</li>
 <li>Wrangling data</li>
 </ul>
-<p>Data wrangling, sometimes called data munging, is the process of transforming data from one format into another so as to make it easier to interpret it.</p>
-<p>The {dplyr} package includes functions that wrangle data frames in a friendly and logical way. You were introduced to data frames last week.</p>
-<p>The functions operate on data frames and return data frames. Operations include selecting columns, filtering rows, re-ordering rows, adding new columns, and summarizing data.</p>
+<p>Data wrangling (munging) is the process of transforming data from one format into another to make it easier to interpret it.</p>
+<p>The {dplyr} package includes functions that wrangle data frames in a logical way. Key idea: The functions operate on data frames and return data frames.</p>
+<p>Operations include selecting columns, filtering rows, re-ordering rows, adding new columns, and summarizing data.</p>
 <div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="thursday-september-8-2022.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
 <p>Recall the object <code>airquality</code> is a data frame containing New York air quality measurements from May to September 1973. (<code>?airquality</code>).</p>
 <p>You get a statistical summary of the values in each column with the <code>summary()</code> method.</p>
@@ -463,7 +473,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/dplyr_filter.jpg" alt="filter" /></p>
 <p>Suppose you want only the observations where the temperature is at or above 80F.</p>
 <div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="thursday-september-8-2022.html#cb403-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
-<span id="cb403-2"><a href="thursday-september-8-2022.html#cb403-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Temp <span class="sc">&gt;=</span> <span class="dv">80</span>)</span></code></pre></div>
+<span id="cb403-2"><a href="thursday-september-8-2022.html#cb403-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Temp <span class="sc">&gt;=</span> <span class="dv">80</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 73 × 6
 ##    Ozone Solar.R  Wind  Temp Month   Day
 ##    &lt;int&gt;   &lt;int&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
@@ -481,7 +491,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The result is a data frame with the same 6 columns but now only 73 observations. Each of the observations has a temperature of at least 80F.</p>
 <p>Suppose you want a new data frame keeping only observations where temperature is at least 80F AND winds less than 5 mph.</p>
 <div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="thursday-september-8-2022.html#cb405-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> airquality <span class="sc">|&gt;</span> </span>
-<span id="cb405-2"><a href="thursday-september-8-2022.html#cb405-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Temp <span class="sc">&gt;=</span> <span class="dv">80</span> <span class="sc">&amp;</span> Wind <span class="sc">&lt;</span> <span class="dv">5</span>)</span>
+<span id="cb405-2"><a href="thursday-september-8-2022.html#cb405-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Temp <span class="sc">&gt;=</span> <span class="dv">80</span> <span class="sc">&amp;</span> Wind <span class="sc">&lt;</span> <span class="dv">5</span>)</span>
 <span id="cb405-3"><a href="thursday-september-8-2022.html#cb405-3" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>## # A tibble: 8 × 6
 ##   Ozone Solar.R  Wind  Temp Month   Day
@@ -497,1529 +507,114 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="example-palmer-penguins" class="section level2 unnumbered">
 <h2>Example: Palmer penguins</h2>
-<p>Let’s return to the penguins data set. The data set is located on the web, and you import it as a data frame using the <code>read.csv()</code> function.</p>
+<p>Let’s return to the penguins data set. The data set is located on the web, and you import it as a data frame using the <code>readr::read_csv()</code> function.</p>
 <div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="thursday-september-8-2022.html#cb407-1" aria-hidden="true" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/inst/extdata/penguins.csv&quot;</span></span>
-<span id="cb407-2"><a href="thursday-september-8-2022.html#cb407-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(loc)</span>
-<span id="cb407-3"><a href="thursday-september-8-2022.html#cb407-3" aria-hidden="true" tabindex="-1"></a>penguins</span></code></pre></div>
-<pre><code>##       species    island bill_length_mm bill_depth_mm flipper_length_mm
-## 1      Adelie Torgersen           39.1          18.7               181
-## 2      Adelie Torgersen           39.5          17.4               186
-## 3      Adelie Torgersen           40.3          18.0               195
-## 4      Adelie Torgersen             NA            NA                NA
-## 5      Adelie Torgersen           36.7          19.3               193
-## 6      Adelie Torgersen           39.3          20.6               190
-## 7      Adelie Torgersen           38.9          17.8               181
-## 8      Adelie Torgersen           39.2          19.6               195
-## 9      Adelie Torgersen           34.1          18.1               193
-## 10     Adelie Torgersen           42.0          20.2               190
-## 11     Adelie Torgersen           37.8          17.1               186
-## 12     Adelie Torgersen           37.8          17.3               180
-## 13     Adelie Torgersen           41.1          17.6               182
-## 14     Adelie Torgersen           38.6          21.2               191
-## 15     Adelie Torgersen           34.6          21.1               198
-## 16     Adelie Torgersen           36.6          17.8               185
-## 17     Adelie Torgersen           38.7          19.0               195
-## 18     Adelie Torgersen           42.5          20.7               197
-## 19     Adelie Torgersen           34.4          18.4               184
-## 20     Adelie Torgersen           46.0          21.5               194
-## 21     Adelie    Biscoe           37.8          18.3               174
-## 22     Adelie    Biscoe           37.7          18.7               180
-## 23     Adelie    Biscoe           35.9          19.2               189
-## 24     Adelie    Biscoe           38.2          18.1               185
-## 25     Adelie    Biscoe           38.8          17.2               180
-## 26     Adelie    Biscoe           35.3          18.9               187
-## 27     Adelie    Biscoe           40.6          18.6               183
-## 28     Adelie    Biscoe           40.5          17.9               187
-## 29     Adelie    Biscoe           37.9          18.6               172
-## 30     Adelie    Biscoe           40.5          18.9               180
-## 31     Adelie     Dream           39.5          16.7               178
-## 32     Adelie     Dream           37.2          18.1               178
-## 33     Adelie     Dream           39.5          17.8               188
-## 34     Adelie     Dream           40.9          18.9               184
-## 35     Adelie     Dream           36.4          17.0               195
-## 36     Adelie     Dream           39.2          21.1               196
-## 37     Adelie     Dream           38.8          20.0               190
-## 38     Adelie     Dream           42.2          18.5               180
-## 39     Adelie     Dream           37.6          19.3               181
-## 40     Adelie     Dream           39.8          19.1               184
-## 41     Adelie     Dream           36.5          18.0               182
-## 42     Adelie     Dream           40.8          18.4               195
-## 43     Adelie     Dream           36.0          18.5               186
-## 44     Adelie     Dream           44.1          19.7               196
-## 45     Adelie     Dream           37.0          16.9               185
-## 46     Adelie     Dream           39.6          18.8               190
-## 47     Adelie     Dream           41.1          19.0               182
-## 48     Adelie     Dream           37.5          18.9               179
-## 49     Adelie     Dream           36.0          17.9               190
-## 50     Adelie     Dream           42.3          21.2               191
-## 51     Adelie    Biscoe           39.6          17.7               186
-## 52     Adelie    Biscoe           40.1          18.9               188
-## 53     Adelie    Biscoe           35.0          17.9               190
-## 54     Adelie    Biscoe           42.0          19.5               200
-## 55     Adelie    Biscoe           34.5          18.1               187
-## 56     Adelie    Biscoe           41.4          18.6               191
-## 57     Adelie    Biscoe           39.0          17.5               186
-## 58     Adelie    Biscoe           40.6          18.8               193
-## 59     Adelie    Biscoe           36.5          16.6               181
-## 60     Adelie    Biscoe           37.6          19.1               194
-## 61     Adelie    Biscoe           35.7          16.9               185
-## 62     Adelie    Biscoe           41.3          21.1               195
-## 63     Adelie    Biscoe           37.6          17.0               185
-## 64     Adelie    Biscoe           41.1          18.2               192
-## 65     Adelie    Biscoe           36.4          17.1               184
-## 66     Adelie    Biscoe           41.6          18.0               192
-## 67     Adelie    Biscoe           35.5          16.2               195
-## 68     Adelie    Biscoe           41.1          19.1               188
-## 69     Adelie Torgersen           35.9          16.6               190
-## 70     Adelie Torgersen           41.8          19.4               198
-## 71     Adelie Torgersen           33.5          19.0               190
-## 72     Adelie Torgersen           39.7          18.4               190
-## 73     Adelie Torgersen           39.6          17.2               196
-## 74     Adelie Torgersen           45.8          18.9               197
-## 75     Adelie Torgersen           35.5          17.5               190
-## 76     Adelie Torgersen           42.8          18.5               195
-## 77     Adelie Torgersen           40.9          16.8               191
-## 78     Adelie Torgersen           37.2          19.4               184
-## 79     Adelie Torgersen           36.2          16.1               187
-## 80     Adelie Torgersen           42.1          19.1               195
-## 81     Adelie Torgersen           34.6          17.2               189
-## 82     Adelie Torgersen           42.9          17.6               196
-## 83     Adelie Torgersen           36.7          18.8               187
-## 84     Adelie Torgersen           35.1          19.4               193
-## 85     Adelie     Dream           37.3          17.8               191
-## 86     Adelie     Dream           41.3          20.3               194
-## 87     Adelie     Dream           36.3          19.5               190
-## 88     Adelie     Dream           36.9          18.6               189
-## 89     Adelie     Dream           38.3          19.2               189
-## 90     Adelie     Dream           38.9          18.8               190
-## 91     Adelie     Dream           35.7          18.0               202
-## 92     Adelie     Dream           41.1          18.1               205
-## 93     Adelie     Dream           34.0          17.1               185
-## 94     Adelie     Dream           39.6          18.1               186
-## 95     Adelie     Dream           36.2          17.3               187
-## 96     Adelie     Dream           40.8          18.9               208
-## 97     Adelie     Dream           38.1          18.6               190
-## 98     Adelie     Dream           40.3          18.5               196
-## 99     Adelie     Dream           33.1          16.1               178
-## 100    Adelie     Dream           43.2          18.5               192
-## 101    Adelie    Biscoe           35.0          17.9               192
-## 102    Adelie    Biscoe           41.0          20.0               203
-## 103    Adelie    Biscoe           37.7          16.0               183
-## 104    Adelie    Biscoe           37.8          20.0               190
-## 105    Adelie    Biscoe           37.9          18.6               193
-## 106    Adelie    Biscoe           39.7          18.9               184
-## 107    Adelie    Biscoe           38.6          17.2               199
-## 108    Adelie    Biscoe           38.2          20.0               190
-## 109    Adelie    Biscoe           38.1          17.0               181
-## 110    Adelie    Biscoe           43.2          19.0               197
-## 111    Adelie    Biscoe           38.1          16.5               198
-## 112    Adelie    Biscoe           45.6          20.3               191
-## 113    Adelie    Biscoe           39.7          17.7               193
-## 114    Adelie    Biscoe           42.2          19.5               197
-## 115    Adelie    Biscoe           39.6          20.7               191
-## 116    Adelie    Biscoe           42.7          18.3               196
-## 117    Adelie Torgersen           38.6          17.0               188
-## 118    Adelie Torgersen           37.3          20.5               199
-## 119    Adelie Torgersen           35.7          17.0               189
-## 120    Adelie Torgersen           41.1          18.6               189
-## 121    Adelie Torgersen           36.2          17.2               187
-## 122    Adelie Torgersen           37.7          19.8               198
-## 123    Adelie Torgersen           40.2          17.0               176
-## 124    Adelie Torgersen           41.4          18.5               202
-## 125    Adelie Torgersen           35.2          15.9               186
-## 126    Adelie Torgersen           40.6          19.0               199
-## 127    Adelie Torgersen           38.8          17.6               191
-## 128    Adelie Torgersen           41.5          18.3               195
-## 129    Adelie Torgersen           39.0          17.1               191
-## 130    Adelie Torgersen           44.1          18.0               210
-## 131    Adelie Torgersen           38.5          17.9               190
-## 132    Adelie Torgersen           43.1          19.2               197
-## 133    Adelie     Dream           36.8          18.5               193
-## 134    Adelie     Dream           37.5          18.5               199
-## 135    Adelie     Dream           38.1          17.6               187
-## 136    Adelie     Dream           41.1          17.5               190
-## 137    Adelie     Dream           35.6          17.5               191
-## 138    Adelie     Dream           40.2          20.1               200
-## 139    Adelie     Dream           37.0          16.5               185
-## 140    Adelie     Dream           39.7          17.9               193
-## 141    Adelie     Dream           40.2          17.1               193
-## 142    Adelie     Dream           40.6          17.2               187
-## 143    Adelie     Dream           32.1          15.5               188
-## 144    Adelie     Dream           40.7          17.0               190
-## 145    Adelie     Dream           37.3          16.8               192
-## 146    Adelie     Dream           39.0          18.7               185
-## 147    Adelie     Dream           39.2          18.6               190
-## 148    Adelie     Dream           36.6          18.4               184
-## 149    Adelie     Dream           36.0          17.8               195
-## 150    Adelie     Dream           37.8          18.1               193
-## 151    Adelie     Dream           36.0          17.1               187
-## 152    Adelie     Dream           41.5          18.5               201
-## 153    Gentoo    Biscoe           46.1          13.2               211
-## 154    Gentoo    Biscoe           50.0          16.3               230
-## 155    Gentoo    Biscoe           48.7          14.1               210
-## 156    Gentoo    Biscoe           50.0          15.2               218
-## 157    Gentoo    Biscoe           47.6          14.5               215
-## 158    Gentoo    Biscoe           46.5          13.5               210
-## 159    Gentoo    Biscoe           45.4          14.6               211
-## 160    Gentoo    Biscoe           46.7          15.3               219
-## 161    Gentoo    Biscoe           43.3          13.4               209
-## 162    Gentoo    Biscoe           46.8          15.4               215
-## 163    Gentoo    Biscoe           40.9          13.7               214
-## 164    Gentoo    Biscoe           49.0          16.1               216
-## 165    Gentoo    Biscoe           45.5          13.7               214
-## 166    Gentoo    Biscoe           48.4          14.6               213
-## 167    Gentoo    Biscoe           45.8          14.6               210
-## 168    Gentoo    Biscoe           49.3          15.7               217
-## 169    Gentoo    Biscoe           42.0          13.5               210
-## 170    Gentoo    Biscoe           49.2          15.2               221
-## 171    Gentoo    Biscoe           46.2          14.5               209
-## 172    Gentoo    Biscoe           48.7          15.1               222
-## 173    Gentoo    Biscoe           50.2          14.3               218
-## 174    Gentoo    Biscoe           45.1          14.5               215
-## 175    Gentoo    Biscoe           46.5          14.5               213
-## 176    Gentoo    Biscoe           46.3          15.8               215
-## 177    Gentoo    Biscoe           42.9          13.1               215
-## 178    Gentoo    Biscoe           46.1          15.1               215
-## 179    Gentoo    Biscoe           44.5          14.3               216
-## 180    Gentoo    Biscoe           47.8          15.0               215
-## 181    Gentoo    Biscoe           48.2          14.3               210
-## 182    Gentoo    Biscoe           50.0          15.3               220
-## 183    Gentoo    Biscoe           47.3          15.3               222
-## 184    Gentoo    Biscoe           42.8          14.2               209
-## 185    Gentoo    Biscoe           45.1          14.5               207
-## 186    Gentoo    Biscoe           59.6          17.0               230
-## 187    Gentoo    Biscoe           49.1          14.8               220
-## 188    Gentoo    Biscoe           48.4          16.3               220
-## 189    Gentoo    Biscoe           42.6          13.7               213
-## 190    Gentoo    Biscoe           44.4          17.3               219
-## 191    Gentoo    Biscoe           44.0          13.6               208
-## 192    Gentoo    Biscoe           48.7          15.7               208
-## 193    Gentoo    Biscoe           42.7          13.7               208
-## 194    Gentoo    Biscoe           49.6          16.0               225
-## 195    Gentoo    Biscoe           45.3          13.7               210
-## 196    Gentoo    Biscoe           49.6          15.0               216
-## 197    Gentoo    Biscoe           50.5          15.9               222
-## 198    Gentoo    Biscoe           43.6          13.9               217
-## 199    Gentoo    Biscoe           45.5          13.9               210
-## 200    Gentoo    Biscoe           50.5          15.9               225
-## 201    Gentoo    Biscoe           44.9          13.3               213
-## 202    Gentoo    Biscoe           45.2          15.8               215
-## 203    Gentoo    Biscoe           46.6          14.2               210
-## 204    Gentoo    Biscoe           48.5          14.1               220
-## 205    Gentoo    Biscoe           45.1          14.4               210
-## 206    Gentoo    Biscoe           50.1          15.0               225
-## 207    Gentoo    Biscoe           46.5          14.4               217
-## 208    Gentoo    Biscoe           45.0          15.4               220
-## 209    Gentoo    Biscoe           43.8          13.9               208
-## 210    Gentoo    Biscoe           45.5          15.0               220
-## 211    Gentoo    Biscoe           43.2          14.5               208
-## 212    Gentoo    Biscoe           50.4          15.3               224
-## 213    Gentoo    Biscoe           45.3          13.8               208
-## 214    Gentoo    Biscoe           46.2          14.9               221
-## 215    Gentoo    Biscoe           45.7          13.9               214
-## 216    Gentoo    Biscoe           54.3          15.7               231
-## 217    Gentoo    Biscoe           45.8          14.2               219
-## 218    Gentoo    Biscoe           49.8          16.8               230
-## 219    Gentoo    Biscoe           46.2          14.4               214
-## 220    Gentoo    Biscoe           49.5          16.2               229
-## 221    Gentoo    Biscoe           43.5          14.2               220
-## 222    Gentoo    Biscoe           50.7          15.0               223
-## 223    Gentoo    Biscoe           47.7          15.0               216
-## 224    Gentoo    Biscoe           46.4          15.6               221
-## 225    Gentoo    Biscoe           48.2          15.6               221
-## 226    Gentoo    Biscoe           46.5          14.8               217
-## 227    Gentoo    Biscoe           46.4          15.0               216
-## 228    Gentoo    Biscoe           48.6          16.0               230
-## 229    Gentoo    Biscoe           47.5          14.2               209
-## 230    Gentoo    Biscoe           51.1          16.3               220
-## 231    Gentoo    Biscoe           45.2          13.8               215
-## 232    Gentoo    Biscoe           45.2          16.4               223
-## 233    Gentoo    Biscoe           49.1          14.5               212
-## 234    Gentoo    Biscoe           52.5          15.6               221
-## 235    Gentoo    Biscoe           47.4          14.6               212
-## 236    Gentoo    Biscoe           50.0          15.9               224
-## 237    Gentoo    Biscoe           44.9          13.8               212
-## 238    Gentoo    Biscoe           50.8          17.3               228
-## 239    Gentoo    Biscoe           43.4          14.4               218
-## 240    Gentoo    Biscoe           51.3          14.2               218
-## 241    Gentoo    Biscoe           47.5          14.0               212
-## 242    Gentoo    Biscoe           52.1          17.0               230
-## 243    Gentoo    Biscoe           47.5          15.0               218
-## 244    Gentoo    Biscoe           52.2          17.1               228
-## 245    Gentoo    Biscoe           45.5          14.5               212
-## 246    Gentoo    Biscoe           49.5          16.1               224
-## 247    Gentoo    Biscoe           44.5          14.7               214
-## 248    Gentoo    Biscoe           50.8          15.7               226
-## 249    Gentoo    Biscoe           49.4          15.8               216
-## 250    Gentoo    Biscoe           46.9          14.6               222
-## 251    Gentoo    Biscoe           48.4          14.4               203
-## 252    Gentoo    Biscoe           51.1          16.5               225
-## 253    Gentoo    Biscoe           48.5          15.0               219
-## 254    Gentoo    Biscoe           55.9          17.0               228
-## 255    Gentoo    Biscoe           47.2          15.5               215
-## 256    Gentoo    Biscoe           49.1          15.0               228
-## 257    Gentoo    Biscoe           47.3          13.8               216
-## 258    Gentoo    Biscoe           46.8          16.1               215
-## 259    Gentoo    Biscoe           41.7          14.7               210
-## 260    Gentoo    Biscoe           53.4          15.8               219
-## 261    Gentoo    Biscoe           43.3          14.0               208
-## 262    Gentoo    Biscoe           48.1          15.1               209
-## 263    Gentoo    Biscoe           50.5          15.2               216
-## 264    Gentoo    Biscoe           49.8          15.9               229
-## 265    Gentoo    Biscoe           43.5          15.2               213
-## 266    Gentoo    Biscoe           51.5          16.3               230
-## 267    Gentoo    Biscoe           46.2          14.1               217
-## 268    Gentoo    Biscoe           55.1          16.0               230
-## 269    Gentoo    Biscoe           44.5          15.7               217
-## 270    Gentoo    Biscoe           48.8          16.2               222
-## 271    Gentoo    Biscoe           47.2          13.7               214
-## 272    Gentoo    Biscoe             NA            NA                NA
-## 273    Gentoo    Biscoe           46.8          14.3               215
-## 274    Gentoo    Biscoe           50.4          15.7               222
-## 275    Gentoo    Biscoe           45.2          14.8               212
-## 276    Gentoo    Biscoe           49.9          16.1               213
-## 277 Chinstrap     Dream           46.5          17.9               192
-## 278 Chinstrap     Dream           50.0          19.5               196
-## 279 Chinstrap     Dream           51.3          19.2               193
-## 280 Chinstrap     Dream           45.4          18.7               188
-## 281 Chinstrap     Dream           52.7          19.8               197
-## 282 Chinstrap     Dream           45.2          17.8               198
-## 283 Chinstrap     Dream           46.1          18.2               178
-## 284 Chinstrap     Dream           51.3          18.2               197
-## 285 Chinstrap     Dream           46.0          18.9               195
-## 286 Chinstrap     Dream           51.3          19.9               198
-## 287 Chinstrap     Dream           46.6          17.8               193
-## 288 Chinstrap     Dream           51.7          20.3               194
-## 289 Chinstrap     Dream           47.0          17.3               185
-## 290 Chinstrap     Dream           52.0          18.1               201
-## 291 Chinstrap     Dream           45.9          17.1               190
-## 292 Chinstrap     Dream           50.5          19.6               201
-## 293 Chinstrap     Dream           50.3          20.0               197
-## 294 Chinstrap     Dream           58.0          17.8               181
-## 295 Chinstrap     Dream           46.4          18.6               190
-## 296 Chinstrap     Dream           49.2          18.2               195
-## 297 Chinstrap     Dream           42.4          17.3               181
-## 298 Chinstrap     Dream           48.5          17.5               191
-## 299 Chinstrap     Dream           43.2          16.6               187
-## 300 Chinstrap     Dream           50.6          19.4               193
-## 301 Chinstrap     Dream           46.7          17.9               195
-## 302 Chinstrap     Dream           52.0          19.0               197
-## 303 Chinstrap     Dream           50.5          18.4               200
-## 304 Chinstrap     Dream           49.5          19.0               200
-## 305 Chinstrap     Dream           46.4          17.8               191
-## 306 Chinstrap     Dream           52.8          20.0               205
-## 307 Chinstrap     Dream           40.9          16.6               187
-## 308 Chinstrap     Dream           54.2          20.8               201
-## 309 Chinstrap     Dream           42.5          16.7               187
-## 310 Chinstrap     Dream           51.0          18.8               203
-## 311 Chinstrap     Dream           49.7          18.6               195
-## 312 Chinstrap     Dream           47.5          16.8               199
-## 313 Chinstrap     Dream           47.6          18.3               195
-## 314 Chinstrap     Dream           52.0          20.7               210
-## 315 Chinstrap     Dream           46.9          16.6               192
-## 316 Chinstrap     Dream           53.5          19.9               205
-## 317 Chinstrap     Dream           49.0          19.5               210
-## 318 Chinstrap     Dream           46.2          17.5               187
-## 319 Chinstrap     Dream           50.9          19.1               196
-## 320 Chinstrap     Dream           45.5          17.0               196
-## 321 Chinstrap     Dream           50.9          17.9               196
-## 322 Chinstrap     Dream           50.8          18.5               201
-## 323 Chinstrap     Dream           50.1          17.9               190
-## 324 Chinstrap     Dream           49.0          19.6               212
-## 325 Chinstrap     Dream           51.5          18.7               187
-## 326 Chinstrap     Dream           49.8          17.3               198
-## 327 Chinstrap     Dream           48.1          16.4               199
-## 328 Chinstrap     Dream           51.4          19.0               201
-## 329 Chinstrap     Dream           45.7          17.3               193
-## 330 Chinstrap     Dream           50.7          19.7               203
-## 331 Chinstrap     Dream           42.5          17.3               187
-## 332 Chinstrap     Dream           52.2          18.8               197
-## 333 Chinstrap     Dream           45.2          16.6               191
-## 334 Chinstrap     Dream           49.3          19.9               203
-## 335 Chinstrap     Dream           50.2          18.8               202
-## 336 Chinstrap     Dream           45.6          19.4               194
-## 337 Chinstrap     Dream           51.9          19.5               206
-## 338 Chinstrap     Dream           46.8          16.5               189
-## 339 Chinstrap     Dream           45.7          17.0               195
-## 340 Chinstrap     Dream           55.8          19.8               207
-## 341 Chinstrap     Dream           43.5          18.1               202
-## 342 Chinstrap     Dream           49.6          18.2               193
-## 343 Chinstrap     Dream           50.8          19.0               210
-## 344 Chinstrap     Dream           50.2          18.7               198
-##     body_mass_g    sex year
-## 1          3750   male 2007
-## 2          3800 female 2007
-## 3          3250 female 2007
-## 4            NA   &lt;NA&gt; 2007
-## 5          3450 female 2007
-## 6          3650   male 2007
-## 7          3625 female 2007
-## 8          4675   male 2007
-## 9          3475   &lt;NA&gt; 2007
-## 10         4250   &lt;NA&gt; 2007
-## 11         3300   &lt;NA&gt; 2007
-## 12         3700   &lt;NA&gt; 2007
-## 13         3200 female 2007
-## 14         3800   male 2007
-## 15         4400   male 2007
-## 16         3700 female 2007
-## 17         3450 female 2007
-## 18         4500   male 2007
-## 19         3325 female 2007
-## 20         4200   male 2007
-## 21         3400 female 2007
-## 22         3600   male 2007
-## 23         3800 female 2007
-## 24         3950   male 2007
-## 25         3800   male 2007
-## 26         3800 female 2007
-## 27         3550   male 2007
-## 28         3200 female 2007
-## 29         3150 female 2007
-## 30         3950   male 2007
-## 31         3250 female 2007
-## 32         3900   male 2007
-## 33         3300 female 2007
-## 34         3900   male 2007
-## 35         3325 female 2007
-## 36         4150   male 2007
-## 37         3950   male 2007
-## 38         3550 female 2007
-## 39         3300 female 2007
-## 40         4650   male 2007
-## 41         3150 female 2007
-## 42         3900   male 2007
-## 43         3100 female 2007
-## 44         4400   male 2007
-## 45         3000 female 2007
-## 46         4600   male 2007
-## 47         3425   male 2007
-## 48         2975   &lt;NA&gt; 2007
-## 49         3450 female 2007
-## 50         4150   male 2007
-## 51         3500 female 2008
-## 52         4300   male 2008
-## 53         3450 female 2008
-## 54         4050   male 2008
-## 55         2900 female 2008
-## 56         3700   male 2008
-## 57         3550 female 2008
-## 58         3800   male 2008
-## 59         2850 female 2008
-## 60         3750   male 2008
-## 61         3150 female 2008
-## 62         4400   male 2008
-## 63         3600 female 2008
-## 64         4050   male 2008
-## 65         2850 female 2008
-## 66         3950   male 2008
-## 67         3350 female 2008
-## 68         4100   male 2008
-## 69         3050 female 2008
-## 70         4450   male 2008
-## 71         3600 female 2008
-## 72         3900   male 2008
-## 73         3550 female 2008
-## 74         4150   male 2008
-## 75         3700 female 2008
-## 76         4250   male 2008
-## 77         3700 female 2008
-## 78         3900   male 2008
-## 79         3550 female 2008
-## 80         4000   male 2008
-## 81         3200 female 2008
-## 82         4700   male 2008
-## 83         3800 female 2008
-## 84         4200   male 2008
-## 85         3350 female 2008
-## 86         3550   male 2008
-## 87         3800   male 2008
-## 88         3500 female 2008
-## 89         3950   male 2008
-## 90         3600 female 2008
-## 91         3550 female 2008
-## 92         4300   male 2008
-## 93         3400 female 2008
-## 94         4450   male 2008
-## 95         3300 female 2008
-## 96         4300   male 2008
-## 97         3700 female 2008
-## 98         4350   male 2008
-## 99         2900 female 2008
-## 100        4100   male 2008
-## 101        3725 female 2009
-## 102        4725   male 2009
-## 103        3075 female 2009
-## 104        4250   male 2009
-## 105        2925 female 2009
-## 106        3550   male 2009
-## 107        3750 female 2009
-## 108        3900   male 2009
-## 109        3175 female 2009
-## 110        4775   male 2009
-## 111        3825 female 2009
-## 112        4600   male 2009
-## 113        3200 female 2009
-## 114        4275   male 2009
-## 115        3900 female 2009
-## 116        4075   male 2009
-## 117        2900 female 2009
-## 118        3775   male 2009
-## 119        3350 female 2009
-## 120        3325   male 2009
-## 121        3150 female 2009
-## 122        3500   male 2009
-## 123        3450 female 2009
-## 124        3875   male 2009
-## 125        3050 female 2009
-## 126        4000   male 2009
-## 127        3275 female 2009
-## 128        4300   male 2009
-## 129        3050 female 2009
-## 130        4000   male 2009
-## 131        3325 female 2009
-## 132        3500   male 2009
-## 133        3500 female 2009
-## 134        4475   male 2009
-## 135        3425 female 2009
-## 136        3900   male 2009
-## 137        3175 female 2009
-## 138        3975   male 2009
-## 139        3400 female 2009
-## 140        4250   male 2009
-## 141        3400 female 2009
-## 142        3475   male 2009
-## 143        3050 female 2009
-## 144        3725   male 2009
-## 145        3000 female 2009
-## 146        3650   male 2009
-## 147        4250   male 2009
-## 148        3475 female 2009
-## 149        3450 female 2009
-## 150        3750   male 2009
-## 151        3700 female 2009
-## 152        4000   male 2009
-## 153        4500 female 2007
-## 154        5700   male 2007
-## 155        4450 female 2007
-## 156        5700   male 2007
-## 157        5400   male 2007
-## 158        4550 female 2007
-## 159        4800 female 2007
-## 160        5200   male 2007
-## 161        4400 female 2007
-## 162        5150   male 2007
-## 163        4650 female 2007
-## 164        5550   male 2007
-## 165        4650 female 2007
-## 166        5850   male 2007
-## 167        4200 female 2007
-## 168        5850   male 2007
-## 169        4150 female 2007
-## 170        6300   male 2007
-## 171        4800 female 2007
-## 172        5350   male 2007
-## 173        5700   male 2007
-## 174        5000 female 2007
-## 175        4400 female 2007
-## 176        5050   male 2007
-## 177        5000 female 2007
-## 178        5100   male 2007
-## 179        4100   &lt;NA&gt; 2007
-## 180        5650   male 2007
-## 181        4600 female 2007
-## 182        5550   male 2007
-## 183        5250   male 2007
-## 184        4700 female 2007
-## 185        5050 female 2007
-## 186        6050   male 2007
-## 187        5150 female 2008
-## 188        5400   male 2008
-## 189        4950 female 2008
-## 190        5250   male 2008
-## 191        4350 female 2008
-## 192        5350   male 2008
-## 193        3950 female 2008
-## 194        5700   male 2008
-## 195        4300 female 2008
-## 196        4750   male 2008
-## 197        5550   male 2008
-## 198        4900 female 2008
-## 199        4200 female 2008
-## 200        5400   male 2008
-## 201        5100 female 2008
-## 202        5300   male 2008
-## 203        4850 female 2008
-## 204        5300   male 2008
-## 205        4400 female 2008
-## 206        5000   male 2008
-## 207        4900 female 2008
-## 208        5050   male 2008
-## 209        4300 female 2008
-## 210        5000   male 2008
-## 211        4450 female 2008
-## 212        5550   male 2008
-## 213        4200 female 2008
-## 214        5300   male 2008
-## 215        4400 female 2008
-## 216        5650   male 2008
-## 217        4700 female 2008
-## 218        5700   male 2008
-## 219        4650   &lt;NA&gt; 2008
-## 220        5800   male 2008
-## 221        4700 female 2008
-## 222        5550   male 2008
-## 223        4750 female 2008
-## 224        5000   male 2008
-## 225        5100   male 2008
-## 226        5200 female 2008
-## 227        4700 female 2008
-## 228        5800   male 2008
-## 229        4600 female 2008
-## 230        6000   male 2008
-## 231        4750 female 2008
-## 232        5950   male 2008
-## 233        4625 female 2009
-## 234        5450   male 2009
-## 235        4725 female 2009
-## 236        5350   male 2009
-## 237        4750 female 2009
-## 238        5600   male 2009
-## 239        4600 female 2009
-## 240        5300   male 2009
-## 241        4875 female 2009
-## 242        5550   male 2009
-## 243        4950 female 2009
-## 244        5400   male 2009
-## 245        4750 female 2009
-## 246        5650   male 2009
-## 247        4850 female 2009
-## 248        5200   male 2009
-## 249        4925   male 2009
-## 250        4875 female 2009
-## 251        4625 female 2009
-## 252        5250   male 2009
-## 253        4850 female 2009
-## 254        5600   male 2009
-## 255        4975 female 2009
-## 256        5500   male 2009
-## 257        4725   &lt;NA&gt; 2009
-## 258        5500   male 2009
-## 259        4700 female 2009
-## 260        5500   male 2009
-## 261        4575 female 2009
-## 262        5500   male 2009
-## 263        5000 female 2009
-## 264        5950   male 2009
-## 265        4650 female 2009
-## 266        5500   male 2009
-## 267        4375 female 2009
-## 268        5850   male 2009
-## 269        4875   &lt;NA&gt; 2009
-## 270        6000   male 2009
-## 271        4925 female 2009
-## 272          NA   &lt;NA&gt; 2009
-## 273        4850 female 2009
-## 274        5750   male 2009
-## 275        5200 female 2009
-## 276        5400   male 2009
-## 277        3500 female 2007
-## 278        3900   male 2007
-## 279        3650   male 2007
-## 280        3525 female 2007
-## 281        3725   male 2007
-## 282        3950 female 2007
-## 283        3250 female 2007
-## 284        3750   male 2007
-## 285        4150 female 2007
-## 286        3700   male 2007
-## 287        3800 female 2007
-## 288        3775   male 2007
-## 289        3700 female 2007
-## 290        4050   male 2007
-## 291        3575 female 2007
-## 292        4050   male 2007
-## 293        3300   male 2007
-## 294        3700 female 2007
-## 295        3450 female 2007
-## 296        4400   male 2007
-## 297        3600 female 2007
-## 298        3400   male 2007
-## 299        2900 female 2007
-## 300        3800   male 2007
-## 301        3300 female 2007
-## 302        4150   male 2007
-## 303        3400 female 2008
-## 304        3800   male 2008
-## 305        3700 female 2008
-## 306        4550   male 2008
-## 307        3200 female 2008
-## 308        4300   male 2008
-## 309        3350 female 2008
-## 310        4100   male 2008
-## 311        3600   male 2008
-## 312        3900 female 2008
-## 313        3850 female 2008
-## 314        4800   male 2008
-## 315        2700 female 2008
-## 316        4500   male 2008
-## 317        3950   male 2008
-## 318        3650 female 2008
-## 319        3550   male 2008
-## 320        3500 female 2008
-## 321        3675 female 2009
-## 322        4450   male 2009
-## 323        3400 female 2009
-## 324        4300   male 2009
-## 325        3250   male 2009
-## 326        3675 female 2009
-## 327        3325 female 2009
-## 328        3950   male 2009
-## 329        3600 female 2009
-## 330        4050   male 2009
-## 331        3350 female 2009
-## 332        3450   male 2009
-## 333        3250 female 2009
-## 334        4050   male 2009
-## 335        3800   male 2009
-## 336        3525 female 2009
-## 337        3950   male 2009
-## 338        3650 female 2009
-## 339        3650 female 2009
-## 340        4000   male 2009
-## 341        3400 female 2009
-## 342        3775   male 2009
-## 343        4100   male 2009
-## 344        3775 female 2009</code></pre>
+<span id="cb407-2"><a href="thursday-september-8-2022.html#cb407-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(loc)</span></code></pre></div>
+<pre><code>## Rows: 344 Columns: 8
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (3): species, island, sex
+## dbl (5): bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, year
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="thursday-september-8-2022.html#cb409-1" aria-hidden="true" tabindex="-1"></a>penguins</span></code></pre></div>
+<pre><code>## # A tibble: 344 × 8
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # … with 334 more rows, and 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
 <p>To keep only the penguins labeled in the column <code>sex</code> as <code>female</code> type</p>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="thursday-september-8-2022.html#cb409-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb409-2"><a href="thursday-september-8-2022.html#cb409-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">&quot;female&quot;</span>)</span></code></pre></div>
-<pre><code>##       species    island bill_length_mm bill_depth_mm flipper_length_mm
-## 1      Adelie Torgersen           39.5          17.4               186
-## 2      Adelie Torgersen           40.3          18.0               195
-## 3      Adelie Torgersen           36.7          19.3               193
-## 4      Adelie Torgersen           38.9          17.8               181
-## 5      Adelie Torgersen           41.1          17.6               182
-## 6      Adelie Torgersen           36.6          17.8               185
-## 7      Adelie Torgersen           38.7          19.0               195
-## 8      Adelie Torgersen           34.4          18.4               184
-## 9      Adelie    Biscoe           37.8          18.3               174
-## 10     Adelie    Biscoe           35.9          19.2               189
-## 11     Adelie    Biscoe           35.3          18.9               187
-## 12     Adelie    Biscoe           40.5          17.9               187
-## 13     Adelie    Biscoe           37.9          18.6               172
-## 14     Adelie     Dream           39.5          16.7               178
-## 15     Adelie     Dream           39.5          17.8               188
-## 16     Adelie     Dream           36.4          17.0               195
-## 17     Adelie     Dream           42.2          18.5               180
-## 18     Adelie     Dream           37.6          19.3               181
-## 19     Adelie     Dream           36.5          18.0               182
-## 20     Adelie     Dream           36.0          18.5               186
-## 21     Adelie     Dream           37.0          16.9               185
-## 22     Adelie     Dream           36.0          17.9               190
-## 23     Adelie    Biscoe           39.6          17.7               186
-## 24     Adelie    Biscoe           35.0          17.9               190
-## 25     Adelie    Biscoe           34.5          18.1               187
-## 26     Adelie    Biscoe           39.0          17.5               186
-## 27     Adelie    Biscoe           36.5          16.6               181
-## 28     Adelie    Biscoe           35.7          16.9               185
-## 29     Adelie    Biscoe           37.6          17.0               185
-## 30     Adelie    Biscoe           36.4          17.1               184
-## 31     Adelie    Biscoe           35.5          16.2               195
-## 32     Adelie Torgersen           35.9          16.6               190
-## 33     Adelie Torgersen           33.5          19.0               190
-## 34     Adelie Torgersen           39.6          17.2               196
-## 35     Adelie Torgersen           35.5          17.5               190
-## 36     Adelie Torgersen           40.9          16.8               191
-## 37     Adelie Torgersen           36.2          16.1               187
-## 38     Adelie Torgersen           34.6          17.2               189
-## 39     Adelie Torgersen           36.7          18.8               187
-## 40     Adelie     Dream           37.3          17.8               191
-## 41     Adelie     Dream           36.9          18.6               189
-## 42     Adelie     Dream           38.9          18.8               190
-## 43     Adelie     Dream           35.7          18.0               202
-## 44     Adelie     Dream           34.0          17.1               185
-## 45     Adelie     Dream           36.2          17.3               187
-## 46     Adelie     Dream           38.1          18.6               190
-## 47     Adelie     Dream           33.1          16.1               178
-## 48     Adelie    Biscoe           35.0          17.9               192
-## 49     Adelie    Biscoe           37.7          16.0               183
-## 50     Adelie    Biscoe           37.9          18.6               193
-## 51     Adelie    Biscoe           38.6          17.2               199
-## 52     Adelie    Biscoe           38.1          17.0               181
-## 53     Adelie    Biscoe           38.1          16.5               198
-## 54     Adelie    Biscoe           39.7          17.7               193
-## 55     Adelie    Biscoe           39.6          20.7               191
-## 56     Adelie Torgersen           38.6          17.0               188
-## 57     Adelie Torgersen           35.7          17.0               189
-## 58     Adelie Torgersen           36.2          17.2               187
-## 59     Adelie Torgersen           40.2          17.0               176
-## 60     Adelie Torgersen           35.2          15.9               186
-## 61     Adelie Torgersen           38.8          17.6               191
-## 62     Adelie Torgersen           39.0          17.1               191
-## 63     Adelie Torgersen           38.5          17.9               190
-## 64     Adelie     Dream           36.8          18.5               193
-## 65     Adelie     Dream           38.1          17.6               187
-## 66     Adelie     Dream           35.6          17.5               191
-## 67     Adelie     Dream           37.0          16.5               185
-## 68     Adelie     Dream           40.2          17.1               193
-## 69     Adelie     Dream           32.1          15.5               188
-## 70     Adelie     Dream           37.3          16.8               192
-## 71     Adelie     Dream           36.6          18.4               184
-## 72     Adelie     Dream           36.0          17.8               195
-## 73     Adelie     Dream           36.0          17.1               187
-## 74     Gentoo    Biscoe           46.1          13.2               211
-## 75     Gentoo    Biscoe           48.7          14.1               210
-## 76     Gentoo    Biscoe           46.5          13.5               210
-## 77     Gentoo    Biscoe           45.4          14.6               211
-## 78     Gentoo    Biscoe           43.3          13.4               209
-## 79     Gentoo    Biscoe           40.9          13.7               214
-## 80     Gentoo    Biscoe           45.5          13.7               214
-## 81     Gentoo    Biscoe           45.8          14.6               210
-## 82     Gentoo    Biscoe           42.0          13.5               210
-## 83     Gentoo    Biscoe           46.2          14.5               209
-## 84     Gentoo    Biscoe           45.1          14.5               215
-## 85     Gentoo    Biscoe           46.5          14.5               213
-## 86     Gentoo    Biscoe           42.9          13.1               215
-## 87     Gentoo    Biscoe           48.2          14.3               210
-## 88     Gentoo    Biscoe           42.8          14.2               209
-## 89     Gentoo    Biscoe           45.1          14.5               207
-## 90     Gentoo    Biscoe           49.1          14.8               220
-## 91     Gentoo    Biscoe           42.6          13.7               213
-## 92     Gentoo    Biscoe           44.0          13.6               208
-## 93     Gentoo    Biscoe           42.7          13.7               208
-## 94     Gentoo    Biscoe           45.3          13.7               210
-## 95     Gentoo    Biscoe           43.6          13.9               217
-## 96     Gentoo    Biscoe           45.5          13.9               210
-## 97     Gentoo    Biscoe           44.9          13.3               213
-## 98     Gentoo    Biscoe           46.6          14.2               210
-## 99     Gentoo    Biscoe           45.1          14.4               210
-## 100    Gentoo    Biscoe           46.5          14.4               217
-## 101    Gentoo    Biscoe           43.8          13.9               208
-## 102    Gentoo    Biscoe           43.2          14.5               208
-## 103    Gentoo    Biscoe           45.3          13.8               208
-## 104    Gentoo    Biscoe           45.7          13.9               214
-## 105    Gentoo    Biscoe           45.8          14.2               219
-## 106    Gentoo    Biscoe           43.5          14.2               220
-## 107    Gentoo    Biscoe           47.7          15.0               216
-## 108    Gentoo    Biscoe           46.5          14.8               217
-## 109    Gentoo    Biscoe           46.4          15.0               216
-## 110    Gentoo    Biscoe           47.5          14.2               209
-## 111    Gentoo    Biscoe           45.2          13.8               215
-## 112    Gentoo    Biscoe           49.1          14.5               212
-## 113    Gentoo    Biscoe           47.4          14.6               212
-## 114    Gentoo    Biscoe           44.9          13.8               212
-## 115    Gentoo    Biscoe           43.4          14.4               218
-## 116    Gentoo    Biscoe           47.5          14.0               212
-## 117    Gentoo    Biscoe           47.5          15.0               218
-## 118    Gentoo    Biscoe           45.5          14.5               212
-## 119    Gentoo    Biscoe           44.5          14.7               214
-## 120    Gentoo    Biscoe           46.9          14.6               222
-## 121    Gentoo    Biscoe           48.4          14.4               203
-## 122    Gentoo    Biscoe           48.5          15.0               219
-## 123    Gentoo    Biscoe           47.2          15.5               215
-## 124    Gentoo    Biscoe           41.7          14.7               210
-## 125    Gentoo    Biscoe           43.3          14.0               208
-## 126    Gentoo    Biscoe           50.5          15.2               216
-## 127    Gentoo    Biscoe           43.5          15.2               213
-## 128    Gentoo    Biscoe           46.2          14.1               217
-## 129    Gentoo    Biscoe           47.2          13.7               214
-## 130    Gentoo    Biscoe           46.8          14.3               215
-## 131    Gentoo    Biscoe           45.2          14.8               212
-## 132 Chinstrap     Dream           46.5          17.9               192
-## 133 Chinstrap     Dream           45.4          18.7               188
-## 134 Chinstrap     Dream           45.2          17.8               198
-## 135 Chinstrap     Dream           46.1          18.2               178
-## 136 Chinstrap     Dream           46.0          18.9               195
-## 137 Chinstrap     Dream           46.6          17.8               193
-## 138 Chinstrap     Dream           47.0          17.3               185
-## 139 Chinstrap     Dream           45.9          17.1               190
-## 140 Chinstrap     Dream           58.0          17.8               181
-## 141 Chinstrap     Dream           46.4          18.6               190
-## 142 Chinstrap     Dream           42.4          17.3               181
-## 143 Chinstrap     Dream           43.2          16.6               187
-## 144 Chinstrap     Dream           46.7          17.9               195
-## 145 Chinstrap     Dream           50.5          18.4               200
-## 146 Chinstrap     Dream           46.4          17.8               191
-## 147 Chinstrap     Dream           40.9          16.6               187
-## 148 Chinstrap     Dream           42.5          16.7               187
-## 149 Chinstrap     Dream           47.5          16.8               199
-## 150 Chinstrap     Dream           47.6          18.3               195
-## 151 Chinstrap     Dream           46.9          16.6               192
-## 152 Chinstrap     Dream           46.2          17.5               187
-## 153 Chinstrap     Dream           45.5          17.0               196
-## 154 Chinstrap     Dream           50.9          17.9               196
-## 155 Chinstrap     Dream           50.1          17.9               190
-## 156 Chinstrap     Dream           49.8          17.3               198
-## 157 Chinstrap     Dream           48.1          16.4               199
-## 158 Chinstrap     Dream           45.7          17.3               193
-## 159 Chinstrap     Dream           42.5          17.3               187
-## 160 Chinstrap     Dream           45.2          16.6               191
-## 161 Chinstrap     Dream           45.6          19.4               194
-## 162 Chinstrap     Dream           46.8          16.5               189
-## 163 Chinstrap     Dream           45.7          17.0               195
-## 164 Chinstrap     Dream           43.5          18.1               202
-## 165 Chinstrap     Dream           50.2          18.7               198
-##     body_mass_g    sex year
-## 1          3800 female 2007
-## 2          3250 female 2007
-## 3          3450 female 2007
-## 4          3625 female 2007
-## 5          3200 female 2007
-## 6          3700 female 2007
-## 7          3450 female 2007
-## 8          3325 female 2007
-## 9          3400 female 2007
-## 10         3800 female 2007
-## 11         3800 female 2007
-## 12         3200 female 2007
-## 13         3150 female 2007
-## 14         3250 female 2007
-## 15         3300 female 2007
-## 16         3325 female 2007
-## 17         3550 female 2007
-## 18         3300 female 2007
-## 19         3150 female 2007
-## 20         3100 female 2007
-## 21         3000 female 2007
-## 22         3450 female 2007
-## 23         3500 female 2008
-## 24         3450 female 2008
-## 25         2900 female 2008
-## 26         3550 female 2008
-## 27         2850 female 2008
-## 28         3150 female 2008
-## 29         3600 female 2008
-## 30         2850 female 2008
-## 31         3350 female 2008
-## 32         3050 female 2008
-## 33         3600 female 2008
-## 34         3550 female 2008
-## 35         3700 female 2008
-## 36         3700 female 2008
-## 37         3550 female 2008
-## 38         3200 female 2008
-## 39         3800 female 2008
-## 40         3350 female 2008
-## 41         3500 female 2008
-## 42         3600 female 2008
-## 43         3550 female 2008
-## 44         3400 female 2008
-## 45         3300 female 2008
-## 46         3700 female 2008
-## 47         2900 female 2008
-## 48         3725 female 2009
-## 49         3075 female 2009
-## 50         2925 female 2009
-## 51         3750 female 2009
-## 52         3175 female 2009
-## 53         3825 female 2009
-## 54         3200 female 2009
-## 55         3900 female 2009
-## 56         2900 female 2009
-## 57         3350 female 2009
-## 58         3150 female 2009
-## 59         3450 female 2009
-## 60         3050 female 2009
-## 61         3275 female 2009
-## 62         3050 female 2009
-## 63         3325 female 2009
-## 64         3500 female 2009
-## 65         3425 female 2009
-## 66         3175 female 2009
-## 67         3400 female 2009
-## 68         3400 female 2009
-## 69         3050 female 2009
-## 70         3000 female 2009
-## 71         3475 female 2009
-## 72         3450 female 2009
-## 73         3700 female 2009
-## 74         4500 female 2007
-## 75         4450 female 2007
-## 76         4550 female 2007
-## 77         4800 female 2007
-## 78         4400 female 2007
-## 79         4650 female 2007
-## 80         4650 female 2007
-## 81         4200 female 2007
-## 82         4150 female 2007
-## 83         4800 female 2007
-## 84         5000 female 2007
-## 85         4400 female 2007
-## 86         5000 female 2007
-## 87         4600 female 2007
-## 88         4700 female 2007
-## 89         5050 female 2007
-## 90         5150 female 2008
-## 91         4950 female 2008
-## 92         4350 female 2008
-## 93         3950 female 2008
-## 94         4300 female 2008
-## 95         4900 female 2008
-## 96         4200 female 2008
-## 97         5100 female 2008
-## 98         4850 female 2008
-## 99         4400 female 2008
-## 100        4900 female 2008
-## 101        4300 female 2008
-## 102        4450 female 2008
-## 103        4200 female 2008
-## 104        4400 female 2008
-## 105        4700 female 2008
-## 106        4700 female 2008
-## 107        4750 female 2008
-## 108        5200 female 2008
-## 109        4700 female 2008
-## 110        4600 female 2008
-## 111        4750 female 2008
-## 112        4625 female 2009
-## 113        4725 female 2009
-## 114        4750 female 2009
-## 115        4600 female 2009
-## 116        4875 female 2009
-## 117        4950 female 2009
-## 118        4750 female 2009
-## 119        4850 female 2009
-## 120        4875 female 2009
-## 121        4625 female 2009
-## 122        4850 female 2009
-## 123        4975 female 2009
-## 124        4700 female 2009
-## 125        4575 female 2009
-## 126        5000 female 2009
-## 127        4650 female 2009
-## 128        4375 female 2009
-## 129        4925 female 2009
-## 130        4850 female 2009
-## 131        5200 female 2009
-## 132        3500 female 2007
-## 133        3525 female 2007
-## 134        3950 female 2007
-## 135        3250 female 2007
-## 136        4150 female 2007
-## 137        3800 female 2007
-## 138        3700 female 2007
-## 139        3575 female 2007
-## 140        3700 female 2007
-## 141        3450 female 2007
-## 142        3600 female 2007
-## 143        2900 female 2007
-## 144        3300 female 2007
-## 145        3400 female 2008
-## 146        3700 female 2008
-## 147        3200 female 2008
-## 148        3350 female 2008
-## 149        3900 female 2008
-## 150        3850 female 2008
-## 151        2700 female 2008
-## 152        3650 female 2008
-## 153        3500 female 2008
-## 154        3675 female 2009
-## 155        3400 female 2009
-## 156        3675 female 2009
-## 157        3325 female 2009
-## 158        3600 female 2009
-## 159        3350 female 2009
-## 160        3250 female 2009
-## 161        3525 female 2009
-## 162        3650 female 2009
-## 163        3650 female 2009
-## 164        3400 female 2009
-## 165        3775 female 2009</code></pre>
-<p>To filter rows keeping only species that are not Adalie penguins.</p>
 <div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="thursday-september-8-2022.html#cb411-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb411-2"><a href="thursday-september-8-2022.html#cb411-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">!=</span> <span class="st">&quot;Adelie&quot;</span>)</span></code></pre></div>
-<pre><code>##       species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-## 1      Gentoo Biscoe           46.1          13.2               211        4500
-## 2      Gentoo Biscoe           50.0          16.3               230        5700
-## 3      Gentoo Biscoe           48.7          14.1               210        4450
-## 4      Gentoo Biscoe           50.0          15.2               218        5700
-## 5      Gentoo Biscoe           47.6          14.5               215        5400
-## 6      Gentoo Biscoe           46.5          13.5               210        4550
-## 7      Gentoo Biscoe           45.4          14.6               211        4800
-## 8      Gentoo Biscoe           46.7          15.3               219        5200
-## 9      Gentoo Biscoe           43.3          13.4               209        4400
-## 10     Gentoo Biscoe           46.8          15.4               215        5150
-## 11     Gentoo Biscoe           40.9          13.7               214        4650
-## 12     Gentoo Biscoe           49.0          16.1               216        5550
-## 13     Gentoo Biscoe           45.5          13.7               214        4650
-## 14     Gentoo Biscoe           48.4          14.6               213        5850
-## 15     Gentoo Biscoe           45.8          14.6               210        4200
-## 16     Gentoo Biscoe           49.3          15.7               217        5850
-## 17     Gentoo Biscoe           42.0          13.5               210        4150
-## 18     Gentoo Biscoe           49.2          15.2               221        6300
-## 19     Gentoo Biscoe           46.2          14.5               209        4800
-## 20     Gentoo Biscoe           48.7          15.1               222        5350
-## 21     Gentoo Biscoe           50.2          14.3               218        5700
-## 22     Gentoo Biscoe           45.1          14.5               215        5000
-## 23     Gentoo Biscoe           46.5          14.5               213        4400
-## 24     Gentoo Biscoe           46.3          15.8               215        5050
-## 25     Gentoo Biscoe           42.9          13.1               215        5000
-## 26     Gentoo Biscoe           46.1          15.1               215        5100
-## 27     Gentoo Biscoe           44.5          14.3               216        4100
-## 28     Gentoo Biscoe           47.8          15.0               215        5650
-## 29     Gentoo Biscoe           48.2          14.3               210        4600
-## 30     Gentoo Biscoe           50.0          15.3               220        5550
-## 31     Gentoo Biscoe           47.3          15.3               222        5250
-## 32     Gentoo Biscoe           42.8          14.2               209        4700
-## 33     Gentoo Biscoe           45.1          14.5               207        5050
-## 34     Gentoo Biscoe           59.6          17.0               230        6050
-## 35     Gentoo Biscoe           49.1          14.8               220        5150
-## 36     Gentoo Biscoe           48.4          16.3               220        5400
-## 37     Gentoo Biscoe           42.6          13.7               213        4950
-## 38     Gentoo Biscoe           44.4          17.3               219        5250
-## 39     Gentoo Biscoe           44.0          13.6               208        4350
-## 40     Gentoo Biscoe           48.7          15.7               208        5350
-## 41     Gentoo Biscoe           42.7          13.7               208        3950
-## 42     Gentoo Biscoe           49.6          16.0               225        5700
-## 43     Gentoo Biscoe           45.3          13.7               210        4300
-## 44     Gentoo Biscoe           49.6          15.0               216        4750
-## 45     Gentoo Biscoe           50.5          15.9               222        5550
-## 46     Gentoo Biscoe           43.6          13.9               217        4900
-## 47     Gentoo Biscoe           45.5          13.9               210        4200
-## 48     Gentoo Biscoe           50.5          15.9               225        5400
-## 49     Gentoo Biscoe           44.9          13.3               213        5100
-## 50     Gentoo Biscoe           45.2          15.8               215        5300
-## 51     Gentoo Biscoe           46.6          14.2               210        4850
-## 52     Gentoo Biscoe           48.5          14.1               220        5300
-## 53     Gentoo Biscoe           45.1          14.4               210        4400
-## 54     Gentoo Biscoe           50.1          15.0               225        5000
-## 55     Gentoo Biscoe           46.5          14.4               217        4900
-## 56     Gentoo Biscoe           45.0          15.4               220        5050
-## 57     Gentoo Biscoe           43.8          13.9               208        4300
-## 58     Gentoo Biscoe           45.5          15.0               220        5000
-## 59     Gentoo Biscoe           43.2          14.5               208        4450
-## 60     Gentoo Biscoe           50.4          15.3               224        5550
-## 61     Gentoo Biscoe           45.3          13.8               208        4200
-## 62     Gentoo Biscoe           46.2          14.9               221        5300
-## 63     Gentoo Biscoe           45.7          13.9               214        4400
-## 64     Gentoo Biscoe           54.3          15.7               231        5650
-## 65     Gentoo Biscoe           45.8          14.2               219        4700
-## 66     Gentoo Biscoe           49.8          16.8               230        5700
-## 67     Gentoo Biscoe           46.2          14.4               214        4650
-## 68     Gentoo Biscoe           49.5          16.2               229        5800
-## 69     Gentoo Biscoe           43.5          14.2               220        4700
-## 70     Gentoo Biscoe           50.7          15.0               223        5550
-## 71     Gentoo Biscoe           47.7          15.0               216        4750
-## 72     Gentoo Biscoe           46.4          15.6               221        5000
-## 73     Gentoo Biscoe           48.2          15.6               221        5100
-## 74     Gentoo Biscoe           46.5          14.8               217        5200
-## 75     Gentoo Biscoe           46.4          15.0               216        4700
-## 76     Gentoo Biscoe           48.6          16.0               230        5800
-## 77     Gentoo Biscoe           47.5          14.2               209        4600
-## 78     Gentoo Biscoe           51.1          16.3               220        6000
-## 79     Gentoo Biscoe           45.2          13.8               215        4750
-## 80     Gentoo Biscoe           45.2          16.4               223        5950
-## 81     Gentoo Biscoe           49.1          14.5               212        4625
-## 82     Gentoo Biscoe           52.5          15.6               221        5450
-## 83     Gentoo Biscoe           47.4          14.6               212        4725
-## 84     Gentoo Biscoe           50.0          15.9               224        5350
-## 85     Gentoo Biscoe           44.9          13.8               212        4750
-## 86     Gentoo Biscoe           50.8          17.3               228        5600
-## 87     Gentoo Biscoe           43.4          14.4               218        4600
-## 88     Gentoo Biscoe           51.3          14.2               218        5300
-## 89     Gentoo Biscoe           47.5          14.0               212        4875
-## 90     Gentoo Biscoe           52.1          17.0               230        5550
-## 91     Gentoo Biscoe           47.5          15.0               218        4950
-## 92     Gentoo Biscoe           52.2          17.1               228        5400
-## 93     Gentoo Biscoe           45.5          14.5               212        4750
-## 94     Gentoo Biscoe           49.5          16.1               224        5650
-## 95     Gentoo Biscoe           44.5          14.7               214        4850
-## 96     Gentoo Biscoe           50.8          15.7               226        5200
-## 97     Gentoo Biscoe           49.4          15.8               216        4925
-## 98     Gentoo Biscoe           46.9          14.6               222        4875
-## 99     Gentoo Biscoe           48.4          14.4               203        4625
-## 100    Gentoo Biscoe           51.1          16.5               225        5250
-## 101    Gentoo Biscoe           48.5          15.0               219        4850
-## 102    Gentoo Biscoe           55.9          17.0               228        5600
-## 103    Gentoo Biscoe           47.2          15.5               215        4975
-## 104    Gentoo Biscoe           49.1          15.0               228        5500
-## 105    Gentoo Biscoe           47.3          13.8               216        4725
-## 106    Gentoo Biscoe           46.8          16.1               215        5500
-## 107    Gentoo Biscoe           41.7          14.7               210        4700
-## 108    Gentoo Biscoe           53.4          15.8               219        5500
-## 109    Gentoo Biscoe           43.3          14.0               208        4575
-## 110    Gentoo Biscoe           48.1          15.1               209        5500
-## 111    Gentoo Biscoe           50.5          15.2               216        5000
-## 112    Gentoo Biscoe           49.8          15.9               229        5950
-## 113    Gentoo Biscoe           43.5          15.2               213        4650
-## 114    Gentoo Biscoe           51.5          16.3               230        5500
-## 115    Gentoo Biscoe           46.2          14.1               217        4375
-## 116    Gentoo Biscoe           55.1          16.0               230        5850
-## 117    Gentoo Biscoe           44.5          15.7               217        4875
-## 118    Gentoo Biscoe           48.8          16.2               222        6000
-## 119    Gentoo Biscoe           47.2          13.7               214        4925
-## 120    Gentoo Biscoe             NA            NA                NA          NA
-## 121    Gentoo Biscoe           46.8          14.3               215        4850
-## 122    Gentoo Biscoe           50.4          15.7               222        5750
-## 123    Gentoo Biscoe           45.2          14.8               212        5200
-## 124    Gentoo Biscoe           49.9          16.1               213        5400
-## 125 Chinstrap  Dream           46.5          17.9               192        3500
-## 126 Chinstrap  Dream           50.0          19.5               196        3900
-## 127 Chinstrap  Dream           51.3          19.2               193        3650
-## 128 Chinstrap  Dream           45.4          18.7               188        3525
-## 129 Chinstrap  Dream           52.7          19.8               197        3725
-## 130 Chinstrap  Dream           45.2          17.8               198        3950
-## 131 Chinstrap  Dream           46.1          18.2               178        3250
-## 132 Chinstrap  Dream           51.3          18.2               197        3750
-## 133 Chinstrap  Dream           46.0          18.9               195        4150
-## 134 Chinstrap  Dream           51.3          19.9               198        3700
-## 135 Chinstrap  Dream           46.6          17.8               193        3800
-## 136 Chinstrap  Dream           51.7          20.3               194        3775
-## 137 Chinstrap  Dream           47.0          17.3               185        3700
-## 138 Chinstrap  Dream           52.0          18.1               201        4050
-## 139 Chinstrap  Dream           45.9          17.1               190        3575
-## 140 Chinstrap  Dream           50.5          19.6               201        4050
-## 141 Chinstrap  Dream           50.3          20.0               197        3300
-## 142 Chinstrap  Dream           58.0          17.8               181        3700
-## 143 Chinstrap  Dream           46.4          18.6               190        3450
-## 144 Chinstrap  Dream           49.2          18.2               195        4400
-## 145 Chinstrap  Dream           42.4          17.3               181        3600
-## 146 Chinstrap  Dream           48.5          17.5               191        3400
-## 147 Chinstrap  Dream           43.2          16.6               187        2900
-## 148 Chinstrap  Dream           50.6          19.4               193        3800
-## 149 Chinstrap  Dream           46.7          17.9               195        3300
-## 150 Chinstrap  Dream           52.0          19.0               197        4150
-## 151 Chinstrap  Dream           50.5          18.4               200        3400
-## 152 Chinstrap  Dream           49.5          19.0               200        3800
-## 153 Chinstrap  Dream           46.4          17.8               191        3700
-## 154 Chinstrap  Dream           52.8          20.0               205        4550
-## 155 Chinstrap  Dream           40.9          16.6               187        3200
-## 156 Chinstrap  Dream           54.2          20.8               201        4300
-## 157 Chinstrap  Dream           42.5          16.7               187        3350
-## 158 Chinstrap  Dream           51.0          18.8               203        4100
-## 159 Chinstrap  Dream           49.7          18.6               195        3600
-## 160 Chinstrap  Dream           47.5          16.8               199        3900
-## 161 Chinstrap  Dream           47.6          18.3               195        3850
-## 162 Chinstrap  Dream           52.0          20.7               210        4800
-## 163 Chinstrap  Dream           46.9          16.6               192        2700
-## 164 Chinstrap  Dream           53.5          19.9               205        4500
-## 165 Chinstrap  Dream           49.0          19.5               210        3950
-## 166 Chinstrap  Dream           46.2          17.5               187        3650
-## 167 Chinstrap  Dream           50.9          19.1               196        3550
-## 168 Chinstrap  Dream           45.5          17.0               196        3500
-## 169 Chinstrap  Dream           50.9          17.9               196        3675
-## 170 Chinstrap  Dream           50.8          18.5               201        4450
-## 171 Chinstrap  Dream           50.1          17.9               190        3400
-## 172 Chinstrap  Dream           49.0          19.6               212        4300
-## 173 Chinstrap  Dream           51.5          18.7               187        3250
-## 174 Chinstrap  Dream           49.8          17.3               198        3675
-## 175 Chinstrap  Dream           48.1          16.4               199        3325
-## 176 Chinstrap  Dream           51.4          19.0               201        3950
-## 177 Chinstrap  Dream           45.7          17.3               193        3600
-## 178 Chinstrap  Dream           50.7          19.7               203        4050
-## 179 Chinstrap  Dream           42.5          17.3               187        3350
-## 180 Chinstrap  Dream           52.2          18.8               197        3450
-## 181 Chinstrap  Dream           45.2          16.6               191        3250
-## 182 Chinstrap  Dream           49.3          19.9               203        4050
-## 183 Chinstrap  Dream           50.2          18.8               202        3800
-## 184 Chinstrap  Dream           45.6          19.4               194        3525
-## 185 Chinstrap  Dream           51.9          19.5               206        3950
-## 186 Chinstrap  Dream           46.8          16.5               189        3650
-## 187 Chinstrap  Dream           45.7          17.0               195        3650
-## 188 Chinstrap  Dream           55.8          19.8               207        4000
-## 189 Chinstrap  Dream           43.5          18.1               202        3400
-## 190 Chinstrap  Dream           49.6          18.2               193        3775
-## 191 Chinstrap  Dream           50.8          19.0               210        4100
-## 192 Chinstrap  Dream           50.2          18.7               198        3775
-##        sex year
-## 1   female 2007
-## 2     male 2007
-## 3   female 2007
-## 4     male 2007
-## 5     male 2007
-## 6   female 2007
-## 7   female 2007
-## 8     male 2007
-## 9   female 2007
-## 10    male 2007
-## 11  female 2007
-## 12    male 2007
-## 13  female 2007
-## 14    male 2007
-## 15  female 2007
-## 16    male 2007
-## 17  female 2007
-## 18    male 2007
-## 19  female 2007
-## 20    male 2007
-## 21    male 2007
-## 22  female 2007
-## 23  female 2007
-## 24    male 2007
-## 25  female 2007
-## 26    male 2007
-## 27    &lt;NA&gt; 2007
-## 28    male 2007
-## 29  female 2007
-## 30    male 2007
-## 31    male 2007
-## 32  female 2007
-## 33  female 2007
-## 34    male 2007
-## 35  female 2008
-## 36    male 2008
-## 37  female 2008
-## 38    male 2008
-## 39  female 2008
-## 40    male 2008
-## 41  female 2008
-## 42    male 2008
-## 43  female 2008
-## 44    male 2008
-## 45    male 2008
-## 46  female 2008
-## 47  female 2008
-## 48    male 2008
-## 49  female 2008
-## 50    male 2008
-## 51  female 2008
-## 52    male 2008
-## 53  female 2008
-## 54    male 2008
-## 55  female 2008
-## 56    male 2008
-## 57  female 2008
-## 58    male 2008
-## 59  female 2008
-## 60    male 2008
-## 61  female 2008
-## 62    male 2008
-## 63  female 2008
-## 64    male 2008
-## 65  female 2008
-## 66    male 2008
-## 67    &lt;NA&gt; 2008
-## 68    male 2008
-## 69  female 2008
-## 70    male 2008
-## 71  female 2008
-## 72    male 2008
-## 73    male 2008
-## 74  female 2008
-## 75  female 2008
-## 76    male 2008
-## 77  female 2008
-## 78    male 2008
-## 79  female 2008
-## 80    male 2008
-## 81  female 2009
-## 82    male 2009
-## 83  female 2009
-## 84    male 2009
-## 85  female 2009
-## 86    male 2009
-## 87  female 2009
-## 88    male 2009
-## 89  female 2009
-## 90    male 2009
-## 91  female 2009
-## 92    male 2009
-## 93  female 2009
-## 94    male 2009
-## 95  female 2009
-## 96    male 2009
-## 97    male 2009
-## 98  female 2009
-## 99  female 2009
-## 100   male 2009
-## 101 female 2009
-## 102   male 2009
-## 103 female 2009
-## 104   male 2009
-## 105   &lt;NA&gt; 2009
-## 106   male 2009
-## 107 female 2009
-## 108   male 2009
-## 109 female 2009
-## 110   male 2009
-## 111 female 2009
-## 112   male 2009
-## 113 female 2009
-## 114   male 2009
-## 115 female 2009
-## 116   male 2009
-## 117   &lt;NA&gt; 2009
-## 118   male 2009
-## 119 female 2009
-## 120   &lt;NA&gt; 2009
-## 121 female 2009
-## 122   male 2009
-## 123 female 2009
-## 124   male 2009
-## 125 female 2007
-## 126   male 2007
-## 127   male 2007
-## 128 female 2007
-## 129   male 2007
-## 130 female 2007
-## 131 female 2007
-## 132   male 2007
-## 133 female 2007
-## 134   male 2007
-## 135 female 2007
-## 136   male 2007
-## 137 female 2007
-## 138   male 2007
-## 139 female 2007
-## 140   male 2007
-## 141   male 2007
-## 142 female 2007
-## 143 female 2007
-## 144   male 2007
-## 145 female 2007
-## 146   male 2007
-## 147 female 2007
-## 148   male 2007
-## 149 female 2007
-## 150   male 2007
-## 151 female 2008
-## 152   male 2008
-## 153 female 2008
-## 154   male 2008
-## 155 female 2008
-## 156   male 2008
-## 157 female 2008
-## 158   male 2008
-## 159   male 2008
-## 160 female 2008
-## 161 female 2008
-## 162   male 2008
-## 163 female 2008
-## 164   male 2008
-## 165   male 2008
-## 166 female 2008
-## 167   male 2008
-## 168 female 2008
-## 169 female 2009
-## 170   male 2009
-## 171 female 2009
-## 172   male 2009
-## 173   male 2009
-## 174 female 2009
-## 175 female 2009
-## 176   male 2009
-## 177 female 2009
-## 178   male 2009
-## 179 female 2009
-## 180   male 2009
-## 181 female 2009
-## 182   male 2009
-## 183   male 2009
-## 184 female 2009
-## 185   male 2009
-## 186 female 2009
-## 187 female 2009
-## 188   male 2009
-## 189 female 2009
-## 190   male 2009
-## 191   male 2009
-## 192 female 2009</code></pre>
-<p>When the column of interest is a numerical, you can filter rows by using greater than condition. For example, to create a data frame containing the heaviest penguins you filter keeping only rows with body mass greater than 6000 g.</p>
+<span id="cb411-2"><a href="thursday-september-8-2022.html#cb411-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">&quot;female&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 165 × 8
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt;
+##  1 Adelie  Torgersen           39.5          17.4               186        3800
+##  2 Adelie  Torgersen           40.3          18                 195        3250
+##  3 Adelie  Torgersen           36.7          19.3               193        3450
+##  4 Adelie  Torgersen           38.9          17.8               181        3625
+##  5 Adelie  Torgersen           41.1          17.6               182        3200
+##  6 Adelie  Torgersen           36.6          17.8               185        3700
+##  7 Adelie  Torgersen           38.7          19                 195        3450
+##  8 Adelie  Torgersen           34.4          18.4               184        3325
+##  9 Adelie  Biscoe              37.8          18.3               174        3400
+## 10 Adelie  Biscoe              35.9          19.2               189        3800
+## # … with 155 more rows, and 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+<p>To filter rows keeping only species that are not Adalie penguins.</p>
 <div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="thursday-september-8-2022.html#cb413-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb413-2"><a href="thursday-september-8-2022.html#cb413-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(body_mass_g <span class="sc">&gt;</span> <span class="dv">6000</span>)</span></code></pre></div>
-<pre><code>##   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-## 1  Gentoo Biscoe           49.2          15.2               221        6300
-## 2  Gentoo Biscoe           59.6          17.0               230        6050
-##    sex year
-## 1 male 2007
-## 2 male 2007</code></pre>
-<p>You can also filter rows of a data frame with less than condition. For example, to create a data frame containing only penguins with short flippers you filter keeping only rows with flipper length less than 175 mm.</p>
+<span id="cb413-2"><a href="thursday-september-8-2022.html#cb413-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(species <span class="sc">!=</span> <span class="st">&quot;Adelie&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 192 × 8
+##    species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt;
+##  1 Gentoo  Biscoe           46.1          13.2               211        4500
+##  2 Gentoo  Biscoe           50            16.3               230        5700
+##  3 Gentoo  Biscoe           48.7          14.1               210        4450
+##  4 Gentoo  Biscoe           50            15.2               218        5700
+##  5 Gentoo  Biscoe           47.6          14.5               215        5400
+##  6 Gentoo  Biscoe           46.5          13.5               210        4550
+##  7 Gentoo  Biscoe           45.4          14.6               211        4800
+##  8 Gentoo  Biscoe           46.7          15.3               219        5200
+##  9 Gentoo  Biscoe           43.3          13.4               209        4400
+## 10 Gentoo  Biscoe           46.8          15.4               215        5150
+## # … with 182 more rows, and 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+<p>When the column of interest is a numerical, you can filter rows by using greater than condition. For example, to create a data frame containing the heaviest penguins you filter keeping only rows with body mass greater than 6000 g.</p>
 <div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="thursday-september-8-2022.html#cb415-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb415-2"><a href="thursday-september-8-2022.html#cb415-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(flipper_length_mm <span class="sc">&lt;</span> <span class="dv">175</span>)</span></code></pre></div>
-<pre><code>##   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-## 1  Adelie Biscoe           37.8          18.3               174        3400
-## 2  Adelie Biscoe           37.9          18.6               172        3150
-##      sex year
-## 1 female 2007
-## 2 female 2007</code></pre>
-<p>You can also specify more than one conditions. For example to create a data frame with female penguins that have larger flippers you filter keeping only rows with flipper length greater than 220 mm and with sex equal to female.</p>
+<span id="cb415-2"><a href="thursday-september-8-2022.html#cb415-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(body_mass_g <span class="sc">&gt;</span> <span class="dv">6000</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;
+## 1 Gentoo  Biscoe           49.2          15.2              221        6300 male 
+## 2 Gentoo  Biscoe           59.6          17                230        6050 male 
+## # … with 1 more variable: year &lt;dbl&gt;</code></pre>
+<p>You can also filter rows of a data frame with less than condition. For example, to create a data frame containing only penguins with short flippers you filter keeping only rows with flipper length less than 175 mm.</p>
 <div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="thursday-september-8-2022.html#cb417-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb417-2"><a href="thursday-september-8-2022.html#cb417-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(flipper_length_mm <span class="sc">&gt;</span> <span class="dv">220</span> <span class="sc">&amp;</span> </span>
-<span id="cb417-3"><a href="thursday-september-8-2022.html#cb417-3" aria-hidden="true" tabindex="-1"></a>         sex <span class="sc">==</span> <span class="st">&quot;female&quot;</span>)</span></code></pre></div>
-<pre><code>##   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-## 1  Gentoo Biscoe           46.9          14.6               222        4875
-##      sex year
-## 1 female 2009</code></pre>
-<p>You can also filter a data frame for rows satisfying one of the two conditions using OR. For example to create a data frame with penguins have large flippers or short bills you filter keeping rows with flipper length of at least 220 mm or with bill depth less than 10 mm.</p>
+<span id="cb417-2"><a href="thursday-september-8-2022.html#cb417-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(flipper_length_mm <span class="sc">&lt;</span> <span class="dv">175</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;
+## 1 Adelie  Biscoe           37.8          18.3              174        3400 fema…
+## 2 Adelie  Biscoe           37.9          18.6              172        3150 fema…
+## # … with 1 more variable: year &lt;dbl&gt;</code></pre>
+<p>You can also specify more than one conditions. For example to create a data frame with female penguins that have larger flippers you filter keeping only rows with flipper length greater than 220 mm and with sex equal to female.</p>
 <div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="thursday-september-8-2022.html#cb419-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb419-2"><a href="thursday-september-8-2022.html#cb419-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(flipper_length_mm <span class="sc">&gt;</span> <span class="dv">220</span> <span class="sc">|</span> </span>
-<span id="cb419-3"><a href="thursday-september-8-2022.html#cb419-3" aria-hidden="true" tabindex="-1"></a>         bill_depth_mm <span class="sc">&lt;</span> <span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##    species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-## 1   Gentoo Biscoe           50.0          16.3               230        5700
-## 2   Gentoo Biscoe           49.2          15.2               221        6300
-## 3   Gentoo Biscoe           48.7          15.1               222        5350
-## 4   Gentoo Biscoe           47.3          15.3               222        5250
-## 5   Gentoo Biscoe           59.6          17.0               230        6050
-## 6   Gentoo Biscoe           49.6          16.0               225        5700
-## 7   Gentoo Biscoe           50.5          15.9               222        5550
-## 8   Gentoo Biscoe           50.5          15.9               225        5400
-## 9   Gentoo Biscoe           50.1          15.0               225        5000
-## 10  Gentoo Biscoe           50.4          15.3               224        5550
-## 11  Gentoo Biscoe           46.2          14.9               221        5300
-## 12  Gentoo Biscoe           54.3          15.7               231        5650
-## 13  Gentoo Biscoe           49.8          16.8               230        5700
-## 14  Gentoo Biscoe           49.5          16.2               229        5800
-## 15  Gentoo Biscoe           50.7          15.0               223        5550
-## 16  Gentoo Biscoe           46.4          15.6               221        5000
-## 17  Gentoo Biscoe           48.2          15.6               221        5100
-## 18  Gentoo Biscoe           48.6          16.0               230        5800
-## 19  Gentoo Biscoe           45.2          16.4               223        5950
-## 20  Gentoo Biscoe           52.5          15.6               221        5450
-## 21  Gentoo Biscoe           50.0          15.9               224        5350
-## 22  Gentoo Biscoe           50.8          17.3               228        5600
-## 23  Gentoo Biscoe           52.1          17.0               230        5550
-## 24  Gentoo Biscoe           52.2          17.1               228        5400
-## 25  Gentoo Biscoe           49.5          16.1               224        5650
-## 26  Gentoo Biscoe           50.8          15.7               226        5200
-## 27  Gentoo Biscoe           46.9          14.6               222        4875
-## 28  Gentoo Biscoe           51.1          16.5               225        5250
-## 29  Gentoo Biscoe           55.9          17.0               228        5600
-## 30  Gentoo Biscoe           49.1          15.0               228        5500
-## 31  Gentoo Biscoe           49.8          15.9               229        5950
-## 32  Gentoo Biscoe           51.5          16.3               230        5500
-## 33  Gentoo Biscoe           55.1          16.0               230        5850
-## 34  Gentoo Biscoe           48.8          16.2               222        6000
-## 35  Gentoo Biscoe           50.4          15.7               222        5750
-##       sex year
-## 1    male 2007
-## 2    male 2007
-## 3    male 2007
-## 4    male 2007
-## 5    male 2007
-## 6    male 2008
-## 7    male 2008
-## 8    male 2008
-## 9    male 2008
-## 10   male 2008
-## 11   male 2008
-## 12   male 2008
-## 13   male 2008
-## 14   male 2008
-## 15   male 2008
-## 16   male 2008
-## 17   male 2008
-## 18   male 2008
-## 19   male 2008
-## 20   male 2009
-## 21   male 2009
-## 22   male 2009
-## 23   male 2009
-## 24   male 2009
-## 25   male 2009
-## 26   male 2009
-## 27 female 2009
-## 28   male 2009
-## 29   male 2009
-## 30   male 2009
-## 31   male 2009
-## 32   male 2009
-## 33   male 2009
-## 34   male 2009
-## 35   male 2009</code></pre>
+<span id="cb419-2"><a href="thursday-september-8-2022.html#cb419-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(flipper_length_mm <span class="sc">&gt;</span> <span class="dv">220</span> <span class="sc">&amp;</span> </span>
+<span id="cb419-3"><a href="thursday-september-8-2022.html#cb419-3" aria-hidden="true" tabindex="-1"></a>                sex <span class="sc">==</span> <span class="st">&quot;female&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;
+## 1 Gentoo  Biscoe           46.9          14.6              222        4875 fema…
+## # … with 1 more variable: year &lt;dbl&gt;</code></pre>
+<p>You can also filter a data frame for rows satisfying one of the two conditions using OR. For example to create a data frame with penguins have large flippers or short bills you filter keeping rows with flipper length of at least 220 mm or with bill depth less than 10 mm.</p>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="thursday-september-8-2022.html#cb421-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb421-2"><a href="thursday-september-8-2022.html#cb421-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(flipper_length_mm <span class="sc">&gt;</span> <span class="dv">220</span> <span class="sc">|</span> </span>
+<span id="cb421-3"><a href="thursday-september-8-2022.html#cb421-3" aria-hidden="true" tabindex="-1"></a>                bill_depth_mm <span class="sc">&lt;</span> <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 35 × 8
+##    species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt;
+##  1 Gentoo  Biscoe           50            16.3               230        5700
+##  2 Gentoo  Biscoe           49.2          15.2               221        6300
+##  3 Gentoo  Biscoe           48.7          15.1               222        5350
+##  4 Gentoo  Biscoe           47.3          15.3               222        5250
+##  5 Gentoo  Biscoe           59.6          17                 230        6050
+##  6 Gentoo  Biscoe           49.6          16                 225        5700
+##  7 Gentoo  Biscoe           50.5          15.9               222        5550
+##  8 Gentoo  Biscoe           50.5          15.9               225        5400
+##  9 Gentoo  Biscoe           50.1          15                 225        5000
+## 10 Gentoo  Biscoe           50.4          15.3               224        5550
+## # … with 25 more rows, and 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
 <p>Often you want to remove rows if one of the columns has a missing value. With <code>is.na()</code> on the column of interest, you can filter rows based on whether or not a column value is missing.</p>
 <p>Note the <code>is.na()</code> function returns a vector of TRUEs and FALSEs</p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="thursday-september-8-2022.html#cb421-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone)</span></code></pre></div>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="thursday-september-8-2022.html#cb423-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(airquality<span class="sc">$</span>Ozone)</span></code></pre></div>
 <pre><code>##   [1] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
 ##  [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ##  [25]  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
@@ -2035,692 +630,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [145] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</code></pre>
 <p>The first four rows of the vector <code>Ozone</code> in the <code>airquality</code> data frame are not missing so the function <code>is.na()</code> returns four <code>FALSE</code>s.</p>
 <p>When you combine that with the <code>filter()</code> function you get a data frame containing all the rows where <code>is.na()</code> returns a <code>TRUE</code>. For example, create a data frame containing rows where the bill length value is missing.</p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="thursday-september-8-2022.html#cb423-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb423-2"><a href="thursday-september-8-2022.html#cb423-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">filter</span>(<span class="fu">is.na</span>(bill_length_mm))</span></code></pre></div>
-<pre><code>##   species    island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-## 1  Adelie Torgersen             NA            NA                NA          NA
-## 2  Gentoo    Biscoe             NA            NA                NA          NA
-##    sex year
-## 1 &lt;NA&gt; 2007
-## 2 &lt;NA&gt; 2009</code></pre>
-<p>Usually you will want to do the reverse of this. That is keep all the rows where the column value is not missing. In this case use negation symbol <code>!</code> to reverse the selection. In this example, filter rows with no missing values for <code>sex</code> column.</p>
 <div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="thursday-september-8-2022.html#cb425-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb425-2"><a href="thursday-september-8-2022.html#cb425-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex))</span></code></pre></div>
-<pre><code>##       species    island bill_length_mm bill_depth_mm flipper_length_mm
-## 1      Adelie Torgersen           39.1          18.7               181
-## 2      Adelie Torgersen           39.5          17.4               186
-## 3      Adelie Torgersen           40.3          18.0               195
-## 4      Adelie Torgersen           36.7          19.3               193
-## 5      Adelie Torgersen           39.3          20.6               190
-## 6      Adelie Torgersen           38.9          17.8               181
-## 7      Adelie Torgersen           39.2          19.6               195
-## 8      Adelie Torgersen           41.1          17.6               182
-## 9      Adelie Torgersen           38.6          21.2               191
-## 10     Adelie Torgersen           34.6          21.1               198
-## 11     Adelie Torgersen           36.6          17.8               185
-## 12     Adelie Torgersen           38.7          19.0               195
-## 13     Adelie Torgersen           42.5          20.7               197
-## 14     Adelie Torgersen           34.4          18.4               184
-## 15     Adelie Torgersen           46.0          21.5               194
-## 16     Adelie    Biscoe           37.8          18.3               174
-## 17     Adelie    Biscoe           37.7          18.7               180
-## 18     Adelie    Biscoe           35.9          19.2               189
-## 19     Adelie    Biscoe           38.2          18.1               185
-## 20     Adelie    Biscoe           38.8          17.2               180
-## 21     Adelie    Biscoe           35.3          18.9               187
-## 22     Adelie    Biscoe           40.6          18.6               183
-## 23     Adelie    Biscoe           40.5          17.9               187
-## 24     Adelie    Biscoe           37.9          18.6               172
-## 25     Adelie    Biscoe           40.5          18.9               180
-## 26     Adelie     Dream           39.5          16.7               178
-## 27     Adelie     Dream           37.2          18.1               178
-## 28     Adelie     Dream           39.5          17.8               188
-## 29     Adelie     Dream           40.9          18.9               184
-## 30     Adelie     Dream           36.4          17.0               195
-## 31     Adelie     Dream           39.2          21.1               196
-## 32     Adelie     Dream           38.8          20.0               190
-## 33     Adelie     Dream           42.2          18.5               180
-## 34     Adelie     Dream           37.6          19.3               181
-## 35     Adelie     Dream           39.8          19.1               184
-## 36     Adelie     Dream           36.5          18.0               182
-## 37     Adelie     Dream           40.8          18.4               195
-## 38     Adelie     Dream           36.0          18.5               186
-## 39     Adelie     Dream           44.1          19.7               196
-## 40     Adelie     Dream           37.0          16.9               185
-## 41     Adelie     Dream           39.6          18.8               190
-## 42     Adelie     Dream           41.1          19.0               182
-## 43     Adelie     Dream           36.0          17.9               190
-## 44     Adelie     Dream           42.3          21.2               191
-## 45     Adelie    Biscoe           39.6          17.7               186
-## 46     Adelie    Biscoe           40.1          18.9               188
-## 47     Adelie    Biscoe           35.0          17.9               190
-## 48     Adelie    Biscoe           42.0          19.5               200
-## 49     Adelie    Biscoe           34.5          18.1               187
-## 50     Adelie    Biscoe           41.4          18.6               191
-## 51     Adelie    Biscoe           39.0          17.5               186
-## 52     Adelie    Biscoe           40.6          18.8               193
-## 53     Adelie    Biscoe           36.5          16.6               181
-## 54     Adelie    Biscoe           37.6          19.1               194
-## 55     Adelie    Biscoe           35.7          16.9               185
-## 56     Adelie    Biscoe           41.3          21.1               195
-## 57     Adelie    Biscoe           37.6          17.0               185
-## 58     Adelie    Biscoe           41.1          18.2               192
-## 59     Adelie    Biscoe           36.4          17.1               184
-## 60     Adelie    Biscoe           41.6          18.0               192
-## 61     Adelie    Biscoe           35.5          16.2               195
-## 62     Adelie    Biscoe           41.1          19.1               188
-## 63     Adelie Torgersen           35.9          16.6               190
-## 64     Adelie Torgersen           41.8          19.4               198
-## 65     Adelie Torgersen           33.5          19.0               190
-## 66     Adelie Torgersen           39.7          18.4               190
-## 67     Adelie Torgersen           39.6          17.2               196
-## 68     Adelie Torgersen           45.8          18.9               197
-## 69     Adelie Torgersen           35.5          17.5               190
-## 70     Adelie Torgersen           42.8          18.5               195
-## 71     Adelie Torgersen           40.9          16.8               191
-## 72     Adelie Torgersen           37.2          19.4               184
-## 73     Adelie Torgersen           36.2          16.1               187
-## 74     Adelie Torgersen           42.1          19.1               195
-## 75     Adelie Torgersen           34.6          17.2               189
-## 76     Adelie Torgersen           42.9          17.6               196
-## 77     Adelie Torgersen           36.7          18.8               187
-## 78     Adelie Torgersen           35.1          19.4               193
-## 79     Adelie     Dream           37.3          17.8               191
-## 80     Adelie     Dream           41.3          20.3               194
-## 81     Adelie     Dream           36.3          19.5               190
-## 82     Adelie     Dream           36.9          18.6               189
-## 83     Adelie     Dream           38.3          19.2               189
-## 84     Adelie     Dream           38.9          18.8               190
-## 85     Adelie     Dream           35.7          18.0               202
-## 86     Adelie     Dream           41.1          18.1               205
-## 87     Adelie     Dream           34.0          17.1               185
-## 88     Adelie     Dream           39.6          18.1               186
-## 89     Adelie     Dream           36.2          17.3               187
-## 90     Adelie     Dream           40.8          18.9               208
-## 91     Adelie     Dream           38.1          18.6               190
-## 92     Adelie     Dream           40.3          18.5               196
-## 93     Adelie     Dream           33.1          16.1               178
-## 94     Adelie     Dream           43.2          18.5               192
-## 95     Adelie    Biscoe           35.0          17.9               192
-## 96     Adelie    Biscoe           41.0          20.0               203
-## 97     Adelie    Biscoe           37.7          16.0               183
-## 98     Adelie    Biscoe           37.8          20.0               190
-## 99     Adelie    Biscoe           37.9          18.6               193
-## 100    Adelie    Biscoe           39.7          18.9               184
-## 101    Adelie    Biscoe           38.6          17.2               199
-## 102    Adelie    Biscoe           38.2          20.0               190
-## 103    Adelie    Biscoe           38.1          17.0               181
-## 104    Adelie    Biscoe           43.2          19.0               197
-## 105    Adelie    Biscoe           38.1          16.5               198
-## 106    Adelie    Biscoe           45.6          20.3               191
-## 107    Adelie    Biscoe           39.7          17.7               193
-## 108    Adelie    Biscoe           42.2          19.5               197
-## 109    Adelie    Biscoe           39.6          20.7               191
-## 110    Adelie    Biscoe           42.7          18.3               196
-## 111    Adelie Torgersen           38.6          17.0               188
-## 112    Adelie Torgersen           37.3          20.5               199
-## 113    Adelie Torgersen           35.7          17.0               189
-## 114    Adelie Torgersen           41.1          18.6               189
-## 115    Adelie Torgersen           36.2          17.2               187
-## 116    Adelie Torgersen           37.7          19.8               198
-## 117    Adelie Torgersen           40.2          17.0               176
-## 118    Adelie Torgersen           41.4          18.5               202
-## 119    Adelie Torgersen           35.2          15.9               186
-## 120    Adelie Torgersen           40.6          19.0               199
-## 121    Adelie Torgersen           38.8          17.6               191
-## 122    Adelie Torgersen           41.5          18.3               195
-## 123    Adelie Torgersen           39.0          17.1               191
-## 124    Adelie Torgersen           44.1          18.0               210
-## 125    Adelie Torgersen           38.5          17.9               190
-## 126    Adelie Torgersen           43.1          19.2               197
-## 127    Adelie     Dream           36.8          18.5               193
-## 128    Adelie     Dream           37.5          18.5               199
-## 129    Adelie     Dream           38.1          17.6               187
-## 130    Adelie     Dream           41.1          17.5               190
-## 131    Adelie     Dream           35.6          17.5               191
-## 132    Adelie     Dream           40.2          20.1               200
-## 133    Adelie     Dream           37.0          16.5               185
-## 134    Adelie     Dream           39.7          17.9               193
-## 135    Adelie     Dream           40.2          17.1               193
-## 136    Adelie     Dream           40.6          17.2               187
-## 137    Adelie     Dream           32.1          15.5               188
-## 138    Adelie     Dream           40.7          17.0               190
-## 139    Adelie     Dream           37.3          16.8               192
-## 140    Adelie     Dream           39.0          18.7               185
-## 141    Adelie     Dream           39.2          18.6               190
-## 142    Adelie     Dream           36.6          18.4               184
-## 143    Adelie     Dream           36.0          17.8               195
-## 144    Adelie     Dream           37.8          18.1               193
-## 145    Adelie     Dream           36.0          17.1               187
-## 146    Adelie     Dream           41.5          18.5               201
-## 147    Gentoo    Biscoe           46.1          13.2               211
-## 148    Gentoo    Biscoe           50.0          16.3               230
-## 149    Gentoo    Biscoe           48.7          14.1               210
-## 150    Gentoo    Biscoe           50.0          15.2               218
-## 151    Gentoo    Biscoe           47.6          14.5               215
-## 152    Gentoo    Biscoe           46.5          13.5               210
-## 153    Gentoo    Biscoe           45.4          14.6               211
-## 154    Gentoo    Biscoe           46.7          15.3               219
-## 155    Gentoo    Biscoe           43.3          13.4               209
-## 156    Gentoo    Biscoe           46.8          15.4               215
-## 157    Gentoo    Biscoe           40.9          13.7               214
-## 158    Gentoo    Biscoe           49.0          16.1               216
-## 159    Gentoo    Biscoe           45.5          13.7               214
-## 160    Gentoo    Biscoe           48.4          14.6               213
-## 161    Gentoo    Biscoe           45.8          14.6               210
-## 162    Gentoo    Biscoe           49.3          15.7               217
-## 163    Gentoo    Biscoe           42.0          13.5               210
-## 164    Gentoo    Biscoe           49.2          15.2               221
-## 165    Gentoo    Biscoe           46.2          14.5               209
-## 166    Gentoo    Biscoe           48.7          15.1               222
-## 167    Gentoo    Biscoe           50.2          14.3               218
-## 168    Gentoo    Biscoe           45.1          14.5               215
-## 169    Gentoo    Biscoe           46.5          14.5               213
-## 170    Gentoo    Biscoe           46.3          15.8               215
-## 171    Gentoo    Biscoe           42.9          13.1               215
-## 172    Gentoo    Biscoe           46.1          15.1               215
-## 173    Gentoo    Biscoe           47.8          15.0               215
-## 174    Gentoo    Biscoe           48.2          14.3               210
-## 175    Gentoo    Biscoe           50.0          15.3               220
-## 176    Gentoo    Biscoe           47.3          15.3               222
-## 177    Gentoo    Biscoe           42.8          14.2               209
-## 178    Gentoo    Biscoe           45.1          14.5               207
-## 179    Gentoo    Biscoe           59.6          17.0               230
-## 180    Gentoo    Biscoe           49.1          14.8               220
-## 181    Gentoo    Biscoe           48.4          16.3               220
-## 182    Gentoo    Biscoe           42.6          13.7               213
-## 183    Gentoo    Biscoe           44.4          17.3               219
-## 184    Gentoo    Biscoe           44.0          13.6               208
-## 185    Gentoo    Biscoe           48.7          15.7               208
-## 186    Gentoo    Biscoe           42.7          13.7               208
-## 187    Gentoo    Biscoe           49.6          16.0               225
-## 188    Gentoo    Biscoe           45.3          13.7               210
-## 189    Gentoo    Biscoe           49.6          15.0               216
-## 190    Gentoo    Biscoe           50.5          15.9               222
-## 191    Gentoo    Biscoe           43.6          13.9               217
-## 192    Gentoo    Biscoe           45.5          13.9               210
-## 193    Gentoo    Biscoe           50.5          15.9               225
-## 194    Gentoo    Biscoe           44.9          13.3               213
-## 195    Gentoo    Biscoe           45.2          15.8               215
-## 196    Gentoo    Biscoe           46.6          14.2               210
-## 197    Gentoo    Biscoe           48.5          14.1               220
-## 198    Gentoo    Biscoe           45.1          14.4               210
-## 199    Gentoo    Biscoe           50.1          15.0               225
-## 200    Gentoo    Biscoe           46.5          14.4               217
-## 201    Gentoo    Biscoe           45.0          15.4               220
-## 202    Gentoo    Biscoe           43.8          13.9               208
-## 203    Gentoo    Biscoe           45.5          15.0               220
-## 204    Gentoo    Biscoe           43.2          14.5               208
-## 205    Gentoo    Biscoe           50.4          15.3               224
-## 206    Gentoo    Biscoe           45.3          13.8               208
-## 207    Gentoo    Biscoe           46.2          14.9               221
-## 208    Gentoo    Biscoe           45.7          13.9               214
-## 209    Gentoo    Biscoe           54.3          15.7               231
-## 210    Gentoo    Biscoe           45.8          14.2               219
-## 211    Gentoo    Biscoe           49.8          16.8               230
-## 212    Gentoo    Biscoe           49.5          16.2               229
-## 213    Gentoo    Biscoe           43.5          14.2               220
-## 214    Gentoo    Biscoe           50.7          15.0               223
-## 215    Gentoo    Biscoe           47.7          15.0               216
-## 216    Gentoo    Biscoe           46.4          15.6               221
-## 217    Gentoo    Biscoe           48.2          15.6               221
-## 218    Gentoo    Biscoe           46.5          14.8               217
-## 219    Gentoo    Biscoe           46.4          15.0               216
-## 220    Gentoo    Biscoe           48.6          16.0               230
-## 221    Gentoo    Biscoe           47.5          14.2               209
-## 222    Gentoo    Biscoe           51.1          16.3               220
-## 223    Gentoo    Biscoe           45.2          13.8               215
-## 224    Gentoo    Biscoe           45.2          16.4               223
-## 225    Gentoo    Biscoe           49.1          14.5               212
-## 226    Gentoo    Biscoe           52.5          15.6               221
-## 227    Gentoo    Biscoe           47.4          14.6               212
-## 228    Gentoo    Biscoe           50.0          15.9               224
-## 229    Gentoo    Biscoe           44.9          13.8               212
-## 230    Gentoo    Biscoe           50.8          17.3               228
-## 231    Gentoo    Biscoe           43.4          14.4               218
-## 232    Gentoo    Biscoe           51.3          14.2               218
-## 233    Gentoo    Biscoe           47.5          14.0               212
-## 234    Gentoo    Biscoe           52.1          17.0               230
-## 235    Gentoo    Biscoe           47.5          15.0               218
-## 236    Gentoo    Biscoe           52.2          17.1               228
-## 237    Gentoo    Biscoe           45.5          14.5               212
-## 238    Gentoo    Biscoe           49.5          16.1               224
-## 239    Gentoo    Biscoe           44.5          14.7               214
-## 240    Gentoo    Biscoe           50.8          15.7               226
-## 241    Gentoo    Biscoe           49.4          15.8               216
-## 242    Gentoo    Biscoe           46.9          14.6               222
-## 243    Gentoo    Biscoe           48.4          14.4               203
-## 244    Gentoo    Biscoe           51.1          16.5               225
-## 245    Gentoo    Biscoe           48.5          15.0               219
-## 246    Gentoo    Biscoe           55.9          17.0               228
-## 247    Gentoo    Biscoe           47.2          15.5               215
-## 248    Gentoo    Biscoe           49.1          15.0               228
-## 249    Gentoo    Biscoe           46.8          16.1               215
-## 250    Gentoo    Biscoe           41.7          14.7               210
-## 251    Gentoo    Biscoe           53.4          15.8               219
-## 252    Gentoo    Biscoe           43.3          14.0               208
-## 253    Gentoo    Biscoe           48.1          15.1               209
-## 254    Gentoo    Biscoe           50.5          15.2               216
-## 255    Gentoo    Biscoe           49.8          15.9               229
-## 256    Gentoo    Biscoe           43.5          15.2               213
-## 257    Gentoo    Biscoe           51.5          16.3               230
-## 258    Gentoo    Biscoe           46.2          14.1               217
-## 259    Gentoo    Biscoe           55.1          16.0               230
-## 260    Gentoo    Biscoe           48.8          16.2               222
-## 261    Gentoo    Biscoe           47.2          13.7               214
-## 262    Gentoo    Biscoe           46.8          14.3               215
-## 263    Gentoo    Biscoe           50.4          15.7               222
-## 264    Gentoo    Biscoe           45.2          14.8               212
-## 265    Gentoo    Biscoe           49.9          16.1               213
-## 266 Chinstrap     Dream           46.5          17.9               192
-## 267 Chinstrap     Dream           50.0          19.5               196
-## 268 Chinstrap     Dream           51.3          19.2               193
-## 269 Chinstrap     Dream           45.4          18.7               188
-## 270 Chinstrap     Dream           52.7          19.8               197
-## 271 Chinstrap     Dream           45.2          17.8               198
-## 272 Chinstrap     Dream           46.1          18.2               178
-## 273 Chinstrap     Dream           51.3          18.2               197
-## 274 Chinstrap     Dream           46.0          18.9               195
-## 275 Chinstrap     Dream           51.3          19.9               198
-## 276 Chinstrap     Dream           46.6          17.8               193
-## 277 Chinstrap     Dream           51.7          20.3               194
-## 278 Chinstrap     Dream           47.0          17.3               185
-## 279 Chinstrap     Dream           52.0          18.1               201
-## 280 Chinstrap     Dream           45.9          17.1               190
-## 281 Chinstrap     Dream           50.5          19.6               201
-## 282 Chinstrap     Dream           50.3          20.0               197
-## 283 Chinstrap     Dream           58.0          17.8               181
-## 284 Chinstrap     Dream           46.4          18.6               190
-## 285 Chinstrap     Dream           49.2          18.2               195
-## 286 Chinstrap     Dream           42.4          17.3               181
-## 287 Chinstrap     Dream           48.5          17.5               191
-## 288 Chinstrap     Dream           43.2          16.6               187
-## 289 Chinstrap     Dream           50.6          19.4               193
-## 290 Chinstrap     Dream           46.7          17.9               195
-## 291 Chinstrap     Dream           52.0          19.0               197
-## 292 Chinstrap     Dream           50.5          18.4               200
-## 293 Chinstrap     Dream           49.5          19.0               200
-## 294 Chinstrap     Dream           46.4          17.8               191
-## 295 Chinstrap     Dream           52.8          20.0               205
-## 296 Chinstrap     Dream           40.9          16.6               187
-## 297 Chinstrap     Dream           54.2          20.8               201
-## 298 Chinstrap     Dream           42.5          16.7               187
-## 299 Chinstrap     Dream           51.0          18.8               203
-## 300 Chinstrap     Dream           49.7          18.6               195
-## 301 Chinstrap     Dream           47.5          16.8               199
-## 302 Chinstrap     Dream           47.6          18.3               195
-## 303 Chinstrap     Dream           52.0          20.7               210
-## 304 Chinstrap     Dream           46.9          16.6               192
-## 305 Chinstrap     Dream           53.5          19.9               205
-## 306 Chinstrap     Dream           49.0          19.5               210
-## 307 Chinstrap     Dream           46.2          17.5               187
-## 308 Chinstrap     Dream           50.9          19.1               196
-## 309 Chinstrap     Dream           45.5          17.0               196
-## 310 Chinstrap     Dream           50.9          17.9               196
-## 311 Chinstrap     Dream           50.8          18.5               201
-## 312 Chinstrap     Dream           50.1          17.9               190
-## 313 Chinstrap     Dream           49.0          19.6               212
-## 314 Chinstrap     Dream           51.5          18.7               187
-## 315 Chinstrap     Dream           49.8          17.3               198
-## 316 Chinstrap     Dream           48.1          16.4               199
-## 317 Chinstrap     Dream           51.4          19.0               201
-## 318 Chinstrap     Dream           45.7          17.3               193
-## 319 Chinstrap     Dream           50.7          19.7               203
-## 320 Chinstrap     Dream           42.5          17.3               187
-## 321 Chinstrap     Dream           52.2          18.8               197
-## 322 Chinstrap     Dream           45.2          16.6               191
-## 323 Chinstrap     Dream           49.3          19.9               203
-## 324 Chinstrap     Dream           50.2          18.8               202
-## 325 Chinstrap     Dream           45.6          19.4               194
-## 326 Chinstrap     Dream           51.9          19.5               206
-## 327 Chinstrap     Dream           46.8          16.5               189
-## 328 Chinstrap     Dream           45.7          17.0               195
-## 329 Chinstrap     Dream           55.8          19.8               207
-## 330 Chinstrap     Dream           43.5          18.1               202
-## 331 Chinstrap     Dream           49.6          18.2               193
-## 332 Chinstrap     Dream           50.8          19.0               210
-## 333 Chinstrap     Dream           50.2          18.7               198
-##     body_mass_g    sex year
-## 1          3750   male 2007
-## 2          3800 female 2007
-## 3          3250 female 2007
-## 4          3450 female 2007
-## 5          3650   male 2007
-## 6          3625 female 2007
-## 7          4675   male 2007
-## 8          3200 female 2007
-## 9          3800   male 2007
-## 10         4400   male 2007
-## 11         3700 female 2007
-## 12         3450 female 2007
-## 13         4500   male 2007
-## 14         3325 female 2007
-## 15         4200   male 2007
-## 16         3400 female 2007
-## 17         3600   male 2007
-## 18         3800 female 2007
-## 19         3950   male 2007
-## 20         3800   male 2007
-## 21         3800 female 2007
-## 22         3550   male 2007
-## 23         3200 female 2007
-## 24         3150 female 2007
-## 25         3950   male 2007
-## 26         3250 female 2007
-## 27         3900   male 2007
-## 28         3300 female 2007
-## 29         3900   male 2007
-## 30         3325 female 2007
-## 31         4150   male 2007
-## 32         3950   male 2007
-## 33         3550 female 2007
-## 34         3300 female 2007
-## 35         4650   male 2007
-## 36         3150 female 2007
-## 37         3900   male 2007
-## 38         3100 female 2007
-## 39         4400   male 2007
-## 40         3000 female 2007
-## 41         4600   male 2007
-## 42         3425   male 2007
-## 43         3450 female 2007
-## 44         4150   male 2007
-## 45         3500 female 2008
-## 46         4300   male 2008
-## 47         3450 female 2008
-## 48         4050   male 2008
-## 49         2900 female 2008
-## 50         3700   male 2008
-## 51         3550 female 2008
-## 52         3800   male 2008
-## 53         2850 female 2008
-## 54         3750   male 2008
-## 55         3150 female 2008
-## 56         4400   male 2008
-## 57         3600 female 2008
-## 58         4050   male 2008
-## 59         2850 female 2008
-## 60         3950   male 2008
-## 61         3350 female 2008
-## 62         4100   male 2008
-## 63         3050 female 2008
-## 64         4450   male 2008
-## 65         3600 female 2008
-## 66         3900   male 2008
-## 67         3550 female 2008
-## 68         4150   male 2008
-## 69         3700 female 2008
-## 70         4250   male 2008
-## 71         3700 female 2008
-## 72         3900   male 2008
-## 73         3550 female 2008
-## 74         4000   male 2008
-## 75         3200 female 2008
-## 76         4700   male 2008
-## 77         3800 female 2008
-## 78         4200   male 2008
-## 79         3350 female 2008
-## 80         3550   male 2008
-## 81         3800   male 2008
-## 82         3500 female 2008
-## 83         3950   male 2008
-## 84         3600 female 2008
-## 85         3550 female 2008
-## 86         4300   male 2008
-## 87         3400 female 2008
-## 88         4450   male 2008
-## 89         3300 female 2008
-## 90         4300   male 2008
-## 91         3700 female 2008
-## 92         4350   male 2008
-## 93         2900 female 2008
-## 94         4100   male 2008
-## 95         3725 female 2009
-## 96         4725   male 2009
-## 97         3075 female 2009
-## 98         4250   male 2009
-## 99         2925 female 2009
-## 100        3550   male 2009
-## 101        3750 female 2009
-## 102        3900   male 2009
-## 103        3175 female 2009
-## 104        4775   male 2009
-## 105        3825 female 2009
-## 106        4600   male 2009
-## 107        3200 female 2009
-## 108        4275   male 2009
-## 109        3900 female 2009
-## 110        4075   male 2009
-## 111        2900 female 2009
-## 112        3775   male 2009
-## 113        3350 female 2009
-## 114        3325   male 2009
-## 115        3150 female 2009
-## 116        3500   male 2009
-## 117        3450 female 2009
-## 118        3875   male 2009
-## 119        3050 female 2009
-## 120        4000   male 2009
-## 121        3275 female 2009
-## 122        4300   male 2009
-## 123        3050 female 2009
-## 124        4000   male 2009
-## 125        3325 female 2009
-## 126        3500   male 2009
-## 127        3500 female 2009
-## 128        4475   male 2009
-## 129        3425 female 2009
-## 130        3900   male 2009
-## 131        3175 female 2009
-## 132        3975   male 2009
-## 133        3400 female 2009
-## 134        4250   male 2009
-## 135        3400 female 2009
-## 136        3475   male 2009
-## 137        3050 female 2009
-## 138        3725   male 2009
-## 139        3000 female 2009
-## 140        3650   male 2009
-## 141        4250   male 2009
-## 142        3475 female 2009
-## 143        3450 female 2009
-## 144        3750   male 2009
-## 145        3700 female 2009
-## 146        4000   male 2009
-## 147        4500 female 2007
-## 148        5700   male 2007
-## 149        4450 female 2007
-## 150        5700   male 2007
-## 151        5400   male 2007
-## 152        4550 female 2007
-## 153        4800 female 2007
-## 154        5200   male 2007
-## 155        4400 female 2007
-## 156        5150   male 2007
-## 157        4650 female 2007
-## 158        5550   male 2007
-## 159        4650 female 2007
-## 160        5850   male 2007
-## 161        4200 female 2007
-## 162        5850   male 2007
-## 163        4150 female 2007
-## 164        6300   male 2007
-## 165        4800 female 2007
-## 166        5350   male 2007
-## 167        5700   male 2007
-## 168        5000 female 2007
-## 169        4400 female 2007
-## 170        5050   male 2007
-## 171        5000 female 2007
-## 172        5100   male 2007
-## 173        5650   male 2007
-## 174        4600 female 2007
-## 175        5550   male 2007
-## 176        5250   male 2007
-## 177        4700 female 2007
-## 178        5050 female 2007
-## 179        6050   male 2007
-## 180        5150 female 2008
-## 181        5400   male 2008
-## 182        4950 female 2008
-## 183        5250   male 2008
-## 184        4350 female 2008
-## 185        5350   male 2008
-## 186        3950 female 2008
-## 187        5700   male 2008
-## 188        4300 female 2008
-## 189        4750   male 2008
-## 190        5550   male 2008
-## 191        4900 female 2008
-## 192        4200 female 2008
-## 193        5400   male 2008
-## 194        5100 female 2008
-## 195        5300   male 2008
-## 196        4850 female 2008
-## 197        5300   male 2008
-## 198        4400 female 2008
-## 199        5000   male 2008
-## 200        4900 female 2008
-## 201        5050   male 2008
-## 202        4300 female 2008
-## 203        5000   male 2008
-## 204        4450 female 2008
-## 205        5550   male 2008
-## 206        4200 female 2008
-## 207        5300   male 2008
-## 208        4400 female 2008
-## 209        5650   male 2008
-## 210        4700 female 2008
-## 211        5700   male 2008
-## 212        5800   male 2008
-## 213        4700 female 2008
-## 214        5550   male 2008
-## 215        4750 female 2008
-## 216        5000   male 2008
-## 217        5100   male 2008
-## 218        5200 female 2008
-## 219        4700 female 2008
-## 220        5800   male 2008
-## 221        4600 female 2008
-## 222        6000   male 2008
-## 223        4750 female 2008
-## 224        5950   male 2008
-## 225        4625 female 2009
-## 226        5450   male 2009
-## 227        4725 female 2009
-## 228        5350   male 2009
-## 229        4750 female 2009
-## 230        5600   male 2009
-## 231        4600 female 2009
-## 232        5300   male 2009
-## 233        4875 female 2009
-## 234        5550   male 2009
-## 235        4950 female 2009
-## 236        5400   male 2009
-## 237        4750 female 2009
-## 238        5650   male 2009
-## 239        4850 female 2009
-## 240        5200   male 2009
-## 241        4925   male 2009
-## 242        4875 female 2009
-## 243        4625 female 2009
-## 244        5250   male 2009
-## 245        4850 female 2009
-## 246        5600   male 2009
-## 247        4975 female 2009
-## 248        5500   male 2009
-## 249        5500   male 2009
-## 250        4700 female 2009
-## 251        5500   male 2009
-## 252        4575 female 2009
-## 253        5500   male 2009
-## 254        5000 female 2009
-## 255        5950   male 2009
-## 256        4650 female 2009
-## 257        5500   male 2009
-## 258        4375 female 2009
-## 259        5850   male 2009
-## 260        6000   male 2009
-## 261        4925 female 2009
-## 262        4850 female 2009
-## 263        5750   male 2009
-## 264        5200 female 2009
-## 265        5400   male 2009
-## 266        3500 female 2007
-## 267        3900   male 2007
-## 268        3650   male 2007
-## 269        3525 female 2007
-## 270        3725   male 2007
-## 271        3950 female 2007
-## 272        3250 female 2007
-## 273        3750   male 2007
-## 274        4150 female 2007
-## 275        3700   male 2007
-## 276        3800 female 2007
-## 277        3775   male 2007
-## 278        3700 female 2007
-## 279        4050   male 2007
-## 280        3575 female 2007
-## 281        4050   male 2007
-## 282        3300   male 2007
-## 283        3700 female 2007
-## 284        3450 female 2007
-## 285        4400   male 2007
-## 286        3600 female 2007
-## 287        3400   male 2007
-## 288        2900 female 2007
-## 289        3800   male 2007
-## 290        3300 female 2007
-## 291        4150   male 2007
-## 292        3400 female 2008
-## 293        3800   male 2008
-## 294        3700 female 2008
-## 295        4550   male 2008
-## 296        3200 female 2008
-## 297        4300   male 2008
-## 298        3350 female 2008
-## 299        4100   male 2008
-## 300        3600   male 2008
-## 301        3900 female 2008
-## 302        3850 female 2008
-## 303        4800   male 2008
-## 304        2700 female 2008
-## 305        4500   male 2008
-## 306        3950   male 2008
-## 307        3650 female 2008
-## 308        3550   male 2008
-## 309        3500 female 2008
-## 310        3675 female 2009
-## 311        4450   male 2009
-## 312        3400 female 2009
-## 313        4300   male 2009
-## 314        3250   male 2009
-## 315        3675 female 2009
-## 316        3325 female 2009
-## 317        3950   male 2009
-## 318        3600 female 2009
-## 319        4050   male 2009
-## 320        3350 female 2009
-## 321        3450   male 2009
-## 322        3250 female 2009
-## 323        4050   male 2009
-## 324        3800   male 2009
-## 325        3525 female 2009
-## 326        3950   male 2009
-## 327        3650 female 2009
-## 328        3650 female 2009
-## 329        4000   male 2009
-## 330        3400 female 2009
-## 331        3775   male 2009
-## 332        4100   male 2009
-## 333        3775 female 2009</code></pre>
+<span id="cb425-2"><a href="thursday-september-8-2022.html#cb425-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="fu">is.na</span>(bill_length_mm))</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;
+## 1 Adelie  Torge…             NA            NA               NA          NA &lt;NA&gt; 
+## 2 Gentoo  Biscoe             NA            NA               NA          NA &lt;NA&gt; 
+## # … with 1 more variable: year &lt;dbl&gt;</code></pre>
+<p>Usually you will want to do the reverse of this. That is keep all the rows where the column value is not missing. In this case use negation symbol <code>!</code> to reverse the selection. In this example, filter rows with no missing values for <code>sex</code> column.</p>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="thursday-september-8-2022.html#cb427-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb427-2"><a href="thursday-september-8-2022.html#cb427-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex))</span></code></pre></div>
+<pre><code>## # A tibble: 333 × 8
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           36.7          19.3               193        3450
+##  5 Adelie  Torgersen           39.3          20.6               190        3650
+##  6 Adelie  Torgersen           38.9          17.8               181        3625
+##  7 Adelie  Torgersen           39.2          19.6               195        4675
+##  8 Adelie  Torgersen           41.1          17.6               182        3200
+##  9 Adelie  Torgersen           38.6          21.2               191        3800
+## 10 Adelie  Torgersen           34.6          21.1               198        4400
+## # … with 323 more rows, and 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
 <p>Note that this filtering will keep rows with other column values that are missing values but there will be no penguins where the <code>sex</code> value is <code>NA</code>.</p>
 </div>
 <div id="stringing-functions-together" class="section level2 unnumbered">
 <h2>Stringing functions together</h2>
 <p>The function <code>arrange()</code> orders the rows by values given in a particular column.</p>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="thursday-september-8-2022.html#cb427-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
-<span id="cb427-2"><a href="thursday-september-8-2022.html#cb427-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Solar.R)</span></code></pre></div>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="thursday-september-8-2022.html#cb429-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
+<span id="cb429-2"><a href="thursday-september-8-2022.html#cb429-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(Solar.R)</span></code></pre></div>
 <pre><code>## # A tibble: 153 × 6
 ##    Ozone Solar.R  Wind  Temp Month   Day
 ##    &lt;int&gt;   &lt;int&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
@@ -2737,8 +678,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## # … with 143 more rows</code></pre>
 <p>The ordering is from lowest value to highest value. Here the first 10 rows. Note <code>Month</code> and <code>Day</code> are no longer chronological.</p>
 <p>Repeat but order by the value of air temperature.</p>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="thursday-september-8-2022.html#cb429-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
-<span id="cb429-2"><a href="thursday-september-8-2022.html#cb429-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Temp)</span></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="thursday-september-8-2022.html#cb431-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
+<span id="cb431-2"><a href="thursday-september-8-2022.html#cb431-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(Temp)</span></code></pre></div>
 <pre><code>## # A tibble: 153 × 6
 ##    Ozone Solar.R  Wind  Temp Month   Day
 ##    &lt;int&gt;   &lt;int&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
@@ -2754,10 +695,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10     4      25   9.7    61     5    23
 ## # … with 143 more rows</code></pre>
 <p>Importantly you can string the functions together. For example select the variables radiation, wind, and temperature then filter by temperatures above 90F and arrange from coolest to warmest by temperature.</p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="thursday-september-8-2022.html#cb431-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
-<span id="cb431-2"><a href="thursday-september-8-2022.html#cb431-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Solar.R, Wind, Temp) <span class="sc">|&gt;</span></span>
-<span id="cb431-3"><a href="thursday-september-8-2022.html#cb431-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Temp <span class="sc">&gt;</span> <span class="dv">90</span>) <span class="sc">|&gt;</span></span>
-<span id="cb431-4"><a href="thursday-september-8-2022.html#cb431-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Temp)</span></code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="thursday-september-8-2022.html#cb433-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
+<span id="cb433-2"><a href="thursday-september-8-2022.html#cb433-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Solar.R, Wind, Temp) <span class="sc">|&gt;</span></span>
+<span id="cb433-3"><a href="thursday-september-8-2022.html#cb433-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Temp <span class="sc">&gt;</span> <span class="dv">90</span>) <span class="sc">|&gt;</span></span>
+<span id="cb433-4"><a href="thursday-september-8-2022.html#cb433-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(Temp)</span></code></pre></div>
 <pre><code>## # A tibble: 14 × 3
 ##    Solar.R  Wind  Temp
 ##      &lt;int&gt; &lt;dbl&gt; &lt;int&gt;
@@ -2779,9 +720,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The <code>mutate()</code> function adds new columns to the data frame.
 <img src="figures/dplyr_mutate.png" alt="mutate" /></p>
 <p>For example, create a new column called <code>TempC</code> as the temperature in degrees Celcius. Also create a column called <code>WindMS</code> as the wind speed in meters per second.</p>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="thursday-september-8-2022.html#cb433-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
-<span id="cb433-2"><a href="thursday-september-8-2022.html#cb433-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">TempC =</span> (Temp <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span>,</span>
-<span id="cb433-3"><a href="thursday-september-8-2022.html#cb433-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">WindMS =</span> Wind <span class="sc">*</span> .<span class="dv">44704</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="thursday-september-8-2022.html#cb435-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
+<span id="cb435-2"><a href="thursday-september-8-2022.html#cb435-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">TempC =</span> (Temp <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span>,</span>
+<span id="cb435-3"><a href="thursday-september-8-2022.html#cb435-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">WindMS =</span> Wind <span class="sc">*</span> .<span class="dv">44704</span>) </span></code></pre></div>
 <pre><code>## # A tibble: 153 × 8
 ##    Ozone Solar.R  Wind  Temp Month   Day TempC WindMS
 ##    &lt;int&gt;   &lt;int&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;
@@ -2798,10 +739,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## # … with 143 more rows</code></pre>
 <p>The resulting data frame has 8 columns (two new ones) labeled <code>TempC</code> and <code>WindMS</code>.</p>
 <p>On days when the temperature is below 60 F add a column giving the apparent temperature based on the cooling effect of the wind (wind chill) and then arrange from coldest to warmest apparent temperature.</p>
-<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="thursday-september-8-2022.html#cb435-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
-<span id="cb435-2"><a href="thursday-september-8-2022.html#cb435-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Temp <span class="sc">&lt;</span> <span class="dv">60</span>) <span class="sc">|&gt;</span></span>
-<span id="cb435-3"><a href="thursday-september-8-2022.html#cb435-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">TempAp =</span> <span class="fl">35.74</span> <span class="sc">+</span> .<span class="dv">6215</span> <span class="sc">*</span> Temp <span class="sc">-</span> <span class="fl">35.75</span> <span class="sc">*</span> Wind<span class="sc">^</span>.<span class="dv">16</span> <span class="sc">+</span> .<span class="dv">4275</span> <span class="sc">*</span> Temp <span class="sc">*</span> Wind<span class="sc">^</span>.<span class="dv">16</span>) <span class="sc">|&gt;</span></span>
-<span id="cb435-4"><a href="thursday-september-8-2022.html#cb435-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(TempAp)</span></code></pre></div>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="thursday-september-8-2022.html#cb437-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
+<span id="cb437-2"><a href="thursday-september-8-2022.html#cb437-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Temp <span class="sc">&lt;</span> <span class="dv">60</span>) <span class="sc">|&gt;</span></span>
+<span id="cb437-3"><a href="thursday-september-8-2022.html#cb437-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">TempAp =</span> <span class="fl">35.74</span> <span class="sc">+</span> .<span class="dv">6215</span> <span class="sc">*</span> Temp <span class="sc">-</span> <span class="fl">35.75</span> <span class="sc">*</span> Wind<span class="sc">^</span>.<span class="dv">16</span> <span class="sc">+</span> .<span class="dv">4275</span> <span class="sc">*</span> Temp <span class="sc">*</span> Wind<span class="sc">^</span>.<span class="dv">16</span>) <span class="sc">|&gt;</span></span>
+<span id="cb437-4"><a href="thursday-september-8-2022.html#cb437-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(TempAp)</span></code></pre></div>
 <pre><code>## # A tibble: 8 × 7
 ##   Ozone Solar.R  Wind  Temp Month   Day TempAp
 ##   &lt;int&gt;   &lt;int&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;
@@ -2817,16 +758,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="summarize" class="section level2 unnumbered">
 <h2>Summarize</h2>
 <p>The <code>summarize()</code> function reduces (flattens) the data frame based on a function that computes a statistic. For example, to compute the average wind speed during July type</p>
-<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="thursday-september-8-2022.html#cb437-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
-<span id="cb437-2"><a href="thursday-september-8-2022.html#cb437-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Month <span class="sc">==</span> <span class="dv">7</span>) <span class="sc">|&gt;</span></span>
-<span id="cb437-3"><a href="thursday-september-8-2022.html#cb437-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">Wavg =</span> <span class="fu">mean</span>(Wind))</span></code></pre></div>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="thursday-september-8-2022.html#cb439-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
+<span id="cb439-2"><a href="thursday-september-8-2022.html#cb439-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Month <span class="sc">==</span> <span class="dv">7</span>) <span class="sc">|&gt;</span></span>
+<span id="cb439-3"><a href="thursday-september-8-2022.html#cb439-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">Wavg =</span> <span class="fu">mean</span>(Wind))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##    Wavg
 ##   &lt;dbl&gt;
 ## 1  8.94</code></pre>
-<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="thursday-september-8-2022.html#cb439-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
-<span id="cb439-2"><a href="thursday-september-8-2022.html#cb439-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Month <span class="sc">==</span> <span class="dv">6</span>) <span class="sc">|&gt;</span></span>
-<span id="cb439-3"><a href="thursday-september-8-2022.html#cb439-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">Tavg =</span> <span class="fu">mean</span>(Temp))</span></code></pre></div>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="thursday-september-8-2022.html#cb441-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
+<span id="cb441-2"><a href="thursday-september-8-2022.html#cb441-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Month <span class="sc">==</span> <span class="dv">6</span>) <span class="sc">|&gt;</span></span>
+<span id="cb441-3"><a href="thursday-september-8-2022.html#cb441-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">Tavg =</span> <span class="fu">mean</span>(Temp))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##    Tavg
 ##   &lt;dbl&gt;
@@ -2841,42 +782,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right"><code>n()</code></td>
+<td align="right"><code>dplyr::n()</code></td>
 <td align="left">Length of the column</td>
 </tr>
 <tr class="even">
-<td align="right"><code>first()</code></td>
+<td align="right"><code>dplyr::first()</code></td>
 <td align="left">First value of the column</td>
 </tr>
 <tr class="odd">
-<td align="right"><code>last()</code></td>
+<td align="right"><code>dplyr::last()</code></td>
 <td align="left">Last value of the column</td>
 </tr>
 <tr class="even">
-<td align="right"><code>n_distinct()</code></td>
+<td align="right"><code>dplyr::n_distinct()</code></td>
 <td align="left">Number of distinct values</td>
 </tr>
 </tbody>
 </table>
 <p>Find the maximum and median wind speed and maximum ozone concentration values during the month of May. Also determine the number of observations during May.</p>
-<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="thursday-september-8-2022.html#cb441-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
-<span id="cb441-2"><a href="thursday-september-8-2022.html#cb441-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Month <span class="sc">==</span> <span class="dv">5</span>) <span class="sc">|&gt;</span></span>
-<span id="cb441-3"><a href="thursday-september-8-2022.html#cb441-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">Wmax =</span> <span class="fu">max</span>(Wind), </span>
-<span id="cb441-4"><a href="thursday-september-8-2022.html#cb441-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">Wmed =</span> <span class="fu">median</span>(Wind), </span>
-<span id="cb441-5"><a href="thursday-september-8-2022.html#cb441-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">OzoneMax =</span> <span class="fu">max</span>(Ozone, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb441-6"><a href="thursday-september-8-2022.html#cb441-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">NumDays =</span> <span class="fu">n</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="thursday-september-8-2022.html#cb443-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
+<span id="cb443-2"><a href="thursday-september-8-2022.html#cb443-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Month <span class="sc">==</span> <span class="dv">5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb443-3"><a href="thursday-september-8-2022.html#cb443-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">Wmax =</span> <span class="fu">max</span>(Wind), </span>
+<span id="cb443-4"><a href="thursday-september-8-2022.html#cb443-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">Wmed =</span> <span class="fu">median</span>(Wind), </span>
+<span id="cb443-5"><a href="thursday-september-8-2022.html#cb443-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">OzoneMax =</span> <span class="fu">max</span>(Ozone, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb443-6"><a href="thursday-september-8-2022.html#cb443-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">NumDays =</span> dplyr<span class="sc">::</span><span class="fu">n</span>())</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 4
 ##    Wmax  Wmed OzoneMax NumDays
 ##   &lt;dbl&gt; &lt;dbl&gt;    &lt;int&gt;   &lt;int&gt;
 ## 1  20.1  11.5      115      31</code></pre>
 <p>Why do you get an <code>NA</code> for <code>OzoneMax</code>?</p>
 <p>Fix this by including the argument <code>na.rm = TRUE</code> inside the <code>max()</code> function.</p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="thursday-september-8-2022.html#cb443-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
-<span id="cb443-2"><a href="thursday-september-8-2022.html#cb443-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Month <span class="sc">==</span> <span class="dv">5</span>) <span class="sc">|&gt;</span></span>
-<span id="cb443-3"><a href="thursday-september-8-2022.html#cb443-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">Wmax =</span> <span class="fu">max</span>(Wind),</span>
-<span id="cb443-4"><a href="thursday-september-8-2022.html#cb443-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">Wmed =</span> <span class="fu">median</span>(Wind),</span>
-<span id="cb443-5"><a href="thursday-september-8-2022.html#cb443-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">OzoneMax =</span> <span class="fu">max</span>(Ozone, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb443-6"><a href="thursday-september-8-2022.html#cb443-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">NumDays =</span> <span class="fu">n</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="thursday-september-8-2022.html#cb445-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
+<span id="cb445-2"><a href="thursday-september-8-2022.html#cb445-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Month <span class="sc">==</span> <span class="dv">5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb445-3"><a href="thursday-september-8-2022.html#cb445-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">Wmax =</span> <span class="fu">max</span>(Wind),</span>
+<span id="cb445-4"><a href="thursday-september-8-2022.html#cb445-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">Wmed =</span> <span class="fu">median</span>(Wind),</span>
+<span id="cb445-5"><a href="thursday-september-8-2022.html#cb445-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">OzoneMax =</span> <span class="fu">max</span>(Ozone, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb445-6"><a href="thursday-september-8-2022.html#cb445-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">NumDays =</span> dplyr<span class="sc">::</span><span class="fu">n</span>())</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 4
 ##    Wmax  Wmed OzoneMax NumDays
 ##   &lt;dbl&gt; &lt;dbl&gt;    &lt;int&gt;   &lt;int&gt;
@@ -2886,10 +827,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Grouping</h2>
 <p>If you want to summarize separately for each month you use the <code>group_by()</code> function. You split the data frame by some variable (e.g., <code>Month</code>), apply a function to the individual data frames, and then combine the output.</p>
 <p>Find the highest ozone concentration by month. Include the number of observations (days) in the month.</p>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="thursday-september-8-2022.html#cb445-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
-<span id="cb445-2"><a href="thursday-september-8-2022.html#cb445-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(Month) <span class="sc">|&gt;</span></span>
-<span id="cb445-3"><a href="thursday-september-8-2022.html#cb445-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">OzoneMax =</span>  <span class="fu">max</span>(Ozone, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb445-4"><a href="thursday-september-8-2022.html#cb445-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">NumDays =</span> <span class="fu">n</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="thursday-september-8-2022.html#cb447-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
+<span id="cb447-2"><a href="thursday-september-8-2022.html#cb447-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(Month) <span class="sc">|&gt;</span></span>
+<span id="cb447-3"><a href="thursday-september-8-2022.html#cb447-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">OzoneMax =</span>  <span class="fu">max</span>(Ozone, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb447-4"><a href="thursday-september-8-2022.html#cb447-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">NumDays =</span> dplyr<span class="sc">::</span><span class="fu">n</span>())</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 3
 ##   Month OzoneMax NumDays
 ##   &lt;int&gt;    &lt;int&gt;   &lt;int&gt;
@@ -2899,10 +840,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4     8      168      31
 ## 5     9       96      30</code></pre>
 <p>Find the average ozone concentration when temperatures are above and below 70 F. Include the number of observations (days) in the two groups.</p>
-<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="thursday-september-8-2022.html#cb447-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
-<span id="cb447-2"><a href="thursday-september-8-2022.html#cb447-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(Temp <span class="sc">&gt;=</span> <span class="dv">70</span>) <span class="sc">|&gt;</span></span>
-<span id="cb447-3"><a href="thursday-september-8-2022.html#cb447-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">OzoneAvg =</span>  <span class="fu">mean</span>(Ozone, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb447-4"><a href="thursday-september-8-2022.html#cb447-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">NumDays =</span> <span class="fu">n</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="thursday-september-8-2022.html#cb449-1" aria-hidden="true" tabindex="-1"></a>airquality <span class="sc">|&gt;</span></span>
+<span id="cb449-2"><a href="thursday-september-8-2022.html#cb449-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(Temp <span class="sc">&gt;=</span> <span class="dv">70</span>) <span class="sc">|&gt;</span></span>
+<span id="cb449-3"><a href="thursday-september-8-2022.html#cb449-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">OzoneAvg =</span>  <span class="fu">mean</span>(Ozone, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb449-4"><a href="thursday-september-8-2022.html#cb449-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">NumDays =</span> dplyr<span class="sc">::</span><span class="fu">n</span>())</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 3
 ##   `Temp &gt;= 70` OzoneAvg NumDays
 ##   &lt;lgl&gt;           &lt;dbl&gt;   &lt;int&gt;
@@ -2924,23 +865,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right"><code>select()</code></td>
+<td align="right"><code>dplyr::select()</code></td>
 <td align="left">selects columns; pick variables by their names</td>
 </tr>
 <tr class="even">
-<td align="right"><code>filter()</code></td>
+<td align="right"><code>dplyr::filter()</code></td>
 <td align="left">filters rows; pick observations by their values</td>
 </tr>
 <tr class="odd">
-<td align="right"><code>mutate()</code></td>
+<td align="right"><code>dplyr::mutate()</code></td>
 <td align="left">creates new columns; create new variables with functions of existing variables</td>
 </tr>
 <tr class="even">
-<td align="right"><code>summarize()</code></td>
+<td align="right"><code>dplyr::summarize()</code></td>
 <td align="left">summarizes values; collapse many values down to a single summary</td>
 </tr>
 <tr class="odd">
-<td align="right"><code>group_by()</code></td>
+<td align="right"><code>dplyr::group_by()</code></td>
 <td align="left">allows operations to be grouped</td>
 </tr>
 </tbody>
