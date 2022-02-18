@@ -10,7 +10,7 @@ In this tutorial, we are using college admission data for clustering and visuali
 
 The main objective of the tutorial is to convert high-dimensional datasets into low-dimensional maps. In others words from many variables into the two-dimensional map.
 
-# Unsupervised Self Organizing Maps {-}
+## Unsupervised Self Organizing Maps {-}
 
 ```{r}
 library(kohonen)
@@ -23,4 +23,116 @@ The data contains 400 observations and 4 variables.
 
 You need to first normalize the data because the variables are vastly different scales.
 
-Here you normalize with the `scale()` function where you subtract the average value from each observation and devide by the standard deviation.
+Here you normalize with the `scale()` function where you subtract the average value from each observation and divide by the standard deviation.
+
+```{r}
+dfS <- df |>
+  dplyr::mutate(greS = scale(gre),
+                gpaS = scale(gpa),
+                rankS = scale(rank)) |>
+  dplyr::select(greS, gpaS, rankS) |>
+  as.matrix()
+summary(dfS)
+```
+The scaled variables all have a mean of zero.
+
+First you create a 4 x $ grid with the `somgrid()` function.
+```{r}
+set.seed(222)
+g <- somgrid(xdim = 4, 
+             ydim = 4, 
+             topo = "rectangular" )
+```
+
+Next you map the variables to the grid with the `som()` function.
+```{r}
+map <- som(X = dfS,
+           grid = g,
+           alpha = c(.05, .01), 
+           radius = 1)
+```
+
+`alpha` is the learning weight by default vale is 0.05 to 0.01. These two numbers basically indicate amount of change.
+
+Plot
+```{r}
+plot(map, 
+     type = 'codes',
+     palette.name = rainbow)
+```
+
+These provides codes plot with rainbow colors.
+
+For example, first node indicates higher gre values compared to other variables.
+
+```{r}
+map$unit.classif
+```
+
+```{r}
+map$codes
+```
+
+```{r}
+plot(map, type = "mapping")
+```
+
+## Supervised SOMS
+
+We need to split the dataset into train and test data sets for the prediction and accuracy checking.
+
+Create independent samples first.
+```{r}
+set.seed(123)
+ind <- sample(2, nrow(df), replace = T, prob = c(0.7, 0.3))
+m <- as.matrix(df)
+train <- m[ind == 1,]
+test <- m[ind == 2,]
+```
+
+The training dataset contains 285 observations and the test has 115  observations.
+
+You again need to normalize the variables.
+```{r}
+trainX <- scale(train[,-1])
+testX <- scale(test[,-1],
+               center = attr(trainX, "scaled:center"),
+               scale = attr(trainX, "scaled:scale"))
+trainY <- factor(train[,1])
+Y <- factor(test[,1])
+test[,1] <- 0
+testXY <- list(independent = testX, dependent = test[,1])
+```
+
+Gradient Boosting in R
+```{r}
+set.seed(223)
+map1 <- xyf(trainX,
+            classvec2classmat(factor(trainY)),
+            grid = somgrid(5, 5, "hexagonal"),
+            rlen = 100)
+plot(map1, type='codes', palette.name = rainbow)
+```
+
+You create cluster boundaries and plot both the graphs.
+
+```{r}
+par(mfrow = c(1,2))
+plot(map1,
+     type = 'codes',
+     main = c("Codes X", "Codes Y"))
+map1.hc <- cutree(hclust(dist(map1$codes[[2]])), 2)
+add.cluster.boundaries(map1, map1.hc)
+par(mfrow = c(1,1))
+```
+
+Prediction
+```{r}
+pred <- predict(map1, newdata = testXY)
+```
+
+Now let’s see the misclassification error based on above model.
+```{r}
+table(Predicted = pred$predictions[[2]], Actual = Y)
+```
+Based on the confusion matrix, total of 58 + 12 = 70 correct classifications and 45 misclassifications. So, it indicates that the model accuracy is that we get here is 61% (70/(70+45)).

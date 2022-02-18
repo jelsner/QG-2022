@@ -402,5 +402,5 @@ ggplot(data = FLpL.df,
                aes(x = Month, y = Precipitation), 
                fill = "green")
 ```
-
+Cheat sheets: https://ggplot2tor.com/cheatsheets/
 _Additional help_: See: https://moderndive.com/2-viz.html
