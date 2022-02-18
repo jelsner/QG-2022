@@ -1,0 +1,26 @@
+# Self-organized maps {-}
+
+https://www.r-bloggers.com/2021/04/self-organizing-maps-in-r-supervised-vs-unsupervised/
+
+Self-organizing maps are very useful for clustering and data visualization.
+
+Self-organizing maps (SOMs) are a form of neural network and a way to partition complex data.
+
+In this tutorial, we are using college admission data for clustering and visualization and we are covering unsupervised and supervised maps also.
+
+The main objective of the tutorial is to convert high-dimensional datasets into low-dimensional maps. In others words from many variables into the two-dimensional map.
+
+# Unsupervised Self Organizing Maps {-}
+
+```{r}
+library(kohonen)
+```
+
+```{r}
+df <- readr::read_csv("data/binary.csv")
+```
+The data contains 400 observations and 4 variables.
+
+You need to first normalize the data because the variables are vastly different scales.
+
+Here you normalize with the `scale()` function where you subtract the average value from each observation and devide by the standard deviation.

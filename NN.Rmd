@@ -1,0 +1,53 @@
+# Neural network example {-}
+
+```{r}
+library(neuralnet)
+library(datasets)
+
+names(infert)
+```
+
+Train the network
+```{r}
+nn <- neuralnet(case ~ age + parity + induced + spontaneous,
+                data = infert, 
+                hidden = 2,
+                err.fct = "ce",
+                linear.output = FALSE)
+```
+ 
+Basic results
+```{r}
+names(nn)
+
+nn$result.matrix
+```
+ 
+The data is saved in `nn$covariate` and `nn$response` as well as in `nn$data` for the whole data set inclusive of non-used variables. 
+
+The output of the neural network, i.e. the fitted values o(x), are saved
+in `nn$net.result`.
+
+```{r}
+covariates.df <- as.data.frame(nn$covariate)
+result.df <- data.frame(fitted = nn$net.result[[1]])
+  
+out.df <- cbind(covariates.df,
+                result.df)
+head(out.df)
+```
+
+Generalized weights
+ 
+The generalized weight expresses the effect of each covariate has on the response and thus has an analogous interpretation as the regression parameter in regression models.
+
+However, the generalized weight depends on all other covariates. Its distribution indicates whether the effect of the covariate is linear since a small variance suggests a linear effect
+ 
+The columns refer to the four covariates age (j = 1), parity (j = 2), induced (j = 3), and spontaneous (j = 4)
+```{r}
+head(nn$generalized.weights[[1]])
+```
+Visualization
+```{r}
+plot(nn)
+```
