@@ -1,6 +1,6 @@
 # Thursday, September 21, 2022 {-}
 
-Today {-}
+## Today {-}
 
 - Making maps
 
