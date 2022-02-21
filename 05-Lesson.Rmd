@@ -70,6 +70,11 @@ table(LH.df$FL)
 
 There are 93 years without a FL hurricane, 43 years with one hurricanes, 24 years with two hurricanes, and so on.
 
+## Creating data files {-}
+https://environmentalcomputing.net/getting-started-with-r/
+
+Golden rules of data entry.
+
 ## Data frames {-}
 
 The functions `read.table()` and `read.csv()` import data into our environment as a data frame. For example, `LH.df` is a data frame. You see the data object is a data frame in your Environment.
