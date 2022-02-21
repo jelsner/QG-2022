@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Thursday, September 21, 2022 | GEO5156: Quantitative Geography</title>
+  <meta name="description" content="Thursday, September 21, 2022 | GEO5156: Quantitative Geography" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Thursday, September 21, 2022 | GEO5156: Quantitative Geography" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="jelsner/QG-2022" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Thursday, September 21, 2022 | GEO5156: Quantitative Geography" />
+  
+  
+  
+
+<meta name="author" content="James B. Elsner" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tuesday-september-19-2022.html"/>
+<link rel="next" href="neural-network-example.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Quantitative Geography</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html"><i class="fa fa-check"></i>Syllabus</a>
+<ul>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#geo5165c-quantitative-geography"><i class="fa fa-check"></i>GEO5165C: Quantitative Geography</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#contact-information"><i class="fa fa-check"></i>Contact information</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#course-description"><i class="fa fa-check"></i>Course description</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#expected-learning-outcomes"><i class="fa fa-check"></i>Expected learning outcomes</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#materials"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#class-meetings"><i class="fa fa-check"></i>Class meetings</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#grades"><i class="fa fa-check"></i>Grades</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#academic-honor-code"><i class="fa fa-check"></i>Academic honor code</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#students-with-disabilities-act"><i class="fa fa-check"></i>Students With Disabilities Act</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#inclusiveness"><i class="fa fa-check"></i>Inclusiveness</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#more-about-your-instructor"><i class="fa fa-check"></i>More about your instructor</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#syllabus-change-policy"><i class="fa fa-check"></i>Syllabus change policy</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#schedule-subject-to-change-with-notice"><i class="fa fa-check"></i>Schedule (subject to change with notice)</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#other-materials-to-check-out"><i class="fa fa-check"></i>Other materials to check out</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#julia-programming-language"><i class="fa fa-check"></i>Julia programming language</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html"><i class="fa fa-check"></i>Tuesday, August 23, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#today"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#what-is-this-course"><i class="fa fa-check"></i>What is this course?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#where-are-the-materials-for-this-course"><i class="fa fa-check"></i>Where are the materials for this course?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#join-rstudio-cloud"><i class="fa fa-check"></i>Join RStudio Cloud</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#examples"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#course-syllabus"><i class="fa fa-check"></i>Course Syllabus</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#tallahassee-daily-temperatures"><i class="fa fa-check"></i>Tallahassee daily temperatures</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html"><i class="fa fa-check"></i>Thursday, August 25, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#today-1"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#data-analysis"><i class="fa fa-check"></i>Data Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#reproducibility"><i class="fa fa-check"></i>Reproducibility</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#communication"><i class="fa fa-check"></i>Communication</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#automation"><i class="fa fa-check"></i>Automation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#the-r-programming-language"><i class="fa fa-check"></i>The R programming language</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#overview-of-this-course"><i class="fa fa-check"></i>Overview of this course</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#work-in-plain-text-using-r-markdown"><i class="fa fa-check"></i>Work in plain text, using R Markdown</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#visualizing-data"><i class="fa fa-check"></i>Visualizing data</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-code-template"><i class="fa fa-check"></i>A code template</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#the-code"><i class="fa fa-check"></i>The code</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-graphing-workflow"><i class="fa fa-check"></i>A graphing workflow</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-graphing-template"><i class="fa fa-check"></i>A graphing template</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#common-problems"><i class="fa fa-check"></i>Common problems</a></li>
+<li><a href="thursday-august-25-2022.html#location-of-the-sign">location of the <code>+</code> sign</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#help"><i class="fa fa-check"></i>help</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#things-to-know"><i class="fa fa-check"></i>Things to know</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#everything-has-a-name"><i class="fa fa-check"></i>Everything has a name</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#everything-is-an-object"><i class="fa fa-check"></i>Everything is an object</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#you-do-things-using-functions"><i class="fa fa-check"></i>You do things using functions</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#functions-come-in-packages-libraries"><i class="fa fa-check"></i>Functions come in packages (libraries)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#your-turn"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html"><i class="fa fa-check"></i>Tuesday, August 30, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#today-2"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#scatter-plots"><i class="fa fa-check"></i>Scatter plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#facets"><i class="fa fa-check"></i>Facets</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#calculations"><i class="fa fa-check"></i>Calculations</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#functions"><i class="fa fa-check"></i>Functions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#syntax-is-important"><i class="fa fa-check"></i>Syntax is important</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#saving-an-object"><i class="fa fa-check"></i>Saving an object</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#object-names"><i class="fa fa-check"></i>Object names</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#entering-data"><i class="fa fa-check"></i>Entering data</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#applying-a-function"><i class="fa fa-check"></i>Applying a function</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#averge"><i class="fa fa-check"></i>Averge</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#data-vectors"><i class="fa fa-check"></i>Data vectors</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#variance"><i class="fa fa-check"></i>Variance</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#data-vectors-have-a-type"><i class="fa fa-check"></i>Data vectors have a type</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#working-smarter"><i class="fa fa-check"></i>Working smarter</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html"><i class="fa fa-check"></i>Thursday, September 1, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#today-3"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#data-as-vectors"><i class="fa fa-check"></i>Data as vectors</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#mean"><i class="fa fa-check"></i>Mean</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#variance-1"><i class="fa fa-check"></i>Variance</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#median"><i class="fa fa-check"></i>Median</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#spread"><i class="fa fa-check"></i>Spread</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#vector-types"><i class="fa fa-check"></i>Vector types</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#structured-data"><i class="fa fa-check"></i>Structured data</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#asking-questions"><i class="fa fa-check"></i>Asking questions</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#tables-and-summaries"><i class="fa fa-check"></i>Tables and summaries</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html"><i class="fa fa-check"></i>Tuesday, September 6, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#today-4"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#getting-your-data-into-r"><i class="fa fa-check"></i>Getting your data into R</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-data-files"><i class="fa fa-check"></i>Creating data files</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#data-frames"><i class="fa fa-check"></i>Data frames</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#quantiles"><i class="fa fa-check"></i>Quantiles</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-a-data-frame"><i class="fa fa-check"></i>Creating a data frame</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#pipes"><i class="fa fa-check"></i>Pipes</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#your-turn-1"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html"><i class="fa fa-check"></i>Thursday, September 8, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#today-5"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#pipe-operator"><i class="fa fa-check"></i>Pipe operator</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#wrangling-data-frames"><i class="fa fa-check"></i>Wrangling data frames</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#selecting-and-filtering"><i class="fa fa-check"></i>Selecting and filtering</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#example-palmer-penguins"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#stringing-functions-together"><i class="fa fa-check"></i>Stringing functions together</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#summarize"><i class="fa fa-check"></i>Summarize</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#grouping"><i class="fa fa-check"></i>Grouping</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#your-turn-2"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html"><i class="fa fa-check"></i>Tuesday, September 12, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#today-6"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#example-1-new-york-city-flight-data"><i class="fa fa-check"></i>Example 1: New York City flight data</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#example-2-daily-weather-data-from-tallahassee"><i class="fa fa-check"></i>Example 2: Daily weather data from Tallahassee</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#putting-everything-together"><i class="fa fa-check"></i>Putting everything together</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#example-3-food-consumption-and-co2-emissions"><i class="fa fa-check"></i>Example 3: Food consumption and CO2 emissions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html"><i class="fa fa-check"></i>Thursday, September 14, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#today-7"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#bar-chart"><i class="fa fa-check"></i>Bar chart</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#pie-preference"><i class="fa fa-check"></i>Pie preference</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#histogram"><i class="fa fa-check"></i>Histogram</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#density-plot"><i class="fa fa-check"></i>Density plot</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#box-plot"><i class="fa fa-check"></i>Box plot</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#side-by-side-box-plots"><i class="fa fa-check"></i>Side-by-side box plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html"><i class="fa fa-check"></i>Tuesday, September 19, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#today-8"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#comparing-distributions"><i class="fa fa-check"></i>Comparing distributions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#box-plots"><i class="fa fa-check"></i>Box plots</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#long-data-frames"><i class="fa fa-check"></i>Long data frames</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#scatter-plots-1"><i class="fa fa-check"></i>Scatter plots</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#facets-1"><i class="fa fa-check"></i>Facets</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#example-palmer-penguins-1"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#an-expository-graph"><i class="fa fa-check"></i>An expository graph</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#exporting-your-graph"><i class="fa fa-check"></i>Exporting your graph</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html"><i class="fa fa-check"></i>Thursday, September 21, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#simple-feature-data-frames"><i class="fa fa-check"></i>Simple feature data frames</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#making-a-boundary-map"><i class="fa fa-check"></i>Making a boundary map</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#fills"><i class="fa fa-check"></i>Fills</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#overlays"><i class="fa fa-check"></i>Overlays</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#map-projections"><i class="fa fa-check"></i>Map projections</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="neural-network-example.html"><a href="neural-network-example.html"><i class="fa fa-check"></i>Neural network example</a></li>
+<li class="chapter" data-level="" data-path="self-organized-maps.html"><a href="self-organized-maps.html"><i class="fa fa-check"></i>Self-organized maps</a>
+<ul>
+<li class="chapter" data-level="" data-path="self-organized-maps.html"><a href="self-organized-maps.html#unsupervised-self-organizing-maps"><i class="fa fa-check"></i>Unsupervised Self Organizing Maps</a></li>
+<li class="chapter" data-level="0.1" data-path="self-organized-maps.html"><a href="self-organized-maps.html#supervised-soms"><i class="fa fa-check"></i><b>0.1</b> Supervised SOMS</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GEO5156: Quantitative Geography</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="thursday-september-21-2022" class="section level1 unnumbered">
+<h1>Thursday, September 21, 2022</h1>
+<p>Today {-}</p>
+<ul>
+<li>Making maps</li>
+</ul>
+<div id="simple-feature-data-frames" class="section level2 unnumbered">
+<h2>Simple feature data frames</h2>
+<p>Geographic visualization of data is important to geographers and environmental scientists. There are lots of tools available for geo visualization from full-scale GIS applications such as ArcGIS and QGIS to web-based tools like Google maps.</p>
+<p>Using code to make maps (instead of point and click) has the benefit of transparency and reproducibility.</p>
+<p>Simple features (simple feature access) refers to a standard that describes how objects in the real world are represented in computers. Emphasis is on the spatial geometry of the objects.</p>
+<p>The standard also describes how such objects are stored in and retrieved from databases, and which geometrical operations are defined for them.</p>
+<p>The simple feature standard is implemented in spatial databases (such as PostGIS), commercial GIS (e.g., ESRI ArcGIS). R has an implementation in the {sf} package.</p>
+<p>One type of spatial data file is called a <em>shapefile</em>. As an example, the U.S. census information at the state and territory level in a file called <code>cb_2015_us_state_500k.shp</code>.</p>
+<p>A shapefile encodes points, lines, and polygons in geographic space, and is actually a set of files. Shapefiles appear with a <code>.shp</code> extension and with accompanying files ending in <code>.dbf</code> and <code>.prj</code>.</p>
+<ul>
+<li><code>.shp</code> stores the geographic coordinates of the geographic features (e.g. country, state, county)</li>
+<li><code>.dbf</code> stores data associated with the geographic features (e.g. unemployment rates)</li>
+<li><code>.prj</code> stores information about the projection of the coordinates in the shapefile</li>
+</ul>
+<p>To get a shapefile into R all the files need to be in the same folder (directory).</p>
+<p>As an example, you import the census data with the <code>sf::st_read()</code> function from the {sf} package. You assign to the object <code>usa.sf</code> the contents of the spatial data frame.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="thursday-september-21-2022.html#cb1-1" aria-hidden="true" tabindex="-1"></a>usa.sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="at">dsn =</span> <span class="st">&quot;data/cb_2015_us_state_500k&quot;</span>)</span></code></pre></div>
+<pre><code>## Reading layer `cb_2015_us_state_500k&#39; from data source 
+##   `/Users/jameselsner/Desktop/ClassNotes/QG-2022/data/cb_2015_us_state_500k&#39; 
+##   using driver `ESRI Shapefile&#39;
+## Simple feature collection with 56 features and 9 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -179.1489 ymin: -14.5487 xmax: 179.7785 ymax: 71.36516
+## Geodetic CRS:  NAD83</code></pre>
+<p>The output includes information about the file. The object shows up in our environment as a data frame with 56 observations and 10 variables.</p>
+<p>Each observation is either a state or territory.</p>
+<p>The <code>class()</code> function tells us the type of data frame and the <code>names()</code> function list the variable names.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="thursday-september-21-2022.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(usa.sf)</span></code></pre></div>
+<pre><code>## [1] &quot;sf&quot;         &quot;data.frame&quot;</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="thursday-september-21-2022.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(usa.sf)</span></code></pre></div>
+<pre><code>##  [1] &quot;STATEFP&quot;  &quot;STATENS&quot;  &quot;AFFGEOID&quot; &quot;GEOID&quot;    &quot;STUSPS&quot;   &quot;NAME&quot;    
+##  [7] &quot;LSAD&quot;     &quot;ALAND&quot;    &quot;AWATER&quot;   &quot;geometry&quot;</code></pre>
+<p>The file is a simple feature (<code>sf</code>) data frame (<code>data.frame</code>). This means it behaves like a data frame but it also contains information about where the observations are located.</p>
+<p>The first several columns serve as identifiers. The variable <code>ALAND</code> is the land area (square meters) and the <code>AWATER</code> is the water area (sq. m).</p>
+<p>The last column labeled <code>geometry</code> contains information about location stored as a ‘feature.’ The function <code>sf::st_geometry()</code> list the first 5 geometries.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="thursday-september-21-2022.html#cb7-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_geometry</span>(usa.sf)</span></code></pre></div>
+<pre><code>## Geometry set for 56 features 
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -179.1489 ymin: -14.5487 xmax: 179.7785 ymax: 71.36516
+## Geodetic CRS:  NAD83
+## First 5 geometries:</code></pre>
+<pre><code>## MULTIPOLYGON (((-104.0534 41.17054, -104.0532 4...</code></pre>
+<pre><code>## MULTIPOLYGON (((-122.3316 48.02056, -122.3283 4...</code></pre>
+<pre><code>## MULTIPOLYGON (((-109.0502 31.48, -109.0498 31.4...</code></pre>
+<pre><code>## MULTIPOLYGON (((-104.0577 44.99743, -104.0495 4...</code></pre>
+<pre><code>## MULTIPOLYGON (((-89.40565 36.52817, -89.39869 3...</code></pre>
+<p>The geometry type in this case is <code>MULTIPOLYGON</code>.</p>
+<p>A feature is an object in the real world. Often features will consist of a set of features. For instance, a tree is a feature but a set of trees in a forest is itself a feature. The trees are represented as points while the forest boundary as a polygon.</p>
+<p>Features have a geometry describing where on Earth the feature is located. They also have attributes, which describe other properties of the feature.</p>
+<p>More on spatial data in a few weeks.</p>
+</div>
+<div id="making-a-boundary-map" class="section level2 unnumbered">
+<h2>Making a boundary map</h2>
+<p>The functions in the {ggplot2} package work with simple feature data frames to generate maps using the same grammar.</p>
+<p>The important function is <code>geom_sf()</code>. This function draws the geometries.</p>
+<p>For example, to draw a map showing the state and territorial boundaries first use <code>ggplot()</code> with the data argument specifying the simple feature data frame <code>usa.sf</code> and then add the <code>geom_sf()</code> function as a layer with the <code>+</code> symbol.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="thursday-september-21-2022.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb14-2"><a href="thursday-september-21-2022.html#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="thursday-september-21-2022.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> usa.sf) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="thursday-september-21-2022.html#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>()</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Note: you don’t need the <code>mapping = aes()</code> function. The mapping is assumed based on the fact that there is a <code>geometry</code> column in the simple feature data frame.</p>
+<p>The <code>geom_sf()</code> function maps the east-west coordinate to the <code>x</code> aesthetic and the north-south coordinate to the <code>y</code> aesthetic.</p>
+<p>The resulting map is not very informative, and since territories span the globe let’s zoom into the contiguous U.S.</p>
+<p>What states/territories are there in the data frame <code>usa.sf</code>?</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="thursday-september-21-2022.html#cb15-1" aria-hidden="true" tabindex="-1"></a>usa.sf<span class="sc">$</span>NAME</span></code></pre></div>
+<pre><code>##  [1] &quot;Nebraska&quot;                                    
+##  [2] &quot;Washington&quot;                                  
+##  [3] &quot;New Mexico&quot;                                  
+##  [4] &quot;South Dakota&quot;                                
+##  [5] &quot;Kentucky&quot;                                    
+##  [6] &quot;Georgia&quot;                                     
+##  [7] &quot;Arkansas&quot;                                    
+##  [8] &quot;Pennsylvania&quot;                                
+##  [9] &quot;Mississippi&quot;                                 
+## [10] &quot;Colorado&quot;                                    
+## [11] &quot;Utah&quot;                                        
+## [12] &quot;Tennessee&quot;                                   
+## [13] &quot;Wyoming&quot;                                     
+## [14] &quot;Indiana&quot;                                     
+## [15] &quot;Alaska&quot;                                      
+## [16] &quot;Nevada&quot;                                      
+## [17] &quot;Illinois&quot;                                    
+## [18] &quot;Vermont&quot;                                     
+## [19] &quot;Montana&quot;                                     
+## [20] &quot;Iowa&quot;                                        
+## [21] &quot;South Carolina&quot;                              
+## [22] &quot;Arizona&quot;                                     
+## [23] &quot;American Samoa&quot;                              
+## [24] &quot;Ohio&quot;                                        
+## [25] &quot;Alabama&quot;                                     
+## [26] &quot;Wisconsin&quot;                                   
+## [27] &quot;Oregon&quot;                                      
+## [28] &quot;Missouri&quot;                                    
+## [29] &quot;North Carolina&quot;                              
+## [30] &quot;Oklahoma&quot;                                    
+## [31] &quot;Virginia&quot;                                    
+## [32] &quot;West Virginia&quot;                               
+## [33] &quot;Louisiana&quot;                                   
+## [34] &quot;Michigan&quot;                                    
+## [35] &quot;Massachusetts&quot;                               
+## [36] &quot;Idaho&quot;                                       
+## [37] &quot;Puerto Rico&quot;                                 
+## [38] &quot;Florida&quot;                                     
+## [39] &quot;Kansas&quot;                                      
+## [40] &quot;New Hampshire&quot;                               
+## [41] &quot;Delaware&quot;                                    
+## [42] &quot;Texas&quot;                                       
+## [43] &quot;Minnesota&quot;                                   
+## [44] &quot;United States Virgin Islands&quot;                
+## [45] &quot;Connecticut&quot;                                 
+## [46] &quot;New Jersey&quot;                                  
+## [47] &quot;North Dakota&quot;                                
+## [48] &quot;Maryland&quot;                                    
+## [49] &quot;Maine&quot;                                       
+## [50] &quot;Hawaii&quot;                                      
+## [51] &quot;Guam&quot;                                        
+## [52] &quot;Commonwealth of the Northern Mariana Islands&quot;
+## [53] &quot;Rhode Island&quot;                                
+## [54] &quot;California&quot;                                  
+## [55] &quot;New York&quot;                                    
+## [56] &quot;District of Columbia&quot;</code></pre>
+<p>To zoom in you keep only rows corresponding to states (in the lower 48) from the simple feature data frame.</p>
+<p>Recall to pick out rows in a data frame you use the <code>dplyr::filter()</code> function from the {dplyr} package.</p>
+<p>First you need to get a list of all the states you want to keep. The <code>state.name</code> vector object contains all 50 state names. This is like the <code>month.abb</code> vector you saw earlier.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="thursday-september-21-2022.html#cb17-1" aria-hidden="true" tabindex="-1"></a>state.name</span></code></pre></div>
+<pre><code>##  [1] &quot;Alabama&quot;        &quot;Alaska&quot;         &quot;Arizona&quot;        &quot;Arkansas&quot;      
+##  [5] &quot;California&quot;     &quot;Colorado&quot;       &quot;Connecticut&quot;    &quot;Delaware&quot;      
+##  [9] &quot;Florida&quot;        &quot;Georgia&quot;        &quot;Hawaii&quot;         &quot;Idaho&quot;         
+## [13] &quot;Illinois&quot;       &quot;Indiana&quot;        &quot;Iowa&quot;           &quot;Kansas&quot;        
+## [17] &quot;Kentucky&quot;       &quot;Louisiana&quot;      &quot;Maine&quot;          &quot;Maryland&quot;      
+## [21] &quot;Massachusetts&quot;  &quot;Michigan&quot;       &quot;Minnesota&quot;      &quot;Mississippi&quot;   
+## [25] &quot;Missouri&quot;       &quot;Montana&quot;        &quot;Nebraska&quot;       &quot;Nevada&quot;        
+## [29] &quot;New Hampshire&quot;  &quot;New Jersey&quot;     &quot;New Mexico&quot;     &quot;New York&quot;      
+## [33] &quot;North Carolina&quot; &quot;North Dakota&quot;   &quot;Ohio&quot;           &quot;Oklahoma&quot;      
+## [37] &quot;Oregon&quot;         &quot;Pennsylvania&quot;   &quot;Rhode Island&quot;   &quot;South Carolina&quot;
+## [41] &quot;South Dakota&quot;   &quot;Tennessee&quot;      &quot;Texas&quot;          &quot;Utah&quot;          
+## [45] &quot;Vermont&quot;        &quot;Virginia&quot;       &quot;Washington&quot;     &quot;West Virginia&quot; 
+## [49] &quot;Wisconsin&quot;      &quot;Wyoming&quot;</code></pre>
+<p>Let’s remove the rows corresponding to the names <code>"Alaska"</code> and <code>"Hawaii"</code>. These are elements 2 and 11 so you create a new vector object called <code>states.names</code> (recycling the name) containing only the names of the lower 48.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="thursday-september-21-2022.html#cb19-1" aria-hidden="true" tabindex="-1"></a>state.name <span class="ot">&lt;-</span> state.name[<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">11</span>)]</span>
+<span id="cb19-2"><a href="thursday-september-21-2022.html#cb19-2" aria-hidden="true" tabindex="-1"></a>state.name</span></code></pre></div>
+<pre><code>##  [1] &quot;Alabama&quot;        &quot;Arizona&quot;        &quot;Arkansas&quot;       &quot;California&quot;    
+##  [5] &quot;Colorado&quot;       &quot;Connecticut&quot;    &quot;Delaware&quot;       &quot;Florida&quot;       
+##  [9] &quot;Georgia&quot;        &quot;Idaho&quot;          &quot;Illinois&quot;       &quot;Indiana&quot;       
+## [13] &quot;Iowa&quot;           &quot;Kansas&quot;         &quot;Kentucky&quot;       &quot;Louisiana&quot;     
+## [17] &quot;Maine&quot;          &quot;Maryland&quot;       &quot;Massachusetts&quot;  &quot;Michigan&quot;      
+## [21] &quot;Minnesota&quot;      &quot;Mississippi&quot;    &quot;Missouri&quot;       &quot;Montana&quot;       
+## [25] &quot;Nebraska&quot;       &quot;Nevada&quot;         &quot;New Hampshire&quot;  &quot;New Jersey&quot;    
+## [29] &quot;New Mexico&quot;     &quot;New York&quot;       &quot;North Carolina&quot; &quot;North Dakota&quot;  
+## [33] &quot;Ohio&quot;           &quot;Oklahoma&quot;       &quot;Oregon&quot;         &quot;Pennsylvania&quot;  
+## [37] &quot;Rhode Island&quot;   &quot;South Carolina&quot; &quot;South Dakota&quot;   &quot;Tennessee&quot;     
+## [41] &quot;Texas&quot;          &quot;Utah&quot;           &quot;Vermont&quot;        &quot;Virginia&quot;      
+## [45] &quot;Washington&quot;     &quot;West Virginia&quot;  &quot;Wisconsin&quot;      &quot;Wyoming&quot;</code></pre>
+<p>Now you filter the <code>usa.sf</code> data frame keeping only the rows that are listed in the vector of state names. Assign this spatial data frame the name <code>usa_48.sf</code>.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="thursday-september-21-2022.html#cb21-1" aria-hidden="true" tabindex="-1"></a>usa_48.sf <span class="ot">&lt;-</span> usa.sf <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="thursday-september-21-2022.html#cb21-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(NAME <span class="sc">%in%</span> state.name)</span></code></pre></div>
+<p>The function <code>%in%</code> finds only the rows in <code>usa.sf</code> with <code>NAME</code> equal to the names in the vector <code>state.name</code> and the <code>dplyr::filter()</code> function chooses these rows.</p>
+<p>Now redraw the map using the <code>usa_48.sf</code> simple feature data frame.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="thursday-september-21-2022.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span></span>
+<span id="cb22-2"><a href="thursday-september-21-2022.html#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>()</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Since the map is a <code>ggplot()</code> object, it is modified like any other <code>ggplot()</code> graph. For example, you change the color of the map and the borders as follows.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="thursday-september-21-2022.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span></span>
+<span id="cb23-2"><a href="thursday-september-21-2022.html#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, </span>
+<span id="cb23-3"><a href="thursday-september-21-2022.html#cb23-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;gray70&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>You can filter by state. Here you create a new simple feature data frame called <code>Florida.sf</code> then draw the boundary.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="thursday-september-21-2022.html#cb24-1" aria-hidden="true" tabindex="-1"></a>Florida.sf <span class="ot">&lt;-</span> usa_48.sf <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="thursday-september-21-2022.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(NAME <span class="sc">==</span> <span class="st">&quot;Florida&quot;</span>)</span>
+<span id="cb24-3"><a href="thursday-september-21-2022.html#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="thursday-september-21-2022.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Florida.sf) <span class="sc">+</span></span>
+<span id="cb24-5"><a href="thursday-september-21-2022.html#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="st">&quot;palegreen&quot;</span>, </span>
+<span id="cb24-6"><a href="thursday-september-21-2022.html#cb24-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Where is the state of Nebraska? Repeat but fill in Nebraska using the color brown.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="thursday-september-21-2022.html#cb25-1" aria-hidden="true" tabindex="-1"></a>Nebraska.sf <span class="ot">&lt;-</span> usa_48.sf <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="thursday-september-21-2022.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(NAME <span class="sc">==</span> <span class="st">&quot;Nebraska&quot;</span>)</span>
+<span id="cb25-3"><a href="thursday-september-21-2022.html#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="thursday-september-21-2022.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="thursday-september-21-2022.html#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
+<span id="cb25-6"><a href="thursday-september-21-2022.html#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> Nebraska.sf, </span>
+<span id="cb25-7"><a href="thursday-september-21-2022.html#cb25-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">&quot;brown&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>You add layers with the <code>+</code> symbol as before.</p>
+<p>Boundaries serve as the background canvas for spatial data analysis. You usually need to add data to this canvas. Depending on the type of data, you either overlay it on top of the boundaries or use it to fill in the areas between the boundaries.</p>
+</div>
+<div id="fills" class="section level2 unnumbered">
+<h2>Fills</h2>
+<p>Choropleth maps (heat maps, thematic maps) map data values from a column in the simple feature data frame to the <code>fill</code> aesthetic. The aesthetic assigns colors to the various map areas (e.g. countries, states, counties, zip codes).</p>
+<p>Recall the column labeled <code>AWATER</code> contains the water area in square meters. Since the values are very large first divide by million (10^9) to get the values in 1000s of square kilometers. This is done with the <code>mutate()</code> function.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="thursday-september-21-2022.html#cb26-1" aria-hidden="true" tabindex="-1"></a>usa_48.sf <span class="ot">&lt;-</span> usa_48.sf <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="thursday-september-21-2022.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">WaterArea_km2 =</span> AWATER<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">9</span>)</span></code></pre></div>
+<p>Then create a choropleth map showing the water area by filling the area between the state borders with a color. This is done using the <code>aes()</code> function and the argument <code>fill = WaterArea_km2</code>.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="thursday-september-21-2022.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span></span>
+<span id="cb27-2"><a href="thursday-september-21-2022.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> WaterArea_km2))</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>Note how this differs from just drawing the boundaries. In this case you use the <code>aes()</code> function with the fill aesthetic.</p>
+<p>The map is not very informative. large water area of Michigan which includes Lakes Michigan, Superior, and Huron has by far the most water area with most other states have a lot less.</p>
+<p>To change that use the logarithm of the area. The base 10 logarithm is 0 when the value is 1, 1 when the value is 10, 2 when the value is 100 and so on. This is seen with the <code>log10()</code> function.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="thursday-september-21-2022.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log10</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">1000</span>, <span class="dv">10000</span>))</span></code></pre></div>
+<pre><code>## [1] 0 1 2 3 4</code></pre>
+<p>You convert the area to logarithms with the <code>log10()</code> function inside the <code>aes()</code> function as follows.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="thursday-september-21-2022.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span></span>
+<span id="cb30-2"><a href="thursday-september-21-2022.html#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">log10</span>(WaterArea_km2))) </span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>Another way to make the map more informative is to convert the continuous variable to a discrete variable and map the discrete values.</p>
+<p>In the {dplyr} package the <code>cut_interval()</code> function takes a continuous variable and makes n groups each having an equal range, <code>cut_number()</code> makes n groups with (approximately) equal numbers of observations; <code>cut_width()</code> makes groups of equal width.</p>
+<p>As an example, if you want a map with 5 colors with each color representing a state having a similar amount of water area you would use <code>cut_number()</code> and specify <code>n = 5</code>. You do this with the <code>mutate()</code> function to create a new variable (column) called <code>WaterArea_cut</code>.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="thursday-september-21-2022.html#cb31-1" aria-hidden="true" tabindex="-1"></a>usa_48.sf <span class="ot">&lt;-</span> usa_48.sf <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="thursday-september-21-2022.html#cb31-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">WaterArea_cut =</span> <span class="fu">cut_number</span>(WaterArea_km2, <span class="at">n =</span> <span class="dv">5</span>))</span>
+<span id="cb31-3"><a href="thursday-september-21-2022.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(usa_48.sf)</span></code></pre></div>
+<pre><code>## Classes &#39;sf&#39; and &#39;data.frame&#39;:   48 obs. of  12 variables:
+##  $ STATEFP      : chr  &quot;31&quot; &quot;53&quot; &quot;35&quot; &quot;46&quot; ...
+##  $ STATENS      : chr  &quot;01779792&quot; &quot;01779804&quot; &quot;00897535&quot; &quot;01785534&quot; ...
+##  $ AFFGEOID     : chr  &quot;0400000US31&quot; &quot;0400000US53&quot; &quot;0400000US35&quot; &quot;0400000US46&quot; ...
+##  $ GEOID        : chr  &quot;31&quot; &quot;53&quot; &quot;35&quot; &quot;46&quot; ...
+##  $ STUSPS       : chr  &quot;NE&quot; &quot;WA&quot; &quot;NM&quot; &quot;SD&quot; ...
+##  $ NAME         : chr  &quot;Nebraska&quot; &quot;Washington&quot; &quot;New Mexico&quot; &quot;South Dakota&quot; ...
+##  $ LSAD         : chr  &quot;00&quot; &quot;00&quot; &quot;00&quot; &quot;00&quot; ...
+##  $ ALAND        : num  1.99e+11 1.72e+11 3.14e+11 1.96e+11 1.02e+11 ...
+##  $ AWATER       : num  1.36e+09 1.25e+10 7.56e+08 3.38e+09 2.39e+09 ...
+##  $ geometry     :sfc_MULTIPOLYGON of length 48; first list element: List of 1
+##   ..$ :List of 1
+##   .. ..$ : num [1:1985, 1:2] -104 -104 -104 -104 -104 ...
+##   ..- attr(*, &quot;class&quot;)= chr [1:3] &quot;XY&quot; &quot;MULTIPOLYGON&quot; &quot;sfg&quot;
+##  $ WaterArea_km2: num  1.356 12.54 0.756 3.38 2.389 ...
+##  $ WaterArea_cut: Factor w/ 5 levels &quot;[0.489,1.37]&quot;,..: 1 5 1 3 2 3 3 3 3 1 ...
+##  - attr(*, &quot;sf_column&quot;)= chr &quot;geometry&quot;
+##  - attr(*, &quot;agr&quot;)= Factor w/ 3 levels &quot;constant&quot;,&quot;aggregate&quot;,..: NA NA NA NA NA NA NA NA NA NA ...
+##   ..- attr(*, &quot;names&quot;)= chr [1:11] &quot;STATEFP&quot; &quot;STATENS&quot; &quot;AFFGEOID&quot; &quot;GEOID&quot; ...</code></pre>
+<p>Essentially you added a new factor variable called <code>WaterArea_cut</code> with five levels corresponding to equal number of water area values.</p>
+<p>You can go directly to the mapping as follows.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="thursday-september-21-2022.html#cb33-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">ggplot</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span></span>
+<span id="cb33-2"><a href="thursday-september-21-2022.html#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> WaterArea_cut))</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>Make a choropleth map displaying the ratio of water area to land area (<code>ALAND</code>) by state.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="thursday-september-21-2022.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span></span>
+<span id="cb34-2"><a href="thursday-september-21-2022.html#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> AWATER<span class="sc">/</span>ALAND <span class="sc">*</span> <span class="dv">100</span>))</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+</div>
+<div id="overlays" class="section level2 unnumbered">
+<h2>Overlays</h2>
+<p>The <code>usa_48.sf</code> simple feature data frame uses longitude and latitude for it’s coordinate reference system (CRS). All spatial data frames have a CRS.</p>
+<p>To see what CRS a simple feature data frame use the <code>sf::st_crs()</code> function.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="thursday-september-21-2022.html#cb35-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(usa_48.sf)</span></code></pre></div>
+<pre><code>## Coordinate Reference System:
+##   User input: NAD83 
+##   wkt:
+## GEOGCRS[&quot;NAD83&quot;,
+##     DATUM[&quot;North American Datum 1983&quot;,
+##         ELLIPSOID[&quot;GRS 1980&quot;,6378137,298.257222101,
+##             LENGTHUNIT[&quot;metre&quot;,1]]],
+##     PRIMEM[&quot;Greenwich&quot;,0,
+##         ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##     CS[ellipsoidal,2],
+##         AXIS[&quot;latitude&quot;,north,
+##             ORDER[1],
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##         AXIS[&quot;longitude&quot;,east,
+##             ORDER[2],
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##     ID[&quot;EPSG&quot;,4269]]</code></pre>
+<p>The Coordinate Reference System information including the EPSG code (4269) and the corresponding GEOGCS, DATUM, etc is given in well-known text (wkt).</p>
+<p>Here it specifies a geographic reference system with longitude and latitude and a datum (North American 1983) that describes the sea-level shape of the planet as an ellipsoid.</p>
+<p>Because the CRS uses longitude and latitude you can add locations by specifying the geographic coordinates.</p>
+<p>For example, suppose you want to overlay the locations of two cities on the map. First you create a data frame containing the longitudes, latitudes, and names of the locations.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="thursday-september-21-2022.html#cb37-1" aria-hidden="true" tabindex="-1"></a>Cities.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">long =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">84.2809</span>, <span class="sc">-</span><span class="fl">87.9735</span>),</span>
+<span id="cb37-2"><a href="thursday-september-21-2022.html#cb37-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">lat =</span> <span class="fu">c</span>(<span class="fl">30.4381</span>,<span class="fl">43.0115</span>),</span>
+<span id="cb37-3"><a href="thursday-september-21-2022.html#cb37-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;Tallahassee&quot;</span>, <span class="st">&quot;Milwaukee&quot;</span>))</span>
+<span id="cb37-4"><a href="thursday-september-21-2022.html#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(Cities.df)</span></code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<p>Next you draw the map as before but add the locations with a point layer and label the locations with a text layer.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="thursday-september-21-2022.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span></span>
+<span id="cb39-2"><a href="thursday-september-21-2022.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="st">&quot;gray80&quot;</span>) <span class="sc">+</span></span>
+<span id="cb39-3"><a href="thursday-september-21-2022.html#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> Cities.df, </span>
+<span id="cb39-4"><a href="thursday-september-21-2022.html#cb39-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat), </span>
+<span id="cb39-5"><a href="thursday-september-21-2022.html#cb39-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb39-6"><a href="thursday-september-21-2022.html#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> Cities.df,</span>
+<span id="cb39-7"><a href="thursday-september-21-2022.html#cb39-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">label =</span> names),</span>
+<span id="cb39-8"><a href="thursday-september-21-2022.html#cb39-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">nudge_y =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>As another example, let’s consider the <code>airports</code> data frame from the {nycflights13} package. The data frame includes information on 1458 airports in the United States including their location with latitude and longitude.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="thursday-september-21-2022.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb40-2"><a href="thursday-september-21-2022.html#cb40-2" aria-hidden="true" tabindex="-1"></a>airports</span></code></pre></div>
+<pre><code>## # A tibble: 1,458 × 8
+##    faa   name                             lat    lon   alt    tz dst   tzone    
+##    &lt;chr&gt; &lt;chr&gt;                          &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    
+##  1 04G   Lansdowne Airport               41.1  -80.6  1044    -5 A     America/…
+##  2 06A   Moton Field Municipal Airport   32.5  -85.7   264    -6 A     America/…
+##  3 06C   Schaumburg Regional             42.0  -88.1   801    -6 A     America/…
+##  4 06N   Randall Airport                 41.4  -74.4   523    -5 A     America/…
+##  5 09J   Jekyll Island Airport           31.1  -81.4    11    -5 A     America/…
+##  6 0A9   Elizabethton Municipal Airport  36.4  -82.2  1593    -5 A     America/…
+##  7 0G6   Williams County Airport         41.5  -84.5   730    -5 A     America/…
+##  8 0G7   Finger Lakes Regional Airport   42.9  -76.8   492    -5 A     America/…
+##  9 0P2   Shoestring Aviation Airfield    39.8  -76.6  1000    -5 U     America/…
+## 10 0S9   Jefferson County Intl           48.1 -123.    108    -8 A     America/…
+## # … with 1,448 more rows</code></pre>
+<p>Each row is an airport and the location of the airport is given in the columns <code>lat</code> and <code>lon</code>. You can make a map without boundaries by drawing a scatter plot with <code>x = lon</code> and <code>y = lat</code>.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="thursday-september-21-2022.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> airports, </span>
+<span id="cb42-2"><a href="thursday-september-21-2022.html#cb42-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat)) <span class="sc">+</span></span>
+<span id="cb42-3"><a href="thursday-september-21-2022.html#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>If you only want airports within the continental United States, you first plot the <code>usa_48.sf</code> boundaries and then add the airport locations as a separate point layer and the use the <code>coord_sf()</code> function specifying the limits of the plot in the longitude direction (<code>xlim</code>) and the latitude direction (<code>ylim</code>).</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="thursday-september-21-2022.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span> </span>
+<span id="cb43-2"><a href="thursday-september-21-2022.html#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="st">&quot;gray80&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb43-3"><a href="thursday-september-21-2022.html#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> airports, </span>
+<span id="cb43-4"><a href="thursday-september-21-2022.html#cb43-4" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat)) <span class="sc">+</span></span>
+<span id="cb43-5"><a href="thursday-september-21-2022.html#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">130</span>, <span class="sc">-</span><span class="dv">60</span>),</span>
+<span id="cb43-6"><a href="thursday-september-21-2022.html#cb43-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">50</span>)) <span class="sc">+</span></span>
+<span id="cb43-7"><a href="thursday-september-21-2022.html#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p>Alternatively, you can use <code>sf::st_as_sf()</code> to convert the <code>airports</code> data frame to a simple features data frame. The argument <code>coords =</code> tells <code>sf::st_as_sf()</code> which columns contain the geographic coordinates of each airport. You also set the CRS using the <code>sf::st_crs()</code> function and use the EPSG code corresponding to a geographic CRS.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="thursday-september-21-2022.html#cb44-1" aria-hidden="true" tabindex="-1"></a>airports.sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_as_sf</span>(airports, </span>
+<span id="cb44-2"><a href="thursday-september-21-2022.html#cb44-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;lon&quot;</span>, <span class="st">&quot;lat&quot;</span>),</span>
+<span id="cb44-3"><a href="thursday-september-21-2022.html#cb44-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">crs =</span> <span class="dv">4269</span>)</span>
+<span id="cb44-4"><a href="thursday-september-21-2022.html#cb44-4" aria-hidden="true" tabindex="-1"></a>airports.sf</span></code></pre></div>
+<pre><code>## Simple feature collection with 1458 features and 6 fields
+## Geometry type: POINT
+## Dimension:     XY
+## Bounding box:  xmin: -176.646 ymin: 19.72137 xmax: 174.1136 ymax: 72.27083
+## Geodetic CRS:  NAD83
+## # A tibble: 1,458 × 7
+##    faa   name                    alt    tz dst   tzone             geometry
+##  * &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;          &lt;POINT [°]&gt;
+##  1 04G   Lansdowne Airport      1044    -5 A     Amer… (-80.61958 41.13047)
+##  2 06A   Moton Field Municipa…   264    -6 A     Amer… (-85.68003 32.46057)
+##  3 06C   Schaumburg Regional     801    -6 A     Amer… (-88.10124 41.98934)
+##  4 06N   Randall Airport         523    -5 A     Amer… (-74.39156 41.43191)
+##  5 09J   Jekyll Island Airport    11    -5 A     Amer… (-81.42778 31.07447)
+##  6 0A9   Elizabethton Municip…  1593    -5 A     Amer… (-82.17342 36.37122)
+##  7 0G6   Williams County Airp…   730    -5 A     Amer… (-84.50678 41.46731)
+##  8 0G7   Finger Lakes Regiona…   492    -5 A     Amer… (-76.78123 42.88356)
+##  9 0P2   Shoestring Aviation …  1000    -5 U     Amer… (-76.64719 39.79482)
+## 10 0S9   Jefferson County Intl   108    -8 A     Amer… (-122.8106 48.05381)
+## # … with 1,448 more rows</code></pre>
+<p>To graph the points on the map, you use a second <code>geom_sf()</code>.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="thursday-september-21-2022.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb46-2"><a href="thursday-september-21-2022.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span> </span>
+<span id="cb46-3"><a href="thursday-september-21-2022.html#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> airports.sf, <span class="at">shape =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb46-4"><a href="thursday-september-21-2022.html#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">130</span>, <span class="sc">-</span><span class="dv">60</span>),</span>
+<span id="cb46-5"><a href="thursday-september-21-2022.html#cb46-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">50</span>))</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p>You can change the size or type of symbols on the map. For instance, you can draw a bubble plot (also known as a proportional symbol map) and encode the altitude of the airport through the <code>size =</code> aesthetic.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="thursday-september-21-2022.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb47-2"><a href="thursday-september-21-2022.html#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span> </span>
+<span id="cb47-3"><a href="thursday-september-21-2022.html#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> airports.sf, <span class="fu">aes</span>(<span class="at">size =</span> alt), </span>
+<span id="cb47-4"><a href="thursday-september-21-2022.html#cb47-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">alpha =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb47-5"><a href="thursday-september-21-2022.html#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">130</span>, <span class="sc">-</span><span class="dv">60</span>),</span>
+<span id="cb47-6"><a href="thursday-september-21-2022.html#cb47-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">50</span>)) <span class="sc">+</span></span>
+<span id="cb47-7"><a href="thursday-september-21-2022.html#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_area</span>(<span class="at">guide =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please
+## use `guide = &quot;none&quot;` instead.</code></pre>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p>Circle area is proportional to the airport’s altitude (in feet).</p>
+</div>
+<div id="map-projections" class="section level2 unnumbered">
+<h2>Map projections</h2>
+<p>Representing the globe on a flat surface is challenging. Depending on how the globe is projected onto a 2-D surface (map), at least some features will be distorted.</p>
+<p>The <code>coord_sf()</code> function package provides a way to project the globe in various ways.</p>
+<p>With a geographic projection the longitudes and latitudes are treated as x (horizontal) and y (vertical) coordinates. First assign the map to <code>base_map</code> and then render it to the plot device.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="thursday-september-21-2022.html#cb49-1" aria-hidden="true" tabindex="-1"></a>base_map <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span></span>
+<span id="cb49-2"><a href="thursday-september-21-2022.html#cb49-2" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_sf</span>()</span>
+<span id="cb49-3"><a href="thursday-september-21-2022.html#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="thursday-september-21-2022.html#cb49-4" aria-hidden="true" tabindex="-1"></a>base_map</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p>Note that the equal spacing between the latitudes and between the longitudes and that 1 degree latitude equals 1 degree longitude.</p>
+<p>To change this ‘carto-cartesian’ map you need to project it.</p>
+<p>Some projections are simple and require just the name of the projection. As an example, to change the base map to have a Mercator projection you use the <code>coord_sf()</code> function with <code>crs = "+proj=merc"</code>.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="thursday-september-21-2022.html#cb50-1" aria-hidden="true" tabindex="-1"></a>base_map <span class="sc">+</span></span>
+<span id="cb50-2"><a href="thursday-september-21-2022.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="st">&quot;+proj=merc&quot;</span>) <span class="sc">+</span></span>
+<span id="cb50-3"><a href="thursday-september-21-2022.html#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Mercator projection&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p>Note that the distance between the latitudes increases with increasing latitude.</p>
+<p>The Mercator is widely used but it makes an area closer to the poles appear larger than the same area closer to the equator. Greenland ends up larger than the entire continent of Africa.</p>
+<p>Other coordinate systems require specification of the standard lines, or lines that define areas of the surface of the map that are tangent to the globe. These include Gall-Peters, Albers equal-area, and Lambert azimuthal.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="thursday-september-21-2022.html#cb51-1" aria-hidden="true" tabindex="-1"></a>base_map <span class="sc">+</span></span>
+<span id="cb51-2"><a href="thursday-september-21-2022.html#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="st">&quot;+proj=cea +lon_0=0 +lat_ts=45&quot;</span>) <span class="sc">+</span></span>
+<span id="cb51-3"><a href="thursday-september-21-2022.html#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Gall-Peters projection&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p>With this projection you can visually compare the areas but shapes are distorted.</p>
+<p>Distortions are minimized between latitudes defined by the Albers equal area projection.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="thursday-september-21-2022.html#cb52-1" aria-hidden="true" tabindex="-1"></a>base_map <span class="sc">+</span></span>
+<span id="cb52-2"><a href="thursday-september-21-2022.html#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="st">&quot;+proj=aea +lat_1=25 +lat_2=50 +lon_0=-100&quot;</span>) <span class="sc">+</span></span>
+<span id="cb52-3"><a href="thursday-september-21-2022.html#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Albers equal-area projection&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p>See Kyle Walker’s get CRS
+See maptiles package <a href="https://github.com/riatelab/maptiles/" class="uri">https://github.com/riatelab/maptiles/</a></p>
+<p>Why map projections matter. Clip from The West Wing. <a href="https://youtu.be/vVX-PrBRtTY" class="uri">https://youtu.be/vVX-PrBRtTY</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tuesday-september-19-2022.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="neural-network-example.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
