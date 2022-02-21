@@ -10,7 +10,7 @@
 More information about how to use RStudio and markdown files is available here:
 https://www.pipinghotdata.com/posts/2020-09-07-introducing-the-rstudio-ide-and-r-markdown/
 
-## Getting data into R {-}
+## Getting your data into R {-}
 
 You need to know two thing: (1) where the data are located, and (2) what type of data file is it.
 
@@ -18,12 +18,11 @@ Consider the file `US.txt` located in your project folder. It is in the same fol
 
 It is a file with the column headings `Year`, `All`, `MUS`, `G`, `FL`, `E`. Each row is a year and the count is the number of hurricanes making landfall in the United States. `All` indicates anywhere in the continental U.S, `MUS` indicates at major hurricane intensity (at least 33 m/s). Each column is separated by a space.
 
-To create a data object you use the `read.table()` function. The two arguments to this function are `file =` and `header =`. 
+To create a data object you use the `readr::read_table()` function. The only required argument is `file =`. 
 
 You put the name of the file in quotes. And set the header argument to `TRUE` since the first row in the file is not data.
 ```{r}
-LH.df <- read.table(file = "data/US.txt",
-                    header = TRUE)
+LH.df <- readr::read_table(file = "data/US.txt")
 ```
 
 An data object called `LH.df` is now in your Environment under Data.
@@ -32,29 +31,25 @@ In this case the file name is simple because `US.txt` is in the same directory a
 
 Data files for an analysis are often kept somewhere else. Here for example note the folder called `data`? Click on the folder name. To read the data from that location you need to change file string name to `"data/US.txt"`.
 ```{r}
-LH.df <- read.table(file = "data/US.txt",
-                    header = TRUE)
+LH.df <- readr::read_table(file = "data/US.txt")
 ```
 
-The `file =` argument is where R looks for your data. The `header =` argument tells R that the first row is not data but instead column names.
+The `file =` argument is where R looks for your data.
 
 If you get an error message it is likely because the data file is not where you think it is.
 
-If your file has comma's between columns then use the argument `sep = ","` in the function. 
-
 Note: No changes are made to your original data file.
 
-If there are missing values in the data file they should be coded as `NA`. If they are coded as something else then you specify the coding with the `na.strings =` argument. For example, if the missing value character in our file is coded as `99`, you specify `na.strings = "99"`.
+If there are missing values in the data file they should be coded as `NA`. If they are coded as something else then you specify the coding with the `na =` argument. For example, if the missing value character in our file is coded as `99`, you specify `na = "99"`.
 
-There are variants of `read.table()` that differ only in the default argument settings. `read.csv()` has settings that are suitable for comma delimited (csv) files that have been exported from a spreadsheet.  
+The `readr::read_csv()` has settings that are suitable for comma delimited (csv) files that have been exported from a spreadsheet.
 
-A typical work flow might be to export data from a spreadsheet using the csv file format then import it to R using the `read.csv()` function.
+A work flow might include exporting data from a spreadsheet using the csv file format then importing it to R using the `readr::read_csv()` function.
 
 You import data from the web by specifying the URL instead of the local file name.
 ```{r}
 loc <- "http://myweb.fsu.edu/jelsner/temp/data/US.txt"
-LH.df <- read.table(file = loc, 
-                    header = TRUE)
+LH.df <- readr::read_table(file = loc)
 ```
 
 Recall that you reference the columns using the `$` syntax. For example, type
@@ -77,7 +72,7 @@ Golden rules of data entry.
 
 ## Data frames {-}
 
-The functions `read.table()` and `read.csv()` import data into our environment as a data frame. For example, `LH.df` is a data frame. You see the data object is a data frame in your Environment.
+The functions `readr::read_table()` and `readr::read_csv()` import data into our environment as a data frame. For example, `LH.df` is a data frame. You see the data object is a data frame in your Environment.
 
 A data frame is like a spreadsheet. Values are arranged in rows and columns. Rows are the cases (observations) and columns are the variables. 
 
@@ -154,14 +149,12 @@ LH.df[10, 4]
 
 * To an Excel user a data frame is a worksheet (or a range within a worksheet). A data frame is more restrictive in that each column can only be of one data type (e.g., character, numeric, etc).
 
-As an example, consider monthly precipitation from the state of Florida. Source: Monthly climate series. http://www.esrl.noaa.gov/psd/data/timeseries/. Get monthly precipitation values for the state back to the year 1895. Copy/paste into a text editor (notepad) then import using the `read.table()` function.
+As an example, consider monthly precipitation from the state of Florida. Source: Monthly climate series. http://www.esrl.noaa.gov/psd/data/timeseries/. Get monthly precipitation values for the state back to the year 1895. Copy/paste into a text editor (notepad) then import using the `readr::read_table()` function.
 
-Here I did it for Florida and put the file on my website. Missing values are coded as -9.900 so you add the argument `na.string = "-9.900"` to the function.
+Here I did it for Florida and put the file on my website. Missing values are coded as -9.900 so you add the argument `na = "-9.900"` to the function.
 ```{r}
 loc <- "http://myweb.fsu.edu/jelsner/temp/data/FLprecip.txt"
-FLp.df <- read.table(loc, 
-                     header = TRUE,
-                     na.string = "-9.900")
+FLp.df <- readr::read_table(loc, na = "-9.900")
 ```
 
 Plot a time series graph.
