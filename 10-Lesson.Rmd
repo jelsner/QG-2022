@@ -6,7 +6,7 @@
 
 ## Simple feature data frames {-}
 
-Geographic visualization of data is important to geographers and environmental scientists. There are lots of tools available for geo visualization from full-scale GIS applications such as ArcGIS and QGIS to web-based tools like Google maps.
+Geographic visualization of data is important to geographers and environmental scientists. There are many tools for geo visualization from full-scale GIS applications such as ArcGIS and QGIS to web-based tools like Google maps.
 
 Using code to make maps (instead of point and click) has the benefit of transparency and reproducibility.
 
@@ -291,32 +291,39 @@ Circle area is proportional to the airport’s altitude (in feet).
 
 ## Map projections {-}
 
-Representing the globe on a flat surface is challenging. Depending on how the globe is projected onto a 2-D surface (map), at least some features will be distorted.
+Depending on how a curved surface is projected onto a 2-D surface (map), at least some features will be distorted. The `coord_sf()` function package provides a way to adjust projections.
 
-The `coord_sf()` function package provides a way to project the globe in various ways.
+With a geographic projection the longitudes and latitudes are treated as x (horizontal) and y (vertical) coordinates. 
 
-With a geographic projection the longitudes and latitudes are treated as x (horizontal) and y (vertical) coordinates. First assign the map to `base_map` and then render it to the plot device.
+Consider again the boundary map of the lower 48 states. Here we get the boundary file using the `us_states()` function from the {USAboundaries} package and use the `filter()` function to remove rows corresponding to Hawaii, Alaska, and Puerto Rico.
+```{r}
+usa_48.sf <- USAboundaries::us_states() |>
+   filter(!state_name %in% c("Hawaii", "Alaska", "Puerto Rico"))
+```
+
+Here you first assign the map to an object called `base_map` and then render the map to the plot device by typing the object name.
 ```{r}
 base_map <- ggplot(data = usa_48.sf) +
               geom_sf()
-
 base_map
 ```
 
-Note that the equal spacing between the latitudes and between the longitudes and that 1 degree latitude equals 1 degree longitude.
+Note the equal spacing between the latitudes and between the longitudes. Note also that 1 degree latitude distance equals 1 degree longitude distance. This is called a carto-cartesian projection.
 
-To change this 'carto-cartesian' map you need to project it.
-
-Some projections are simple and require just the name of the projection. As an example, to change the base map to have a Mercator projection you use the `coord_sf()` function with `crs = "+proj=merc"`.
+You change the projection by specifying the CRS. For example to change the base map to have a Mercator projection you use the `coord_sf()` function with `crs = "+proj=merc"` (or equivalently `crs = 3857`, which uses the EPSG code 3857 for world Mercator projection).
 ```{r}
 base_map +
   coord_sf(crs = "+proj=merc") +
   ggtitle("Mercator projection")
+
+base_map +
+  coord_sf(crs = 3857) +
+  ggtitle("Mercator projection")
 ```
 
-Note that the distance between the latitudes increases with increasing latitude.
+Note the distance between the latitudes increases with increasing latitude. Note also the projection is applied to the rendered map and not the simple feature data frame used to create it.
 
-The Mercator is widely used but it makes an area closer to the poles appear larger than the same area closer to the equator. Greenland ends up larger than the entire continent of Africa.
+The Mercator projection is widely used, but it makes areas closer to the poles appear larger than the same areas closer to the equator. Greenland appears as large as the continent of Africa. In reality Africa is 14 times larger in area than Greenland.
 
 Other coordinate systems require specification of the standard lines, or lines that define areas of the surface of the map that are tangent to the globe. These include Gall-Peters, Albers equal-area, and Lambert azimuthal.
 ```{r}
@@ -325,9 +332,9 @@ base_map +
   ggtitle("Gall-Peters projection")
 ```
 
-With this projection you can visually compare the areas but shapes are distorted.
+With this projection states having the same area appear with the same size, but the boundary shapes are distorted.
 
-Distortions are minimized between latitudes defined by the Albers equal area projection.
+Distortions are smallest between latitudes defined by the Albers equal-area projection.
 ```{r}
 base_map +
   coord_sf(crs = "+proj=aea +lat_1=25 +lat_2=50 +lon_0=-100") +
