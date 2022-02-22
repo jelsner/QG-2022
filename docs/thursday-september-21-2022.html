@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="tuesday-september-19-2022.html"/>
-<link rel="next" href="neural-network-example.html"/>
+
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -233,7 +233,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#today-4"><i class="fa fa-check"></i>Today</a></li>
 <li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#getting-your-data-into-r"><i class="fa fa-check"></i>Getting your data into R</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-data-files"><i class="fa fa-check"></i>Creating data files</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-structured-data-files"><i class="fa fa-check"></i>Creating structured data files</a></li>
 <li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#data-frames"><i class="fa fa-check"></i>Data frames</a></li>
 <li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#quantiles"><i class="fa fa-check"></i>Quantiles</a></li>
 <li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-a-data-frame"><i class="fa fa-check"></i>Creating a data frame</a></li>
@@ -285,17 +285,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html"><i class="fa fa-check"></i>Thursday, September 21, 2022</a>
 <ul>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#today-9"><i class="fa fa-check"></i>Today</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#simple-feature-data-frames"><i class="fa fa-check"></i>Simple feature data frames</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#making-a-boundary-map"><i class="fa fa-check"></i>Making a boundary map</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#fills"><i class="fa fa-check"></i>Fills</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#overlays"><i class="fa fa-check"></i>Overlays</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#map-projections"><i class="fa fa-check"></i>Map projections</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="neural-network-example.html"><a href="neural-network-example.html"><i class="fa fa-check"></i>Neural network example</a></li>
-<li class="chapter" data-level="" data-path="self-organized-maps.html"><a href="self-organized-maps.html"><i class="fa fa-check"></i>Self-organized maps</a>
-<ul>
-<li class="chapter" data-level="" data-path="self-organized-maps.html"><a href="self-organized-maps.html#unsupervised-self-organizing-maps"><i class="fa fa-check"></i>Unsupervised Self Organizing Maps</a></li>
-<li class="chapter" data-level="0.1" data-path="self-organized-maps.html"><a href="self-organized-maps.html#supervised-soms"><i class="fa fa-check"></i><b>0.1</b> Supervised SOMS</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -319,10 +314,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="thursday-september-21-2022" class="section level1 unnumbered">
 <h1>Thursday, September 21, 2022</h1>
-<p>Today {-}</p>
+<div id="today-9" class="section level2 unnumbered">
+<h2>Today</h2>
 <ul>
 <li>Making maps</li>
 </ul>
+</div>
 <div id="simple-feature-data-frames" class="section level2 unnumbered">
 <h2>Simple feature data frames</h2>
 <p>Geographic visualization of data is important to geographers and environmental scientists. There are lots of tools available for geo visualization from full-scale GIS applications such as ArcGIS and QGIS to web-based tools like Google maps.</p>
@@ -330,7 +327,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Simple features (simple feature access) refers to a standard that describes how objects in the real world are represented in computers. Emphasis is on the spatial geometry of the objects.</p>
 <p>The standard also describes how such objects are stored in and retrieved from databases, and which geometrical operations are defined for them.</p>
 <p>The simple feature standard is implemented in spatial databases (such as PostGIS), commercial GIS (e.g., ESRI ArcGIS). R has an implementation in the {sf} package.</p>
-<p>One type of spatial data file is called a <em>shapefile</em>. As an example, the U.S. census information at the state and territory level in a file called <code>cb_2015_us_state_500k.shp</code>.</p>
+<p>One type of spatial data file is called a <em>shapefile</em>. As an example, the U.S. census information at the state and territory level in a file called <code>cb_2018_us_state_5m.shp</code>. <a href="https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html" class="uri">https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html</a></p>
 <p>A shapefile encodes points, lines, and polygons in geographic space, and is actually a set of files. Shapefiles appear with a <code>.shp</code> extension and with accompanying files ending in <code>.dbf</code> and <code>.prj</code>.</p>
 <ul>
 <li><code>.shp</code> stores the geographic coordinates of the geographic features (e.g. country, state, county)</li>
@@ -339,14 +336,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>To get a shapefile into R all the files need to be in the same folder (directory).</p>
 <p>As an example, you import the census data with the <code>sf::st_read()</code> function from the {sf} package. You assign to the object <code>usa.sf</code> the contents of the spatial data frame.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="thursday-september-21-2022.html#cb1-1" aria-hidden="true" tabindex="-1"></a>usa.sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="at">dsn =</span> <span class="st">&quot;data/cb_2015_us_state_500k&quot;</span>)</span></code></pre></div>
-<pre><code>## Reading layer `cb_2015_us_state_500k&#39; from data source 
-##   `/Users/jameselsner/Desktop/ClassNotes/QG-2022/data/cb_2015_us_state_500k&#39; 
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="thursday-september-21-2022.html#cb1-1" aria-hidden="true" tabindex="-1"></a>usa.sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="at">dsn =</span> <span class="st">&quot;data/cb_2018_us_state_5m&quot;</span>)</span></code></pre></div>
+<pre><code>## Reading layer `cb_2018_us_state_5m&#39; from data source 
+##   `/Users/jameselsner/Desktop/ClassNotes/QG-2022/data/cb_2018_us_state_5m&#39; 
 ##   using driver `ESRI Shapefile&#39;
 ## Simple feature collection with 56 features and 9 fields
 ## Geometry type: MULTIPOLYGON
 ## Dimension:     XY
-## Bounding box:  xmin: -179.1489 ymin: -14.5487 xmax: 179.7785 ymax: 71.36516
+## Bounding box:  xmin: -179.1473 ymin: -14.55255 xmax: 179.7785 ymax: 71.35256
 ## Geodetic CRS:  NAD83</code></pre>
 <p>The output includes information about the file. The object shows up in our environment as a data frame with 56 observations and 10 variables.</p>
 <p>Each observation is either a state or territory.</p>
@@ -363,14 +360,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## Geometry set for 56 features 
 ## Geometry type: MULTIPOLYGON
 ## Dimension:     XY
-## Bounding box:  xmin: -179.1489 ymin: -14.5487 xmax: 179.7785 ymax: 71.36516
+## Bounding box:  xmin: -179.1473 ymin: -14.55255 xmax: 179.7785 ymax: 71.35256
 ## Geodetic CRS:  NAD83
 ## First 5 geometries:</code></pre>
-<pre><code>## MULTIPOLYGON (((-104.0534 41.17054, -104.0532 4...</code></pre>
-<pre><code>## MULTIPOLYGON (((-122.3316 48.02056, -122.3283 4...</code></pre>
+<pre><code>## MULTIPOLYGON (((-104.0535 41.15726, -104.0527 4...</code></pre>
+<pre><code>## MULTIPOLYGON (((-122.3283 48.02134, -122.3217 4...</code></pre>
 <pre><code>## MULTIPOLYGON (((-109.0502 31.48, -109.0498 31.4...</code></pre>
-<pre><code>## MULTIPOLYGON (((-104.0577 44.99743, -104.0495 4...</code></pre>
-<pre><code>## MULTIPOLYGON (((-89.40565 36.52817, -89.39869 3...</code></pre>
+<pre><code>## MULTIPOLYGON (((-104.0577 44.99743, -104.0502 4...</code></pre>
+<pre><code>## MULTIPOLYGON (((-106.6455 31.89867, -106.6408 3...</code></pre>
 <p>The geometry type in this case is <code>MULTIPOLYGON</code>.</p>
 <p>A feature is an object in the real world. Often features will consist of a set of features. For instance, a tree is a feature but a set of trees in a forest is itself a feature. The trees are represented as points while the forest boundary as a polygon.</p>
 <p>Features have a geometry describing where on Earth the feature is located. They also have attributes, which describe other properties of the feature.</p>
@@ -388,65 +385,65 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="QG-2022_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Note: you don’t need the <code>mapping = aes()</code> function. The mapping is assumed based on the fact that there is a <code>geometry</code> column in the simple feature data frame.</p>
 <p>The <code>geom_sf()</code> function maps the east-west coordinate to the <code>x</code> aesthetic and the north-south coordinate to the <code>y</code> aesthetic.</p>
-<p>The resulting map is not very informative, and since territories span the globe let’s zoom into the contiguous U.S.</p>
+<p>The map is not very informative. Let’s zoom into the contiguous states.</p>
 <p>What states/territories are there in the data frame <code>usa.sf</code>?</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="thursday-september-21-2022.html#cb15-1" aria-hidden="true" tabindex="-1"></a>usa.sf<span class="sc">$</span>NAME</span></code></pre></div>
 <pre><code>##  [1] &quot;Nebraska&quot;                                    
 ##  [2] &quot;Washington&quot;                                  
 ##  [3] &quot;New Mexico&quot;                                  
 ##  [4] &quot;South Dakota&quot;                                
-##  [5] &quot;Kentucky&quot;                                    
-##  [6] &quot;Georgia&quot;                                     
-##  [7] &quot;Arkansas&quot;                                    
-##  [8] &quot;Pennsylvania&quot;                                
-##  [9] &quot;Mississippi&quot;                                 
-## [10] &quot;Colorado&quot;                                    
-## [11] &quot;Utah&quot;                                        
-## [12] &quot;Tennessee&quot;                                   
-## [13] &quot;Wyoming&quot;                                     
-## [14] &quot;Indiana&quot;                                     
-## [15] &quot;Alaska&quot;                                      
-## [16] &quot;Nevada&quot;                                      
-## [17] &quot;Illinois&quot;                                    
-## [18] &quot;Vermont&quot;                                     
-## [19] &quot;Montana&quot;                                     
-## [20] &quot;Iowa&quot;                                        
-## [21] &quot;South Carolina&quot;                              
-## [22] &quot;Arizona&quot;                                     
-## [23] &quot;American Samoa&quot;                              
-## [24] &quot;Ohio&quot;                                        
-## [25] &quot;Alabama&quot;                                     
-## [26] &quot;Wisconsin&quot;                                   
-## [27] &quot;Oregon&quot;                                      
-## [28] &quot;Missouri&quot;                                    
-## [29] &quot;North Carolina&quot;                              
-## [30] &quot;Oklahoma&quot;                                    
-## [31] &quot;Virginia&quot;                                    
-## [32] &quot;West Virginia&quot;                               
-## [33] &quot;Louisiana&quot;                                   
-## [34] &quot;Michigan&quot;                                    
-## [35] &quot;Massachusetts&quot;                               
-## [36] &quot;Idaho&quot;                                       
-## [37] &quot;Puerto Rico&quot;                                 
-## [38] &quot;Florida&quot;                                     
-## [39] &quot;Kansas&quot;                                      
-## [40] &quot;New Hampshire&quot;                               
-## [41] &quot;Delaware&quot;                                    
-## [42] &quot;Texas&quot;                                       
-## [43] &quot;Minnesota&quot;                                   
-## [44] &quot;United States Virgin Islands&quot;                
-## [45] &quot;Connecticut&quot;                                 
-## [46] &quot;New Jersey&quot;                                  
-## [47] &quot;North Dakota&quot;                                
-## [48] &quot;Maryland&quot;                                    
-## [49] &quot;Maine&quot;                                       
-## [50] &quot;Hawaii&quot;                                      
-## [51] &quot;Guam&quot;                                        
-## [52] &quot;Commonwealth of the Northern Mariana Islands&quot;
-## [53] &quot;Rhode Island&quot;                                
-## [54] &quot;California&quot;                                  
-## [55] &quot;New York&quot;                                    
-## [56] &quot;District of Columbia&quot;</code></pre>
+##  [5] &quot;Texas&quot;                                       
+##  [6] &quot;California&quot;                                  
+##  [7] &quot;Kentucky&quot;                                    
+##  [8] &quot;Ohio&quot;                                        
+##  [9] &quot;Alabama&quot;                                     
+## [10] &quot;Georgia&quot;                                     
+## [11] &quot;Wisconsin&quot;                                   
+## [12] &quot;Oregon&quot;                                      
+## [13] &quot;Pennsylvania&quot;                                
+## [14] &quot;Mississippi&quot;                                 
+## [15] &quot;Missouri&quot;                                    
+## [16] &quot;North Carolina&quot;                              
+## [17] &quot;Oklahoma&quot;                                    
+## [18] &quot;West Virginia&quot;                               
+## [19] &quot;New York&quot;                                    
+## [20] &quot;Indiana&quot;                                     
+## [21] &quot;Kansas&quot;                                      
+## [22] &quot;Idaho&quot;                                       
+## [23] &quot;Nevada&quot;                                      
+## [24] &quot;Vermont&quot;                                     
+## [25] &quot;Montana&quot;                                     
+## [26] &quot;Minnesota&quot;                                   
+## [27] &quot;North Dakota&quot;                                
+## [28] &quot;Hawaii&quot;                                      
+## [29] &quot;Arizona&quot;                                     
+## [30] &quot;Delaware&quot;                                    
+## [31] &quot;Rhode Island&quot;                                
+## [32] &quot;Colorado&quot;                                    
+## [33] &quot;Utah&quot;                                        
+## [34] &quot;Virginia&quot;                                    
+## [35] &quot;Wyoming&quot;                                     
+## [36] &quot;Louisiana&quot;                                   
+## [37] &quot;Michigan&quot;                                    
+## [38] &quot;Massachusetts&quot;                               
+## [39] &quot;Florida&quot;                                     
+## [40] &quot;United States Virgin Islands&quot;                
+## [41] &quot;Connecticut&quot;                                 
+## [42] &quot;New Jersey&quot;                                  
+## [43] &quot;Maryland&quot;                                    
+## [44] &quot;South Carolina&quot;                              
+## [45] &quot;Maine&quot;                                       
+## [46] &quot;New Hampshire&quot;                               
+## [47] &quot;District of Columbia&quot;                        
+## [48] &quot;Guam&quot;                                        
+## [49] &quot;Commonwealth of the Northern Mariana Islands&quot;
+## [50] &quot;American Samoa&quot;                              
+## [51] &quot;Iowa&quot;                                        
+## [52] &quot;Puerto Rico&quot;                                 
+## [53] &quot;Arkansas&quot;                                    
+## [54] &quot;Tennessee&quot;                                   
+## [55] &quot;Illinois&quot;                                    
+## [56] &quot;Alaska&quot;</code></pre>
 <p>To zoom in you keep only rows corresponding to states (in the lower 48) from the simple feature data frame.</p>
 <p>Recall to pick out rows in a data frame you use the <code>dplyr::filter()</code> function from the {dplyr} package.</p>
 <p>First you need to get a list of all the states you want to keep. The <code>state.name</code> vector object contains all 50 state names. This is like the <code>month.abb</code> vector you saw earlier.</p>
@@ -464,9 +461,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [41] &quot;South Dakota&quot;   &quot;Tennessee&quot;      &quot;Texas&quot;          &quot;Utah&quot;          
 ## [45] &quot;Vermont&quot;        &quot;Virginia&quot;       &quot;Washington&quot;     &quot;West Virginia&quot; 
 ## [49] &quot;Wisconsin&quot;      &quot;Wyoming&quot;</code></pre>
-<p>Let’s remove the rows corresponding to the names <code>"Alaska"</code> and <code>"Hawaii"</code>. These are elements 2 and 11 so you create a new vector object called <code>states.names</code> (recycling the name) containing only the names of the lower 48.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="thursday-september-21-2022.html#cb19-1" aria-hidden="true" tabindex="-1"></a>state.name <span class="ot">&lt;-</span> state.name[<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">11</span>)]</span>
-<span id="cb19-2"><a href="thursday-september-21-2022.html#cb19-2" aria-hidden="true" tabindex="-1"></a>state.name</span></code></pre></div>
+<p>Let’s remove the rows corresponding to the names <code>"Alaska"</code> and <code>"Hawaii"</code>. These are elements 2 and 11 so you create a new vector object called <code>sn</code> containing only the names of the lower 48.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="thursday-september-21-2022.html#cb19-1" aria-hidden="true" tabindex="-1"></a>sn <span class="ot">&lt;-</span> state.name[<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">11</span>)]</span>
+<span id="cb19-2"><a href="thursday-september-21-2022.html#cb19-2" aria-hidden="true" tabindex="-1"></a>sn</span></code></pre></div>
 <pre><code>##  [1] &quot;Alabama&quot;        &quot;Arizona&quot;        &quot;Arkansas&quot;       &quot;California&quot;    
 ##  [5] &quot;Colorado&quot;       &quot;Connecticut&quot;    &quot;Delaware&quot;       &quot;Florida&quot;       
 ##  [9] &quot;Georgia&quot;        &quot;Idaho&quot;          &quot;Illinois&quot;       &quot;Indiana&quot;       
@@ -481,8 +478,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [45] &quot;Washington&quot;     &quot;West Virginia&quot;  &quot;Wisconsin&quot;      &quot;Wyoming&quot;</code></pre>
 <p>Now you filter the <code>usa.sf</code> data frame keeping only the rows that are listed in the vector of state names. Assign this spatial data frame the name <code>usa_48.sf</code>.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="thursday-september-21-2022.html#cb21-1" aria-hidden="true" tabindex="-1"></a>usa_48.sf <span class="ot">&lt;-</span> usa.sf <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href="thursday-september-21-2022.html#cb21-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(NAME <span class="sc">%in%</span> state.name)</span></code></pre></div>
-<p>The function <code>%in%</code> finds only the rows in <code>usa.sf</code> with <code>NAME</code> equal to the names in the vector <code>state.name</code> and the <code>dplyr::filter()</code> function chooses these rows.</p>
+<span id="cb21-2"><a href="thursday-september-21-2022.html#cb21-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(NAME <span class="sc">%in%</span> sn)</span></code></pre></div>
+<p>The function <code>%in%</code> finds only the rows in <code>usa.sf</code> with <code>NAME</code> equal to the names in the vector <code>sn</code> and the <code>dplyr::filter()</code> function chooses these rows.</p>
 <p>Now redraw the map using the <code>usa_48.sf</code> simple feature data frame.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="thursday-september-21-2022.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span></span>
 <span id="cb22-2"><a href="thursday-september-21-2022.html#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>()</span></code></pre></div>
@@ -492,11 +489,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb23-2"><a href="thursday-september-21-2022.html#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, </span>
 <span id="cb23-3"><a href="thursday-september-21-2022.html#cb23-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;gray70&quot;</span>)</span></code></pre></div>
 <p><img src="QG-2022_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<p>You can filter by state. Here you create a new simple feature data frame called <code>Florida.sf</code> then draw the boundary.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="thursday-september-21-2022.html#cb24-1" aria-hidden="true" tabindex="-1"></a>Florida.sf <span class="ot">&lt;-</span> usa_48.sf <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a href="thursday-september-21-2022.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(NAME <span class="sc">==</span> <span class="st">&quot;Florida&quot;</span>)</span>
+<p>You can filter by state. Here you create a new simple feature data frame called <code>Wisconsin.sf</code> then draw the boundary.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="thursday-september-21-2022.html#cb24-1" aria-hidden="true" tabindex="-1"></a>Wisconsin.sf <span class="ot">&lt;-</span> usa_48.sf <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="thursday-september-21-2022.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(NAME <span class="sc">==</span> <span class="st">&quot;Wisconsin&quot;</span>)</span>
 <span id="cb24-3"><a href="thursday-september-21-2022.html#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="thursday-september-21-2022.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Florida.sf) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="thursday-september-21-2022.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Wisconsin.sf) <span class="sc">+</span></span>
 <span id="cb24-5"><a href="thursday-september-21-2022.html#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="st">&quot;palegreen&quot;</span>, </span>
 <span id="cb24-6"><a href="thursday-september-21-2022.html#cb24-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
 <p><img src="QG-2022_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
@@ -545,14 +542,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  $ STUSPS       : chr  &quot;NE&quot; &quot;WA&quot; &quot;NM&quot; &quot;SD&quot; ...
 ##  $ NAME         : chr  &quot;Nebraska&quot; &quot;Washington&quot; &quot;New Mexico&quot; &quot;South Dakota&quot; ...
 ##  $ LSAD         : chr  &quot;00&quot; &quot;00&quot; &quot;00&quot; &quot;00&quot; ...
-##  $ ALAND        : num  1.99e+11 1.72e+11 3.14e+11 1.96e+11 1.02e+11 ...
-##  $ AWATER       : num  1.36e+09 1.25e+10 7.56e+08 3.38e+09 2.39e+09 ...
+##  $ ALAND        : num  1.99e+11 1.72e+11 3.14e+11 1.96e+11 6.77e+11 ...
+##  $ AWATER       : num  1.37e+09 1.26e+10 7.29e+08 3.38e+09 1.90e+10 ...
 ##  $ geometry     :sfc_MULTIPOLYGON of length 48; first list element: List of 1
 ##   ..$ :List of 1
-##   .. ..$ : num [1:1985, 1:2] -104 -104 -104 -104 -104 ...
+##   .. ..$ : num [1:1516, 1:2] -104 -104 -104 -104 -104 ...
 ##   ..- attr(*, &quot;class&quot;)= chr [1:3] &quot;XY&quot; &quot;MULTIPOLYGON&quot; &quot;sfg&quot;
-##  $ WaterArea_km2: num  1.356 12.54 0.756 3.38 2.389 ...
-##  $ WaterArea_cut: Factor w/ 5 levels &quot;[0.489,1.37]&quot;,..: 1 5 1 3 2 3 3 3 3 1 ...
+##  $ WaterArea_km2: num  1.372 12.559 0.729 3.383 19.006 ...
+##  $ WaterArea_cut: Factor w/ 5 levels &quot;[0.489,1.38]&quot;,..: 1 5 1 3 5 5 2 4 3 3 ...
 ##  - attr(*, &quot;sf_column&quot;)= chr &quot;geometry&quot;
 ##  - attr(*, &quot;agr&quot;)= Factor w/ 3 levels &quot;constant&quot;,&quot;aggregate&quot;,..: NA NA NA NA NA NA NA NA NA NA ...
 ##   ..- attr(*, &quot;names&quot;)= chr [1:11] &quot;STATEFP&quot; &quot;STATENS&quot; &quot;AFFGEOID&quot; &quot;GEOID&quot; ...</code></pre>
@@ -723,8 +720,8 @@ See maptiles package <a href="https://github.com/riatelab/maptiles/" class="uri"
           </div>
         </div>
       </div>
-<a href="tuesday-september-19-2022.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="neural-network-example.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="tuesday-september-19-2022.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

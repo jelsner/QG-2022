@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="thursday-september-14-2022.html"/>
-<link rel="next" href="neural-network-example.html"/>
+<link rel="next" href="thursday-september-21-2022.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -52,6 +52,16 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.8/grViz.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -233,7 +243,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#today-4"><i class="fa fa-check"></i>Today</a></li>
 <li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#getting-your-data-into-r"><i class="fa fa-check"></i>Getting your data into R</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-data-files"><i class="fa fa-check"></i>Creating data files</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-structured-data-files"><i class="fa fa-check"></i>Creating structured data files</a></li>
 <li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#data-frames"><i class="fa fa-check"></i>Data frames</a></li>
 <li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#quantiles"><i class="fa fa-check"></i>Quantiles</a></li>
 <li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-a-data-frame"><i class="fa fa-check"></i>Creating a data frame</a></li>
@@ -283,11 +293,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#an-expository-graph"><i class="fa fa-check"></i>An expository graph</a></li>
 <li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#exporting-your-graph"><i class="fa fa-check"></i>Exporting your graph</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="neural-network-example.html"><a href="neural-network-example.html"><i class="fa fa-check"></i>Neural network example</a></li>
-<li class="chapter" data-level="" data-path="self-organized-maps.html"><a href="self-organized-maps.html"><i class="fa fa-check"></i>Self-organized maps</a>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html"><i class="fa fa-check"></i>Thursday, September 21, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="self-organized-maps.html"><a href="self-organized-maps.html#unsupervised-self-organizing-maps"><i class="fa fa-check"></i>Unsupervised Self Organizing Maps</a></li>
-<li class="chapter" data-level="0.1" data-path="self-organized-maps.html"><a href="self-organized-maps.html#supervised-soms"><i class="fa fa-check"></i><b>0.1</b> Supervised SOMS</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#today-9"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#simple-feature-data-frames"><i class="fa fa-check"></i>Simple feature data frames</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#making-a-boundary-map"><i class="fa fa-check"></i>Making a boundary map</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#fills"><i class="fa fa-check"></i>Fills</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#overlays"><i class="fa fa-check"></i>Overlays</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#map-projections"><i class="fa fa-check"></i>Map projections</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -314,16 +327,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="today-8" class="section level2 unnumbered">
 <h2>Today</h2>
 <ul>
-<li>More about how to make graphs in R</li>
+<li>More about making graphs in R</li>
 </ul>
 </div>
 <div id="comparing-distributions" class="section level2 unnumbered">
 <h2>Comparing distributions</h2>
-<p>CHECK OUT {ggdist}</p>
 <p>Previously you learned how to make a histogram from data. To review, consider again the Florida rainfall data.</p>
 <p>Import the data.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="tuesday-september-19-2022.html#cb1-1" aria-hidden="true" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="st">&quot;http://myweb.fsu.edu/jelsner/temp/data/FLprecip.txt&quot;</span></span>
-<span id="cb1-2"><a href="tuesday-september-19-2022.html#cb1-2" aria-hidden="true" tabindex="-1"></a>FLp.df <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_table</span>(loc, <span class="at">na =</span> <span class="st">&quot;-9.900&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="tuesday-september-19-2022.html#cb581-1" aria-hidden="true" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="st">&quot;http://myweb.fsu.edu/jelsner/temp/data/FLprecip.txt&quot;</span></span>
+<span id="cb581-2"><a href="tuesday-september-19-2022.html#cb581-2" aria-hidden="true" tabindex="-1"></a>FLp.df <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_table</span>(loc, <span class="at">na =</span> <span class="st">&quot;-9.900&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
@@ -342,34 +354,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   Dec = col_double()
 ## )</code></pre>
 <p>Then use <code>ggplot()</code> and <code>geom_histogram()</code> functions to make a histogram of rainfall during March and add a label on the horizontal axis (x-axis). Here you assign the plot to an object called <code>p1</code>. An list object is created in your environment but nothing is plotted until you type the object name.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="tuesday-september-19-2022.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb3-2"><a href="tuesday-september-19-2022.html#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="tuesday-september-19-2022.html#cb3-3" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> FLp.df) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="tuesday-september-19-2022.html#cb3-4" aria-hidden="true" tabindex="-1"></a>             <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Mar), </span>
-<span id="cb3-5"><a href="tuesday-september-19-2022.html#cb3-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">bins =</span> <span class="dv">11</span>, </span>
-<span id="cb3-6"><a href="tuesday-september-19-2022.html#cb3-6" aria-hidden="true" tabindex="-1"></a>                               <span class="at">fill =</span> <span class="st">&quot;green3&quot;</span>,</span>
-<span id="cb3-7"><a href="tuesday-september-19-2022.html#cb3-7" aria-hidden="true" tabindex="-1"></a>                                <span class="at">col =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
-<span id="cb3-8"><a href="tuesday-september-19-2022.html#cb3-8" aria-hidden="true" tabindex="-1"></a>             <span class="fu">xlab</span>(<span class="st">&quot;March Rainfall in Florida (in)&quot;</span>) </span>
-<span id="cb3-9"><a href="tuesday-september-19-2022.html#cb3-9" aria-hidden="true" tabindex="-1"></a>p1</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="tuesday-september-19-2022.html#cb583-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb583-2"><a href="tuesday-september-19-2022.html#cb583-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb583-3"><a href="tuesday-september-19-2022.html#cb583-3" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> FLp.df) <span class="sc">+</span></span>
+<span id="cb583-4"><a href="tuesday-september-19-2022.html#cb583-4" aria-hidden="true" tabindex="-1"></a>             <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Mar), </span>
+<span id="cb583-5"><a href="tuesday-september-19-2022.html#cb583-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">bins =</span> <span class="dv">11</span>, </span>
+<span id="cb583-6"><a href="tuesday-september-19-2022.html#cb583-6" aria-hidden="true" tabindex="-1"></a>                               <span class="at">fill =</span> <span class="st">&quot;green3&quot;</span>,</span>
+<span id="cb583-7"><a href="tuesday-september-19-2022.html#cb583-7" aria-hidden="true" tabindex="-1"></a>                                <span class="at">col =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb583-8"><a href="tuesday-september-19-2022.html#cb583-8" aria-hidden="true" tabindex="-1"></a>             <span class="fu">xlab</span>(<span class="st">&quot;March Rainfall in Florida (in)&quot;</span>) </span>
+<span id="cb583-9"><a href="tuesday-september-19-2022.html#cb583-9" aria-hidden="true" tabindex="-1"></a>p1</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-252-1.png" width="672" /></p>
 <p>The histogram shows the shape of the distribution. The distribution is made up of all 118 years of March rainfall. Most years have rainfall values between 2 and 4 inches. A few years have values that exceed 7.5 inches.</p>
 <p>The average, median, and standard deviations are obtained as follows:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="tuesday-september-19-2022.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="tuesday-september-19-2022.html#cb8-1" aria-hidden="true" tabindex="-1"></a>FLp.df <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="tuesday-september-19-2022.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Mar) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="tuesday-september-19-2022.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg =</span> <span class="fu">mean</span>(Mar),</span>
-<span id="cb8-4"><a href="tuesday-september-19-2022.html#cb8-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">med =</span> <span class="fu">median</span>(Mar),</span>
-<span id="cb8-5"><a href="tuesday-september-19-2022.html#cb8-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">sd =</span> <span class="fu">sd</span>(Mar),</span>
-<span id="cb8-6"><a href="tuesday-september-19-2022.html#cb8-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">min =</span> <span class="fu">min</span>(Mar),</span>
-<span id="cb8-7"><a href="tuesday-september-19-2022.html#cb8-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">max =</span> <span class="fu">max</span>(Mar))</span></code></pre></div>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="tuesday-september-19-2022.html#cb584-1" aria-hidden="true" tabindex="-1"></a>FLp.df <span class="sc">|&gt;</span></span>
+<span id="cb584-2"><a href="tuesday-september-19-2022.html#cb584-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Mar) <span class="sc">|&gt;</span></span>
+<span id="cb584-3"><a href="tuesday-september-19-2022.html#cb584-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">avg =</span> <span class="fu">mean</span>(Mar),</span>
+<span id="cb584-4"><a href="tuesday-september-19-2022.html#cb584-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">med =</span> <span class="fu">median</span>(Mar),</span>
+<span id="cb584-5"><a href="tuesday-september-19-2022.html#cb584-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sd =</span> <span class="fu">sd</span>(Mar),</span>
+<span id="cb584-6"><a href="tuesday-september-19-2022.html#cb584-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">min =</span> <span class="fu">min</span>(Mar),</span>
+<span id="cb584-7"><a href="tuesday-september-19-2022.html#cb584-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">max =</span> <span class="fu">max</span>(Mar))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 5
 ##     avg   med    sd   min   max
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -378,97 +381,101 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The histogram helps us to describe the statistical <em>distribution</em> of the values.</p>
 <p>To see this, recall that you can generate values from any distribution. For example you generate values from a normal (Guassian distribution) with the <code>rnorm()</code> function by specifying the mean and the standard deviation.</p>
 <p>Here you do this using the mean and standard deviation from our rainfall values. Since there are 118 March rainfall values (one for each year) you set <code>n = 118</code>.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="tuesday-september-19-2022.html#cb10-1" aria-hidden="true" tabindex="-1"></a>nd <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">118</span>, </span>
-<span id="cb10-2"><a href="tuesday-september-19-2022.html#cb10-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean =</span> <span class="fl">3.65</span>, </span>
-<span id="cb10-3"><a href="tuesday-september-19-2022.html#cb10-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fl">1.95</span>)</span>
-<span id="cb10-4"><a href="tuesday-september-19-2022.html#cb10-4" aria-hidden="true" tabindex="-1"></a>nd</span></code></pre></div>
-<pre><code>##   [1]  4.5891252  6.9878822  6.4966574  4.3500957  3.6034801  2.6120642
-##   [7]  2.5770304  4.4577546  3.7869736  0.2925265  1.1300191  4.5863521
-##  [13]  1.5841258  6.0327071  4.8792729  3.0378434  5.3440310  5.1199078
-##  [19]  3.7619122  2.4326583  0.6637180  2.8015826  1.8184668  4.3177865
-##  [25]  4.8885297  2.0968171  1.3329172  0.9257800  2.2641963  5.9623334
-##  [31]  6.1095949  2.2061102  2.5260228  2.4894741  3.5779799  7.2976020
-##  [37] -0.2513742  4.7220357  3.8531724  2.8419710  3.4818638  3.7958880
-##  [43]  4.1382097  1.2306048  0.5790639  4.8628458  4.1617492  3.0882957
-##  [49]  4.3447994  7.8175018  2.3618278  1.5468618  4.1681451  4.0548977
-##  [55]  4.2259453  3.8075001  4.7582877  5.6842234  0.9221016 -0.2576500
-##  [61]  2.9781210  5.8843360  4.4260219 -0.3416749  1.5984786  6.7700697
-##  [67]  2.7142886  4.0075910  4.3090727  3.3126997  5.5923882  1.1490433
-##  [73]  3.8002229  2.8883279  6.3649021  4.9021270  1.8557536  2.6426559
-##  [79]  0.1512696  4.4635002  4.9017065  4.7844810  1.2760421  0.3820104
-##  [85]  2.0836145  1.5985523  3.4455147  6.4609838  3.5406294  6.0649015
-##  [91]  4.0114566  2.7506254  3.6447257  1.6589322  4.4678541  0.8547273
-##  [97]  2.1407383 -0.5861533  3.0122102  0.4808737  9.0935549  3.3213405
-## [103]  4.2982462  2.0090838  1.8161855  2.4098774  0.7110599  3.0326073
-## [109]  4.5655876  5.7353858  5.0033649  2.3057385  6.5856067  4.5535086
-## [115]  4.6658856  3.7460706 -1.8180877  4.2920935</code></pre>
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="tuesday-september-19-2022.html#cb586-1" aria-hidden="true" tabindex="-1"></a>nd <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">118</span>, </span>
+<span id="cb586-2"><a href="tuesday-september-19-2022.html#cb586-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean =</span> <span class="fl">3.65</span>, </span>
+<span id="cb586-3"><a href="tuesday-september-19-2022.html#cb586-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fl">1.95</span>)</span>
+<span id="cb586-4"><a href="tuesday-september-19-2022.html#cb586-4" aria-hidden="true" tabindex="-1"></a>nd</span></code></pre></div>
+<pre><code>##   [1]  6.7416884  0.2139696  2.7433698  3.8824960  0.6194203  4.4354257
+##   [7]  5.4050169  0.8092758 -0.3419746  7.5958964 -2.5483778  5.5816917
+##  [13]  3.1746390  5.8613094  5.6541227  0.9086666  6.3098643  2.7549266
+##  [19]  3.8427015  6.3239940  3.4684659  5.3702174  1.4655571  2.6863474
+##  [25]  4.3661373  7.5019611  4.1326324  3.5311833  3.0550273  3.0955286
+##  [31]  3.5985192 -1.0867786 -0.4001121  1.8175477  4.3137304  6.5331517
+##  [37]  3.2289950  1.1430855  3.4980687  2.4295630  2.7532689  4.8229282
+##  [43]  2.7737379  4.3975801 -1.3843887  5.9203663  1.2241661  3.9597285
+##  [49]  3.9163964  5.6894578  3.8132714  3.1678973  4.3318985  7.7737934
+##  [55]  5.9390685  3.5930825  7.1304144  1.2929749  2.6178412  3.6042137
+##  [61]  5.7586311  4.9468082  1.7642494  2.2107400  1.0706937  2.2323835
+##  [67]  0.4622967  6.4902349  3.4607394  2.8777164  2.2998399  4.1054467
+##  [73]  0.1484932  2.1125788  3.7443694  3.3144648  5.9140059  0.5406493
+##  [79]  6.3481199  3.2473482  4.8429054  4.3916607  6.1921813  3.9140055
+##  [85]  2.9784233  2.1965664  4.1856974  3.5287084  2.4022348  2.4280930
+##  [91]  5.0584030  5.7855713  3.7728832  1.2280599  4.3302056  4.2992629
+##  [97]  6.4965545  4.7139889  5.5938008  2.7929664  1.1824149  2.6774331
+## [103]  6.9224717  4.0089298  4.6029910  2.7755865  2.7627575  5.0998429
+## [109]  2.2951031  1.6149303  5.5045684  6.8846473  3.2636776  6.2280476
+## [115]  1.7441248  4.7856600  4.2775693  5.0885180</code></pre>
 <p>Collectively these values look quite a bit like the actual rainfall. Let’s make a histogram from these 118 values and assign it to <code>p2</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="tuesday-september-19-2022.html#cb12-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(nd)</span>
-<span id="cb12-2"><a href="tuesday-september-19-2022.html#cb12-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
-<span id="cb12-3"><a href="tuesday-september-19-2022.html#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> nd), </span>
-<span id="cb12-4"><a href="tuesday-september-19-2022.html#cb12-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">bins =</span> <span class="dv">11</span>, </span>
-<span id="cb12-5"><a href="tuesday-september-19-2022.html#cb12-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">col =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
-<span id="cb12-6"><a href="tuesday-september-19-2022.html#cb12-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">&quot;Gaussian Distribution&quot;</span>)</span>
-<span id="cb12-7"><a href="tuesday-september-19-2022.html#cb12-7" aria-hidden="true" tabindex="-1"></a>p2</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="tuesday-september-19-2022.html#cb588-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(nd)</span>
+<span id="cb588-2"><a href="tuesday-september-19-2022.html#cb588-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
+<span id="cb588-3"><a href="tuesday-september-19-2022.html#cb588-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> nd), </span>
+<span id="cb588-4"><a href="tuesday-september-19-2022.html#cb588-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">bins =</span> <span class="dv">11</span>, </span>
+<span id="cb588-5"><a href="tuesday-september-19-2022.html#cb588-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">col =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb588-6"><a href="tuesday-september-19-2022.html#cb588-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">&quot;Gaussian Distribution&quot;</span>)</span>
+<span id="cb588-7"><a href="tuesday-september-19-2022.html#cb588-7" aria-hidden="true" tabindex="-1"></a>p2</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
 <p>Let’s do the same for a set of values from a uniform distribution and from a gamma distribution.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="tuesday-september-19-2022.html#cb13-1" aria-hidden="true" tabindex="-1"></a>ud <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">118</span>,</span>
-<span id="cb13-2"><a href="tuesday-september-19-2022.html#cb13-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">min =</span> .<span class="dv">5</span>, </span>
-<span id="cb13-3"><a href="tuesday-september-19-2022.html#cb13-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">max =</span> <span class="fl">8.7</span>)</span>
-<span id="cb13-4"><a href="tuesday-september-19-2022.html#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="tuesday-september-19-2022.html#cb13-5" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
-<span id="cb13-6"><a href="tuesday-september-19-2022.html#cb13-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ud), </span>
-<span id="cb13-7"><a href="tuesday-september-19-2022.html#cb13-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">bins =</span> <span class="dv">11</span>, </span>
-<span id="cb13-8"><a href="tuesday-september-19-2022.html#cb13-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">col =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
-<span id="cb13-9"><a href="tuesday-september-19-2022.html#cb13-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">&quot;Uniform Distribution&quot;</span>)</span>
-<span id="cb13-10"><a href="tuesday-september-19-2022.html#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="tuesday-september-19-2022.html#cb13-11" aria-hidden="true" tabindex="-1"></a>gd <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="at">n =</span> <span class="dv">118</span>, </span>
-<span id="cb13-12"><a href="tuesday-september-19-2022.html#cb13-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">shape =</span> <span class="fl">3.2</span>,</span>
-<span id="cb13-13"><a href="tuesday-september-19-2022.html#cb13-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">rate =</span> .<span class="dv">9</span>)</span>
-<span id="cb13-14"><a href="tuesday-september-19-2022.html#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-15"><a href="tuesday-september-19-2022.html#cb13-15" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
-<span id="cb13-16"><a href="tuesday-september-19-2022.html#cb13-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> gd), </span>
-<span id="cb13-17"><a href="tuesday-september-19-2022.html#cb13-17" aria-hidden="true" tabindex="-1"></a>                       <span class="at">bins =</span> <span class="dv">11</span>, </span>
-<span id="cb13-18"><a href="tuesday-september-19-2022.html#cb13-18" aria-hidden="true" tabindex="-1"></a>                       <span class="at">col =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
-<span id="cb13-19"><a href="tuesday-september-19-2022.html#cb13-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">&quot;Gamma Distribution&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="tuesday-september-19-2022.html#cb589-1" aria-hidden="true" tabindex="-1"></a>ud <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">118</span>,</span>
+<span id="cb589-2"><a href="tuesday-september-19-2022.html#cb589-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">min =</span> .<span class="dv">5</span>, </span>
+<span id="cb589-3"><a href="tuesday-september-19-2022.html#cb589-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">max =</span> <span class="fl">8.7</span>)</span>
+<span id="cb589-4"><a href="tuesday-september-19-2022.html#cb589-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb589-5"><a href="tuesday-september-19-2022.html#cb589-5" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
+<span id="cb589-6"><a href="tuesday-september-19-2022.html#cb589-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ud), </span>
+<span id="cb589-7"><a href="tuesday-september-19-2022.html#cb589-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">bins =</span> <span class="dv">11</span>, </span>
+<span id="cb589-8"><a href="tuesday-september-19-2022.html#cb589-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">col =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb589-9"><a href="tuesday-september-19-2022.html#cb589-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">&quot;Uniform Distribution&quot;</span>)</span>
+<span id="cb589-10"><a href="tuesday-september-19-2022.html#cb589-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb589-11"><a href="tuesday-september-19-2022.html#cb589-11" aria-hidden="true" tabindex="-1"></a>gd <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="at">n =</span> <span class="dv">118</span>, </span>
+<span id="cb589-12"><a href="tuesday-september-19-2022.html#cb589-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">shape =</span> <span class="fl">3.2</span>,</span>
+<span id="cb589-13"><a href="tuesday-september-19-2022.html#cb589-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">rate =</span> .<span class="dv">9</span>)</span>
+<span id="cb589-14"><a href="tuesday-september-19-2022.html#cb589-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb589-15"><a href="tuesday-september-19-2022.html#cb589-15" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
+<span id="cb589-16"><a href="tuesday-september-19-2022.html#cb589-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> gd), </span>
+<span id="cb589-17"><a href="tuesday-september-19-2022.html#cb589-17" aria-hidden="true" tabindex="-1"></a>                       <span class="at">bins =</span> <span class="dv">11</span>, </span>
+<span id="cb589-18"><a href="tuesday-september-19-2022.html#cb589-18" aria-hidden="true" tabindex="-1"></a>                       <span class="at">col =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb589-19"><a href="tuesday-september-19-2022.html#cb589-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">&quot;Gamma Distribution&quot;</span>)</span></code></pre></div>
 <p>Now put all four plots on a single graph. You do this with the {patchwork} package.</p>
 <p>The package gives operators like <code>+</code> and <code>/</code> different meanings when applied to ggplot objects.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="tuesday-september-19-2022.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb14-2"><a href="tuesday-september-19-2022.html#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="tuesday-september-19-2022.html#cb14-3" aria-hidden="true" tabindex="-1"></a>(p1 <span class="sc">+</span> p2) <span class="sc">/</span> (p3 <span class="sc">+</span> p4)</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="tuesday-september-19-2022.html#cb590-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;patchwork&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:MASS&#39;:
+## 
+##     area</code></pre>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="tuesday-september-19-2022.html#cb593-1" aria-hidden="true" tabindex="-1"></a>(p1 <span class="sc">+</span> p2) <span class="sc">/</span> (p3 <span class="sc">+</span> p4)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-257-1.png" width="672" /></p>
 <p>What distribution best matches the shape of the March rainfall values?</p>
 </div>
 <div id="box-plots" class="section level2 unnumbered">
 <h2>Box plots</h2>
 <p>A box plot graphically illustrates summary statistics. The summary statistics include the minimum value, the maximum value, the 1st &amp; 3rd quartile values, and the median value.</p>
 <p>A non-ggplot way to create a box plot is to use the function <code>boxplot()</code>. Here you get a box plot of the May rainfall.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="tuesday-september-19-2022.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(FLp.df<span class="sc">$</span>May)</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="tuesday-september-19-2022.html#cb594-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(FLp.df<span class="sc">$</span>May)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-258-1.png" width="672" /></p>
 <p>The function <code>boxplot()</code> is from the base {graphics} package. Others from this package include <code>hist()</code> for histograms and <code>plot()</code> for scatter plots.</p>
 <p>The base graphics lets you manipulate details of a graph. For example:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="tuesday-september-19-2022.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(FLp.df<span class="sc">$</span>May, </span>
-<span id="cb16-2"><a href="tuesday-september-19-2022.html#cb16-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;May Rainfall in FL (in)&quot;</span>)</span>
-<span id="cb16-3"><a href="tuesday-september-19-2022.html#cb16-3" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">fivenum</span>(FLp.df<span class="sc">$</span>May)</span>
-<span id="cb16-4"><a href="tuesday-september-19-2022.html#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">rep</span>(<span class="fl">1.3</span>, <span class="dv">5</span>), f, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Minimum&quot;</span>, <span class="st">&quot;1st Quartile&quot;</span>, </span>
-<span id="cb16-5"><a href="tuesday-september-19-2022.html#cb16-5" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Median&quot;</span>, <span class="st">&quot;3rd Quartile&quot;</span>,</span>
-<span id="cb16-6"><a href="tuesday-september-19-2022.html#cb16-6" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Maximum&quot;</span>))</span>
-<span id="cb16-7"><a href="tuesday-september-19-2022.html#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fl">1.3</span>, <span class="fl">7.792</span>, <span class="at">labels =</span> <span class="st">&quot;Last Value Within</span><span class="sc">\n</span><span class="st"> 1.5xIQR Above 3rd Q&quot;</span>)</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="tuesday-september-19-2022.html#cb595-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(FLp.df<span class="sc">$</span>May, </span>
+<span id="cb595-2"><a href="tuesday-september-19-2022.html#cb595-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;May Rainfall in FL (in)&quot;</span>)</span>
+<span id="cb595-3"><a href="tuesday-september-19-2022.html#cb595-3" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">fivenum</span>(FLp.df<span class="sc">$</span>May)</span>
+<span id="cb595-4"><a href="tuesday-september-19-2022.html#cb595-4" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">rep</span>(<span class="fl">1.3</span>, <span class="dv">5</span>), f, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Minimum&quot;</span>, <span class="st">&quot;1st Quartile&quot;</span>, </span>
+<span id="cb595-5"><a href="tuesday-september-19-2022.html#cb595-5" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Median&quot;</span>, <span class="st">&quot;3rd Quartile&quot;</span>,</span>
+<span id="cb595-6"><a href="tuesday-september-19-2022.html#cb595-6" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Maximum&quot;</span>))</span>
+<span id="cb595-7"><a href="tuesday-september-19-2022.html#cb595-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fl">1.3</span>, <span class="fl">7.792</span>, <span class="at">labels =</span> <span class="st">&quot;Last Value Within</span><span class="sc">\n</span><span class="st"> 1.5xIQR Above 3rd Q&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-259-1.png" width="672" /></p>
 <p>The box plot illustrates the five numbers graphically. The median is the line through the box. The bottom and top of the box are the 1st and 3rd quartile values. Whiskers extend vertically from the box downward toward the minimum and upward toward the maximum.</p>
 <p>If values extend beyond 1.5 times the interquartile range (either above or below the corresponding quartile) the whisker is truncated at the last value within the range and points are used to indicate outliers.</p>
 <p>To make the same box plot using functions from the {ggplot2} package you use the <code>geom_boxplot()</code> layer.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="tuesday-september-19-2022.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> FLp.df) <span class="sc">+</span> </span>
-<span id="cb17-2"><a href="tuesday-september-19-2022.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> May)) <span class="sc">+</span></span>
-<span id="cb17-3"><a href="tuesday-september-19-2022.html#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb17-4"><a href="tuesday-september-19-2022.html#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;May Rainfall in Florida (in)&quot;</span>)</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="tuesday-september-19-2022.html#cb596-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> FLp.df) <span class="sc">+</span> </span>
+<span id="cb596-2"><a href="tuesday-september-19-2022.html#cb596-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> May)) <span class="sc">+</span></span>
+<span id="cb596-3"><a href="tuesday-september-19-2022.html#cb596-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb596-4"><a href="tuesday-september-19-2022.html#cb596-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;May Rainfall in Florida (in)&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-260-1.png" width="672" /></p>
 </div>
 <div id="long-data-frames" class="section level2 unnumbered">
 <h2>Long data frames</h2>
 <p>Suppose you want to make a separate box plot for each month. In this case you make the <code>x</code> aesthetic the name of a column containing the vector of month names. The problem is that the month names are column labels rather than a single character vector.</p>
 <p>You need to turn the data frame from its native ‘wide’ format to a ‘long’ format. The <code>FLp.df</code> is ‘wide’ because there are separate columns for each month. Wide data are more common because they are convenient for entering data and they let you see more of the data at one time.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="tuesday-september-19-2022.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(FLp.df)</span></code></pre></div>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="tuesday-september-19-2022.html#cb597-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(FLp.df)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 13
 ##    Year   Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov   Dec
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -495,14 +502,12 @@ id name value
 2 y F
 2 z H</p>
 <p>You use the <code>pivot_longer()</code> function from the {tidyr} package to turn the wide data frame into a long data frame. Let’s do it and then decipher what happens.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="tuesday-september-19-2022.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb20-2"><a href="tuesday-september-19-2022.html#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="tuesday-september-19-2022.html#cb20-3" aria-hidden="true" tabindex="-1"></a>FLpL.df <span class="ot">&lt;-</span> FLp.df <span class="sc">|&gt;</span></span>
-<span id="cb20-4"><a href="tuesday-september-19-2022.html#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>Year, </span>
-<span id="cb20-5"><a href="tuesday-september-19-2022.html#cb20-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;Month&quot;</span>,</span>
-<span id="cb20-6"><a href="tuesday-september-19-2022.html#cb20-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;Rainfall&quot;</span>)</span>
-<span id="cb20-7"><a href="tuesday-september-19-2022.html#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-8"><a href="tuesday-september-19-2022.html#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(FLpL.df)</span></code></pre></div>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="tuesday-september-19-2022.html#cb599-1" aria-hidden="true" tabindex="-1"></a>FLpL.df <span class="ot">&lt;-</span> FLp.df <span class="sc">|&gt;</span></span>
+<span id="cb599-2"><a href="tuesday-september-19-2022.html#cb599-2" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>Year, </span>
+<span id="cb599-3"><a href="tuesday-september-19-2022.html#cb599-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">names_to =</span> <span class="st">&quot;Month&quot;</span>,</span>
+<span id="cb599-4"><a href="tuesday-september-19-2022.html#cb599-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">values_to =</span> <span class="st">&quot;Rainfall&quot;</span>)</span>
+<span id="cb599-5"><a href="tuesday-september-19-2022.html#cb599-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb599-6"><a href="tuesday-september-19-2022.html#cb599-6" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(FLpL.df)</span></code></pre></div>
 <pre><code>## tibble [1,404 × 3] (S3: tbl_df/tbl/data.frame)
 ##  $ Year    : num [1:1404] 1895 1895 1895 1895 1895 ...
 ##  $ Month   : chr [1:1404] &quot;Jan&quot; &quot;Feb&quot; &quot;Mar&quot; &quot;Apr&quot; ...
@@ -510,78 +515,80 @@ id name value
 <p>The <code>pivot_longer()</code> function takes all the columns to pivot into a longer format. Here you chose them all EXCEPT the one named after the <code>-</code> sign (<code>Year</code>). All variables are measured (rainfall in units of inches) except <code>Year</code>.</p>
 <p>The resulting long data frame has the <code>Year</code> variable in the first column and the remaining column names as the <code>name</code> variable in the second column. You change the default <code>name</code> to <code>Month</code> by specifying the <code>names_to = "Month"</code> argument. The third column contains the corresponding rainfall values all in a single column names <code>value</code>. You change the default <code>value</code> by specifying the <code>values_to = "Rainfall"</code>.</p>
 <p>Note that the column <code>Month</code> is a character vector. When you make a plot using this variable the order will be alphabetical. So you change the variable from a character vector to a factor vector with levels equal to the month abbreviations.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="tuesday-september-19-2022.html#cb22-1" aria-hidden="true" tabindex="-1"></a>month.abb</span></code></pre></div>
+<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="tuesday-september-19-2022.html#cb601-1" aria-hidden="true" tabindex="-1"></a>month.abb</span></code></pre></div>
 <pre><code>##  [1] &quot;Jan&quot; &quot;Feb&quot; &quot;Mar&quot; &quot;Apr&quot; &quot;May&quot; &quot;Jun&quot; &quot;Jul&quot; &quot;Aug&quot; &quot;Sep&quot; &quot;Oct&quot; &quot;Nov&quot; &quot;Dec&quot;</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="tuesday-september-19-2022.html#cb24-1" aria-hidden="true" tabindex="-1"></a>FLpL.df <span class="ot">&lt;-</span> FLpL.df <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a href="tuesday-september-19-2022.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Month =</span> <span class="fu">factor</span>(Month, <span class="at">levels =</span> month.abb))</span></code></pre></div>
+<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="tuesday-september-19-2022.html#cb603-1" aria-hidden="true" tabindex="-1"></a>FLpL.df <span class="ot">&lt;-</span> FLpL.df <span class="sc">|&gt;</span></span>
+<span id="cb603-2"><a href="tuesday-september-19-2022.html#cb603-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">Month =</span> <span class="fu">factor</span>(Month, <span class="at">levels =</span> month.abb))</span></code></pre></div>
 <p>Note that you can reverse this with the <code>pivot_wider()</code> function.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="tuesday-september-19-2022.html#cb25-1" aria-hidden="true" tabindex="-1"></a>FLpW.df <span class="ot">&lt;-</span> FLpL.df <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a href="tuesday-september-19-2022.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> Year,</span>
-<span id="cb25-3"><a href="tuesday-september-19-2022.html#cb25-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">names_from =</span> Month,</span>
-<span id="cb25-4"><a href="tuesday-september-19-2022.html#cb25-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> Rainfall)</span></code></pre></div>
+<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="tuesday-september-19-2022.html#cb604-1" aria-hidden="true" tabindex="-1"></a>FLpW.df <span class="ot">&lt;-</span> FLpL.df <span class="sc">|&gt;</span></span>
+<span id="cb604-2"><a href="tuesday-september-19-2022.html#cb604-2" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> Year,</span>
+<span id="cb604-3"><a href="tuesday-september-19-2022.html#cb604-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">names_from =</span> Month,</span>
+<span id="cb604-4"><a href="tuesday-september-19-2022.html#cb604-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">values_from =</span> Rainfall)</span></code></pre></div>
 <p>Then to create the box plot specify that the x aesthetic (x-axis) to be <code>Month</code> and the y-axis to be <code>Rainfall</code>.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="tuesday-september-19-2022.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> FLpL.df) <span class="sc">+</span> </span>
-<span id="cb26-2"><a href="tuesday-september-19-2022.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Month, <span class="at">y =</span> Rainfall)) <span class="sc">+</span></span>
-<span id="cb26-3"><a href="tuesday-september-19-2022.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Rainfall (in)&quot;</span>)</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="tuesday-september-19-2022.html#cb605-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> FLpL.df) <span class="sc">+</span> </span>
+<span id="cb605-2"><a href="tuesday-september-19-2022.html#cb605-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Month, <span class="at">y =</span> Rainfall)) <span class="sc">+</span></span>
+<span id="cb605-3"><a href="tuesday-september-19-2022.html#cb605-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Rainfall (in)&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-265-1.png" width="672" /></p>
 <p>The graph shows the variation of rainfall by month.</p>
 <p>Each <code>geom_</code> function is a layer. Data for the layer is specified in the function <code>ggplot()</code> with the data frame argument and the <code>aes()</code> function. To add another layer to the plot with different data you specify the data within the <code>geom_</code> function.</p>
 <p>For example, lets repeat the graph of monthly rainfall highlighting the month of May. First you filter the data frame keeping only rows labeled <code>May</code> and assign this to a new data frame object called <code>May.df</code>.</p>
 <p>You then repeat the plot but add another <code>geom_boxplot()</code> layer that includes the argument <code>data = May.df</code> along with the corresponding <code>aes()</code> function. Finally you color the box green.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="tuesday-september-19-2022.html#cb27-1" aria-hidden="true" tabindex="-1"></a>May.df <span class="ot">&lt;-</span> FLpL.df <span class="sc">|&gt;</span></span>
-<span id="cb27-2"><a href="tuesday-september-19-2022.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Month <span class="sc">==</span> <span class="st">&quot;May&quot;</span>)</span>
-<span id="cb27-3"><a href="tuesday-september-19-2022.html#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="tuesday-september-19-2022.html#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> FLpL.df, <span class="fu">aes</span>(<span class="at">x =</span> Month, <span class="at">y =</span> Rainfall)) <span class="sc">+</span> </span>
-<span id="cb27-5"><a href="tuesday-september-19-2022.html#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb27-6"><a href="tuesday-september-19-2022.html#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Rainfall (in)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb27-7"><a href="tuesday-september-19-2022.html#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">data =</span> May.df, </span>
-<span id="cb27-8"><a href="tuesday-september-19-2022.html#cb27-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Month, <span class="at">y =</span> Rainfall), </span>
-<span id="cb27-9"><a href="tuesday-september-19-2022.html#cb27-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span></span>
-<span id="cb27-10"><a href="tuesday-september-19-2022.html#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="tuesday-september-19-2022.html#cb606-1" aria-hidden="true" tabindex="-1"></a>May.df <span class="ot">&lt;-</span> FLpL.df <span class="sc">|&gt;</span></span>
+<span id="cb606-2"><a href="tuesday-september-19-2022.html#cb606-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Month <span class="sc">==</span> <span class="st">&quot;May&quot;</span>)</span>
+<span id="cb606-3"><a href="tuesday-september-19-2022.html#cb606-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb606-4"><a href="tuesday-september-19-2022.html#cb606-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> FLpL.df, <span class="fu">aes</span>(<span class="at">x =</span> Month, <span class="at">y =</span> Rainfall)) <span class="sc">+</span> </span>
+<span id="cb606-5"><a href="tuesday-september-19-2022.html#cb606-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb606-6"><a href="tuesday-september-19-2022.html#cb606-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Rainfall (in)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb606-7"><a href="tuesday-september-19-2022.html#cb606-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">data =</span> May.df, </span>
+<span id="cb606-8"><a href="tuesday-september-19-2022.html#cb606-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Month, <span class="at">y =</span> Rainfall), </span>
+<span id="cb606-9"><a href="tuesday-september-19-2022.html#cb606-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span></span>
+<span id="cb606-10"><a href="tuesday-september-19-2022.html#cb606-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-266-1.png" width="672" /></p>
 </div>
 <div id="scatter-plots-1" class="section level2 unnumbered">
 <h2>Scatter plots</h2>
 <p>An import graph is the scatter plot which shows the relationship between two numeric variables. It plots the values of one variable against the values of the other as points <span class="math inline">\((x_i, y_i)\)</span> in a Cartesian plane.</p>
 <p>For example, to show the relationship between April and September values of rainfall you type</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="tuesday-september-19-2022.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(FLp.df) <span class="sc">+</span> </span>
-<span id="cb28-2"><a href="tuesday-september-19-2022.html#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Apr, <span class="at">y =</span> Sep)) <span class="sc">+</span> </span>
-<span id="cb28-3"><a href="tuesday-september-19-2022.html#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;April Rainfall (in)&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb28-4"><a href="tuesday-september-19-2022.html#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;September Rainfall (in)&quot;</span>)</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="tuesday-september-19-2022.html#cb607-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(FLp.df) <span class="sc">+</span> </span>
+<span id="cb607-2"><a href="tuesday-september-19-2022.html#cb607-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Apr, <span class="at">y =</span> Sep)) <span class="sc">+</span> </span>
+<span id="cb607-3"><a href="tuesday-september-19-2022.html#cb607-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;April Rainfall (in)&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb607-4"><a href="tuesday-september-19-2022.html#cb607-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;September Rainfall (in)&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-267-1.png" width="672" /></p>
 <p>The plot shows that dry Aprils tend to be followed by dry Septembers and wet Aprils tend to be followed by wet Septembers.</p>
 <p>There is a direct (or positive) relationship between the two variables although the points are scattered widely indicating the relationship is loose.</p>
 <p>If your goal is to model the relationship, you plot the dependent variable (the variable you are interested in modeling) on the vertical axis.</p>
 <p>Here you put the September values on the vertical axis since a predictive model would use April values to predict September values because April comes before September in the calendar year.</p>
 <p>If the points have a natural ordering then you use the <code>geom_line()</code> function. For example, to plot the September Rainfall values as a time series type</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="tuesday-september-19-2022.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(FLp.df) <span class="sc">+</span> </span>
-<span id="cb29-2"><a href="tuesday-september-19-2022.html#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Sep)) <span class="sc">+</span> </span>
-<span id="cb29-3"><a href="tuesday-september-19-2022.html#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Year&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb29-4"><a href="tuesday-september-19-2022.html#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;September Rainfall (in)&quot;</span>)</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="tuesday-september-19-2022.html#cb608-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(FLp.df) <span class="sc">+</span> </span>
+<span id="cb608-2"><a href="tuesday-september-19-2022.html#cb608-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Sep)) <span class="sc">+</span> </span>
+<span id="cb608-3"><a href="tuesday-september-19-2022.html#cb608-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Year&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb608-4"><a href="tuesday-september-19-2022.html#cb608-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;September Rainfall (in)&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-268-1.png" width="672" /></p>
 <p>Rainfall values fluctuate from one September to the next, but there does not appear to be a long-term trend. With time series data it is better to connect the values with lines rather than use points unless values are missing.</p>
 <p>Create a plot of the May values of the North Atlantic oscillation (NAO) with Year on the horizontal axis. Add appropriate axis labels.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="tuesday-september-19-2022.html#cb30-1" aria-hidden="true" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="st">&quot;http://myweb.fsu.edu/jelsner/temp/data/NAO.txt&quot;</span></span>
-<span id="cb30-2"><a href="tuesday-september-19-2022.html#cb30-2" aria-hidden="true" tabindex="-1"></a>NAO.df <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_table</span>(<span class="at">file =</span> loc)</span>
-<span id="cb30-3"><a href="tuesday-september-19-2022.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(NAO.df, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> May)) <span class="sc">+</span> </span>
-<span id="cb30-4"><a href="tuesday-september-19-2022.html#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb30-5"><a href="tuesday-september-19-2022.html#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Year&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb30-6"><a href="tuesday-september-19-2022.html#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;North Atlantic Oscillation (s.d.)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="tuesday-september-19-2022.html#cb609-1" aria-hidden="true" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="st">&quot;http://myweb.fsu.edu/jelsner/temp/data/NAO.txt&quot;</span></span>
+<span id="cb609-2"><a href="tuesday-september-19-2022.html#cb609-2" aria-hidden="true" tabindex="-1"></a>NAO.df <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_table</span>(<span class="at">file =</span> loc)</span>
+<span id="cb609-3"><a href="tuesday-september-19-2022.html#cb609-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(NAO.df, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> May)) <span class="sc">+</span> </span>
+<span id="cb609-4"><a href="tuesday-september-19-2022.html#cb609-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb609-5"><a href="tuesday-september-19-2022.html#cb609-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Year&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb609-6"><a href="tuesday-september-19-2022.html#cb609-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;North Atlantic Oscillation (s.d.)&quot;</span>)</span></code></pre></div>
 <p>Let’s return to the <code>mpg</code> data frame. The data frame contains different automobiles by who made it, the model, engine size, mileage, class, etc.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="tuesday-september-19-2022.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mpg)</span></code></pre></div>
+<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="tuesday-september-19-2022.html#cb610-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mpg)</span></code></pre></div>
 <pre><code>##  [1] &quot;manufacturer&quot; &quot;model&quot;        &quot;displ&quot;        &quot;year&quot;         &quot;cyl&quot;         
 ##  [6] &quot;trans&quot;        &quot;drv&quot;          &quot;cty&quot;          &quot;hwy&quot;          &quot;fl&quot;          
 ## [11] &quot;class&quot;</code></pre>
 <p>Let’s start with a scatter plot showing highway mileage on the vertical axis and engine size on the horizontal axis.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="tuesday-september-19-2022.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg) <span class="sc">+</span></span>
-<span id="cb33-2"><a href="tuesday-september-19-2022.html#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy), </span>
-<span id="cb33-3"><a href="tuesday-september-19-2022.html#cb33-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="tuesday-september-19-2022.html#cb612-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg) <span class="sc">+</span></span>
+<span id="cb612-2"><a href="tuesday-september-19-2022.html#cb612-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy), </span>
+<span id="cb612-3"><a href="tuesday-september-19-2022.html#cb612-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-271-1.png" width="672" /></p>
 <p>You add a third variable, like <code>class</code>, to a two dimensional scatterplot by mapping it to an aesthetic. An aesthetic is a visual property of the objects in our plot. Aesthetics include things like the size, the shape, or the color of our points. You can display a point in different ways by changing the levels of its aesthetic properties (e.g., changing the level by size, color, type).</p>
 <p>For example, you map the colors of our points to the <code>class</code> variable to reveal the class of each car.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="tuesday-september-19-2022.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
-<span id="cb34-2"><a href="tuesday-september-19-2022.html#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class))</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="tuesday-september-19-2022.html#cb613-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
+<span id="cb613-2"><a href="tuesday-september-19-2022.html#cb613-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, </span>
+<span id="cb613-3"><a href="tuesday-september-19-2022.html#cb613-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">y =</span> hwy, </span>
+<span id="cb613-4"><a href="tuesday-september-19-2022.html#cb613-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">color =</span> class))</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-272-1.png" width="672" /></p>
 <p>To map an aesthetic to a variable, associate the name of the aesthetic to the name of the variable inside <code>aes()</code>. Note in the previous plot <code>color =</code> was specified outside <code>aes()</code>.</p>
 <p><code>ggplot()</code> will automatically assign a unique level of the aesthetic (here a unique color) to each unique value of the variable, a process known as scaling. <code>ggplot()</code> will also add a legend that explains which levels correspond to which values.</p>
 <p>The colors show that many of the unusual points are two-seater cars. Sports cars have large engines like SUVs and pickup trucks, but small bodies like midsize and compact cars, which improves their gas mileage.</p>
@@ -590,22 +597,22 @@ id name value
 <h2>Facets</h2>
 <p>One way to add additional variables is with aesthetics. Another way, particularly useful for categorical variables, is to split our plot into facets, subplots that each display one subset of the data.</p>
 <p>To facet a plot by a single variable, use <code>facet_wrap()</code>. The first argument of <code>facet_wrap()</code> should be a formula, which you create with <code>~</code> (tilde) followed by a variable name (here ‘formula’ is the name of a data structure in R, not a synonym for ‘equation’). The variable that you pass to <code>facet_wrap()</code> should be discrete.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="tuesday-september-19-2022.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
-<span id="cb35-2"><a href="tuesday-september-19-2022.html#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
-<span id="cb35-3"><a href="tuesday-september-19-2022.html#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> class, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="tuesday-september-19-2022.html#cb614-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
+<span id="cb614-2"><a href="tuesday-september-19-2022.html#cb614-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
+<span id="cb614-3"><a href="tuesday-september-19-2022.html#cb614-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> class, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-273-1.png" width="672" /></p>
 <p>To facet a plot on the combination of two variables, add <code>facet_grid()</code> to the plot call. The first argument of <code>facet_grid()</code> is also a formula. This time the formula should contain two variable names separated by a <code>~</code> with the first variable named varying in the vertical direction and the second varying in the horizontal direction.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="tuesday-september-19-2022.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
-<span id="cb36-2"><a href="tuesday-september-19-2022.html#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
-<span id="cb36-3"><a href="tuesday-september-19-2022.html#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(drv <span class="sc">~</span> cyl)</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="tuesday-september-19-2022.html#cb615-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
+<span id="cb615-2"><a href="tuesday-september-19-2022.html#cb615-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
+<span id="cb615-3"><a href="tuesday-september-19-2022.html#cb615-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(drv <span class="sc">~</span> cyl)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-274-1.png" width="672" /></p>
 <p>Here <code>drv</code> refers to the drive train: front-wheel (<code>f</code>), rear-wheel (<code>r</code>) or 4-wheel (<code>4</code>).</p>
 </div>
 <div id="example-palmer-penguins-1" class="section level2 unnumbered">
 <h2>Example: Palmer penguins</h2>
 <p>Let’s return to the penguins data set. You import it as a data frame using <code>readr::read_csv()</code> function.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="tuesday-september-19-2022.html#cb37-1" aria-hidden="true" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/inst/extdata/penguins.csv&quot;</span></span>
-<span id="cb37-2"><a href="tuesday-september-19-2022.html#cb37-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(loc)</span></code></pre></div>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="tuesday-september-19-2022.html#cb616-1" aria-hidden="true" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/inst/extdata/penguins.csv&quot;</span></span>
+<span id="cb616-2"><a href="tuesday-september-19-2022.html#cb616-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(loc)</span></code></pre></div>
 <pre><code>## Rows: 344 Columns: 8
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
@@ -614,7 +621,7 @@ id name value
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="tuesday-september-19-2022.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(penguins)</span></code></pre></div>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="tuesday-september-19-2022.html#cb618-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(penguins)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 8
 ##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
 ##   &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;
@@ -628,65 +635,66 @@ id name value
 <p>Here you will visualize the relationship between <code>flipper_length_mm</code> and <code>body_mass_g</code> with respect to each species.</p>
 <p><a href="https://towardsdatascience.com/penguins-dataset-overview-iris-alternative-9453bb8c8d95" class="uri">https://towardsdatascience.com/penguins-dataset-overview-iris-alternative-9453bb8c8d95</a></p>
 <p>Start by creating a scatter plot with flipper length on the horizontal axis and body mass on the vertical axis.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="tuesday-september-19-2022.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins) <span class="sc">+</span></span>
-<span id="cb41-2"><a href="tuesday-september-19-2022.html#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g))</span></code></pre></div>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="tuesday-september-19-2022.html#cb620-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins) <span class="sc">+</span></span>
+<span id="cb620-2"><a href="tuesday-september-19-2022.html#cb620-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g))</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-276-1.png" width="672" /></p>
 <p>Next, make the color and shape of the points correspond to the species type. Use the colors “darkorange,” “purple,” “cyan4.”</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="tuesday-september-19-2022.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins) <span class="sc">+</span></span>
-<span id="cb43-2"><a href="tuesday-september-19-2022.html#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, </span>
-<span id="cb43-3"><a href="tuesday-september-19-2022.html#cb43-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y =</span> body_mass_g, </span>
-<span id="cb43-4"><a href="tuesday-september-19-2022.html#cb43-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> species,</span>
-<span id="cb43-5"><a href="tuesday-september-19-2022.html#cb43-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">shape =</span> species)) <span class="sc">+</span></span>
-<span id="cb43-6"><a href="tuesday-september-19-2022.html#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;purple&quot;</span>, <span class="st">&quot;cyan4&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="tuesday-september-19-2022.html#cb622-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins) <span class="sc">+</span></span>
+<span id="cb622-2"><a href="tuesday-september-19-2022.html#cb622-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, </span>
+<span id="cb622-3"><a href="tuesday-september-19-2022.html#cb622-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y =</span> body_mass_g, </span>
+<span id="cb622-4"><a href="tuesday-september-19-2022.html#cb622-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> species,</span>
+<span id="cb622-5"><a href="tuesday-september-19-2022.html#cb622-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb622-6"><a href="tuesday-september-19-2022.html#cb622-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;purple&quot;</span>, <span class="st">&quot;cyan4&quot;</span>))</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-277-1.png" width="672" /></p>
 <p>Finally, separate the scatter plots by island.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="tuesday-september-19-2022.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins) <span class="sc">+</span></span>
-<span id="cb45-2"><a href="tuesday-september-19-2022.html#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, </span>
-<span id="cb45-3"><a href="tuesday-september-19-2022.html#cb45-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y =</span> body_mass_g, </span>
-<span id="cb45-4"><a href="tuesday-september-19-2022.html#cb45-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> species,</span>
-<span id="cb45-5"><a href="tuesday-september-19-2022.html#cb45-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">shape =</span> species)) <span class="sc">+</span></span>
-<span id="cb45-6"><a href="tuesday-september-19-2022.html#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;purple&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb45-7"><a href="tuesday-september-19-2022.html#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> island)</span></code></pre></div>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="tuesday-september-19-2022.html#cb624-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins) <span class="sc">+</span></span>
+<span id="cb624-2"><a href="tuesday-september-19-2022.html#cb624-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, </span>
+<span id="cb624-3"><a href="tuesday-september-19-2022.html#cb624-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y =</span> body_mass_g, </span>
+<span id="cb624-4"><a href="tuesday-september-19-2022.html#cb624-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> species,</span>
+<span id="cb624-5"><a href="tuesday-september-19-2022.html#cb624-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb624-6"><a href="tuesday-september-19-2022.html#cb624-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;purple&quot;</span>, <span class="st">&quot;cyan4&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb624-7"><a href="tuesday-september-19-2022.html#cb624-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> island)</span></code></pre></div>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-278-1.png" width="672" /></p>
 </div>
 <div id="an-expository-graph" class="section level2 unnumbered">
 <h2>An expository graph</h2>
 <p>Adding labels and titles turns an exploratory graph into an expository graph. Consider again the <code>mpg</code> dataset and plot highway mileage (<code>hwy</code>) as a function of engine size (<code>displ</code>) with the color of the point layer given by automobile class (<code>class</code>).</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="tuesday-september-19-2022.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, </span>
-<span id="cb47-2"><a href="tuesday-september-19-2022.html#cb47-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
-<span id="cb47-3"><a href="tuesday-september-19-2022.html#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> class)) <span class="sc">+</span></span>
-<span id="cb47-4"><a href="tuesday-september-19-2022.html#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb47-5"><a href="tuesday-september-19-2022.html#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Fuel efficiency generally decreases with engine size&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="tuesday-september-19-2022.html#cb626-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, </span>
+<span id="cb626-2"><a href="tuesday-september-19-2022.html#cb626-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb626-3"><a href="tuesday-september-19-2022.html#cb626-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> class)) <span class="sc">+</span></span>
+<span id="cb626-4"><a href="tuesday-september-19-2022.html#cb626-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb626-5"><a href="tuesday-september-19-2022.html#cb626-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Fuel efficiency generally decreases with engine size&quot;</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-279-1.png" width="672" /></p>
 <p>The graph title should summarize the main finding. Avoid titles that just describe what the plot is, e.g. “A scatter plot of engine displacement vs. fuel economy.” If you need to add more text use subtitles and captions.</p>
 <ul>
 <li><code>subtitle =</code> adds additional detail in a smaller font beneath the title.</li>
 <li><code>caption =</code> adds text at the bottom right of the plot, often used to describe the source of the data.</li>
 </ul>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="tuesday-september-19-2022.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, </span>
-<span id="cb49-2"><a href="tuesday-september-19-2022.html#cb49-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy)) <span class="sc">+</span></span>
-<span id="cb49-3"><a href="tuesday-september-19-2022.html#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> class)) <span class="sc">+</span></span>
-<span id="cb49-4"><a href="tuesday-september-19-2022.html#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb49-5"><a href="tuesday-september-19-2022.html#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Fuel efficiency generally decreases with engine size&quot;</span>,</span>
-<span id="cb49-6"><a href="tuesday-september-19-2022.html#cb49-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Two seaters (sports cars) are an exception because of their light weight&quot;</span>,</span>
-<span id="cb49-7"><a href="tuesday-september-19-2022.html#cb49-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Data are from fueleconomy.gov&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="tuesday-september-19-2022.html#cb628-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, </span>
+<span id="cb628-2"><a href="tuesday-september-19-2022.html#cb628-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy)) <span class="sc">+</span></span>
+<span id="cb628-3"><a href="tuesday-september-19-2022.html#cb628-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> class)) <span class="sc">+</span></span>
+<span id="cb628-4"><a href="tuesday-september-19-2022.html#cb628-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb628-5"><a href="tuesday-september-19-2022.html#cb628-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Fuel efficiency generally decreases with engine size&quot;</span>,</span>
+<span id="cb628-6"><a href="tuesday-september-19-2022.html#cb628-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Two seaters (sports cars) are an exception because of their light weight&quot;</span>,</span>
+<span id="cb628-7"><a href="tuesday-september-19-2022.html#cb628-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Data are from fueleconomy.gov&quot;</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-280-1.png" width="672" /></p>
 </div>
 <div id="exporting-your-graph" class="section level2 unnumbered">
 <h2>Exporting your graph</h2>
 <p>When you knit to HTML and a plot is produced it gets output as a png file in our project directory.</p>
 <p>You can use the Export button under the Plots tab.</p>
 <p>Or you can export the file directly using R code. Here the file gets put into our working directory.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="tuesday-september-19-2022.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file =</span> <span class="st">&quot;Test.png&quot;</span>)</span>
-<span id="cb51-2"><a href="tuesday-september-19-2022.html#cb51-2" aria-hidden="true" tabindex="-1"></a>p1</span>
-<span id="cb51-3"><a href="tuesday-september-19-2022.html#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="tuesday-september-19-2022.html#cb630-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file =</span> <span class="st">&quot;Test.png&quot;</span>)</span>
+<span id="cb630-2"><a href="tuesday-september-19-2022.html#cb630-2" aria-hidden="true" tabindex="-1"></a>p1</span>
+<span id="cb630-3"><a href="tuesday-september-19-2022.html#cb630-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p>Note that the function <code>png()</code> opens the device and the function <code>dev.off()</code> closes it.</p>
 <p>You list the files in your working directory with the command <code>dir()</code>.</p>
+<p>CHECK OUT {ggdist}</p>
 
 </div>
 </div>
@@ -696,7 +704,7 @@ id name value
         </div>
       </div>
 <a href="thursday-september-14-2022.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="neural-network-example.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="thursday-september-21-2022.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

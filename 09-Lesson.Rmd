@@ -31,15 +31,13 @@ The histogram shows the shape of the distribution. The distribution is made up o
 
 The average, median, and standard deviations are obtained as follows:
 ```{r}
-library(dplyr)
-
 FLp.df |>
-  select(Mar) |>
-  summarize(avg = mean(Mar),
-            med = median(Mar),
-             sd = sd(Mar),
-            min = min(Mar),
-            max = max(Mar))
+  dplyr::select(Mar) |>
+  dplyr::summarize(avg = mean(Mar),
+                   med = median(Mar),
+                   sd = sd(Mar),
+                   min = min(Mar),
+                   max = max(Mar))
 ```
 
 The average value is larger than the median value and the histogram is not symmetric. That is, the number of cases with with low rainfall exceeds the number of cases with heavy rainfall.
@@ -166,12 +164,10 @@ id  name  value
 
 You use the `pivot_longer()` function from the {tidyr} package to turn the wide data frame into a long data frame. Let's do it and then decipher what happens.
 ```{r}
-library(tidyr)
-
 FLpL.df <- FLp.df |>
-  pivot_longer(cols = -Year, 
-               names_to = "Month",
-               values_to = "Rainfall")
+  tidyr::pivot_longer(cols = -Year, 
+                      names_to = "Month",
+                      values_to = "Rainfall")
 
 str(FLpL.df)
 ```
@@ -185,15 +181,15 @@ Note that the column `Month` is a character vector. When you make a plot using t
 month.abb
 
 FLpL.df <- FLpL.df |>
-  mutate(Month = factor(Month, levels = month.abb))
+  dplyr::mutate(Month = factor(Month, levels = month.abb))
 ```
 
 Note that you can reverse this with the `pivot_wider()` function.
 ```{r}
 FLpW.df <- FLpL.df |>
-  pivot_wider(id_cols = Year,
-              names_from = Month,
-              values_from = Rainfall)
+  tidyr::pivot_wider(id_cols = Year,
+                     names_from = Month,
+                     values_from = Rainfall)
 ```
 
 Then to create the box plot specify that the x aesthetic (x-axis) to be `Month` and the y-axis to be `Rainfall`.
@@ -212,7 +208,7 @@ For example, lets repeat the graph of monthly rainfall highlighting the month of
 You then repeat the plot but add another `geom_boxplot()` layer that includes the argument `data = May.df` along with the corresponding `aes()` function. Finally you color the box green.
 ```{r}
 May.df <- FLpL.df |>
-  filter(Month == "May")
+  dplyr::filter(Month == "May")
 
 ggplot(data = FLpL.df, aes(x = Month, y = Rainfall)) + 
   geom_boxplot() +
@@ -280,7 +276,9 @@ You add a third variable, like `class`, to a two dimensional scatterplot by mapp
 For example, you map the colors of our points to the `class` variable to reveal the class of each car.
 ```{r}
 ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy, color = class))
+  geom_point(mapping = aes(x = displ, 
+                           y = hwy, 
+                           color = class))
 ```
 
 To map an aesthetic to a variable, associate the name of the aesthetic to the name of the variable inside `aes()`. Note in the previous plot `color =` was specified outside `aes()`.

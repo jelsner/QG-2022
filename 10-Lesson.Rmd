@@ -16,7 +16,7 @@ The standard also describes how such objects are stored in and retrieved from da
 
 The simple feature standard is implemented in spatial databases (such as PostGIS), commercial GIS (e.g., ESRI ArcGIS). R has an implementation in the {sf} package.
 
-One type of spatial data file is called a _shapefile_. As an example, the U.S. census information at the state and territory level in a file called `cb_2015_us_state_500k.shp`. 
+One type of spatial data file is called a _shapefile_. As an example, the U.S. census information at the state and territory level in a file called `cb_2018_us_state_5m.shp`. https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html
 
 A shapefile encodes points, lines, and polygons in geographic space, and is actually a set of files.  Shapefiles appear with a `.shp` extension and with accompanying files ending in `.dbf` and `.prj`.
 
@@ -28,7 +28,7 @@ To get a shapefile into R all the files need to be in the same folder (directory
 
 As an example, you import the census data with the `sf::st_read()` function from the {sf} package. You assign to the object `usa.sf` the contents of the spatial data frame.
 ```{r}
-usa.sf <- sf::st_read(dsn = "data/cb_2015_us_state_500k")
+usa.sf <- sf::st_read(dsn = "data/cb_2018_us_state_5m")
 ```
 
 The output includes information about the file. The object shows up in our environment as a data frame with 56 observations and 10 variables.
@@ -76,7 +76,7 @@ Note: you don't need the `mapping = aes()` function. The mapping is assumed base
 
 The `geom_sf()` function maps the east-west coordinate to the `x` aesthetic and the north-south coordinate to the `y` aesthetic.
 
-The resulting map is not very informative, and since territories span the globe let's zoom into the contiguous U.S.
+The map is not very informative. Let's zoom into the contiguous states.
 
 What states/territories are there in the data frame `usa.sf`?
 ```{r}
@@ -92,19 +92,19 @@ First you need to get a list of all the states you want to keep. The `state.name
 state.name
 ```
 
-Let's remove the rows corresponding to the names `"Alaska"` and `"Hawaii"`. These are elements 2 and 11 so you create a new vector object called `states.names` (recycling the name) containing only the names of the lower 48.
+Let's remove the rows corresponding to the names `"Alaska"` and `"Hawaii"`. These are elements 2 and 11 so you create a new vector object called `sn` containing only the names of the lower 48.
 ```{r}
-state.name <- state.name[c(-2, -11)]
-state.name
+sn <- state.name[c(-2, -11)]
+sn
 ```
 
 Now you filter the `usa.sf` data frame keeping only the rows that are listed in the vector of state names. Assign this spatial data frame the name `usa_48.sf`.
 ```{r}
 usa_48.sf <- usa.sf |>
-  dplyr::filter(NAME %in% state.name)
+  dplyr::filter(NAME %in% sn)
 ```
 
-The function `%in%` finds only the rows in `usa.sf` with `NAME` equal to the names in the vector `state.name` and the `dplyr::filter()` function chooses these rows.
+The function `%in%` finds only the rows in `usa.sf` with `NAME` equal to the names in the vector `sn` and the `dplyr::filter()` function chooses these rows.
 
 Now redraw the map using the `usa_48.sf` simple feature data frame.
 ```{r}
@@ -119,12 +119,12 @@ ggplot(data = usa_48.sf) +
           color = "gray70")
 ```
 
-You can filter by state. Here you create a new simple feature data frame called `Florida.sf` then draw the boundary.
+You can filter by state. Here you create a new simple feature data frame called `Wisconsin.sf` then draw the boundary.
 ```{r}
-Florida.sf <- usa_48.sf |>
-  dplyr::filter(NAME == "Florida")
+Wisconsin.sf <- usa_48.sf |>
+  dplyr::filter(NAME == "Wisconsin")
 
-ggplot(data = Florida.sf) +
+ggplot(data = Wisconsin.sf) +
   geom_sf(fill = "palegreen", 
           color = "black")
 ```
