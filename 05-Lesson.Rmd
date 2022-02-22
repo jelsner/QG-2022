@@ -65,10 +65,12 @@ table(LH.df$FL)
 
 There are 93 years without a FL hurricane, 43 years with one hurricanes, 24 years with two hurricanes, and so on.
 
-## Creating data files {-}
+## Creating structured data files {-}
 https://environmentalcomputing.net/getting-started-with-r/
 
 Golden rules of data entry.
+
+Convert unstructured data files (e.g., data stored in PDF forms) to structured data. https://www.youtube.com/watch?v=yBkHfIO8YJk
 
 ## Data frames {-}
 
