@@ -2,16 +2,11 @@
 
 ## Today {-}
 
-- More map making
-
-* [Best practices for working with R](https://twitter.com/DanOvand0/status/1309223236740083712)
-Develop a project-oriented work flow and don't use `setwd()`. Don't hard-coded file path names. Use version control (github). Manage package dependencies. Pick a style of writing code and stick with it. Do as much as you can in RMarkdown (notes, lectures, slides, etc). Check out [Openscapes](https://www.openscapes.org/).
-
-* [Reading R](https://kieranhealy.org/blog/archives/2020/09/24/us-excess-mortality/)
+- Making maps
 
 ## Maps with tmap {-}
 
-The {tmap} package has flexible, layered-based functions for creating thematic maps. The syntax is like the syntax of the functions in {ggplot2}. They work with a variety of spatial data including simple feature data frames.
+The {tmap} package has functions for creating thematic maps. The syntax is like the syntax of the functions in {ggplot2}. The functions work with a variety of spatial data.
 
 Consider the simple feature data frame called `World` from the {tmap} package.
 ```{r}
@@ -21,13 +16,13 @@ data("World")
 str(World)
 ```
 
-The data are socioeconomic indicators from 177 countries around the world.
+The spatial data frame contains socioeconomic indicators from 177 countries around the world. Each row is one country's indicators.
 
-To make a map of the world first specify the spatial data frame using the `tm_shape()` function then add a layer. 
+You make a map by first specifying the spatial data frame using the `tm_shape()` function and then you add a layer consistent with the geometry.
 
-For example, if you want a map showing the index of happiness (`HPI`) by country, use the `tm_shape()` function to identify the spatial data frame `World` then add a polygon layer with the `tm_polygons()` function. 
+For example, if you want a map showing the index of happiness (column name `HPI`) by country, use the `tm_shape()` function to identify the spatial data frame `World` then add a fill layer with the `tm_polygons()` function. 
 
-The fill is specified by the argument `col =` that indicates what column from the data frame to use as your theme. Here `HPI`.
+The fill is specified by the argument `col =` indicating the specific column from the data frame. Here use `HPI`.
 ```{r}
 tm_shape(shp = World) +
     tm_polygons(col = "HPI")
@@ -37,128 +32,129 @@ The `tm_polygons()` function with the argument `col =` colors the countries base
 
 Map layers are added with the `+` operator.
 
-Caution: the column in the data frame `World` must be specified using quotes `"HPI"`. This is different from the {ggplot2} package work.
+Caution: the column in the data frame `World` must be specified using quotes `"HPI"`. This is different from the functions in the {ggplot2} package.
 
-If you want to show two thematic maps together each with a different variable, specify `col = c("HPI", "well_being")`
+To show two thematic maps together each with a different variable, specify `col = c("HPI", "well_being")`
 
-The `tm_polygons()` function automatically splits the values into meaningful groups (here 8) and countries with missing values (`NA`) values are colored gray. More or fewer intervals can be specified with the `n = ` argument, but the cutoff values are chosen at appropriate places.
+The `tm_polygons()` function splits the values in the specified column into meaningful groups (here 8) and countries with missing values (`NA`) values are colored gray. 
 
-To change the projection use the `projection = ` argument.
-```{r}
-tm_shape(shp = World, 
-         projection = "+proj=merc") +
-    tm_polygons(col = "HPI")
-```
-
-Not good for choropleth maps because it is not area preserving.
+More (or fewer) intervals can be specified with the `n = ` argument, but the cutoff values are chosen at appropriate places.
 
 ## Tornado data {-}
 
-Let's look at another example. Consider the tornado data from the Storm Prediction Center (SPC) as a shapefile in the directory `1950-2018-torn-aspath`.
+Consider the tornado data from the U.S. Storm Prediction Center (SPC). It is downloaded as a shapefile in the directory `data/1950-2018-torn-aspath`.
 
-Shapefiles are imported with the `sf::st_read()` function from the {sf} package.
+A shapefile is imported with the `sf::st_read()` function from the {sf} package.
 ```{r}
-tornadoes.sf <- sf::st_read(dsn = "data/1950-2018-torn-aspath")
+Tornadoes.sf <- sf::st_read(dsn = "data/1950-2018-torn-aspath")
 ```
 
-The result is a simple feature data frame with 63645 features (observations) and 23 fields (variables). 
+The assigned file is a simple feature data frame with 63645 features (observations) and 23 fields (variables). 
 
-Each observation is a unique tornado. The coordinate reference system is geographic (longitude, latitude) with EPSG 4326.
+Each row (observation) is a unique tornado.
 
 Look inside the simple feature data frame with the `glimpse()` function from the {dplyr} package.
 ```{r}
-dplyr::glimpse(tornadoes.sf)
+dplyr::glimpse(Tornadoes.sf)
 ```
 
 The first 22 columns are variables (attributes). The last column contains the geometry. Information in the `geometry` column is in well-known text (WKT) format. 
 
-Each tornado is a coded as a `LINESTRING` with a start and end location. This is where the `tm_shape()` function looks for the mapping information.
+Each tornado is a coded as a `LINESTRING` with a start and end location. This is where the `tm_shape()` function looks for the geographic information.
 
-You map the tracks of all tornadoes since 2011. First filter the data frame keeping only tornadoes occurring after the year (`yr`) 2010.
+Here you make a map showing the tracks of all the tornadoes since 2011. First filter the data frame keeping only tornadoes occurring after the year (`yr`) 2010.
 ```{r}
-tornadoes.sf <- tornadoes.sf |>
-                  dplyr::filter(yr > 2010) 
+TornadoesSince2011.sf <- 
+  Tornadoes.sf |>
+  dplyr::filter(yr >= 2011) 
 ```
 
-The objects `tornadoes.sf` and `usa_48.sf` are both simple feature data frames so you map variables in them as layers with successive calls to the `tm_shape()` function. 
-
-You start with a boundary map of the lower 48 states with `tm_polygons()` and then overlay the tornadoes with `tm_shape()` and `tm_lines()`.
+Next get a file containing the boundaries of the lower 48 states.
 ```{r}
-usa_48.sf <- USAboundaries::us_states() |>
-   filter(!state.name %in% c("Hawaii", "Alaska", "Puerto Rico"))
+USA_48.sf <- USAboundaries::us_states() |>
+   dplyr::filter(!state_name %in% c("Hawaii", "Alaska", "Puerto Rico"))
+```
 
-tm_shape(shp = usa_48.sf) +
-  tm_polygons() +
-tm_shape(shp = tornadoes.sf) +
+Then use the `tm_shape()` function together with the `tm_borders()` layer to draw the boundaries before adding the tornadoes. The tornadoes are in a separate spatial data frame so you use the `tm_shape()` function together with the `tm_lines()` layer.
+```{r}
+tm_shape(shp = USA_48.sf, projection = 5070) +
+  tm_borders() +
+tm_shape(shp = TornadoesSince2011.sf) +
     tm_lines(col = "red")
 ```
 
-You make the map interactive by first turning on the `"view"` mode with the `tmap_mode()` function and then rerunning the code. 
+The objects named `TornadoesSince2011.sf` and `USA_48.sf` are simple feature data frames. You map variables in the data frames as layers with successive calls to the `tm_shape()` function.
 
-Here use `tm_borders()` to remove the background gray fill. Note: Make sure you Chunk Output in Console
+The default projection is geographic (latitude-longitude) which is changed using the `projection =` argument and specifying a EPSG number (or proj4 string). Here you use 5070 corresponding to USA Contiguous Albers Equal Area Conic, USGS (EPSG = 5070 or 102003).
+
+You make the map interactive by first turning on the `"view"` mode with the `tmap_mode()` function before running the code. 
 ```{r}
 tmap_mode("view")
 
-tm_shape(usa_48.sf) +
+tm_shape(USA_48.sf) +
   tm_borders() +
-tm_shape(tornadoes.sf) +
+tm_shape(TornadoesSince2011.sf) +
     tm_lines(col = "red")
 ```
 
-You can now zoom and pan and change the background layers.
+You can now zoom, pan, and change the background layers.
 
-Switch back to plot mode as follows.
+Switch back to plot mode by typing.
 ```{r}
 tmap_mode("plot")
 ```
 
 ## Map the frequency of tornadoes by state {-}
 
-Suppose you want to map the number of tornadoes originating in each state. First filter to include only tornadoes occurring the lower 48 states, then group by state and summarize with the `n()` function that returns the number of cases by the grouping variable (`st`). Finally change the column name of `st` to `state_abbr` to match the state name abbreviation in the `usa_48.sf` data frame.
+Suppose you want to show the number of tornadoes originating in each state on a map. You first need to prepare the data.
+
+You do this with a series of `then` statements connected by pipes (`|>`). Start by assigning to the object `TornadoeCountsByState.df` the contents of `Tornadoes.sf` then remove the the geometry column, then remove states outside lower 48 using the `dplyr::filter()` function, then group by state, then summarize creating a colunm called `nT` that keeps track of the number of rows (`dplyr::n()`), then change the column name of `st` to `state_abbr` to match the state name abbreviation in the `USA_48.sf` data frame.
 ```{r}
-tornado_counts.sf <- tornadoes.sf |>
-  filter(st != "PR" & st != "HI" & st != "AK") |>
-  group_by(st) |>
-  summarize(nT = n()) |>
-  rename(state_abbr = st)
-glimpse(tornado_counts.sf)
+TornadoCountsByState.df <- Tornadoes.sf |>
+  sf::st_drop_geometry() |>
+  dplyr::filter(st != "PR" & st != "HI" & st != "AK") |>
+  dplyr::group_by(st) |>
+  dplyr::summarize(nT = dplyr::n()) |>
+  dplyr::rename(state_abbr = st)
+
+dplyr::glimpse(TornadoCountsByState.df)
 ```
 
 The resulting data frame contains the grouped-by column `state_abbr` (origin state) and the corresponding number of tornadoes. There were 459 tornadoes in Alabama since 2011, 255 in Arkansas, etc.
 
-Then you join the tornado counts with the map simple feature object. The `left_join()` function only works on data frames (not simple feature data frames) so you first convert them to data frames. You then convert the resulting data frame back to a simple feature data frame with the `st_as_sf()` function. Finally you select only the number of tornadoes column (`nT`).
+Next you need to join the new data frame with the spatial data frame. You join the `TornadoCountsByState.df` data frame with the map simple feature data frame `USA_48.sf` using the `dplyr::left_join()` function and recycling the name.
 ```{r}
-count_map.sf <-dplyr::left_join(as.data.frame(usa_48.sf),
-                                as.data.frame(tornado_counts.sf),
-                                by = "state_abbr") |>
-  st_as_sf() |>
-  select(nT)
-head(count_map.sf)
+USA_48.sf <-dplyr::left_join(USA_48.sf,
+                             TornadoCountsByState.df,
+                             by = "state_abbr") 
+
+names(USA_48.sf)
 ```
 
-NOTE: you want the result of the join to be the MULTIPOLGON geometry associated with each state so the first argument is the `usa_48.sf` simple feature data frame.
+Notice that you now have a new column in the spatial data frame `USA_48.sf` named `nT` that contains the number of tornadoes in that state.
 
-Next we construct our map. 
+Next you create a draft map to see if things look correct.
 ```{r}
-tm_shape(shp = count_map.sf) +
+tm_shape(shp = USA_48.sf, projection = 5070) +
   tm_polygons(col = "nT", 
            title = "Tornado Counts",
-           palette = "Reds")
+           palette = "Oranges")
 ```
+Tornadoes are most common in the southern Great Plains into the Southeast.
 
 You improve the defaults with additional layers including text, compass, and scale bar. The last layer is the print view.
 ```{r}
-tm_shape(shp = count_map.sf) +
+tm_shape(shp = USA_48.sf, projection = 5070) +
   tm_polygons(col = "nT", 
               border.col = "gray70",
               title = "Tornado Counts",
-              palette = "Reds") +
-  tm_text("nT", size = 1) +
+              palette = "Oranges") +
+  tm_text("nT", size = .5) +
   tm_compass() + 
   tm_scale_bar(lwd = .5)
 ```
 
-The format of the {tmap} objects (meoms) are like those of the {ggplot2} geometric objects (geoms) making it easy to get to a publication-quality map. Fine details are worked out in production.
+The format of the {tmap} objects (meoms) are like those of the {ggplot2} geometric objects (geoms) making it easy to quickly map your data. Fine details are worked out in production.
 
 [More information?](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html)
 
@@ -166,28 +162,26 @@ The format of the {tmap} objects (meoms) are like those of the {ggplot2} geometr
 
 Spatial data analysis often requires calculations on the geometry. Two of the most common are computing centroids (geographic centers) and buffers.
 
-Geometry calculations should not be done when the CRS is geographic. To see what CRS the simple feature data frame has use `st_crs()`.
+Geometry calculations should be done on projected coordinates. To see what CRS the simple feature data frame has use `st_crs()`.
 ```{r}
-st_crs(usa_48.sf)
+sf::st_crs(USA_48.sf)
 ```
 
-Note the (spatial) unit (`UNIT[]`) is degrees (longitude and latitude).
+Note the length unit (`LENGTHUNIT[]`) is meter.
 
-Here transform the CRS of the `usa_48.sf` simple feature data frame to a U.S. National Atlas equal area (EPSG: 2163) and then check it.
+Here transform the CRS of the `USA_48.sf` simple feature data frame to a U.S. National Atlas equal area (EPSG: 2163) and then check it.
 ```{r}
-usa_48.sf <- usa_48.sf |>
-  st_transform(crs = 2163)
+USA_48.sf <- USA_48.sf |>
+  sf::st_transform(crs = 2163)
 
-st_crs(usa_48.sf)
+sf::st_crs(USA_48.sf)
 ```
-
-The spatial unit is now meters (metre; English spelling).
 
 The centroid calculation locates the center of geographic objects representing the center of mass for the spatial object (think of balancing a plate on your finger).
 
 You calculate the geographic centroid of each of the lower 48 states with the `st_centroid()` function.
 ```{r}
-geo_centroid.sf <- st_centroid(usa_48.sf)
+geo_centroid.sf <- sf::st_centroid(USA_48.sf)
 ```
 
 The result is a simple feature data frame where the geometry is a single point for each state. You keep track of the fact that this is a simple feature data frame by using an object name that includes appends with `.sf`.
@@ -197,14 +191,14 @@ The warning tells you that the attributes in the new simple feature data frame m
 For example, compare the first two rows of the two simple feature data frames.
 ```{r}
 head(geo_centroid.sf, n = 2)
-head(usa_48.sf, n = 2)
+head(USA_48.sf, n = 2)
 ```
 
 The land area (`aland`) makes sense when the geometry is `MULTIPOLYGON` it is less congruent when the geometry is `POINT`.
 
 You map the points using the `tm_dots()` function after first mapping the state borders.
 ```{r}
-tm_shape(shp = usa_48.sf) +
+tm_shape(shp = USA_48.sf) +
   tm_borders(col = "gray70") +
 tm_shape(shp = geo_centroid.sf) +
   tm_dots(size = 1,
@@ -217,7 +211,7 @@ The function `sf::st_buffer()` computes the buffer and you set the distance with
 
 You then compute a 50 km (50,000 meters) buffer and save the resulting polygon 
 ```{r}
-FL.sf <- usa_48.sf |>
+FL.sf <- USA_48.sf |>
            dplyr::filter(state_abbr == "FL")
 
 FL_buffer.sf <- sf::st_buffer(FL.sf, 
@@ -251,7 +245,7 @@ This limits the ability to redraw or change the appearance of the map but it all
 You get map tiles with the `ggmap::get_map()` function from the {ggmap} package. You specify the bounding box (or the center and zoom). The bounding box requires the left-bottom and right-top corners of the region specified as longitude and latitude in decimal degrees.
 
 For instance, to obtain a map of Tallahassee from the stamen mapping service you first set the bounding box (left-bottom corner as -84.41, 30.37 and right-top corner as -84.19, 30.55) then use the `ggmap::get_stamenmap()` function with a zoom level of 12.
-```{r}
+```{r, message=FALSE}
 library(ggmap)
 
 TLH_bb <- c(left = -84.41,
@@ -277,8 +271,6 @@ Trial and error helps you decide on the appropriate level of detail depending on
 
 Or you can use the `tmaptools::geocode_OSM()` function from the {tmaptools} package. We first specify a location then get a geocoded coordinate.
 ```{r}
-library(tmaptools)
-
 FSU.list <- tmaptools::geocode_OSM("Florida State University")
 FSU.list
 ```
@@ -292,23 +284,24 @@ FSU_bb
 ```
 
 You then get the map tiles corresponding to the bounding box from the stamen map service with a zoom of 16 and create the map.
-```{r}
+```{r, message=FALSE}
 FSU_map <- ggmap::get_stamenmap(bbox = FSU_bb, 
-                         zoom = 16)
+                                zoom = 16)
 ggmap(FSU_map)
 ```
 
 ## Add data to the map {-}
 
 Let's consider a map of Chicago.
-```{r}
+```{r, message=FALSE}
 CHI_bb <- c(left = -87.936287,
             bottom = 41.679835,
             right = -87.447052,
             top = 42.000835)
 
 CHI_map <- get_stamenmap(bbox = CHI_bb,
-                         zoom = 11)
+                         zoom = 11,
+                         messaging = FALSE)
 ggmap(CHI_map)
 ```
 

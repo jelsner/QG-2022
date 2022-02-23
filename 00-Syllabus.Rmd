@@ -106,6 +106,11 @@ Assignment | Due Date (no later than 5 pm)
 
 ## Other materials to check out {-}
 
+* [Best practices for working with R](https://twitter.com/DanOvand0/status/1309223236740083712)
+Develop a project-oriented work flow and don't use `setwd()`. Don't hard-coded file path names. Use version control (github). Manage package dependencies. Pick a style of writing code and stick with it. Do as much as you can in RMarkdown (notes, lectures, slides, etc). Check out [Openscapes](https://www.openscapes.org/).
+
+* [Reading R](https://kieranhealy.org/blog/archives/2020/09/24/us-excess-mortality/)
+
 ## Julia programming language {-}
 
 Julia programming language https://julialang.org/

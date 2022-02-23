@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="tuesday-september-19-2022.html"/>
-
+<link rel="next" href="thursday-september-21-2022-1.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -52,6 +52,25 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.8/grViz.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -292,6 +311,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#overlays"><i class="fa fa-check"></i>Overlays</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#map-projections"><i class="fa fa-check"></i>Map projections</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html"><i class="fa fa-check"></i>Thursday, September 21, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#today-10"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#maps-with-tmap"><i class="fa fa-check"></i>Maps with tmap</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#tornado-data"><i class="fa fa-check"></i>Tornado data</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#map-the-frequency-of-tornadoes-by-state"><i class="fa fa-check"></i>Map the frequency of tornadoes by state</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#geometry-calculations"><i class="fa fa-check"></i>Geometry calculations</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#raster-maps"><i class="fa fa-check"></i>Raster maps</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#get-map-images"><i class="fa fa-check"></i>Get map images</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#add-data-to-the-map"><i class="fa fa-check"></i>Add data to the map</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#more-details-extra-material"><i class="fa fa-check"></i>More details (extra material)</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -322,7 +353,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="simple-feature-data-frames" class="section level2 unnumbered">
 <h2>Simple feature data frames</h2>
-<p>Geographic visualization of data is important to geographers and environmental scientists. There are lots of tools available for geo visualization from full-scale GIS applications such as ArcGIS and QGIS to web-based tools like Google maps.</p>
+<p>Geographic visualization of data is important to geographers and environmental scientists. There are many tools for geo visualization from full-scale GIS applications such as ArcGIS and QGIS to web-based tools like Google maps.</p>
 <p>Using code to make maps (instead of point and click) has the benefit of transparency and reproducibility.</p>
 <p>Simple features (simple feature access) refers to a standard that describes how objects in the real world are represented in computers. Emphasis is on the spatial geometry of the objects.</p>
 <p>The standard also describes how such objects are stored in and retrieved from databases, and which geometrical operations are defined for them.</p>
@@ -335,8 +366,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>.prj</code> stores information about the projection of the coordinates in the shapefile</li>
 </ul>
 <p>To get a shapefile into R all the files need to be in the same folder (directory).</p>
-<p>As an example, you import the census data with the <code>sf::st_read()</code> function from the {sf} package. You assign to the object <code>usa.sf</code> the contents of the spatial data frame.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="thursday-september-21-2022.html#cb1-1" aria-hidden="true" tabindex="-1"></a>usa.sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="at">dsn =</span> <span class="st">&quot;data/cb_2018_us_state_5m&quot;</span>)</span></code></pre></div>
+<p>As an example, you import the census data with the <code>sf::st_read()</code> function from the {sf} package. You assign to the object <code>USA.sf</code> the contents of the spatial data frame.</p>
+<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="thursday-september-21-2022.html#cb631-1" aria-hidden="true" tabindex="-1"></a>USA.sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="at">dsn =</span> <span class="st">&quot;data/cb_2018_us_state_5m&quot;</span>)</span></code></pre></div>
 <pre><code>## Reading layer `cb_2018_us_state_5m&#39; from data source 
 ##   `/Users/jameselsner/Desktop/ClassNotes/QG-2022/data/cb_2018_us_state_5m&#39; 
 ##   using driver `ESRI Shapefile&#39;
@@ -348,15 +379,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The output includes information about the file. The object shows up in our environment as a data frame with 56 observations and 10 variables.</p>
 <p>Each observation is either a state or territory.</p>
 <p>The <code>class()</code> function tells us the type of data frame and the <code>names()</code> function list the variable names.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="thursday-september-21-2022.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(usa.sf)</span></code></pre></div>
+<div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb633-1"><a href="thursday-september-21-2022.html#cb633-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(USA.sf)</span></code></pre></div>
 <pre><code>## [1] &quot;sf&quot;         &quot;data.frame&quot;</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="thursday-september-21-2022.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(usa.sf)</span></code></pre></div>
+<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb635-1"><a href="thursday-september-21-2022.html#cb635-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(USA.sf)</span></code></pre></div>
 <pre><code>##  [1] &quot;STATEFP&quot;  &quot;STATENS&quot;  &quot;AFFGEOID&quot; &quot;GEOID&quot;    &quot;STUSPS&quot;   &quot;NAME&quot;    
 ##  [7] &quot;LSAD&quot;     &quot;ALAND&quot;    &quot;AWATER&quot;   &quot;geometry&quot;</code></pre>
 <p>The file is a simple feature (<code>sf</code>) data frame (<code>data.frame</code>). This means it behaves like a data frame but it also contains information about where the observations are located.</p>
 <p>The first several columns serve as identifiers. The variable <code>ALAND</code> is the land area (square meters) and the <code>AWATER</code> is the water area (sq. m).</p>
 <p>The last column labeled <code>geometry</code> contains information about location stored as a ‘feature.’ The function <code>sf::st_geometry()</code> list the first 5 geometries.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="thursday-september-21-2022.html#cb7-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_geometry</span>(usa.sf)</span></code></pre></div>
+<div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb637-1"><a href="thursday-september-21-2022.html#cb637-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_geometry</span>(USA.sf)</span></code></pre></div>
 <pre><code>## Geometry set for 56 features 
 ## Geometry type: MULTIPOLYGON
 ## Dimension:     XY
@@ -377,17 +408,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Making a boundary map</h2>
 <p>The functions in the {ggplot2} package work with simple feature data frames to generate maps using the same grammar.</p>
 <p>The important function is <code>geom_sf()</code>. This function draws the geometries.</p>
-<p>For example, to draw a map showing the state and territorial boundaries first use <code>ggplot()</code> with the data argument specifying the simple feature data frame <code>usa.sf</code> and then add the <code>geom_sf()</code> function as a layer with the <code>+</code> symbol.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="thursday-september-21-2022.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb14-2"><a href="thursday-september-21-2022.html#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="thursday-september-21-2022.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> usa.sf) <span class="sc">+</span></span>
-<span id="cb14-4"><a href="thursday-september-21-2022.html#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>()</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>For example, to draw a map showing the state and territorial boundaries first use <code>ggplot()</code> with the data argument specifying the simple feature data frame <code>USA.sf</code> and then add the <code>geom_sf()</code> function as a layer with the <code>+</code> symbol.</p>
+<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="thursday-september-21-2022.html#cb644-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb644-2"><a href="thursday-september-21-2022.html#cb644-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb644-3"><a href="thursday-september-21-2022.html#cb644-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> USA.sf) <span class="sc">+</span></span>
+<span id="cb644-4"><a href="thursday-september-21-2022.html#cb644-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>()</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-285-1.png" width="672" /></p>
 <p>Note: you don’t need the <code>mapping = aes()</code> function. The mapping is assumed based on the fact that there is a <code>geometry</code> column in the simple feature data frame.</p>
 <p>The <code>geom_sf()</code> function maps the east-west coordinate to the <code>x</code> aesthetic and the north-south coordinate to the <code>y</code> aesthetic.</p>
 <p>The map is not very informative. Let’s zoom into the contiguous states.</p>
-<p>What states/territories are there in the data frame <code>usa.sf</code>?</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="thursday-september-21-2022.html#cb15-1" aria-hidden="true" tabindex="-1"></a>usa.sf<span class="sc">$</span>NAME</span></code></pre></div>
+<p>What states/territories are there in the data frame <code>USA.sf</code>?</p>
+<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="thursday-september-21-2022.html#cb645-1" aria-hidden="true" tabindex="-1"></a>USA.sf<span class="sc">$</span>NAME</span></code></pre></div>
 <pre><code>##  [1] &quot;Nebraska&quot;                                    
 ##  [2] &quot;Washington&quot;                                  
 ##  [3] &quot;New Mexico&quot;                                  
@@ -447,7 +478,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To zoom in you keep only rows corresponding to states (in the lower 48) from the simple feature data frame.</p>
 <p>Recall to pick out rows in a data frame you use the <code>dplyr::filter()</code> function from the {dplyr} package.</p>
 <p>First you need to get a list of all the states you want to keep. The <code>state.name</code> vector object contains all 50 state names. This is like the <code>month.abb</code> vector you saw earlier.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="thursday-september-21-2022.html#cb17-1" aria-hidden="true" tabindex="-1"></a>state.name</span></code></pre></div>
+<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="thursday-september-21-2022.html#cb647-1" aria-hidden="true" tabindex="-1"></a>state.name</span></code></pre></div>
 <pre><code>##  [1] &quot;Alabama&quot;        &quot;Alaska&quot;         &quot;Arizona&quot;        &quot;Arkansas&quot;      
 ##  [5] &quot;California&quot;     &quot;Colorado&quot;       &quot;Connecticut&quot;    &quot;Delaware&quot;      
 ##  [9] &quot;Florida&quot;        &quot;Georgia&quot;        &quot;Hawaii&quot;         &quot;Idaho&quot;         
@@ -462,8 +493,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [45] &quot;Vermont&quot;        &quot;Virginia&quot;       &quot;Washington&quot;     &quot;West Virginia&quot; 
 ## [49] &quot;Wisconsin&quot;      &quot;Wyoming&quot;</code></pre>
 <p>Let’s remove the rows corresponding to the names <code>"Alaska"</code> and <code>"Hawaii"</code>. These are elements 2 and 11 so you create a new vector object called <code>sn</code> containing only the names of the lower 48.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="thursday-september-21-2022.html#cb19-1" aria-hidden="true" tabindex="-1"></a>sn <span class="ot">&lt;-</span> state.name[<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">11</span>)]</span>
-<span id="cb19-2"><a href="thursday-september-21-2022.html#cb19-2" aria-hidden="true" tabindex="-1"></a>sn</span></code></pre></div>
+<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="thursday-september-21-2022.html#cb649-1" aria-hidden="true" tabindex="-1"></a>sn <span class="ot">&lt;-</span> state.name[<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">11</span>)]</span>
+<span id="cb649-2"><a href="thursday-september-21-2022.html#cb649-2" aria-hidden="true" tabindex="-1"></a>sn</span></code></pre></div>
 <pre><code>##  [1] &quot;Alabama&quot;        &quot;Arizona&quot;        &quot;Arkansas&quot;       &quot;California&quot;    
 ##  [5] &quot;Colorado&quot;       &quot;Connecticut&quot;    &quot;Delaware&quot;       &quot;Florida&quot;       
 ##  [9] &quot;Georgia&quot;        &quot;Idaho&quot;          &quot;Illinois&quot;       &quot;Indiana&quot;       
@@ -476,36 +507,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [37] &quot;Rhode Island&quot;   &quot;South Carolina&quot; &quot;South Dakota&quot;   &quot;Tennessee&quot;     
 ## [41] &quot;Texas&quot;          &quot;Utah&quot;           &quot;Vermont&quot;        &quot;Virginia&quot;      
 ## [45] &quot;Washington&quot;     &quot;West Virginia&quot;  &quot;Wisconsin&quot;      &quot;Wyoming&quot;</code></pre>
-<p>Now you filter the <code>usa.sf</code> data frame keeping only the rows that are listed in the vector of state names. Assign this spatial data frame the name <code>usa_48.sf</code>.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="thursday-september-21-2022.html#cb21-1" aria-hidden="true" tabindex="-1"></a>usa_48.sf <span class="ot">&lt;-</span> usa.sf <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href="thursday-september-21-2022.html#cb21-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(NAME <span class="sc">%in%</span> sn)</span></code></pre></div>
-<p>The function <code>%in%</code> finds only the rows in <code>usa.sf</code> with <code>NAME</code> equal to the names in the vector <code>sn</code> and the <code>dplyr::filter()</code> function chooses these rows.</p>
-<p>Now redraw the map using the <code>usa_48.sf</code> simple feature data frame.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="thursday-september-21-2022.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span></span>
-<span id="cb22-2"><a href="thursday-september-21-2022.html#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>()</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Now you filter the <code>USA.sf</code> data frame keeping only the rows that are listed in the vector of state names. Assign this spatial data frame the name <code>USA_48.sf</code>.</p>
+<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="thursday-september-21-2022.html#cb651-1" aria-hidden="true" tabindex="-1"></a>USA_48.sf <span class="ot">&lt;-</span> USA.sf <span class="sc">|&gt;</span></span>
+<span id="cb651-2"><a href="thursday-september-21-2022.html#cb651-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(NAME <span class="sc">%in%</span> sn)</span></code></pre></div>
+<p>The function <code>%in%</code> finds only the rows in <code>USA.sf</code> with <code>NAME</code> equal to the names in the vector <code>sn</code> and the <code>dplyr::filter()</code> function chooses these rows.</p>
+<p>Now redraw the map using the <code>USA_48.sf</code> simple feature data frame.</p>
+<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="thursday-september-21-2022.html#cb652-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> USA_48.sf) <span class="sc">+</span></span>
+<span id="cb652-2"><a href="thursday-september-21-2022.html#cb652-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>()</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-290-1.png" width="672" /></p>
 <p>Since the map is a <code>ggplot()</code> object, it is modified like any other <code>ggplot()</code> graph. For example, you change the color of the map and the borders as follows.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="thursday-september-21-2022.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span></span>
-<span id="cb23-2"><a href="thursday-september-21-2022.html#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, </span>
-<span id="cb23-3"><a href="thursday-september-21-2022.html#cb23-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;gray70&quot;</span>)</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="thursday-september-21-2022.html#cb653-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> USA_48.sf) <span class="sc">+</span></span>
+<span id="cb653-2"><a href="thursday-september-21-2022.html#cb653-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, </span>
+<span id="cb653-3"><a href="thursday-september-21-2022.html#cb653-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;gray70&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-291-1.png" width="672" /></p>
 <p>You can filter by state. Here you create a new simple feature data frame called <code>Wisconsin.sf</code> then draw the boundary.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="thursday-september-21-2022.html#cb24-1" aria-hidden="true" tabindex="-1"></a>Wisconsin.sf <span class="ot">&lt;-</span> usa_48.sf <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a href="thursday-september-21-2022.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(NAME <span class="sc">==</span> <span class="st">&quot;Wisconsin&quot;</span>)</span>
-<span id="cb24-3"><a href="thursday-september-21-2022.html#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="thursday-september-21-2022.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Wisconsin.sf) <span class="sc">+</span></span>
-<span id="cb24-5"><a href="thursday-september-21-2022.html#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="st">&quot;palegreen&quot;</span>, </span>
-<span id="cb24-6"><a href="thursday-september-21-2022.html#cb24-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="thursday-september-21-2022.html#cb654-1" aria-hidden="true" tabindex="-1"></a>Wisconsin.sf <span class="ot">&lt;-</span> USA_48.sf <span class="sc">|&gt;</span></span>
+<span id="cb654-2"><a href="thursday-september-21-2022.html#cb654-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(NAME <span class="sc">==</span> <span class="st">&quot;Wisconsin&quot;</span>)</span>
+<span id="cb654-3"><a href="thursday-september-21-2022.html#cb654-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb654-4"><a href="thursday-september-21-2022.html#cb654-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Wisconsin.sf) <span class="sc">+</span></span>
+<span id="cb654-5"><a href="thursday-september-21-2022.html#cb654-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="st">&quot;palegreen&quot;</span>, </span>
+<span id="cb654-6"><a href="thursday-september-21-2022.html#cb654-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-292-1.png" width="672" /></p>
 <p>Where is the state of Nebraska? Repeat but fill in Nebraska using the color brown.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="thursday-september-21-2022.html#cb25-1" aria-hidden="true" tabindex="-1"></a>Nebraska.sf <span class="ot">&lt;-</span> usa_48.sf <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a href="thursday-september-21-2022.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(NAME <span class="sc">==</span> <span class="st">&quot;Nebraska&quot;</span>)</span>
-<span id="cb25-3"><a href="thursday-september-21-2022.html#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="thursday-september-21-2022.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span></span>
-<span id="cb25-5"><a href="thursday-september-21-2022.html#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
-<span id="cb25-6"><a href="thursday-september-21-2022.html#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> Nebraska.sf, </span>
-<span id="cb25-7"><a href="thursday-september-21-2022.html#cb25-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">&quot;brown&quot;</span>)</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="thursday-september-21-2022.html#cb655-1" aria-hidden="true" tabindex="-1"></a>Nebraska.sf <span class="ot">&lt;-</span> USA_48.sf <span class="sc">|&gt;</span></span>
+<span id="cb655-2"><a href="thursday-september-21-2022.html#cb655-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(NAME <span class="sc">==</span> <span class="st">&quot;Nebraska&quot;</span>)</span>
+<span id="cb655-3"><a href="thursday-september-21-2022.html#cb655-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb655-4"><a href="thursday-september-21-2022.html#cb655-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> USA_48.sf) <span class="sc">+</span></span>
+<span id="cb655-5"><a href="thursday-september-21-2022.html#cb655-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
+<span id="cb655-6"><a href="thursday-september-21-2022.html#cb655-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> Nebraska.sf, </span>
+<span id="cb655-7"><a href="thursday-september-21-2022.html#cb655-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">&quot;brown&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-293-1.png" width="672" /></p>
 <p>You add layers with the <code>+</code> symbol as before.</p>
 <p>Boundaries serve as the background canvas for spatial data analysis. You usually need to add data to this canvas. Depending on the type of data, you either overlay it on top of the boundaries or use it to fill in the areas between the boundaries.</p>
 </div>
@@ -513,27 +544,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Fills</h2>
 <p>Choropleth maps (heat maps, thematic maps) map data values from a column in the simple feature data frame to the <code>fill</code> aesthetic. The aesthetic assigns colors to the various map areas (e.g. countries, states, counties, zip codes).</p>
 <p>Recall the column labeled <code>AWATER</code> contains the water area in square meters. Since the values are very large first divide by million (10^9) to get the values in 1000s of square kilometers. This is done with the <code>mutate()</code> function.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="thursday-september-21-2022.html#cb26-1" aria-hidden="true" tabindex="-1"></a>usa_48.sf <span class="ot">&lt;-</span> usa_48.sf <span class="sc">|&gt;</span></span>
-<span id="cb26-2"><a href="thursday-september-21-2022.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">WaterArea_km2 =</span> AWATER<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="thursday-september-21-2022.html#cb656-1" aria-hidden="true" tabindex="-1"></a>USA_48.sf <span class="ot">&lt;-</span> USA_48.sf <span class="sc">|&gt;</span></span>
+<span id="cb656-2"><a href="thursday-september-21-2022.html#cb656-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">WaterArea_km2 =</span> AWATER<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">9</span>)</span></code></pre></div>
 <p>Then create a choropleth map showing the water area by filling the area between the state borders with a color. This is done using the <code>aes()</code> function and the argument <code>fill = WaterArea_km2</code>.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="thursday-september-21-2022.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span></span>
-<span id="cb27-2"><a href="thursday-september-21-2022.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> WaterArea_km2))</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="thursday-september-21-2022.html#cb657-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> USA_48.sf) <span class="sc">+</span></span>
+<span id="cb657-2"><a href="thursday-september-21-2022.html#cb657-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> WaterArea_km2))</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-295-1.png" width="672" /></p>
 <p>Note how this differs from just drawing the boundaries. In this case you use the <code>aes()</code> function with the fill aesthetic.</p>
 <p>The map is not very informative. large water area of Michigan which includes Lakes Michigan, Superior, and Huron has by far the most water area with most other states have a lot less.</p>
 <p>To change that use the logarithm of the area. The base 10 logarithm is 0 when the value is 1, 1 when the value is 10, 2 when the value is 100 and so on. This is seen with the <code>log10()</code> function.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="thursday-september-21-2022.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log10</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">1000</span>, <span class="dv">10000</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="thursday-september-21-2022.html#cb658-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log10</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">1000</span>, <span class="dv">10000</span>))</span></code></pre></div>
 <pre><code>## [1] 0 1 2 3 4</code></pre>
 <p>You convert the area to logarithms with the <code>log10()</code> function inside the <code>aes()</code> function as follows.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="thursday-september-21-2022.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span></span>
-<span id="cb30-2"><a href="thursday-september-21-2022.html#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">log10</span>(WaterArea_km2))) </span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="thursday-september-21-2022.html#cb660-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> USA_48.sf) <span class="sc">+</span></span>
+<span id="cb660-2"><a href="thursday-september-21-2022.html#cb660-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">log10</span>(WaterArea_km2))) </span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-297-1.png" width="672" /></p>
 <p>Another way to make the map more informative is to convert the continuous variable to a discrete variable and map the discrete values.</p>
 <p>In the {dplyr} package the <code>cut_interval()</code> function takes a continuous variable and makes n groups each having an equal range, <code>cut_number()</code> makes n groups with (approximately) equal numbers of observations; <code>cut_width()</code> makes groups of equal width.</p>
 <p>As an example, if you want a map with 5 colors with each color representing a state having a similar amount of water area you would use <code>cut_number()</code> and specify <code>n = 5</code>. You do this with the <code>mutate()</code> function to create a new variable (column) called <code>WaterArea_cut</code>.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="thursday-september-21-2022.html#cb31-1" aria-hidden="true" tabindex="-1"></a>usa_48.sf <span class="ot">&lt;-</span> usa_48.sf <span class="sc">|&gt;</span></span>
-<span id="cb31-2"><a href="thursday-september-21-2022.html#cb31-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">WaterArea_cut =</span> <span class="fu">cut_number</span>(WaterArea_km2, <span class="at">n =</span> <span class="dv">5</span>))</span>
-<span id="cb31-3"><a href="thursday-september-21-2022.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(usa_48.sf)</span></code></pre></div>
+<div class="sourceCode" id="cb661"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb661-1"><a href="thursday-september-21-2022.html#cb661-1" aria-hidden="true" tabindex="-1"></a>USA_48.sf <span class="ot">&lt;-</span> USA_48.sf <span class="sc">|&gt;</span></span>
+<span id="cb661-2"><a href="thursday-september-21-2022.html#cb661-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">WaterArea_cut =</span> <span class="fu">cut_number</span>(WaterArea_km2, <span class="at">n =</span> <span class="dv">5</span>))</span>
+<span id="cb661-3"><a href="thursday-september-21-2022.html#cb661-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(USA_48.sf)</span></code></pre></div>
 <pre><code>## Classes &#39;sf&#39; and &#39;data.frame&#39;:   48 obs. of  12 variables:
 ##  $ STATEFP      : chr  &quot;31&quot; &quot;53&quot; &quot;35&quot; &quot;46&quot; ...
 ##  $ STATENS      : chr  &quot;01779792&quot; &quot;01779804&quot; &quot;00897535&quot; &quot;01785534&quot; ...
@@ -555,19 +586,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   ..- attr(*, &quot;names&quot;)= chr [1:11] &quot;STATEFP&quot; &quot;STATENS&quot; &quot;AFFGEOID&quot; &quot;GEOID&quot; ...</code></pre>
 <p>Essentially you added a new factor variable called <code>WaterArea_cut</code> with five levels corresponding to equal number of water area values.</p>
 <p>You can go directly to the mapping as follows.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="thursday-september-21-2022.html#cb33-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">ggplot</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span></span>
-<span id="cb33-2"><a href="thursday-september-21-2022.html#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> WaterArea_cut))</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="thursday-september-21-2022.html#cb663-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">ggplot</span>(<span class="at">data =</span> USA_48.sf) <span class="sc">+</span></span>
+<span id="cb663-2"><a href="thursday-september-21-2022.html#cb663-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> WaterArea_cut))</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-299-1.png" width="672" /></p>
 <p>Make a choropleth map displaying the ratio of water area to land area (<code>ALAND</code>) by state.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="thursday-september-21-2022.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span></span>
-<span id="cb34-2"><a href="thursday-september-21-2022.html#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> AWATER<span class="sc">/</span>ALAND <span class="sc">*</span> <span class="dv">100</span>))</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="thursday-september-21-2022.html#cb664-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> USA_48.sf) <span class="sc">+</span></span>
+<span id="cb664-2"><a href="thursday-september-21-2022.html#cb664-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> AWATER<span class="sc">/</span>ALAND <span class="sc">*</span> <span class="dv">100</span>))</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-300-1.png" width="672" /></p>
 </div>
 <div id="overlays" class="section level2 unnumbered">
 <h2>Overlays</h2>
-<p>The <code>usa_48.sf</code> simple feature data frame uses longitude and latitude for it’s coordinate reference system (CRS). All spatial data frames have a CRS.</p>
+<p>The <code>USA_48.sf</code> simple feature data frame uses longitude and latitude for it’s coordinate reference system (CRS). All spatial data frames have a CRS.</p>
 <p>To see what CRS a simple feature data frame use the <code>sf::st_crs()</code> function.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="thursday-september-21-2022.html#cb35-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(usa_48.sf)</span></code></pre></div>
+<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="thursday-september-21-2022.html#cb665-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(USA_48.sf)</span></code></pre></div>
 <pre><code>## Coordinate Reference System:
 ##   User input: NAD83 
 ##   wkt:
@@ -589,24 +620,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Here it specifies a geographic reference system with longitude and latitude and a datum (North American 1983) that describes the sea-level shape of the planet as an ellipsoid.</p>
 <p>Because the CRS uses longitude and latitude you can add locations by specifying the geographic coordinates.</p>
 <p>For example, suppose you want to overlay the locations of two cities on the map. First you create a data frame containing the longitudes, latitudes, and names of the locations.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="thursday-september-21-2022.html#cb37-1" aria-hidden="true" tabindex="-1"></a>Cities.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">long =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">84.2809</span>, <span class="sc">-</span><span class="fl">87.9735</span>),</span>
-<span id="cb37-2"><a href="thursday-september-21-2022.html#cb37-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">lat =</span> <span class="fu">c</span>(<span class="fl">30.4381</span>,<span class="fl">43.0115</span>),</span>
-<span id="cb37-3"><a href="thursday-september-21-2022.html#cb37-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;Tallahassee&quot;</span>, <span class="st">&quot;Milwaukee&quot;</span>))</span>
-<span id="cb37-4"><a href="thursday-september-21-2022.html#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(Cities.df)</span></code></pre></div>
+<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="thursday-september-21-2022.html#cb667-1" aria-hidden="true" tabindex="-1"></a>Cities.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">long =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">84.2809</span>, <span class="sc">-</span><span class="fl">87.9735</span>),</span>
+<span id="cb667-2"><a href="thursday-september-21-2022.html#cb667-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">lat =</span> <span class="fu">c</span>(<span class="fl">30.4381</span>,<span class="fl">43.0115</span>),</span>
+<span id="cb667-3"><a href="thursday-september-21-2022.html#cb667-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;Tallahassee&quot;</span>, <span class="st">&quot;Milwaukee&quot;</span>))</span>
+<span id="cb667-4"><a href="thursday-september-21-2022.html#cb667-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(Cities.df)</span></code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
 <p>Next you draw the map as before but add the locations with a point layer and label the locations with a text layer.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="thursday-september-21-2022.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span></span>
-<span id="cb39-2"><a href="thursday-september-21-2022.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="st">&quot;gray80&quot;</span>) <span class="sc">+</span></span>
-<span id="cb39-3"><a href="thursday-september-21-2022.html#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> Cities.df, </span>
-<span id="cb39-4"><a href="thursday-september-21-2022.html#cb39-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat), </span>
-<span id="cb39-5"><a href="thursday-september-21-2022.html#cb39-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb39-6"><a href="thursday-september-21-2022.html#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> Cities.df,</span>
-<span id="cb39-7"><a href="thursday-september-21-2022.html#cb39-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">label =</span> names),</span>
-<span id="cb39-8"><a href="thursday-september-21-2022.html#cb39-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">nudge_y =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="thursday-september-21-2022.html#cb669-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> USA_48.sf) <span class="sc">+</span></span>
+<span id="cb669-2"><a href="thursday-september-21-2022.html#cb669-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="st">&quot;gray80&quot;</span>) <span class="sc">+</span></span>
+<span id="cb669-3"><a href="thursday-september-21-2022.html#cb669-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> Cities.df, </span>
+<span id="cb669-4"><a href="thursday-september-21-2022.html#cb669-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat), </span>
+<span id="cb669-5"><a href="thursday-september-21-2022.html#cb669-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb669-6"><a href="thursday-september-21-2022.html#cb669-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> Cities.df,</span>
+<span id="cb669-7"><a href="thursday-september-21-2022.html#cb669-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">label =</span> names),</span>
+<span id="cb669-8"><a href="thursday-september-21-2022.html#cb669-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">nudge_y =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-303-1.png" width="672" /></p>
 <p>As another example, let’s consider the <code>airports</code> data frame from the {nycflights13} package. The data frame includes information on 1458 airports in the United States including their location with latitude and longitude.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="thursday-september-21-2022.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
-<span id="cb40-2"><a href="thursday-september-21-2022.html#cb40-2" aria-hidden="true" tabindex="-1"></a>airports</span></code></pre></div>
+<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="thursday-september-21-2022.html#cb670-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb670-2"><a href="thursday-september-21-2022.html#cb670-2" aria-hidden="true" tabindex="-1"></a>airports</span></code></pre></div>
 <pre><code>## # A tibble: 1,458 × 8
 ##    faa   name                             lat    lon   alt    tz dst   tzone    
 ##    &lt;chr&gt; &lt;chr&gt;                          &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    
@@ -622,24 +653,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 0S9   Jefferson County Intl           48.1 -123.    108    -8 A     America/…
 ## # … with 1,448 more rows</code></pre>
 <p>Each row is an airport and the location of the airport is given in the columns <code>lat</code> and <code>lon</code>. You can make a map without boundaries by drawing a scatter plot with <code>x = lon</code> and <code>y = lat</code>.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="thursday-september-21-2022.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> airports, </span>
-<span id="cb42-2"><a href="thursday-september-21-2022.html#cb42-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat)) <span class="sc">+</span></span>
-<span id="cb42-3"><a href="thursday-september-21-2022.html#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
-<p>If you only want airports within the continental United States, you first plot the <code>usa_48.sf</code> boundaries and then add the airport locations as a separate point layer and the use the <code>coord_sf()</code> function specifying the limits of the plot in the longitude direction (<code>xlim</code>) and the latitude direction (<code>ylim</code>).</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="thursday-september-21-2022.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span> </span>
-<span id="cb43-2"><a href="thursday-september-21-2022.html#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="st">&quot;gray80&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb43-3"><a href="thursday-september-21-2022.html#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> airports, </span>
-<span id="cb43-4"><a href="thursday-september-21-2022.html#cb43-4" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat)) <span class="sc">+</span></span>
-<span id="cb43-5"><a href="thursday-september-21-2022.html#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">130</span>, <span class="sc">-</span><span class="dv">60</span>),</span>
-<span id="cb43-6"><a href="thursday-september-21-2022.html#cb43-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">50</span>)) <span class="sc">+</span></span>
-<span id="cb43-7"><a href="thursday-september-21-2022.html#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="thursday-september-21-2022.html#cb672-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> airports, </span>
+<span id="cb672-2"><a href="thursday-september-21-2022.html#cb672-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat)) <span class="sc">+</span></span>
+<span id="cb672-3"><a href="thursday-september-21-2022.html#cb672-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-305-1.png" width="672" /></p>
+<p>If you only want airports within the continental United States, you first plot the <code>USA_48.sf</code> boundaries and then add the airport locations as a separate point layer and the use the <code>coord_sf()</code> function specifying the limits of the plot in the longitude direction (<code>xlim</code>) and the latitude direction (<code>ylim</code>).</p>
+<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="thursday-september-21-2022.html#cb673-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> USA_48.sf) <span class="sc">+</span> </span>
+<span id="cb673-2"><a href="thursday-september-21-2022.html#cb673-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="st">&quot;gray80&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb673-3"><a href="thursday-september-21-2022.html#cb673-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> airports, </span>
+<span id="cb673-4"><a href="thursday-september-21-2022.html#cb673-4" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat)) <span class="sc">+</span></span>
+<span id="cb673-5"><a href="thursday-september-21-2022.html#cb673-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">130</span>, <span class="sc">-</span><span class="dv">60</span>),</span>
+<span id="cb673-6"><a href="thursday-september-21-2022.html#cb673-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">50</span>)) <span class="sc">+</span></span>
+<span id="cb673-7"><a href="thursday-september-21-2022.html#cb673-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-306-1.png" width="672" /></p>
 <p>Alternatively, you can use <code>sf::st_as_sf()</code> to convert the <code>airports</code> data frame to a simple features data frame. The argument <code>coords =</code> tells <code>sf::st_as_sf()</code> which columns contain the geographic coordinates of each airport. You also set the CRS using the <code>sf::st_crs()</code> function and use the EPSG code corresponding to a geographic CRS.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="thursday-september-21-2022.html#cb44-1" aria-hidden="true" tabindex="-1"></a>airports.sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_as_sf</span>(airports, </span>
-<span id="cb44-2"><a href="thursday-september-21-2022.html#cb44-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;lon&quot;</span>, <span class="st">&quot;lat&quot;</span>),</span>
-<span id="cb44-3"><a href="thursday-september-21-2022.html#cb44-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">crs =</span> <span class="dv">4269</span>)</span>
-<span id="cb44-4"><a href="thursday-september-21-2022.html#cb44-4" aria-hidden="true" tabindex="-1"></a>airports.sf</span></code></pre></div>
+<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="thursday-september-21-2022.html#cb674-1" aria-hidden="true" tabindex="-1"></a>airports.sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_as_sf</span>(airports, </span>
+<span id="cb674-2"><a href="thursday-september-21-2022.html#cb674-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;lon&quot;</span>, <span class="st">&quot;lat&quot;</span>),</span>
+<span id="cb674-3"><a href="thursday-september-21-2022.html#cb674-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">crs =</span> <span class="dv">4269</span>)</span>
+<span id="cb674-4"><a href="thursday-september-21-2022.html#cb674-4" aria-hidden="true" tabindex="-1"></a>airports.sf</span></code></pre></div>
 <pre><code>## Simple feature collection with 1458 features and 6 fields
 ## Geometry type: POINT
 ## Dimension:     XY
@@ -660,55 +691,61 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 0S9   Jefferson County Intl   108    -8 A     Amer… (-122.8106 48.05381)
 ## # … with 1,448 more rows</code></pre>
 <p>To graph the points on the map, you use a second <code>geom_sf()</code>.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="thursday-september-21-2022.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb46-2"><a href="thursday-september-21-2022.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span> </span>
-<span id="cb46-3"><a href="thursday-september-21-2022.html#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> airports.sf, <span class="at">shape =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb46-4"><a href="thursday-september-21-2022.html#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">130</span>, <span class="sc">-</span><span class="dv">60</span>),</span>
-<span id="cb46-5"><a href="thursday-september-21-2022.html#cb46-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">50</span>))</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="thursday-september-21-2022.html#cb676-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb676-2"><a href="thursday-september-21-2022.html#cb676-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> USA_48.sf) <span class="sc">+</span> </span>
+<span id="cb676-3"><a href="thursday-september-21-2022.html#cb676-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> airports.sf, <span class="at">shape =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb676-4"><a href="thursday-september-21-2022.html#cb676-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">130</span>, <span class="sc">-</span><span class="dv">60</span>),</span>
+<span id="cb676-5"><a href="thursday-september-21-2022.html#cb676-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">50</span>))</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-308-1.png" width="672" /></p>
 <p>You can change the size or type of symbols on the map. For instance, you can draw a bubble plot (also known as a proportional symbol map) and encode the altitude of the airport through the <code>size =</code> aesthetic.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="thursday-september-21-2022.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb47-2"><a href="thursday-september-21-2022.html#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span> </span>
-<span id="cb47-3"><a href="thursday-september-21-2022.html#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> airports.sf, <span class="fu">aes</span>(<span class="at">size =</span> alt), </span>
-<span id="cb47-4"><a href="thursday-september-21-2022.html#cb47-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">alpha =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb47-5"><a href="thursday-september-21-2022.html#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">130</span>, <span class="sc">-</span><span class="dv">60</span>),</span>
-<span id="cb47-6"><a href="thursday-september-21-2022.html#cb47-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">50</span>)) <span class="sc">+</span></span>
-<span id="cb47-7"><a href="thursday-september-21-2022.html#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_area</span>(<span class="at">guide =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb677-1"><a href="thursday-september-21-2022.html#cb677-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb677-2"><a href="thursday-september-21-2022.html#cb677-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> USA_48.sf) <span class="sc">+</span> </span>
+<span id="cb677-3"><a href="thursday-september-21-2022.html#cb677-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> airports.sf, <span class="fu">aes</span>(<span class="at">size =</span> alt), </span>
+<span id="cb677-4"><a href="thursday-september-21-2022.html#cb677-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">alpha =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb677-5"><a href="thursday-september-21-2022.html#cb677-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">130</span>, <span class="sc">-</span><span class="dv">60</span>),</span>
+<span id="cb677-6"><a href="thursday-september-21-2022.html#cb677-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">50</span>)) <span class="sc">+</span></span>
+<span id="cb677-7"><a href="thursday-september-21-2022.html#cb677-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_area</span>(<span class="at">guide =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please
 ## use `guide = &quot;none&quot;` instead.</code></pre>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-309-1.png" width="672" /></p>
 <p>Circle area is proportional to the airport’s altitude (in feet).</p>
 </div>
 <div id="map-projections" class="section level2 unnumbered">
 <h2>Map projections</h2>
-<p>Representing the globe on a flat surface is challenging. Depending on how the globe is projected onto a 2-D surface (map), at least some features will be distorted.</p>
-<p>The <code>coord_sf()</code> function package provides a way to project the globe in various ways.</p>
-<p>With a geographic projection the longitudes and latitudes are treated as x (horizontal) and y (vertical) coordinates. First assign the map to <code>base_map</code> and then render it to the plot device.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="thursday-september-21-2022.html#cb49-1" aria-hidden="true" tabindex="-1"></a>base_map <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> usa_48.sf) <span class="sc">+</span></span>
-<span id="cb49-2"><a href="thursday-september-21-2022.html#cb49-2" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_sf</span>()</span>
-<span id="cb49-3"><a href="thursday-september-21-2022.html#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-4"><a href="thursday-september-21-2022.html#cb49-4" aria-hidden="true" tabindex="-1"></a>base_map</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
-<p>Note that the equal spacing between the latitudes and between the longitudes and that 1 degree latitude equals 1 degree longitude.</p>
-<p>To change this ‘carto-cartesian’ map you need to project it.</p>
-<p>Some projections are simple and require just the name of the projection. As an example, to change the base map to have a Mercator projection you use the <code>coord_sf()</code> function with <code>crs = "+proj=merc"</code>.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="thursday-september-21-2022.html#cb50-1" aria-hidden="true" tabindex="-1"></a>base_map <span class="sc">+</span></span>
-<span id="cb50-2"><a href="thursday-september-21-2022.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="st">&quot;+proj=merc&quot;</span>) <span class="sc">+</span></span>
-<span id="cb50-3"><a href="thursday-september-21-2022.html#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Mercator projection&quot;</span>)</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
-<p>Note that the distance between the latitudes increases with increasing latitude.</p>
-<p>The Mercator is widely used but it makes an area closer to the poles appear larger than the same area closer to the equator. Greenland ends up larger than the entire continent of Africa.</p>
+<p>Depending on how a curved surface is projected onto a 2-D surface (map), at least some features will be distorted. The <code>coord_sf()</code> function package provides a way to adjust projections.</p>
+<p>With a geographic projection the longitudes and latitudes are treated as x (horizontal) and y (vertical) coordinates.</p>
+<p>Consider again the boundary map of the lower 48 states. Here we get the boundary file using the <code>us_states()</code> function from the {USAboundaries} package and use the <code>filter()</code> function to remove rows corresponding to Hawaii, Alaska, and Puerto Rico.</p>
+<div class="sourceCode" id="cb679"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb679-1"><a href="thursday-september-21-2022.html#cb679-1" aria-hidden="true" tabindex="-1"></a>USA_48.sf <span class="ot">&lt;-</span> USAboundaries<span class="sc">::</span><span class="fu">us_states</span>() <span class="sc">|&gt;</span></span>
+<span id="cb679-2"><a href="thursday-september-21-2022.html#cb679-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(<span class="sc">!</span>state_name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Hawaii&quot;</span>, <span class="st">&quot;Alaska&quot;</span>, <span class="st">&quot;Puerto Rico&quot;</span>))</span></code></pre></div>
+<p>Here you first assign the map to an object called <code>base_map</code> and then render the map to the plot device by typing the object name.</p>
+<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="thursday-september-21-2022.html#cb680-1" aria-hidden="true" tabindex="-1"></a>base_map <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> USA_48.sf) <span class="sc">+</span></span>
+<span id="cb680-2"><a href="thursday-september-21-2022.html#cb680-2" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_sf</span>()</span>
+<span id="cb680-3"><a href="thursday-september-21-2022.html#cb680-3" aria-hidden="true" tabindex="-1"></a>base_map</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-311-1.png" width="672" /></p>
+<p>Note the equal spacing between the latitudes and between the longitudes. 1 degree latitude distance equals 1 degree longitude distance. This is called a carto-cartesian (geographic) projection.</p>
+<p>You change the projection by specifying the CRS. For example to change the base map to have a Mercator projection you use the <code>coord_sf()</code> function with <code>crs = "+proj=merc"</code> (or equivalently <code>crs = 3857</code>, which uses the EPSG code 3857 for world Mercator projection).</p>
+<div class="sourceCode" id="cb681"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb681-1"><a href="thursday-september-21-2022.html#cb681-1" aria-hidden="true" tabindex="-1"></a>base_map <span class="sc">+</span></span>
+<span id="cb681-2"><a href="thursday-september-21-2022.html#cb681-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="st">&quot;+proj=merc&quot;</span>) <span class="sc">+</span></span>
+<span id="cb681-3"><a href="thursday-september-21-2022.html#cb681-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Mercator projection&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-312-1.png" width="672" /></p>
+<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb682-1"><a href="thursday-september-21-2022.html#cb682-1" aria-hidden="true" tabindex="-1"></a>base_map <span class="sc">+</span></span>
+<span id="cb682-2"><a href="thursday-september-21-2022.html#cb682-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="dv">3857</span>) <span class="sc">+</span></span>
+<span id="cb682-3"><a href="thursday-september-21-2022.html#cb682-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Mercator projection&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-312-2.png" width="672" /></p>
+<p>Note the distance between the latitudes increases with increasing latitude. Note also the projection is applied to the rendered map and not the simple feature data frame used to create it.</p>
+<p>The Mercator projection is widely used, but it makes areas closer to the poles appear larger than the same areas closer to the equator. Greenland appears as large as the continent of Africa. In reality Africa is 14 times larger in area than Greenland.</p>
 <p>Other coordinate systems require specification of the standard lines, or lines that define areas of the surface of the map that are tangent to the globe. These include Gall-Peters, Albers equal-area, and Lambert azimuthal.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="thursday-september-21-2022.html#cb51-1" aria-hidden="true" tabindex="-1"></a>base_map <span class="sc">+</span></span>
-<span id="cb51-2"><a href="thursday-september-21-2022.html#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="st">&quot;+proj=cea +lon_0=0 +lat_ts=45&quot;</span>) <span class="sc">+</span></span>
-<span id="cb51-3"><a href="thursday-september-21-2022.html#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Gall-Peters projection&quot;</span>)</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
-<p>With this projection you can visually compare the areas but shapes are distorted.</p>
-<p>Distortions are minimized between latitudes defined by the Albers equal area projection.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="thursday-september-21-2022.html#cb52-1" aria-hidden="true" tabindex="-1"></a>base_map <span class="sc">+</span></span>
-<span id="cb52-2"><a href="thursday-september-21-2022.html#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="st">&quot;+proj=aea +lat_1=25 +lat_2=50 +lon_0=-100&quot;</span>) <span class="sc">+</span></span>
-<span id="cb52-3"><a href="thursday-september-21-2022.html#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Albers equal-area projection&quot;</span>)</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="thursday-september-21-2022.html#cb683-1" aria-hidden="true" tabindex="-1"></a>base_map <span class="sc">+</span></span>
+<span id="cb683-2"><a href="thursday-september-21-2022.html#cb683-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="st">&quot;+proj=cea +lon_0=0 +lat_ts=45&quot;</span>) <span class="sc">+</span></span>
+<span id="cb683-3"><a href="thursday-september-21-2022.html#cb683-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Gall-Peters projection&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-313-1.png" width="672" /></p>
+<p>With this projection states having the same area appear with the same size, but the boundary shapes are distorted.</p>
+<p>Distortions are smallest between latitudes defined by the Albers equal-area projection.</p>
+<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb684-1"><a href="thursday-september-21-2022.html#cb684-1" aria-hidden="true" tabindex="-1"></a>base_map <span class="sc">+</span></span>
+<span id="cb684-2"><a href="thursday-september-21-2022.html#cb684-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="st">&quot;+proj=aea +lat_1=25 +lat_2=50 +lon_0=-100&quot;</span>) <span class="sc">+</span></span>
+<span id="cb684-3"><a href="thursday-september-21-2022.html#cb684-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Albers equal-area projection&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-314-1.png" width="672" /></p>
+<p>USA Contiguous Albers Equal Area Conic, USGS (EPSG = 5070 or 102003)</p>
 <p>See Kyle Walker’s get CRS
 See maptiles package <a href="https://github.com/riatelab/maptiles/" class="uri">https://github.com/riatelab/maptiles/</a></p>
 <p>Why map projections matter. Clip from The West Wing. <a href="https://youtu.be/vVX-PrBRtTY" class="uri">https://youtu.be/vVX-PrBRtTY</a></p>
@@ -720,8 +757,8 @@ See maptiles package <a href="https://github.com/riatelab/maptiles/" class="uri"
           </div>
         </div>
       </div>
-<a href="tuesday-september-19-2022.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="tuesday-september-19-2022.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="thursday-september-21-2022-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -775,6 +812,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

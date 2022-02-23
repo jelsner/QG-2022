@@ -26,9 +26,9 @@ A shapefile encodes points, lines, and polygons in geographic space, and is actu
 
 To get a shapefile into R all the files need to be in the same folder (directory). 
 
-As an example, you import the census data with the `sf::st_read()` function from the {sf} package. You assign to the object `usa.sf` the contents of the spatial data frame.
+As an example, you import the census data with the `sf::st_read()` function from the {sf} package. You assign to the object `USA.sf` the contents of the spatial data frame.
 ```{r}
-usa.sf <- sf::st_read(dsn = "data/cb_2018_us_state_5m")
+USA.sf <- sf::st_read(dsn = "data/cb_2018_us_state_5m")
 ```
 
 The output includes information about the file. The object shows up in our environment as a data frame with 56 observations and 10 variables.
@@ -37,8 +37,8 @@ Each observation is either a state or territory.
 
 The `class()` function tells us the type of data frame and the `names()` function list the variable names.
 ```{r}
-class(usa.sf)
-names(usa.sf)
+class(USA.sf)
+names(USA.sf)
 ```
 
 The file is a simple feature (`sf`) data frame (`data.frame`). This means it behaves like a data frame but it also contains information about where the observations are located.
@@ -47,7 +47,7 @@ The first several columns serve as identifiers. The variable `ALAND` is the land
 
 The last column labeled `geometry` contains information about location stored as a 'feature'. The function `sf::st_geometry()` list the first 5 geometries.
 ```{r}
-sf::st_geometry(usa.sf)
+sf::st_geometry(USA.sf)
 ```
 
 The geometry type in this case is `MULTIPOLYGON`.
@@ -64,11 +64,11 @@ The functions in the {ggplot2} package work with simple feature data frames to g
 
 The important function is `geom_sf()`. This function draws the geometries. 
 
-For example, to draw a map showing the state and territorial boundaries first use `ggplot()` with the data argument specifying the simple feature data frame `usa.sf` and then add the `geom_sf()` function as a layer with the `+` symbol.
+For example, to draw a map showing the state and territorial boundaries first use `ggplot()` with the data argument specifying the simple feature data frame `USA.sf` and then add the `geom_sf()` function as a layer with the `+` symbol.
 ```{r}
 library(ggplot2)
 
-ggplot(data = usa.sf) +
+ggplot(data = USA.sf) +
   geom_sf()
 ```
 
@@ -78,9 +78,9 @@ The `geom_sf()` function maps the east-west coordinate to the `x` aesthetic and 
 
 The map is not very informative. Let's zoom into the contiguous states.
 
-What states/territories are there in the data frame `usa.sf`?
+What states/territories are there in the data frame `USA.sf`?
 ```{r}
-usa.sf$NAME
+USA.sf$NAME
 ```
 
 To zoom in you keep only rows corresponding to states (in the lower 48) from the simple feature data frame. 
@@ -98,30 +98,30 @@ sn <- state.name[c(-2, -11)]
 sn
 ```
 
-Now you filter the `usa.sf` data frame keeping only the rows that are listed in the vector of state names. Assign this spatial data frame the name `usa_48.sf`.
+Now you filter the `USA.sf` data frame keeping only the rows that are listed in the vector of state names. Assign this spatial data frame the name `USA_48.sf`.
 ```{r}
-usa_48.sf <- usa.sf |>
+USA_48.sf <- USA.sf |>
   dplyr::filter(NAME %in% sn)
 ```
 
-The function `%in%` finds only the rows in `usa.sf` with `NAME` equal to the names in the vector `sn` and the `dplyr::filter()` function chooses these rows.
+The function `%in%` finds only the rows in `USA.sf` with `NAME` equal to the names in the vector `sn` and the `dplyr::filter()` function chooses these rows.
 
-Now redraw the map using the `usa_48.sf` simple feature data frame.
+Now redraw the map using the `USA_48.sf` simple feature data frame.
 ```{r}
-ggplot(data = usa_48.sf) +
+ggplot(data = USA_48.sf) +
   geom_sf()
 ```
 
 Since the map is a `ggplot()` object, it is modified like any other `ggplot()` graph. For example, you change the color of the map and the borders as follows.
 ```{r}
-ggplot(data = usa_48.sf) +
+ggplot(data = USA_48.sf) +
   geom_sf(fill = "skyblue", 
           color = "gray70")
 ```
 
 You can filter by state. Here you create a new simple feature data frame called `Wisconsin.sf` then draw the boundary.
 ```{r}
-Wisconsin.sf <- usa_48.sf |>
+Wisconsin.sf <- USA_48.sf |>
   dplyr::filter(NAME == "Wisconsin")
 
 ggplot(data = Wisconsin.sf) +
@@ -131,10 +131,10 @@ ggplot(data = Wisconsin.sf) +
 
 Where is the state of Nebraska? Repeat but fill in Nebraska using the color brown.
 ```{r}
-Nebraska.sf <- usa_48.sf |>
+Nebraska.sf <- USA_48.sf |>
   dplyr::filter(NAME == "Nebraska")
 
-ggplot(data = usa_48.sf) +
+ggplot(data = USA_48.sf) +
   geom_sf() +
   geom_sf(data = Nebraska.sf, 
           fill = "brown")
@@ -150,13 +150,13 @@ Choropleth maps (heat maps, thematic maps) map data values from a column in the 
 
 Recall the column labeled `AWATER` contains the water area in square meters. Since the values are very large first divide by million (10^9) to get the values in 1000s of square kilometers. This is done with the `mutate()` function.
 ```{r}
-usa_48.sf <- usa_48.sf |>
+USA_48.sf <- USA_48.sf |>
   dplyr::mutate(WaterArea_km2 = AWATER/10^9)
 ```
 
 Then create a choropleth map showing the water area by filling the area between the state borders with a color. This is done using the `aes()` function and the argument `fill = WaterArea_km2`.
 ```{r}
-ggplot(data = usa_48.sf) +
+ggplot(data = USA_48.sf) +
   geom_sf(aes(fill = WaterArea_km2))
 ```
 
@@ -171,7 +171,7 @@ log10(c(1, 10, 100, 1000, 10000))
 
 You convert the area to logarithms with the `log10()` function inside the `aes()` function as follows.
 ```{r}
-ggplot(data = usa_48.sf) +
+ggplot(data = USA_48.sf) +
   geom_sf(aes(fill = log10(WaterArea_km2))) 
 ```
 
@@ -181,32 +181,32 @@ In the {dplyr} package the `cut_interval()` function takes a continuous variable
 
 As an example, if you want a map with 5 colors with each color representing a state having a similar amount of water area you would use `cut_number()` and specify `n = 5`. You do this with the `mutate()` function to create a new variable (column) called `WaterArea_cut`.
 ```{r}
-usa_48.sf <- usa_48.sf |>
+USA_48.sf <- USA_48.sf |>
   dplyr::mutate(WaterArea_cut = cut_number(WaterArea_km2, n = 5))
-str(usa_48.sf)
+str(USA_48.sf)
 ```
 
 Essentially you added a new factor variable called `WaterArea_cut` with five levels corresponding to equal number of water area values.
 
 You can go directly to the mapping as follows.
 ```{r}
- ggplot(data = usa_48.sf) +
+ ggplot(data = USA_48.sf) +
     geom_sf(aes(fill = WaterArea_cut))
 ```
 
 Make a choropleth map displaying the ratio of water area to land area (`ALAND`) by state.
 ```{r}
-ggplot(data = usa_48.sf) +
+ggplot(data = USA_48.sf) +
   geom_sf(aes(fill = AWATER/ALAND * 100))
 ```
 
 ## Overlays {-}
 
-The `usa_48.sf` simple feature data frame uses longitude and latitude for it's coordinate reference system (CRS). All spatial data frames have a CRS.
+The `USA_48.sf` simple feature data frame uses longitude and latitude for it's coordinate reference system (CRS). All spatial data frames have a CRS.
 
 To see what CRS a simple feature data frame use the `sf::st_crs()` function.
 ```{r}
-sf::st_crs(usa_48.sf)
+sf::st_crs(USA_48.sf)
 ```
 
 The Coordinate Reference System information including the EPSG code (4269) and the corresponding GEOGCS, DATUM, etc is given in well-known text (wkt).
@@ -225,7 +225,7 @@ class(Cities.df)
 
 Next you draw the map as before but add the locations with a point layer and label the locations with a text layer.
 ```{r}
-ggplot(data = usa_48.sf) +
+ggplot(data = USA_48.sf) +
   geom_sf(color = "gray80") +
   geom_point(data = Cities.df, 
              mapping = aes(x = long, y = lat), 
@@ -248,9 +248,9 @@ ggplot(data = airports,
   geom_point()
 ```
 
-If you only want airports within the continental United States, you first plot the `usa_48.sf` boundaries and then add the airport locations as a separate point layer and the use the `coord_sf()` function specifying the limits of the plot in the longitude direction (`xlim`) and the latitude direction (`ylim`).
+If you only want airports within the continental United States, you first plot the `USA_48.sf` boundaries and then add the airport locations as a separate point layer and the use the `coord_sf()` function specifying the limits of the plot in the longitude direction (`xlim`) and the latitude direction (`ylim`).
 ```{r}
-ggplot(data = usa_48.sf) + 
+ggplot(data = USA_48.sf) + 
   geom_sf(color = "gray80") + 
   geom_point(data = airports, 
              aes(x = lon, y = lat)) +
@@ -270,7 +270,7 @@ airports.sf
 To graph the points on the map, you use a second `geom_sf()`.
 ```{r}
 ggplot() + 
-  geom_sf(data = usa_48.sf) + 
+  geom_sf(data = USA_48.sf) + 
   geom_sf(data = airports.sf, shape = 1) +
   coord_sf(xlim = c(-130, -60),
            ylim = c(20, 50))
@@ -279,7 +279,7 @@ ggplot() +
 You can change the size or type of symbols on the map. For instance, you can draw a bubble plot (also known as a proportional symbol map) and encode the altitude of the airport through the `size =` aesthetic.
 ```{r}
 ggplot() + 
-  geom_sf(data = usa_48.sf) + 
+  geom_sf(data = USA_48.sf) + 
   geom_sf(data = airports.sf, aes(size = alt), 
           fill = "grey", color = "black", alpha = .2) +
   coord_sf(xlim = c(-130, -60),
@@ -297,18 +297,18 @@ With a geographic projection the longitudes and latitudes are treated as x (hori
 
 Consider again the boundary map of the lower 48 states. Here we get the boundary file using the `us_states()` function from the {USAboundaries} package and use the `filter()` function to remove rows corresponding to Hawaii, Alaska, and Puerto Rico.
 ```{r}
-usa_48.sf <- USAboundaries::us_states() |>
+USA_48.sf <- USAboundaries::us_states() |>
    filter(!state_name %in% c("Hawaii", "Alaska", "Puerto Rico"))
 ```
 
 Here you first assign the map to an object called `base_map` and then render the map to the plot device by typing the object name.
 ```{r}
-base_map <- ggplot(data = usa_48.sf) +
+base_map <- ggplot(data = USA_48.sf) +
               geom_sf()
 base_map
 ```
 
-Note the equal spacing between the latitudes and between the longitudes. Note also that 1 degree latitude distance equals 1 degree longitude distance. This is called a carto-cartesian projection.
+Note the equal spacing between the latitudes and between the longitudes. 1 degree latitude distance equals 1 degree longitude distance. This is called a carto-cartesian (geographic) projection.
 
 You change the projection by specifying the CRS. For example to change the base map to have a Mercator projection you use the `coord_sf()` function with `crs = "+proj=merc"` (or equivalently `crs = 3857`, which uses the EPSG code 3857 for world Mercator projection).
 ```{r}
@@ -340,6 +340,8 @@ base_map +
   coord_sf(crs = "+proj=aea +lat_1=25 +lat_2=50 +lon_0=-100") +
   ggtitle("Albers equal-area projection")
 ```
+
+USA Contiguous Albers Equal Area Conic, USGS (EPSG = 5070 or 102003)
 
 See Kyle Walker's get CRS 
 See maptiles package https://github.com/riatelab/maptiles/
