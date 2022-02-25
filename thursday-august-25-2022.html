@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Thursday, August 25, 2022 | GEO5156: Quantitative Geography</title>
+  <meta name="description" content="Thursday, August 25, 2022 | GEO5156: Quantitative Geography" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Thursday, August 25, 2022 | GEO5156: Quantitative Geography" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="jelsner/QG-2022" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Thursday, August 25, 2022 | GEO5156: Quantitative Geography" />
+  
+  
+  
+
+<meta name="author" content="James B. Elsner" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tuesday-august-23-2022.html"/>
+<link rel="next" href="tuesday-august-30-2022.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.8/grViz.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Quantitative Geography</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html"><i class="fa fa-check"></i>Syllabus</a>
+<ul>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#geo5165c-quantitative-geography"><i class="fa fa-check"></i>GEO5165C: Quantitative Geography</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#contact-information"><i class="fa fa-check"></i>Contact information</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#course-description"><i class="fa fa-check"></i>Course description</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#expected-learning-outcomes"><i class="fa fa-check"></i>Expected learning outcomes</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#materials"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#class-meetings"><i class="fa fa-check"></i>Class meetings</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#grades"><i class="fa fa-check"></i>Grades</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#academic-honor-code"><i class="fa fa-check"></i>Academic honor code</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#students-with-disabilities-act"><i class="fa fa-check"></i>Students With Disabilities Act</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#inclusiveness"><i class="fa fa-check"></i>Inclusiveness</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#more-about-your-instructor"><i class="fa fa-check"></i>More about your instructor</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#syllabus-change-policy"><i class="fa fa-check"></i>Syllabus change policy</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#schedule-subject-to-change-with-notice"><i class="fa fa-check"></i>Schedule (subject to change with notice)</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#other-materials-to-check-out"><i class="fa fa-check"></i>Other materials to check out</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#julia-programming-language"><i class="fa fa-check"></i>Julia programming language</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html"><i class="fa fa-check"></i>Tuesday, August 23, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#today"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#what-is-this-course"><i class="fa fa-check"></i>What is this course?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#where-are-the-materials-for-this-course"><i class="fa fa-check"></i>Where are the materials for this course?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#join-rstudio-cloud"><i class="fa fa-check"></i>Join RStudio Cloud</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#examples"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#course-syllabus"><i class="fa fa-check"></i>Course Syllabus</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#tallahassee-daily-temperatures"><i class="fa fa-check"></i>Tallahassee daily temperatures</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html"><i class="fa fa-check"></i>Thursday, August 25, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#today-1"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#data-analysis"><i class="fa fa-check"></i>Data Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#reproducibility"><i class="fa fa-check"></i>Reproducibility</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#communication"><i class="fa fa-check"></i>Communication</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#automation"><i class="fa fa-check"></i>Automation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#the-r-programming-language"><i class="fa fa-check"></i>The R programming language</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#overview-of-this-course"><i class="fa fa-check"></i>Overview of this course</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#work-in-plain-text-using-r-markdown"><i class="fa fa-check"></i>Work in plain text, using R Markdown</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#visualizing-data"><i class="fa fa-check"></i>Visualizing data</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-code-template"><i class="fa fa-check"></i>A code template</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#the-code"><i class="fa fa-check"></i>The code</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-graphing-workflow"><i class="fa fa-check"></i>A graphing workflow</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-graphing-template"><i class="fa fa-check"></i>A graphing template</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#common-problems"><i class="fa fa-check"></i>Common problems</a></li>
+<li><a href="thursday-august-25-2022.html#location-of-the-sign">location of the <code>+</code> sign</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#help"><i class="fa fa-check"></i>help</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#things-to-know"><i class="fa fa-check"></i>Things to know</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#everything-has-a-name"><i class="fa fa-check"></i>Everything has a name</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#everything-is-an-object"><i class="fa fa-check"></i>Everything is an object</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#you-do-things-using-functions"><i class="fa fa-check"></i>You do things using functions</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#functions-come-in-packages-libraries"><i class="fa fa-check"></i>Functions come in packages (libraries)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#your-turn"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html"><i class="fa fa-check"></i>Tuesday, August 30, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#today-2"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#scatter-plots"><i class="fa fa-check"></i>Scatter plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#facets"><i class="fa fa-check"></i>Facets</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#calculations"><i class="fa fa-check"></i>Calculations</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#functions"><i class="fa fa-check"></i>Functions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#syntax-is-important"><i class="fa fa-check"></i>Syntax is important</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#saving-an-object"><i class="fa fa-check"></i>Saving an object</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#object-names"><i class="fa fa-check"></i>Object names</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#entering-data"><i class="fa fa-check"></i>Entering data</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#applying-a-function"><i class="fa fa-check"></i>Applying a function</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#averge"><i class="fa fa-check"></i>Averge</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#data-vectors"><i class="fa fa-check"></i>Data vectors</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#variance"><i class="fa fa-check"></i>Variance</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#data-vectors-have-a-type"><i class="fa fa-check"></i>Data vectors have a type</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#working-smarter"><i class="fa fa-check"></i>Working smarter</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html"><i class="fa fa-check"></i>Thursday, September 1, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#today-3"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#data-as-vectors"><i class="fa fa-check"></i>Data as vectors</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#mean"><i class="fa fa-check"></i>Mean</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#variance-1"><i class="fa fa-check"></i>Variance</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#median"><i class="fa fa-check"></i>Median</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#spread"><i class="fa fa-check"></i>Spread</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#vector-types"><i class="fa fa-check"></i>Vector types</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#structured-data"><i class="fa fa-check"></i>Structured data</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#asking-questions"><i class="fa fa-check"></i>Asking questions</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#tables-and-summaries"><i class="fa fa-check"></i>Tables and summaries</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html"><i class="fa fa-check"></i>Tuesday, September 6, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#today-4"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#getting-your-data-into-r"><i class="fa fa-check"></i>Getting your data into R</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-structured-data-files"><i class="fa fa-check"></i>Creating structured data files</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#data-frames"><i class="fa fa-check"></i>Data frames</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#quantiles"><i class="fa fa-check"></i>Quantiles</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-a-data-frame"><i class="fa fa-check"></i>Creating a data frame</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#pipes"><i class="fa fa-check"></i>Pipes</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#your-turn-1"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html"><i class="fa fa-check"></i>Thursday, September 8, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#today-5"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#pipe-operator"><i class="fa fa-check"></i>Pipe operator</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#wrangling-data-frames"><i class="fa fa-check"></i>Wrangling data frames</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#selecting-and-filtering"><i class="fa fa-check"></i>Selecting and filtering</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#example-palmer-penguins"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#stringing-functions-together"><i class="fa fa-check"></i>Stringing functions together</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#summarize"><i class="fa fa-check"></i>Summarize</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#grouping"><i class="fa fa-check"></i>Grouping</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#your-turn-2"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html"><i class="fa fa-check"></i>Tuesday, September 12, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#today-6"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#example-1-new-york-city-flight-data"><i class="fa fa-check"></i>Example 1: New York City flight data</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#example-2-daily-weather-data-from-tallahassee"><i class="fa fa-check"></i>Example 2: Daily weather data from Tallahassee</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#putting-everything-together"><i class="fa fa-check"></i>Putting everything together</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#example-3-food-consumption-and-co2-emissions"><i class="fa fa-check"></i>Example 3: Food consumption and CO2 emissions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html"><i class="fa fa-check"></i>Thursday, September 14, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#today-7"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#bar-chart"><i class="fa fa-check"></i>Bar chart</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#pie-preference"><i class="fa fa-check"></i>Pie preference</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#histogram"><i class="fa fa-check"></i>Histogram</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#density-plot"><i class="fa fa-check"></i>Density plot</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#box-plot"><i class="fa fa-check"></i>Box plot</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#side-by-side-box-plots"><i class="fa fa-check"></i>Side-by-side box plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html"><i class="fa fa-check"></i>Tuesday, September 19, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#today-8"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#comparing-distributions"><i class="fa fa-check"></i>Comparing distributions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#box-plots"><i class="fa fa-check"></i>Box plots</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#long-data-frames"><i class="fa fa-check"></i>Long data frames</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#scatter-plots-1"><i class="fa fa-check"></i>Scatter plots</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#facets-1"><i class="fa fa-check"></i>Facets</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#example-palmer-penguins-1"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#an-expository-graph"><i class="fa fa-check"></i>An expository graph</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#exporting-your-graph"><i class="fa fa-check"></i>Exporting your graph</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html"><i class="fa fa-check"></i>Thursday, September 21, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#today-9"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#simple-feature-data-frames"><i class="fa fa-check"></i>Simple feature data frames</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#making-a-boundary-map"><i class="fa fa-check"></i>Making a boundary map</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#fills"><i class="fa fa-check"></i>Fills</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#overlays"><i class="fa fa-check"></i>Overlays</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#map-projections"><i class="fa fa-check"></i>Map projections</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html"><i class="fa fa-check"></i>Thursday, September 21, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#today-10"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#maps-with-tmap"><i class="fa fa-check"></i>Maps with tmap</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#tornado-data"><i class="fa fa-check"></i>Tornado data</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#map-the-frequency-of-tornadoes-by-state"><i class="fa fa-check"></i>Map the frequency of tornadoes by state</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#geometry-calculations"><i class="fa fa-check"></i>Geometry calculations</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#raster-maps"><i class="fa fa-check"></i>Raster maps</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#get-map-images"><i class="fa fa-check"></i>Get map images</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#add-data-to-the-map"><i class="fa fa-check"></i>Add data to the map</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#more-details-extra-material"><i class="fa fa-check"></i>More details (extra material)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html"><i class="fa fa-check"></i>Tuesday, September 26, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#today-11"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#one-sample-test-of-the-population-mean"><i class="fa fa-check"></i>One-sample test of the population mean</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#about-p-values"><i class="fa fa-check"></i>About p-values</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#example-strongest-atlantic-hurricanes"><i class="fa fa-check"></i>Example: Strongest Atlantic hurricanes</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#graphical-inference"><i class="fa fa-check"></i>Graphical inference</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#two-sample-test-of-the-difference-in-population-means"><i class="fa fa-check"></i>Two-sample test of the difference in population means</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#example-hurricanes-in-the-north-atlantic-and-the-eastern-north-pacific"><i class="fa fa-check"></i>Example: hurricanes in the North Atlantic and the eastern North Pacific</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#example-palmer-penguins-2"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#your-turn-3"><i class="fa fa-check"></i>Your turn</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#test-of-equal-variance"><i class="fa fa-check"></i>Test of equal variance</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#wilcoxon-mann-whitney-u-non-parameteric-test-of-difference-in-means"><i class="fa fa-check"></i>Wilcoxon (Mann-Whitney U) non-parameteric test of difference in means</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GEO5156: Quantitative Geography</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="thursday-august-25-2022" class="section level1 unnumbered">
+<h1>Thursday, August 25, 2022</h1>
+<div id="today-1" class="section level2 unnumbered">
+<h2>Today</h2>
+<ul>
+<li><p>Data science: reproducibility, communication, and automation</p></li>
+<li><p>Structure of markdown files</p></li>
+<li><p>How to make a simple plot</p></li>
+<li><p>Everything you create is an object</p></li>
+<li><p>Turn off your camera.</p></li>
+<li><p>Any questions about my grading of your assignments?</p></li>
+<li><p>Make sure (1) you are watching (or at least listening) to me via Zoom, and (2) you have a copy of <code>02_Lesson</code> project and have the <code>02-Lesson.Rmd</code> file open.</p></li>
+<li><p>Follow along in your copy of the lesson as I go line by line through the file on Zoom.</p></li>
+<li><p>Your files background and text might look different. Is it? If so, got to Tools &gt; Global Options &gt; Appearance &gt; Cobalt</p></li>
+<li><p>Much of the lesson materials come from online books: <a href="https://www.bigbookofr.com/index.html" class="uri">https://www.bigbookofr.com/index.html</a></p></li>
+<li><p>Datasets: <a href="https://kieranhealy.org/blog/archives/2020/08/25/some-data-packages/" class="uri">https://kieranhealy.org/blog/archives/2020/08/25/some-data-packages/</a></p></li>
+</ul>
+</div>
+<div id="data-analysis" class="section level2 unnumbered">
+<h2>Data Analysis</h2>
+<p>Data analytics are done on a computer. You have two choices: use a spreadsheet or write code.</p>
+<p>A spreadsheet is convenient, but they make the three conditions for a good data analysis <em>reproducibility</em>, <em>communication</em>, and <em>automation</em> difficult to achieve.</p>
+<div id="reproducibility" class="section level3 unnumbered">
+<h3>Reproducibility</h3>
+<p>A scientific paper is advertisement for a claim. But the <em>proof</em> is the procedure that was used to obtain the result.
+<img src="figures/ScientificPaper.png" alt="SciencePaper" /></p>
+<p>If your analysis is to be convincing, the trail from the data you started with to the final output must be available to the public. A reproducible trail with a spreadsheet is hard. It is easy to make mistakes (e.g., accidentally sorting just a column rather than the entire table).</p>
+<p>A set of instructions written as computer code is the exact procedure. (Open <code>stronger-hur.Rmd</code>).</p>
+</div>
+<div id="communication" class="section level3 unnumbered">
+<h3>Communication</h3>
+<p>Code is a recipe for what you did. It communicates precisely what was done. Communication to others and to your future self.</p>
+<p>It’s hard to explain to someone precisely what you did when working with a spreadsheet. Click here, then right click here, then choose menu X, etc. The words needed to describe these procedures are not standard. Code is an efficient way to communicate because all important information is given as plain text with no ambiguity.</p>
+</div>
+<div id="automation" class="section level3 unnumbered">
+<h3>Automation</h3>
+<p>If you’ve ever made a map using a geographic information system (GIS) you know how hard it is to make another one with a new set of data (even a very similar one). Running code with new data is simple.</p>
+<p>Being able to code is an important skill for nearly all technical jobs. Here you will learn how to code. But keep in mind: Just like learning to write doesn’t mean you will be a writer (i.e., make a living writing), learning to code doesn’t mean you will be a coder.</p>
+</div>
+</div>
+<div id="the-r-programming-language" class="section level2 unnumbered">
+<h2>The R programming language</h2>
+<ul>
+<li>R is a leading open source programming language for data science. R and Python.</li>
+<li>Free, open-source, runs on Windows, Macs, etc. Excellent graphing capabilities. Powerful, extensible, and relatively easy to learn syntax. Thousands of functions.</li>
+<li>Has all the cutting edge statistical methods including methods in spatial statistics.</li>
+<li>Used by scientists of all stripes. Most of the world’s statisticians use it (and contribute to it).</li>
+</ul>
+</div>
+<div id="overview-of-this-course" class="section level2 unnumbered">
+<h2>Overview of this course</h2>
+<p>We start with making graphs. You will make clear, informative plots that will help you understand your data. You will learn the basic structure of a making a plot.</p>
+<p>Visualization alone is not enough, so you will also learn the key verbs that allow you to select important variables, filter out key observations, create new variables, and compute summaries (data wrangling).</p>
+<p>You will then combine data wrangling and visualization with your curiosity to ask and answer interesting questions by learning how to fit models to your data. Data models extend your ability to ask and answer questions about the world you live in.</p>
+<p>With geographic and environmental data collected at different locations these models will include a spatial component.</p>
+</div>
+<div id="work-in-plain-text-using-r-markdown" class="section level2 unnumbered">
+<h2>Work in plain text, using R Markdown</h2>
+<p>The ability to reproduce your work is important to a scientific process. It is also pragmatic. The person most likely to reproduce your work a few months later is you.</p>
+<p>This is especially true for graphs and figures. These often have a finished quality to them as a result of tweaking and adjustments to the details. This makes it hard to reproduce them later.</p>
+<p>The goal is to do as much of this tweaking as possible with the code you write, rather than in a way that is invisible (retrospectively). Contrast editing an image in Adobe Illustrator.</p>
+<p>You will find yourself constantly going back and forth between three things:</p>
+<ol style="list-style-type: decimal">
+<li><p>Writing code: You will write code to produce plots. You will also write code to load your data (get your data into R), to look quickly at tables of that data. Sometimes you will want to summarize, rearrange, subset, or augment your data, or fit a statistical model to it. You will want to be able to write that code as easily and effectively as possible.</p></li>
+<li><p>Looking at output. Your code is a set of instructions that produces the output you want: a table, a model, or a figure. It is helpful to be able to see that output.</p></li>
+<li><p>Taking notes. You will also write about what you are doing, and what your results mean.</p></li>
+</ol>
+<p>To do these things efficiently you want to write your code <em>together</em> with comments. This is where markdown comes in (files that end with <code>.Rmd</code>)</p>
+<p>An R markdown file is a plain text document where text (such as notes or discussion) is interspersed with pieces, or chunks, of R code. When you <code>Knit</code> this file the R code is executed piece by piece, in sequence starting at the top of the file, and either supplementing or replacing the chunks of code with output.</p>
+<p>The resulting file is then converted into a more easily-readable document formatted in HTML, PDF, or Word. The non-code segments of the document are plain text with simple formatting instructions (e.g., <code>##</code> for section header).</p>
+<p>There is a set of conventions for marking up plain text in a way that indicates how it should be formatted. Markdown treats text surrounded by <em>asterisks</em>, <strong>double asterisks</strong>, and <code>backticks</code> in special ways. It is R Markdown’s way of saying that these words are in</p>
+<ul>
+<li><em>italics</em></li>
+<li><em>also italics</em></li>
+<li><strong>bold</strong>, and</li>
+<li><code>code font</code></li>
+</ul>
+<p>Your class notes include code. There is a set format for including code into your markdown file (lines of code; code chunk). They look like this:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="thursday-august-25-2022.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<p>I call these markings <code>code chunk delimiters</code>.</p>
+<p>Three back ticks (on a U.S. keyboard, the character under the escape key) followed by a pair of curly braces containing the name of the language you are using. The format is language-agnostic and can be used with, e.g. Python and other languages.</p>
+<p>The back ticks-and-braces signals that what follows is code. You write your code as needed, and then end the chunk with a new line containing three more back ticks.</p>
+<p>If you keep your notes in this way, you will be able to see the code you wrote, the output it produces, and your own commentary or clarification on what the code did, all in a convenient way. Moreover, you can turn it into a good-looking document straight away with the <code>Knit</code> button.</p>
+<p>This is how you will do everything in this course. In the end you will have a set of notes that you can turn into a book with <code>bookdown</code>.</p>
+<p><a href="https://bookdown.org/yihui/rmarkdown/">Everything markdown</a></p>
+</div>
+<div id="visualizing-data" class="section level2 unnumbered">
+<h2>Visualizing data</h2>
+<p>To help motivate your interest in this course, we start by making a graph. There are three things to learn:</p>
+<ol style="list-style-type: decimal">
+<li>How to create graphs with a reusable {ggplot2} template</li>
+<li>How to add variables to a graph with aesthetics</li>
+<li>How to select the ‘type’ of your graph with <em>geoms</em></li>
+</ol>
+<p>The following examples are taken from R for Data Science by Hadley Wickham and Garrett Grolemund, published by O’Reilly Media, Inc., 2016, ISBN: 9781491910399. <a href="https://r4ds.had.co.nz/" class="uri">https://r4ds.had.co.nz/</a>.</p>
+<div id="a-code-template" class="section level3 unnumbered">
+<h3>A code template</h3>
+<p>Let’s begin with a question to explore.</p>
+<p>What do you think: Do cars with big engines use more fuel than cars with small engines?</p>
+<ul>
+<li>A: Cars with bigger engines use more fuel.</li>
+<li>B: Cars with bigger engines use less fuel.</li>
+</ul>
+<p>You check your answer with two things: the <code>mpg</code> data that comes in {ggplot2} and a plot. The <code>mpg</code> object contains observations collected on 38 models of cars by the US Environmental Protection Agency. Among the variables in <code>mpg</code> are:</p>
+<ul>
+<li><code>displ</code>, a car’s engine size, in liters.</li>
+<li><code>hwy</code>, a car’s fuel efficiency on the highway, in miles per gallon (mpg).</li>
+</ul>
+<p>A car with a low fuel efficiency consumes more fuel than a car with a high fuel efficiency when they travel the same distance.</p>
+<p>To see a portion of the <code>mpg</code> data, type <code>mpg</code> after you loaded the package using the <code>library()</code> function.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="thursday-august-25-2022.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb9-2"><a href="thursday-august-25-2022.html#cb9-2" aria-hidden="true" tabindex="-1"></a>mpg</span></code></pre></div>
+<pre><code>## # A tibble: 234 × 11
+##    manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
+##    &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+##  1 audi         a4           1.8  1999     4 auto… f        18    29 p     comp…
+##  2 audi         a4           1.8  1999     4 manu… f        21    29 p     comp…
+##  3 audi         a4           2    2008     4 manu… f        20    31 p     comp…
+##  4 audi         a4           2    2008     4 auto… f        21    30 p     comp…
+##  5 audi         a4           2.8  1999     6 auto… f        16    26 p     comp…
+##  6 audi         a4           2.8  1999     6 manu… f        18    26 p     comp…
+##  7 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…
+##  8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…
+##  9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…
+## 10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
+## # … with 224 more rows</code></pre>
+<p>You see the first 10 rows and 10 columns of the data. Note that there are 234 rows and 11 columns so you are only viewing a portion of this <code>spreadsheet</code>.</p>
+<p>Each row is a different car. The first row is the Audi A4 1999 model with automatic transmission (5 gears). The tenth car listed is the Audi A4 Quattro with manual transmission (6 gears).</p>
+<p>The column labeled <code>displ</code> is the engine size in liters. Bigger number means the car has a larger engine. The column labeled <code>hwy</code> is the miles per gallon. Bigger number means the car uses more fuel to go the same distance (lower efficiency).</p>
+<p>It is hard to check which answer is correct by looking only at these 10 cars. Note that bigger engines appear to have smaller values of highway mileage but it is far from clear.</p>
+<p>You want to look at all 234 cars.</p>
+<p>The code below uses functions from the {ggplot2} package to plot the relationship between <code>displ</code> and <code>hwy</code> for all cars.</p>
+<p>Let’s look at the plot and then talk about the code itself. To see the plot, click on the little green triangle in the upper right corner of the gray shaded region.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="thursday-august-25-2022.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
+<span id="cb11-2"><a href="thursday-august-25-2022.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>The plot shows an inverse relationship between engine size (<code>displ</code>) and fuel efficiency (<code>hwy</code>). Each point is a different car. Cars that have a large value of <code>displ</code> tend to have a small value of <code>hwy</code> and cars with a small value of <code>displ</code> tend to have a large value of <code>hwy</code>.</p>
+<p>In other words, cars with big engines use more fuel. If that was your hypothesis, you were right!</p>
+<p>Now let’s look at how you made the plot.</p>
+</div>
+<div id="the-code" class="section level3 unnumbered">
+<h3>The code</h3>
+<p>Here’s the code used to make the plot. Notice that it contains three functions: <code>ggplot()</code>, <code>geom_point()</code>, and <code>aes()</code>.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="thursday-august-25-2022.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
+<span id="cb12-2"><a href="thursday-august-25-2022.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))</span></code></pre></div>
+<p>The first function, <code>ggplot()</code>, creates a coordinate system that you can add layers to. The first argument of <code>ggplot()</code> is the dataset to use in the graph.</p>
+<p>By itself, <code>ggplot(data = mpg)</code> creates an empty graph, but it is not very interesting so I’m not going to show it here.</p>
+<p>The function <code>geom_point()</code> adds a layer of points to the empty plot created by <code>ggplot()</code>. As a result, you get a scatterplot.</p>
+<p>The function <code>geom_point()</code> takes a mapping argument, which defines which variables in your dataset are mapped to which axes in your graph. The mapping argument is always paired with the function <code>aes()</code>, which you use to bring together the mappings you want to create.</p>
+<p>Here, you want to map the <code>displ</code> variable to the x axis (horizontal axis) and the <code>hwy</code> variable to the y axis (vertical axis), so you add <code>x = displ</code> and <code>y = hwy</code> inside of <code>aes()</code> (and you separate them with a comma). Where will <code>ggplot()</code> look for these mapped variables? In the data frame that you passed to the data argument, in this case, <code>mpg</code>.</p>
+<ul>
+<li>Knit to generate HTML.</li>
+<li>Compare the HTML with the Rmd.</li>
+</ul>
+</div>
+<div id="a-graphing-workflow" class="section level3 unnumbered">
+<h3>A graphing workflow</h3>
+<p>The code above follows the common work flow for making graphs. To make a graph, you:</p>
+<ol style="list-style-type: decimal">
+<li>Start the graph with <code>ggplot()</code></li>
+<li>Add elements to the graph with a <code>geom_</code> function</li>
+<li>Select variables with the <code>mapping = aes()</code> argument</li>
+</ol>
+</div>
+<div id="a-graphing-template" class="section level3 unnumbered">
+<h3>A graphing template</h3>
+<p>In fact, you can turn your code into a reusable template for making graphs. To make a graph, replace the bracketed sections in the code below with a data set, a <code>geom_</code> function, or a collection of mappings.</p>
+<p>Give it a try!</p>
+<ol style="list-style-type: decimal">
+<li>Copy and paste the above code chunk, including the code chunk delimiters, and replace the <code>y = hwy</code> with <code>y = cty</code>.</li>
+</ol>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="thursday-august-25-2022.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
+<span id="cb13-2"><a href="thursday-august-25-2022.html#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> cty))</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Replace the bracketed sections <code>&lt; &gt;</code> with <code>mpg</code>, <code>geom_boxplot</code>, and <code>x = class</code>, <code>y = hwy</code> to make a slightly different graph.</li>
+</ol>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="thursday-august-25-2022.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
+<span id="cb14-2"><a href="thursday-august-25-2022.html#cb14-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">geom_boxplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">y =</span> hwy))</span></code></pre></div>
+</div>
+<div id="common-problems" class="section level3 unnumbered">
+<h3>Common problems</h3>
+<p>As you start to work with R code, you are likely to run into problems. Don’t worry — it happens to everyone. I’ve been writing R code for decades, and I still write code that doesn’t work!</p>
+<p>Start by comparing the code that you are running to the code in the examples in these notes. R is extremely picky, and a misplaced character can make all the difference. Make sure that every <code>(</code> is matched with a <code>)</code> and every <code>"</code> is paired with another <code>"</code>. Also pay attention to capitalization; R is case sensitive.</p>
+</div>
+<div id="location-of-the-sign" class="section level3 unnumbered">
+<h3>location of the <code>+</code> sign</h3>
+<p>One common problem when creating {ggplot2} graphics is to put the <code>+</code> in the wrong place: it must come at the end of a line, not the start. In other words, make sure you haven’t accidentally written code like this:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="thursday-august-25-2022.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) </span>
+<span id="cb15-2"><a href="thursday-august-25-2022.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))</span></code></pre></div>
+</div>
+<div id="help" class="section level3 unnumbered">
+<h3>help</h3>
+<p>If you’re still stuck, try the help. You can get help about any R function by running <code>?function_name</code> in a code chunk, e.g. <code>?geom_point</code>. Don’t worry if the help doesn’t seem that helpful — instead skip down to the bottom of the help page and look for a code example that matches what you’re trying to do.</p>
+<p>If that doesn’t help, carefully read the error message that appears when you run your (non-working) code. Sometimes the answer will be buried there! But when you’re new to R, you might not yet know how to understand the error message. Another great tool is Google: try googling the error message, as it’s likely someone else has had the same problem, and has gotten help online.</p>
+</div>
+</div>
+<div id="things-to-know" class="section level2 unnumbered">
+<h2>Things to know</h2>
+<p>You are getting oriented to the language itself (what happens at the console), while learning to take notes in what might seem like an odd format (chunks of code interspersed with plain-text comments), in an IDE (integrated development environment) that that has many features designed to make your life easier in the long run, but which can be hard to decipher at the beginning. Here are some general points to keep in mind about how R is designed. They might help you get a feel for how the language works.</p>
+<div id="everything-has-a-name" class="section level3 unnumbered">
+<h3>Everything has a name</h3>
+<p>In R, everything you deal with has a name. You refer to things by their names as you examine, use, or modify them. Named entities include variables (like x, or y), data that you have loaded (like my_data), and functions that you use. (More about functions soon.) You will spend a lot of time talking about, creating, referring to, and modifying things with names.</p>
+<p>Things are listed under the Environment tab in the upper right panel.</p>
+<p>Some names are forbidden. These include reserved words like FALSE and TRUE, core programming words like Inf, for, else, break, function, and words for special entities like NA and NaN. (These last two are codes designating missing data and “Not a Number,” respectively.) You probably won’t use these names by accident, but it’s good do know that they are not allowed.</p>
+<p>Some names you should not use, even if they are technically permitted. These are mostly words that are already in use for objects or functions that form part of the core of R. These include the names of basic functions like <code>q()</code> or <code>c()</code>, common statistical functions like <code>mean()</code>, <code>range()</code> or <code>var()</code>, and built-in mathematical constants like <code>pi</code>.</p>
+<p>Names in R are case sensitive. The object <code>my_data</code> is not the same as the object <code>My_Data</code>. When choosing names for things, be concise, consistent, and informative. Follow the style of the tidyverse and name things in lower case, separating words with the underscore character, _, as needed. Do not use spaces when naming things, including variables in your data.</p>
+</div>
+<div id="everything-is-an-object" class="section level3 unnumbered">
+<h3>Everything is an object</h3>
+<p>Some objects are part of R, some are added via packages, and some are created by you. But almost everything is some kind of object. The code you write will create, manipulate, and use named objects.</p>
+<p>Let’s create a vector of numbers. The command <code>c()</code> is a function. It’s short for “combine” or “concatenate.” It will take a sequence of comma-separated things inside the parentheses and join them into a vector where each element is still accessible.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="thursday-august-25-2022.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">25</span>)</span></code></pre></div>
+<pre><code>## [1]  1  2  3  1  3  5 25</code></pre>
+<p>Instead of sending the result to the console, here you instead assign the result to an object.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="thursday-august-25-2022.html#cb18-1" aria-hidden="true" tabindex="-1"></a>my_numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">25</span>)</span>
+<span id="cb18-2"><a href="thursday-august-25-2022.html#cb18-2" aria-hidden="true" tabindex="-1"></a>your_numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">31</span>, <span class="dv">71</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">21</span>, <span class="dv">6</span>)</span></code></pre></div>
+<p>To see what you created, type the name of the object and hit return.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="thursday-august-25-2022.html#cb19-1" aria-hidden="true" tabindex="-1"></a>my_numbers</span></code></pre></div>
+<pre><code>## [1]  1  2  3  1  3  5 25</code></pre>
+<p>Each of our numbers is still there, and can be accessed directly if you want. They are now just part of a new object, a vector, called <code>my_numbers</code>.</p>
+<p>You create objects by assigning them to names. The assignment operator is <code>&lt;-</code>. Think of assignment as the verb “gets,” reading left to right. So, the bit of code above is read as “The object <code>my_numbers</code> gets the result of concatenating the following numbers: 1, 2, …”</p>
+<p>The operator is two separate keys on your keyboard: the <code>&lt;</code> key and the <code>-</code> (minus) key. When you create objects by assigning things to names, they come into existence in R’s workspace or environment.</p>
+</div>
+<div id="you-do-things-using-functions" class="section level3 unnumbered">
+<h3>You do things using functions</h3>
+<p>You do almost everything in R using functions. Think of a function as a special kind of object that can perform actions for you. It produces output based on the input that it receives. Like a good dog, when you want a function to do something, you call it. Somewhat less like a dog, it will reliably do what you tell it.</p>
+<p>You give the function some information, it acts on that information, and some results come out the other side. Functions can be recognized by the parentheses at the end of their names. This distinguishes them from other objects, such as single numbers, named vectors, tables of data, and so on.</p>
+<p>You send information to the function between the parentheses. Most functions accept at least one argument. A function’s arguments are the things it needs to know in order to do something. They can be some bit of your data (<code>data = my_numbers</code>), or specific instructions (<code>title = "GDP per Capita"</code>), or an option you want to choose (<code>smoothing = "splines", show = FALSE</code>).</p>
+<p>For example, the object <code>my_numbers</code> is a numeric vector:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="thursday-august-25-2022.html#cb21-1" aria-hidden="true" tabindex="-1"></a>my_numbers</span></code></pre></div>
+<pre><code>## [1]  1  2  3  1  3  5 25</code></pre>
+<p>But the thing you used to create it, <code>c()</code>, is a function. It combines the items into a vector composed of the series of comma-separated elements you give it. Similarly, <code>mean()</code> is a function that calculates a simple average for a vector of numbers. What happens if you just type <code>mean()</code> without any arguments inside the parentheses?</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="thursday-august-25-2022.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>()</span></code></pre></div>
+<p>The error message is terse but informative. The function needs an argument to work, and you haven’t given it one. In this case, ‘x,’ the name of another object that <code>mean()</code> can perform its calculation on:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="thursday-august-25-2022.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="at">x =</span> my_numbers)</span></code></pre></div>
+<pre><code>## [1] 5.714286</code></pre>
+<p>Or</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="thursday-august-25-2022.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="at">x =</span> your_numbers)</span></code></pre></div>
+<pre><code>## [1] 19.71429</code></pre>
+<p>While the function arguments have names that are used internally, (here, <code>x =</code>), you don’t strictly need to specify the name for the function to work:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="thursday-august-25-2022.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(my_numbers)</span></code></pre></div>
+<pre><code>## [1] 5.714286</code></pre>
+<p>If you omit the name of the argument, R will just assume you are giving the function what it needs, and in some order. The documentation for a function will tell you what the order of required arguments is for any particular function.</p>
+<p>For simple functions that only require one or two arguments, omitting their names is usually not confusing. For more complex functions, you will typically want to use the names of the arguments rather than try to remember what the ordering is.</p>
+<p>In general, when providing arguments to a function the syntax is <code>&lt;argument&gt; = &lt;value&gt;</code>. If <code>&lt;value&gt;</code> is a named object that already exists in your workspace, like a vector of numbers of a table of data, then you provide it unquoted, as in <code>mean(my_numbers)</code>. If <code>&lt;value&gt;</code> is not an object, a number, or a logical value like TRUE, then you usually put it in quotes, e.g., <code>labels(x = "X Axis Label")</code>.</p>
+<p>Functions take inputs via their arguments, do something, and return outputs. What the output is depends on what the function does. The <code>c()</code> function takes a sequence of comma-separated elements and returns a vector consisting of those same elements. The <code>mean()</code> function takes a vector of numbers and returns a single number, their average.</p>
+<p>Functions can return far more than single numbers. The output returned by functions can be a table of data, or a complex object such as the results of a linear model, or the instructions needed to draw a plot. They can even be other functions. For example, the <code>summary()</code> function performs a series of calculations on a vector and produces what is in effect a little table with named elements.</p>
+<p>A function’s argument names are internal to that function. Say you have created an object in your environment named <code>x</code>, for example. A function like <code>mean()</code> also has a named argument, <code>x</code>, but R will not get confused by this. It will not use your <code>x</code> object by mistake.</p>
+<p>As you have already seen with <code>c()</code> and <code>mean()</code>, you can assign the result of a function to an object:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="thursday-august-25-2022.html#cb30-1" aria-hidden="true" tabindex="-1"></a>my_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(my_numbers)</span></code></pre></div>
+<p>When you do this, there’s no output to the console. R just puts the results into the new object, as you instructed. To look inside the object you can type its name and hit return:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="thursday-august-25-2022.html#cb31-1" aria-hidden="true" tabindex="-1"></a>my_summary</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   1.000   1.500   3.000   5.714   4.000  25.000</code></pre>
+</div>
+<div id="functions-come-in-packages-libraries" class="section level3 unnumbered">
+<h3>Functions come in packages (libraries)</h3>
+<p>The code you write will be more or less complex depending on the task you want to accomplish. Families of useful functions are bundled into packages that you can install, load into your R session, and make use of as you work.</p>
+<p>Packages save you from reinventing the wheel. They make it so that you do not, for example, have to figure out how to write code from scratch to draw a shape on screen, or load a data file into memory.</p>
+<p>Packages are also what allow you to build on the efforts of others in order to do your own work. {ggplot2} is a package of functions.</p>
+<p>There are many other such packages and you will make use of several throughout this course, either by loading them with the <code>library()</code> function, or “reaching in” to them and pulling a useful function from them directly.</p>
+<p>All of the work you will do this semester will involve choosing the right function or functions, and then giving those functions the right instructions through a series of named arguments.</p>
+<p>Most of the mistakes you will make, and the errors you will fix, will involve having not picked the right function, or having not fed the function the right arguments, or having failed to provide information in a form the function can understand.</p>
+<p>For now, just remember that you do things in R by creating and manipulating named objects. You manipulate objects by feeding information about them to functions. The functions do something useful with that information (calculate a mean, re-code a variable, fit a model) and give you the results back.</p>
+<p>Try these out.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="thursday-august-25-2022.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(my_numbers)</span></code></pre></div>
+<pre><code>## my_numbers
+##  1  2  3  5 25 
+##  2  1  2  1  1</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="thursday-august-25-2022.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(my_numbers)</span></code></pre></div>
+<pre><code>## [1] 8.616153</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="thursday-august-25-2022.html#cb37-1" aria-hidden="true" tabindex="-1"></a>my_numbers <span class="sc">*</span> <span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1]   5  10  15   5  15  25 125</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="thursday-august-25-2022.html#cb39-1" aria-hidden="true" tabindex="-1"></a>my_numbers <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
+<pre><code>## [1]  2  3  4  2  4  6 26</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="thursday-august-25-2022.html#cb41-1" aria-hidden="true" tabindex="-1"></a>my_numbers <span class="sc">+</span> my_numbers</span></code></pre></div>
+<pre><code>## [1]  2  4  6  2  6 10 50</code></pre>
+<p>The first two functions here gave us a simple table of counts and calculated the standard deviation of <code>my_numbers</code>.</p>
+<p>It’s worth noticing what R did in the last three cases. First you multiplied <code>my_numbers</code> by two. R interprets that as you asking it to take each element of my_numbers one at a time and multiply it by five. It does the same with the instruction <code>my_numbers + 1</code>. The single value is “recycled” down the length of the vector.</p>
+<p>By contrast, in the last case we add <code>my_numbers</code> to itself. Because the two objects being added are the same length, R adds each element in the first vector to the corresponding element in the second vector.</p>
+</div>
+</div>
+<div id="your-turn" class="section level2 unnumbered">
+<h2>Your turn</h2>
+<p>Create a code chunk to compute the coefficient of variation (standard deviation divided by the mean) for your numbers (<code>my_numbers</code>).</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tuesday-august-23-2022.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tuesday-august-30-2022.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

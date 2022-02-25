@@ -111,6 +111,9 @@ Develop a project-oriented work flow and don't use `setwd()`. Don't hard-coded f
 
 * [Reading R](https://kieranhealy.org/blog/archives/2020/09/24/us-excess-mortality/)
 
+* Towards a more open and reproducible approach to geographic and spatial data science [Opening practice: supporting reproducibility and critical spatial data science](https://link.springer.com/article/10.1007/s10109-020-00334-2)
+
+
 ## Julia programming language {-}
 
 Julia programming language https://julialang.org/
