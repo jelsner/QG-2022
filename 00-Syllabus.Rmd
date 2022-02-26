@@ -113,6 +113,8 @@ Develop a project-oriented work flow and don't use `setwd()`. Don't hard-coded f
 
 * Towards a more open and reproducible approach to geographic and spatial data science [Opening practice: supporting reproducibility and critical spatial data science](https://link.springer.com/article/10.1007/s10109-020-00334-2)
 
+* [Transportation Network Analysis Tools](https://www.eventbrite.com/e/new-rstats-transportation-network-analysis-tools-tickets-121594443253) A workshop with Kyle Walker on the {Mapboxapi} package that makes a host of complex transportation network and routing tools accessible to beginners.
+
 
 ## Julia programming language {-}
 

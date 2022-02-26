@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Thursday, September 28, 2022 | GEO5156: Quantitative Geography</title>
+  <meta name="description" content="Thursday, September 28, 2022 | GEO5156: Quantitative Geography" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Thursday, September 28, 2022 | GEO5156: Quantitative Geography" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="jelsner/QG-2022" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Thursday, September 28, 2022 | GEO5156: Quantitative Geography" />
+  
+  
+  
+
+<meta name="author" content="James B. Elsner" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tuesday-september-26-2022.html"/>
+
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.8/grViz.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Quantitative Geography</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html"><i class="fa fa-check"></i>Syllabus</a>
+<ul>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#geo5165c-quantitative-geography"><i class="fa fa-check"></i>GEO5165C: Quantitative Geography</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#contact-information"><i class="fa fa-check"></i>Contact information</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#course-description"><i class="fa fa-check"></i>Course description</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#expected-learning-outcomes"><i class="fa fa-check"></i>Expected learning outcomes</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#materials"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#class-meetings"><i class="fa fa-check"></i>Class meetings</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#grades"><i class="fa fa-check"></i>Grades</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#academic-honor-code"><i class="fa fa-check"></i>Academic honor code</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#students-with-disabilities-act"><i class="fa fa-check"></i>Students With Disabilities Act</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#inclusiveness"><i class="fa fa-check"></i>Inclusiveness</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#more-about-your-instructor"><i class="fa fa-check"></i>More about your instructor</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#syllabus-change-policy"><i class="fa fa-check"></i>Syllabus change policy</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#schedule-subject-to-change-with-notice"><i class="fa fa-check"></i>Schedule (subject to change with notice)</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#other-materials-to-check-out"><i class="fa fa-check"></i>Other materials to check out</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#julia-programming-language"><i class="fa fa-check"></i>Julia programming language</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html"><i class="fa fa-check"></i>Tuesday, August 23, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#today"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#what-is-this-course"><i class="fa fa-check"></i>What is this course?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#where-are-the-materials-for-this-course"><i class="fa fa-check"></i>Where are the materials for this course?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#join-rstudio-cloud"><i class="fa fa-check"></i>Join RStudio Cloud</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#examples"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#course-syllabus"><i class="fa fa-check"></i>Course Syllabus</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#tallahassee-daily-temperatures"><i class="fa fa-check"></i>Tallahassee daily temperatures</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html"><i class="fa fa-check"></i>Thursday, August 25, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#today-1"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#data-analysis"><i class="fa fa-check"></i>Data Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#reproducibility"><i class="fa fa-check"></i>Reproducibility</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#communication"><i class="fa fa-check"></i>Communication</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#automation"><i class="fa fa-check"></i>Automation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#the-r-programming-language"><i class="fa fa-check"></i>The R programming language</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#overview-of-this-course"><i class="fa fa-check"></i>Overview of this course</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#work-in-plain-text-using-r-markdown"><i class="fa fa-check"></i>Work in plain text, using R Markdown</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#visualizing-data"><i class="fa fa-check"></i>Visualizing data</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-code-template"><i class="fa fa-check"></i>A code template</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#the-code"><i class="fa fa-check"></i>The code</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-graphing-workflow"><i class="fa fa-check"></i>A graphing workflow</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-graphing-template"><i class="fa fa-check"></i>A graphing template</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#common-problems"><i class="fa fa-check"></i>Common problems</a></li>
+<li><a href="thursday-august-25-2022.html#location-of-the-sign">location of the <code>+</code> sign</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#help"><i class="fa fa-check"></i>help</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#things-to-know"><i class="fa fa-check"></i>Things to know</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#everything-has-a-name"><i class="fa fa-check"></i>Everything has a name</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#everything-is-an-object"><i class="fa fa-check"></i>Everything is an object</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#you-do-things-using-functions"><i class="fa fa-check"></i>You do things using functions</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#functions-come-in-packages-libraries"><i class="fa fa-check"></i>Functions come in packages (libraries)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#your-turn"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html"><i class="fa fa-check"></i>Tuesday, August 30, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#today-2"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#scatter-plots"><i class="fa fa-check"></i>Scatter plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#facets"><i class="fa fa-check"></i>Facets</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#calculations"><i class="fa fa-check"></i>Calculations</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#functions"><i class="fa fa-check"></i>Functions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#syntax-is-important"><i class="fa fa-check"></i>Syntax is important</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#saving-an-object"><i class="fa fa-check"></i>Saving an object</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#object-names"><i class="fa fa-check"></i>Object names</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#entering-data"><i class="fa fa-check"></i>Entering data</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#applying-a-function"><i class="fa fa-check"></i>Applying a function</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#averge"><i class="fa fa-check"></i>Averge</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#data-vectors"><i class="fa fa-check"></i>Data vectors</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#variance"><i class="fa fa-check"></i>Variance</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#data-vectors-have-a-type"><i class="fa fa-check"></i>Data vectors have a type</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#working-smarter"><i class="fa fa-check"></i>Working smarter</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html"><i class="fa fa-check"></i>Thursday, September 1, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#today-3"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#data-as-vectors"><i class="fa fa-check"></i>Data as vectors</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#mean"><i class="fa fa-check"></i>Mean</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#variance-1"><i class="fa fa-check"></i>Variance</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#median"><i class="fa fa-check"></i>Median</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#spread"><i class="fa fa-check"></i>Spread</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#vector-types"><i class="fa fa-check"></i>Vector types</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#structured-data"><i class="fa fa-check"></i>Structured data</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#asking-questions"><i class="fa fa-check"></i>Asking questions</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#tables-and-summaries"><i class="fa fa-check"></i>Tables and summaries</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html"><i class="fa fa-check"></i>Tuesday, September 6, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#today-4"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#getting-your-data-into-r"><i class="fa fa-check"></i>Getting your data into R</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-structured-data-files"><i class="fa fa-check"></i>Creating structured data files</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#data-frames"><i class="fa fa-check"></i>Data frames</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#quantiles"><i class="fa fa-check"></i>Quantiles</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-a-data-frame"><i class="fa fa-check"></i>Creating a data frame</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#pipes"><i class="fa fa-check"></i>Pipes</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#your-turn-1"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html"><i class="fa fa-check"></i>Thursday, September 8, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#today-5"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#pipe-operator"><i class="fa fa-check"></i>Pipe operator</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#wrangling-data-frames"><i class="fa fa-check"></i>Wrangling data frames</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#selecting-and-filtering"><i class="fa fa-check"></i>Selecting and filtering</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#example-palmer-penguins"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#stringing-functions-together"><i class="fa fa-check"></i>Stringing functions together</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#summarize"><i class="fa fa-check"></i>Summarize</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#grouping"><i class="fa fa-check"></i>Grouping</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#your-turn-2"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html"><i class="fa fa-check"></i>Tuesday, September 12, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#today-6"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#example-1-new-york-city-flight-data"><i class="fa fa-check"></i>Example 1: New York City flight data</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#example-2-daily-weather-data-from-tallahassee"><i class="fa fa-check"></i>Example 2: Daily weather data from Tallahassee</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#putting-everything-together"><i class="fa fa-check"></i>Putting everything together</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#example-3-food-consumption-and-co2-emissions"><i class="fa fa-check"></i>Example 3: Food consumption and CO2 emissions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html"><i class="fa fa-check"></i>Thursday, September 14, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#today-7"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#bar-chart"><i class="fa fa-check"></i>Bar chart</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#pie-preference"><i class="fa fa-check"></i>Pie preference</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#histogram"><i class="fa fa-check"></i>Histogram</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#density-plot"><i class="fa fa-check"></i>Density plot</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#box-plot"><i class="fa fa-check"></i>Box plot</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#side-by-side-box-plots"><i class="fa fa-check"></i>Side-by-side box plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html"><i class="fa fa-check"></i>Tuesday, September 19, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#today-8"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#comparing-distributions"><i class="fa fa-check"></i>Comparing distributions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#box-plots"><i class="fa fa-check"></i>Box plots</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#long-data-frames"><i class="fa fa-check"></i>Long data frames</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#scatter-plots-1"><i class="fa fa-check"></i>Scatter plots</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#facets-1"><i class="fa fa-check"></i>Facets</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#example-palmer-penguins-1"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#an-expository-graph"><i class="fa fa-check"></i>An expository graph</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#exporting-your-graph"><i class="fa fa-check"></i>Exporting your graph</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html"><i class="fa fa-check"></i>Thursday, September 21, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#today-9"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#simple-feature-data-frames"><i class="fa fa-check"></i>Simple feature data frames</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#making-a-boundary-map"><i class="fa fa-check"></i>Making a boundary map</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#fills"><i class="fa fa-check"></i>Fills</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#overlays"><i class="fa fa-check"></i>Overlays</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#map-projections"><i class="fa fa-check"></i>Map projections</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html"><i class="fa fa-check"></i>Thursday, September 21, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#today-10"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#making-maps-using-functions-from-the-tmap-package"><i class="fa fa-check"></i>Making maps using functions from the {tmap} package</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#example-mapping-tornadoes"><i class="fa fa-check"></i>Example: Mapping tornadoes</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#example-mapping-the-frequency-of-tornadoes-by-state"><i class="fa fa-check"></i>Example: Mapping the frequency of tornadoes by state</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#calculations-using-the-geometry-simple-feature-column"><i class="fa fa-check"></i>Calculations using the geometry simple feature column</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#making-raster-maps"><i class="fa fa-check"></i>Making raster maps</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#get-map-images-using-functions-from-the-ggmap-package"><i class="fa fa-check"></i>Get map images using functions from the {ggmap} package</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#add-data-to-the-raster-map"><i class="fa fa-check"></i>Add data to the raster map</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#spatial-density-maps-extra-material"><i class="fa fa-check"></i>Spatial density maps (extra material)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html"><i class="fa fa-check"></i>Tuesday, September 26, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#today-11"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#one-sample-test-of-the-population-mean"><i class="fa fa-check"></i>One-sample test of the population mean</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#about-p-values"><i class="fa fa-check"></i>About p-values</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#example-strongest-atlantic-hurricanes"><i class="fa fa-check"></i>Example: Strongest Atlantic hurricanes</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#graphical-inference"><i class="fa fa-check"></i>Graphical inference</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#two-sample-test-of-the-difference-in-population-means"><i class="fa fa-check"></i>Two-sample test of the difference in population means</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#example-hurricanes-in-the-north-atlantic-and-the-eastern-north-pacific"><i class="fa fa-check"></i>Example: hurricanes in the North Atlantic and the eastern North Pacific</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#example-palmer-penguins-2"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#your-turn-3"><i class="fa fa-check"></i>Your turn</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#test-of-equal-variance"><i class="fa fa-check"></i>Test of equal variance</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#wilcoxon-mann-whitney-u-non-parameteric-test-of-difference-in-means"><i class="fa fa-check"></i>Wilcoxon (Mann-Whitney U) non-parameteric test of difference in means</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html"><i class="fa fa-check"></i>Thursday, September 28, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#today-12"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#example-palmer-penguins-3"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#your-turn-4"><i class="fa fa-check"></i>Your turn</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#test-of-equal-variance-1"><i class="fa fa-check"></i>Test of equal variance</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#wilcoxon-mann-whitney-u-non-parameteric-test-of-difference-in-means-1"><i class="fa fa-check"></i>Wilcoxon (Mann-Whitney U) non-parameteric test of difference in means</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#paired-observations"><i class="fa fa-check"></i>Paired observations</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#example-reaction-time-while-driving"><i class="fa fa-check"></i>Example: Reaction time while driving</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#chi-squared-test-for-independence"><i class="fa fa-check"></i>Chi-squared test for independence</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#example-smoking-habits-and-exercise"><i class="fa fa-check"></i>Example: Smoking habits and exercise</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GEO5156: Quantitative Geography</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="thursday-september-28-2022" class="section level1 unnumbered">
+<h1>Thursday, September 28, 2022</h1>
+<div id="today-12" class="section level2 unnumbered">
+<h2>Today</h2>
+<p>Last time you saw how to perform a <span class="math inline">\(t\)</span> test in R and how the correspondence between the test’s <span class="math inline">\(p\)</span>-value and the ease it was to find a plot of the actual data against the plots created from data under a null hypothesis (fake data).</p>
+<p>If you find it easy to pick out the plot of the actual data in line up of plots generated from fake data, then the <span class="math inline">\(p\)</span>-value from a formal statistical test will be small providing you with evidence to reject the null hypothesis.</p>
+</div>
+<div id="example-palmer-penguins-3" class="section level2 unnumbered">
+<h2>Example: Palmer penguins</h2>
+<p>On average do Adelie penguins have shorter flippers than Chinstrap penguins?</p>
+<p>Let <span class="math inline">\(A\)</span> be the length of Adelie penguin flippers and <span class="math inline">\(C\)</span> be the length of Chinstrap penguin flippers. Then you formally write the statistical test as
+<span class="math display">\[
+\hbox{H}_0: \mu_{A} = \mu_{C} \\
+\hbox{H}_A: \mu_{A} \lt \mu_{C}
+\]</span></p>
+<p>The data set to test this one-sided hypothesis is available as part of the {palmerpenguins} package.</p>
+<div class="sourceCode" id="cb813"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb813-1"><a href="thursday-september-28-2022.html#cb813-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb813-2"><a href="thursday-september-28-2022.html#cb813-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(penguins)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;
+## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
+## 3 Adelie  Torge…           40.3          18                195        3250 fema…
+## 4 Adelie  Torge…           NA            NA                 NA          NA &lt;NA&gt; 
+## 5 Adelie  Torge…           36.7          19.3              193        3450 fema…
+## 6 Adelie  Torge…           39.3          20.6              190        3650 male 
+## # … with 1 more variable: year &lt;dbl&gt;</code></pre>
+<p>Remove the rows corresponding to the larger Gentoo penguins.</p>
+<div class="sourceCode" id="cb815"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb815-1"><a href="thursday-september-28-2022.html#cb815-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb815-2"><a href="thursday-september-28-2022.html#cb815-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb815-3"><a href="thursday-september-28-2022.html#cb815-3" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb815-4"><a href="thursday-september-28-2022.html#cb815-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(species <span class="sc">!=</span> <span class="st">&quot;Gentoo&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb815-5"><a href="thursday-september-28-2022.html#cb815-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(flipper_length_mm))</span></code></pre></div>
+<div class="sourceCode" id="cb816"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb816-1"><a href="thursday-september-28-2022.html#cb816-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb816-2"><a href="thursday-september-28-2022.html#cb816-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb816-3"><a href="thursday-september-28-2022.html#cb816-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
+<span id="cb816-4"><a href="thursday-september-28-2022.html#cb816-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> species), <span class="at">width =</span> .<span class="dv">3</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb816-5"><a href="thursday-september-28-2022.html#cb816-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color =</span> species), <span class="at">alpha =</span> .<span class="dv">5</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb816-6"><a href="thursday-september-28-2022.html#cb816-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">seed =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb816-7"><a href="thursday-september-28-2022.html#cb816-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>,<span class="st">&quot;purple&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb816-8"><a href="thursday-september-28-2022.html#cb816-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb816-9"><a href="thursday-september-28-2022.html#cb816-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb816-10"><a href="thursday-september-28-2022.html#cb816-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-382-1.png" width="672" /></p>
+<p>You see that, on average, Adelie penguins have shorter flippers than the Chinstrap penguins. But there is substantial individual variability.</p>
+<p>Let’s start with a lineup of plots where you permute flipper length between the species.</p>
+<div class="sourceCode" id="cb817"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb817-1"><a href="thursday-september-28-2022.html#cb817-1" aria-hidden="true" tabindex="-1"></a>fun <span class="ot">&lt;-</span> nullabor<span class="sc">::</span><span class="fu">null_permute</span>(<span class="st">&quot;species&quot;</span>)</span>
+<span id="cb817-2"><a href="thursday-september-28-2022.html#cb817-2" aria-hidden="true" tabindex="-1"></a>inf <span class="ot">&lt;-</span> nullabor<span class="sc">::</span><span class="fu">lineup</span>(fun, penguins, <span class="at">n =</span> <span class="dv">15</span>)</span></code></pre></div>
+<pre><code>## decrypt(&quot;h8RX 5IvI ne TAynvnAe kL&quot;)</code></pre>
+<div class="sourceCode" id="cb819"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb819-1"><a href="thursday-september-28-2022.html#cb819-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(inf, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">color =</span> species, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span> </span>
+<span id="cb819-2"><a href="thursday-september-28-2022.html#cb819-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb819-3"><a href="thursday-september-28-2022.html#cb819-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>,<span class="st">&quot;purple&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb819-4"><a href="thursday-september-28-2022.html#cb819-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> .sample, <span class="at">ncol =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb819-5"><a href="thursday-september-28-2022.html#cb819-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb819-6"><a href="thursday-september-28-2022.html#cb819-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-383-1.png" width="672" /></p>
+<p>Based on the line up of plots and the ease at which you can pick out the plot made with the actual data, is this convincing, moderate, or suggestive evidence to reject the null hypothesis?</p>
+<div class="sourceCode" id="cb820"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb820-1"><a href="thursday-september-28-2022.html#cb820-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(flipper_length_mm <span class="sc">~</span> species, </span>
+<span id="cb820-2"><a href="thursday-september-28-2022.html#cb820-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> penguins,</span>
+<span id="cb820-3"><a href="thursday-september-28-2022.html#cb820-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb820-4"><a href="thursday-september-28-2022.html#cb820-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  flipper_length_mm by species
+## t = -5.974, df = 217, p-value = 4.689e-09
+## alternative hypothesis: true difference in means between group Adelie and group Chinstrap is less than 0
+## 95 percent confidence interval:
+##       -Inf -4.246781
+## sample estimates:
+##    mean in group Adelie mean in group Chinstrap 
+##                189.9536                195.8235</code></pre>
+<p>Q: How do you write your conclusions?
+A: Adelie penguins in the sample have a mean flipper length of 190 mm, which is shorter than the mean flipper length of the Chinstrap penguins by about 6 mm. Given a sample size of 219 penguins this difference provides convincing evidence against the null hypothesis that population mean flipper length is the same (or longer) for the Chinstrap penguins.</p>
+</div>
+<div id="your-turn-4" class="section level2 unnumbered">
+<h2>Your turn</h2>
+<p>Test the hypothesis that on average female penguins have shorter bill lengths than male penguins.</p>
+<div class="sourceCode" id="cb822"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb822-1"><a href="thursday-september-28-2022.html#cb822-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bill_length_mm <span class="sc">~</span> sex, </span>
+<span id="cb822-2"><a href="thursday-september-28-2022.html#cb822-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> penguins,</span>
+<span id="cb822-3"><a href="thursday-september-28-2022.html#cb822-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb822-4"><a href="thursday-september-28-2022.html#cb822-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+</div>
+<div id="test-of-equal-variance-1" class="section level2 unnumbered">
+<h2>Test of equal variance</h2>
+<p>In the test of mean flipper length by species above you assumed that the within-species variability among penguins is the same for both species (<code>var.equal = TRUE</code>).</p>
+<p>You can check this assumption by computing the variance by species.</p>
+<div class="sourceCode" id="cb823"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb823-1"><a href="thursday-september-28-2022.html#cb823-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb823-2"><a href="thursday-september-28-2022.html#cb823-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb823-3"><a href="thursday-september-28-2022.html#cb823-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">varFL =</span> <span class="fu">var</span>(flipper_length_mm))</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 2
+##   species   varFL
+##   &lt;chr&gt;     &lt;dbl&gt;
+## 1 Adelie     42.8
+## 2 Chinstrap  50.9</code></pre>
+<p>There is less variance in flipper length for the sample of Adelie penguins compared with the variance in flipper length for the sample of Chinstrap penguins. But is this difference significant?</p>
+<p>The ratio of the two variances is about .84.</p>
+<p>You formally test with the <code>var.test()</code> function under the null hypothesis that the <em>ratio</em> of the two variances is equal to 1 (a ratio of one is equivalent to equal variances).</p>
+<div class="sourceCode" id="cb825"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb825-1"><a href="thursday-september-28-2022.html#cb825-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(flipper_length_mm <span class="sc">~</span> species, </span>
+<span id="cb825-2"><a href="thursday-september-28-2022.html#cb825-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> penguins)</span></code></pre></div>
+<pre><code>## 
+##  F test to compare two variances
+## 
+## data:  flipper_length_mm by species
+## F = 0.84076, num df = 150, denom df = 67, p-value = 0.3854
+## alternative hypothesis: true ratio of variances is not equal to 1
+## 95 percent confidence interval:
+##  0.5489336 1.2465576
+## sample estimates:
+## ratio of variances 
+##          0.8407631</code></pre>
+<p>The output shows that the ratio of the variances is .84.</p>
+<p>Under the null hypothesis that the true ratio is 1 the <span class="math inline">\(F\)</span> statistic (<code>F =</code>) follows an F distribution with 150 and 67 degrees of freedom which gives a two-sided <span class="math inline">\(p\)</span>-value of .3854 (Note: This is why the test is sometimes called the ‘F-test’).</p>
+<p>Thus you conclude there is no statistical evidence of a difference in the variability in flipper length between the two species.</p>
+<p>Note: the uncertainty interval includes the value of 1 and is quite wide.</p>
+<p>The test of equal variance is sensitive to small departures from a normal distribution and it is based on the assumption that the groups are independent. It should not be applied in the setting where the data values are paired.</p>
+<p>The <code>t.test()</code> and <code>var.test()</code> functions are in the {stats} package as part of the base install of R.</p>
+<p>The {ctest} package contains all the “classical tests,” and has several alternative tests for variance homogeneity, each with its own assumptions, benefits, and drawbacks.</p>
+</div>
+<div id="wilcoxon-mann-whitney-u-non-parameteric-test-of-difference-in-means-1" class="section level2 unnumbered">
+<h2>Wilcoxon (Mann-Whitney U) non-parameteric test of difference in means</h2>
+<p>You can avoid the distributional assumption by using a non-parametric test. The non-parametric alternative is the Wilcoxon test (also known as the Mann-Whitney U test).</p>
+<p>The test statistic ‘W’ is the sum of the ranks in the first group minus the sum of the ranks in the second. It is obtained with the <code>wilcox.test()</code> function.</p>
+<p>For example, is there evidence of more or fewer U.S. hurricanes recently? One way to examine this question is to divide the time period into two samples and compare the means from both samples.</p>
+<div class="sourceCode" id="cb827"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb827-1"><a href="thursday-september-28-2022.html#cb827-1" aria-hidden="true" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="st">&quot;http://myweb.fsu.edu/jelsner/temp/data/US.txt&quot;</span></span>
+<span id="cb827-2"><a href="thursday-september-28-2022.html#cb827-2" aria-hidden="true" tabindex="-1"></a>LH.df <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_table</span>(loc)</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   Year = col_double(),
+##   All = col_double(),
+##   MUS = col_double(),
+##   G = col_double(),
+##   FL = col_double(),
+##   E = col_double()
+## )</code></pre>
+<p>You consider the first half of the record as separate from the second half and ask is there a difference in hurricane counts between the two halves. The null hypothesis is that the sample means are the same.</p>
+<p>First create a vector that divides the record length in two equal parts.</p>
+<div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb829-1"><a href="thursday-september-28-2022.html#cb829-1" aria-hidden="true" tabindex="-1"></a>early <span class="ot">&lt;-</span> LH.df<span class="sc">$</span>Year <span class="sc">&lt;=</span> <span class="fu">median</span>(LH.df<span class="sc">$</span>Year)</span>
+<span id="cb829-2"><a href="thursday-september-28-2022.html#cb829-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(early); <span class="fu">tail</span>(early)</span></code></pre></div>
+<pre><code>## [1] TRUE TRUE TRUE TRUE TRUE TRUE</code></pre>
+<pre><code>## [1] FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<p>Then run a test on the U.S. hurricane counts where the explanatory variable is the vector <code>early</code>.</p>
+<div class="sourceCode" id="cb832"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb832-1"><a href="thursday-september-28-2022.html#cb832-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(LH.df<span class="sc">$</span>All <span class="sc">~</span> early,</span>
+<span id="cb832-2"><a href="thursday-september-28-2022.html#cb832-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  LH.df$All by early
+## t = -0.59291, df = 162.53, p-value = 0.5541
+## alternative hypothesis: true difference in means between group FALSE and group TRUE is not equal to 0
+## 95 percent confidence interval:
+##  -0.5739157  0.3088554
+## sample estimates:
+## mean in group FALSE  mean in group TRUE 
+##             1.60241             1.73494</code></pre>
+<p>The <span class="math inline">\(p\)</span>-value is large (&gt; .15) so you fail to reject the null hypothesis of no difference in mean number of hurricanes between the earlier and the later periods.</p>
+<p>The 95% uncertainty interval is centered on the difference in means. Since the interval contains zero, there is no evidence to reject the null hypothesis.</p>
+<p>Since there are 166 years in the record (<code>length(LH.df$All)</code>) you take the first 83 years for the first sample (<code>s1</code>) and the next 83 years for the second sample (<code>s2</code>) and then test.</p>
+<div class="sourceCode" id="cb834"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb834-1"><a href="thursday-september-28-2022.html#cb834-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> LH.df<span class="sc">$</span>All[early]</span>
+<span id="cb834-2"><a href="thursday-september-28-2022.html#cb834-2" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> LH.df<span class="sc">$</span>All[<span class="sc">!</span>early]</span>
+<span id="cb834-3"><a href="thursday-september-28-2022.html#cb834-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb834-4"><a href="thursday-september-28-2022.html#cb834-4" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(s1, s2,</span>
+<span id="cb834-5"><a href="thursday-september-28-2022.html#cb834-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  s1 and s2
+## t = 0.59291, df = 162.53, p-value = 0.5541
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.3088554  0.5739157
+## sample estimates:
+## mean of x mean of y 
+##   1.73494   1.60241</code></pre>
+<p>Small counts are not well described by a normal distribution.</p>
+<div class="sourceCode" id="cb836"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb836-1"><a href="thursday-september-28-2022.html#cb836-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> LH.df, </span>
+<span id="cb836-2"><a href="thursday-september-28-2022.html#cb836-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="fu">factor</span>(All))) <span class="sc">+</span> </span>
+<span id="cb836-3"><a href="thursday-september-28-2022.html#cb836-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
+<span id="cb836-4"><a href="thursday-september-28-2022.html#cb836-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Number of Years&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb836-5"><a href="thursday-september-28-2022.html#cb836-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Number of Hurricanes&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-392-1.png" width="672" /></p>
+<p>Their are many more years with counts below the mean (1.7 hur/year) than counts above the mean.</p>
+<p>So you use the non-parametric Wilcoxon test instead.</p>
+<div class="sourceCode" id="cb837"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb837-1"><a href="thursday-september-28-2022.html#cb837-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(s1, s2)</span></code></pre></div>
+<pre><code>## 
+##  Wilcoxon rank sum test with continuity correction
+## 
+## data:  s1 and s2
+## W = 3592.5, p-value = 0.6239
+## alternative hypothesis: true location shift is not equal to 0</code></pre>
+<p>The <span class="math inline">\(p\)</span> value again exceeds .15 so the conclusion is the same. The second half of the record is statistically indistinguishable from the first half.</p>
+</div>
+<div id="paired-observations" class="section level2 unnumbered">
+<h2>Paired observations</h2>
+<p>In cases where the observations come in pairs you can ‘control’ for individual variation by doing a paired <span class="math inline">\(t\)</span> test.</p>
+<p>Example: A shoe manufacturer makes two different materials (A and B). A sample of 10 kids try <em>both</em> materials. Wear times (in months) are recorded for each material. You want to know if one material is more resistant to wear.</p>
+<p>So you test if there is a difference in shoe material wear times. You start by creating a long data frame from the recorded wear times.</p>
+<div class="sourceCode" id="cb839"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb839-1"><a href="thursday-september-28-2022.html#cb839-1" aria-hidden="true" tabindex="-1"></a>matA <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">14</span>, <span class="fl">8.8</span>, <span class="fl">11.2</span>, <span class="fl">14.2</span>, <span class="fl">11.8</span>, <span class="fl">6.4</span>, <span class="fl">9.8</span>, <span class="fl">11.3</span>, <span class="fl">9.3</span>, <span class="fl">13.6</span>)</span>
+<span id="cb839-2"><a href="thursday-september-28-2022.html#cb839-2" aria-hidden="true" tabindex="-1"></a>matB <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">13.2</span>, <span class="fl">8.2</span>, <span class="fl">10.9</span>, <span class="fl">14.3</span>, <span class="fl">10.7</span>, <span class="fl">6.6</span>, <span class="fl">9.5</span>, <span class="fl">10.8</span>, <span class="fl">8.8</span>, <span class="fl">13.3</span>)</span>
+<span id="cb839-3"><a href="thursday-september-28-2022.html#cb839-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb839-4"><a href="thursday-september-28-2022.html#cb839-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Kid =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">2</span>), </span>
+<span id="cb839-5"><a href="thursday-september-28-2022.html#cb839-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">Material =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;A&quot;</span>, <span class="dv">10</span>), <span class="fu">rep</span>(<span class="st">&quot;B&quot;</span>, <span class="dv">10</span>)), </span>
+<span id="cb839-6"><a href="thursday-september-28-2022.html#cb839-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">Wear =</span> <span class="fu">c</span>(matA, matB))</span></code></pre></div>
+<p>You then plot the wear times.</p>
+<div class="sourceCode" id="cb840"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb840-1"><a href="thursday-september-28-2022.html#cb840-1" aria-hidden="true" tabindex="-1"></a>( p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> Material, <span class="at">y =</span> Wear, <span class="at">color =</span> Material)) <span class="sc">+</span></span>
+<span id="cb840-2"><a href="thursday-september-28-2022.html#cb840-2" aria-hidden="true" tabindex="-1"></a>         <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb840-3"><a href="thursday-september-28-2022.html#cb840-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb840-4"><a href="thursday-september-28-2022.html#cb840-4" aria-hidden="true" tabindex="-1"></a>         <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#1F78B4&quot;</span>, <span class="st">&quot;#A6CEE3&quot;</span>)) )</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-395-1.png" width="672" /></p>
+<p>Wear times range from less than 7 months to more than 14 months. But there does not appear to be a significant difference in wear times between material A and B.</p>
+<p>On average, material A wears longer than material B (11 months versus 10.6 months) but the difference is small relative to the individual wear times. Thus, as expected when you run a <span class="math inline">\(t\)</span> test on these two samples you find a large <span class="math inline">\(p\)</span>-value.</p>
+<div class="sourceCode" id="cb841"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb841-1"><a href="thursday-september-28-2022.html#cb841-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(matA, matB,</span>
+<span id="cb841-2"><a href="thursday-september-28-2022.html#cb841-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  matA and matB
+## t = 0.36891, df = 17.987, p-value = 0.7165
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -1.925046  2.745046
+## sample estimates:
+## mean of x mean of y 
+##     11.04     10.63</code></pre>
+<p>Let’s add a line layer to the plot where you group the points on the graph by <code>Kid</code>.</p>
+<div class="sourceCode" id="cb843"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb843-1"><a href="thursday-september-28-2022.html#cb843-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">group =</span> Kid), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-397-1.png" width="672" /></p>
+<p>This shows material A wears longer in 8 of the 10 kids (most of the connecting lines slope downward toward material B).</p>
+<p>In this case since there is a grouping variable you use the <code>paired = TRUE</code> argument in the <span class="math inline">\(t\)</span> test.</p>
+<div class="sourceCode" id="cb844"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb844-1"><a href="thursday-september-28-2022.html#cb844-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(matA, matB, </span>
+<span id="cb844-2"><a href="thursday-september-28-2022.html#cb844-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb844-3"><a href="thursday-september-28-2022.html#cb844-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  matA and matB
+## t = 3.3489, df = 9, p-value = 0.008539
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  0.1330461 0.6869539
+## sample estimates:
+## mean of the differences 
+##                    0.41</code></pre>
+<p>Now you find a <span class="math inline">\(p\)</span>-value less than .01 so you conclude there is a significant difference in wear times between the two materials.</p>
+<p>The paired test is a one-sample test where the hypothesized mean difference is zero. To see this create a new vector as the difference in wear times.</p>
+<div class="sourceCode" id="cb846"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb846-1"><a href="thursday-september-28-2022.html#cb846-1" aria-hidden="true" tabindex="-1"></a>( df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(matA, matB) <span class="sc">|&gt;</span></span>
+<span id="cb846-2"><a href="thursday-september-28-2022.html#cb846-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Diff =</span> matA <span class="sc">-</span> matB,</span>
+<span id="cb846-3"><a href="thursday-september-28-2022.html#cb846-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">Kid =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) )</span></code></pre></div>
+<pre><code>##    matA matB Diff Kid
+## 1  14.0 13.2  0.8   1
+## 2   8.8  8.2  0.6   2
+## 3  11.2 10.9  0.3   3
+## 4  14.2 14.3 -0.1   4
+## 5  11.8 10.7  1.1   5
+## 6   6.4  6.6 -0.2   6
+## 7   9.8  9.5  0.3   7
+## 8  11.3 10.8  0.5   8
+## 9   9.3  8.8  0.5   9
+## 10 13.6 13.3  0.3  10</code></pre>
+<p>Then use the one-sample version of the <span class="math inline">\(t\)</span> test with <code>mu = 0</code>.</p>
+<div class="sourceCode" id="cb848"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb848-1"><a href="thursday-september-28-2022.html#cb848-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(df<span class="sc">$</span>Diff, </span>
+<span id="cb848-2"><a href="thursday-september-28-2022.html#cb848-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mu =</span> <span class="dv">0</span>,</span>
+<span id="cb848-3"><a href="thursday-september-28-2022.html#cb848-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  df$Diff
+## t = 3.3489, df = 9, p-value = 0.008539
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  0.1330461 0.6869539
+## sample estimates:
+## mean of x 
+##      0.41</code></pre>
+</div>
+<div id="example-reaction-time-while-driving" class="section level2 unnumbered">
+<h2>Example: Reaction time while driving</h2>
+<p>Cell phone use while driving is believed to increase the chance of an accident due to slowed reaction time. The data set <code>reaction.time</code> in the package {UsingR} gives the time it takes to react to an external event while driving by various groups.</p>
+<div class="sourceCode" id="cb850"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb850-1"><a href="thursday-september-28-2022.html#cb850-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> UsingR<span class="sc">::</span>reaction.time</span>
+<span id="cb850-2"><a href="thursday-september-28-2022.html#cb850-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    60 obs. of  4 variables:
+##  $ age    : Factor w/ 2 levels &quot;16-24&quot;,&quot;25+&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ gender : Factor w/ 2 levels &quot;F&quot;,&quot;M&quot;: 1 2 2 1 2 2 2 1 1 2 ...
+##  $ control: Factor w/ 2 levels &quot;C&quot;,&quot;T&quot;: 2 2 2 2 2 1 2 2 2 1 ...
+##  $ time   : num  1.36 1.47 1.51 1.39 1.38 ...</code></pre>
+<p>The variable <code>time</code> is the reaction time in seconds. This is the response variable (the variable you are interested in). The factor variable <code>control</code> has two groups ‘C’ control (not using cell phone) and ‘T’ (using cell). The observations are not paired. The data set is in the long format.</p>
+<p>Suppose I was asked to test the hypothesis that, on average, reaction time is <em>shorter</em> for those not using a cell phone.</p>
+<p>Here is my thought process:</p>
+<p>I would start by computing the mean for each group (C: control and T: phone user) from the sample of data I have.</p>
+<div class="sourceCode" id="cb852"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb852-1"><a href="thursday-september-28-2022.html#cb852-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb852-2"><a href="thursday-september-28-2022.html#cb852-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(control) <span class="sc">|&gt;</span></span>
+<span id="cb852-3"><a href="thursday-september-28-2022.html#cb852-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="fu">mean</span>(time),</span>
+<span id="cb852-4"><a href="thursday-september-28-2022.html#cb852-4" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">sd</span>(time))</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 3
+##   control `mean(time)` `sd(time)`
+##   &lt;fct&gt;          &lt;dbl&gt;      &lt;dbl&gt;
+## 1 C               1.39     0.100 
+## 2 T               1.45     0.0747</code></pre>
+<p>First I note that the control group has a shorter reaction time than the phone-user group, on average. If this was not the case I would be finished concluding that the sample of data provides no evidence in support of the hypothesis.</p>
+<p>Second I note that the difference in means is 6 hundredths of a second. And the standard deviations are of nearly the same magnitude as the difference in means.</p>
+<p>Third I plot the response variable (<code>time</code>) conditional on the control variable.</p>
+<div class="sourceCode" id="cb854"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb854-1"><a href="thursday-september-28-2022.html#cb854-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> control, <span class="at">y =</span> time)) <span class="sc">+</span></span>
+<span id="cb854-2"><a href="thursday-september-28-2022.html#cb854-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb854-3"><a href="thursday-september-28-2022.html#cb854-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb854-4"><a href="thursday-september-28-2022.html#cb854-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;No Cell Phone Use&quot;</span>, <span class="st">&quot;Cell Phone Use&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb854-5"><a href="thursday-september-28-2022.html#cb854-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Reaction Time (s)&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-403-1.png" width="672" /></p>
+<p>Fourth I note the median reaction time for the control group (no cell phone use) is shorter and the interquartile ranges overlap. This tells me a statistical test is needed.</p>
+<p>Fifth I note both distributions are approximately symmetric about the median so I am safe to use a <span class="math inline">\(t\)</span> test.</p>
+<p>Sixth I note the variability in reaction times for the two groups is about the same.</p>
+<p>The null hypothesis is that there is no difference in reaction times. Here the alternative is that the reaction time is <em>shorter</em> for those not using a phone.</p>
+<p>I use the model syntax: response ~ explanatory as the first argument in the <code>t.test()</code> function. I include an argument that names the data frame where the columns <code>time</code> and <code>control</code> are located. Here the argument <code>alternative = 'less'</code> is used.</p>
+<div class="sourceCode" id="cb855"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb855-1"><a href="thursday-september-28-2022.html#cb855-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(time <span class="sc">~</span> control, </span>
+<span id="cb855-2"><a href="thursday-september-28-2022.html#cb855-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> df, </span>
+<span id="cb855-3"><a href="thursday-september-28-2022.html#cb855-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb855-4"><a href="thursday-september-28-2022.html#cb855-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&#39;less&#39;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  time by control
+## t = -2.4329, df = 58, p-value = 0.009041
+## alternative hypothesis: true difference in means between group C and group T is less than 0
+## 95 percent confidence interval:
+##         -Inf -0.01751153
+## sample estimates:
+## mean in group C mean in group T 
+##        1.389613        1.445571</code></pre>
+<p>The evidence in support of the null hypothesis that the reaction times are the same in the population is summarized by the <span class="math inline">\(p\)</span>-value. The <span class="math inline">\(p\)</span>-value is .009, so I conclude there is convincing evidence indicating cell phone use slows reaction times.</p>
+<p>The adjective ‘convincing’ comes from the following table: <span class="math inline">\(p\)</span>-value as evidence against the null hypothesis.</p>
+<pre><code>   less than 0.01: convincing
+        0.01-0.05: moderate 
+        0.05-0.15: suggestive, but inconclusive
+greater than 0.15: no</code></pre>
+</div>
+<div id="chi-squared-test-for-independence" class="section level2 unnumbered">
+<h2>Chi-squared test for independence</h2>
+<p>This test is used when you have two categorical variables from a single population. It determines whether there is a significant association between the two variables.</p>
+<p>For example, in an election survey, voters might be classified by male or female and voting preference (Democrat, Republican, or Independent). You use a chi-squared test for independence to determine whether sex is related to voting preference.</p>
+<p>The test is appropriate when the sampling method is random, the variables under study are each categorical, and the expected frequency count for each cell of the table is at least five.</p>
+<p>The hypothesis is:
+<span class="math display">\[
+\hbox{H}_0: \hbox{Variable A and Variable B are independent}\\
+\hbox{H}_A: \hbox{Variable A and Variable B are not independent}
+\]</span></p>
+<p>The alternative hypothesis is that knowing the level of A can help us predict the level of B. Support for the alternative hypothesis does not imply causality.</p>
+<p>The test statistic is a chi-squared random variable defined by
+<span class="math display">\[
+\chi^2 = \sum_{r = 1}^{n_r} \sum_{c = 1}^{n_c} \frac{(O_{r,c} - E_{r,c})^2}{E_{r,c}}
+\]</span>
+where <span class="math inline">\(O_{r,c}\)</span> is the observed frequency count at level <span class="math inline">\(r\)</span> of variable A and level <span class="math inline">\(c\)</span> of variable B, and <span class="math inline">\(E_{r,c}\)</span> is the corresponding expected frequency count, where
+<span class="math display">\[
+E_{r,c} = \frac{n_r \times n_c}{n}
+\]</span>
+where <span class="math inline">\(n_r\)</span> is the total number of sample observations of variable A and <span class="math inline">\(n_c\)</span> is the total number of sample observations of variable B, and <span class="math inline">\(n\)</span> is the total sample size.</p>
+</div>
+<div id="example-smoking-habits-and-exercise" class="section level2 unnumbered">
+<h2>Example: Smoking habits and exercise</h2>
+<p>In the data set <code>survey</code> ({MASS} package), the <code>Smoke</code> column records the students smoking habit, while the <code>Exer</code> column records their exercise level. The allowed values in <code>Smoke</code> are “Heavy,” “Regul” (regularly), “Occas” (occasionally) and “Never.” As for <code>Exer</code>, they are “Freq” (frequently), “Some” and “None.”</p>
+<p>You tally the students smoking habits against their exercise levels with the <code>table()</code> function.</p>
+<div class="sourceCode" id="cb858"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb858-1"><a href="thursday-september-28-2022.html#cb858-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb858-2"><a href="thursday-september-28-2022.html#cb858-2" aria-hidden="true" tabindex="-1"></a>( SH.tbl <span class="ot">&lt;-</span> <span class="fu">table</span>(survey<span class="sc">$</span>Smoke, survey<span class="sc">$</span>Exer) )</span></code></pre></div>
+<pre><code>##        
+##         Freq None Some
+##   Heavy    7    1    3
+##   Never   87   18   84
+##   Occas   12    3    4
+##   Regul    9    1    7</code></pre>
+<p>The result is called a contingency table of the two variables. Values for the level of exercise are in the columns and values for the level of smoking are in the rows.</p>
+<p>You test the hypothesis of whether student smoking levels are independent of their exercise level using</p>
+<div class="sourceCode" id="cb860"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb860-1"><a href="thursday-september-28-2022.html#cb860-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(SH.tbl)</span></code></pre></div>
+<pre><code>## Warning in chisq.test(SH.tbl): Chi-squared approximation may be incorrect</code></pre>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  SH.tbl
+## X-squared = 5.4885, df = 6, p-value = 0.4828</code></pre>
+<p>You find a large <span class="math inline">\(p\)</span>-value (greater than .15) and fail to reject the null hypothesis of independence.</p>
+<p>The warning message tells us that some of counts are less than 5.</p>
+<p>In the case where some of the counts have fewer than five cases it is better to use Fisher’s exact test.</p>
+<div class="sourceCode" id="cb863"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb863-1"><a href="thursday-september-28-2022.html#cb863-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(SH.tbl)</span></code></pre></div>
+<pre><code>## 
+##  Fisher&#39;s Exact Test for Count Data
+## 
+## data:  SH.tbl
+## p-value = 0.4138
+## alternative hypothesis: two.sided</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tuesday-september-26-2022.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

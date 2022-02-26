@@ -6,17 +6,17 @@
 
 How to apply common statistical tests and how to understand their meaning using graphs.
 
-This lesson marks a departure from the earlier lessons. I will continue to teach you how to code, but I will do so in the context of statistical thinking, analysis, and modeling.
+This lesson marks a departure from the earlier lessons. You will continue to learn how to code in R, but you will do it in the context of statistical thinking, analysis, and modeling.
 
-I find statistics to be a natural extension to thinking about how the world works but I realize this comes with experience.
+I find statistics to be a natural extension to how I think about the world, but I realize this comes with experience and may not come natural to you.
 
-The process of drawing conclusions about a population from a sample of data is called _inference_. Formally referred to as _inferential statistics_. It is a foundation of data science. Two approaches: frequentist (standard practice) and Bayesian.
+The process of drawing conclusions about a population from a sample of data is called _inference_. Formally referred to as _inferential statistics_ and it is a foundation of data science. 
 
-Standard practice relies on disproving a research claim that is NOT of interest.
+Two approaches: frequentist (standard practice) and Bayesian. Standard practice relies on disproving a research claim that is NOT of interest.
 
 The research claim you want to disprove is called the _null hypothesis_. For instance, to show that one medical treatment is better than another treatment, you first assume that the two treatments lead to equal survival rates. You then proceed to disprove this null hypothesis with data. Often the other treatment is a placebo (sugar pill).
 
-To show that the climate is getting warmer, you first assume that it is not getting warmer. You then proceed to disprove this hypothesis with data. 
+To show that the climate is getting warmer, you first assume that it is not getting warmer. You then proceed trying to disprove this hypothesis. 
 
 Q: What is the difference between the medical treatment example and the climate change example?
 
@@ -331,7 +331,13 @@ You write a summary and conclusion as follows: "The sample mean intensity of Atl
 
 ## Example: Palmer penguins {-}
 
-Do Adelie penguins have shorter flippers than Chinstrap penguins? The data frame called `penguins` is available as part of the {palmerpenguins} package.
+Let $A$ be the length of Adelie penguin flippers and $C$ be the length of Chinstrap penguin flippers. Then you formally write the statistical test as
+$$
+\hbox{H}_0: \mu_{A} = \mu_{C} \\
+\hbox{H}_A: \mu_{A} \lt \mu_{C}
+$$
+
+The data set to test this one-sided hypothesis is available as part of the {palmerpenguins} package.
 ```{r}
 library(palmerpenguins)
 head(penguins)
