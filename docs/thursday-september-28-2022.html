@@ -68,9 +68,9 @@
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.1.0/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.0/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -340,10 +340,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html"><i class="fa fa-check"></i>Thursday, September 28, 2022</a>
 <ul>
 <li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#today-12"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#example-palmer-penguins-3"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#your-turn-4"><i class="fa fa-check"></i>Your turn</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#test-of-equal-variance-1"><i class="fa fa-check"></i>Test of equal variance</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#wilcoxon-mann-whitney-u-non-parameteric-test-of-difference-in-means-1"><i class="fa fa-check"></i>Wilcoxon (Mann-Whitney U) non-parameteric test of difference in means</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#review"><i class="fa fa-check"></i>Review</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#paired-observations"><i class="fa fa-check"></i>Paired observations</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#example-reaction-time-while-driving"><i class="fa fa-check"></i>Example: Reaction time while driving</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#chi-squared-test-for-independence"><i class="fa fa-check"></i>Chi-squared test for independence</a></li>
@@ -376,8 +373,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Last time you saw how to perform a <span class="math inline">\(t\)</span> test in R and how the correspondence between the test’s <span class="math inline">\(p\)</span>-value and the ease it was to find a plot of the actual data against the plots created from data under a null hypothesis (fake data).</p>
 <p>If you find it easy to pick out the plot of the actual data in line up of plots generated from fake data, then the <span class="math inline">\(p\)</span>-value from a formal statistical test will be small providing you with evidence to reject the null hypothesis.</p>
 </div>
-<div id="example-palmer-penguins-3" class="section level2 unnumbered">
-<h2>Example: Palmer penguins</h2>
+<div id="review" class="section level2 unnumbered">
+<h2>Review</h2>
+<p>Example: Palmer penguins {-}</p>
 <p>On average do Adelie penguins have shorter flippers than Chinstrap penguins?</p>
 <p>Let <span class="math inline">\(A\)</span> be the length of Adelie penguin flippers and <span class="math inline">\(C\)</span> be the length of Chinstrap penguin flippers. Then you formally write the statistical test as
 <span class="math display">\[
@@ -418,7 +416,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let’s start with a lineup of plots where you permute flipper length between the species.</p>
 <div class="sourceCode" id="cb817"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb817-1"><a href="thursday-september-28-2022.html#cb817-1" aria-hidden="true" tabindex="-1"></a>fun <span class="ot">&lt;-</span> nullabor<span class="sc">::</span><span class="fu">null_permute</span>(<span class="st">&quot;species&quot;</span>)</span>
 <span id="cb817-2"><a href="thursday-september-28-2022.html#cb817-2" aria-hidden="true" tabindex="-1"></a>inf <span class="ot">&lt;-</span> nullabor<span class="sc">::</span><span class="fu">lineup</span>(fun, penguins, <span class="at">n =</span> <span class="dv">15</span>)</span></code></pre></div>
-<pre><code>## decrypt(&quot;h8RX 5IvI ne TAynvnAe kL&quot;)</code></pre>
+<pre><code>## decrypt(&quot;sD0f gCdC En JP2EdEPn ZB&quot;)</code></pre>
 <div class="sourceCode" id="cb819"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb819-1"><a href="thursday-september-28-2022.html#cb819-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(inf, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">color =</span> species, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span> </span>
 <span id="cb819-2"><a href="thursday-september-28-2022.html#cb819-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
 <span id="cb819-3"><a href="thursday-september-28-2022.html#cb819-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>,<span class="st">&quot;purple&quot;</span>)) <span class="sc">+</span></span>
@@ -444,17 +442,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##                189.9536                195.8235</code></pre>
 <p>Q: How do you write your conclusions?
 A: Adelie penguins in the sample have a mean flipper length of 190 mm, which is shorter than the mean flipper length of the Chinstrap penguins by about 6 mm. Given a sample size of 219 penguins this difference provides convincing evidence against the null hypothesis that population mean flipper length is the same (or longer) for the Chinstrap penguins.</p>
-</div>
-<div id="your-turn-4" class="section level2 unnumbered">
-<h2>Your turn</h2>
+<p>Your turn</p>
 <p>Test the hypothesis that on average female penguins have shorter bill lengths than male penguins.</p>
 <div class="sourceCode" id="cb822"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb822-1"><a href="thursday-september-28-2022.html#cb822-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bill_length_mm <span class="sc">~</span> sex, </span>
 <span id="cb822-2"><a href="thursday-september-28-2022.html#cb822-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> penguins,</span>
 <span id="cb822-3"><a href="thursday-september-28-2022.html#cb822-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb822-4"><a href="thursday-september-28-2022.html#cb822-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
-</div>
-<div id="test-of-equal-variance-1" class="section level2 unnumbered">
-<h2>Test of equal variance</h2>
+<p>Test of equal variance {-}</p>
 <p>In the test of mean flipper length by species above you assumed that the within-species variability among penguins is the same for both species (<code>var.equal = TRUE</code>).</p>
 <p>You can check this assumption by computing the variance by species.</p>
 <div class="sourceCode" id="cb823"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb823-1"><a href="thursday-september-28-2022.html#cb823-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
@@ -488,9 +482,7 @@ A: Adelie penguins in the sample have a mean flipper length of 190 mm, which is 
 <p>The test of equal variance is sensitive to small departures from a normal distribution and it is based on the assumption that the groups are independent. It should not be applied in the setting where the data values are paired.</p>
 <p>The <code>t.test()</code> and <code>var.test()</code> functions are in the {stats} package as part of the base install of R.</p>
 <p>The {ctest} package contains all the “classical tests,” and has several alternative tests for variance homogeneity, each with its own assumptions, benefits, and drawbacks.</p>
-</div>
-<div id="wilcoxon-mann-whitney-u-non-parameteric-test-of-difference-in-means-1" class="section level2 unnumbered">
-<h2>Wilcoxon (Mann-Whitney U) non-parameteric test of difference in means</h2>
+<p>Wilcoxon (Mann-Whitney U) non-parameteric test of difference in means {-}</p>
 <p>You can avoid the distributional assumption by using a non-parametric test. The non-parametric alternative is the Wilcoxon test (also known as the Mann-Whitney U test).</p>
 <p>The test statistic ‘W’ is the sum of the ranks in the first group minus the sum of the ranks in the second. It is obtained with the <code>wilcox.test()</code> function.</p>
 <p>For example, is there evidence of more or fewer U.S. hurricanes recently? One way to examine this question is to divide the time period into two samples and compare the means from both samples.</p>

@@ -10,10 +10,22 @@ github-repo: jelsner/QG-2022
 site: "bookdown::bookdown_site"
 documentclass: book
 editor_options: 
-  chunk_output_type: inline
+  chunk_output_type: console
 ---
 
 # {-}
+
+```{r, eval=FALSE}
+install.packages("bookdown")
+install.packages("DiagrammeR")
+install.packages("UsingR")
+install.packages("nycflights13")
+install.packages("ggmap")
+install.packages("nullabor")
+install.packages("bayesAB")
+install.packages("palmerpenguins")
+```
+
 
 ```{r, echo=FALSE}
 DiagrammeR::grViz("digraph rmarkdown {
