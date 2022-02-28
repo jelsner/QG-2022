@@ -225,7 +225,7 @@ d |>
   tidyr::expand(n_trials, 
          p_water = seq(from = 0, to = 1, length.out = sequence_length)) |> 
   dplyr::left_join(d, by = "n_trials") |>
-  group_by(p_water) |> 
+  dplyr::group_by(p_water) |> 
   # lag is the *previous* value
   dplyr::mutate(lagged_n_success = dplyr::lag(n_success, k = 1), 
                 lagged_n_trials  = dplyr::lag(n_trials,  k = 1)) |> 

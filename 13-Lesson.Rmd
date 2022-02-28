@@ -321,7 +321,7 @@ E_{r,c} = \frac{n_r \times n_c}{n}
 $$
 where $n_r$ is the total number of sample observations of variable A and $n_c$ is the total number of sample observations of variable B, and $n$ is the total sample size.
 
-## Example: Smoking habits and exercise {-}
+## Example: Smoking and exercise {-}
 
 In the data set `survey` ({MASS} package), the `Smoke` column records the students smoking habit, while the `Exer` column records their exercise level. The allowed values in `Smoke` are "Heavy", "Regul" (regularly), "Occas" (occasionally) and "Never". As for `Exer`, they are "Freq" (frequently), "Some" and "None".
 
