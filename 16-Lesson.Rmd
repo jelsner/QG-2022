@@ -1,0 +1,476 @@
+# Tuesday, October 12, 2022 {-}
+
+## Today {-}
+
+- Regression 
+
+Regression provides another way to implement a $t$ test but it is much more than that. In this lesson: how to fit a regression model, make predictions, interpret the output, and quantify the uncertainty about the model (coefficients) and about predictions made from the model.
+
+## Linear regression: A t test by another name {-}
+
+Recall that a $t$ test quantifies the evidence about whether population means from two groups are statistically different. Regression extends this test to an arbitrary number of groups.
+
+Consider again the `mtcars` data frame.
+```{r}
+head(mtcars)
+```
+
+You test the null hypothesis that there is no difference in average miles per gallon (`mpg` variable) between cars with and without automatic transmission (`am` variable). If you assume the variance in the gas mileage is the same for both groups (recall the box plots will look similar) then you implement the test as follows. 
+```{r}
+t.test(mpg ~ am, 
+       data = mtcars, 
+       var.equal = TRUE)
+```
+
+The $t$ value, computed as the difference in means divided by the standard error of the difference, is -4.1061. 
+
+With 30 degrees of freedom (sample size = 32 and you loose one degree of freedom for each mean), the $p$-value is less than .01 so you reject the null hypothesis of no difference in average miles per gallon between the two types of transmission. 
+
+The average miles per gallon over the sample of cars is 17.1 and 24.4 mpg for automatic and manual transmissions, respectively.
+
+The test can be done with linear regression. Linear regression is a statistical model for data that uses a straight line to describe the relationship between variables.
+
+The function for linear regression is `lm()`. The syntax is the same as the `t.test()` function except the assumption of equal variance is the default. Here you first assign the output of the `lm()` function to an object (call the object `model`). Then to see the output use the `summary()` method.
+```{r}
+model <- lm(mpg ~ am, 
+            data = mtcars)
+summary(model)
+```
+
+You see the $p$-value from the linear regression is identical to the $p$-value from the $t$ test. You state, as before, that you reject the null hypothesis of no difference in average miles per gallon between the two types of transmission.
+
+In the table of coefficients you see the value of `7.245` next to `am` in the column labeled `Estimate`. This is the difference in average mpg grouped by transmission (`mean in group 1` minus `mean in group 0`).
+
+Linear regression provides a way to generalize comparisons across any number of groups (not just two as is the case with a $t$ test).
+
+## Motivating regression {-}
+
+Suppose you have the following values for variables `y` and `x`. Let `y` be the 'response' variable and `x` be the 'explanatory' variable.
+```{r}
+y <- c(2.9, -2.1, -0.5, 2.9, 4.2)
+x <- 1:5
+```
+
+You start with a scatter plot and assign the graph to an object called `p`.
+```{r}
+df <- data.frame(x, y)
+
+library(ggplot2)
+p <- ggplot(data = df, 
+            mapping = aes(x = x, y = y)) +
+       geom_point(size = 2)
+p
+```
+
+Next you add a horizontal line to the graph at the mean of `y`. The mean of `y` is given by the `mean()` function. The `scale_y_continuous()` function is used to set the range on y-axis scale.
+```{r, fig.keep='none'}
+p <- p + geom_hline(yintercept = mean(y)) +
+           scale_y_continuous(limits = c(-6, 6))
+p
+```
+
+The mean, indicated by the horizontal line, is a model for these data. Some points are above the line and other points are below it. No individual value of `y` fits the model precisely (no points are exactly on the line), but the model represents the 'best' guess at where the average from a set of new values will be.
+
+The closer the points are to the line, the better the data fit the model. Closeness is defined as the distance along the y axis (vertical) between the point and the line. 
+
+Points above the line indicate values that are larger than the mean, so `y - mean(y)` is positive for these values. Points below the line indicate values that are smaller than the mean, so `y - mean(y)` is negative for these values.
+
+You include these distances on the graph using the `geom_segment()` layer. Aesthetics for this layer include the begin and end values for the x and y variables.
+```{r}
+p <- p + geom_segment(mapping = aes(y = mean(y), yend = y, 
+                                    x = x, xend = x))
+p
+```
+
+The individual distances are called "errors." Statisticians call them "residuals." _Key idea_: A residual is always the observed value minus the modeled value.
+
+The sum of the five residuals is zero. 
+```{r}
+sum( y - mean(y) )
+```
+
+If you sum the five residuals after squaring each of them you get a measure of how well the model fits the data. The smaller the sum, the better the fit. 
+```{r}
+sum( (y - mean(y))^2 )
+```
+
+This sum is called the _residual sum of squares_ (RSS) or the _mean squared error_. An RSS equal to 0 indicates that all points fall exactly on the line.
+
+You include the RSS value as a label on the plot using the `geom_label()` function.
+```{r}
+RSS <- round(sum((y - mean(y))^2), 1)
+lab <- paste("RSS = ", RSS)
+lab
+p + geom_label(x = 4, y = -2, label = lab)
+```
+
+Notice the pattern. With the exception of the first, the residuals go from large negative with the 2nd value to large positive with the 5th value. 
+
+This pattern suggests that perhaps you can find a line through the data that has a smaller RSS. A line that is not horizontal but slopes upward. 
+
+Let's draw another graph.
+```{r, fig.keep='none'}
+p1 <- ggplot(data = data.frame(x, y), 
+             mapping = aes(x, y)) +
+        geom_point(size = 2) +
+        scale_y_continuous(limits = c(-6, 6)) 
+p1
+```
+
+Next add a sloped line using
+```{r, fig.keep='none'}
+p1 <- p1 + geom_smooth(method = lm, se = FALSE, col = "blue")
+p1
+```
+
+This is the regression line. You can again plot the distance from a particular value to this new line (the residual).
+```{r, fig.keep='none'}
+p1 <- p1 + geom_segment(aes(y = predict(lm(y ~ x)), yend = y, 
+                            x = x, xend = x))
+p1
+```
+
+The RSS for the regression model is
+```{r}
+lrm <- lm(y ~ x)
+epsilon <- residuals(lrm)
+
+RSS <- sum(epsilon^2)
+RSS
+```
+
+Include this value on the plot.
+```{r}
+lab <- paste("RSS = ", RSS)
+p1 + geom_label(x = 4, y = -2, label = lab)
+```
+
+Since the RSS from the sloped line is smaller than the RSS from the flat line you say that the regression line (conditional mean) provides a more precise model. Rule: When choosing a regression model from a set of competing models you choose the model that minimizes the RSS.
+
+For each value of `x` you have a corresponding value for `y` and a predicted value for `y`.
+```{r, fig.keep='none'}
+p1 + geom_point(mapping = aes(x, predict(lm(y ~ x))), 
+                pch = 15, size = 2)
+```
+
+You refer to the predicted value at $x_i$ as $\hat y_i$ and refer to the estimated regression line as the prediction line. 
+
+The difference between the actual value $y_i$ and this predicted value $\hat y_i$ is the residual, $\varepsilon_i$. The residual is the vertical distance between the squares to the circles.
+
+The method of least squares determines the line such that the RSS is as small as possible.
+
+Recall that a line is uniquely determined by its slope and the value at which it intersects the vertical axis at x = 0 (y-intercept).
+
+Mathematically the slope is determined by
+$$
+\hat \beta_1 = \frac{\sum (x_i-\bar x)(y_i-\bar y)}{\sum (x_i-\bar x)^2}
+$$
+
+And the y-intercept by
+$$
+\hat \beta_0 = \bar y - \hat \beta_1 \bar x
+$$
+
+As a code chunk.
+```{r}
+beta1 <- sum((x - mean(x)) * (y - mean(y)))/sum((x - mean(x))^2)
+beta1
+beta0 <- mean(y) - beta1 * mean(x)
+beta0
+```
+
+The `beta1` ($\beta_1$) and `beta0` ($\beta_0$) are called regression model coefficients. $\beta_1$ is the slope coefficient and $\beta_0$ is the y-intercept coefficient.
+
+The regression line goes through the point defined by the average value of `x` and the average value of `y`.
+
+You could use the above code chunk to determine the regression coefficients but you will always use the `lm()` function.  
+
+The notation is `lm(y ~ x)`. The `~` (tilde) in this notation is read "is modeled by" or "is conditional on". So the model formula `y ~ x` is read "y is modeled by x". If you use `lm(y ~ x)` then you say "y is modeled by x" in a linear way.
+```{r}
+lm(y ~ x)
+```
+
+The value of $\beta_0$ is listed below the word (`Intercept`) and the value of $\beta_1$ is listed below the explanatory variable name (in this case, simply `x`).
+
+With this output you write that the mean of y = -0.8 + 0.76x.
+
+Question: Does `y` modeled by `x` give the same coefficient values as `x` modeled by `y`? Try it.
+
+## Eyeballing the regression {-}
+
+https://sophieehill.shinyapps.io/eyeball-regression/
+
+## Example: Increasing heart rates with age {-}
+
+The maximum heart rate in beats per minute of a person declines with age. You say maximum heart rate is inversely related to the person's age. 
+
+Suppose 15 randomly chosen people of varying ages are tested for maximum heart rate and the following data are collected. Create a data frame and assign it to the object `heart.df`.
+```{r}
+Age <- c(18, 23, 25, 35, 65, 54, 34, 56, 72, 19, 23, 42, 18, 39, 37)
+HR <- c(202, 186, 187, 180, 156, 169, 174, 172, 153, 199, 193, 174, 198, 183, 178)
+heart.df <- data.frame(HR, Age)
+```
+
+Age is in years and the heart rate is in beats per minute.
+
+The first question you need to ask is; which of the two variables is the response variable? The question is answered without regard to coding or statistics. It must be answered before you model the data.
+
+With the heart rate data you want to _predict_ heart rate given someone's age. In this case `HR` is the response variable and `Age` is the explanatory variable.
+
+This is the difference between summarizing the values in your data and making inferences (like predictions). When making inferences you must first stop and think (e.g., what is my null hypothesis? What is my response variable? What are my explanatory variables?).
+
+Next you create a scatter plot of the data and add the regression line as a layer.
+```{r}
+ggplot(data = heart.df, 
+       mapping = aes(x = Age, y = HR)) + 
+  geom_point(size = 2) +
+  xlab("Age [yr]") +
+  ylab("Heart Rate [bpm]") + 
+  geom_smooth(method = lm, se = FALSE)
+```
+
+Next you determine the equation for the line. You do this using the `lm()` function by typing
+```{r}
+lm(HR ~ Age, data = heart.df)
+```
+
+You interpret the model as follows: On average a person's maximum HR *decreases* by .8 beats per minute (bpm) every year. Or more easily understood as a decrease of 8 bpm every 10 years.
+
+## Making predictions with regression {-}
+
+The model is useful for making predictions. Suppose you want to predict the maximum heart rate for 50-year old individuals. You apply the equation
+```{r}
+210.0485 - 0.7977 * 50
+```
+
+The model predicts that a 50 year old person can expect to have a maximum heart rate of 170 bpm. More precisely, given a set of 50 year old people, the model predicts that, on average, the maximum heart rate of the set of people will be 170 bpm.
+
+Predictions with the model are made without typing the coefficients. Instead, first save the model as an object and then use the `predict()` function on the object. In the `predict()` function you _must_ specify the data as a data frame using the `newdata =` argument.
+```{r}
+model <- lm(HR ~ Age, 
+            data = heart.df)
+predict(model, 
+        newdata = data.frame(Age = 50))
+```
+
+You can input a vector of age values for which you want predictions.
+```{r}
+predict(model, 
+        newdata = data.frame(Age = seq(from = 40, to = 60, by = 10)))
+```
+
+## Uncertainty about the regression coefficients {-}
+
+Information about the model is obtained with the `summary()` method.
+```{r}
+summary(model)
+```
+
+The first bit of information is the code you used to create the model. 
+
+The second bit is a summary of the model residuals: observed value minus the modeled value.
+
+The most important output is the table of coefficients. The table shows the slope and intercept coefficients in the column labeled `Estimate`. The adjacent column labeled `Std. Error` lists the standard errors on these coefficients. The standard error (or margin of error) is a measure of the uncertainty surrounding the coefficient estimate. For the slope coefficient it is computed as
+$$
+s_{\beta_1} = \sqrt{ \frac{\frac{1}{n - 2}\sum_{i=1}^n \varepsilon_i^{\,2}} {\sum_{i=1}^n (x_i -\bar{x})^2} },
+$$
+where
+$$
+\varepsilon_i  = y_i - \beta_0 - \beta_1 x_i
+$$
+
+The best estimate for the (population) slope is -.798 with a margin of error of +/- .07.
+
+The uncertainty about the model coefficient is used to test hypotheses and to compute confidence intervals.  
+
+Interest typically centers on the null hypothesis that the slope = 0. A zero slope implies the line is horizontal and thus, in this case, that maximum heart rate is independent of how old an individual is.
+
+The $t$ value for the zero-slope hypothesis is computed as the slope value divided by its standard error. The $t$ value has a $t$ distribution with $n-2$ degrees of freedom if the slope is zero.
+
+Here the $t$ value is -11.4 which gives a $p$-value (Pr(>|t|)) of .0000000385 (3.85e-08). It is written this way, because the $p$-value is the probability of observing a more extreme $t$ value (positive or negative) assuming the null hypothesis is true (slope is zero).
+
+The symbols to the right indicate a category of confidence in the inference. The line below the table shows the definitions which you can interpret using our definition. Three asterisks: overwhelming, Two asterisks: convincing, One asterisk: moderate, Point: suggestive but inconclusive.
+
+So you have overwhelming evidence that, given these data, on average maximum heart rate depends on age.
+
+The next line of output from the `summary()` method gives the residual standard error. This tells you how close (on average) the observations are from the regression line. The degrees of freedom are again $n-2$.
+```{r}
+sqrt(sum(residuals(model)^2)/13)
+```
+
+Note the `resid()` [or `residual()`] outputs the residuals from the model object.
+```{r}
+resid(model)
+```
+
+The next line of output gives the multiple R-squared value. Also called the coefficient of determination. And the adjusted R-squared value. The multiple R-squared is equal to the square of the Pearson correlation coefficient. 
+
+The multiple R-squared = 1 - RSS/SSY, where RSS is the residual sum of squares and SSY is the total variation about a constant mean response.
+
+It is useful to see how these are computed. The RSS is the sum of the squared residuals. This is computed with the `deviance()` function.
+```{r}
+RSS <- sum(resid(model)^2)
+RSS
+deviance(model)
+```
+
+To compute the multiple R-squared you need SSY. SSY is the deviance from the constant mean model. This constant mean model is estimated using the `lm()` function as
+```{r}
+model0 <- lm(HR ~ 1, 
+             data = heart.df)
+SSY <- deviance(model0)
+1 - RSS/SSY
+```
+
+One minus the ratio of the explained variation to the total variation.
+
+RSS is less than SSY so RSS/SSY will be less that 1. If RSS is much less than SSY then, RSS/SSY is close to zero so R squared is close to 1.
+
+The R-squared multiplied by 100% is the variance of the response variable explained (statistically) by the explanatory variable.
+
+The adjusted R-squared value is smaller than the R-squared value. How much smaller depends on how many variables are in the model.
+$$
+1 - \frac{n - 1}{n - p} (1 - R^2 )
+$$
+
+where $n$ is the sample size and $p$ is the number of parameters in the model. Note: The number of parameters in a regression is the number of coefficients plus one. The 'plus one' comes from the residual standard error.
+
+The adjusted R-squared is always smaller than the multiple R-squared, can decrease as new explanatory variables are added, and can even be negative for really poorly fitting models. It is important in the context of multiple regression.
+
+The final line of output is the F-value, degrees of freedom, and associated $p$-value.
+$$
+F_\hbox{statistic} = \frac{(SSY - RSS)/(p - 1)}{RSS/(n - p)}
+$$
+
+Under the null hypothesis that the regression is no better than the unconditional mean as a model for the data, the $F$ statistic comes from an $F$ distribution with ($p-1$) and $n$ degrees of freedom.
+
+```{r}
+pf(130, df1 = 1, df2 = 13, lower.tail = FALSE)
+```
+
+The $p$-value is very small (< .001) so we reject the null hypothesis that the mean model is better than the linear regression model.
+
+## Bootstrapping the uncertainty {-}
+
+Suppose you choose another 15 people and test for maximum heart rate and record ages. Will the slope be different? Almost certainly, yes. 
+
+Although you don't have access to a new set of people, you can create samples from the original set of subjects (bootstrapping).
+
+```{r}
+I1 <- sample(1:15, size = 15, replace = TRUE)
+```
+
+`I1` is a sample of the integers from 1 to 15 with repeats. Not all numbers are picked and some are picked more than once.
+```{r}
+I1
+table(I1)
+```
+
+To get a bootstrap sample you use these integers as indices in the vectors of `HR` and `Age`.
+```{r}
+bsHR <- heart.df$HR[I1]
+bsAge <- heart.df$Age[I1]
+bsHR; bsAge
+```
+
+You fit the regression model using the bootstrap sample as an index to select the individuals to include.
+```{r}
+modelBS1 <- lm(bsHR ~ bsAge)
+coef(modelBS1)
+coef(modelBS1)[2]
+```
+
+The slope value is different.
+
+You repeat this entire procedure (repeadedly selecting integers and corresponding values of the variables) 1000 times and create a histogram of the slope values.
+```{r}
+slope <- numeric()
+int <- numeric()
+for(i in 1:100){
+  I <- sample(1:15, size = 15, replace = TRUE)
+  models <- lm(HR ~ Age, data = heart.df[I, ])
+  slope[i] <- coef(models)[2]
+  int[i] <- coef(models)[1]
+}
+ggplot(data = as.data.frame(slope), 
+       mapping = aes(slope)) +
+    geom_histogram(bins = 25)
+
+df <- data.frame(int, slope, bs = 1:100)
+ggplot(data = heart.df, 
+       mapping = aes(x = Age, y = HR)) + 
+  geom_point() + 
+  geom_abline(mapping = aes(intercept = int, slope  = slope, group = bs), 
+              data = df) +
+  geom_smooth(method = lm)
+```
+
+The standard deviation of all the slopes will be close to the standard error estimated (from statistical theory) on the original data.
+```{r}
+sd(slope)
+```
+
+Uncertainty bounds are estimated from a single sample without reference to statistical theory.
+
+## Predictive uncertainty {-}
+
+The `predict()` function (method) is used to make a prediction. You specify the model object and value(s) of the explanatory variable as a data frame.
+```{r}
+predict(model, 
+        newdata = data.frame(Age = c(50, 60)))
+```
+
+To get the uncertainty intervals on the predicted values:  Use the `level =` and `interval = "confidence"` arguments.
+```{r}
+predict(model, 
+        newdata = data.frame(Age = c(50, 60)), 
+        level = .95, interval = "confidence")
+ggplot(data = heart.df, 
+       mapping = aes(x = Age, y = HR)) +
+  geom_point() +
+  geom_smooth(method = lm)
+```
+
+The lower (`lwr`) and upper (`upr`) bounds represent the 95% uncertainty interval about the location of the line for the particular value of the explanatory variable `Age`.
+
+You state that the best prediction for average maximum heart rate for people at age 50 is 170 bpm with a 95% uncertainty interval between 167 and 173 bpm. 
+
+Thus if you repeat the sampling 100 times and make the same prediction, our CI on the prediction will cover the true predicted value 95 times.
+
+Note: repeated sampling is not the same as bootstrap re-sampling. Repeated sampling refers to the theoretical ideal of a true model, while bootstrap re-sampling is a procedure that you implement on your data.
+
+With `interval = "prediction"` you get a 95% _prediction_ interval. That interval is wider than the confidence interval as it represents two sources of uncertainty. 
+
+The uncertainty associated with the mean value GIVEN the person's age AND the uncertainty associated with a particular maximum heart rate GIVEN the conditional mean.  
+```{r}
+predict(model, data.frame(Age = c(50, 60)), 
+        level = .95, interval = "prediction")
+```
+
+This is an example of compound uncertainty that we discussed in the context of Bayesian data analysis. The difference between the posterior distribution on the parameter of interest and the posterior distribution on the prediction of a specific value.
+
+If you are 90% certain that your spouse is faithful and 90% certain he is not a cross-dresser, then you must be less than 90% certain he is a faithful, non-cross dresser.
+
+To plot the confidence band type
+```{r}
+ggplot(data = heart.df, 
+       mapping = aes(x = Age, y = HR)) + 
+  geom_point(size = 2) +
+  geom_smooth(method = lm)
+```
+
+By default `level = .95` in the `geom_smooth()` function.
+
+To plot the prediction band, first add the prediction intervals to the original data frame.
+```{r}
+heart2 <- data.frame(heart.df, predict(model, interval = "prediction"))
+heart2 <- heart2[order(heart2$Age), ]
+```
+
+Then 
+```{r}
+ggplot(heart2, aes(x = Age, y = HR)) + 
+  geom_point(size = 2) +
+  geom_smooth(method = lm) + 
+  geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = .2)
+```
