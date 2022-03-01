@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="thursday-october-5-2022.html"/>
-
+<link rel="next" href="thursday-october-14-2022.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -364,6 +364,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#bootstrapping-the-uncertainty"><i class="fa fa-check"></i>Bootstrapping the uncertainty</a></li>
 <li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#predictive-uncertainty"><i class="fa fa-check"></i>Predictive uncertainty</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html"><i class="fa fa-check"></i>Thursday, October 14, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#today-16"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#uncertainty-about-a-particular-predicted-value"><i class="fa fa-check"></i>Uncertainty about a particular predicted value</a></li>
+<li class="chapter" data-level="0.1" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#example-predicting-flipper-length-from-body-mass"><i class="fa fa-check"></i><b>0.1</b> Example: Predicting flipper length from body mass</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#model-adequacy"><i class="fa fa-check"></i>Model Adequacy</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#transforming-the-response-variable"><i class="fa fa-check"></i>Transforming the response variable</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -483,7 +491,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If you sum the five residuals after squaring each of them you get a measure of how well the model fits the data. The smaller the sum, the better the fit.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="tuesday-october-12-2022.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>( (y <span class="sc">-</span> <span class="fu">mean</span>(y))<span class="sc">^</span><span class="dv">2</span> )</span></code></pre></div>
 <pre><code>## [1] 28.168</code></pre>
-<p>This sum is called the <em>residual sum of squares</em> (RSS). An RSS equal to 0 indicates that all points fall exactly on the line.</p>
+<p>This sum is called the <em>residual sum of squares</em> (RSS) or the <em>mean squared error</em>. An RSS equal to 0 indicates that all points fall exactly on the line.</p>
 <p>You include the RSS value as a label on the plot using the <code>geom_label()</code> function.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="tuesday-october-12-2022.html#cb15-1" aria-hidden="true" tabindex="-1"></a>RSS <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">sum</span>((y <span class="sc">-</span> <span class="fu">mean</span>(y))<span class="sc">^</span><span class="dv">2</span>), <span class="dv">1</span>)</span>
 <span id="cb15-2"><a href="tuesday-october-12-2022.html#cb15-2" aria-hidden="true" tabindex="-1"></a>lab <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;RSS = &quot;</span>, RSS)</span>
@@ -503,7 +511,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="tuesday-october-12-2022.html#cb19-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> p1 <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
 <span id="cb19-2"><a href="tuesday-october-12-2022.html#cb19-2" aria-hidden="true" tabindex="-1"></a>p1</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p>This is the regression line. You can again plot the distance from a particular value to this new line (the residual).</p>
+<p>This is the regression line. You again plot the distance from a particular value to this new line (each distance is called a residual).</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="tuesday-october-12-2022.html#cb21-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> p1 <span class="sc">+</span> <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">predict</span>(<span class="fu">lm</span>(y <span class="sc">~</span> x)), <span class="at">yend =</span> y, </span>
 <span id="cb21-2"><a href="tuesday-october-12-2022.html#cb21-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">x =</span> x, <span class="at">xend =</span> x))</span>
 <span id="cb21-3"><a href="tuesday-october-12-2022.html#cb21-3" aria-hidden="true" tabindex="-1"></a>p1</span></code></pre></div>
@@ -567,16 +575,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="example-increasing-heart-rates-with-age" class="section level2 unnumbered">
 <h2>Example: Increasing heart rates with age</h2>
 <p>The maximum heart rate in beats per minute of a person declines with age. You say maximum heart rate is inversely related to the person’s age.</p>
-<p>Suppose 15 randomly chosen people of varying ages are tested for maximum heart rate and the following data are collected. Create a data frame and assign it to the object <code>heart.df</code>.</p>
+<p>Suppose 15 randomly chosen people of varying ages are tested for maximum heart rate and the following data are collected. Create a data frame and assign it to the object <code>df</code>.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="tuesday-october-12-2022.html#cb35-1" aria-hidden="true" tabindex="-1"></a>Age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">23</span>, <span class="dv">25</span>, <span class="dv">35</span>, <span class="dv">65</span>, <span class="dv">54</span>, <span class="dv">34</span>, <span class="dv">56</span>, <span class="dv">72</span>, <span class="dv">19</span>, <span class="dv">23</span>, <span class="dv">42</span>, <span class="dv">18</span>, <span class="dv">39</span>, <span class="dv">37</span>)</span>
 <span id="cb35-2"><a href="tuesday-october-12-2022.html#cb35-2" aria-hidden="true" tabindex="-1"></a>HR <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">202</span>, <span class="dv">186</span>, <span class="dv">187</span>, <span class="dv">180</span>, <span class="dv">156</span>, <span class="dv">169</span>, <span class="dv">174</span>, <span class="dv">172</span>, <span class="dv">153</span>, <span class="dv">199</span>, <span class="dv">193</span>, <span class="dv">174</span>, <span class="dv">198</span>, <span class="dv">183</span>, <span class="dv">178</span>)</span>
-<span id="cb35-3"><a href="tuesday-october-12-2022.html#cb35-3" aria-hidden="true" tabindex="-1"></a>heart.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(HR, Age)</span></code></pre></div>
+<span id="cb35-3"><a href="tuesday-october-12-2022.html#cb35-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(HR, Age)</span></code></pre></div>
 <p>Age is in years and the heart rate is in beats per minute.</p>
 <p>The first question you need to ask is; which of the two variables is the response variable? The question is answered without regard to coding or statistics. It must be answered before you model the data.</p>
 <p>With the heart rate data you want to <em>predict</em> heart rate given someone’s age. In this case <code>HR</code> is the response variable and <code>Age</code> is the explanatory variable.</p>
 <p>This is the difference between summarizing the values in your data and making inferences (like predictions). When making inferences you must first stop and think (e.g., what is my null hypothesis? What is my response variable? What are my explanatory variables?).</p>
 <p>Next you create a scatter plot of the data and add the regression line as a layer.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="tuesday-october-12-2022.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> heart.df, </span>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="tuesday-october-12-2022.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, </span>
 <span id="cb36-2"><a href="tuesday-october-12-2022.html#cb36-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Age, <span class="at">y =</span> HR)) <span class="sc">+</span> </span>
 <span id="cb36-3"><a href="tuesday-october-12-2022.html#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb36-4"><a href="tuesday-october-12-2022.html#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Age [yr]&quot;</span>) <span class="sc">+</span></span>
@@ -585,10 +593,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="QG-2022_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p>Next you determine the equation for the line. You do this using the <code>lm()</code> function by typing</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="tuesday-october-12-2022.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(HR <span class="sc">~</span> Age, <span class="at">data =</span> heart.df)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="tuesday-october-12-2022.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(HR <span class="sc">~</span> Age, <span class="at">data =</span> df)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = HR ~ Age, data = heart.df)
+## lm(formula = HR ~ Age, data = df)
 ## 
 ## Coefficients:
 ## (Intercept)          Age  
@@ -603,7 +611,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The model predicts that a 50 year old person can expect to have a maximum heart rate of 170 bpm. More precisely, given a set of 50 year old people, the model predicts that, on average, the maximum heart rate of the set of people will be 170 bpm.</p>
 <p>Predictions with the model are made without typing the coefficients. Instead, first save the model as an object and then use the <code>predict()</code> function on the object. In the <code>predict()</code> function you <em>must</em> specify the data as a data frame using the <code>newdata =</code> argument.</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="tuesday-october-12-2022.html#cb42-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(HR <span class="sc">~</span> Age, </span>
-<span id="cb42-2"><a href="tuesday-october-12-2022.html#cb42-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> heart.df)</span>
+<span id="cb42-2"><a href="tuesday-october-12-2022.html#cb42-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> df)</span>
 <span id="cb42-3"><a href="tuesday-october-12-2022.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model, </span>
 <span id="cb42-4"><a href="tuesday-october-12-2022.html#cb42-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">Age =</span> <span class="dv">50</span>))</span></code></pre></div>
 <pre><code>##        1 
@@ -620,7 +628,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="tuesday-october-12-2022.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = HR ~ Age, data = heart.df)
+## lm(formula = HR ~ Age, data = df)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -674,7 +682,7 @@ where
 <pre><code>## [1] 272.4312</code></pre>
 <p>To compute the multiple R-squared you need SSY. SSY is the deviance from the constant mean model. This constant mean model is estimated using the <code>lm()</code> function as</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="tuesday-october-12-2022.html#cb56-1" aria-hidden="true" tabindex="-1"></a>model0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(HR <span class="sc">~</span> <span class="dv">1</span>, </span>
-<span id="cb56-2"><a href="tuesday-october-12-2022.html#cb56-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> heart.df)</span>
+<span id="cb56-2"><a href="tuesday-october-12-2022.html#cb56-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> df)</span>
 <span id="cb56-3"><a href="tuesday-october-12-2022.html#cb56-3" aria-hidden="true" tabindex="-1"></a>SSY <span class="ot">&lt;-</span> <span class="fu">deviance</span>(model0)</span>
 <span id="cb56-4"><a href="tuesday-october-12-2022.html#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> RSS<span class="sc">/</span>SSY</span></code></pre></div>
 <pre><code>## [1] 0.9090967</code></pre>
@@ -703,32 +711,32 @@ F_\hbox{statistic} = \frac{(SSY - RSS)/(p - 1)}{RSS/(n - p)}
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="tuesday-october-12-2022.html#cb60-1" aria-hidden="true" tabindex="-1"></a>I1 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>, <span class="at">size =</span> <span class="dv">15</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><code>I1</code> is a sample of the integers from 1 to 15 with repeats. Not all numbers are picked and some are picked more than once.</p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="tuesday-october-12-2022.html#cb61-1" aria-hidden="true" tabindex="-1"></a>I1</span></code></pre></div>
-<pre><code>##  [1]  7 10  7 15  4  4  9 13 10  7 15 14  2  6  2</code></pre>
+<pre><code>##  [1] 11  1  1  3  6  3 11 11  8  3 14  4 13  7 10</code></pre>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="tuesday-october-12-2022.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(I1)</span></code></pre></div>
 <pre><code>## I1
-##  2  4  6  7  9 10 13 14 15 
-##  2  2  1  3  1  2  1  1  2</code></pre>
+##  1  3  4  6  7  8 10 11 13 14 
+##  2  3  1  1  1  1  1  3  1  1</code></pre>
 <p>To get a bootstrap sample you use these integers as indices in the vectors of <code>HR</code> and <code>Age</code>.</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="tuesday-october-12-2022.html#cb65-1" aria-hidden="true" tabindex="-1"></a>bsHR <span class="ot">&lt;-</span> heart.df<span class="sc">$</span>HR[I1]</span>
-<span id="cb65-2"><a href="tuesday-october-12-2022.html#cb65-2" aria-hidden="true" tabindex="-1"></a>bsAge <span class="ot">&lt;-</span> heart.df<span class="sc">$</span>Age[I1]</span>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="tuesday-october-12-2022.html#cb65-1" aria-hidden="true" tabindex="-1"></a>bsHR <span class="ot">&lt;-</span> df<span class="sc">$</span>HR[I1]</span>
+<span id="cb65-2"><a href="tuesday-october-12-2022.html#cb65-2" aria-hidden="true" tabindex="-1"></a>bsAge <span class="ot">&lt;-</span> df<span class="sc">$</span>Age[I1]</span>
 <span id="cb65-3"><a href="tuesday-october-12-2022.html#cb65-3" aria-hidden="true" tabindex="-1"></a>bsHR; bsAge</span></code></pre></div>
-<pre><code>##  [1] 174 199 174 178 180 180 153 198 199 174 178 183 186 169 186</code></pre>
-<pre><code>##  [1] 34 19 34 37 35 35 72 18 19 34 37 39 23 54 23</code></pre>
+<pre><code>##  [1] 193 202 202 187 169 187 193 193 172 187 183 180 198 174 199</code></pre>
+<pre><code>##  [1] 23 18 18 25 54 25 23 23 56 25 39 35 18 34 19</code></pre>
 <p>You fit the regression model using the bootstrap sample as an index to select the individuals to include.</p>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="tuesday-october-12-2022.html#cb68-1" aria-hidden="true" tabindex="-1"></a>modelBS1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bsHR <span class="sc">~</span> bsAge)</span>
 <span id="cb68-2"><a href="tuesday-october-12-2022.html#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(modelBS1)</span></code></pre></div>
 <pre><code>## (Intercept)       bsAge 
-## 207.6843417  -0.7880412</code></pre>
+## 210.7772883  -0.7877226</code></pre>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="tuesday-october-12-2022.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(modelBS1)[<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>##      bsAge 
-## -0.7880412</code></pre>
+## -0.7877226</code></pre>
 <p>The slope value is different.</p>
 <p>You repeat this entire procedure (repeadedly selecting integers and corresponding values of the variables) 1000 times and create a histogram of the slope values.</p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="tuesday-october-12-2022.html#cb72-1" aria-hidden="true" tabindex="-1"></a>slope <span class="ot">&lt;-</span> <span class="fu">numeric</span>()</span>
 <span id="cb72-2"><a href="tuesday-october-12-2022.html#cb72-2" aria-hidden="true" tabindex="-1"></a>int <span class="ot">&lt;-</span> <span class="fu">numeric</span>()</span>
 <span id="cb72-3"><a href="tuesday-october-12-2022.html#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>){</span>
 <span id="cb72-4"><a href="tuesday-october-12-2022.html#cb72-4" aria-hidden="true" tabindex="-1"></a>  I <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>, <span class="at">size =</span> <span class="dv">15</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb72-5"><a href="tuesday-october-12-2022.html#cb72-5" aria-hidden="true" tabindex="-1"></a>  models <span class="ot">&lt;-</span> <span class="fu">lm</span>(HR <span class="sc">~</span> Age, <span class="at">data =</span> heart.df[I, ])</span>
+<span id="cb72-5"><a href="tuesday-october-12-2022.html#cb72-5" aria-hidden="true" tabindex="-1"></a>  models <span class="ot">&lt;-</span> <span class="fu">lm</span>(HR <span class="sc">~</span> Age, <span class="at">data =</span> df[I, ])</span>
 <span id="cb72-6"><a href="tuesday-october-12-2022.html#cb72-6" aria-hidden="true" tabindex="-1"></a>  slope[i] <span class="ot">&lt;-</span> <span class="fu">coef</span>(models)[<span class="dv">2</span>]</span>
 <span id="cb72-7"><a href="tuesday-october-12-2022.html#cb72-7" aria-hidden="true" tabindex="-1"></a>  int[i] <span class="ot">&lt;-</span> <span class="fu">coef</span>(models)[<span class="dv">1</span>]</span>
 <span id="cb72-8"><a href="tuesday-october-12-2022.html#cb72-8" aria-hidden="true" tabindex="-1"></a>}</span>
@@ -736,18 +744,18 @@ F_\hbox{statistic} = \frac{(SSY - RSS)/(p - 1)}{RSS/(n - p)}
 <span id="cb72-10"><a href="tuesday-october-12-2022.html#cb72-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(slope)) <span class="sc">+</span></span>
 <span id="cb72-11"><a href="tuesday-october-12-2022.html#cb72-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">25</span>)</span></code></pre></div>
 <p><img src="QG-2022_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="tuesday-october-12-2022.html#cb73-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(int, slope, <span class="at">bs =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>)</span>
-<span id="cb73-2"><a href="tuesday-october-12-2022.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> heart.df, </span>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="tuesday-october-12-2022.html#cb73-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(int, slope, <span class="at">bs =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>)</span>
+<span id="cb73-2"><a href="tuesday-october-12-2022.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, </span>
 <span id="cb73-3"><a href="tuesday-october-12-2022.html#cb73-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Age, <span class="at">y =</span> HR)) <span class="sc">+</span> </span>
 <span id="cb73-4"><a href="tuesday-october-12-2022.html#cb73-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb73-5"><a href="tuesday-october-12-2022.html#cb73-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">intercept =</span> int, <span class="at">slope  =</span> slope, <span class="at">group =</span> bs), </span>
-<span id="cb73-6"><a href="tuesday-october-12-2022.html#cb73-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> df) <span class="sc">+</span></span>
+<span id="cb73-6"><a href="tuesday-october-12-2022.html#cb73-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> df2) <span class="sc">+</span></span>
 <span id="cb73-7"><a href="tuesday-october-12-2022.html#cb73-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="QG-2022_files/figure-html/unnamed-chunk-35-2.png" width="672" /></p>
 <p>The standard deviation of all the slopes will be close to the standard error estimated (from statistical theory) on the original data.</p>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="tuesday-october-12-2022.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(slope)</span></code></pre></div>
-<pre><code>## [1] 0.08801409</code></pre>
+<pre><code>## [1] 0.06139954</code></pre>
 <p>Uncertainty bounds are estimated from a single sample without reference to statistical theory.</p>
 </div>
 <div id="predictive-uncertainty" class="section level2 unnumbered">
@@ -764,7 +772,7 @@ F_\hbox{statistic} = \frac{(SSY - RSS)/(p - 1)}{RSS/(n - p)}
 <pre><code>##        fit      lwr      upr
 ## 1 170.1621 166.9706 173.3537
 ## 2 162.1849 157.9120 166.4578</code></pre>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="tuesday-october-12-2022.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> heart.df, </span>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="tuesday-october-12-2022.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, </span>
 <span id="cb81-2"><a href="tuesday-october-12-2022.html#cb81-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Age, <span class="at">y =</span> HR)) <span class="sc">+</span></span>
 <span id="cb81-3"><a href="tuesday-october-12-2022.html#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb81-4"><a href="tuesday-october-12-2022.html#cb81-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm)</span></code></pre></div>
@@ -783,25 +791,6 @@ F_\hbox{statistic} = \frac{(SSY - RSS)/(p - 1)}{RSS/(n - p)}
 ## 2 162.1849 151.4115 172.9582</code></pre>
 <p>This is an example of compound uncertainty that we discussed in the context of Bayesian data analysis. The difference between the posterior distribution on the parameter of interest and the posterior distribution on the prediction of a specific value.</p>
 <p>If you are 90% certain that your spouse is faithful and 90% certain he is not a cross-dresser, then you must be less than 90% certain he is a faithful, non-cross dresser.</p>
-<p>To plot the confidence band type</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="tuesday-october-12-2022.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> heart.df, </span>
-<span id="cb85-2"><a href="tuesday-october-12-2022.html#cb85-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Age, <span class="at">y =</span> HR)) <span class="sc">+</span> </span>
-<span id="cb85-3"><a href="tuesday-october-12-2022.html#cb85-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb85-4"><a href="tuesday-october-12-2022.html#cb85-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm)</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
-<p>By default <code>level = .95</code> in the <code>geom_smooth()</code> function.</p>
-<p>To plot the prediction band, first add the prediction intervals to the original data frame.</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="tuesday-october-12-2022.html#cb87-1" aria-hidden="true" tabindex="-1"></a>heart2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(heart.df, <span class="fu">predict</span>(model, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>))</span></code></pre></div>
-<pre><code>## Warning in predict.lm(model, interval = &quot;prediction&quot;): predictions on current data refer to _future_ responses</code></pre>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="tuesday-october-12-2022.html#cb89-1" aria-hidden="true" tabindex="-1"></a>heart2 <span class="ot">&lt;-</span> heart2[<span class="fu">order</span>(heart2<span class="sc">$</span>Age), ]</span></code></pre></div>
-<p>Then</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="tuesday-october-12-2022.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(heart2, <span class="fu">aes</span>(<span class="at">x =</span> Age, <span class="at">y =</span> HR)) <span class="sc">+</span> </span>
-<span id="cb90-2"><a href="tuesday-october-12-2022.html#cb90-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb90-3"><a href="tuesday-october-12-2022.html#cb90-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm) <span class="sc">+</span> </span>
-<span id="cb90-4"><a href="tuesday-october-12-2022.html#cb90-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr), <span class="at">alpha =</span> .<span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -810,8 +799,8 @@ F_\hbox{statistic} = \frac{(SSY - RSS)/(p - 1)}{RSS/(n - p)}
           </div>
         </div>
       </div>
-<a href="thursday-october-5-2022.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="thursday-october-5-2022.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="thursday-october-14-2022.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

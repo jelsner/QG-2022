@@ -204,11 +204,11 @@ https://sophieehill.shinyapps.io/eyeball-regression/
 
 The maximum heart rate in beats per minute of a person declines with age. You say maximum heart rate is inversely related to the person's age. 
 
-Suppose 15 randomly chosen people of varying ages are tested for maximum heart rate and the following data are collected. Create a data frame and assign it to the object `heart.df`.
+Suppose 15 randomly chosen people of varying ages are tested for maximum heart rate and the following data are collected. Create a data frame and assign it to the object `df`.
 ```{r}
 Age <- c(18, 23, 25, 35, 65, 54, 34, 56, 72, 19, 23, 42, 18, 39, 37)
 HR <- c(202, 186, 187, 180, 156, 169, 174, 172, 153, 199, 193, 174, 198, 183, 178)
-heart.df <- data.frame(HR, Age)
+df <- data.frame(HR, Age)
 ```
 
 Age is in years and the heart rate is in beats per minute.
@@ -221,7 +221,7 @@ This is the difference between summarizing the values in your data and making in
 
 Next you create a scatter plot of the data and add the regression line as a layer.
 ```{r}
-ggplot(data = heart.df, 
+ggplot(data = df, 
        mapping = aes(x = Age, y = HR)) + 
   geom_point(size = 2) +
   xlab("Age [yr]") +
@@ -231,7 +231,7 @@ ggplot(data = heart.df,
 
 Next you determine the equation for the line. You do this using the `lm()` function by typing
 ```{r}
-lm(HR ~ Age, data = heart.df)
+lm(HR ~ Age, data = df)
 ```
 
 You interpret the model as follows: On average a person's maximum HR *decreases* by .8 beats per minute (bpm) every year. Or more easily understood as a decrease of 8 bpm every 10 years.
@@ -248,7 +248,7 @@ The model predicts that a 50 year old person can expect to have a maximum heart 
 Predictions with the model are made without typing the coefficients. Instead, first save the model as an object and then use the `predict()` function on the object. In the `predict()` function you _must_ specify the data as a data frame using the `newdata =` argument.
 ```{r}
 model <- lm(HR ~ Age, 
-            data = heart.df)
+            data = df)
 predict(model, 
         newdata = data.frame(Age = 50))
 ```
@@ -317,7 +317,7 @@ deviance(model)
 To compute the multiple R-squared you need SSY. SSY is the deviance from the constant mean model. This constant mean model is estimated using the `lm()` function as
 ```{r}
 model0 <- lm(HR ~ 1, 
-             data = heart.df)
+             data = df)
 SSY <- deviance(model0)
 1 - RSS/SSY
 ```
@@ -368,8 +368,8 @@ table(I1)
 
 To get a bootstrap sample you use these integers as indices in the vectors of `HR` and `Age`.
 ```{r}
-bsHR <- heart.df$HR[I1]
-bsAge <- heart.df$Age[I1]
+bsHR <- df$HR[I1]
+bsAge <- df$Age[I1]
 bsHR; bsAge
 ```
 
@@ -388,7 +388,7 @@ slope <- numeric()
 int <- numeric()
 for(i in 1:100){
   I <- sample(1:15, size = 15, replace = TRUE)
-  models <- lm(HR ~ Age, data = heart.df[I, ])
+  models <- lm(HR ~ Age, data = df[I, ])
   slope[i] <- coef(models)[2]
   int[i] <- coef(models)[1]
 }
@@ -396,12 +396,12 @@ ggplot(data = as.data.frame(slope),
        mapping = aes(slope)) +
     geom_histogram(bins = 25)
 
-df <- data.frame(int, slope, bs = 1:100)
-ggplot(data = heart.df, 
+df2 <- data.frame(int, slope, bs = 1:100)
+ggplot(data = df, 
        mapping = aes(x = Age, y = HR)) + 
   geom_point() + 
   geom_abline(mapping = aes(intercept = int, slope  = slope, group = bs), 
-              data = df) +
+              data = df2) +
   geom_smooth(method = lm)
 ```
 
@@ -425,7 +425,7 @@ To get the uncertainty intervals on the predicted values:  Use the `level =` and
 predict(model, 
         newdata = data.frame(Age = c(50, 60)), 
         level = .95, interval = "confidence")
-ggplot(data = heart.df, 
+ggplot(data = df, 
        mapping = aes(x = Age, y = HR)) +
   geom_point() +
   geom_smooth(method = lm)
@@ -450,27 +450,3 @@ predict(model, data.frame(Age = c(50, 60)),
 This is an example of compound uncertainty that we discussed in the context of Bayesian data analysis. The difference between the posterior distribution on the parameter of interest and the posterior distribution on the prediction of a specific value.
 
 If you are 90% certain that your spouse is faithful and 90% certain he is not a cross-dresser, then you must be less than 90% certain he is a faithful, non-cross dresser.
-
-To plot the confidence band type
-```{r}
-ggplot(data = heart.df, 
-       mapping = aes(x = Age, y = HR)) + 
-  geom_point(size = 2) +
-  geom_smooth(method = lm)
-```
-
-By default `level = .95` in the `geom_smooth()` function.
-
-To plot the prediction band, first add the prediction intervals to the original data frame.
-```{r}
-heart2 <- data.frame(heart.df, predict(model, interval = "prediction"))
-heart2 <- heart2[order(heart2$Age), ]
-```
-
-Then 
-```{r}
-ggplot(heart2, aes(x = Age, y = HR)) + 
-  geom_point(size = 2) +
-  geom_smooth(method = lm) + 
-  geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = .2)
-```

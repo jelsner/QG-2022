@@ -5,14 +5,14 @@
 - Review
 - Model adequacy
 
-Suppose we are interested in predicting maximum heart rate by age using 15 randomly chosen people who are tested for maximum heart rate. The data are listed below. Age is in years and heart rate is in beats per minute. Create a data frame called `heart.df`.
+Suppose you are interested in predicting maximum heart rate by age using 15 randomly chosen people who are tested for maximum heart rate. The data are listed below. Age is in years and heart rate is in beats per minute. Create a data frame called `heart.df`.
 ```{r}
 Age <- c(18, 23, 25, 35, 65, 54, 34, 56, 72, 19, 23, 42, 18, 39, 37)
 HR <- c(202, 186, 187, 180, 156, 169, 174, 172, 153, 199, 193, 174, 198, 183, 178)
 heart.df <- data.frame(HR, Age)
 ```
 
-We start with a scatter plot of the data.
+You start with a scatter plot of the data.
 ```{r}
 library(ggplot2)
 
@@ -21,25 +21,25 @@ ggplot(data = heart.df,
   geom_point()
 ```
 
-Heart rate appears to decrease linearly with increasing age. 
+Maximum heart rate appears to decrease with increasing age as you might have expected.
 
-Next we fit a linear regression model so that we can predict heart rates from age.
+Next you fit a linear regression model. The model can be used to predict heart rates from age.
 ```{r}
 model <- lm(HR ~ Age, 
             data = heart.df)
 model
 ```
 
-We interpret the model as follows: Given the sample of data and the linear regression model, we find that on average a person's maximum HR _decreases_ by .8 bpm every year or 8 bpm every decade.
+Given the output from the model, you interpret things as follows: Given the sample of data and the linear regression model, you find that on average a person's maximum HR _decreases_ by .8 beats per minute (bpm) every year or 8 bpm every decade.
 
 More information about the model is printed using the `summary()` method.
 ```{r}
 summary(model)
 ```
 
-From the table of coefficients we see that the best estimate for the slope is -.798 with a margin of error of +/- .07. The slope estimate is for a population of all people. The $t$ value for the zero-slope hypothesis is computed as the slope value divided by its standard error.
+From the table of coefficients you see that the best estimate for the slope is -.798 with a margin of error of +/- .07. The slope estimate is for a population of all people. The $t$ value for the zero-slope hypothesis is computed as the slope value divided by its standard error.
 
-Here the $t$ value is -11.4 which gives a $p$-value (Pr(>|t|)) less than .001. So we have overwhelming evidence that, given these data, on average maximum heart rate depends on age (statistically).
+Here the $t$ value is -11.4 which gives a $p$-value (Pr(>|t|)) less than .001. So you have overwhelming evidence that, given these data, maximum heart rate depends on age (statistically).
 
 The multiple R-squared value (coefficient of determination) is given next. The multiple R-squared is equal to the square of the Pearson correlation coefficient. 
 
@@ -50,7 +50,7 @@ The RSS is the sum of the squared residuals. The RSS is output from the `devianc
 ( RSS <- deviance(model) )
 ```
 
-SSY is the deviance output from a constant mean model. The constant mean model is estimated by setting the explanatory variable to a constant `1`. We call this `model0`.
+SSY is the deviance output from a constant mean model. The constant mean model is estimated by setting the explanatory variable to a constant `1`. Call this `model0`.
 ```{r}
 model0 <- lm(HR ~ 1, 
              data = heart.df)
@@ -84,11 +84,13 @@ Under the null hypothesis that the regression is no better than a constant mean 
 pf(130, df1 = 1, df2 = 13, lower.tail = FALSE)
 ```
 
-The $p$-value is very small (< .001) so we reject the null hypothesis that the mean model is better than the linear regression model.
+The $p$-value is very small (< .001) so you reject the null hypothesis that the mean model is better than the linear regression model.
 
-Suppose we randomly choose another 15 people and test for maximum heart rate and record ages. Will the slope be different? Almost certainly, yes. 
+Suppose you choose another 15 people and test for maximum heart rate and record ages. Will the slope be different? Almost certainly, yes. 
 
-Although we don't have access to a new set of subjects, we can create samples from the original set of subjects (bootstrapping). We start by creating a sample of size 15 from the integers 1 through 15 at random with replacement using the `sample()` function.
+Although you don't have access to a new set of subjects, you can create samples from the original set of subjects (bootstrapping). 
+
+You start the bootstrapping by creating a sample of size 15 from the integers 1 through 15 at random with replacement using the `sample()` function.
 ```{r}
 I1 <- sample(1:15, size = 15, replace = TRUE)
 I1
@@ -99,34 +101,34 @@ I1
 table(I1)
 ```
 
-To get a bootstrap sample of our heart rate and corresponding age variables we use these sampled integers as indexes in the vectors of `HR` and `Age`.
+To get a bootstrap sample of heart rate and corresponding age variables you use these sampled integers as indexes in the vectors of `HR` and `Age`.
 ```{r}
 bsHR <- heart.df$HR[I1]
 bsAge <- heart.df$Age[I1]
 bsHR; bsAge
 ```
 
-We then fit the regression model using the bootstrap sample and call this model `modelBS1`.
+You then fit the regression model using the bootstrap sample and call this model `modelBS1`.
 ```{r}
 modelBS1 <- lm(bsHR ~ bsAge)
 ```
 
-Note that we don't need the `data = ` argument since `bsHR` and `bsAge` are vectors with corresponding elements.
+You don't need the `data = ` argument since `bsHR` and `bsAge` are vectors with corresponding elements.
 
-We are interested only in the slope coefficient from the regression model. This is printed using the `coef()` on the model object. 
+You are interested only in the slope coefficient from the regression model. This is printed using the `coef()` on the model object. 
 ```{r}
 coef(modelBS1)
 ```
 
-The output is a vector of length two with the first element the intercept coefficient and the second element the slope coefficient. To print only the slope coefficient we use the bracket notation. We print the slope coefficient from the model fit using the actual data and the slope coefficient from the model fit using the bootstrap sample data.
+The output is a vector of length two with the first element the intercept coefficient and the second element the slope coefficient. To print only the slope coefficient use the bracket notation. You print the slope coefficient from the model fit using the actual data and the slope coefficient from the model fit using the bootstrap sample data.
 ```{r}
 coef(model)[2]
 coef(modelBS1)[2]
 ```
 
-The slope values are somewhat different as expected. We can repeat the sampling procedure many times to get many slope values.
+The slope values are somewhat different as expected. You repeat the sampling procedure many times to get many slope values.
 
-For example, in the code below we repeat this procedure (randomly selecting integers and corresponding values of the variables) 1000 times saving the slope and intercept coefficients as vectors. We then create a histogram of the slope values adding a vertical red line corresponding the actual slope.
+For example, in the code below you repeat this procedure (selecting integers and corresponding values of the variables) 1000 times saving the slope and intercept coefficients as vectors. You then create a histogram of the slope values adding a vertical red line corresponding the actual slope.
 ```{r}
 slope <- numeric()
 int <- numeric()
@@ -166,13 +168,15 @@ sd(slope)
 
 Uncertainty bounds are estimated from a single sample without reference to statistical theory about a population.
 
-The `predict()` function (method) is used to make a prediction with our model. We specify the values of the explanatory variable as a data frame.
+The `predict()` function (method) is used to make a prediction with the regression model. You need to specify the values of the explanatory variable for which you want predictions as a data frame.
+
+You want predictions for two values of age 50 and 60 so you use the following syntax.
 ```{r}
 predict(model, 
         newdata = data.frame(Age = c(50, 60)))
 ```
 
-To get uncertainty intervals on the predicted values we include the `level =` and `interval = "confidence"` arguments.
+To get uncertainty intervals about the predicted value include the `level =` and `interval = "confidence"` arguments.
 ```{r}
 ( predictedMean <- predict(model, 
                            newdata = data.frame(Age = 50), 
@@ -182,9 +186,9 @@ To get uncertainty intervals on the predicted values we include the `level =` an
 
 The lower (`lwr`) and upper (`upr`) bounds represent the 95% uncertainty interval about the location of the line for the particular value of the explanatory variable `Age`.
 
-We state that the best prediction for average maximum heart rate for a set of random 50-yr old people is 170 bpm with a 95% uncertainty interval between 167 and 173 bpm. Thus if we repeat the sampling 100 times and make the same prediction, our CI on the prediction will cover the true predicted value 95 times.
+You state that the best prediction for average maximum heart rate for a set of  50 year old people is 170 beats per minute (bpm) with a 95% uncertainty interval between 167 and 173 bpm. Thus if you repeat the sampling 100 times and make the same prediction, your CI on the prediction will cover the true (but unknown) predicted value 95 times.
 
-These so called "point wise" uncertainty intervals are used to construct the gray ribbon when we use the `geom_smooth()` layer. To see this we plot the point wise interval for heart rates for 50-yr olds using the `geom_segment()` layer.
+These so called "point wise" uncertainty intervals are used to construct the gray ribbon when you use the `geom_smooth()` layer. To see this you plot the point wise interval for heart rates for 50-yr old people using the `geom_segment()` layer.
 ```{r}
 ggplot(data = heart.df, 
        mapping = aes(x = Age, y = HR)) +
@@ -195,7 +199,7 @@ ggplot(data = heart.df,
 
 ```
 
-By default `se = TRUE` in the `geom_smooth()` function so the ribbon is plotted. The default uncertainty width is specified with `level = .95`. If we want more certainty we increase the level toward 1. This will make the ribbon wider.
+By default `se = TRUE` in the `geom_smooth()` function so the ribbon is plotted. The default uncertainty width is specified with `level = .95`. If you want greater certainty you increase the level toward 1. This makes the ribbon wider.
 
 Notes:
 1. Repeated sampling is not the same as bootstrap sampling. Repeated sampling refers to a theoretical idea of there being a true model, while bootstrap sampling is a way to estimate the variation about a statistic computed from a sample of data.
@@ -205,15 +209,15 @@ Notes:
 
 The uncertainty about a particular predicted value is the product of two sources of uncertainty. The uncertainty associated with the mean value GIVEN the person's age AND the uncertainty associated with a particular maximum heart rate GIVEN the conditional mean.  
 
-With `interval = "prediction"` in the `predict()` method we get a 95% 'prediction' interval. Here we estimate the prediction interval for a 60-yr old patient.
+With `interval = "prediction"` in the `predict()` method you get a 95% 'prediction' interval. Here you estimate the prediction interval for a 60-yr old patient.
 ```{r}
 predict(model, data.frame(Age = 60), 
         level = .95, interval = "prediction")
 ```
 
-That interval is wider than the 'confidence' interval as it represents both sources of uncertainty.
+The prediction interval is wider than the 'confidence' interval as it represents both sources of uncertainty.
 
-To plot the prediction band, first add the prediction intervals to the original data frame, assigning the result to a new data frame. Then order the observations in this new data frame by the rank of the explanatory variable.
+To plot a prediction band, first add the prediction intervals to the original data frame, assigning the result to a new data frame. Then order the observations in this new data frame by the rank of the explanatory variable.
 ```{r}
 heart.df2 <- data.frame(heart.df, predict(model, interval = "prediction"))
 heart.df2 <- heart.df2[order(heart.df2$Age), ]
@@ -228,7 +232,9 @@ ggplot(data = heart.df2,
   geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = .2)
 ```
 
-## Example: Predicting flipper length from body mass
+## Example: Predicting body mass from fipper length {-}
+
+You can imagine that measuring the body mass of a penguin is more difficult than measuring the length of its flipper. So you might want to infer body mass from flipper length.
 
 Consider the `penguins` data frame from the {palmerpenguins} package.
 ```{r}
@@ -242,49 +248,54 @@ df <- df |>
   na.omit()
 ```
 
-The data set `homedata` {UsingR} contains assessed housing values in Maplewood, NH for the years 1970 (`y1970`) and 2000 (`y2000`). Suppose you're interested in predicting house values in the year 2000 from house values in the year 1970 using a linear regression model.
+The correlation between body mass and flipper length is `cor(df$body_mass_g, df$flipper_length_mm)`.
 
-* Graph the data as a scatter plot and include the least-squares (best fit) regression line
+* Graph the data as a scatter plot and include the regression line. 
 ```{r}
-library(UsingR)
-
-ggplot(data = homedata, 
-       mapping = aes(x = y1970, y = y2000)) +
+ggplot(data = df, 
+       mapping = aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point() +
-  geom_smooth(method = lm, se = FALSE)
+  geom_smooth(method = lm, se = FALSE) +
+  xlab("Flipper length (mm)") + ylab("Body mass (g)")
 ```
+
+As anticipated from the high correlation value, their is a fairly tight relationship between body mass and flipper length.
+
+Next you quantify this relationship.
 
 * Obtain the coefficients from a regression model and interpret the slope coefficient
 ```{r}
-model <- lm(y2000 ~ y1970, data = homedata)
+model <- lm(body_mass_g ~ flipper_length_mm, 
+            data = df)
 model
 ```
 
-Every one dollar increase in house value in 1970 translates to a five and a quarter dollar increase in 2000. On average house values in 2000 are 5.25 times what they were in 1970.
+On average, every one millimeter (mm) increase in flipper length is associated with a 50 gram increase in body mass
 
-* Use the model to predict average housing values in 2000 for houses assessed values of $55,000, $60,000, and $65,000 in 1970
+* Use the model to predict the body mass for penguins with measured flipper lengths of 180, 200, and 220 millimeters.
 ```{r}
-predict(model, newdata = data.frame(y1970 = c(55000, 60000, 65000))) 
+predict(model, 
+        newdata = data.frame(flipper_length_mm = c(180, 200, 220))) 
 ```
 
 ## Model Adequacy {-}
 
-By definition the linear regression model is the "best fit" line through the data as defined by the smallest RSS. However the best fit line may not be adequate for our data. 
+By definition the linear regression model is the "best fit" line through the data as defined by the smallest RSS. However the best fit line may not be adequate for your data. 
 
-Model adequacy is about the quality of the inferences we can make with the model. It says nothing about the strength of the relationship between the response and explanatory variable. 
+Model adequacy is about the _quality_ of the inferences you can make with the model. It says nothing about the strength of the relationship between the response and explanatory variable. 
 
-Checks on model adequacy alert us to where/how the model can be improved (e.g., transform the data, use a nonlinear term, etc).
+Checks on model adequacy alert you to where/how the model can be improved (e.g., transform the data, add a nonlinear term, etc).
 
-When we infer something about nature with our linear regression model we are making four assumptions. All four assumptions imply that the residuals (observed values minus predicted values) should 'look' a certain way, or equivalently that the distribution of Y (response variable) conditional on X (explanatory variable) should look a certain way.
+When using a linear regression model for making inferences you are implicitly making four assumptions. All four assumptions imply that the residuals (observed values minus predicted values) should 'look' a certain way, or equivalently that the distribution of Y (response variable) conditional on X (explanatory variable) should look a certain way.
 
 * Linearity: Average values of Y in ordered intervals of X should be a straight-line function of X. Each interval creates a 'sub-population' of Y values. 
 * Constant variance: Sub-populations of Y should all have about the same standard deviation.
 * Normality: Values from each sub-population can be described with a normal distribution.
 * Independence: Each observation is independent from the other observations.
 
-To the extent these assumptions are valid, the model is said to be _adequate_ in representing our data. A model can be statistically significant, but not adequate.
+To the extent these assumptions are valid, the model is said to be _adequate_ in representing the data. A model can be statistically significant, but not adequate.
 
-The first three assumptions are best examined with graphs. Note: We never prove an assumption is valid. We check to see if there is evidence to question its validity.
+The first three assumptions are best examined with graphs. Note: You never prove an assumption. Instead, you check to see if there is evidence to question its validity.
 
 Consider again the `cars` data frame.
 ```{r}
@@ -298,18 +309,18 @@ cor(cars$speed, cars$dist)
 
 The correlation tells us there is a strong relationship between the two variables. The faster the car is moving, the more distance it needs to come to a stop.
 
-We are interested in the breaking distance given the forward speed so `dist` is our response variable. Next we make a scatter plot.
+You are interested in the breaking distance given the forward speed so `dist` is your response variable. Next you make a scatter plot.
 ```{r}
 ggplot(data = cars, 
        mapping = aes(x = speed, y = dist)) + 
   geom_point() +
   geom_smooth(method = lm, se = FALSE) +
-  xlab("Speed (mph)") + ylab("Break Distance (ft)")
+  xlab("Speed (mph)") + ylab("Breaking distance (ft)")
 ```
 
 The scatter of points shows an apparent linear relationship between the breaking distance and the forward speed of the car for this sample of data.
 
-Fit a regression model to the data. Since distance is our response variable, we state that we regress stopping distance onto forward speed.
+Fit a regression model to the data. Since distance is your response variable, you regress stopping distance onto forward speed.
 ```{r}
 model1 <- lm(dist ~ speed, 
              data = cars)
@@ -320,13 +331,13 @@ The model indicates a statistically significant relationship ($p$-value is less 
 
 The statistically significant effect of speed on breaking distance suggests it is unlikely that in the population of cars there is no relationship between speed and breaking distance.
 
-The model looks pretty good, so we write up our results and we are done. Not so fast, let's take a closer look.
+The model looks pretty good, so you write up our results. Let's take a closer look.
 
 There tends to be more values of breaking distance below the line than above the line over the range of speeds between 10 and 20 mph. Also, the spread of the residuals appears to get larger as speed increases. There is more variation in the response for larger values of speed.
 
 One way to see this is to divide the explanatory variable into non-overlapping intervals and display the set of corresponding response values as a box plot. 
 
-The variable is divided using the `cut()` function. Here we cut the `speed` into 5 intervals.
+The variable is divided using the `cut()` function. Here you cut the `speed` into 5 intervals.
 ```{r}
 cut(cars$speed, breaks = 5)
 cars$speed[1]
@@ -334,28 +345,25 @@ cars$speed[1]
 
 The first value of `speed` is 4 mph and it falls in the interval (3.98, 8.2]. Greater than 3.98 (indicated by `(`) and less than or equal to 8.2 (indicated by `]`). And so on.
 
-We include these cuts as a ordered factor variable to the original `cars` data frame.
+You include these cuts as a ordered factor variable to the original `cars` data frame.
 ```{r}
-library(dplyr)
-
-cars <- cars %>%
-  mutate(x_bins = cut(speed, breaks = 5))
+cars <- cars |>
+  dplyr::mutate(x_bins = cut(speed, breaks = 5))
 ```
 
-We then map the `x_bins` variable to the x aesthetic to draw box plots.
+You then map the `x_bins` variable to the x aesthetic and draw box plots.
 ```{r}
 ggplot(data = cars, 
        mapping = aes(x = x_bins, y = dist)) + 
   geom_boxplot() +
-  xlab("Speed (mph)") + 
-  ylab("Break Distance (ft)")
+  xlab("Speed (mph)") + ylab("Breaking distance (ft)")
 ```
 
-We effectively created sub-populations. The population of response values within a given interval of the explanatory variable. The number of intervals is the number of breaks specified by the `cut()` function.
+By binning the explanatory variable you create sub-samples of the data. A sample of response values within a given interval of the explanatory variable. The number of intervals is the number of breaks specified by the `cut()` function.
 
-Here we see evidence against the assumption of linearity. Further we see that the box size is increasing. That is the IQR range of breaking distance (depth of the box) is larger for faster moving cars. This creates doubt on the assumption of constant variance.
+Here you see evidence against the assumption of linearity. Further you see that the box size is increasing. That is the IQR range of breaking distance (depth of the box) is larger for faster moving cars. This creates doubt that the assumption of constant variance is valid.
 
-What about the assumption of normality? Although the normality assumption about the residuals is that the _conditional_ distribution of the residuals at each $x_i$ is adequately described by a normal distribution, in practice the residuals are examined collectively. The residuals are obtained by using the `resid()` function.
+What about the assumption of normality? Although the normality assumption about the residuals is that the _conditional_ distribution of the residuals at each $x_i$ is adequately described by a normal distribution, in practice the residuals are examined together. The residuals are obtained by using the `resid()` function.
 ```{r}
 res <- resid(model1)
 res
@@ -371,7 +379,7 @@ head(model.df)
 
 The data frame resulting from the `fortify()` function has a column labeled `.resid` containing the vector of residuals. The residuals are the observed distance minus the predicted (fitted) distance (`dist` column minus `.fitted` column).
 
-We create a histogram and density of the model's residuals by typing
+Create a histogram and density of the model's residuals by typing
 ```{r}
 ggplot(data = model.df, 
        mapping = aes(.resid)) +
@@ -379,25 +387,24 @@ ggplot(data = model.df,
   geom_freqpoly(bins = 8)
 ```
 
-We see that the histogram is not symmetric. There are more values to the right of the central set of values than to the left. The validity of the normality assumption is therefore under question.
+You can see that the histogram is not symmetric. There are more values to the right of the central set of values than to the left. The validity of the normality assumption is therefore under question.
 
-Since departures from normality can occur simply because of sampling variation, the question arises as to whether that apparent skewness (asymmetry) we see in this set of residuals is significantly larger than expected by chance.
+Since departures from normality can occur simply because of sampling variation, the question arises as to whether that apparent skewness (asymmetry) you see in this set of residuals is significantly larger than expected by chance.
 
-One approach to visualizing the expected variation from a reference distribution is to superimpose an uncertainty band on the density plot.  
+One approach to visualizing the expected variation from a reference distribution is to add an uncertainty band on the density plot.  
 
 The `sm.density()` function from the {sm} package provides a way to plot the uncertainty band. The first argument is a vector of residuals and the argument `model = "Normal"` draws a band around a normal distribution centered on zero with a variance equal to the variance of the residuals.
 ```{r}
-library(sm)
-sm.density(res, model = "Normal")
+sm::sm.density(res, model = "Normal")
 ```
 
 The black curve representing the residuals is shifted left relative to a normal density and goes outside the blue ribbon in the right tail indicating that the residuals may not be adequately described by a normal distribution although deviation from normality is small.
 
 The blue ribbon is the uncertainty surrounding a normal density curve.
 
-In summary, our linear regression model may not be adequate. The assumptions of linearity, equal variance, and normally distributed residuals are not entirely reasonable for these data.
+In summary, the linear regression model may not be adequate. The assumptions of linearity, equal variance, and normally distributed residuals are not entirely reasonable for these data.
 
-What should we do? The relationship appears to be non-linear. So we use the square root of the breaking distance as the response variable instead.
+What should you do? The relationship appears to be non-linear. So you use the square root of the breaking distance as the response variable instead.
 ```{r}
 ggplot(data = cars, 
        mapping = aes(x = speed, y = sqrt(dist))) + 
@@ -407,7 +414,7 @@ ggplot(data = cars,
   ylab(expression(sqrt("Break Distance (ft)")))
 ```
 
-Let's fit another model. First make a copy of the original data frame and add a column called `distSR`. Check the assumption of linearity.
+Fit another model. First make a copy of the original data frame and add a column called `distSR`. Check the assumption of linearity.
 ```{r}
 cars2 <- cars
 cars2$distSR <- sqrt(cars$dist)
@@ -435,7 +442,7 @@ ggplot(data = model2.df,
 
 Distribution of residuals is still skewed but it is better. In fact now the black line is completely inside the uncertainty ribbon of a normal density plot.
 ```{r}
-sm.density(res2, model = "Normal")
+sm::sm.density(res2, model = "Normal")
 ```
 
 ## Transforming the response variable {-}

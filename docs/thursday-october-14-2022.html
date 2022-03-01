@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Thursday, October 14, 2022 | GEO5156: Quantitative Geography</title>
+  <meta name="description" content="Thursday, October 14, 2022 | GEO5156: Quantitative Geography" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Thursday, October 14, 2022 | GEO5156: Quantitative Geography" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="jelsner/QG-2022" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Thursday, October 14, 2022 | GEO5156: Quantitative Geography" />
+  
+  
+  
+
+<meta name="author" content="James B. Elsner" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tuesday-october-12-2022.html"/>
+
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Quantitative Geography</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html"><i class="fa fa-check"></i>Syllabus</a>
+<ul>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#geo5165c-quantitative-geography"><i class="fa fa-check"></i>GEO5165C: Quantitative Geography</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#contact-information"><i class="fa fa-check"></i>Contact information</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#course-description"><i class="fa fa-check"></i>Course description</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#expected-learning-outcomes"><i class="fa fa-check"></i>Expected learning outcomes</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#materials"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#class-meetings"><i class="fa fa-check"></i>Class meetings</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#grades"><i class="fa fa-check"></i>Grades</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#academic-honor-code"><i class="fa fa-check"></i>Academic honor code</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#students-with-disabilities-act"><i class="fa fa-check"></i>Students With Disabilities Act</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#inclusiveness"><i class="fa fa-check"></i>Inclusiveness</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#more-about-your-instructor"><i class="fa fa-check"></i>More about your instructor</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#syllabus-change-policy"><i class="fa fa-check"></i>Syllabus change policy</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#schedule-subject-to-change-with-notice"><i class="fa fa-check"></i>Schedule (subject to change with notice)</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#other-materials-to-check-out"><i class="fa fa-check"></i>Other materials to check out</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#julia-programming-language"><i class="fa fa-check"></i>Julia programming language</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html"><i class="fa fa-check"></i>Tuesday, August 23, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#today"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#what-is-this-course"><i class="fa fa-check"></i>What is this course?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#where-are-the-materials-for-this-course"><i class="fa fa-check"></i>Where are the materials for this course?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#join-rstudio-cloud"><i class="fa fa-check"></i>Join RStudio Cloud</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#examples"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#course-syllabus"><i class="fa fa-check"></i>Course Syllabus</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#tallahassee-daily-temperatures"><i class="fa fa-check"></i>Tallahassee daily temperatures</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html"><i class="fa fa-check"></i>Thursday, August 25, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#today-1"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#data-analysis"><i class="fa fa-check"></i>Data Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#reproducibility"><i class="fa fa-check"></i>Reproducibility</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#communication"><i class="fa fa-check"></i>Communication</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#automation"><i class="fa fa-check"></i>Automation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#the-r-programming-language"><i class="fa fa-check"></i>The R programming language</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#overview-of-this-course"><i class="fa fa-check"></i>Overview of this course</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#work-in-plain-text-using-r-markdown"><i class="fa fa-check"></i>Work in plain text, using R Markdown</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#visualizing-data"><i class="fa fa-check"></i>Visualizing data</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-code-template"><i class="fa fa-check"></i>A code template</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#the-code"><i class="fa fa-check"></i>The code</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-graphing-workflow"><i class="fa fa-check"></i>A graphing workflow</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-graphing-template"><i class="fa fa-check"></i>A graphing template</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#common-problems"><i class="fa fa-check"></i>Common problems</a></li>
+<li><a href="thursday-august-25-2022.html#location-of-the-sign">location of the <code>+</code> sign</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#help"><i class="fa fa-check"></i>help</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#things-to-know"><i class="fa fa-check"></i>Things to know</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#everything-has-a-name"><i class="fa fa-check"></i>Everything has a name</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#everything-is-an-object"><i class="fa fa-check"></i>Everything is an object</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#you-do-things-using-functions"><i class="fa fa-check"></i>You do things using functions</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#functions-come-in-packages-libraries"><i class="fa fa-check"></i>Functions come in packages (libraries)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#your-turn"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html"><i class="fa fa-check"></i>Tuesday, August 30, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#today-2"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#scatter-plots"><i class="fa fa-check"></i>Scatter plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#facets"><i class="fa fa-check"></i>Facets</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#calculations"><i class="fa fa-check"></i>Calculations</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#functions"><i class="fa fa-check"></i>Functions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#syntax-is-important"><i class="fa fa-check"></i>Syntax is important</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#saving-an-object"><i class="fa fa-check"></i>Saving an object</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#object-names"><i class="fa fa-check"></i>Object names</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#entering-data"><i class="fa fa-check"></i>Entering data</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#applying-a-function"><i class="fa fa-check"></i>Applying a function</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#averge"><i class="fa fa-check"></i>Averge</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#data-vectors"><i class="fa fa-check"></i>Data vectors</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#variance"><i class="fa fa-check"></i>Variance</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#data-vectors-have-a-type"><i class="fa fa-check"></i>Data vectors have a type</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#working-smarter"><i class="fa fa-check"></i>Working smarter</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html"><i class="fa fa-check"></i>Thursday, September 1, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#today-3"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#data-as-vectors"><i class="fa fa-check"></i>Data as vectors</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#mean"><i class="fa fa-check"></i>Mean</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#variance-1"><i class="fa fa-check"></i>Variance</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#median"><i class="fa fa-check"></i>Median</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#spread"><i class="fa fa-check"></i>Spread</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#vector-types"><i class="fa fa-check"></i>Vector types</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#structured-data"><i class="fa fa-check"></i>Structured data</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#asking-questions"><i class="fa fa-check"></i>Asking questions</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#tables-and-summaries"><i class="fa fa-check"></i>Tables and summaries</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html"><i class="fa fa-check"></i>Tuesday, September 6, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#today-4"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#getting-your-data-into-r"><i class="fa fa-check"></i>Getting your data into R</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-structured-data-files"><i class="fa fa-check"></i>Creating structured data files</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#data-frames"><i class="fa fa-check"></i>Data frames</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#quantiles"><i class="fa fa-check"></i>Quantiles</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-a-data-frame"><i class="fa fa-check"></i>Creating a data frame</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#pipes"><i class="fa fa-check"></i>Pipes</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#your-turn-1"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html"><i class="fa fa-check"></i>Thursday, September 8, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#today-5"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#pipe-operator"><i class="fa fa-check"></i>Pipe operator</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#wrangling-data-frames"><i class="fa fa-check"></i>Wrangling data frames</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#selecting-and-filtering"><i class="fa fa-check"></i>Selecting and filtering</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#example-palmer-penguins"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#stringing-functions-together"><i class="fa fa-check"></i>Stringing functions together</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#summarize"><i class="fa fa-check"></i>Summarize</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#grouping"><i class="fa fa-check"></i>Grouping</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#your-turn-2"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html"><i class="fa fa-check"></i>Tuesday, September 12, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#today-6"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#example-1-new-york-city-flight-data"><i class="fa fa-check"></i>Example 1: New York City flight data</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#example-2-daily-weather-data-from-tallahassee"><i class="fa fa-check"></i>Example 2: Daily weather data from Tallahassee</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#putting-everything-together"><i class="fa fa-check"></i>Putting everything together</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#example-3-food-consumption-and-co2-emissions"><i class="fa fa-check"></i>Example 3: Food consumption and CO2 emissions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html"><i class="fa fa-check"></i>Thursday, September 14, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#today-7"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#bar-chart"><i class="fa fa-check"></i>Bar chart</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#pie-preference"><i class="fa fa-check"></i>Pie preference</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#histogram"><i class="fa fa-check"></i>Histogram</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#density-plot"><i class="fa fa-check"></i>Density plot</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#box-plot"><i class="fa fa-check"></i>Box plot</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#side-by-side-box-plots"><i class="fa fa-check"></i>Side-by-side box plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html"><i class="fa fa-check"></i>Tuesday, September 19, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#today-8"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#comparing-distributions"><i class="fa fa-check"></i>Comparing distributions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#box-plots"><i class="fa fa-check"></i>Box plots</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#long-data-frames"><i class="fa fa-check"></i>Long data frames</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#scatter-plots-1"><i class="fa fa-check"></i>Scatter plots</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#facets-1"><i class="fa fa-check"></i>Facets</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#example-palmer-penguins-1"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#an-expository-graph"><i class="fa fa-check"></i>An expository graph</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#exporting-your-graph"><i class="fa fa-check"></i>Exporting your graph</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html"><i class="fa fa-check"></i>Thursday, September 21, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#today-9"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#simple-feature-data-frames"><i class="fa fa-check"></i>Simple feature data frames</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#making-a-boundary-map"><i class="fa fa-check"></i>Making a boundary map</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#fills"><i class="fa fa-check"></i>Fills</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#overlays"><i class="fa fa-check"></i>Overlays</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#map-projections"><i class="fa fa-check"></i>Map projections</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html"><i class="fa fa-check"></i>Thursday, September 21, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#today-10"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#making-maps-using-functions-from-the-tmap-package"><i class="fa fa-check"></i>Making maps using functions from the {tmap} package</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#example-mapping-tornadoes"><i class="fa fa-check"></i>Example: Mapping tornadoes</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#example-mapping-the-frequency-of-tornadoes-by-state"><i class="fa fa-check"></i>Example: Mapping the frequency of tornadoes by state</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#calculations-using-the-geometry-simple-feature-column"><i class="fa fa-check"></i>Calculations using the geometry simple feature column</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#making-raster-maps"><i class="fa fa-check"></i>Making raster maps</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#get-map-images-using-functions-from-the-ggmap-package"><i class="fa fa-check"></i>Get map images using functions from the {ggmap} package</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#add-data-to-the-raster-map"><i class="fa fa-check"></i>Add data to the raster map</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#spatial-density-maps-extra-material"><i class="fa fa-check"></i>Spatial density maps (extra material)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html"><i class="fa fa-check"></i>Tuesday, September 26, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#today-11"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#one-sample-test-of-the-population-mean"><i class="fa fa-check"></i>One-sample test of the population mean</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#about-p-values"><i class="fa fa-check"></i>About p-values</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#example-strongest-atlantic-hurricanes"><i class="fa fa-check"></i>Example: Strongest Atlantic hurricanes</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#graphical-inference"><i class="fa fa-check"></i>Graphical inference</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#two-sample-test-of-the-difference-in-population-means"><i class="fa fa-check"></i>Two-sample test of the difference in population means</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#example-hurricanes-in-the-north-atlantic-and-the-eastern-north-pacific"><i class="fa fa-check"></i>Example: hurricanes in the North Atlantic and the eastern North Pacific</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#example-palmer-penguins-2"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#your-turn-3"><i class="fa fa-check"></i>Your turn</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#test-of-equal-variance"><i class="fa fa-check"></i>Test of equal variance</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#wilcoxon-mann-whitney-u-non-parameteric-test-of-difference-in-means"><i class="fa fa-check"></i>Wilcoxon (Mann-Whitney U) non-parameteric test of difference in means</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html"><i class="fa fa-check"></i>Thursday, September 28, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#today-12"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#review"><i class="fa fa-check"></i>Review</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#paired-observations"><i class="fa fa-check"></i>Paired observations</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#example-reaction-time-while-driving"><i class="fa fa-check"></i>Example: Reaction time while driving</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#chi-squared-test-for-independence"><i class="fa fa-check"></i>Chi-squared test for independence</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#example-smoking-and-exercise"><i class="fa fa-check"></i>Example: Smoking and exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html"><i class="fa fa-check"></i>Tuesday, October 3, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html#today-13"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html#distributions"><i class="fa fa-check"></i>Distributions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html#normal-distribution"><i class="fa fa-check"></i>Normal distribution</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html#uniform-distribution"><i class="fa fa-check"></i>Uniform distribution</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html#how-many-blue-marbles"><i class="fa fa-check"></i>How many blue marbles?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html#what-percentage-of-the-globe-is-covered-by-water"><i class="fa fa-check"></i>What percentage of the globe is covered by water?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html#how-many-fish-are-in-the-lake"><i class="fa fa-check"></i>How many fish are in the lake?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html"><i class="fa fa-check"></i>Thursday, October 5, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#today-14"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#how-many-fish-are-in-the-lake-1"><i class="fa fa-check"></i>How many fish are in the lake?</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#percentage-of-survey-signups"><i class="fa fa-check"></i>Percentage of survey signups</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#a-generative-model-for-people-agreeing-to-take-your-survey"><i class="fa fa-check"></i>A generative model for people agreeing to take your survey</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#prior-for-the-response-rate"><i class="fa fa-check"></i>Prior for the response rate</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#define-the-generative-model-and-simulate-the-data"><i class="fa fa-check"></i>Define the generative model and simulate the data</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#prediction"><i class="fa fa-check"></i>Prediction</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#approximate-bayesian-computation"><i class="fa fa-check"></i>Approximate Bayesian computation</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#what-bayesian-data-analysis-is-not"><i class="fa fa-check"></i>What Bayesian data analysis is not</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#comparing-two-hypotheses"><i class="fa fa-check"></i>Comparing two hypotheses</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#reaction-times-while-driving"><i class="fa fa-check"></i>Reaction times while driving</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#repeat-the-survey-example"><i class="fa fa-check"></i>Repeat the survey example</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html"><i class="fa fa-check"></i>Tuesday, October 12, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#today-15"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#linear-regression-a-t-test-by-another-name"><i class="fa fa-check"></i>Linear regression: A t test by another name</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#motivating-regression"><i class="fa fa-check"></i>Motivating regression</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#eyeballing-the-regression"><i class="fa fa-check"></i>Eyeballing the regression</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#example-increasing-heart-rates-with-age"><i class="fa fa-check"></i>Example: Increasing heart rates with age</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#making-predictions-with-regression"><i class="fa fa-check"></i>Making predictions with regression</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#uncertainty-about-the-regression-coefficients"><i class="fa fa-check"></i>Uncertainty about the regression coefficients</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#bootstrapping-the-uncertainty"><i class="fa fa-check"></i>Bootstrapping the uncertainty</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#predictive-uncertainty"><i class="fa fa-check"></i>Predictive uncertainty</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html"><i class="fa fa-check"></i>Thursday, October 14, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#today-16"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#uncertainty-about-a-particular-predicted-value"><i class="fa fa-check"></i>Uncertainty about a particular predicted value</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#example-predicting-body-mass-from-fipper-length"><i class="fa fa-check"></i>Example: Predicting body mass from fipper length</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#model-adequacy"><i class="fa fa-check"></i>Model Adequacy</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#transforming-the-response-variable"><i class="fa fa-check"></i>Transforming the response variable</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GEO5156: Quantitative Geography</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="thursday-october-14-2022" class="section level1 unnumbered">
+<h1>Thursday, October 14, 2022</h1>
+<div id="today-16" class="section level2 unnumbered">
+<h2>Today</h2>
+<ul>
+<li>Review</li>
+<li>Model adequacy</li>
+</ul>
+<p>Suppose you are interested in predicting maximum heart rate by age using 15 randomly chosen people who are tested for maximum heart rate. The data are listed below. Age is in years and heart rate is in beats per minute. Create a data frame called <code>heart.df</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="thursday-october-14-2022.html#cb1-1" aria-hidden="true" tabindex="-1"></a>Age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">23</span>, <span class="dv">25</span>, <span class="dv">35</span>, <span class="dv">65</span>, <span class="dv">54</span>, <span class="dv">34</span>, <span class="dv">56</span>, <span class="dv">72</span>, <span class="dv">19</span>, <span class="dv">23</span>, <span class="dv">42</span>, <span class="dv">18</span>, <span class="dv">39</span>, <span class="dv">37</span>)</span>
+<span id="cb1-2"><a href="thursday-october-14-2022.html#cb1-2" aria-hidden="true" tabindex="-1"></a>HR <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">202</span>, <span class="dv">186</span>, <span class="dv">187</span>, <span class="dv">180</span>, <span class="dv">156</span>, <span class="dv">169</span>, <span class="dv">174</span>, <span class="dv">172</span>, <span class="dv">153</span>, <span class="dv">199</span>, <span class="dv">193</span>, <span class="dv">174</span>, <span class="dv">198</span>, <span class="dv">183</span>, <span class="dv">178</span>)</span>
+<span id="cb1-3"><a href="thursday-october-14-2022.html#cb1-3" aria-hidden="true" tabindex="-1"></a>heart.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(HR, Age)</span></code></pre></div>
+<p>You start with a scatter plot of the data.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="thursday-october-14-2022.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href="thursday-october-14-2022.html#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="thursday-october-14-2022.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> heart.df,</span>
+<span id="cb2-4"><a href="thursday-october-14-2022.html#cb2-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Age, <span class="at">y =</span> HR)) <span class="sc">+</span></span>
+<span id="cb2-5"><a href="thursday-october-14-2022.html#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Maximum heart rate appears to decrease with increasing age as you might have expected.</p>
+<p>Next you fit a linear regression model. The model can be used to predict heart rates from age.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="thursday-october-14-2022.html#cb3-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(HR <span class="sc">~</span> Age, </span>
+<span id="cb3-2"><a href="thursday-october-14-2022.html#cb3-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> heart.df)</span>
+<span id="cb3-3"><a href="thursday-october-14-2022.html#cb3-3" aria-hidden="true" tabindex="-1"></a>model</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = HR ~ Age, data = heart.df)
+## 
+## Coefficients:
+## (Intercept)          Age  
+##    210.0485      -0.7977</code></pre>
+<p>Given the output from the model, you interpret things as follows: Given the sample of data and the linear regression model, you find that on average a person’s maximum HR <em>decreases</em> by .8 beats per minute (bpm) every year or 8 bpm every decade.</p>
+<p>More information about the model is printed using the <code>summary()</code> method.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="thursday-october-14-2022.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = HR ~ Age, data = heart.df)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -8.9258 -2.5383  0.3879  3.1867  6.6242 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 210.04846    2.86694   73.27  &lt; 2e-16 ***
+## Age          -0.79773    0.06996  -11.40 3.85e-08 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 4.578 on 13 degrees of freedom
+## Multiple R-squared:  0.9091, Adjusted R-squared:  0.9021 
+## F-statistic:   130 on 1 and 13 DF,  p-value: 3.848e-08</code></pre>
+<p>From the table of coefficients you see that the best estimate for the slope is -.798 with a margin of error of +/- .07. The slope estimate is for a population of all people. The <span class="math inline">\(t\)</span> value for the zero-slope hypothesis is computed as the slope value divided by its standard error.</p>
+<p>Here the <span class="math inline">\(t\)</span> value is -11.4 which gives a <span class="math inline">\(p\)</span>-value (Pr(&gt;|t|)) less than .001. So you have overwhelming evidence that, given these data, maximum heart rate depends on age (statistically).</p>
+<p>The multiple R-squared value (coefficient of determination) is given next. The multiple R-squared is equal to the square of the Pearson correlation coefficient.</p>
+<p>The multiple R-squared = 1 - RSS/SSY, where RSS is the residual sum of squares and SSY is the total variation about a constant mean response.</p>
+<p>The RSS is the sum of the squared residuals. The RSS is output from the <code>deviance()</code> function applied to the model object.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="thursday-october-14-2022.html#cb7-1" aria-hidden="true" tabindex="-1"></a>( RSS <span class="ot">&lt;-</span> <span class="fu">deviance</span>(model) )</span></code></pre></div>
+<pre><code>## [1] 272.4312</code></pre>
+<p>SSY is the deviance output from a constant mean model. The constant mean model is estimated by setting the explanatory variable to a constant <code>1</code>. Call this <code>model0</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="thursday-october-14-2022.html#cb9-1" aria-hidden="true" tabindex="-1"></a>model0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(HR <span class="sc">~</span> <span class="dv">1</span>, </span>
+<span id="cb9-2"><a href="thursday-october-14-2022.html#cb9-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> heart.df)</span>
+<span id="cb9-3"><a href="thursday-october-14-2022.html#cb9-3" aria-hidden="true" tabindex="-1"></a>SSY <span class="ot">&lt;-</span> <span class="fu">deviance</span>(model0)</span>
+<span id="cb9-4"><a href="thursday-october-14-2022.html#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> RSS<span class="sc">/</span>SSY</span></code></pre></div>
+<pre><code>## [1] 0.9090967</code></pre>
+<p>RSS is less than SSY so RSS/SSY will be less that 1. If RSS is much less than SSY then, RSS/SSY is close to zero so R squared is close to 1.</p>
+<p>The R-squared multiplied by 100% is the variance of the response variable explained (statistically) by the explanatory variable.</p>
+<p>The adjusted R-squared value is smaller than the R-squared value. How much smaller depends on how many variables are in the model.
+<span class="math display">\[
+1 - \frac{n - 1}{n - p} (1 - R^2 )
+\]</span></p>
+<p>where <span class="math inline">\(n\)</span> is the sample size and <span class="math inline">\(p\)</span> is the number of parameters in the model.</p>
+<p>The number of parameters in a regression is the number of coefficients plus one. The ‘plus one’ is the residual standard error.</p>
+<p>The adjusted R-squared is always smaller than the multiple R-squared, can decrease as new explanatory variables are added, and can even be negative for poorly fit models. It is only important in the context of multiple regression.</p>
+<p>The final line of output is the F-value, degrees of freedom, and associated <span class="math inline">\(p\)</span>-value.
+<span class="math display">\[
+F_\hbox{statistic} = \frac{(SSY - RSS)/(p - 1)}{RSS/(n - p)}
+\]</span></p>
+<p>Under the null hypothesis that the regression is no better than a constant mean as a model for the data, the <span class="math inline">\(F\)</span> statistic comes from an <span class="math inline">\(F\)</span> distribution with (<span class="math inline">\(p-1\)</span>) and <span class="math inline">\(n\)</span> degrees of freedom.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="thursday-october-14-2022.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pf</span>(<span class="dv">130</span>, <span class="at">df1 =</span> <span class="dv">1</span>, <span class="at">df2 =</span> <span class="dv">13</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## [1] 3.849584e-08</code></pre>
+<p>The <span class="math inline">\(p\)</span>-value is very small (&lt; .001) so you reject the null hypothesis that the mean model is better than the linear regression model.</p>
+<p>Suppose you choose another 15 people and test for maximum heart rate and record ages. Will the slope be different? Almost certainly, yes.</p>
+<p>Although you don’t have access to a new set of subjects, you can create samples from the original set of subjects (bootstrapping).</p>
+<p>You start the bootstrapping by creating a sample of size 15 from the integers 1 through 15 at random with replacement using the <code>sample()</code> function.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="thursday-october-14-2022.html#cb13-1" aria-hidden="true" tabindex="-1"></a>I1 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>, <span class="at">size =</span> <span class="dv">15</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-2"><a href="thursday-october-14-2022.html#cb13-2" aria-hidden="true" tabindex="-1"></a>I1</span></code></pre></div>
+<pre><code>##  [1]  5  1  8  8  5  7  8  5  1 12  8  1  9 14  6</code></pre>
+<p><code>I1</code> is a sample of the integers from 1 to 15 with repeats. Not all numbers are picked and some are picked more than once.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="thursday-october-14-2022.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(I1)</span></code></pre></div>
+<pre><code>## I1
+##  1  5  6  7  8  9 12 14 
+##  3  3  1  1  4  1  1  1</code></pre>
+<p>To get a bootstrap sample of heart rate and corresponding age variables you use these sampled integers as indexes in the vectors of <code>HR</code> and <code>Age</code>.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="thursday-october-14-2022.html#cb17-1" aria-hidden="true" tabindex="-1"></a>bsHR <span class="ot">&lt;-</span> heart.df<span class="sc">$</span>HR[I1]</span>
+<span id="cb17-2"><a href="thursday-october-14-2022.html#cb17-2" aria-hidden="true" tabindex="-1"></a>bsAge <span class="ot">&lt;-</span> heart.df<span class="sc">$</span>Age[I1]</span>
+<span id="cb17-3"><a href="thursday-october-14-2022.html#cb17-3" aria-hidden="true" tabindex="-1"></a>bsHR; bsAge</span></code></pre></div>
+<pre><code>##  [1] 156 202 172 172 156 174 172 156 202 174 172 202 153 183 169</code></pre>
+<pre><code>##  [1] 65 18 56 56 65 34 56 65 18 42 56 18 72 39 54</code></pre>
+<p>You then fit the regression model using the bootstrap sample and call this model <code>modelBS1</code>.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="thursday-october-14-2022.html#cb20-1" aria-hidden="true" tabindex="-1"></a>modelBS1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bsHR <span class="sc">~</span> bsAge)</span></code></pre></div>
+<p>You don’t need the <code>data =</code> argument since <code>bsHR</code> and <code>bsAge</code> are vectors with corresponding elements.</p>
+<p>You are interested only in the slope coefficient from the regression model. This is printed using the <code>coef()</code> on the model object.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="thursday-october-14-2022.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(modelBS1)</span></code></pre></div>
+<pre><code>## (Intercept)       bsAge 
+##  215.608198   -0.867119</code></pre>
+<p>The output is a vector of length two with the first element the intercept coefficient and the second element the slope coefficient. To print only the slope coefficient use the bracket notation. You print the slope coefficient from the model fit using the actual data and the slope coefficient from the model fit using the bootstrap sample data.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="thursday-october-14-2022.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(model)[<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>##        Age 
+## -0.7977266</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="thursday-october-14-2022.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(modelBS1)[<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>##     bsAge 
+## -0.867119</code></pre>
+<p>The slope values are somewhat different as expected. You repeat the sampling procedure many times to get many slope values.</p>
+<p>For example, in the code below you repeat this procedure (selecting integers and corresponding values of the variables) 1000 times saving the slope and intercept coefficients as vectors. You then create a histogram of the slope values adding a vertical red line corresponding the actual slope.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="thursday-october-14-2022.html#cb27-1" aria-hidden="true" tabindex="-1"></a>slope <span class="ot">&lt;-</span> <span class="fu">numeric</span>()</span>
+<span id="cb27-2"><a href="thursday-october-14-2022.html#cb27-2" aria-hidden="true" tabindex="-1"></a>int <span class="ot">&lt;-</span> <span class="fu">numeric</span>()</span>
+<span id="cb27-3"><a href="thursday-october-14-2022.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>){</span>
+<span id="cb27-4"><a href="thursday-october-14-2022.html#cb27-4" aria-hidden="true" tabindex="-1"></a>  I <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>, <span class="at">size =</span> <span class="dv">15</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb27-5"><a href="thursday-october-14-2022.html#cb27-5" aria-hidden="true" tabindex="-1"></a>  models <span class="ot">&lt;-</span> <span class="fu">lm</span>(HR <span class="sc">~</span> Age, <span class="at">data =</span> heart.df[I, ])</span>
+<span id="cb27-6"><a href="thursday-october-14-2022.html#cb27-6" aria-hidden="true" tabindex="-1"></a>  slope[i] <span class="ot">&lt;-</span> <span class="fu">coef</span>(models)[<span class="dv">2</span>]</span>
+<span id="cb27-7"><a href="thursday-october-14-2022.html#cb27-7" aria-hidden="true" tabindex="-1"></a>  int[i] <span class="ot">&lt;-</span> <span class="fu">coef</span>(models)[<span class="dv">1</span>]</span>
+<span id="cb27-8"><a href="thursday-october-14-2022.html#cb27-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb27-9"><a href="thursday-october-14-2022.html#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(slope), </span>
+<span id="cb27-10"><a href="thursday-october-14-2022.html#cb27-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(slope)) <span class="sc">+</span></span>
+<span id="cb27-11"><a href="thursday-october-14-2022.html#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb27-12"><a href="thursday-october-14-2022.html#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">coef</span>(model)[<span class="dv">2</span>],</span>
+<span id="cb27-13"><a href="thursday-october-14-2022.html#cb27-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>The histogram indicates the range of slope values from the bootstrap procedure with most of the slope values between -.9 and -.7 beats per minute per year. The red line is the slope from the model fit with the actual data (-.79 beats per minute per year).</p>
+<p>Another way to see this model uncertainty is to plot the corresponding lines for each bootstrap samples and overlaying the line from the actual model.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="thursday-october-14-2022.html#cb28-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(int, slope, <span class="at">bs =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>)</span>
+<span id="cb28-2"><a href="thursday-october-14-2022.html#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="thursday-october-14-2022.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> heart.df, </span>
+<span id="cb28-4"><a href="thursday-october-14-2022.html#cb28-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Age, <span class="at">y =</span> HR)) <span class="sc">+</span> </span>
+<span id="cb28-5"><a href="thursday-october-14-2022.html#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">intercept =</span> int, <span class="at">slope  =</span> slope, <span class="at">group =</span> bs), </span>
+<span id="cb28-6"><a href="thursday-october-14-2022.html#cb28-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> df,</span>
+<span id="cb28-7"><a href="thursday-october-14-2022.html#cb28-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">&quot;gray70&quot;</span>, </span>
+<span id="cb28-8"><a href="thursday-october-14-2022.html#cb28-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb28-9"><a href="thursday-october-14-2022.html#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb28-10"><a href="thursday-october-14-2022.html#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>The standard deviation of all the slopes will be close to the standard error estimated (from statistical theory) on the original data.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="thursday-october-14-2022.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(slope)</span></code></pre></div>
+<pre><code>## [1] 0.0691585</code></pre>
+<p>Uncertainty bounds are estimated from a single sample without reference to statistical theory about a population.</p>
+<p>The <code>predict()</code> function (method) is used to make a prediction with the regression model. You need to specify the values of the explanatory variable for which you want predictions as a data frame.</p>
+<p>You want predictions for two values of age 50 and 60 so you use the following syntax.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="thursday-october-14-2022.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model, </span>
+<span id="cb32-2"><a href="thursday-october-14-2022.html#cb32-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">Age =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">60</span>)))</span></code></pre></div>
+<pre><code>##        1        2 
+## 170.1621 162.1849</code></pre>
+<p>To get uncertainty intervals about the predicted value include the <code>level =</code> and <code>interval = "confidence"</code> arguments.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="thursday-october-14-2022.html#cb34-1" aria-hidden="true" tabindex="-1"></a>( predictedMean <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, </span>
+<span id="cb34-2"><a href="thursday-october-14-2022.html#cb34-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">Age =</span> <span class="dv">50</span>), </span>
+<span id="cb34-3"><a href="thursday-october-14-2022.html#cb34-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">level =</span> .<span class="dv">95</span>, </span>
+<span id="cb34-4"><a href="thursday-october-14-2022.html#cb34-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>) )</span></code></pre></div>
+<pre><code>##        fit      lwr      upr
+## 1 170.1621 166.9706 173.3537</code></pre>
+<p>The lower (<code>lwr</code>) and upper (<code>upr</code>) bounds represent the 95% uncertainty interval about the location of the line for the particular value of the explanatory variable <code>Age</code>.</p>
+<p>You state that the best prediction for average maximum heart rate for a set of 50 year old people is 170 beats per minute (bpm) with a 95% uncertainty interval between 167 and 173 bpm. Thus if you repeat the sampling 100 times and make the same prediction, your CI on the prediction will cover the true (but unknown) predicted value 95 times.</p>
+<p>These so called “point wise” uncertainty intervals are used to construct the gray ribbon when you use the <code>geom_smooth()</code> layer. To see this you plot the point wise interval for heart rates for 50-yr old people using the <code>geom_segment()</code> layer.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="thursday-october-14-2022.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> heart.df, </span>
+<span id="cb36-2"><a href="thursday-october-14-2022.html#cb36-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Age, <span class="at">y =</span> HR)) <span class="sc">+</span></span>
+<span id="cb36-3"><a href="thursday-october-14-2022.html#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb36-4"><a href="thursday-october-14-2022.html#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm) <span class="sc">+</span></span>
+<span id="cb36-5"><a href="thursday-october-14-2022.html#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">50</span>, <span class="at">xend =</span> <span class="dv">50</span>, <span class="at">y =</span> predictedMean[<span class="dv">2</span>], <span class="at">yend =</span> predictedMean[<span class="dv">3</span>]),</span>
+<span id="cb36-6"><a href="thursday-october-14-2022.html#cb36-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>By default <code>se = TRUE</code> in the <code>geom_smooth()</code> function so the ribbon is plotted. The default uncertainty width is specified with <code>level = .95</code>. If you want greater certainty you increase the level toward 1. This makes the ribbon wider.</p>
+<p>Notes:
+1. Repeated sampling is not the same as bootstrap sampling. Repeated sampling refers to a theoretical idea of there being a true model, while bootstrap sampling is a way to estimate the variation about a statistic computed from a sample of data.
+2. In this context (frequentist) the uncertainty interval is a random variable.</p>
+</div>
+<div id="uncertainty-about-a-particular-predicted-value" class="section level2 unnumbered">
+<h2>Uncertainty about a particular predicted value</h2>
+<p>The uncertainty about a particular predicted value is the product of two sources of uncertainty. The uncertainty associated with the mean value GIVEN the person’s age AND the uncertainty associated with a particular maximum heart rate GIVEN the conditional mean.</p>
+<p>With <code>interval = "prediction"</code> in the <code>predict()</code> method you get a 95% ‘prediction’ interval. Here you estimate the prediction interval for a 60-yr old patient.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="thursday-october-14-2022.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model, <span class="fu">data.frame</span>(<span class="at">Age =</span> <span class="dv">60</span>), </span>
+<span id="cb38-2"><a href="thursday-october-14-2022.html#cb38-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">level =</span> .<span class="dv">95</span>, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
+<pre><code>##        fit      lwr      upr
+## 1 162.1849 151.4115 172.9582</code></pre>
+<p>The prediction interval is wider than the ‘confidence’ interval as it represents both sources of uncertainty.</p>
+<p>To plot a prediction band, first add the prediction intervals to the original data frame, assigning the result to a new data frame. Then order the observations in this new data frame by the rank of the explanatory variable.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="thursday-october-14-2022.html#cb40-1" aria-hidden="true" tabindex="-1"></a>heart.df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(heart.df, <span class="fu">predict</span>(model, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>))</span></code></pre></div>
+<pre><code>## Warning in predict.lm(model, interval = &quot;prediction&quot;): predictions on current data refer to _future_ responses</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="thursday-october-14-2022.html#cb42-1" aria-hidden="true" tabindex="-1"></a>heart.df2 <span class="ot">&lt;-</span> heart.df2[<span class="fu">order</span>(heart.df2<span class="sc">$</span>Age), ]</span></code></pre></div>
+<p>Finally to plot the uncertainty about the model and about a future prediction type include a <code>geom_ribbon()</code> layer.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="thursday-october-14-2022.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> heart.df2, </span>
+<span id="cb43-2"><a href="thursday-october-14-2022.html#cb43-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Age, <span class="at">y =</span> HR)) <span class="sc">+</span> </span>
+<span id="cb43-3"><a href="thursday-october-14-2022.html#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb43-4"><a href="thursday-october-14-2022.html#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm) <span class="sc">+</span> </span>
+<span id="cb43-5"><a href="thursday-october-14-2022.html#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr), <span class="at">alpha =</span> .<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+</div>
+<div id="example-predicting-body-mass-from-fipper-length" class="section level2 unnumbered">
+<h2>Example: Predicting body mass from fipper length</h2>
+<p>You can imagine that measuring the body mass of a penguin is more difficult than measuring the length of its flipper. So you might want to infer body mass from flipper length.</p>
+<p>Consider the <code>penguins</code> data frame from the {palmerpenguins} package.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="thursday-october-14-2022.html#cb45-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> palmerpenguins<span class="sc">::</span>penguins</span>
+<span id="cb45-2"><a href="thursday-october-14-2022.html#cb45-2" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>## # A tibble: 344 × 8
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # … with 334 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<p>Note that some columns have missing data (coded as <code>NA</code>). You create a new data frame keeping only rows with complete data for the columns <code>flipper_length_mm</code>, <code>body_mass_g</code>, <code>species</code> and <code>sex</code>.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="thursday-october-14-2022.html#cb47-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb47-2"><a href="thursday-october-14-2022.html#cb47-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(flipper_length_mm, body_mass_g, species, sex) <span class="sc">|&gt;</span></span>
+<span id="cb47-3"><a href="thursday-october-14-2022.html#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code></pre></div>
+<p>The correlation between body mass and flipper length is <code>cor(df$body_mass_g, df$flipper_length_mm)</code>.</p>
+<ul>
+<li>Graph the data as a scatter plot and include the regression line.</li>
+</ul>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="thursday-october-14-2022.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, </span>
+<span id="cb48-2"><a href="thursday-october-14-2022.html#cb48-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb48-3"><a href="thursday-october-14-2022.html#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb48-4"><a href="thursday-october-14-2022.html#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb48-5"><a href="thursday-october-14-2022.html#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Body mass (g)&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p>As anticipated from the high correlation value, their is a fairly tight relationship between body mass and flipper length.</p>
+<p>Next you quantify this relationship.</p>
+<ul>
+<li>Obtain the coefficients from a regression model and interpret the slope coefficient</li>
+</ul>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="thursday-october-14-2022.html#cb50-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm, </span>
+<span id="cb50-2"><a href="thursday-october-14-2022.html#cb50-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> df)</span>
+<span id="cb50-3"><a href="thursday-october-14-2022.html#cb50-3" aria-hidden="true" tabindex="-1"></a>model</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = body_mass_g ~ flipper_length_mm, data = df)
+## 
+## Coefficients:
+##       (Intercept)  flipper_length_mm  
+##          -5872.09              50.15</code></pre>
+<p>On average, every one millimeter (mm) increase in flipper length is associated with a 50 gram increase in body mass</p>
+<ul>
+<li>Use the model to predict the body mass for penguins with measured flipper lengths of 180, 200, and 220 millimeters.</li>
+</ul>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="thursday-october-14-2022.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model, </span>
+<span id="cb52-2"><a href="thursday-october-14-2022.html#cb52-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">flipper_length_mm =</span> <span class="fu">c</span>(<span class="dv">180</span>, <span class="dv">200</span>, <span class="dv">220</span>))) </span></code></pre></div>
+<pre><code>##        1        2        3 
+## 3155.495 4158.561 5161.626</code></pre>
+</div>
+<div id="model-adequacy" class="section level2 unnumbered">
+<h2>Model Adequacy</h2>
+<p>By definition the linear regression model is the “best fit” line through the data as defined by the smallest RSS. However the best fit line may not be adequate for your data.</p>
+<p>Model adequacy is about the <em>quality</em> of the inferences you can make with the model. It says nothing about the strength of the relationship between the response and explanatory variable.</p>
+<p>Checks on model adequacy alert you to where/how the model can be improved (e.g., transform the data, add a nonlinear term, etc).</p>
+<p>When using a linear regression model for making inferences you are implicitly making four assumptions. All four assumptions imply that the residuals (observed values minus predicted values) should ‘look’ a certain way, or equivalently that the distribution of Y (response variable) conditional on X (explanatory variable) should look a certain way.</p>
+<ul>
+<li>Linearity: Average values of Y in ordered intervals of X should be a straight-line function of X. Each interval creates a ‘sub-population’ of Y values.</li>
+<li>Constant variance: Sub-populations of Y should all have about the same standard deviation.</li>
+<li>Normality: Values from each sub-population can be described with a normal distribution.</li>
+<li>Independence: Each observation is independent from the other observations.</li>
+</ul>
+<p>To the extent these assumptions are valid, the model is said to be <em>adequate</em> in representing the data. A model can be statistically significant, but not adequate.</p>
+<p>The first three assumptions are best examined with graphs. Note: You never prove an assumption. Instead, you check to see if there is evidence to question its validity.</p>
+<p>Consider again the <code>cars</code> data frame.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="thursday-october-14-2022.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars)</span></code></pre></div>
+<pre><code>##   speed dist
+## 1     4    2
+## 2     4   10
+## 3     7    4
+## 4     7   22
+## 5     8   16
+## 6     9   10</code></pre>
+<p>The data contains two columns <code>speed</code> and <code>dist</code> giving the speed (miles per hour) and the corresponding distance (feet) needed to stop. The data were recorded in the 1920s.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="thursday-october-14-2022.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(cars<span class="sc">$</span>speed, cars<span class="sc">$</span>dist)</span></code></pre></div>
+<pre><code>## [1] 0.8068949</code></pre>
+<p>The correlation tells us there is a strong relationship between the two variables. The faster the car is moving, the more distance it needs to come to a stop.</p>
+<p>You are interested in the breaking distance given the forward speed so <code>dist</code> is your response variable. Next you make a scatter plot.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="thursday-october-14-2022.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> cars, </span>
+<span id="cb58-2"><a href="thursday-october-14-2022.html#cb58-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> dist)) <span class="sc">+</span> </span>
+<span id="cb58-3"><a href="thursday-october-14-2022.html#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb58-4"><a href="thursday-october-14-2022.html#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb58-5"><a href="thursday-october-14-2022.html#cb58-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Speed (mph)&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Breaking distance (ft)&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p>The scatter of points shows an apparent linear relationship between the breaking distance and the forward speed of the car for this sample of data.</p>
+<p>Fit a regression model to the data. Since distance is your response variable, you regress stopping distance onto forward speed.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="thursday-october-14-2022.html#cb60-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> speed, </span>
+<span id="cb60-2"><a href="thursday-october-14-2022.html#cb60-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> cars)</span>
+<span id="cb60-3"><a href="thursday-october-14-2022.html#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = dist ~ speed, data = cars)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -29.069  -9.525  -2.272   9.215  43.201 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -17.5791     6.7584  -2.601   0.0123 *  
+## speed         3.9324     0.4155   9.464 1.49e-12 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 15.38 on 48 degrees of freedom
+## Multiple R-squared:  0.6511, Adjusted R-squared:  0.6438 
+## F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12</code></pre>
+<p>The model indicates a statistically significant relationship (<span class="math inline">\(p\)</span>-value is less than .01) between breaking distance and speed. In fact, 65% of the variation in average breaking distance is associated with differences in speed.</p>
+<p>The statistically significant effect of speed on breaking distance suggests it is unlikely that in the population of cars there is no relationship between speed and breaking distance.</p>
+<p>The model looks pretty good, so you write up our results. Let’s take a closer look.</p>
+<p>There tends to be more values of breaking distance below the line than above the line over the range of speeds between 10 and 20 mph. Also, the spread of the residuals appears to get larger as speed increases. There is more variation in the response for larger values of speed.</p>
+<p>One way to see this is to divide the explanatory variable into non-overlapping intervals and display the set of corresponding response values as a box plot.</p>
+<p>The variable is divided using the <code>cut()</code> function. Here you cut the <code>speed</code> into 5 intervals.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="thursday-october-14-2022.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span>(cars<span class="sc">$</span>speed, <span class="at">breaks =</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>##  [1] (3.98,8.2]  (3.98,8.2]  (3.98,8.2]  (3.98,8.2]  (3.98,8.2]  (8.2,12.4] 
+##  [7] (8.2,12.4]  (8.2,12.4]  (8.2,12.4]  (8.2,12.4]  (8.2,12.4]  (8.2,12.4] 
+## [13] (8.2,12.4]  (8.2,12.4]  (8.2,12.4]  (12.4,16.6] (12.4,16.6] (12.4,16.6]
+## [19] (12.4,16.6] (12.4,16.6] (12.4,16.6] (12.4,16.6] (12.4,16.6] (12.4,16.6]
+## [25] (12.4,16.6] (12.4,16.6] (12.4,16.6] (12.4,16.6] (16.6,20.8] (16.6,20.8]
+## [31] (16.6,20.8] (16.6,20.8] (16.6,20.8] (16.6,20.8] (16.6,20.8] (16.6,20.8]
+## [37] (16.6,20.8] (16.6,20.8] (16.6,20.8] (16.6,20.8] (16.6,20.8] (16.6,20.8]
+## [43] (16.6,20.8] (20.8,25]   (20.8,25]   (20.8,25]   (20.8,25]   (20.8,25]  
+## [49] (20.8,25]   (20.8,25]  
+## Levels: (3.98,8.2] (8.2,12.4] (12.4,16.6] (16.6,20.8] (20.8,25]</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="thursday-october-14-2022.html#cb64-1" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>speed[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>The first value of <code>speed</code> is 4 mph and it falls in the interval (3.98, 8.2]. Greater than 3.98 (indicated by <code>(</code>) and less than or equal to 8.2 (indicated by <code>]</code>). And so on.</p>
+<p>You include these cuts as a ordered factor variable to the original <code>cars</code> data frame.</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="thursday-october-14-2022.html#cb66-1" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> cars <span class="sc">|&gt;</span></span>
+<span id="cb66-2"><a href="thursday-october-14-2022.html#cb66-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">x_bins =</span> <span class="fu">cut</span>(speed, <span class="at">breaks =</span> <span class="dv">5</span>))</span></code></pre></div>
+<p>You then map the <code>x_bins</code> variable to the x aesthetic and draw box plots.</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="thursday-october-14-2022.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> cars, </span>
+<span id="cb67-2"><a href="thursday-october-14-2022.html#cb67-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x_bins, <span class="at">y =</span> dist)) <span class="sc">+</span> </span>
+<span id="cb67-3"><a href="thursday-october-14-2022.html#cb67-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb67-4"><a href="thursday-october-14-2022.html#cb67-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Speed (mph)&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Breaking distance (ft)&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p>By binning the explanatory variable you create sub-samples of the data. A sample of response values within a given interval of the explanatory variable. The number of intervals is the number of breaks specified by the <code>cut()</code> function.</p>
+<p>Here you see evidence against the assumption of linearity. Further you see that the box size is increasing. That is the IQR range of breaking distance (depth of the box) is larger for faster moving cars. This creates doubt that the assumption of constant variance is valid.</p>
+<p>What about the assumption of normality? Although the normality assumption about the residuals is that the <em>conditional</em> distribution of the residuals at each <span class="math inline">\(x_i\)</span> is adequately described by a normal distribution, in practice the residuals are examined together. The residuals are obtained by using the <code>resid()</code> function.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="thursday-october-14-2022.html#cb68-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">resid</span>(model1)</span>
+<span id="cb68-2"><a href="thursday-october-14-2022.html#cb68-2" aria-hidden="true" tabindex="-1"></a>res</span></code></pre></div>
+<pre><code>##          1          2          3          4          5          6          7 
+##   3.849460  11.849460  -5.947766  12.052234   2.119825  -7.812584  -3.744993 
+##          8          9         10         11         12         13         14 
+##   4.255007  12.255007  -8.677401   2.322599 -15.609810  -9.609810  -5.609810 
+##         15         16         17         18         19         20         21 
+##  -1.609810  -7.542219   0.457781   0.457781  12.457781 -11.474628  -1.474628 
+##         22         23         24         25         26         27         28 
+##  22.525372  42.525372 -21.407036 -15.407036  12.592964 -13.339445  -5.339445 
+##         29         30         31         32         33         34         35 
+## -17.271854  -9.271854   0.728146 -11.204263   2.795737  22.795737  30.795737 
+##         36         37         38         39         40         41         42 
+## -21.136672 -11.136672  10.863328 -29.069080 -13.069080  -9.069080  -5.069080 
+##         43         44         45         46         47         48         49 
+##   2.930920  -2.933898 -18.866307  -6.798715  15.201285  16.201285  43.201285 
+##         50 
+##   4.268876</code></pre>
+<p>There are other extractor functions (like <code>coef()</code>) that output information from the model as vectors or matrices.</p>
+<p>The <code>fortify()</code> function from the {ggplot2} package makes a data frame from the model object using several extractor functions.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="thursday-october-14-2022.html#cb70-1" aria-hidden="true" tabindex="-1"></a>model.df <span class="ot">&lt;-</span> <span class="fu">fortify</span>(model1)</span>
+<span id="cb70-2"><a href="thursday-october-14-2022.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(model.df)</span></code></pre></div>
+<pre><code>##   dist speed       .hat   .sigma      .cooksd   .fitted    .resid  .stdresid
+## 1    2     4 0.11486131 15.53088 0.0045923121 -1.849460  3.849460  0.2660415
+## 2   10     4 0.11486131 15.43338 0.0435139907 -1.849460 11.849460  0.8189327
+## 3    4     7 0.07150365 15.51624 0.0062023503  9.947766 -5.947766 -0.4013462
+## 4   22     7 0.07150365 15.43489 0.0254673384  9.947766 12.052234  0.8132663
+## 5   16     8 0.05997080 15.53907 0.0006446705 13.880175  2.119825  0.1421624
+## 6   10     9 0.04989781 15.49830 0.0071319931 17.812584 -7.812584 -0.5211526</code></pre>
+<p>The data frame resulting from the <code>fortify()</code> function has a column labeled <code>.resid</code> containing the vector of residuals. The residuals are the observed distance minus the predicted (fitted) distance (<code>dist</code> column minus <code>.fitted</code> column).</p>
+<p>Create a histogram and density of the model’s residuals by typing</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="thursday-october-14-2022.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> model.df, </span>
+<span id="cb72-2"><a href="thursday-october-14-2022.html#cb72-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(.resid)) <span class="sc">+</span></span>
+<span id="cb72-3"><a href="thursday-october-14-2022.html#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">8</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb72-4"><a href="thursday-october-14-2022.html#cb72-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">bins =</span> <span class="dv">8</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p>You can see that the histogram is not symmetric. There are more values to the right of the central set of values than to the left. The validity of the normality assumption is therefore under question.</p>
+<p>Since departures from normality can occur simply because of sampling variation, the question arises as to whether that apparent skewness (asymmetry) you see in this set of residuals is significantly larger than expected by chance.</p>
+<p>One approach to visualizing the expected variation from a reference distribution is to add an uncertainty band on the density plot.</p>
+<p>The <code>sm.density()</code> function from the {sm} package provides a way to plot the uncertainty band. The first argument is a vector of residuals and the argument <code>model = "Normal"</code> draws a band around a normal distribution centered on zero with a variance equal to the variance of the residuals.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="thursday-october-14-2022.html#cb73-1" aria-hidden="true" tabindex="-1"></a>sm<span class="sc">::</span><span class="fu">sm.density</span>(res, <span class="at">model =</span> <span class="st">&quot;Normal&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p>The black curve representing the residuals is shifted left relative to a normal density and goes outside the blue ribbon in the right tail indicating that the residuals may not be adequately described by a normal distribution although deviation from normality is small.</p>
+<p>The blue ribbon is the uncertainty surrounding a normal density curve.</p>
+<p>In summary, the linear regression model may not be adequate. The assumptions of linearity, equal variance, and normally distributed residuals are not entirely reasonable for these data.</p>
+<p>What should you do? The relationship appears to be non-linear. So you use the square root of the breaking distance as the response variable instead.</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="thursday-october-14-2022.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> cars, </span>
+<span id="cb74-2"><a href="thursday-october-14-2022.html#cb74-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> <span class="fu">sqrt</span>(dist))) <span class="sc">+</span> </span>
+<span id="cb74-3"><a href="thursday-october-14-2022.html#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb74-4"><a href="thursday-october-14-2022.html#cb74-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb74-5"><a href="thursday-october-14-2022.html#cb74-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Speed (mph)&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb74-6"><a href="thursday-october-14-2022.html#cb74-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">sqrt</span>(<span class="st">&quot;Break Distance (ft)&quot;</span>)))</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p>Fit another model. First make a copy of the original data frame and add a column called <code>distSR</code>. Check the assumption of linearity.</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="thursday-october-14-2022.html#cb76-1" aria-hidden="true" tabindex="-1"></a>cars2 <span class="ot">&lt;-</span> cars</span>
+<span id="cb76-2"><a href="thursday-october-14-2022.html#cb76-2" aria-hidden="true" tabindex="-1"></a>cars2<span class="sc">$</span>distSR <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(cars<span class="sc">$</span>dist)</span>
+<span id="cb76-3"><a href="thursday-october-14-2022.html#cb76-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-4"><a href="thursday-october-14-2022.html#cb76-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> cars2, </span>
+<span id="cb76-5"><a href="thursday-october-14-2022.html#cb76-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">cut</span>(speed, <span class="at">breaks =</span> <span class="dv">5</span>), <span class="at">y =</span> distSR)) <span class="sc">+</span> </span>
+<span id="cb76-6"><a href="thursday-october-14-2022.html#cb76-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb76-7"><a href="thursday-october-14-2022.html#cb76-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Speed (mph)&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb76-8"><a href="thursday-october-14-2022.html#cb76-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Square Root of Break Distance (ft)&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p>It looks good.</p>
+<p>Fit the new model and extract and make a histogram of the residuals.</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="thursday-october-14-2022.html#cb77-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(distSR <span class="sc">~</span> speed, <span class="at">data =</span> cars2)</span>
+<span id="cb77-2"><a href="thursday-october-14-2022.html#cb77-2" aria-hidden="true" tabindex="-1"></a>res2 <span class="ot">&lt;-</span> <span class="fu">resid</span>(model2)</span>
+<span id="cb77-3"><a href="thursday-october-14-2022.html#cb77-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-4"><a href="thursday-october-14-2022.html#cb77-4" aria-hidden="true" tabindex="-1"></a>model2.df <span class="ot">=</span> <span class="fu">fortify</span>(model2)</span>
+<span id="cb77-5"><a href="thursday-october-14-2022.html#cb77-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> model2.df, </span>
+<span id="cb77-6"><a href="thursday-october-14-2022.html#cb77-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(.resid)) <span class="sc">+</span></span>
+<span id="cb77-7"><a href="thursday-october-14-2022.html#cb77-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">8</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb77-8"><a href="thursday-october-14-2022.html#cb77-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">bins =</span> <span class="dv">8</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<p>Distribution of residuals is still skewed but it is better. In fact now the black line is completely inside the uncertainty ribbon of a normal density plot.</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="thursday-october-14-2022.html#cb78-1" aria-hidden="true" tabindex="-1"></a>sm<span class="sc">::</span><span class="fu">sm.density</span>(res2, <span class="at">model =</span> <span class="st">&quot;Normal&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+</div>
+<div id="transforming-the-response-variable" class="section level2 unnumbered">
+<h2>Transforming the response variable</h2>
+<p>The cars example uses a square-root transformation of the response variable. This is appropriate when the response variable has a physical connection to the explanatory variable (e.g., timber volume as a response variable to tree diameter at breast height).</p>
+<ul>
+<li><p>Limitations</p>
+<ul>
+<li>Cannot be applied to negative numbers</li>
+<li>Transforms numbers &lt; 1 and &gt; 1 in different ways</li>
+</ul></li>
+</ul>
+<p>A more common situation is to take logarithms (natural or common) of the response variable.</p>
+<ul>
+<li><p>Appropriate</p>
+<ul>
+<li>When the SD of the residuals is directly proportional to the fitted values (and not to some power of the fitted values)</li>
+<li>When the relationship is close to exponential</li>
+</ul></li>
+<li><p>Limitations</p>
+<ul>
+<li>How to transform zero values? Add a constant such as 1 or 0.00001, Remove zero values from analysis</li>
+</ul></li>
+</ul>
+<p>Family of transformations</p>
+<ul>
+<li>Box-Cox (Power) Transformation
+<ul>
+<li>More about this later</li>
+</ul></li>
+</ul>
+<p>Be careful transforming count data. In this case a generalized linear regression.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tuesday-october-12-2022.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
