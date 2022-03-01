@@ -123,7 +123,7 @@ p1 <- p1 + geom_smooth(method = lm, se = FALSE, col = "blue")
 p1
 ```
 
-This is the regression line. You can again plot the distance from a particular value to this new line (the residual).
+This is the regression line. You again plot the distance from a particular value to this new line (each distance is called a residual).
 ```{r, fig.keep='none'}
 p1 <- p1 + geom_segment(aes(y = predict(lm(y ~ x)), yend = y, 
                             x = x, xend = x))
