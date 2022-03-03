@@ -1,0 +1,276 @@
+# Tuesday, October 19, 2022 {-}
+
+## Today {-}
+
+- More examples
+- Outliers
+- Simpson's paradox
+
+Linear regression provides an adequate model for our data under the following four assumptions.
+
+* Linearity: Average values of Y in ordered intervals of X should be a straight-line function of X. Each interval creates a 'sub-population' of Y values. 
+* Constant variance: Sub-populations of Y should all have about the same standard deviation.
+* Normality: Values from each sub-population can be described with a normal distribution.
+* Independence: Each observation is independent from the other observations.
+
+Key idea: A model can be statistically significant, but not adequate.
+
+## Example: Average income vs percent college graduates at the state level {-}
+
+The file _Inc.txt_ on my website contains average annual household income vs percentage of college graduates by state. Fit a linear regression model to these data and check the model assumption. Does the linear model appear to be adequate?
+```{r}
+Inc.df <- read.table("http://myweb.fsu.edu/jelsner/temp/data/Inc.txt", 
+                     header = TRUE)
+head(Inc.df)
+```
+
+What is the type and strength of the relationship between percent college graduates and income? These are answered by a scatter plot and correlation, respectively.
+```{r}
+cor(Inc.df$College, Inc.df$Income)
+
+ggplot(data = Inc.df, 
+       mapping = aes(x = College, y = Income)) +
+  geom_point() +
+  geom_smooth(method = lm) +
+  xlab("College Graduates (%)") +
+  ylab("Average Income ($)")
+```
+
+The plot shows that there is a linear relationship between percent college graduates and income. The relationship is positive indicating that states with higher percentage of college graduates also have higher incomes on average.
+
+The relationship is quite strong (the correlation value is .78), with few, if any, of the states deviating from the linear pattern.
+
+When the data have a spatial component it's a good idea to make a map. Here we create a choropleth map using functions from the {tmap} package (`09-Lesson.Rmd`).
+```{r}
+library(tmap)
+library(USAboundaries)
+library(sf)
+library(dplyr)
+
+states.sf <- us_states() 
+Inc.df <- Inc.df %>%
+  rename(stusps = State)
+
+states.sf <- left_join(states.sf, 
+                       Inc.df, 
+                       by = "stusps") %>%
+  filter(!stusps %in% c("AK", "HI", "PR"))
+
+tm_shape(states.sf) +
+  tm_polygons(col = c("Income", "College")) +
+  tm_legend(legend.position = c("left", "bottom"))
+```
+
+Regress annual household income on percent of college graduates.
+```{r}
+model1 <- lm(Income ~ College, 
+             data = Inc.df)
+summary(model1)
+```
+
+Results indicate a significant relationship ($p$-value < .001). Percent college graduates explains 60% of the variation in average income by state. The significant effect implies it is unlikely that income and education have no relationship.
+
+Not only is the effect significant but it is large. For every 1 percentage point increase in graduates, average annual household income increases by $545.
+
+From the small standard error (relative to the estimate) on the slope extracted as
+```{r}
+summary(model1)$coefficients[2, 2]
+```
+
+We can say that the effect is quite precise.
+
+This precision shows in the narrow uncertainty interval for the slope estimate.
+```{r}
+confint(model1)
+```
+
+Is the model adequate?
+
+Check linearity and equal spread.
+```{r}
+ggplot(data = Inc.df, 
+       mapping = aes(x = cut(College, breaks = 6), y = Income)) + 
+  geom_boxplot() +
+  xlab("Percentage of College Graduates") +
+  ylab("Average Income ($)")
+```
+
+It looks favorable for these two assumptions. Although the effect seems to level off for the highest percentage of graduates.
+
+Next look at the distribution of the residuals. Does the distribution look like a normal distribution?
+```{r}
+res <- residuals(model1)
+sm.density(res, 
+           model = "Normal")
+```
+
+The black curve falls within the blue envelope of a normal distribution, so we have no reason to suspect the assumption of normally distributed residuals.
+
+Another check is to use the quantile-quantile plot. A quantile-quantile plot (or Q-Q plot) is a graph of the quantiles of one distribution against the quantiles of another distribution.  If the distributions have similar shapes, the points on the plot fall roughly along the straight line.
+
+To check the normality assumption of a regression model you want to compare the quantiles of the residuals against the quantiles of a normal distribution. We do that with the `qqnorm()` function.
+```{r}
+qqnorm(res)
+qqline(res)
+```
+
+Departures from normality are seen as a systematic departure of the points from a straight line on the Q-Q plot.
+
+Interpreting Q-Q plots is somewhat subjective. Here are the common situations.
+
+Description: interpretation
+
+* All but a few points fall on a line: few outliers in the data
+* Left end of pattern is below the line; right end of pattern is above the line: long tails at both ends of the distribution
+* Left end of pattern is above the line; right end of pattern is below the line: short tails at both ends of the data distribution
+* Curved pattern with slope increasing from left to right: data is skewed to the right
+* Curved pattern with slope decreasing from left to right: data is skewed to the left
+* Staircase pattern (plateaus and gaps): data have been rounded or are discrete
+
+## Outliers {-}
+
+What state is most/least favorable with respect to income after graduating from college? These are the states where incomes for a given % graduates fall farthest from the regression line.
+
+The residuals are what is left over once percent graduated is in the model---or in statistical language, "after controlling for percent graduated."
+
+The above assumptions concern the conditional distribution of the residuals. The residuals for each of the observations are computed when you use the `lm()` function to fit the model.
+
+In the code below, the `fortify()` function from the {ggplot2} package creates a data frame with elements computed from the fitted model.
+```{r}
+model1.df <- fortify(model1)
+head(model1.df)
+model1.df$State <- Inc.df$stusps
+```
+
+The variables in the model are given in the first two columns with information about the regression that is specific to each of the cases (observations) given in the next six columns.
+
+The first three of those columns contain information that allows you to assess how influential that observation is to the model. If that particularly observation is removed and the regression model refit without it, how much difference would it make in terms of the coefficients?  If removing an observation changes the coefficients a lot then that observation is said to be influential.
+
+A plot of the model residuals as a function of the explanatory variables lets us easily identify which states have the largest positive and negative residuals. To make the plot more readable we use the `geom_label_repel()` function from the {ggrepel} package. This labels the points while avoiding overlapping labels.
+```{r}
+library(ggrepel)
+
+ggplot(data = model1.df, 
+       mapping = aes(x = College, y = .resid)) +
+  geom_point() +
+  geom_hline(yintercept = 0) +
+  xlab("Percent College Graduates") +
+  ylab( "Model Residuals") +
+  geom_label_repel(aes(label = State), color = "darkblue") 
+```
+
+Nevada and Connecticut stand out as states where the model underestimates income from percent graduation rates. While Utah, New Mexico, and Montana are states where the model over estimates income.
+
+Statistically significant outliers are those that are outside +/- 2 standard deviations from the regression line. The standardized residuals are plotted and the corresponding significance lines drawn.
+```{r}
+ggplot(data = model1.df, 
+       mapping = aes(x = College, y = .stdresid)) +
+  geom_point() +
+  geom_hline(yintercept = 0) +
+  geom_hline(yintercept = -2, lty = "dotted") +
+  geom_hline(yintercept = 2, lty = "dotted") +
+  xlab("Percent College Graduates") +
+  ylab("Studentized Residuals") +
+  geom_label_repel(aes(label = State), color = "darkblue") 
+```
+
+## Summarizing {-}
+
+(1) Regression modeling is statistical control.
+
+* We often want to do more than just summarize the relationship between variables. That is go beyond reporting the correlation.
+* Regression provides a strategy to control for effects of an explanatory variable to see what is left over.
+* These left overs (residuals) are interpreted as "controlled observations" (e.g. percent income controlling for percent graduates).
+
+(2) Observations that result in large residuals are called outliers. Outliers can distort regression results or they can be interesting on their own (e.g. unusually destructive tornadoes).
+
+* Inspect scatter plots and plots of residuals to determine whether there are outliers that have a strong influence on the regression line.
+* If there are we should re-fit the regression model without those observations and compare results.
+* Regardless of how we decide to handle them, we need to let our readers know about these unusual cases.
+
+(3) When interpreting a regression model fit to our data, we are making some implicit assumptions.
+
+* Before accepting a model we need to examine those assumptions to make sure they are tenable.
+* The model fit may be excellent, but we can't be sure our conclusions are correct unless we can defend the assumptions.
+* Examining the model residuals helps us defend (if warranted) the assumptions.
+
+## Example: A regression model for trend {-}
+
+The rate at which something is changing over time is called a trend. Trend analysis is common in climate change studies and it often involves fitting a linear regression model to quantify the trend where the "explanatory variable" is some index of time.
+
+Let's return to the Florida precipitation data we looked at earlier in the semester. Import the data and make a line plot showing March precipitation values each year. Draw the best-fit line through these values.
+```{r}
+loc <- "http://myweb.fsu.edu/jelsner/temp/data/FLprecip.txt"
+FLp <- read.table(loc, 
+                  na.string = "-9.900", 
+                  header = TRUE)
+
+ggplot(FLp, aes(x = Year, y = Mar)) +
+  geom_line() +
+  geom_smooth(method = lm, color = "blue") +
+  ylab("Statewide March Precipitation (in)")
+```
+
+There is an upward trend (increasing precipitation) but we can see that the uncertainty ribbon would allow a horizontal line. Thus we do not anticipate a statistically significant trend term in a regression model.
+
+To verify we regress March precipitation onto year.
+```{r}
+model <- lm(Mar ~ Year, 
+            data = FLp)
+summary(model)
+```
+
+We see that the statewide annual average precipitation has been increasing by .01 inches per year. This upward trend has a $p$-value of .04 providing suggestive but inconclusive evidence against the null hypothesis of no trend. The larger the $p$-value the more evidence we have that the trend is not statistically significant.
+
+We can fit regression models for all months. First convert the wide to a long data frame.
+```{r}
+library(tidyr)
+FLpL <- FLp %>%
+  pivot_longer(cols = Jan:Dec,
+               names_to = "Month",
+               values_to = "Precipitation")
+ 
+```
+
+Then to fit trend models _separately_ for each month we use the `do()` function from the {dplyr} package together with the `tidy()` function from the {broom} package.
+```{r}
+library(broom)
+
+FLpL %>% 
+  mutate(MonthF = factor(Month, levels = month.abb)) %>%
+  group_by(MonthF) %>%
+  do(tidy(lm(Precipitation ~ Year, data = .)))
+```
+
+The table shows the intercept and slope coefficients for each month.
+
+## Simpson's paradox {-}
+
+Simpson's paradox occurs when a trend appears in several different groups of data but disappears or reverses when these groups are combined. It is often encountered in social-science and medical-science statistics and is particularly problematic when data are aggregated at various scales (spatial or otherwise). 
+
+The paradox can be resolved when causal relations are appropriately addressed in the statistical modeling.
+
+As an example, consider again the relationship between bill length vs bill depth in the Palmer penguins without regards to species.
+```{r}
+library(palmerpenguins)
+
+( p <- ggplot(data = penguins,
+            mapping = aes(y = bill_depth_mm, x = bill_length_mm)) +
+       geom_point() +
+       geom_smooth(method = lm) )
+
+lm(bill_depth_mm ~ bill_length_mm,
+   data = penguins)
+```
+
+The plot shows an inverse relationship between bill depth and bill length. And the regression model shows a statistically significant relationship with bill depth decreasing by .85 cm for every one mm increase in bill length.
+
+However the relationship is across all species of penguins. If we group by species we see that for each species the relationship is the opposite.
+```{r}
+p + 
+  geom_point(mapping = aes(y = bill_depth_mm, x = bill_length_mm, color = species)) +
+  geom_smooth(method = lm, mapping = aes(color = species)) +
+  scale_color_manual(values = c("darkorange", "purple", "cyan4"))
+```
+
+That is bill depth _increases_ with increasing bill length. So we conclude that the negative relationship is an artifact of lumping the penguins with significantly different body masses together.
