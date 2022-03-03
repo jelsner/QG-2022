@@ -200,7 +200,7 @@ ggplot(data = USA_48.sf) +
   geom_sf(aes(fill = AWATER/ALAND * 100))
 ```
 
-## Overlays {-}
+## Adding data {-}
 
 The `USA_48.sf` simple feature data frame uses longitude and latitude for it's coordinate reference system (CRS). All spatial data frames have a CRS.
 
@@ -215,7 +215,7 @@ Here it specifies a geographic reference system with longitude and latitude and 
 
 Because the CRS uses longitude and latitude you can add locations by specifying the geographic coordinates. 
 
-For example, suppose you want to overlay the locations of two cities on the map. First you create a data frame containing the longitudes, latitudes, and names of the locations.
+For example, suppose you want to add the locations of two cities on the map. First you create a data frame containing the longitudes, latitudes, and names of the locations.
 ```{r}
 Cities.df <- data.frame(long = c(-84.2809, -87.9735),
                         lat = c(30.4381,43.0115),
@@ -289,6 +289,14 @@ ggplot() +
 
 Circle area is proportional to the airport’s altitude (in feet).
 
+## Inset maps {-}
+
+A common challenge when creating maps is how to include an inset map. An inset map is a smaller map included on a corner that provides additional context to the main map. 
+
+It is also useful for representing spatial units that may form part of a country but its geographical location would imply an imperfect visualization, or even to include small units that otherwise won’t be shown on the map.
+
+https://dieghernan.github.io/202203_insetmaps/
+
 ## Map projections {-}
 
 Depending on how a curved surface is projected onto a 2-D surface (map), at least some features will be distorted. The `coord_sf()` function package provides a way to adjust projections.
@@ -298,7 +306,7 @@ With a geographic projection the longitudes and latitudes are treated as x (hori
 Consider again the boundary map of the lower 48 states. Here we get the boundary file using the `us_states()` function from the {USAboundaries} package and use the `filter()` function to remove rows corresponding to Hawaii, Alaska, and Puerto Rico.
 ```{r}
 USA_48.sf <- USAboundaries::us_states() |>
-   filter(!state_name %in% c("Hawaii", "Alaska", "Puerto Rico"))
+   dplyr::filter(!state_name %in% c("Hawaii", "Alaska", "Puerto Rico"))
 ```
 
 Here you first assign the map to an object called `base_map` and then render the map to the plot device by typing the object name.
