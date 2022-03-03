@@ -297,7 +297,7 @@ To the extent these assumptions are valid, the model is said to be _adequate_ in
 
 The first three assumptions are best examined with graphs. Note: You never prove an assumption. Instead, you check to see if there is evidence to question its validity.
 
-Consider again the `cars` data frame.
+Consider the `cars` data frame.
 ```{r}
 head(cars)
 ```
@@ -309,7 +309,7 @@ cor(cars$speed, cars$dist)
 
 The correlation tells us there is a strong relationship between the two variables. The faster the car is moving, the more distance it needs to come to a stop.
 
-You are interested in the breaking distance given the forward speed so `dist` is your response variable. Next you make a scatter plot.
+You are interested in the breaking distance given the forward speed so `dist` is your response variable. Knowing which variable is the response variable, you make a scatter plot.
 ```{r}
 ggplot(data = cars, 
        mapping = aes(x = speed, y = dist)) + 
@@ -318,7 +318,7 @@ ggplot(data = cars,
   xlab("Speed (mph)") + ylab("Breaking distance (ft)")
 ```
 
-The scatter of points shows an apparent linear relationship between the breaking distance and the forward speed of the car for this sample of data.
+The scatter of points shows a near linear relationship between the breaking distance and the forward speed of the car for this sample of data.
 
 Fit a regression model to the data. Since distance is your response variable, you regress stopping distance onto forward speed.
 ```{r}
@@ -462,11 +462,11 @@ A more common situation is to take logarithms (natural or common) of the respons
     + When the relationship is close to exponential
     
 * Limitations
-    +  How to transform zero values? Add a constant such as 1 or 0.00001, Remove zero values from analysis
+    +  How to transform zero values? Add a constant such as 1 or 0.00001 or remove zero values from analysis (not recommended)
     
 Family of transformations 
 
 * Box-Cox (Power) Transformation
     + More about this later
 
-Be careful transforming count data. In this case a generalized linear regression.
+If your response variable is counts (e.g., the number of hurricanes in a season) then it is better to use a generalized linear regression model than to transform the counts to normality.

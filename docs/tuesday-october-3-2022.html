@@ -52,6 +52,25 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.8/grViz.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -289,7 +308,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#simple-feature-data-frames"><i class="fa fa-check"></i>Simple feature data frames</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#making-a-boundary-map"><i class="fa fa-check"></i>Making a boundary map</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#fills"><i class="fa fa-check"></i>Fills</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#overlays"><i class="fa fa-check"></i>Overlays</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#adding-data"><i class="fa fa-check"></i>Adding data</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#inset-maps"><i class="fa fa-check"></i>Inset maps</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#map-projections"><i class="fa fa-check"></i>Map projections</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html"><i class="fa fa-check"></i>Thursday, September 21, 2022</a>
@@ -325,7 +345,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#paired-observations"><i class="fa fa-check"></i>Paired observations</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#example-reaction-time-while-driving"><i class="fa fa-check"></i>Example: Reaction time while driving</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#chi-squared-test-for-independence"><i class="fa fa-check"></i>Chi-squared test for independence</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#example-smoking-habits-and-exercise"><i class="fa fa-check"></i>Example: Smoking habits and exercise</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#example-smoking-and-exercise"><i class="fa fa-check"></i>Example: Smoking and exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html"><i class="fa fa-check"></i>Tuesday, October 3, 2022</a>
 <ul>
@@ -351,6 +371,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#comparing-two-hypotheses"><i class="fa fa-check"></i>Comparing two hypotheses</a></li>
 <li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#reaction-times-while-driving"><i class="fa fa-check"></i>Reaction times while driving</a></li>
 <li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#repeat-the-survey-example"><i class="fa fa-check"></i>Repeat the survey example</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html"><i class="fa fa-check"></i>Tuesday, October 12, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#today-15"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#linear-regression-a-t-test-by-another-name"><i class="fa fa-check"></i>Linear regression: A t test by another name</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#motivating-regression"><i class="fa fa-check"></i>Motivating regression</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#eyeballing-the-regression"><i class="fa fa-check"></i>Eyeballing the regression</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#example-increasing-heart-rates-with-age"><i class="fa fa-check"></i>Example: Increasing heart rates with age</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#making-predictions-with-regression"><i class="fa fa-check"></i>Making predictions with regression</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#uncertainty-about-the-regression-coefficients"><i class="fa fa-check"></i>Uncertainty about the regression coefficients</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#bootstrapping-the-uncertainty"><i class="fa fa-check"></i>Bootstrapping the uncertainty</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#predictive-uncertainty"><i class="fa fa-check"></i>Predictive uncertainty</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html"><i class="fa fa-check"></i>Thursday, October 14, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#today-16"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#uncertainty-about-a-particular-predicted-value"><i class="fa fa-check"></i>Uncertainty about a particular predicted value</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#example-predicting-body-mass-from-fipper-length"><i class="fa fa-check"></i>Example: Predicting body mass from fipper length</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#model-adequacy"><i class="fa fa-check"></i>Model Adequacy</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#transforming-the-response-variable"><i class="fa fa-check"></i>Transforming the response variable</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -402,59 +442,59 @@ f(y) = \frac{1}{\sigma \sqrt{2\pi}} e^{\frac{-(y-\mu)^2}{2\sigma^2}}
 Y \sim N(\mu, \sigma^2)
 \]</span></p>
 <p>In particular, the normal distribution with <span class="math inline">\(\mu\)</span> = 0 and <span class="math inline">\(\sigma\)</span> = 1 is called the standard normal distribution, and is denoted as <span class="math inline">\(N(0,1)\)</span>. It’s shape is graphed as follows.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="tuesday-october-3-2022.html#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length =</span> <span class="dv">101</span>)</span>
-<span id="cb1-2"><a href="tuesday-october-3-2022.html#cb1-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb1-3"><a href="tuesday-october-3-2022.html#cb1-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y)</span>
-<span id="cb1-4"><a href="tuesday-october-3-2022.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="tuesday-october-3-2022.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-6"><a href="tuesday-october-3-2022.html#cb1-6" aria-hidden="true" tabindex="-1"></a>( p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
-<span id="cb1-7"><a href="tuesday-october-3-2022.html#cb1-7" aria-hidden="true" tabindex="-1"></a>         <span class="fu">geom_line</span>() )</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<div class="sourceCode" id="cb866"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb866-1"><a href="tuesday-october-3-2022.html#cb866-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length =</span> <span class="dv">101</span>)</span>
+<span id="cb866-2"><a href="tuesday-october-3-2022.html#cb866-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb866-3"><a href="tuesday-october-3-2022.html#cb866-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y)</span>
+<span id="cb866-4"><a href="tuesday-october-3-2022.html#cb866-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb866-5"><a href="tuesday-october-3-2022.html#cb866-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb866-6"><a href="tuesday-october-3-2022.html#cb866-6" aria-hidden="true" tabindex="-1"></a>( p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb866-7"><a href="tuesday-october-3-2022.html#cb866-7" aria-hidden="true" tabindex="-1"></a>         <span class="fu">geom_line</span>() )</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-409-1.png" width="672" /></p>
 <p>Assume that test scores of an exam fit normal distributions. And that the mean test score is 72, and the standard deviation is 15.2. What is our best estimate for the percentage of all students that will score at least 84 on the exam?</p>
 <p>Solution: You use the <code>pnorm()</code> function (density of the normal distribution) with argument mean equal to 72 and the argument standard deviation (<code>sd</code>) 15.2. Since you are looking for the percentage of students scoring AT LEAST 84, you are interested in the upper (right) tail of the normal distribution.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="tuesday-october-3-2022.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="dv">84</span>, <span class="at">mean =</span> <span class="dv">72</span>, <span class="at">sd =</span> <span class="fl">15.2</span>, </span>
-<span id="cb2-2"><a href="tuesday-october-3-2022.html#cb2-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb867"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb867-1"><a href="tuesday-october-3-2022.html#cb867-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="dv">84</span>, <span class="at">mean =</span> <span class="dv">72</span>, <span class="at">sd =</span> <span class="fl">15.2</span>, </span>
+<span id="cb867-2"><a href="tuesday-october-3-2022.html#cb867-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## [1] 0.2149176</code></pre>
 <p>The percentage of all students scoring at least 84 on the exam will be 21.5%.</p>
 <p>Effectively, the information contained in the sample of data is reduced to a distribution (model) with only two parameters.</p>
 <p>If the mean or standard deviation are changed, the curve changes but it remains a normal distribution (shape remains the same).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="tuesday-october-3-2022.html#cb4-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="fl">1.5</span>)</span>
-<span id="cb4-2"><a href="tuesday-october-3-2022.html#cb4-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y)</span>
-<span id="cb4-3"><a href="tuesday-october-3-2022.html#cb4-3" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">data =</span> df2, </span>
-<span id="cb4-4"><a href="tuesday-october-3-2022.html#cb4-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb869"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb869-1"><a href="tuesday-october-3-2022.html#cb869-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="fl">1.5</span>)</span>
+<span id="cb869-2"><a href="tuesday-october-3-2022.html#cb869-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y)</span>
+<span id="cb869-3"><a href="tuesday-october-3-2022.html#cb869-3" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">data =</span> df2, </span>
+<span id="cb869-4"><a href="tuesday-october-3-2022.html#cb869-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-411-1.png" width="672" /></p>
 <p>The two curves are members of a distributional family all having the same shape.</p>
 </div>
 <div id="uniform-distribution" class="section level2 unnumbered">
 <h2>Uniform distribution</h2>
 <p>The uniform distribution is one in which all intervals of the same width are equally likely. It has two parameters <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> where <span class="math inline">\(a\)</span> &lt; <span class="math inline">\(b\)</span> defining the end points.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="tuesday-october-3-2022.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>##  [1] 2.989154 2.986390 1.195271 2.798689 2.689438 1.016781 2.782883 2.937124
-##  [9] 1.967613 1.197635</code></pre>
+<div class="sourceCode" id="cb870"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb870-1"><a href="tuesday-october-3-2022.html#cb870-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##  [1] 1.251546 1.859389 2.592670 2.321259 1.787393 2.307752 2.602377 1.975598
+##  [9] 2.864404 1.578483</code></pre>
 <p>The shape is described as flat.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="tuesday-october-3-2022.html#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="at">length =</span> <span class="dv">101</span>)</span>
-<span id="cb7-2"><a href="tuesday-october-3-2022.html#cb7-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">dunif</span>(x, <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">3</span>)</span>
-<span id="cb7-3"><a href="tuesday-october-3-2022.html#cb7-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y)</span>
-<span id="cb7-4"><a href="tuesday-october-3-2022.html#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
-<span id="cb7-5"><a href="tuesday-october-3-2022.html#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb7-6"><a href="tuesday-october-3-2022.html#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb872"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb872-1"><a href="tuesday-october-3-2022.html#cb872-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="at">length =</span> <span class="dv">101</span>)</span>
+<span id="cb872-2"><a href="tuesday-october-3-2022.html#cb872-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">dunif</span>(x, <span class="at">min =</span> <span class="dv">1</span>, <span class="at">max =</span> <span class="dv">3</span>)</span>
+<span id="cb872-3"><a href="tuesday-october-3-2022.html#cb872-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y)</span>
+<span id="cb872-4"><a href="tuesday-october-3-2022.html#cb872-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb872-5"><a href="tuesday-october-3-2022.html#cb872-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb872-6"><a href="tuesday-october-3-2022.html#cb872-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-413-1.png" width="672" /></p>
 <p>The uniform distribution implies that all values are equally likely to occur. This contrasts with the normal distribution where values near the mean are more likely than those farther from it.</p>
 <p>The uniform distribution used in the Bayesian context describes the situation in which you are maximally ‘non-committed.’ In other words, there is no reason to prefer one value over another between the minimum and the maximum.</p>
 <p>Think of voters who are not committed to either candidate A or B. If these are the only two choices then maximally non-committed implies that they are just as likely to vote for A as they are to vote for B. Now imagine an infinite number of candidates.</p>
 <p>A parametric model, like the uniform or Gaussian, is a family of distributions described using only a few parameters. Bayesian models are built from parametric models.</p>
 <p>Bayesian models are ‘generative.’ If you know the parameters then you can generate data: Parameters (<span class="math inline">\(\mu\)</span>, <span class="math inline">\(\theta\)</span>, <span class="math inline">\(\sigma\)</span>) –&gt; generative model –&gt; data (5, 3, 4, 0, 1, …): Going from parameters to data is called <em>Monte Carlo simulation</em>.</p>
 <p>Example: If you assume that the rate of hurricanes in the United States is 1.7 hurricanes/year (<span class="math inline">\(\lambda\)</span>) and you assume our generative model is the Poisson distribution then you generate data using</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="tuesday-october-3-2022.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rpois</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">lambda =</span> <span class="fl">1.7</span>)</span></code></pre></div>
-<pre><code>##   [1] 2 4 1 0 2 0 1 1 4 2 4 3 1 0 1 2 0 0 2 1 2 3 4 0 1 2 0 0 1 2 2 0 1 1 4 0 2
-##  [38] 2 1 1 0 3 1 4 2 1 3 1 1 1 3 0 1 2 6 3 3 0 0 4 3 1 1 0 2 4 0 1 2 0 1 2 2 2
-##  [75] 1 3 2 0 2 4 2 2 2 2 2 0 2 0 2 2 3 1 0 2 3 2 2 2 2 3</code></pre>
+<div class="sourceCode" id="cb873"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb873-1"><a href="tuesday-october-3-2022.html#cb873-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rpois</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">lambda =</span> <span class="fl">1.7</span>)</span></code></pre></div>
+<pre><code>##   [1] 0 1 3 2 2 1 1 1 1 3 2 3 3 4 1 0 0 0 5 2 2 0 0 2 3 0 0 1 1 1 1 3 1 0 1 2 1
+##  [38] 4 3 4 1 1 1 2 0 1 0 1 1 2 0 1 2 2 5 1 1 2 1 1 3 1 4 1 3 2 1 0 0 1 1 1 0 2
+##  [75] 1 2 0 1 6 0 0 5 3 2 0 1 4 3 2 1 0 2 1 1 2 1 1 4 0 4</code></pre>
 <p>Alternatively if you assume the rate of hurricanes is described by a gamma distribution with shape parameter = 3.5 and scale parameter = .5 then you generate data using</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="tuesday-october-3-2022.html#cb10-1" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">shape =</span> <span class="fl">3.5</span>, <span class="at">scale =</span> .<span class="dv">5</span>)</span>
-<span id="cb10-2"><a href="tuesday-october-3-2022.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rpois</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">lambda =</span> lambda)</span></code></pre></div>
-<pre><code>##   [1] 0 1 0 3 3 3 0 1 2 0 2 1 0 0 2 1 2 2 3 1 0 2 1 1 0 4 0 3 4 0 0 1 0 3 2 3 0
-##  [38] 5 2 0 3 3 1 0 0 1 0 2 0 1 1 1 2 0 2 4 3 0 0 1 4 0 5 1 0 3 4 4 1 2 1 2 2 1
-##  [75] 0 0 0 0 1 6 2 1 0 2 1 0 1 2 0 0 0 3 2 2 7 3 2 1 0 0</code></pre>
+<div class="sourceCode" id="cb875"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb875-1"><a href="tuesday-october-3-2022.html#cb875-1" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">shape =</span> <span class="fl">3.5</span>, <span class="at">scale =</span> .<span class="dv">5</span>)</span>
+<span id="cb875-2"><a href="tuesday-october-3-2022.html#cb875-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rpois</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">lambda =</span> lambda)</span></code></pre></div>
+<pre><code>##   [1] 0 1 1 1 6 2 3 2 0 2 5 0 2 1 1 2 2 1 1 1 0 1 1 3 2 3 3 0 2 2 0 0 4 0 0 2 3
+##  [38] 3 6 4 0 0 1 3 1 0 0 5 1 3 1 0 0 3 3 0 2 2 2 4 2 7 1 1 1 1 0 1 1 0 0 0 1 0
+##  [75] 0 1 1 1 0 1 3 0 3 2 4 2 4 5 6 1 3 0 0 1 2 1 1 1 2 4</code></pre>
 <p>In this case you first generate a bunch of <span class="math inline">\(\lambda\)</span>s from a gamma distribution and then for each <span class="math inline">\(\lambda\)</span> you generate a count.</p>
 <p>If you know the data then you can estimate the parameters: data (5, 3, 4, 0, 1, …) –&gt; generative model –&gt; Parameters (<span class="math inline">\(\mu\)</span>, <span class="math inline">\(\theta\)</span>, <span class="math inline">\(\sigma\)</span>): Going from data to parameters is called <em>Bayesian data analysis</em>.</p>
 </div>
@@ -604,12 +644,12 @@ Y \sim N(\mu, \sigma^2)
 <div id="what-percentage-of-the-globe-is-covered-by-water" class="section level2 unnumbered">
 <h2>What percentage of the globe is covered by water?</h2>
 <p>Imagine a globe of the world. You want to know how much of the globe is water. Your strategy is to throw the globe up, catch it, and note the surface (water or land) under the right index finger. Suppose you do this globe tossing 9 times.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="tuesday-october-3-2022.html#cb12-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">toss =</span> <span class="fu">c</span>(<span class="st">&quot;w&quot;</span>, <span class="st">&quot;l&quot;</span>, <span class="st">&quot;w&quot;</span>, <span class="st">&quot;w&quot;</span>, <span class="st">&quot;w&quot;</span>, <span class="st">&quot;l&quot;</span>, <span class="st">&quot;w&quot;</span>, <span class="st">&quot;l&quot;</span>, <span class="st">&quot;w&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb877"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb877-1"><a href="tuesday-october-3-2022.html#cb877-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">toss =</span> <span class="fu">c</span>(<span class="st">&quot;w&quot;</span>, <span class="st">&quot;l&quot;</span>, <span class="st">&quot;w&quot;</span>, <span class="st">&quot;w&quot;</span>, <span class="st">&quot;w&quot;</span>, <span class="st">&quot;l&quot;</span>, <span class="st">&quot;w&quot;</span>, <span class="st">&quot;l&quot;</span>, <span class="st">&quot;w&quot;</span>))</span></code></pre></div>
 <p>On the first toss your finger touches water, on the next toss it touches land, etc.</p>
 <p>You then rephrase in terms of trials and the cumulative counts of water which you denote as the number of success (<code>n_success</code>).</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="tuesday-october-3-2022.html#cb13-1" aria-hidden="true" tabindex="-1"></a>( d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> </span>
-<span id="cb13-2"><a href="tuesday-october-3-2022.html#cb13-2" aria-hidden="true" tabindex="-1"></a> dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">n_trials  =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>,</span>
-<span id="cb13-3"><a href="tuesday-october-3-2022.html#cb13-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">n_success =</span> <span class="fu">cumsum</span>(toss <span class="sc">==</span> <span class="st">&quot;w&quot;</span>)) )</span></code></pre></div>
+<div class="sourceCode" id="cb878"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb878-1"><a href="tuesday-october-3-2022.html#cb878-1" aria-hidden="true" tabindex="-1"></a>( d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> </span>
+<span id="cb878-2"><a href="tuesday-october-3-2022.html#cb878-2" aria-hidden="true" tabindex="-1"></a> dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">n_trials  =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>,</span>
+<span id="cb878-3"><a href="tuesday-october-3-2022.html#cb878-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">n_success =</span> <span class="fu">cumsum</span>(toss <span class="sc">==</span> <span class="st">&quot;w&quot;</span>)) )</span></code></pre></div>
 <pre><code>##   toss n_trials n_success
 ## 1    w        1         1
 ## 2    l        2         1
@@ -645,40 +685,40 @@ Y \sim N(\mu, \sigma^2)
 <p>How did the data come to be? Describe aspects of the underlying reality as well as the sampling process, sufficient enough for specifying an algorithm to simulate new data. Write out the data story for this activity.</p>
 <p>A Bayesian model begins with one set of plausibilities assigned to each possible result, the prior plausibilities. These values are then updated in light of data to produce posterior plausibilities. This process is called <code>Bayesian updating</code>.</p>
 <p>Here is the code for our proportion of water example.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="tuesday-october-3-2022.html#cb15-1" aria-hidden="true" tabindex="-1"></a>sequence_length <span class="ot">&lt;-</span> <span class="dv">50</span>   <span class="co"># how many points to calculate probability for</span></span>
-<span id="cb15-2"><a href="tuesday-october-3-2022.html#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="tuesday-october-3-2022.html#cb15-3" aria-hidden="true" tabindex="-1"></a>d <span class="sc">|&gt;</span> </span>
-<span id="cb15-4"><a href="tuesday-october-3-2022.html#cb15-4" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">expand</span>(n_trials, </span>
-<span id="cb15-5"><a href="tuesday-october-3-2022.html#cb15-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">p_water =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">1</span>, <span class="at">length.out =</span> sequence_length)) <span class="sc">|&gt;</span> </span>
-<span id="cb15-6"><a href="tuesday-october-3-2022.html#cb15-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(d, <span class="at">by =</span> <span class="st">&quot;n_trials&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb15-7"><a href="tuesday-october-3-2022.html#cb15-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(p_water) <span class="sc">|&gt;</span> </span>
-<span id="cb15-8"><a href="tuesday-october-3-2022.html#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># lag is the *previous* value</span></span>
-<span id="cb15-9"><a href="tuesday-october-3-2022.html#cb15-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">lagged_n_success =</span> dplyr<span class="sc">::</span><span class="fu">lag</span>(n_success, <span class="at">k =</span> <span class="dv">1</span>), </span>
-<span id="cb15-10"><a href="tuesday-october-3-2022.html#cb15-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">lagged_n_trials  =</span> dplyr<span class="sc">::</span><span class="fu">lag</span>(n_trials,  <span class="at">k =</span> <span class="dv">1</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb15-11"><a href="tuesday-october-3-2022.html#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># if first time, flat prior. </span></span>
-<span id="cb15-12"><a href="tuesday-october-3-2022.html#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># otherwise use previous posterior as new prior.</span></span>
-<span id="cb15-13"><a href="tuesday-october-3-2022.html#cb15-13" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb15-14"><a href="tuesday-october-3-2022.html#cb15-14" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">prior =</span> <span class="fu">ifelse</span>(n_trials <span class="sc">==</span> <span class="dv">1</span>, </span>
-<span id="cb15-15"><a href="tuesday-october-3-2022.html#cb15-15" aria-hidden="true" tabindex="-1"></a>                               .<span class="dv">5</span>,</span>
-<span id="cb15-16"><a href="tuesday-october-3-2022.html#cb15-16" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">dbinom</span>(<span class="at">x =</span> lagged_n_success, </span>
-<span id="cb15-17"><a href="tuesday-october-3-2022.html#cb15-17" aria-hidden="true" tabindex="-1"></a>                               <span class="at">size =</span> lagged_n_trials, </span>
-<span id="cb15-18"><a href="tuesday-october-3-2022.html#cb15-18" aria-hidden="true" tabindex="-1"></a>                               <span class="at">prob =</span> p_water)),</span>
-<span id="cb15-19"><a href="tuesday-october-3-2022.html#cb15-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">strip =</span> stringr<span class="sc">::</span><span class="fu">str_c</span>(<span class="st">&quot;n = &quot;</span>, n_trials), <span class="co"># which draw is it?</span></span>
-<span id="cb15-20"><a href="tuesday-october-3-2022.html#cb15-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">likelihood =</span> <span class="fu">dbinom</span>(<span class="at">x =</span> n_success, </span>
-<span id="cb15-21"><a href="tuesday-october-3-2022.html#cb15-21" aria-hidden="true" tabindex="-1"></a>                             <span class="at">size =</span> n_trials, </span>
-<span id="cb15-22"><a href="tuesday-october-3-2022.html#cb15-22" aria-hidden="true" tabindex="-1"></a>                             <span class="at">prob =</span> p_water)) <span class="sc">|&gt;</span> <span class="co"># calculate likelihood for current draw</span></span>
-<span id="cb15-23"><a href="tuesday-october-3-2022.html#cb15-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># normalize the prior and the likelihood, making them probabilities </span></span>
-<span id="cb15-24"><a href="tuesday-october-3-2022.html#cb15-24" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(n_trials) <span class="sc">|&gt;</span> </span>
-<span id="cb15-25"><a href="tuesday-october-3-2022.html#cb15-25" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">prior =</span> prior <span class="sc">/</span> <span class="fu">sum</span>(prior),</span>
-<span id="cb15-26"><a href="tuesday-october-3-2022.html#cb15-26" aria-hidden="true" tabindex="-1"></a>         <span class="at">likelihood =</span> likelihood <span class="sc">/</span> <span class="fu">sum</span>(likelihood)) <span class="sc">|&gt;</span>   </span>
-<span id="cb15-27"><a href="tuesday-october-3-2022.html#cb15-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> p_water)) <span class="sc">+</span></span>
-<span id="cb15-28"><a href="tuesday-october-3-2022.html#cb15-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> prior), <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb15-29"><a href="tuesday-october-3-2022.html#cb15-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> likelihood)) <span class="sc">+</span></span>
-<span id="cb15-30"><a href="tuesday-october-3-2022.html#cb15-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="st">&quot;proportion water&quot;</span>, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">5</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb15-31"><a href="tuesday-october-3-2022.html#cb15-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">&quot;probability&quot;</span>, <span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb15-32"><a href="tuesday-october-3-2022.html#cb15-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>strip, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="sc">+</span></span>
-<span id="cb15-33"><a href="tuesday-october-3-2022.html#cb15-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb880"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb880-1"><a href="tuesday-october-3-2022.html#cb880-1" aria-hidden="true" tabindex="-1"></a>sequence_length <span class="ot">&lt;-</span> <span class="dv">50</span>   <span class="co"># how many points to calculate probability for</span></span>
+<span id="cb880-2"><a href="tuesday-october-3-2022.html#cb880-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb880-3"><a href="tuesday-october-3-2022.html#cb880-3" aria-hidden="true" tabindex="-1"></a>d <span class="sc">|&gt;</span> </span>
+<span id="cb880-4"><a href="tuesday-october-3-2022.html#cb880-4" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">expand</span>(n_trials, </span>
+<span id="cb880-5"><a href="tuesday-october-3-2022.html#cb880-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">p_water =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">1</span>, <span class="at">length.out =</span> sequence_length)) <span class="sc">|&gt;</span> </span>
+<span id="cb880-6"><a href="tuesday-october-3-2022.html#cb880-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(d, <span class="at">by =</span> <span class="st">&quot;n_trials&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb880-7"><a href="tuesday-october-3-2022.html#cb880-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(p_water) <span class="sc">|&gt;</span> </span>
+<span id="cb880-8"><a href="tuesday-october-3-2022.html#cb880-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># lag is the *previous* value</span></span>
+<span id="cb880-9"><a href="tuesday-october-3-2022.html#cb880-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">lagged_n_success =</span> dplyr<span class="sc">::</span><span class="fu">lag</span>(n_success, <span class="at">k =</span> <span class="dv">1</span>), </span>
+<span id="cb880-10"><a href="tuesday-october-3-2022.html#cb880-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">lagged_n_trials  =</span> dplyr<span class="sc">::</span><span class="fu">lag</span>(n_trials,  <span class="at">k =</span> <span class="dv">1</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb880-11"><a href="tuesday-october-3-2022.html#cb880-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># if first time, flat prior. </span></span>
+<span id="cb880-12"><a href="tuesday-october-3-2022.html#cb880-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># otherwise use previous posterior as new prior.</span></span>
+<span id="cb880-13"><a href="tuesday-october-3-2022.html#cb880-13" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb880-14"><a href="tuesday-october-3-2022.html#cb880-14" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">prior =</span> <span class="fu">ifelse</span>(n_trials <span class="sc">==</span> <span class="dv">1</span>, </span>
+<span id="cb880-15"><a href="tuesday-october-3-2022.html#cb880-15" aria-hidden="true" tabindex="-1"></a>                               .<span class="dv">5</span>,</span>
+<span id="cb880-16"><a href="tuesday-october-3-2022.html#cb880-16" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">dbinom</span>(<span class="at">x =</span> lagged_n_success, </span>
+<span id="cb880-17"><a href="tuesday-october-3-2022.html#cb880-17" aria-hidden="true" tabindex="-1"></a>                               <span class="at">size =</span> lagged_n_trials, </span>
+<span id="cb880-18"><a href="tuesday-october-3-2022.html#cb880-18" aria-hidden="true" tabindex="-1"></a>                               <span class="at">prob =</span> p_water)),</span>
+<span id="cb880-19"><a href="tuesday-october-3-2022.html#cb880-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">strip =</span> stringr<span class="sc">::</span><span class="fu">str_c</span>(<span class="st">&quot;n = &quot;</span>, n_trials), <span class="co"># which draw is it?</span></span>
+<span id="cb880-20"><a href="tuesday-october-3-2022.html#cb880-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">likelihood =</span> <span class="fu">dbinom</span>(<span class="at">x =</span> n_success, </span>
+<span id="cb880-21"><a href="tuesday-october-3-2022.html#cb880-21" aria-hidden="true" tabindex="-1"></a>                             <span class="at">size =</span> n_trials, </span>
+<span id="cb880-22"><a href="tuesday-october-3-2022.html#cb880-22" aria-hidden="true" tabindex="-1"></a>                             <span class="at">prob =</span> p_water)) <span class="sc">|&gt;</span> <span class="co"># calculate likelihood for current draw</span></span>
+<span id="cb880-23"><a href="tuesday-october-3-2022.html#cb880-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># normalize the prior and the likelihood, making them probabilities </span></span>
+<span id="cb880-24"><a href="tuesday-october-3-2022.html#cb880-24" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(n_trials) <span class="sc">|&gt;</span> </span>
+<span id="cb880-25"><a href="tuesday-october-3-2022.html#cb880-25" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">prior =</span> prior <span class="sc">/</span> <span class="fu">sum</span>(prior),</span>
+<span id="cb880-26"><a href="tuesday-october-3-2022.html#cb880-26" aria-hidden="true" tabindex="-1"></a>         <span class="at">likelihood =</span> likelihood <span class="sc">/</span> <span class="fu">sum</span>(likelihood)) <span class="sc">|&gt;</span>   </span>
+<span id="cb880-27"><a href="tuesday-october-3-2022.html#cb880-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> p_water)) <span class="sc">+</span></span>
+<span id="cb880-28"><a href="tuesday-october-3-2022.html#cb880-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> prior), <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb880-29"><a href="tuesday-october-3-2022.html#cb880-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> likelihood)) <span class="sc">+</span></span>
+<span id="cb880-30"><a href="tuesday-october-3-2022.html#cb880-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="st">&quot;proportion water&quot;</span>, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">5</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb880-31"><a href="tuesday-october-3-2022.html#cb880-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">&quot;probability&quot;</span>, <span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb880-32"><a href="tuesday-october-3-2022.html#cb880-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>strip, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb880-33"><a href="tuesday-october-3-2022.html#cb880-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-418-1.png" width="672" /></p>
 <p>Look at the upper left panel. The dashed horizontal line is your prior probability before gathering any data. It codifies your lack of knowledge about the proportion of water by stating that it is equally likely to be any proportion (value between 0 and 1).</p>
 <p>The solid line indicates the probabilities after you observe ‘water’ (“w”) on our first trial (n = 1). The highest probability is that the entire globe is water and the lowest probability (0) is that there is no water so the line slopes from lower left to upper right.</p>
 <p>The next panel (n = 2) shows what happens to this diagonal line (now shown as dashed because it is now the prior) after you observe ‘land’ (“l”) on your second trial. The highest probability is now .5 with lowest probabilities (0) for both the case of no water and no land. In the next panel (n = 3) you see that the probability distribution shifts again after observing ‘water’ on your third trial.</p>
@@ -707,28 +747,28 @@ Data: 5 marked fish out of 20 sampled.</p>
 <li>Keep only those parameter values that generated the data that was actually observed (5 out of the 20 sampled).</li>
 </ol>
 <p>Draw a large (<code>M = 100000</code>) sample from the prior distribution (discrete uniform) on the parameter representing the number of fish in the lake (<code>priorNF</code>). Here you use the <code>sample()</code> function on a vector of counts between 21 and 250.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="tuesday-october-3-2022.html#cb16-1" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="dv">100000</span></span>
-<span id="cb16-2"><a href="tuesday-october-3-2022.html#cb16-2" aria-hidden="true" tabindex="-1"></a>priorNF <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">21</span><span class="sc">:</span><span class="dv">250</span>, <span class="at">size =</span> M, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb16-3"><a href="tuesday-october-3-2022.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(priorNF)</span></code></pre></div>
-<pre><code>## [1] 141 111  24 151 123 163</code></pre>
+<div class="sourceCode" id="cb881"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb881-1"><a href="tuesday-october-3-2022.html#cb881-1" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="dv">100000</span></span>
+<span id="cb881-2"><a href="tuesday-october-3-2022.html#cb881-2" aria-hidden="true" tabindex="-1"></a>priorNF <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">21</span><span class="sc">:</span><span class="dv">250</span>, <span class="at">size =</span> M, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb881-3"><a href="tuesday-october-3-2022.html#cb881-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(priorNF)</span></code></pre></div>
+<pre><code>## [1] 163 116  90  87 232 107</code></pre>
 <p>The result is a vector of length <code>M</code> containing counts with values between 21 and 250. What is the distribution of these values?</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="tuesday-october-3-2022.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">table</span>(priorNF))</span></code></pre></div>
+<div class="sourceCode" id="cb883"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb883-1"><a href="tuesday-october-3-2022.html#cb883-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">table</span>(priorNF))</span></code></pre></div>
 <pre><code>## priorNF
 ##  21  22  23  24  25  26 
-## 431 440 396 448 485 451</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="tuesday-october-3-2022.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(<span class="fu">table</span>(priorNF))</span></code></pre></div>
+## 409 448 420 433 441 410</code></pre>
+<div class="sourceCode" id="cb885"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb885-1"><a href="tuesday-october-3-2022.html#cb885-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(<span class="fu">table</span>(priorNF))</span></code></pre></div>
 <pre><code>## priorNF
 ## 245 246 247 248 249 250 
-## 416 404 427 419 420 444</code></pre>
+## 428 406 453 420 432 409</code></pre>
 <p>Plot the distribution of parameter values.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="tuesday-october-3-2022.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">as.data.frame</span>(priorNF), </span>
-<span id="cb22-2"><a href="tuesday-october-3-2022.html#cb22-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(priorNF)) <span class="sc">+</span></span>
-<span id="cb22-3"><a href="tuesday-october-3-2022.html#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">10</span>, <span class="at">boundary =</span> <span class="dv">20</span>, </span>
-<span id="cb22-4"><a href="tuesday-october-3-2022.html#cb22-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;salmon&quot;</span>) <span class="sc">+</span></span>
-<span id="cb22-5"><a href="tuesday-october-3-2022.html#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Number of Fish in the Lake&quot;</span>) <span class="sc">+</span></span>
-<span id="cb22-6"><a href="tuesday-october-3-2022.html#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="at">label =</span> <span class="st">&quot;Prior distribution on the number of fish in the lake&quot;</span>) <span class="sc">+</span></span>
-<span id="cb22-7"><a href="tuesday-october-3-2022.html#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div class="sourceCode" id="cb887"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb887-1"><a href="tuesday-october-3-2022.html#cb887-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">as.data.frame</span>(priorNF), </span>
+<span id="cb887-2"><a href="tuesday-october-3-2022.html#cb887-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(priorNF)) <span class="sc">+</span></span>
+<span id="cb887-3"><a href="tuesday-october-3-2022.html#cb887-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">10</span>, <span class="at">boundary =</span> <span class="dv">20</span>, </span>
+<span id="cb887-4"><a href="tuesday-october-3-2022.html#cb887-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;salmon&quot;</span>) <span class="sc">+</span></span>
+<span id="cb887-5"><a href="tuesday-october-3-2022.html#cb887-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Number of Fish in the Lake&quot;</span>) <span class="sc">+</span></span>
+<span id="cb887-6"><a href="tuesday-october-3-2022.html#cb887-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="at">label =</span> <span class="st">&quot;Prior distribution on the number of fish in the lake&quot;</span>) <span class="sc">+</span></span>
+<span id="cb887-7"><a href="tuesday-october-3-2022.html#cb887-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-421-1.png" width="672" /></p>
 <p>Next: define the generative model.</p>
 <p>In summary, we considered a toy problem where you want to know how many blue marbles are in a bag. You start with a prior distribution on this number representing all possible hypotheses on the number of blue marbles in the bag. You then collect some data and determined the likelihood of these data under each of the hypotheses. Finally you keep only those hypotheses that produce the data that you collected. This gives you a posterior distribution.</p>
 <p>We then considered a problem where you want to know the ratio of water to land on a globe. A solution involves sampling locations at random by successively throwing and catching the globe and noting where your index finger lands, either touching water or touching land. Each sample improves your estimate of the <a href="figures/Rplot.png">ratio</a>.</p>

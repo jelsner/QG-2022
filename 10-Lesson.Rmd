@@ -194,7 +194,7 @@ You can go directly to the mapping as follows.
     geom_sf(aes(fill = WaterArea_cut))
 ```
 
-Make a choropleth map displaying the ratio of water area to land area (`ALAND`) by state.
+Make a choropleth map displaying the ratio of water area (`AWATER`) to land area (`ALAND`) by state.
 ```{r}
 ggplot(data = USA_48.sf) +
   geom_sf(aes(fill = AWATER/ALAND * 100))
