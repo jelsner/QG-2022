@@ -355,3 +355,7 @@ See Kyle Walker's get CRS
 See maptiles package https://github.com/riatelab/maptiles/
 
 Why map projections matter. Clip from The West Wing.  https://youtu.be/vVX-PrBRtTY
+
+## Bivariate maps {-}
+
+See `Other_Rmds/BivariateMaps.Rmd`.
