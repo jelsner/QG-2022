@@ -1,0 +1,78 @@
+# Bivariate choropleth maps
+
+https://cran.r-project.org/web/packages/biscale/vignettes/biscale.html
+
+Thematic choropleth maps are used to display quantities of some variable within areas, such as mapping median income across a city’s neighborhoods. However, we often think in bivariate terms - “how do race and income vary together?”. Maps that captures this, known as bivariate choropleth maps, are often perceived as difficult to create and interpret. 
+
+The {biscale} package has functions to implement a consistent approach to bivariate mapping.
+
+```{r}
+library(biscale)
+```
+
+All functions in the {biscale} package use the prefix `bi_` to make use of auto completion.
+
+Consider the simple feature data frame `stl_race_income` available in the package.
+```{r}
+str(stl_race_income)
+```
+It contains the percentage of whites (`pctWhite`) and median income (`medInc`) at the census tract level for for the City of St. Louis in Missouri.
+
+First, create a new data frame containing classes for the two variables with the `bi_class()` function. The style argument determines the type of breaks. 
+
+The default quantile approach creates equal buckets of data for mapping, with a break created at the median (50th percentile) for a two-by-two map (`dim = 2`) or at the 33rd and 66th percentiles for a three-by-three (`dim = 3`) map.
+```{r}
+( df <- bi_class(stl_race_income, 
+               x = pctWhite, 
+               y = medInc, 
+               style = "quantile", 
+               dim = 3)
+)
+```
+You can see the percentage of whites and the median income for the first tract are both in the upper third (`bi_class` is `3-3`).
+
+Once breaks are created, you can use `bi_scale_fill()` function in a call to `ggplot()` to create a map.
+```{r}
+library(ggplot2)
+
+ggplot() +
+  geom_sf(data = df, 
+          mapping = aes(fill = bi_class), 
+          color = "white", 
+          size = .1) +
+  bi_scale_fill(pal = "DkBlue", dim = 3) +
+  labs(title = "Race and Income in St. Louis, MO")+
+  bi_theme()
+```
+
+This requires that the variable `bi_class`, created with bi_class(), is used as the fill variable in the aesthetic mapping. 
+
+Unfortunately the does not communicate the complexity of the bi-variate scale.
+
+To fix this you create your own legend and then add it to the map. Start by creating a ggplot map object and removing the legend.
+```{r}
+map <- ggplot() +
+  geom_sf(data = df, 
+          mapping = aes(fill = bi_class), 
+          color = "white", 
+          size = .1, show.legend = FALSE) +
+  bi_scale_fill(pal = "DkBlue", dim = 3) +
+  labs(title = "Race and Income in St. Louis, MO")+
+  bi_theme()
+```
+
+Then you create the legend with the `bi_legend()` function.
+```{r}
+legend <- bi_legend(pal = "DkBlue",
+                    dim = 3,
+                    xlab = "Higher % White ",
+                    ylab = "Higher Income ",
+                    size = 5)
+```
+
+Finally you use `cowplot::ggdraw()` with `cowplot::draw_plot()` to draw the map and position the legend.
+```{r}
+cowplot::ggdraw() +
+  cowplot::draw_plot(map, 0, 0, 1, 1) +
+  cowplot::draw_plot(legend, .2, .65, .2, .2)
+```
