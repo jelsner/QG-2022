@@ -199,10 +199,12 @@ ggplot(data = model1.df,
 
 The rate at which something is changing over time is called a trend. Trend analysis is common in climate change studies and it often involves fitting a linear regression model to quantify the trend where the "explanatory variable" is some index of time.
 
-Let's return to the Florida precipitation data you looked at earlier in the semester. Import the data and make a line plot showing March precipitation values each year. Draw the best-fit line through these values.
+Returning to the Florida precipitation data. Import the data and make a line plot showing March values each year. Add the best-fit line through these values.
 ```{r}
 loc <- "http://myweb.fsu.edu/jelsner/temp/data/FLprecip.txt"
 FLp <- readr::read_table(loc, na = "-9.900")
+
+library(ggplot2)
 
 ggplot(FLp, aes(x = Year, y = Mar)) +
   geom_line() +

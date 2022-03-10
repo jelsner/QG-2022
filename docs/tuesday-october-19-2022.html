@@ -292,6 +292,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#adding-data"><i class="fa fa-check"></i>Adding data</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#inset-maps"><i class="fa fa-check"></i>Inset maps</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#map-projections"><i class="fa fa-check"></i>Map projections</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#bivariate-maps"><i class="fa fa-check"></i>Bivariate maps</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html"><i class="fa fa-check"></i>Thursday, September 21, 2022</a>
 <ul>
@@ -618,7 +619,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="example-a-regression-model-for-trend" class="section level2 unnumbered">
 <h2>Example: A regression model for trend</h2>
 <p>The rate at which something is changing over time is called a trend. Trend analysis is common in climate change studies and it often involves fitting a linear regression model to quantify the trend where the “explanatory variable” is some index of time.</p>
-<p>Let’s return to the Florida precipitation data you looked at earlier in the semester. Import the data and make a line plot showing March precipitation values each year. Draw the best-fit line through these values.</p>
+<p>Returning to the Florida precipitation data. Import the data and make a line plot showing March values each year. Add the best-fit line through these values.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="tuesday-october-19-2022.html#cb28-1" aria-hidden="true" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="st">&quot;http://myweb.fsu.edu/jelsner/temp/data/FLprecip.txt&quot;</span></span>
 <span id="cb28-2"><a href="tuesday-october-19-2022.html#cb28-2" aria-hidden="true" tabindex="-1"></a>FLp <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_table</span>(loc, <span class="at">na =</span> <span class="st">&quot;-9.900&quot;</span>)</span></code></pre></div>
 <pre><code>## 
@@ -638,10 +639,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   Nov = col_double(),
 ##   Dec = col_double()
 ## )</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="tuesday-october-19-2022.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(FLp, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Mar)) <span class="sc">+</span></span>
-<span id="cb30-2"><a href="tuesday-october-19-2022.html#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb30-3"><a href="tuesday-october-19-2022.html#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb30-4"><a href="tuesday-october-19-2022.html#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Statewide March Precipitation (in)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="tuesday-october-19-2022.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb30-2"><a href="tuesday-october-19-2022.html#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="tuesday-october-19-2022.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(FLp, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Mar)) <span class="sc">+</span></span>
+<span id="cb30-4"><a href="tuesday-october-19-2022.html#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb30-5"><a href="tuesday-october-19-2022.html#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb30-6"><a href="tuesday-october-19-2022.html#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Statewide March Precipitation (in)&quot;</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="QG-2022_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>There is an upward trend (increasing precipitation) but you can see that the uncertainty ribbon would allow a horizontal line. Thus you do not anticipate a significant trend term in a regression model.</p>
