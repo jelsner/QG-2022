@@ -120,6 +120,8 @@ pie <- factor(pie,
 piePref.df <- as.data.frame(pie)
 ```
 
+Or use `forcats::fct_infreq()` https://forcats.tidyverse.org/reference/fct_inorder.html
+
 Now remake the bar chart.
 ```{r}
 ggplot(data = piePref.df) + 

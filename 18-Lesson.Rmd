@@ -6,11 +6,11 @@
 - Outliers
 - Simpson's paradox
 
-Linear regression provides an adequate model for our data under the following four assumptions.
+Linear regression provides an adequate model for your data under the following four assumptions.
 
-* Linearity: Average values of Y in ordered intervals of X should be a straight-line function of X. Each interval creates a 'sub-population' of Y values. 
-* Constant variance: Sub-populations of Y should all have about the same standard deviation.
-* Normality: Values from each sub-population can be described with a normal distribution.
+* Linearity: Average values of Y in ordered intervals of X are a straight-line function of X. Each interval creates a 'sub-population' of Y values. 
+* Constant variance: Sub-populations of Y have about the same standard deviation.
+* Normality: Values from each sub-population are described by a normal distribution.
 * Independence: Each observation is independent from the other observations.
 
 Key idea: A model can be statistically significant, but not adequate.
@@ -244,6 +244,10 @@ The table shows the intercept and slope coefficients for each month.
 
 ## Simpson's paradox {-}
 
+The four assumptions that under gird a linear regression model include (1) linearity, (2) equal variance, (3) normality of residuals, and (4) independence of observations. 
+
+But even if those assumptions are valid, another issue is that of scale.
+
 Simpson's paradox occurs when a trend appears in different groups of data but disappears or reverses when the groups are combined.
 
 It is encountered in social-science and medical-science statistics and is problematic when data are aggregated at various scales (spatial or otherwise). 
@@ -251,6 +255,8 @@ It is encountered in social-science and medical-science statistics and is proble
 The paradox can be resolved when causal relations are appropriately addressed in the statistical modeling.
 
 As an example, consider again the relationship between bill length and bill depth in the Palmer penguins data without regards to species.
+
+You start with a scatter plot and a linear regression model.
 ```{r}
 library(palmerpenguins)
 
@@ -275,3 +281,5 @@ p +
 ```
 
 That is bill depth _increases_ with increasing bill length. So you conclude that the negative relationship is an artifact of grouping the penguins with different body masses together.
+
+The paradox is resolved when the relations are appropriately addressed in the statistical modeling.

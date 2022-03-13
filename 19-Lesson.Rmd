@@ -1,0 +1,447 @@
+# Thursday, October 21, 2022 {-}
+
+## Today {-}
+
+- Multiple linear regression
+
+## Multiple linear regression {-}
+
+Multiple linear regression is used to model a dependent variable when there is more than one explanatory variable.
+
+Everything from simple (single explanatory variable) regression carries over to multiple linear regression. There is a slope coefficient for each explanatory variable. 
+
+Note: You regress the response variable onto the explanatory variables. You do not perform a regression of the variables or regress y AND x or regress y with respect to x. These are ambiguous at best and misleading at worse.
+
+With one explanatory variable the regression model is described with a straight line. With two explanatory variables the regression model is described with a flat surface.
+
+To see this you graph a three dimensional scatter plot with the `scatterplot3d()` from the {scatterplot3d} package and add the regression plane.
+
+The example comes from the `trees` data frame. You start with a (simple) linear regression. You regress timber volume (`Volume`) on tree girth (`Girth`) and add the model as a line on the scatter plot. 
+
+Here I use the `plot()` method and `abline()` are base R graphics functions.
+```{r}
+model1 <- lm(Volume ~ Girth, 
+             data = trees)
+plot(trees$Volume ~ trees$Girth, pch = 16, 
+     xlab = "Tree diameter (in)", 
+     ylab = "Timber volume (cubic ft)")
+abline(model1)
+```
+
+Next we regress timber volume (`Volume`) on girth (`Girth`) and height (`Height`) and use the `scatterplot3d()` function to plot the scatter of points. The resulting `plane3d()` function takes the regression model and adds the surface.
+```{r}
+model2 <- lm(Volume ~ Girth + Height, data = trees)
+s3d <- scatterplot3d::scatterplot3d(trees, angle = 55, scale.y = .7, pch = 16, 
+                                    xlab = "Tree diameter (in)", 
+                                    zlab = "Timber volume (cubic ft)",
+                                    ylab = "Tree height (ft)")
+s3d$plane3d(model2)
+```
+
+We can see that timber volume increases with tree diameter _and_ tree height.
+
+By changing the view angle (`angle =`) we can see that some observations are above the surface and some are below.
+```{r, eval=FALSE}
+s3d <- scatterplot3d(trees, angle = 32, scale.y = .7, pch = 16, 
+                    xlab = "Tree diameter (in)", 
+                    zlab = "Timber volume (cubic ft)",
+                    ylab = "Tree height (ft)")
+s3d$plane3d(model2)
+```
+
+The distance along the vertical axis from the observation to the model surface is the residual. So even though there are two explanatory variables there is only one set of residuals.
+
+The multiple linear regression model is given by:
+$$
+\hat y = \hat \beta_0 + \hat \beta_1 x_{i1} + \hat \beta_2 x_{i2} + \cdots + \hat \beta_p x_{ip}
+$$
+
+The explanatory variables are written with a double subscript (there are $p$ of them) to indicate the observation number (1st subscript) and the variable number (2nd subscript).
+
+Each explanatory variable gets a coefficient, so there are $p + 1$ of them (including $\hat \beta_0$, the y-intercept).
+
+Now for each observation $i$ there is an observed response ($y_i$) and a predicted response ($\hat y_i$) and the difference is called the residual. In maths the residuals are given by
+$$
+y_i - \hat y_i = \varepsilon_i
+$$
+and are assumed to be described by a set of normal distributions each centered on zero and having the same variance ($\sigma^2$).
+
+### A panel of scatter plots
+
+As with simple linear regression, before we model the data it is good practice to make a scatter plot. With more than one explanatory variable we need a set of scatter plots.
+
+Consider the data set `PetrolConsumption.txt` that has gasoline consumption by state for a given year.
+```{r}
+PC.df <- read.table("http://myweb.fsu.edu/jelsner/temp/data/PetrolConsumption.txt", 
+                    header = TRUE)
+head(PC.df)
+```
+
+Columns in the data frame include petrol (gas) tax (`Petrol.Tax`) [cents per gallon], per capita income (`Avg.Inc`) [$/10], miles of paved highway (`Pavement`), proportion of drivers (`Prop.DL`), and consumption of petrol (`Petrol.Consumption`) [millions of gallons].
+
+First create a panel of scatter plots using all the variables in the data frame with the `ggpairs()` function from the {GGally} package.
+```{r}
+library(GGally)
+
+ggpairs(PC.df)
+```
+
+The plots are arranged on a grid. The rows (and columns) correspond to the variables as given from left to right in the data frame. The first column in the data set is `Petrol.Tax` then `Avg.Inc`, etc.
+
+The plot in row 2, column 1 is shows `Avg.Inc` on the vertical axis and `Petrol.Tax` on the horizontal axis. The value in the diagonal panel (row 1, column 2) is the Pearson correlation coefficient between `Avg.Inc` and `Petrol.Tax`. 
+
+The panel in row 3 column 1 shows `Pavement` on the vertical axis and `Petrol.Tax` on the horizontal axis.
+
+We want to quantify how much of the variation in gas consumption at the state level is explained by taxes, income, amount of pavement, and proportional of drivers. So gas consumption (the variable `Petrol.Consumption`) is our response variable and we focus on the set of scatter plots in row 5 where this variable is on the vertical axis.
+
+Which of the explanatory variables appears to be the most (least) related to gas consumption?
+
+The variable with the highest correlation with gas consumption is `Prop.DL`, the proportion of people with a drivers license. The correlation between these two variables is .7. With more people driving, gas consumption increases.
+
+Gas taxes have an inverse relationship with gas consumption. This is seen in the scatter plot in the lower left corner of the grid and by the negative correlation (-.45) in the upper right corner.
+
+Plots along the diagonal are density plots of the corresponding variable. 
+
+Correlations arranged in a matrix like the grid of scatter plots is printed using the `cor()` function.
+```{r}
+cor(PC.df)
+```
+
+We see the set of correlations with gas consumption in the last column of the matrix under `Petrol.Consumption`.
+
+From this table we anticipate the proportion of people with drivers licenses will be the most important variable in our regression model and the coefficient on this term will be a positive number. 
+
+Further we anticipate that the gas tax will be an important variable but the coefficient on this term will be a negative number.
+
+### Fit a multiple regression model
+
+We fit a multiple regression model to the gas data using the `lm()` function. Again we put the name of the response variable (`Petrol.Consumption`) to the left of the `~` and then the names of the explanatory variables to the right. After each variable we include a `+` sign except for the last variable. Here we assign the model to an object called `model1`.
+```{r}
+model1 <- lm(Petrol.Consumption ~ Prop.DL + Pavement + Avg.Inc + Petrol.Tax,
+             data = PC.df)
+model1
+```
+
+We have four explanatory variables so the model has five coefficients. There is a coefficient for the y-intercept (`Intercept`).
+
+Looking only at the signs on the numbers under the variable names we see that gas consumption _increases_ with the proportion of drivers and _decreases_ with the amount of pavement, average income and gas tax. Why might gas consumption decrease with increasing income?
+
+The model is interpreted as follows:
+
+Average gas consumption [millions of gallons] = 377.3 + 1336 * Prop.DL – 0.0024 * Pavement – 0.06659 * Avg.Inc – 34.79 * Petrol.Tax
+
+The model says that for every 1 percentage point increase in the proportion of drivers (to overall population), the mean gas consumption _increases_ by 1336 million gallons (1.336 billion gallons) assuming `Pavement`, `Avg.Inc` and `Petrol.Tax` are constant. 
+
+For every 1 cent/gallon increase in taxes, mean gas consumption _decreases_ by 34.79 million gallons assuming the three other variables are held constant.
+
+The statistically significant variables in the model for explaining gas consumption are identified by looking at the table of coefficients from the `summary()` function.
+```{r}
+summary(model1)
+```
+
+We ignore the `Intercept` term. We see that three of the four variables have a $p$-value at or less than .01. Only the variable `Pavement` has a $p$-value greater than .15 and is therefore not significant.
+
+The null hypothesis is that the variable is NOT important to the model. The $p$-value is evidence in support of the null hypothesis. The larger the $p$-value the more evidence you have that the variable is not important to the model. 
+
+In determining which variables are most important in the regression model, the coefficient estimates (effect sizes) cannot be compared directly because they do not have the same units. 
+
+Key idea: A regression coefficient has units of the response variable divided by the units of the explanatory variable. But the explanatory variables have different units. For example, `Petrol.Tax` has units of cents per gallon and `Pavement` has units of miles.
+
+So instead of comparing the values of the coefficients directly (i.e., instead of looking in the column labeled `Estimate`) we look at the column labeled `t value`.
+
+The magnitude of the $t$ values are comparable. They are coefficients that have been _standardized_ by dividing by the corresponding standard error. Accordingly, `Avg.Inc` is more more important than `Petrol.Tax` even though .0666 is much smaller than 34.79.
+
+Key point: The order of the explanatory variables does not change the magnitude or the sign of the slope coefficients.
+```{r}
+summary(lm(Petrol.Consumption ~ Pavement + Petrol.Tax + Avg.Inc + Prop.DL, 
+           data = PC.df))
+```
+
+Key point: The model does not change with a linear transformation of the variables. For example, if we multiply `Pavement` by 20, the coefficient and standard error change accordingly, but not the $t$ value or the corresponding $p$-value.
+```{r}
+summary(lm(Petrol.Consumption ~ I(Pavement * 20) + Petrol.Tax + Avg.Inc + Prop.DL,
+           data = PC.df))
+```
+
+Side note: Here the multiplication is done inside the function `I()` to restrict the interpretation of the operator `*` to multiplication rather than interaction.
+
+The multiple R-squared value is .68 which means the model explains 68% of the variation in gas consumption.  
+
+Note that the $p$-value on the model (given on the last line of the output) is small. The null hypothesis in this case is that none of the variables are important in explaining petrol consumption. Clearly we reject this null hypothesis.
+
+### Should we remove a variable from the model?
+
+A model is simpler if it has fewer explanatory variables.
+
+We try another model without the `Pavement` variable (the variable that was not statistically significant in the previous model).
+```{r}
+model2 <- lm(Petrol.Consumption ~ Prop.DL + Avg.Inc + Petrol.Tax, 
+             data = PC.df)
+summary(model2)
+```
+
+The remaining explanatory variables are significant. The values are slightly different as the variance in the gas consumption attributed to `Pavement` is now spread across the remaining variables. 
+
+Key point: Removing an explanatory variable changes the coefficient values on the remain variables in the model.
+
+The proportion of the population with licenses is the most important variable. It has the largest $t$ value (in absolute value).
+
+By removing a variable the R-squared statistic DECREASES to .675. This is always the case with a simpler model (fewer explanatory variables). Thus the R-squared statistic should not be used to compare models unless the models have the same number of explanatory variables.  
+
+The alternative for comparing models is the adjusted R squared. It is a modification of the R squared that accounts for the number of explanatory variables in the model.
+
+Key point: The adjusted R squared increases only if the new variable improves the model more than would be expected by chance. The adjusted R squared can be negative, and will always be less than or equal to R squared.
+
+To see the importance of the adjusted R squared, first note that `Petrol.Tax` has the smallest $t$ value. Suppose you remove it. What happens?
+```{r}
+model3 <- lm(Petrol.Consumption ~ Prop.DL + Avg.Inc, 
+             data = PC.df)
+summary(model3)
+```
+
+The adjusted R squared is smaller, so we conclude that this variable should be kept in the model.
+
+Thus we settle on a final model: 
+Average gas consumption [millions of gallons] = 307.3 + 1375 x Prop.DL - .06802 x Avg.Inc - 29.48 x Petrol.Tax
+
+### Model assumptions
+
+We need to check the model assumptions. Equal variance. We saw how to check this assumption by using the `cut()` function and creating side-by-side box plots. Another way to check this assumption is to plot the standardized residuals on the vertical axis and the fitted values along the horizontal axis. Adding a smoothed curve and the y equal zero line makes it easy to see whether there is a pattern to the residuals.
+```{r}
+library(ggplot2)
+model2.df <- fortify(model2)
+ggplot(model2.df, aes(x = .fitted, y = .stdresid)) +
+  geom_point() +
+  geom_smooth() +
+  geom_hline(yintercept = 0)
+```
+
+In this case: no pattern in the residuals.
+
+Normality. First we use the `sm.density()` function.
+```{r}
+library(sm)
+res <- residuals(model2)
+sm.density(res, xlab = "Model Residuals", model = "Normal")
+```
+
+We also examine a quantile-normal plot of the residuals.
+```{r}
+qqnorm(model2$residuals)
+qqline(model2$residuals)
+```
+
+These plots indicate some evidence against normality and constant variance. The fact that the residuals do not exactly follow a normal distribution decreases the confidence we can place on our inferences.
+
+To improve model adequacy we might transform the response variable or use a weighted regression model. We will talk about transforming a response variable next lesson and weighted regression is considered a bit later in the context of geographic regression.
+
+### Predicting house prices
+
+A Realtor can use multiple regression to justify a selling price for a house based on a list of features the house has. Here we consider a data file (`houseprice.txt`) containing a random sample of 107 home sales in Albuquerque, New Mexico during the period February 15 through April 30, 1993 (Albuquerque Board of Realtors, 1993).
+
+Get the data.
+```{r}
+hp.df <- read.table("http://myweb.fsu.edu/jelsner/temp/data/houseprice.txt", 
+                    header = TRUE)
+head(hp.df)
+```
+
+The data include:
+
+* `price`: Selling price in \$100s
+* `sqft`: Square feet of living space
+* `custom`: Whether the house was built with custom features (1) or not (0)
+* `corner`: Whether the house sits on a corner lot (1) or not (0)
+* `taxes`: Annual taxes in \$
+
+Here we assume that taxes determine price. In some real estate contexts the causality would work in the opposite direction: selling price affects appraisals and hence taxes.
+
+Use the `ggpairs()` function from the {GGally} package to get a look at your data.
+```{r}
+ggpairs(hp.df)
+```
+
+As expected selling prices increase with size of the living space and with taxes. Scatter plots are not very informative for binary variables (variables with only two values).
+
+The response variable is selling price (`price`). We begin with living space (`sqft`) and whether the house was `custom` built as the explanatory variables.
+```{r}
+model1 <- lm(price ~ sqft + custom, 
+             data = hp.df)
+summary(model1)
+```
+
+The model indicates that for a one square foot increase in living space, selling prices increase by \$54 controlling for whether or not it has custom features. We move the decimal place on the coefficient to the right two places because selling price is in 100s of dollars.
+
+The model also indicates that custom-featured houses (indicated with a value of 1 in the variable `custom`) sell for more by \$17,211 on average controlling for living space.
+
+To predict the selling price of a house that has custom features and has 3500 square feet of living space we type
+```{r}
+predict(model1, 
+        newdata = data.frame(sqft = 3500, custom = 1), 
+        interval = "confidence")
+```
+
+The model predicts a selling price of \$219.5K with a 95% uncertainty interval between \$205.7K and \$233.3K.
+
+### Collinearity
+
+With more than one explanatory variable in a regression model we have to consider the possibility of collinearity (multicollinearity). Collinearity arises when one or more _pairs_ of explanatory variables are highly correlated.
+
+If collinearity exists then the interpretability of the model is compromised.
+
+As an example, consider the data set called `fat.txt` containing measurements related to body fat from 47 individuals. 
+```{r}
+bf.df <- read.table("http://myweb.fsu.edu/jelsner/temp/data/fat.txt", 
+                   header = TRUE)
+head(bf.df)
+```
+
+The response variable `bodyfat` is a percentage measured using special equipment. The four explanatory variables are circumferences of different body parts and are easy to measure. So we are interested in a model to predict `bodyfat` from these easy to measure variables.
+
+We start with a grid of scatter plots.
+```{r}
+ggpairs(bf.df)
+```
+
+Here `abdomen` has the strongest linear relationship with `bodyfat`, but other variables have high direct (positive) correlation. Note the large correlation between the explanatory variables.
+
+Next we regress `bodyfat` onto the four explanatory variables and summarize the model.
+```{r}
+model1 <- lm(bodyfat ~ abdomen + biceps + forearm + wrist, 
+            data = bf.df)
+summary(model1)
+```
+
+What is wrong here?
+
+This is an indication of collinearity. The large between-variable correlation leads to a model that may not make physical sense. The rule is that when the correlation between two explanatory variables exceeds .6, collinearity can be a problem.  
+
+When explanatory variables have large correlation then estimates of the model parameters are not precise. A model with imprecise parameter estimates is not useful. The best way to proceed in this situation is to reduce the set of explanatory variables. 
+
+Remove the explanatory variable that makes less sense physically. For these data, it is probably best to remove all variables except `abdomen`.
+
+### Interactions
+
+Sometimes the _relationship_ between an explanatory variable and the response variable _depends on_ the other explanatory variable. In this case we say there is an interaction between the two explanatory variables.
+
+For instance, the relationship between selling price and living space might depend on whether the house was custom built. To see if the interaction might need to be included in the regression model first make a plot.
+```{r}
+ggplot(hp.df, aes(y = price, x = sqft, color = factor(custom))) +
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE) +
+  xlab("Living Space (sq ft)") +
+  ylab("Selling Price ($100)")
+```
+
+Here the conditioning variable must be a factor. We see both regression lines have about the same slope. This implies the relationship between selling price and living space does not depend on whether there are custom features.
+
+In contrast, whether or not the house is on the corner influences the relationship between selling price and living space.
+```{r}
+ggplot(hp.df, aes(y = price, x = sqft, color = factor(corner))) +
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE) +
+  xlab("Living Space (sq ft)") +
+  ylab("Selling Price ($100)")
+```
+
+The slope of the regression line between selling price and house living space is different for corner and non-corner houses. The regression lines have different slopes and cross. This is indicates an interaction between the continuous variable of living space and the categorical variable of corner.
+
+To add an interaction term to the model, we use the `:` notation. We need to know how the categorical variable is coded to correctly interpret the model [On a corner lot (1), or not (0)]
+```{r}
+model1 <- lm(price ~ sqft + corner + sqft:corner, 
+             data = hp.df)
+summary(model1)
+```
+
+Or, we can use the notation `*` to add both the main effects and the interaction effect to the model. Models with interaction effects should also include the main effects, even if these main effects are not significant.
+```{r}
+model1b <- lm(price ~ sqft * corner, 
+              data = hp.df)
+summary(model1b)
+```
+
+The model indicates that for a one square foot increase in living space, selling prices increase by \$75 for the non-corner houses. The coefficient for the interaction is -.453 which is the difference in slope between the non-corner and corner houses, i.e., the slope for the corner houses is .752 - .453 = .299 (~\$30).
+
+Lastly the coefficient on the corner term of 629 is the difference in the intercepts between non-corner and corner. Or the difference in the y-intercept when living space has a value of zero. The coefficient is significant when living space is zero but this is not realistic. We can transform the variables and refit the model.
+```{r}
+model1c <- lm(price ~ I(sqft - mean(sqft)) + corner + 
+               I(sqft - mean(sqft)):corner, 
+             data = hp.df)
+summary(model1c)
+
+model1d <- lm(price ~ I(sqft - 1500) + corner + I(sqft - 1500):corner,
+             data = hp.df)
+summary(model1d)
+```
+
+In both cases the intercept difference is negative. In the second case it is insignificant. 
+
+When interpreting the results from models with interaction terms, the rule is don't interpret the coefficients on the main effects (marginal coefficients). As demonstrated the presence of interactions implies that the meaning of coefficients for terms vary depending on the values of the variables.
+
+### Removing variables from a model
+
+Typically we begin with a model that has many explanatory variables (full model). An early step is to see if we can remove some of the variables.
+
+When we have all variables in the model the R squared value is maximized. The cost of each variable is model bias. The model is biased toward the particular set of data. That is, it may not generalize to another sample of data. Therefore it is less useful for inference (e.g., prediction).
+
+By dropping a variable we add one degree of freedom thus making the model less biased but we decrease the R squared thus decreasing the variance explained.
+
+This trade-off between variance and bias is solved by considering the adjusted R squared value. We favor a model that has the largest adjusted R squared. If the adjusted R squared gets smaller after we remove a particular variable, then we keep it.
+
+Another useful statistic in this regard is called AIC (Akaike Information Criterion). AIC is more general and can be used with models that are fit with methods other than least-squares minimization.
+
+AIC is rooted in information theory. Values of AIC provide a means for model selection in a relative sense. If all candidate models fit poorly the AIC is not much help.
+
+AIC = $2 k - 2 \log(L)$, where k is the number of model parameters (1 + number of explanatory variables) and L is the highest value from the likelihood function. The likelihood function (likelihood) is the probability of your data given the model.
+
+AIC rewards goodness of fit, but includes a penalty that is an increasing function of the number of estimated parameters. Given a set of candidate models for our data, we should choose the one with the lowest AIC. 
+
+Let's return to our model of petrol consumption at the state level.
+```{r}
+PC.df <- read.table("http://myweb.fsu.edu/jelsner/temp/data/PetrolConsumption.txt", header = TRUE)
+str(PC.df)
+```
+
+First create a full model. A full model includes all the explanatory variables we might think are important.
+```{r}
+modelF <- lm(Petrol.Consumption ~ Prop.DL + Pavement + Avg.Inc + Petrol.Tax, 
+            data = PC.df)
+```
+
+Then we use the `drop1()` function, which takes a regression model object and returns a table showing what happens when each variable is removed from the model.
+```{r}
+drop1(modelF)
+```
+
+The first row (labeled `<none>`) of the table contains the sum of squared residuals (SSR) (here labeled `RSS`---residual sum of squares) and the AIC value for the full model (all explanatory variables). The RSS is 189050. Recall this value is the deviance.
+```{r}
+sum(resid(modelF)^2)
+deviance(modelF)
+```
+
+The first row also gives the AIC value for the full model. Here 407.37. The model deviance has units of the response variable. The AIC has no units.
+
+The next row tells us what happens to the RSS if the explanatory variable Prop.DL is removed from the full model. If we drop the `Prop.DL` variable from the full model, the RSS increases to 401405 (from 189050) and we gain one degree of freedom (less bias).
+
+Said another way, the value of 212355 in the `Sum of Sq` column indicates how much the variable `Prop.DL` is worth to the model. By removing it the RSS increases from 189050 to 401405; a difference of 212355.
+
+Apparently that is too much of an increase in RSS for the gain of only 1 degree of freedom as the AIC increases from 407 to 442. Said another way, the AIC is 407 for the full model. In comparison, the AIC is 442 for a model that is otherwise the same but missing `Prop.DL`.
+
+The next row gives the same information about the `Pavement` variable. That is, what happens to the RSS from the full model when the variable `Pavement` is removed.
+
+Here the RSS increases by 2252 to 191302 (the residuals on average get a bit larger), but this increase is worth it as it only costs one degree of freedom. This is indicated by a reduction in the AIC to so 405.94. 
+
+The AIC column keeps score. The AIC for the model having all the explanatory variables is 407.37. A model without `Prop.DL` has an AIC of 441.51, which is LARGER than the AIC for the full model so we keep `Prop.DL` in the model.
+
+On the other hand, a model without `Pavement` has an AIC of 405.94, which is SMALLER than the AIC for the full model so we remove `Pavement` from the model.
+
+So we simply compare the AIC values for each variable against the AIC value for the full model. If the AIC value for a variable is less than the AIC for the full model then the trade-off is in favor of removing it.
+
+Repeat the procedure after removing `Pavement`.
+```{r}
+modelR <- lm(Petrol.Consumption ~ Prop.DL + Avg.Inc + Petrol.Tax, 
+            data = PC.df)
+drop1(modelR)
+```
+
+Now all the AIC values exceed the value given in the row labeled `<none>`, so we conclude there is no reason to remove any of the remaining variables. This is our final model.
