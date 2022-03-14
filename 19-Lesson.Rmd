@@ -14,9 +14,9 @@ Note: You regress the response variable onto the explanatory variables. You do n
 
 With one explanatory variable the regression model is described with a straight line. With two explanatory variables the regression model is described with a flat surface.
 
-To see this you graph a three dimensional scatter plot with the `scatterplot3d()` from the {scatterplot3d} package and add the regression plane.
+To see this consider a three dimensional scatter plot created with the `scatterplot3d()` from the {scatterplot3d} package and add the regression plane.
 
-The example comes from the `trees` data frame. You start with a (simple) linear regression. You regress timber volume (`Volume`) on tree girth (`Girth`) and add the model as a line on the scatter plot. 
+The data comes from the `trees` data frame. You start with a (simple) linear regression. You regress timber volume (`Volume`) on tree girth (`Girth`) and add the model as a line on the scatter plot. 
 
 Here I use the `plot()` method and `abline()` are base R graphics functions.
 ```{r}
@@ -28,7 +28,7 @@ plot(trees$Volume ~ trees$Girth, pch = 16,
 abline(model1)
 ```
 
-Next we regress timber volume (`Volume`) on girth (`Girth`) and height (`Height`) and use the `scatterplot3d()` function to plot the scatter of points. The resulting `plane3d()` function takes the regression model and adds the surface.
+Next you regress timber volume (`Volume`) on girth (`Girth`) and height (`Height`) and use the `scatterplot3d()` function to plot the scatter of points. The resulting `plane3d()` function takes the regression model and adds the surface.
 ```{r}
 model2 <- lm(Volume ~ Girth + Height, data = trees)
 s3d <- scatterplot3d::scatterplot3d(trees, angle = 55, scale.y = .7, pch = 16, 
@@ -38,9 +38,9 @@ s3d <- scatterplot3d::scatterplot3d(trees, angle = 55, scale.y = .7, pch = 16,
 s3d$plane3d(model2)
 ```
 
-We can see that timber volume increases with tree diameter _and_ tree height.
+The graph shows that timber volume increases with tree diameter and tree height.
 
-By changing the view angle (`angle =`) we can see that some observations are above the surface and some are below.
+By changing the view angle (`angle =`) you can see that some observations are above the surface and some are below.
 ```{r, eval=FALSE}
 s3d <- scatterplot3d(trees, angle = 32, scale.y = .7, pch = 16, 
                     xlab = "Tree diameter (in)", 
@@ -49,7 +49,7 @@ s3d <- scatterplot3d(trees, angle = 32, scale.y = .7, pch = 16,
 s3d$plane3d(model2)
 ```
 
-The distance along the vertical axis from the observation to the model surface is the residual. So even though there are two explanatory variables there is only one set of residuals.
+The distance along the vertical axis from the observation to the model surface is the residual. So even though there are two explanatory variables there is only one set of residuals as with simple regression.
 
 The multiple linear regression model is given by:
 $$
@@ -60,60 +60,62 @@ The explanatory variables are written with a double subscript (there are $p$ of 
 
 Each explanatory variable gets a coefficient, so there are $p + 1$ of them (including $\hat \beta_0$, the y-intercept).
 
-Now for each observation $i$ there is an observed response ($y_i$) and a predicted response ($\hat y_i$) and the difference is called the residual. In maths the residuals are given by
+Now for each observation $i$ there is an observed response ($y_i$) and a predicted response ($\hat y_i$) and the difference is called the residual.
+
+The residuals are given by the equation
 $$
 y_i - \hat y_i = \varepsilon_i
 $$
 and are assumed to be described by a set of normal distributions each centered on zero and having the same variance ($\sigma^2$).
 
-### A panel of scatter plots
+## A grid of scatter plots {-}
 
-As with simple linear regression, before we model the data it is good practice to make a scatter plot. With more than one explanatory variable we need a set of scatter plots.
+As with simple linear regression, before you model the data you should make a scatter plot. With more than one explanatory variable we need a set of scatter plots.
 
 Consider the data set `PetrolConsumption.txt` that has gasoline consumption by state for a given year.
 ```{r}
-PC.df <- read.table("http://myweb.fsu.edu/jelsner/temp/data/PetrolConsumption.txt", 
-                    header = TRUE)
+loc <- "http://myweb.fsu.edu/jelsner/temp/data/PetrolConsumption.txt"
+PC.df <- readr::read_table(loc)
 head(PC.df)
 ```
 
 Columns in the data frame include petrol (gas) tax (`Petrol.Tax`) [cents per gallon], per capita income (`Avg.Inc`) [$/10], miles of paved highway (`Pavement`), proportion of drivers (`Prop.DL`), and consumption of petrol (`Petrol.Consumption`) [millions of gallons].
 
-First create a panel of scatter plots using all the variables in the data frame with the `ggpairs()` function from the {GGally} package.
+First create a panel of scatter plots using all the variables in the data frame with the `GGally::ggpairs()` function from the {GGally} package.
 ```{r}
-library(GGally)
-
-ggpairs(PC.df)
+GGally::ggpairs(PC.df)
 ```
 
-The plots are arranged on a grid. The rows (and columns) correspond to the variables as given from left to right in the data frame. The first column in the data set is `Petrol.Tax` then `Avg.Inc`, etc.
+The plots are arranged in a grid. The rows correspond to the variables as given from left to right in the data frame. The first column in the data set is `Petrol.Tax` then `Avg.Inc`, etc.
 
 The plot in row 2, column 1 is shows `Avg.Inc` on the vertical axis and `Petrol.Tax` on the horizontal axis. The value in the diagonal panel (row 1, column 2) is the Pearson correlation coefficient between `Avg.Inc` and `Petrol.Tax`. 
 
 The panel in row 3 column 1 shows `Pavement` on the vertical axis and `Petrol.Tax` on the horizontal axis.
 
-We want to quantify how much of the variation in gas consumption at the state level is explained by taxes, income, amount of pavement, and proportional of drivers. So gas consumption (the variable `Petrol.Consumption`) is our response variable and we focus on the set of scatter plots in row 5 where this variable is on the vertical axis.
+We want to quantify how much of the variation in gas consumption at the state level is explained by the variables taxes, income, amount of pavement, and proportional of drivers. 
 
-Which of the explanatory variables appears to be the most (least) related to gas consumption?
+So gas consumption (the variable `Petrol.Consumption`) is the response variable and you focus on the set of scatter plots in row 5 where this variable is on the vertical axis in each plot.
+
+Which of the variables appears to be the most (least) related to gas consumption?
 
 The variable with the highest correlation with gas consumption is `Prop.DL`, the proportion of people with a drivers license. The correlation between these two variables is .7. With more people driving, gas consumption increases.
 
 Gas taxes have an inverse relationship with gas consumption. This is seen in the scatter plot in the lower left corner of the grid and by the negative correlation (-.45) in the upper right corner.
 
-Plots along the diagonal are density plots of the corresponding variable. 
+Plots along the diagonal are density plots of each of the variables individually. 
 
 Correlations arranged in a matrix like the grid of scatter plots is printed using the `cor()` function.
 ```{r}
 cor(PC.df)
 ```
 
-We see the set of correlations with gas consumption in the last column of the matrix under `Petrol.Consumption`.
+The correlations between the explanatory variables and gas consumption are located in the last column of the matrix under `Petrol.Consumption`.
 
-From this table we anticipate the proportion of people with drivers licenses will be the most important variable in our regression model and the coefficient on this term will be a positive number. 
+From the plots and the correlation matrix you anticipate the proportion of people with drivers licenses to be the most important variable in a regression model and the coefficient on this term will be a positive number. 
 
-Further we anticipate that the gas tax will be an important variable but the coefficient on this term will be a negative number.
+Further you anticipate that the gas tax will be an important variable but the coefficient on this term will be a negative number.
 
-### Fit a multiple regression model
+## Fit a multiple regression model {-}
 
 We fit a multiple regression model to the gas data using the `lm()` function. Again we put the name of the response variable (`Petrol.Consumption`) to the left of the `~` and then the names of the explanatory variables to the right. After each variable we include a `+` sign except for the last variable. Here we assign the model to an object called `model1`.
 ```{r}
@@ -169,7 +171,7 @@ The multiple R-squared value is .68 which means the model explains 68% of the va
 
 Note that the $p$-value on the model (given on the last line of the output) is small. The null hypothesis in this case is that none of the variables are important in explaining petrol consumption. Clearly we reject this null hypothesis.
 
-### Should we remove a variable from the model?
+## Should you remove a variable from the model? {-}
 
 A model is simpler if it has fewer explanatory variables.
 
@@ -204,7 +206,7 @@ The adjusted R squared is smaller, so we conclude that this variable should be k
 Thus we settle on a final model: 
 Average gas consumption [millions of gallons] = 307.3 + 1375 x Prop.DL - .06802 x Avg.Inc - 29.48 x Petrol.Tax
 
-### Model assumptions
+## Model assumptions {-}
 
 We need to check the model assumptions. Equal variance. We saw how to check this assumption by using the `cut()` function and creating side-by-side box plots. Another way to check this assumption is to plot the standardized residuals on the vertical axis and the fitted values along the horizontal axis. Adding a smoothed curve and the y equal zero line makes it easy to see whether there is a pattern to the residuals.
 ```{r}
@@ -235,7 +237,7 @@ These plots indicate some evidence against normality and constant variance. The 
 
 To improve model adequacy we might transform the response variable or use a weighted regression model. We will talk about transforming a response variable next lesson and weighted regression is considered a bit later in the context of geographic regression.
 
-### Predicting house prices
+## Example: Predicting house prices {-}
 
 A Realtor can use multiple regression to justify a selling price for a house based on a list of features the house has. Here we consider a data file (`houseprice.txt`) containing a random sample of 107 home sales in Albuquerque, New Mexico during the period February 15 through April 30, 1993 (Albuquerque Board of Realtors, 1993).
 
@@ -283,7 +285,7 @@ predict(model1,
 
 The model predicts a selling price of \$219.5K with a 95% uncertainty interval between \$205.7K and \$233.3K.
 
-### Collinearity
+## Collinearity {-}
 
 With more than one explanatory variable in a regression model we have to consider the possibility of collinearity (multicollinearity). Collinearity arises when one or more _pairs_ of explanatory variables are highly correlated.
 
@@ -320,7 +322,7 @@ When explanatory variables have large correlation then estimates of the model pa
 
 Remove the explanatory variable that makes less sense physically. For these data, it is probably best to remove all variables except `abdomen`.
 
-### Interactions
+## Interactions {-}
 
 Sometimes the _relationship_ between an explanatory variable and the response variable _depends on_ the other explanatory variable. In this case we say there is an interaction between the two explanatory variables.
 
@@ -378,7 +380,7 @@ In both cases the intercept difference is negative. In the second case it is ins
 
 When interpreting the results from models with interaction terms, the rule is don't interpret the coefficients on the main effects (marginal coefficients). As demonstrated the presence of interactions implies that the meaning of coefficients for terms vary depending on the values of the variables.
 
-### Removing variables from a model
+## Removing variables from a regression model {-}
 
 Typically we begin with a model that has many explanatory variables (full model). An early step is to see if we can remove some of the variables.
 

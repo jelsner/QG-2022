@@ -1,0 +1,81 @@
+# Digital elevation model (DEM)
+
+Download tile from http://viewfinderpanoramas.org/dem3.html#nam
+
+```{r}
+dem_url <- "http://viewfinderpanoramas.org/dem3/J14.zip"
+download.file(dem_url,
+              destfile = here::here("data", "J14.zip"))
+unzip(zipfile = here::here("data", "J14.zip"),
+      exdir = here::here("data"))
+```
+
+```{r}
+library(terra)
+Elev <- terra::rast(here::here("data", "J14", "N36W097.hgt"))
+plot(Elev)
+dim(Elev)
+```
+
+Terrain roughness
+```{r}
+TR <- terra::terrain(Elev, 
+                     v = 'roughness')
+```
+
+Population grid https://sedac.ciesin.columbia.edu/data/set/gpw-v4-population-density-rev11/
+```{r}
+file <- "gpw-v4-population-density-rev11_2020_30_sec_tif.zip"
+
+unzip(zipfile = here::here("data", file),
+      exdir = here::here("data"))
+
+Pop <- terra::rast(here::here("data", 
+                              "gpw_v4_population_density_rev11_2020_30_sec.tif"))
+Pop <- terra::crop(Pop, Elev)
+plot(Pop)
+```
+
+Tornado start locations
+```{r}
+Torn.sf <- sf::st_read(dsn = here::here("data", "1950-2018-torn-initpoint"), 
+                       layer = "1950-2018-torn-initpoint")
+
+f <- here::here("data", "1950-2018-torn-initpoint")
+Torn <- terra::vect(f)
+class(Torn)
+dim(Torn)
+```
+
+Crop the tornadoes to the elevation raster then extract the elevation and population and terrain roughness at the tornado locations.
+```{r}
+Torn <- terra::crop(Torn, Elev)
+Elev.df <- terra::extract(Elev, Torn)
+mean(Elev.df$N36W097, na.rm = TRUE)
+
+TR.df <- terra::extract(TR, Torn)
+mean(TR.df$roughness, na.rm = TRUE)
+
+Pop.df <- terra::extract(Pop, Torn)
+mean(Pop.df$gpw_v4_population_density_rev11_2020_30_sec, na.rm = TRUE)
+```
+
+Random sample of tornado locations over the domain.
+```{r}
+Domain <- terra::ext(Torn)
+class(Domain)
+plot(Domain)
+```
+
+```{r}
+Avg = NULL
+for(i in 1:100){
+Random <- terra::spatSample(Domain, 
+                            size = nrow(Torn),
+                            method = "random",
+                            lonlat = TRUE,
+                            as.points = TRUE)
+Avg[i] <- mean(terra::extract(Elev, Random)[, 2], na.rm = TRUE)
+}
+hist(Avg)
+```
