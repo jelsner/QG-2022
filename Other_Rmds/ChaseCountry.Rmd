@@ -1,0 +1,176 @@
+# Analyzing tornadoes over chase country
+
+1. Smoother terrain is more conducive for tornadoes especially at the time of day when the low-level jet accelerates. Time of day interacts with terrain roughness. Smooth terrain helps initiate tornadoes during the early evening when the low-level jet arrives.
+
+2. The soil moisture gradient (dry-west and wet-east) portends seasonal tornado activity. Compute KBDI at two stations (Garden City-west and Salina-east) and then take the difference. Correlate the difference with tornado activity over chase country at the monthly/seasonal timescale.
+
+Download tiles from http://viewfinderpanoramas.org/dem3.html#nam
+
+```{r, eval=FALSE}
+dem_url <- "http://viewfinderpanoramas.org/dem3/J14.zip"
+download.file(dem_url,
+              destfile = here::here("data", "J14.zip"))
+unzip(zipfile = here::here("data", "J14.zip"),
+      exdir = here::here("data"))
+```
+
+```{r}
+library(terra)
+Elev1.r <- terra::rast(here::here("data", "J14", "N36W099.hgt"))
+# plot(Elev1.r) # check
+# dim(Elev1)
+Elev2.r <- terra::rast(here::here("data", "J14", "N37W099.hgt"))
+Elev3.r <- terra::rast(here::here("data", "J14", "N38W099.hgt"))
+Elev4.r <- terra::rast(here::here("data", "J14", "N36W100.hgt"))
+Elev5.r <- terra::rast(here::here("data", "J14", "N37W100.hgt"))
+Elev6.r <- terra::rast(here::here("data", "J14", "N38W100.hgt"))
+
+Elev.m <- terra::mosaic(Elev1.r, Elev2.r, Elev3.r, 
+                        Elev4.r, Elev5.r, Elev6.r)
+```
+
+```{r}
+library(tmap)
+tmap_mode("plot")
+tm_shape(Elev.m) +
+  tm_raster(palette = terrain.colors(24), alpha = .5) +
+  tm_graticules(lines = FALSE)
+```
+
+Terrain roughness
+```{r}
+TR.m <- terra::terrain(Elev.m, 
+                       v = 'roughness')
+
+tm_shape(TR.m) +
+  tm_raster(palette = "Blues", alpha = 1) +
+  tm_graticules(lines = FALSE)
+```
+
+Population grid https://sedac.ciesin.columbia.edu/data/set/gpw-v4-population-density-rev11/
+```{r, eval=FALSE}
+file <- "gpw-v4-population-density-rev11_2020_30_sec_tif.zip"
+unzip(zipfile = here::here("data", file),
+      exdir = here::here("data"))
+```
+```{r}
+Pop.r <- terra::rast(here::here("data", 
+                              "gpw_v4_population_density_rev11_2020_30_sec.tif"))
+Pop.r <- terra::crop(Pop.r, Elev.m)
+plot(Pop.r)
+
+tm_shape(Pop.r) + tm_raster(alpha = .3)
+```
+
+Tornado start locations
+```{r}
+Torn.sf <- sf::st_read(dsn = here::here("data", "1950-2020-torn-initpoint"), 
+                       layer = "1950-2020-torn-initpoint")
+
+f <- here::here("data", "1950-2020-torn-initpoint")
+Torn.v <- terra::vect(f)
+class(Torn.v)
+dim(Torn.v)
+
+tm_shape(log2(TR.m)) +
+  tm_raster(palette = "Blues", alpha = 1) +
+  tm_graticules(lines = FALSE) +
+tm_shape(Torn.sf[Torn.sf$yr >= 2001, ]) +
+  tm_dots() +
+  tm_layout(legend.outside = TRUE)
+
+```
+
+Crop the tornadoes to the elevation mosaic then extract the elevation and population and terrain roughness at the tornado locations.
+```{r}
+Torn.v <- terra::crop(Torn.v, Elev.m)
+
+Elev.df <- terra::extract(Elev.m, Torn.v)
+mean(Elev.df[, 2], na.rm = TRUE)
+
+TR.df <- terra::extract(TR.m, Torn.v)
+mean(TR.df[, 2], na.rm = TRUE)
+
+Pop.df <- terra::extract(Pop.r, Torn.v)
+mean(Pop.df[, 2], na.rm = TRUE)
+```
+
+Random sample of tornado locations over the domain. Background locations. https://rspatial.org/terra/sdm/index.html
+```{r}
+Domain.e <- terra::ext(Torn.v)
+class(Domain.e)
+plot(Domain.e)
+```
+
+```{r}
+Avg = NULL
+for(i in 1:1000){
+Background.v <- terra::spatSample(Domain.e, 
+                                  size = nrow(Torn.v),
+                                  method = "random",
+                                  lonlat = TRUE,
+                                  as.points = TRUE)
+Avg[i] <- mean(terra::extract(TR.m, Background.v)[, 2], na.rm = TRUE)
+}
+hist(Avg)
+```
+
+Only particular years or months
+```{r}
+f <- here::here("data", "1950-2020-torn-initpoint")
+Torn.v <- terra::vect(f) |>
+  terra::crop(Elev.m)
+
+Torn.v <- Torn.v[Torn.v$yr >= 2001, ]
+Torn.v <- Torn.v[Torn.v$mo >= 10, ]
+
+mean(terra::extract(TR.m, Torn.v)[, 2], na.rm = TRUE)
+```
+
+Terrain roughness has a larger effect on tornado genesis during months when the large-scale dynamics is weaker (May and June).
+
+There is not a large difference in using only the last 10-20 years.
+
+Only particular times of the day
+```{r}
+f <- here::here("data", "1950-2020-torn-initpoint")
+Torn.v <- terra::vect(f) |>
+  terra::crop(Elev.m)
+
+Torn.v$DateTime <- as.POSIXct(paste(Torn.v$yr, Torn.v$mo, Torn.v$dy, Torn.v$time),
+                              format = "%Y%m%d%H:%M:%S")
+Torn.v$Hour <- lubridate::hour(Torn.v$DateTime)
+
+Torn.v <- Torn.v[Torn.v$Hour %in% 16:21, ]
+mean(terra::extract(TR.m, Torn.v)[, 2], na.rm = TRUE)
+```
+
+Terrain roughness has a larger effect on tornado genesis during hours corresponding to when the nocturnal low-level jet occurs.
+https://www.globalweatherclimatecenter.com/weather-education/what-is-the-nocturnal-low-level-jet
+
+
+Create start and end spatial vectors
+```{r}
+f <- here::here("data", "1950-2020-torn-initpoint")
+Torn.v <- terra::vect(f)
+
+TornStart.v <- terra::vect(as.data.frame(Torn.v), 
+                           geom = c("slon", "slat"),
+                           crs = crs(Torn.v)) |>
+  terra::crop(Elev.m)
+
+TornEnd.v <- terra::vect(as.data.frame(Torn.v), 
+                         geom = c("elon", "elat"),
+                         crs = crs(Torn.v)) |>
+  terra::crop(Elev.m)
+
+mean(terra::extract(TR.m, TornStart.v)[, 2], na.rm = TRUE)
+mean(terra::extract(TR.m, TornEnd.v)[, 2], na.rm = TRUE)
+
+TornStart.v <- TornStart.v[TornStart.v$yr >= 2001, ]
+TornEnd.v <- TornEnd.v[TornEnd.v$yr >= 2001, ]
+
+mean(terra::extract(TR.m, TornStart.v)[, 2], na.rm = TRUE)
+mean(terra::extract(TR.m, TornEnd.v)[, 2], na.rm = TRUE)
+```
+
