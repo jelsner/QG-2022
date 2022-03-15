@@ -12,9 +12,23 @@ unzip(zipfile = here::here("data", "J14.zip"),
 
 ```{r}
 library(terra)
-Elev <- terra::rast(here::here("data", "J14", "N36W097.hgt"))
-plot(Elev)
-dim(Elev)
+Elev1 <- terra::rast(here::here("data", "J14", "N36W099.hgt"))
+plot(Elev1)
+dim(Elev1)
+
+Elev2 <- terra::rast(here::here("data", "J14", "N37W099.hgt"))
+Elev3 <- terra::rast(here::here("data", "J14", "N38W099.hgt"))
+Elev4 <- terra::rast(here::here("data", "J14", "N36W100.hgt"))
+Elev5 <- terra::rast(here::here("data", "J14", "N37W100.hgt"))
+Elev6 <- terra::rast(here::here("data", "J14", "N38W100.hgt"))
+
+Mosaic <- mosaic(Elev1, Elev2, Elev3, Elev4, Elev5, Elev6)
+```
+
+```{r}
+library(tmap)
+tmap_mode("view")
+tm_shape(Mosaic) + tm_raster()
 ```
 
 Terrain roughness
@@ -51,16 +65,16 @@ Crop the tornadoes to the elevation raster then extract the elevation and popula
 ```{r}
 Torn <- terra::crop(Torn, Elev)
 Elev.df <- terra::extract(Elev, Torn)
-mean(Elev.df$N36W097, na.rm = TRUE)
+mean(Elev.df[, 2], na.rm = TRUE)
 
 TR.df <- terra::extract(TR, Torn)
-mean(TR.df$roughness, na.rm = TRUE)
+mean(TR.df[, 2], na.rm = TRUE)
 
 Pop.df <- terra::extract(Pop, Torn)
-mean(Pop.df$gpw_v4_population_density_rev11_2020_30_sec, na.rm = TRUE)
+mean(Pop.df[, 2], na.rm = TRUE)
 ```
 
-Random sample of tornado locations over the domain.
+Random sample of tornado locations over the domain. Background locations. https://rspatial.org/terra/sdm/index.html
 ```{r}
 Domain <- terra::ext(Torn)
 class(Domain)
@@ -75,7 +89,7 @@ Random <- terra::spatSample(Domain,
                             method = "random",
                             lonlat = TRUE,
                             as.points = TRUE)
-Avg[i] <- mean(terra::extract(Elev, Random)[, 2], na.rm = TRUE)
+Avg[i] <- mean(terra::extract(Pop, Random)[, 2], na.rm = TRUE)
 }
 hist(Avg)
 ```
