@@ -1,6 +1,6 @@
 # Digital elevation model (DEM)
 
-Download tile from http://viewfinderpanoramas.org/dem3.html#nam
+Download tiles from http://viewfinderpanoramas.org/dem3.html#nam
 
 ```{r}
 dem_url <- "http://viewfinderpanoramas.org/dem3/J14.zip"
@@ -22,7 +22,7 @@ Elev4 <- terra::rast(here::here("data", "J14", "N36W100.hgt"))
 Elev5 <- terra::rast(here::here("data", "J14", "N37W100.hgt"))
 Elev6 <- terra::rast(here::here("data", "J14", "N38W100.hgt"))
 
-Mosaic <- mosaic(Elev1, Elev2, Elev3, Elev4, Elev5, Elev6)
+Mosaic <- terra::mosaic(Elev1, Elev2, Elev3, Elev4, Elev5, Elev6)
 ```
 
 ```{r}
