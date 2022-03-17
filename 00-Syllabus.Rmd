@@ -11,7 +11,6 @@
 
 Email: <jelsner@fsu.edu>
 
-
 ## Course description {-}
 
 This course is an introduction to the quantitative analysis of geographic data (data analysis for geographers). Most of the course content will be available through Canvas and through RStudio Cloud. Please open an account with RStudio Cloud at (https://rstudio.cloud). 
