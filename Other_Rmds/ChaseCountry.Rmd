@@ -45,9 +45,13 @@ tm_shape(Elev.m) +
 Terrain roughness
 ```{r}
 TR.m <- terra::terrain(Elev.m, 
-                       v = 'roughness')
+                       v = 'roughness',
+                       neighbors = 4)
+Slope.m <- terra::terrain(Elev.m, 
+                       v = 'slope',
+                       neighbors = 4)
 
-tm_shape(TR.m) +
+tm_shape(Slope.m) +
   tm_raster(palette = "Blues", alpha = 1) +
   tm_graticules(lines = FALSE)
 ```
@@ -70,18 +74,24 @@ tm_shape(Pop.r) + tm_raster(alpha = .3)
 Tornado start locations
 ```{r}
 Torn.sf <- sf::st_read(dsn = here::here("data", "1950-2020-torn-initpoint"), 
-                       layer = "1950-2020-torn-initpoint")
-Torn.v <- terra::vect(Torn.sf)
+                       layer = "1950-2020-torn-initpoint") |>
+  dplyr::filter(mag >= 1, mo %in% c(5, 6)) |>
+  dplyr::mutate(dy = format(as.Date(date,format="%m/%d/%y"), "%d"),
+                DateTime = as.POSIXct(paste(yr, mo, dy, time), 
+                                      format = "%Y%m%d%H:%M:%S"),
+                Hour = lubridate::hour(DateTime),
+                Year = lubridate::year(DateTime))
+#f <- here::here("data", "1950-2020-torn-initpoint")
+#Torn.v <- terra::vect(f)
 
-f <- here::here("data", "1950-2020-torn-initpoint")
-Torn.v <- terra::vect(f)
+Torn.v <- terra::vect(Torn.sf)
 class(Torn.v)
 dim(Torn.v)
 
-tm_shape(log2(TR.m)) +
+tm_shape(log2(Slope.m)) +
   tm_raster(palette = "Blues", alpha = 1) +
   tm_graticules(lines = FALSE) +
-tm_shape(Torn.sf[Torn.sf$yr >= 1950, ]) +
+tm_shape(Torn.sf) +
   tm_dots() +
   tm_layout(legend.outside = TRUE)
 
