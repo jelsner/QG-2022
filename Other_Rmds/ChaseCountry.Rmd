@@ -1,6 +1,6 @@
-# Analyzing tornadoes over chase country
+# Tornadoes over chase country
 
-1. Smoother terrain is more conducive for tornadoes especially at the time of day when the low-level jet accelerates. Time of day interacts with terrain roughness. Smooth terrain helps initiate tornadoes during the early evening when the low-level jet arrives.
+1. We hypothesize that smoother terrain is more conducive for tornado genesis especially when the nocturnal low-level jet is most pronounced. Time of day interacts with terrain roughness. Smooth terrain helps initiate tornadoes during the early evening when the low-level jet arrives.
 
 2. The soil moisture gradient (dry-west and wet-east) portends seasonal tornado activity. Compute KBDI at two stations (Garden City-west and Salina-east) and then take the difference. Correlate the difference with tornado activity over chase country at the monthly/seasonal timescale.
 
@@ -75,13 +75,13 @@ dim(Torn.v)
 tm_shape(log2(TR.m)) +
   tm_raster(palette = "Blues", alpha = 1) +
   tm_graticules(lines = FALSE) +
-tm_shape(Torn.sf[Torn.sf$yr >= 2001, ]) +
+tm_shape(Torn.sf[Torn.sf$yr >= 1950, ]) +
   tm_dots() +
   tm_layout(legend.outside = TRUE)
 
 ```
 
-Crop the tornadoes to the elevation mosaic then extract the elevation and population and terrain roughness at the tornado locations.
+Crop the tornadoes to the elevation mosaic then extract the elevation and population and terrain roughness at the tornado locations. Missing values will occur for roughness and population for locations on the borders of the domain.
 ```{r}
 Torn.v <- terra::crop(Torn.v, Elev.m)
 
@@ -101,6 +101,8 @@ Domain.e <- terra::ext(Torn.v)
 class(Domain.e)
 plot(Domain.e)
 ```
+
+Background data characterize the range of environmental conditions in the region. In this sense, background is the same, irrespective of where the tornadoes have originated. Background data establishes the environmental domain of the study, whilst the tornado locations establish under which conditions a tornado is more likely to be present than on average. 
 
 ```{r}
 Avg = NULL
@@ -174,3 +176,86 @@ mean(terra::extract(TR.m, TornStart.v)[, 2], na.rm = TRUE)
 mean(terra::extract(TR.m, TornEnd.v)[, 2], na.rm = TRUE)
 ```
 
+Create a single data frame with tornado locations (labeled 1) and background locations (labeled 0) that includes elevation, population, and terrain roughness.
+```{r}
+f <- here::here("data", "1950-2020-torn-initpoint")
+Torn.v <- terra::vect(f) |>
+  terra::crop(Elev.m)
+
+Torn.v <- Torn.v[Torn.v$mag >= 1, ]
+
+Elev.df <- terra::extract(Elev.m, Torn.v)
+TR.df <- terra::extract(TR.m, Torn.v)
+Pop.df <- terra::extract(Pop.r, Torn.v)
+Torn.df <- data.frame(Location = 1, 
+                      Elevation = Elev.df[, 2], 
+                      Roughness = TR.df[, 2], 
+                      Population = Pop.df[, 2])
+
+Background.v <- terra::spatSample(Domain.e, 
+                                  size = nrow(Torn.v),
+                                  method = "random",
+                                  lonlat = TRUE,
+                                  as.points = TRUE)
+Elev.df <- terra::extract(Elev.m, Background.v)
+TR.df <- terra::extract(TR.m, Background.v)
+Pop.df <- terra::extract(Pop.r, Background.v)
+Background.df <- data.frame(Location = 0, 
+                            Elevation = Elev.df[, 2], 
+                            Roughness = TR.df[, 2], 
+                            Population = Pop.df[, 2])
+
+TornBack.df <- rbind(Torn.df, Background.df)
+```
+
+Logistic regression
+```{r}
+model1 <- glm(Location ~ Population + Elevation + Roughness,
+              family = "binomial", data = TornBack.df)
+summary(model1)
+
+predGrid <- data.frame(Population = 1500, 
+                       Elevation = 790,
+                       Roughness = 20)
+
+predict(model1, newdata = predGrid, type = "response")
+```
+
+```{r}
+remotes::install_github("rspatial/predicts")
+
+model2 <- glm(Location ~ Elevation + Roughness,
+              family = "binomial", data = TornBack.df)
+summary(model2)
+
+
+predictors <- c(Elev.m, TR.m)
+names(predictors) <- c("Elevation", "Roughness")
+
+pg <- predict(predictors, model2, type = "response")
+plot(pg)
+```
+
+Create supercells https://github.com/Nowosad/supercells
+```{r}
+pg1 <- supercells::supercells(pg, k = 100, compactness = .2)
+
+plot(pg)
+plot(st_geometry(pg1), add = TRUE)
+
+tm_shape(pg1) +
+  tm_fill(col = "lyr1")
+```
+
+Daily weather data
+```{r}
+Salina.df <- readr::read_csv(file = here::here("data", "Salina_Kansas.csv")) |>
+  dplyr::mutate(Year = lubridate::year(DATE)) |>
+  dplyr::filter(Year >= 2000) |>
+  dplyr::select(DATE, Year, PRCP, TMAX, TMIN, TAVG)
+
+GardenCity.df <- readr::read_csv(file = here::here("data", "GardenCity_Kansas.csv"))
+
+
+```
+https://www.ncei.noaa.gov/maps/daily-summaries/
