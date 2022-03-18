@@ -9,4 +9,4 @@ First pass
 6. Use package names::function names for {dplyr} and other {tidyverse} functions
 
 Second pass
-1. Update example data sets. More contemporary. Replace the `iris` data set.
+1. Update example data sets. More contemporary. Replace the `iris` data set. Replace the bodyfat data set in lesson 19
