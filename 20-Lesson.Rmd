@@ -61,11 +61,11 @@ Think of this as the goal line. Variables that, when removed from the model, hav
 
 After the first row, successive rows show what happens to the AIC value after the particular variable is removed from the full model. 
 
-The row labeled `Prop.DL` tells us what happens when the explanatory variable `Prop.DL` is removed. The RSS increases to 401405 (from 189050) and we gain one degree of freedom (less bias). Said another way, the value of 212355 in the `Sum of Sq` column indicates how much the variable `Prop.DL` is worth to the model. By removing `Prop.DL` from the full model, the RSS increases from 189050 to 401405; a difference of 212355. But the AIC is 441.51, which _exceeds_ 407.37 (the goal line) so `Prop.DL` should be kept in the model.
+The row labeled `Prop.DL` tells us what happens when the explanatory variable `Prop.DL` is removed. The RSS increases to 401405 (from 189050) and you gain one degree of freedom (less bias). Said another way, the value of 212355 in the `Sum of Sq` column indicates how much the variable `Prop.DL` is worth to the model. By removing `Prop.DL` from the full model, the RSS increases from 189050 to 401405; a difference of 212355. But the AIC is 441.51, which _exceeds_ 407.37 (the goal line) so `Prop.DL` should be kept in the model.
 
 The next row labeled `Pavement`  gives the same information but for the `Pavement` variable. By removing `Pavement` from the full model, the RSS increases from 189050 to 19130; a difference of 2252. But the AIC is 405.04, which _falls short_ of 407.37 (the goal line) so `Pavement` should be removed from the model.
 
-The AIC column keeps the score on which variables should be kept and which should be removed. The AIC for the model having all the explanatory variables is 407.37. A model without `Prop.DL` has an AIC of 441.51, which is LARGER than the AIC for the full model, so you keep `Prop.DL` in the model. In contrast, a model without `Pavement` has an AIC of 405.94, which is SMALLER than the AIC for the full model, so we remove `Pavement` from the model.
+The AIC column keeps the score on which variables should be kept and which should be removed. The AIC for the model having all the explanatory variables is 407.37. A model without `Prop.DL` has an AIC of 441.51, which is LARGER than the AIC for the full model, so you keep `Prop.DL` in the model. In contrast, a model without `Pavement` has an AIC of 405.94, which is SMALLER than the AIC for the full model, so you remove `Pavement` from the model.
 
 The variable `Avg.Inc` when removed results in an AIC that _exceeds_ the value of 407.37 so it should be kept in the model as does the variable `Petrol.Tax`.
 
@@ -78,7 +78,7 @@ modelReduced <- lm(Petrol.Consumption ~ Prop.DL + Avg.Inc + Petrol.Tax,
 drop1(modelReduced)
 ```
 
-Now all the AIC values _exceed_ the value given in the row labeled `<none>`, so we conclude there is no reason to remove any of the remaining variables so you are finished and this is your final model.
+Now all the AIC values _exceed_ the value given in the row labeled `<none>`, so you conclude there is no reason to remove any of the remaining variables so you are finished and this is your final model.
 
 ## The stepwise regression procedure {-}
 
@@ -88,7 +88,7 @@ Stepwise regression is a procedure (not a model) that automates this. It finds t
 
 Stepwise regression can be done by backward deletion of variables or by forward selection of the variables. Backward deletion amounts to automating the `drop1()` function and forward selection amounts to automating the `add1()` function.
 
-Both `drop1()` and `add1()` use the AIC as a criterion for choosing. To see it implemented we return to our full model and apply the `step()` function.
+Both `drop1()` and `add1()` use the AIC as a criterion for choosing. To see it implemented you return to the full model and apply the `step()` function.
 ```{r}
 step(modelFull)
 ```
@@ -123,7 +123,7 @@ pollute.df <- readr::read_table(url)
 head(pollute.df)
 ```
 
-You want to fit a multiple regression model that can be used to predict pollution levels (`Pollution`) from the explanatory variables including average temperature, the amount of industry, the population, the average wind speed, the amount of rain, and the number of wet days.
+Here you want to fit a multiple regression model that can predict pollution levels (`Pollution`) from the explanatory variables including average temperature, the amount of industry, the population, the average wind speed, the amount of rain, and the number of wet days.
 
 You start with a histogram and a density plot of the response variable `Pollution`.
 ```{r}
@@ -157,7 +157,7 @@ MASS::boxcox(Pollution ~ 1,
 
 The output is a plot of the likelihood as a function of possible values for $lambda$. The likelihood represents the chance of observing the data given the transformation and the normal distribution as the model. 
 
-You choose the `lambda` that maximizes the likelihood. In this case it is about -.25. Note: $\lambda$ is a random variable and thus the 95% uncertainty interval provides a range of values. Here the log-likelihood is maximized between -.75 and .2.
+You choose the `lambda` that maximizes the likelihood. In this case it is -.25. Note: $\lambda$ is a random variable and thus the 95% uncertainty interval provides a range of values. Here the log-likelihood is maximized between -.75 and .2.
 
 Create a new variable (`Pollution2`) that is the transformed `Pollution` variable (with lambda = -.25 in the above formula).
 ```{r}
@@ -181,11 +181,15 @@ MASS::boxcox(Pollution ~ Temp + Industry + Population + Wind + Rain,
 
 ## Regression trees {-}
 
-Regression trees are a popular type of machine learning algorithm. Machine learning algorithms focus on prediction. Given a set of data (usually with many observations (cases) and variables) can we accurately predict what the outcome (response) will be when we give the algorithm a new observation.
+A regression tree is a machine learning algorithm. The focus with machine learning algorithms is prediction rather than inference or causality.
 
-Linear regression is a model for the conditional mean. The average of the response variable for given values of the explanatory variables. A regression tree is another model for the conditional mean, but where the _conditioning_ is done by partitioning the space defined by the explanatory variables.
+Linear regression is a prediction model for the conditional mean. The conditional mean is the average response for specific values of the explanatory variables. For example, the average maximum heart rate for specific values of age. 
 
-To create a regression tree use the `tree()` function from the {tree} package. Here create a regression tree for the response variable `Pollution` from the data frame `pollute.df`.
+A regression tree is also a prediction model for the conditional mean. But with a regression tree the _conditioning_ is done by dividing the space defined by the explanatory variables into distinct groups.
+
+Given a set of data a regression tree is trained to predict what the average response will be for specific values of the explanatory variables within the data set.
+
+To train a regression tree you can use the `tree()` function from the {tree} package. As an example you train a regression tree on the response variable `Pollution` from the data frame `pollute.df`.
 ```{r}
 library(tree)
 
@@ -194,15 +198,15 @@ tree.model <- tree(Pollution ~ Temp + Industry + Population + Wind + Rain,
 tree.model
 ```
 
-There is no table of coefficients. Instead we get a table listing the explanatory variables, splits, number of cases, and deviances (RSS).
+The output is a table listing the explanatory variables, splits, number of cases, and deviances (RSS).
 
-A plot helps us make sense of this output. Here we use the generic `plot()` method and add text with the `text()` function.
+A plot helps make sense of this output. Here you use the generic `plot()` method and add text with the `text()` function.
 ```{r}
 plot(tree.model)
 text(tree.model)
 ```
 
-The plot shows an upside down tree. The branches (called splits) are the rules. Rules (involve the 'less than' symbol) are applied to the explanatory variables. Branches end with leaves. The value at the leaf is the mean of the response variable for that subset of observations. 
+The plot looks like an upside down tree. The branches (called splits) are the rules. Rules (involve the 'less than' symbol) are applied to the explanatory variables. Branches end with leaves. The value at the leaf is the mean of the response variable for that subset of observations. 
 
 In this case the first split of the response variable `Pollution` is on the explanatory variable `Industry`. The split is a rule on `Industry`. Is the value of `Industry` less than 748 units? If _yes_, branch to the _left_; if no branch to the right. The left branch leads to another split. The right branch leads to a leaf (terminal node).
 
@@ -210,7 +214,7 @@ Following the left branch the next split is on `Population`. Is the value of `Po
 
 The model is fit using binary partitioning. The response variable is split along coordinate axes of the explanatory variables so that at any node, the split which maximally distinguishes the response variable is selected. Splitting continues until nodes cannot be split or until there are too few cases (less than 6 by default).
 
-The variable explaining the greatest amount of variation in the response variable is selected first. Since the first split is on the variable `Industry` at a value of 748, let's look at how `Pollution` is partitioned on this variable. First create a logical vector called `split` containing `TRUE` and `FALSE` depending on whether the value is less than 748. Then use this variable to select the values of `Pollution` (from the `pollute.df`) to compute the mean.
+The variable that "explains" the greatest amount of variation in the response variable is selected first. Since the first split is on the variable `Industry` at a value of 748, let's look at how `Pollution` is partitioned on this variable. First create a logical vector called `split` containing `TRUE` and `FALSE` depending on whether the value is less than 748. Then use this variable to select the values of `Pollution` (from the `pollute.df`) to compute the mean.
 ```{r}
 split <- pollute.df$Industry < 748
 
@@ -218,24 +222,26 @@ mean(pollute.df$Pollution[split])
 mean(pollute.df$Pollution[!split])
 ```
 
-Or using the grammar of data.
+Or using functions from the {dplyr} package.
 ```{r}
-library(dplyr)
-pollute.df %>%
-  mutate(split = Industry < 748) %>%
-  group_by(split) %>%
-  summarize(Avg = mean(Pollution))
+pollute.df |>
+  dplyr::mutate(split = Industry < 748) |>
+  dplyr::group_by(split) |>
+  dplyr::summarize(Avg = mean(Pollution))
 ```
 
-Thus when `Industry` is less than 748 the mean value for `Pollution` is 24.92 and when it is greater or equal to 748 the mean value for `Pollution` is 67 and when it is less than 748, the mean value of `Pollution` is 24.92. Graphically we can illustrate this using the following lines of code (code chunk).
+Thus when `Industry` is less than 748 the mean value for `Pollution` is 24.9 and when it is greater or equal to 748 the mean value for `Pollution` is 67 and when it is less than 748, the mean value of `Pollution` is 24.9. Graphically you can illustrate this using the following lines of code (code chunk).
 ```{r}
 library(ggplot2)
 
-ggplot(pollute.df, aes(x = Industry, y = Pollution)) +
+ggplot(data = pollute.df, 
+       mapping = aes(x = Industry, y = Pollution)) +
   geom_point(size = 2) +
   geom_vline(xintercept = 748, linetype = 'dashed') +
-  geom_segment(x = 748, xend = max(pollute.df$Industry), y = 67, yend = 67) +
-  geom_segment(x = 0, xend = 748, y = 24.92, yend = 24.92)
+  geom_segment(x = 748, xend = max(pollute.df$Industry), 
+               y = 67, yend = 67) +
+  geom_segment(x = 0, xend = 748, 
+               y = 24.92, yend = 24.92)
 ```
 
 The graph shows that the split of `Pollution` on `Industry` < 748 results in two means for `Pollution` that are different. The split results in less than 6 observations of `Pollution` for `Industry` >= 748, so a terminal node results and the mean value of `Pollution` for these (5) observations is 67.
@@ -246,18 +252,18 @@ t.test(Pollution ~ split,
        data = pollute.df)
 ```
 
-The relatively large $t$ value (greater than 3) results in a small $p$-value (less than .05) indicating we can safely reject the null hypothesis.
+The relatively large $t$ value (greater than 3) results in a small $p$-value (less than .05) indicating you can safely reject the null hypothesis.
 
-Let's try another split. What do we find?
+Let's try another split. What do you find?
 ```{r}
 split <- pollute.df$Industry < 720
 t.test(Pollution ~ split, 
        data = pollute.df)
 ```
 
-The $t$ value goes down and the $p$-value increases indicating that splitting at 720 is not as good as splitting at 748.
+The $t$ value goes down and the $p$-value increases indicating that splitting the variable `Industry` at a value of 720 is not as good as splitting it at a value of 748.
 
-Can we find a better split of `Pollution` along `Industry`?  Here is how we can answer that question.
+Can you find a better split of `Pollution` along `Industry`?  Here is how you can answer that question.
 ```{r}
 tvalue <- numeric()
 be <- quantile(pollute.df$Industry, c(.05, .95))
@@ -267,30 +273,31 @@ for(i in be[1]:be[2]){
 }
 
 df <- data.frame(Industry = be[1]:be[2], tvalue)
-ggplot(df, aes(x = Industry, y = tvalue)) +
+ggplot(data = df, 
+       mapping = aes(x = Industry, y = tvalue)) +
   geom_line() +
   geom_vline(xintercept = 748, color = "red") +
   xlab("Industry") + ylab("t statistic")
 ```
 
-The split value (748) found by the regression tree for the variable `Industry` is maximal over all such splits.
+The split value (748) found by the regression tree for the variable `Industry` maximizes the $t$-value over all such splits.
 
-How it works. For a given explanatory variable:
+How a regression tree is trained. For a given explanatory variable, the algorithm
 
-* Select a candidate split value.
-* Compute the mean of the response above and below the value.
-* Compute the deviance (residual sum of squares) from the two means.
-* Go through all possible splits.
-* Look to see which split gives the lowest deviance. This is the split that gives the largest $t$ statistic.
-* Split the entire data set into high and low subsets based on this split value.
-* Repeat on each subset of the data on either side of the first split.
-* Keep going until no additional reduction in deviance is obtained, or there are too few data values to merit further divisions.
+* Selects a candidate split value.
+* Computes the mean of the response above and below the value.
+* Computes the deviance (residual sum of squares) from the two means.
+* Goes through all possible splits.
+* Looks to see which split gives the lowest deviance. This is the split that gives the largest $t$ statistic.
+* Splits the entire data set into high and low subsets based on this split value.
+* Repeats this procedure on each subset of the data on either side of the first split.
+* Keeps going until no additional reduction in deviance is obtained, or there are too few data values to merit further divisions.
 
 The importance of a split to the regression tree is the reduction in the deviance and the importance is represented on the tree plot as the length of the hanging branch. The reduction in deviance is larger for the split on `Population` than for the split on `Wet.days.`
 
-The two key questions are: (1) Which variables to use in the split, and (2) how to best achieve the split given a variable. Tree regression is analogous to forward selection in stepwise regression. Add in the most important variable first then see if additional variables decrease the deviance keeping track of the cost associated with the loss of the degree of freedom.
+The two key components of the training algorithm are: (1) Which variables to use in the split, and (2) how to best achieve the split given a variable. Tree regression is similar to forward selection in the stepwise regression procedure. Include the most important variable (the one that explains the most variance in the response) first then see if additional variables decrease the deviance keeping track of the cost associated with the loss of the degree of freedom.
 
-Model output is printed by typing the name of the model object.
+Model output from a trained regression tree is printed by typing the name of the model object.
 ```{r, eval=FALSE}
 tree.model
 ```
@@ -311,7 +318,7 @@ For high levels of population (`Population` > 190), the number of wet days becom
 
 For those places with more than 108 wet days, it's temperature that is most important in explaining variation in pollution levels; the warmest places have the lowest air pollution levels. For the cooler places with more wet days, it is wind speed that matters; windier places are less polluted.
 
-This kind of nuanced and contingent explanation is made with a regression tree. The cost is the potential to interpret noise as signal.
+This kind of nuanced and contingent explanation of how the explanatory variables influence the response is made possible with a regression tree. The cost is the potential to interpret noise as signal.
 
 Regression trees are used mainly for predictions. Predicted values are easy to anticipate. For example it is obvious that, given the model, if `Industry` exceeds 748, then the `Pollution` level is predicted to be 67.  If `Industry` is less than 748 and `Population` is less than 190, then the `Pollution` level is predicted to be 43.43. The `predict()` method works like it does for a linear regression model object. The first argument is the model object and the next is the data frame containing the variables.
 ```{r}
@@ -321,18 +328,18 @@ predict(tree.model, newdata = data.frame(Industry = 740, Population = 180,
                                          Wet.days = 0, Temp = 0, Wind = 0, Rain = 0))
 ```
 
-Note that we need to specify all the explanatory variables even if they are not involved with the final predicted value.
+Note that you need to specify all the explanatory variables even if they are not involved with the final predicted value.
 
 ```{r}
 predict(tree.model, newdata = data.frame(Industry = 740, Population = 200, 
                                  Wet.days = 120, Temp = 50, Wind = 8, Rain = 0))
 ```
 
-Prediction amounts to following the rules defined by the regression tree. We start with the value of the variable `Industry` and work our way down until we hit a terminal node. The value of the response variable representing the subset mean is the predicted value.
+Prediction amounts to following the rules defined by the regression tree. You start with the value of the variable `Industry` and work your way down until you come to a terminal node. The predicted value is the group mean of the response.
 
-The standard error on the predicted value is more difficult to work out. We could use the standard error on the subset mean for that leaf. But this error ignores the uncertainty surrounding the other decisions (branches) that came before.
+The standard error on the predicted value is more difficult to work out. You could use the standard error on the subset mean for that leaf. But this ignores the uncertainty surrounding the other decisions (branches) that came before.
 
-A tree regression is a machine learning algorithm. Machine learning algorithms are used for prediction, but not typically for inference. There is no simple way to get an uncertainty estimate about the predicted level of pollution.
+There is no simple way to get an uncertainty estimate about the predicted level of pollution.
 
 Simplifying the model is a trade-off between minimizing the bias and maximizing the variance explained. If the regression tree has many explanatory variables with many branches then it will explain more variance, but it is biased toward the particular data set. If the tree is too simple it will not explain much of the variance. If the tree is too complex predictions on new data will be poor.
 
@@ -343,16 +350,18 @@ The function returns the tree size (number of terminal nodes), the total devianc
 prune.tree(tree.model)
 ```
 
-Here we see the largest tree (6 terminal nodes) results in the smallest deviance (8877). By pruning one branch the deviance increases (9240) but only by a relatively small amount (364 or 4%). Similarly by pruning a second branch the deviance increases, this time a bit more. It is helpful to plot the deviance as a function of tree size.
+Here you see the largest tree (6 terminal nodes) results in the smallest deviance (8877). By pruning one branch the deviance increases (9240) but only by a relatively small amount (364 or 4%). Similarly by pruning a second branch the deviance increases, this time a bit more. It is helpful to plot the deviance as a function of tree size.
 ```{r}
 plot(prune.tree(tree.model))
 ```
 
-Here the plot is opposite of the table. Deviance declines with increasing complexity. Code challenge: Make this using the grammar of graphs. Hint: save the prune tree object and then create a data frame from the object lists. Then use `scale_x_reverse()`.
+Here the plot is opposite of the table. Deviance declines with increasing complexity. 
 
-We can see that the amount of decline diminishes with each node (diminishing return). In fact, we could argue that a tree with 4 terminal nodes is sufficiently complex as the drop in deviance from 4 to 5 nodes is relatively small.
+Code challenge: Make this using the grammar of graphs. Hint: save the prune tree object and then create a data frame from the object lists. Then use `scale_x_reverse()`.
 
-Suppose we want the best tree with four nodes.
+You see that the amount of decline diminishes with each node (diminishing return). In fact, you can argue that a tree with 4 terminal nodes is best since the deviance from 4 to 5 nodes is relatively small.
+
+Suppose you want the best tree with four nodes.
 ```{r, eval=FALSE}
 tree.model2 <- prune.tree(tree.model, best = 4)
 plot(tree.model2)

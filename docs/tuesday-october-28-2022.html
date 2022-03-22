@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Tuesday, October 28, 2022 | GEO5156: Quantitative Geography</title>
+  <meta name="description" content="Tuesday, October 28, 2022 | GEO5156: Quantitative Geography" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Tuesday, October 28, 2022 | GEO5156: Quantitative Geography" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="jelsner/QG-2022" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Tuesday, October 28, 2022 | GEO5156: Quantitative Geography" />
+  
+  
+  
+
+<meta name="author" content="James B. Elsner" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="thursday-october-21-2022.html"/>
+
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Quantitative Geography</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html"><i class="fa fa-check"></i>Syllabus</a>
+<ul>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#geo5165c-quantitative-geography"><i class="fa fa-check"></i>GEO5165C: Quantitative Geography</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#contact-information"><i class="fa fa-check"></i>Contact information</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#course-description"><i class="fa fa-check"></i>Course description</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#expected-learning-outcomes"><i class="fa fa-check"></i>Expected learning outcomes</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#materials"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#class-meetings"><i class="fa fa-check"></i>Class meetings</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#grades"><i class="fa fa-check"></i>Grades</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#academic-honor-code"><i class="fa fa-check"></i>Academic honor code</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#students-with-disabilities-act"><i class="fa fa-check"></i>Students With Disabilities Act</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#inclusiveness"><i class="fa fa-check"></i>Inclusiveness</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#more-about-your-instructor"><i class="fa fa-check"></i>More about your instructor</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#syllabus-change-policy"><i class="fa fa-check"></i>Syllabus change policy</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#schedule-subject-to-change-with-notice"><i class="fa fa-check"></i>Schedule (subject to change with notice)</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#other-materials-to-check-out"><i class="fa fa-check"></i>Other materials to check out</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#julia-programming-language"><i class="fa fa-check"></i>Julia programming language</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html"><i class="fa fa-check"></i>Tuesday, August 23, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#today"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#what-is-this-course"><i class="fa fa-check"></i>What is this course?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#where-are-the-materials-for-this-course"><i class="fa fa-check"></i>Where are the materials for this course?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#join-rstudio-cloud"><i class="fa fa-check"></i>Join RStudio Cloud</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#examples"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#course-syllabus"><i class="fa fa-check"></i>Course Syllabus</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#tallahassee-daily-temperatures"><i class="fa fa-check"></i>Tallahassee daily temperatures</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html"><i class="fa fa-check"></i>Thursday, August 25, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#today-1"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#data-analysis"><i class="fa fa-check"></i>Data Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#reproducibility"><i class="fa fa-check"></i>Reproducibility</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#communication"><i class="fa fa-check"></i>Communication</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#automation"><i class="fa fa-check"></i>Automation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#the-r-programming-language"><i class="fa fa-check"></i>The R programming language</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#overview-of-this-course"><i class="fa fa-check"></i>Overview of this course</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#work-in-plain-text-using-r-markdown"><i class="fa fa-check"></i>Work in plain text, using R Markdown</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#visualizing-data"><i class="fa fa-check"></i>Visualizing data</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-code-template"><i class="fa fa-check"></i>A code template</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#the-code"><i class="fa fa-check"></i>The code</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-graphing-workflow"><i class="fa fa-check"></i>A graphing workflow</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-graphing-template"><i class="fa fa-check"></i>A graphing template</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#common-problems"><i class="fa fa-check"></i>Common problems</a></li>
+<li><a href="thursday-august-25-2022.html#location-of-the-sign">location of the <code>+</code> sign</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#help"><i class="fa fa-check"></i>help</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#things-to-know"><i class="fa fa-check"></i>Things to know</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#everything-has-a-name"><i class="fa fa-check"></i>Everything has a name</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#everything-is-an-object"><i class="fa fa-check"></i>Everything is an object</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#you-do-things-using-functions"><i class="fa fa-check"></i>You do things using functions</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#functions-come-in-packages-libraries"><i class="fa fa-check"></i>Functions come in packages (libraries)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#your-turn"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html"><i class="fa fa-check"></i>Tuesday, August 30, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#today-2"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#scatter-plots"><i class="fa fa-check"></i>Scatter plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#facets"><i class="fa fa-check"></i>Facets</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#calculations"><i class="fa fa-check"></i>Calculations</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#functions"><i class="fa fa-check"></i>Functions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#syntax-is-important"><i class="fa fa-check"></i>Syntax is important</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#saving-an-object"><i class="fa fa-check"></i>Saving an object</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#object-names"><i class="fa fa-check"></i>Object names</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#entering-data"><i class="fa fa-check"></i>Entering data</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#applying-a-function"><i class="fa fa-check"></i>Applying a function</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#averge"><i class="fa fa-check"></i>Averge</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#data-vectors"><i class="fa fa-check"></i>Data vectors</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#variance"><i class="fa fa-check"></i>Variance</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#data-vectors-have-a-type"><i class="fa fa-check"></i>Data vectors have a type</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#working-smarter"><i class="fa fa-check"></i>Working smarter</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html"><i class="fa fa-check"></i>Thursday, September 1, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#today-3"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#data-as-vectors"><i class="fa fa-check"></i>Data as vectors</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#mean"><i class="fa fa-check"></i>Mean</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#variance-1"><i class="fa fa-check"></i>Variance</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#median"><i class="fa fa-check"></i>Median</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#spread"><i class="fa fa-check"></i>Spread</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#vector-types"><i class="fa fa-check"></i>Vector types</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#structured-data"><i class="fa fa-check"></i>Structured data</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#asking-questions"><i class="fa fa-check"></i>Asking questions</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#tables-and-summaries"><i class="fa fa-check"></i>Tables and summaries</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html"><i class="fa fa-check"></i>Tuesday, September 6, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#today-4"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#getting-your-data-into-r"><i class="fa fa-check"></i>Getting your data into R</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-structured-data-files"><i class="fa fa-check"></i>Creating structured data files</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#data-frames"><i class="fa fa-check"></i>Data frames</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#quantiles"><i class="fa fa-check"></i>Quantiles</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-a-data-frame"><i class="fa fa-check"></i>Creating a data frame</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#pipes"><i class="fa fa-check"></i>Pipes</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#your-turn-1"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html"><i class="fa fa-check"></i>Thursday, September 8, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#today-5"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#pipe-operator"><i class="fa fa-check"></i>Pipe operator</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#wrangling-data-frames"><i class="fa fa-check"></i>Wrangling data frames</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#selecting-and-filtering"><i class="fa fa-check"></i>Selecting and filtering</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#example-palmer-penguins"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#stringing-functions-together"><i class="fa fa-check"></i>Stringing functions together</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#summarize"><i class="fa fa-check"></i>Summarize</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#grouping"><i class="fa fa-check"></i>Grouping</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#your-turn-2"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html"><i class="fa fa-check"></i>Tuesday, September 12, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#today-6"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#example-1-new-york-city-flight-data"><i class="fa fa-check"></i>Example 1: New York City flight data</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#example-2-daily-weather-data-from-tallahassee"><i class="fa fa-check"></i>Example 2: Daily weather data from Tallahassee</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#putting-everything-together"><i class="fa fa-check"></i>Putting everything together</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#example-3-food-consumption-and-co2-emissions"><i class="fa fa-check"></i>Example 3: Food consumption and CO2 emissions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html"><i class="fa fa-check"></i>Thursday, September 14, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#today-7"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#bar-chart"><i class="fa fa-check"></i>Bar chart</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#pie-preference"><i class="fa fa-check"></i>Pie preference</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#histogram"><i class="fa fa-check"></i>Histogram</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#density-plot"><i class="fa fa-check"></i>Density plot</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#box-plot"><i class="fa fa-check"></i>Box plot</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#side-by-side-box-plots"><i class="fa fa-check"></i>Side-by-side box plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html"><i class="fa fa-check"></i>Tuesday, September 19, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#today-8"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#comparing-distributions"><i class="fa fa-check"></i>Comparing distributions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#box-plots"><i class="fa fa-check"></i>Box plots</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#long-data-frames"><i class="fa fa-check"></i>Long data frames</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#scatter-plots-1"><i class="fa fa-check"></i>Scatter plots</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#facets-1"><i class="fa fa-check"></i>Facets</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#example-palmer-penguins-1"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#an-expository-graph"><i class="fa fa-check"></i>An expository graph</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#exporting-your-graph"><i class="fa fa-check"></i>Exporting your graph</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html"><i class="fa fa-check"></i>Thursday, September 21, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#today-9"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#simple-feature-data-frames"><i class="fa fa-check"></i>Simple feature data frames</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#making-a-boundary-map"><i class="fa fa-check"></i>Making a boundary map</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#fills"><i class="fa fa-check"></i>Fills</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#adding-data"><i class="fa fa-check"></i>Adding data</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#inset-maps"><i class="fa fa-check"></i>Inset maps</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#map-projections"><i class="fa fa-check"></i>Map projections</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#bivariate-maps"><i class="fa fa-check"></i>Bivariate maps</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html"><i class="fa fa-check"></i>Thursday, September 21, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#today-10"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#making-maps-using-functions-from-the-tmap-package"><i class="fa fa-check"></i>Making maps using functions from the {tmap} package</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#example-mapping-tornadoes"><i class="fa fa-check"></i>Example: Mapping tornadoes</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#example-mapping-the-frequency-of-tornadoes-by-state"><i class="fa fa-check"></i>Example: Mapping the frequency of tornadoes by state</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#calculations-using-the-geometry-simple-feature-column"><i class="fa fa-check"></i>Calculations using the geometry simple feature column</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#making-raster-maps"><i class="fa fa-check"></i>Making raster maps</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#get-map-images-using-functions-from-the-ggmap-package"><i class="fa fa-check"></i>Get map images using functions from the {ggmap} package</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#add-data-to-the-raster-map"><i class="fa fa-check"></i>Add data to the raster map</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#spatial-density-maps-extra-material"><i class="fa fa-check"></i>Spatial density maps (extra material)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html"><i class="fa fa-check"></i>Tuesday, September 26, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#today-11"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#one-sample-test-of-the-population-mean"><i class="fa fa-check"></i>One-sample test of the population mean</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#about-p-values"><i class="fa fa-check"></i>About p-values</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#example-strongest-atlantic-hurricanes"><i class="fa fa-check"></i>Example: Strongest Atlantic hurricanes</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#graphical-inference"><i class="fa fa-check"></i>Graphical inference</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#two-sample-test-of-the-difference-in-population-means"><i class="fa fa-check"></i>Two-sample test of the difference in population means</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#example-hurricanes-in-the-north-atlantic-and-the-eastern-north-pacific"><i class="fa fa-check"></i>Example: hurricanes in the North Atlantic and the eastern North Pacific</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#example-palmer-penguins-2"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#your-turn-3"><i class="fa fa-check"></i>Your turn</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#test-of-equal-variance"><i class="fa fa-check"></i>Test of equal variance</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#wilcoxon-mann-whitney-u-non-parameteric-test-of-difference-in-means"><i class="fa fa-check"></i>Wilcoxon (Mann-Whitney U) non-parameteric test of difference in means</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html"><i class="fa fa-check"></i>Thursday, September 28, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#today-12"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#review"><i class="fa fa-check"></i>Review</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#paired-observations"><i class="fa fa-check"></i>Paired observations</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#example-reaction-time-while-driving"><i class="fa fa-check"></i>Example: Reaction time while driving</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#chi-squared-test-for-independence"><i class="fa fa-check"></i>Chi-squared test for independence</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#example-smoking-and-exercise"><i class="fa fa-check"></i>Example: Smoking and exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html"><i class="fa fa-check"></i>Tuesday, October 3, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html#today-13"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html#distributions"><i class="fa fa-check"></i>Distributions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html#normal-distribution"><i class="fa fa-check"></i>Normal distribution</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html#uniform-distribution"><i class="fa fa-check"></i>Uniform distribution</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html#how-many-blue-marbles"><i class="fa fa-check"></i>How many blue marbles?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html#what-percentage-of-the-globe-is-covered-by-water"><i class="fa fa-check"></i>What percentage of the globe is covered by water?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html#how-many-fish-are-in-the-lake"><i class="fa fa-check"></i>How many fish are in the lake?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html"><i class="fa fa-check"></i>Thursday, October 5, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#today-14"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#how-many-fish-are-in-the-lake-1"><i class="fa fa-check"></i>How many fish are in the lake?</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#percentage-of-survey-signups"><i class="fa fa-check"></i>Percentage of survey signups</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#a-generative-model-for-people-agreeing-to-take-your-survey"><i class="fa fa-check"></i>A generative model for people agreeing to take your survey</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#prior-for-the-response-rate"><i class="fa fa-check"></i>Prior for the response rate</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#define-the-generative-model-and-simulate-the-data"><i class="fa fa-check"></i>Define the generative model and simulate the data</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#prediction"><i class="fa fa-check"></i>Prediction</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#approximate-bayesian-computation"><i class="fa fa-check"></i>Approximate Bayesian computation</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#what-bayesian-data-analysis-is-not"><i class="fa fa-check"></i>What Bayesian data analysis is not</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#comparing-two-hypotheses"><i class="fa fa-check"></i>Comparing two hypotheses</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#reaction-times-while-driving"><i class="fa fa-check"></i>Reaction times while driving</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#repeat-the-survey-example"><i class="fa fa-check"></i>Repeat the survey example</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html"><i class="fa fa-check"></i>Tuesday, October 12, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#today-15"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#linear-regression-a-t-test-by-another-name"><i class="fa fa-check"></i>Linear regression: A t test by another name</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#motivating-regression"><i class="fa fa-check"></i>Motivating regression</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#eyeballing-the-regression"><i class="fa fa-check"></i>Eyeballing the regression</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#example-increasing-heart-rates-with-age"><i class="fa fa-check"></i>Example: Increasing heart rates with age</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#making-predictions-with-regression"><i class="fa fa-check"></i>Making predictions with regression</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#uncertainty-about-the-regression-coefficients"><i class="fa fa-check"></i>Uncertainty about the regression coefficients</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#bootstrapping-the-uncertainty"><i class="fa fa-check"></i>Bootstrapping the uncertainty</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#predictive-uncertainty"><i class="fa fa-check"></i>Predictive uncertainty</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html"><i class="fa fa-check"></i>Thursday, October 14, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#today-16"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#uncertainty-about-a-particular-predicted-value"><i class="fa fa-check"></i>Uncertainty about a particular predicted value</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#example-predicting-body-mass-from-fipper-length"><i class="fa fa-check"></i>Example: Predicting body mass from fipper length</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#model-adequacy"><i class="fa fa-check"></i>Model Adequacy</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#transforming-the-response-variable"><i class="fa fa-check"></i>Transforming the response variable</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-october-19-2022.html"><a href="tuesday-october-19-2022.html"><i class="fa fa-check"></i>Tuesday, October 19, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-october-19-2022.html"><a href="tuesday-october-19-2022.html#today-17"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-19-2022.html"><a href="tuesday-october-19-2022.html#example-average-income-vs-percent-college-graduates-at-the-state-level"><i class="fa fa-check"></i>Example: Average income vs percent college graduates at the state level</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-19-2022.html"><a href="tuesday-october-19-2022.html#outliers"><i class="fa fa-check"></i>Outliers</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-19-2022.html"><a href="tuesday-october-19-2022.html#summarizing"><i class="fa fa-check"></i>Summarizing</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-19-2022.html"><a href="tuesday-october-19-2022.html#example-a-regression-model-for-trend"><i class="fa fa-check"></i>Example: A regression model for trend</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-19-2022.html"><a href="tuesday-october-19-2022.html#simpsons-paradox"><i class="fa fa-check"></i>Simpson’s paradox</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-october-21-2022.html"><a href="thursday-october-21-2022.html"><i class="fa fa-check"></i>Thursday, October 21, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-october-21-2022.html"><a href="thursday-october-21-2022.html#today-18"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-21-2022.html"><a href="thursday-october-21-2022.html#multiple-variable-linear-regression"><i class="fa fa-check"></i>Multiple variable linear regression</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-21-2022.html"><a href="thursday-october-21-2022.html#a-grid-of-scatter-plots"><i class="fa fa-check"></i>A grid of scatter plots</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-21-2022.html"><a href="thursday-october-21-2022.html#fit-a-multiple-variable-regression-model"><i class="fa fa-check"></i>Fit a multiple variable regression model</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-21-2022.html"><a href="thursday-october-21-2022.html#should-you-remove-a-variable-from-the-model"><i class="fa fa-check"></i>Should you remove a variable from the model?</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-21-2022.html"><a href="thursday-october-21-2022.html#checking-on-the-model-assumptions"><i class="fa fa-check"></i>Checking on the model assumptions</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-21-2022.html"><a href="thursday-october-21-2022.html#example-predicting-house-prices"><i class="fa fa-check"></i>Example: Predicting house prices</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-21-2022.html"><a href="thursday-october-21-2022.html#collinearity"><i class="fa fa-check"></i>Collinearity</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-21-2022.html"><a href="thursday-october-21-2022.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-october-28-2022.html"><a href="tuesday-october-28-2022.html"><i class="fa fa-check"></i>Tuesday, October 28, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-october-28-2022.html"><a href="tuesday-october-28-2022.html#today-19"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-28-2022.html"><a href="tuesday-october-28-2022.html#removing-variables-from-a-model"><i class="fa fa-check"></i>Removing variables from a model</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-28-2022.html"><a href="tuesday-october-28-2022.html#the-stepwise-regression-procedure"><i class="fa fa-check"></i>The stepwise regression procedure</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-28-2022.html"><a href="tuesday-october-28-2022.html#transforming-a-response-variable"><i class="fa fa-check"></i>Transforming a response variable</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-28-2022.html"><a href="tuesday-october-28-2022.html#regression-trees"><i class="fa fa-check"></i>Regression trees</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GEO5156: Quantitative Geography</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tuesday-october-28-2022" class="section level1 unnumbered">
+<h1>Tuesday, October 28, 2022</h1>
+<div id="today-19" class="section level2 unnumbered">
+<h2>Today</h2>
+<ul>
+<li>More about multiple variable regression</li>
+<li>Regression trees</li>
+</ul>
+</div>
+<div id="removing-variables-from-a-model" class="section level2 unnumbered">
+<h2>Removing variables from a model</h2>
+<p>Often you start with a model that includes many explanatory variables. This is because you are not sure what variables are important in explaining the response variable.</p>
+<p>A model with all the possible explanatory variables is called a ‘full model.’ The R squared value is largest when all explanatory variables are included in the model. But there is a cost. This cost is called ‘model bias.’ The model is biased toward the particular set of data used to create the model.</p>
+<p>If there is too much bias then the model will make poor predictions when given another set of similar data.</p>
+<p>Model bias/not data bias.</p>
+<p>When you remove a variable from a model, you decrease the variance explained but you add a degree of freedom. This makes the model less biased. It is less tuned to the data you have.</p>
+<p>A balance is achieved in this trade-off between minimizing bias and maximizing variance explained by considering the <em>adjusted</em> R squared value. You choose a model that has the <em>largest</em> adjusted R squared.</p>
+<p>If the adjusted R squared gets smaller AFTER you remove a <em>particular</em> explanatory variable from the full model, then you should keep that variable in the model.</p>
+<p>The AIC (Akaike Information Criterion) is similar to the adjusted R squared. It helps achieve a balance between maximizing the variance explained and minimizing the bias. Using math, AIC = <span class="math inline">\(2 k - 2 \log(L)\)</span>, where <span class="math inline">\(k\)</span> is the number of model parameters (1 + number of explanatory variables) and <span class="math inline">\(L\)</span> is the highest value from the likelihood function.</p>
+<p>The likelihood function (likelihood) is the probability of observing the data you have, given the model.</p>
+<p>The AIC rewards good fitting models with a penalty for the size of the model (number of explanatory variables). Put simply: given a set of candidate models for your data, you should choose the one with the lowest AIC.</p>
+<p>Let’s see how this works. Returning to the model for gas consumption at the state level.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="tuesday-october-28-2022.html#cb1-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;http://myweb.fsu.edu/jelsner/temp/data/PetrolConsumption.txt&quot;</span></span>
+<span id="cb1-2"><a href="tuesday-october-28-2022.html#cb1-2" aria-hidden="true" tabindex="-1"></a>PC.df <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_table</span>(url)</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   Petrol.Tax = col_double(),
+##   Avg.Inc = col_double(),
+##   Pavement = col_double(),
+##   Prop.DL = col_double(),
+##   Petrol.Consumption = col_double()
+## )</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="tuesday-october-28-2022.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(PC.df)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 5
+##   Petrol.Tax Avg.Inc Pavement Prop.DL Petrol.Consumption
+##        &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;              &lt;dbl&gt;
+## 1        9      3571     1976   0.525                541
+## 2        9      4092     1250   0.572                524
+## 3        9      3865     1586   0.58                 561
+## 4        7.5    4870     2351   0.529                414
+## 5        8      4399      431   0.544                410
+## 6       10      5342     1333   0.571                457</code></pre>
+<p>First you fit a full model that includes all four explanatory variables for explaining the variation in gas consumption. They are <code>Prop.DL</code>, <code>Pavement</code>, <code>Avg.Inc</code>, and <code>Petrol.Tax</code>. You regress gas consumption onto these four variables and save the object as <code>modelFull</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="tuesday-october-28-2022.html#cb5-1" aria-hidden="true" tabindex="-1"></a>modelFull <span class="ot">&lt;-</span> <span class="fu">lm</span>(Petrol.Consumption <span class="sc">~</span> Prop.DL <span class="sc">+</span> Pavement <span class="sc">+</span> Avg.Inc <span class="sc">+</span> Petrol.Tax, </span>
+<span id="cb5-2"><a href="tuesday-october-28-2022.html#cb5-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> PC.df)</span></code></pre></div>
+<p>Then use the <code>drop1()</code> function, which takes the regression model object and returns a table showing what happens when each variable is successively removed from the model.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="tuesday-october-28-2022.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(modelFull)</span></code></pre></div>
+<pre><code>## Single term deletions
+## 
+## Model:
+## Petrol.Consumption ~ Prop.DL + Pavement + Avg.Inc + Petrol.Tax
+##            Df Sum of Sq    RSS    AIC
+## &lt;none&gt;                  189050 407.37
+## Prop.DL     1    212355 401405 441.51
+## Pavement    1      2252 191302 405.94
+## Avg.Inc     1     65729 254779 419.69
+## Petrol.Tax  1     31632 220682 412.80</code></pre>
+<p>The table includes the degrees of freedom for each variable (<code>Df</code>) the sum of the squares, the residual sum of squares (<code>RSS</code>) and the AIC value (<code>AIC</code>).</p>
+<p>The first row of the table (labeled <code>&lt;none&gt;</code>) shows the RSS and the AIC value for the full model (all explanatory variables). The RSS is 189050. Recall that this value is computed as the sum of the residuals squared and is identical to the model deviance.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="tuesday-october-28-2022.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">residuals</span>(modelFull)<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 189050</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="tuesday-october-28-2022.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">deviance</span>(modelFull)</span></code></pre></div>
+<pre><code>## [1] 189050</code></pre>
+<p>Model deviance has units of the response variable squared and you want this value to be as small as possible, but without making the model too biased.</p>
+<p>The first row also gives the AIC value for the full model. The AIC has no units. Here the value for AIC from the full model is 407.37.</p>
+<p>Think of this as the goal line. Variables that, when removed from the model, have a value that <em>exceeds</em> this line should be kept in the model. Variables that when removed from the model have a value that <em>falls short</em> of this line should be removed from the model.</p>
+<p>After the first row, successive rows show what happens to the AIC value after the particular variable is removed from the full model.</p>
+<p>The row labeled <code>Prop.DL</code> tells us what happens when the explanatory variable <code>Prop.DL</code> is removed. The RSS increases to 401405 (from 189050) and you gain one degree of freedom (less bias). Said another way, the value of 212355 in the <code>Sum of Sq</code> column indicates how much the variable <code>Prop.DL</code> is worth to the model. By removing <code>Prop.DL</code> from the full model, the RSS increases from 189050 to 401405; a difference of 212355. But the AIC is 441.51, which <em>exceeds</em> 407.37 (the goal line) so <code>Prop.DL</code> should be kept in the model.</p>
+<p>The next row labeled <code>Pavement</code> gives the same information but for the <code>Pavement</code> variable. By removing <code>Pavement</code> from the full model, the RSS increases from 189050 to 19130; a difference of 2252. But the AIC is 405.04, which <em>falls short</em> of 407.37 (the goal line) so <code>Pavement</code> should be removed from the model.</p>
+<p>The AIC column keeps the score on which variables should be kept and which should be removed. The AIC for the model having all the explanatory variables is 407.37. A model without <code>Prop.DL</code> has an AIC of 441.51, which is LARGER than the AIC for the full model, so you keep <code>Prop.DL</code> in the model. In contrast, a model without <code>Pavement</code> has an AIC of 405.94, which is SMALLER than the AIC for the full model, so you remove <code>Pavement</code> from the model.</p>
+<p>The variable <code>Avg.Inc</code> when removed results in an AIC that <em>exceeds</em> the value of 407.37 so it should be kept in the model as does the variable <code>Petrol.Tax</code>.</p>
+<p>In summary, to simplify a multiple variable regression model you compare the AIC values for each variable against the AIC value for the full model. If the AIC value for a variable is less than the AIC for the full model then the trade-off is in favor of removing it.</p>
+<p>The table indicates that <code>Pavement</code> should be removed. The next step is to create a reduced model and then check the single-variable deletions again. That is you repeat the <code>drop1()</code> function on the reduced model.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="tuesday-october-28-2022.html#cb12-1" aria-hidden="true" tabindex="-1"></a>modelReduced <span class="ot">&lt;-</span> <span class="fu">lm</span>(Petrol.Consumption <span class="sc">~</span> Prop.DL <span class="sc">+</span> Avg.Inc <span class="sc">+</span> Petrol.Tax, </span>
+<span id="cb12-2"><a href="tuesday-october-28-2022.html#cb12-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> PC.df)</span>
+<span id="cb12-3"><a href="tuesday-october-28-2022.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(modelReduced)</span></code></pre></div>
+<pre><code>## Single term deletions
+## 
+## Model:
+## Petrol.Consumption ~ Prop.DL + Avg.Inc + Petrol.Tax
+##            Df Sum of Sq    RSS    AIC
+## &lt;none&gt;                  191302 405.94
+## Prop.DL     1    243586 434889 443.36
+## Avg.Inc     1     69532 260834 418.82
+## Petrol.Tax  1     33742 225044 411.74</code></pre>
+<p>Now all the AIC values <em>exceed</em> the value given in the row labeled <code>&lt;none&gt;</code>, so you conclude there is no reason to remove any of the remaining variables so you are finished and this is your final model.</p>
+</div>
+<div id="the-stepwise-regression-procedure" class="section level2 unnumbered">
+<h2>The stepwise regression procedure</h2>
+<p>With only a hand full of variables to check the <code>drop1()</code> function is recommended. With a large number of variables an automated procedure is preferred.</p>
+<p>Stepwise regression is a procedure (not a model) that automates this. It finds the best model from a set of candidate models when the models are nested, and it can be useful for sifting through a large number of explanatory variables.</p>
+<p>Stepwise regression can be done by backward deletion of variables or by forward selection of the variables. Backward deletion amounts to automating the <code>drop1()</code> function and forward selection amounts to automating the <code>add1()</code> function.</p>
+<p>Both <code>drop1()</code> and <code>add1()</code> use the AIC as a criterion for choosing. To see it implemented you return to the full model and apply the <code>step()</code> function.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="tuesday-october-28-2022.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">step</span>(modelFull)</span></code></pre></div>
+<pre><code>## Start:  AIC=407.37
+## Petrol.Consumption ~ Prop.DL + Pavement + Avg.Inc + Petrol.Tax
+## 
+##              Df Sum of Sq    RSS    AIC
+## - Pavement    1      2252 191302 405.94
+## &lt;none&gt;                    189050 407.37
+## - Petrol.Tax  1     31632 220682 412.80
+## - Avg.Inc     1     65729 254779 419.69
+## - Prop.DL     1    212355 401405 441.51
+## 
+## Step:  AIC=405.94
+## Petrol.Consumption ~ Prop.DL + Avg.Inc + Petrol.Tax
+## 
+##              Df Sum of Sq    RSS    AIC
+## &lt;none&gt;                    191302 405.94
+## - Petrol.Tax  1     33742 225044 411.74
+## - Avg.Inc     1     69532 260834 418.82
+## - Prop.DL     1    243586 434889 443.36</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Petrol.Consumption ~ Prop.DL + Avg.Inc + Petrol.Tax, 
+##     data = PC.df)
+## 
+## Coefficients:
+## (Intercept)      Prop.DL      Avg.Inc   Petrol.Tax  
+##   307.32790   1374.76841     -0.06802    -29.48381</code></pre>
+<p>As another example, let’s consider the <em>stackloss</em> data frame.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="tuesday-october-28-2022.html#cb17-1" aria-hidden="true" tabindex="-1"></a>?stackloss</span>
+<span id="cb17-2"><a href="tuesday-october-28-2022.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stackloss)</span></code></pre></div>
+<pre><code>##   Air.Flow Water.Temp Acid.Conc. stack.loss
+## 1       80         27         89         42
+## 2       80         27         88         37
+## 3       75         25         90         37
+## 4       62         24         87         28
+## 5       62         22         87         18
+## 6       62         23         87         18</code></pre>
+<p>You are interested in regressing stack loss (<code>stack.loss</code>) onto air flow (<code>Air.Flow</code>), water temperature (<code>Water.Temp</code>), and acid concentration (<code>Acid.Conc.</code>).</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="tuesday-october-28-2022.html#cb19-1" aria-hidden="true" tabindex="-1"></a>modelFull <span class="ot">&lt;-</span> <span class="fu">lm</span>(stack.loss <span class="sc">~</span> Water.Temp <span class="sc">+</span> Air.Flow <span class="sc">+</span> Acid.Conc., </span>
+<span id="cb19-2"><a href="tuesday-october-28-2022.html#cb19-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> stackloss)</span></code></pre></div>
+<p>Note that with many explanatory variables you can write the model formula as <code>stack.loss ~ .</code>. The period after the tilde indicates that you want all the remaining columns in the data frame as explanatory variables saving the effort of typing all the variable names.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="tuesday-october-28-2022.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">step</span>(modelFull)</span></code></pre></div>
+<pre><code>## Start:  AIC=52.98
+## stack.loss ~ Water.Temp + Air.Flow + Acid.Conc.
+## 
+##              Df Sum of Sq    RSS    AIC
+## - Acid.Conc.  1     9.965 188.80 52.119
+## &lt;none&gt;                    178.83 52.980
+## - Water.Temp  1   130.308 309.14 62.475
+## - Air.Flow    1   296.228 475.06 71.497
+## 
+## Step:  AIC=52.12
+## stack.loss ~ Water.Temp + Air.Flow
+## 
+##              Df Sum of Sq    RSS    AIC
+## &lt;none&gt;                    188.80 52.119
+## - Water.Temp  1    130.32 319.12 61.142
+## - Air.Flow    1    294.36 483.15 69.852</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = stack.loss ~ Water.Temp + Air.Flow, data = stackloss)
+## 
+## Coefficients:
+## (Intercept)   Water.Temp     Air.Flow  
+##    -50.3588       1.2954       0.6712</code></pre>
+<p>Backward deletion of variables is the default method with the <code>step()</code> function. That is a successive application of the <code>drop1()</code> function. In the case of having a large number of explanatory variables it’s a good idea to also try forward selection to see if the results are the same. This is done with the argument <code>direction = "forward"</code>.</p>
+</div>
+<div id="transforming-a-response-variable" class="section level2 unnumbered">
+<h2>Transforming a response variable</h2>
+<p>When the response variable can’t be adequately described by a normal distribution often a simple transformation of the variable will make it approximately normal.</p>
+<p>Consider the following data set containing pollution levels in 41 cites. The data are in the file <em>pollute.txt</em>. The data set contains levels of pollution in 41 cites along with explanatory variables including average temperature, the amount of industry, the population, the average wind speed, the amount of rain, and the number of wet days.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="tuesday-october-28-2022.html#cb23-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;http://myweb.fsu.edu/jelsner/temp/data/pollute.txt&quot;</span></span>
+<span id="cb23-2"><a href="tuesday-october-28-2022.html#cb23-2" aria-hidden="true" tabindex="-1"></a>pollute.df <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_table</span>(url)</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   Pollution = col_double(),
+##   Temp = col_double(),
+##   Industry = col_double(),
+##   Population = col_double(),
+##   Wind = col_double(),
+##   Rain = col_double(),
+##   Wet.days = col_double()
+## )</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="tuesday-october-28-2022.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pollute.df)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 7
+##   Pollution  Temp Industry Population  Wind  Rain Wet.days
+##       &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
+## 1        24  61.5      368        497   9.1  48.3      115
+## 2        30  55.6      291        593   8.3  43.1      123
+## 3        56  55.9      775        622   9.5  35.9      105
+## 4        28  51        137        176   8.7  15.2       89
+## 5        14  68.4      136        529   8.8  54.5      116
+## 6        46  47.6       44        116   8.8  33.4      135</code></pre>
+<p>Here you want to fit a multiple regression model that can predict pollution levels (<code>Pollution</code>) from the explanatory variables including average temperature, the amount of industry, the population, the average wind speed, the amount of rain, and the number of wet days.</p>
+<p>You start with a histogram and a density plot of the response variable <code>Pollution</code>.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="tuesday-october-28-2022.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb27-2"><a href="tuesday-october-28-2022.html#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="tuesday-october-28-2022.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pollute.df, </span>
+<span id="cb27-4"><a href="tuesday-october-28-2022.html#cb27-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Pollution)) <span class="sc">+</span> </span>
+<span id="cb27-5"><a href="tuesday-october-28-2022.html#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="tuesday-october-28-2022.html#cb28-1" aria-hidden="true" tabindex="-1"></a>sm<span class="sc">::</span><span class="fu">sm.density</span>(pollute.df<span class="sc">$</span>Pollution, </span>
+<span id="cb28-2"><a href="tuesday-october-28-2022.html#cb28-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">model =</span> <span class="st">&quot;Normal&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>The response variable <code>Pollution</code> (SO2 concentration in ppm) can not be described by a normal distribution. You can still use regression but you should transform the response variable to make the distribution look more like a normal distribution. What transform should you use?</p>
+<p>Raising a variable <span class="math inline">\(y\)</span> to some power is most common. Box and Cox (1964) suggested a family of transformations, called the power transformations, to make the data histogram look more like a normal distribution.
+<span class="math display">\[
+y_\lambda&#39; =  \frac{y^\lambda-1}{\lambda} 
+\]</span></p>
+<p>The particular transformation depends on the value of <span class="math inline">\(\lambda\)</span>. The choice of which value of <span class="math inline">\(\lambda\)</span> to use is determined using the <code>boxcox()</code> function from the {MASS} package.</p>
+<p>The first argument is a <code>lm()</code> formula. Also needed are the data and a sequence of potential value for <span class="math inline">\(\lambda\)</span> (<code>lambda</code>). Here you are interested in the response variable <code>Pollution</code> without any explanatory variables so the model formula is <code>Pollution ~ 1</code>.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="tuesday-october-28-2022.html#cb29-1" aria-hidden="true" tabindex="-1"></a>MASS<span class="sc">::</span><span class="fu">boxcox</span>(Pollution <span class="sc">~</span> <span class="dv">1</span>, </span>
+<span id="cb29-2"><a href="tuesday-october-28-2022.html#cb29-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> pollute.df,</span>
+<span id="cb29-3"><a href="tuesday-october-28-2022.html#cb29-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">lambda =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="at">length =</span> <span class="dv">10</span>))</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>The output is a plot of the likelihood as a function of possible values for <span class="math inline">\(lambda\)</span>. The likelihood represents the chance of observing the data given the transformation and the normal distribution as the model.</p>
+<p>You choose the <code>lambda</code> that maximizes the likelihood. In this case it is -.25. Note: <span class="math inline">\(\lambda\)</span> is a random variable and thus the 95% uncertainty interval provides a range of values. Here the log-likelihood is maximized between -.75 and .2.</p>
+<p>Create a new variable (<code>Pollution2</code>) that is the transformed <code>Pollution</code> variable (with lambda = -.25 in the above formula).</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="tuesday-october-28-2022.html#cb30-1" aria-hidden="true" tabindex="-1"></a>pollute.df <span class="ot">&lt;-</span> pollute.df <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a href="tuesday-october-28-2022.html#cb30-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">Pollution2 =</span> (Pollution<span class="sc">^</span>(<span class="sc">-</span>.<span class="dv">25</span>) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="sc">-</span>.<span class="dv">25</span>)</span>
+<span id="cb30-3"><a href="tuesday-october-28-2022.html#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="tuesday-october-28-2022.html#cb30-4" aria-hidden="true" tabindex="-1"></a>sm<span class="sc">::</span><span class="fu">sm.density</span>(pollute.df<span class="sc">$</span>Pollution2,</span>
+<span id="cb30-5"><a href="tuesday-october-28-2022.html#cb30-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">model =</span> <span class="st">&quot;Normal&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>The variable <code>Pollution2</code> can be described by a normal distribution.</p>
+<p>More precisely the concern is the distribution of the model residuals. The distribution of the response variable is not of big concern. The normality assumption under girding accurate inferences made with the model is that the distribution of residuals are described by a normal distribution.</p>
+<p>To determine the appropriate Box-Cox transformation on your response variable so that the model residuals can be described as normal use the model formula inside the <code>boxcox()</code> function.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="tuesday-october-28-2022.html#cb31-1" aria-hidden="true" tabindex="-1"></a>MASS<span class="sc">::</span><span class="fu">boxcox</span>(Pollution <span class="sc">~</span> Temp <span class="sc">+</span> Industry <span class="sc">+</span> Population <span class="sc">+</span> Wind <span class="sc">+</span> Rain, </span>
+<span id="cb31-2"><a href="tuesday-october-28-2022.html#cb31-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> pollute.df,</span>
+<span id="cb31-3"><a href="tuesday-october-28-2022.html#cb31-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">lambda =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="at">length =</span> <span class="dv">10</span>))</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+</div>
+<div id="regression-trees" class="section level2 unnumbered">
+<h2>Regression trees</h2>
+<p>A regression tree is a machine learning algorithm. The focus with machine learning algorithms is prediction rather than inference or causality.</p>
+<p>Linear regression is a prediction model for the conditional mean. The conditional mean is the average response for specific values of the explanatory variables. For example, the average maximum heart rate for specific values of age.</p>
+<p>A regression tree is also a prediction model for the conditional mean. But with a regression tree the <em>conditioning</em> is done by dividing the space defined by the explanatory variables into distinct groups.</p>
+<p>Given a set of data a regression tree is trained to predict what the average response will be for specific values of the explanatory variables within the data set.</p>
+<p>To train a regression tree you can use the <code>tree()</code> function from the {tree} package. As an example you train a regression tree on the response variable <code>Pollution</code> from the data frame <code>pollute.df</code>.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="tuesday-october-28-2022.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tree)</span></code></pre></div>
+<pre><code>## Registered S3 method overwritten by &#39;tree&#39;:
+##   method     from
+##   print.tree cli</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="tuesday-october-28-2022.html#cb34-1" aria-hidden="true" tabindex="-1"></a>tree.model <span class="ot">&lt;-</span> <span class="fu">tree</span>(Pollution <span class="sc">~</span> Temp <span class="sc">+</span> Industry <span class="sc">+</span> Population <span class="sc">+</span> Wind <span class="sc">+</span> Rain, </span>
+<span id="cb34-2"><a href="tuesday-october-28-2022.html#cb34-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> pollute.df)</span>
+<span id="cb34-3"><a href="tuesday-october-28-2022.html#cb34-3" aria-hidden="true" tabindex="-1"></a>tree.model</span></code></pre></div>
+<pre><code>## node), split, n, deviance, yval
+##       * denotes terminal node
+## 
+##  1) root 41 22040.00 30.05  
+##    2) Industry &lt; 748 36 11260.00 24.92  
+##      4) Population &lt; 190 7  4096.00 43.43 *
+##      5) Population &gt; 190 29  4187.00 20.45  
+##       10) Temp &lt; 61.55 22  3217.00 23.68  
+##         20) Rain &lt; 36.165 9   296.00 15.00 *
+##         21) Rain &gt; 36.165 13  1773.00 29.69  
+##           42) Population &lt; 513.5 6   179.30 22.67 *
+##           43) Population &gt; 513.5 7  1043.00 35.71 *
+##       11) Temp &gt; 61.55 7    17.43 10.29 *
+##    3) Industry &gt; 748 5  3002.00 67.00 *</code></pre>
+<p>The output is a table listing the explanatory variables, splits, number of cases, and deviances (RSS).</p>
+<p>A plot helps make sense of this output. Here you use the generic <code>plot()</code> method and add text with the <code>text()</code> function.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="tuesday-october-28-2022.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tree.model)</span>
+<span id="cb36-2"><a href="tuesday-october-28-2022.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(tree.model)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>The plot looks like an upside down tree. The branches (called splits) are the rules. Rules (involve the ‘less than’ symbol) are applied to the explanatory variables. Branches end with leaves. The value at the leaf is the mean of the response variable for that subset of observations.</p>
+<p>In this case the first split of the response variable <code>Pollution</code> is on the explanatory variable <code>Industry</code>. The split is a rule on <code>Industry</code>. Is the value of <code>Industry</code> less than 748 units? If <em>yes</em>, branch to the <em>left</em>; if no branch to the right. The left branch leads to another split. The right branch leads to a leaf (terminal node).</p>
+<p>Following the left branch the next split is on <code>Population</code>. Is the value of <code>Population</code> less than 190 units? If yes, branch to the left; if no branch to the right. The left branch leads to a terminal node. The right branch leads to another split, this time on <code>Wet.days</code>.</p>
+<p>The model is fit using binary partitioning. The response variable is split along coordinate axes of the explanatory variables so that at any node, the split which maximally distinguishes the response variable is selected. Splitting continues until nodes cannot be split or until there are too few cases (less than 6 by default).</p>
+<p>The variable that “explains” the greatest amount of variation in the response variable is selected first. Since the first split is on the variable <code>Industry</code> at a value of 748, let’s look at how <code>Pollution</code> is partitioned on this variable. First create a logical vector called <code>split</code> containing <code>TRUE</code> and <code>FALSE</code> depending on whether the value is less than 748. Then use this variable to select the values of <code>Pollution</code> (from the <code>pollute.df</code>) to compute the mean.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="tuesday-october-28-2022.html#cb37-1" aria-hidden="true" tabindex="-1"></a>split <span class="ot">&lt;-</span> pollute.df<span class="sc">$</span>Industry <span class="sc">&lt;</span> <span class="dv">748</span></span>
+<span id="cb37-2"><a href="tuesday-october-28-2022.html#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="tuesday-october-28-2022.html#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pollute.df<span class="sc">$</span>Pollution[split])</span></code></pre></div>
+<pre><code>## [1] 24.91667</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="tuesday-october-28-2022.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pollute.df<span class="sc">$</span>Pollution[<span class="sc">!</span>split])</span></code></pre></div>
+<pre><code>## [1] 67</code></pre>
+<p>Or using functions from the {dplyr} package.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="tuesday-october-28-2022.html#cb41-1" aria-hidden="true" tabindex="-1"></a>pollute.df <span class="sc">|&gt;</span></span>
+<span id="cb41-2"><a href="tuesday-october-28-2022.html#cb41-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">split =</span> Industry <span class="sc">&lt;</span> <span class="dv">748</span>) <span class="sc">|&gt;</span></span>
+<span id="cb41-3"><a href="tuesday-october-28-2022.html#cb41-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(split) <span class="sc">|&gt;</span></span>
+<span id="cb41-4"><a href="tuesday-october-28-2022.html#cb41-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">Avg =</span> <span class="fu">mean</span>(Pollution))</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 2
+##   split   Avg
+##   &lt;lgl&gt; &lt;dbl&gt;
+## 1 FALSE  67  
+## 2 TRUE   24.9</code></pre>
+<p>Thus when <code>Industry</code> is less than 748 the mean value for <code>Pollution</code> is 24.9 and when it is greater or equal to 748 the mean value for <code>Pollution</code> is 67 and when it is less than 748, the mean value of <code>Pollution</code> is 24.9. Graphically you can illustrate this using the following lines of code (code chunk).</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="tuesday-october-28-2022.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb43-2"><a href="tuesday-october-28-2022.html#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="tuesday-october-28-2022.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pollute.df, </span>
+<span id="cb43-4"><a href="tuesday-october-28-2022.html#cb43-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Industry, <span class="at">y =</span> Pollution)) <span class="sc">+</span></span>
+<span id="cb43-5"><a href="tuesday-october-28-2022.html#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb43-6"><a href="tuesday-october-28-2022.html#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">748</span>, <span class="at">linetype =</span> <span class="st">&#39;dashed&#39;</span>) <span class="sc">+</span></span>
+<span id="cb43-7"><a href="tuesday-october-28-2022.html#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">x =</span> <span class="dv">748</span>, <span class="at">xend =</span> <span class="fu">max</span>(pollute.df<span class="sc">$</span>Industry), </span>
+<span id="cb43-8"><a href="tuesday-october-28-2022.html#cb43-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> <span class="dv">67</span>, <span class="at">yend =</span> <span class="dv">67</span>) <span class="sc">+</span></span>
+<span id="cb43-9"><a href="tuesday-october-28-2022.html#cb43-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">xend =</span> <span class="dv">748</span>, </span>
+<span id="cb43-10"><a href="tuesday-october-28-2022.html#cb43-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> <span class="fl">24.92</span>, <span class="at">yend =</span> <span class="fl">24.92</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>The graph shows that the split of <code>Pollution</code> on <code>Industry</code> &lt; 748 results in two means for <code>Pollution</code> that are different. The split results in less than 6 observations of <code>Pollution</code> for <code>Industry</code> &gt;= 748, so a terminal node results and the mean value of <code>Pollution</code> for these (5) observations is 67.</p>
+<p>To check if the split is statistically significant by typing</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="tuesday-october-28-2022.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Pollution <span class="sc">~</span> split, </span>
+<span id="cb44-2"><a href="tuesday-october-28-2022.html#cb44-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> pollute.df)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  Pollution by split
+## t = 3.337, df = 4.4887, p-value = 0.02428
+## alternative hypothesis: true difference in means between group FALSE and group TRUE is not equal to 0
+## 95 percent confidence interval:
+##   8.52294 75.64373
+## sample estimates:
+## mean in group FALSE  mean in group TRUE 
+##            67.00000            24.91667</code></pre>
+<p>The relatively large <span class="math inline">\(t\)</span> value (greater than 3) results in a small <span class="math inline">\(p\)</span>-value (less than .05) indicating you can safely reject the null hypothesis.</p>
+<p>Let’s try another split. What do you find?</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="tuesday-october-28-2022.html#cb46-1" aria-hidden="true" tabindex="-1"></a>split <span class="ot">&lt;-</span> pollute.df<span class="sc">$</span>Industry <span class="sc">&lt;</span> <span class="dv">720</span></span>
+<span id="cb46-2"><a href="tuesday-october-28-2022.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Pollution <span class="sc">~</span> split, </span>
+<span id="cb46-3"><a href="tuesday-october-28-2022.html#cb46-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> pollute.df)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  Pollution by split
+## t = 2.2762, df = 5.4971, p-value = 0.06712
+## alternative hypothesis: true difference in means between group FALSE and group TRUE is not equal to 0
+## 95 percent confidence interval:
+##  -3.193031 67.507317
+## sample estimates:
+## mean in group FALSE  mean in group TRUE 
+##            57.50000            25.34286</code></pre>
+<p>The <span class="math inline">\(t\)</span> value goes down and the <span class="math inline">\(p\)</span>-value increases indicating that splitting the variable <code>Industry</code> at a value of 720 is not as good as splitting it at a value of 748.</p>
+<p>Can you find a better split of <code>Pollution</code> along <code>Industry</code>? Here is how you can answer that question.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="tuesday-october-28-2022.html#cb48-1" aria-hidden="true" tabindex="-1"></a>tvalue <span class="ot">&lt;-</span> <span class="fu">numeric</span>()</span>
+<span id="cb48-2"><a href="tuesday-october-28-2022.html#cb48-2" aria-hidden="true" tabindex="-1"></a>be <span class="ot">&lt;-</span> <span class="fu">quantile</span>(pollute.df<span class="sc">$</span>Industry, <span class="fu">c</span>(.<span class="dv">05</span>, .<span class="dv">95</span>))</span>
+<span id="cb48-3"><a href="tuesday-october-28-2022.html#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> be[<span class="dv">1</span>]<span class="sc">:</span>be[<span class="dv">2</span>]){</span>
+<span id="cb48-4"><a href="tuesday-october-28-2022.html#cb48-4" aria-hidden="true" tabindex="-1"></a>  split <span class="ot">=</span> pollute.df<span class="sc">$</span>Industry <span class="sc">&lt;</span> i</span>
+<span id="cb48-5"><a href="tuesday-october-28-2022.html#cb48-5" aria-hidden="true" tabindex="-1"></a>  tvalue <span class="ot">=</span> <span class="fu">c</span>(tvalue, <span class="fu">t.test</span>(pollute.df<span class="sc">$</span>Pollution <span class="sc">~</span> split)<span class="sc">$</span>statistic)</span>
+<span id="cb48-6"><a href="tuesday-october-28-2022.html#cb48-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb48-7"><a href="tuesday-october-28-2022.html#cb48-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-8"><a href="tuesday-october-28-2022.html#cb48-8" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Industry =</span> be[<span class="dv">1</span>]<span class="sc">:</span>be[<span class="dv">2</span>], tvalue)</span>
+<span id="cb48-9"><a href="tuesday-october-28-2022.html#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, </span>
+<span id="cb48-10"><a href="tuesday-october-28-2022.html#cb48-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Industry, <span class="at">y =</span> tvalue)) <span class="sc">+</span></span>
+<span id="cb48-11"><a href="tuesday-october-28-2022.html#cb48-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb48-12"><a href="tuesday-october-28-2022.html#cb48-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">748</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb48-13"><a href="tuesday-october-28-2022.html#cb48-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Industry&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;t statistic&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p>The split value (748) found by the regression tree for the variable <code>Industry</code> maximizes the <span class="math inline">\(t\)</span>-value over all such splits.</p>
+<p>How a regression tree is trained. For a given explanatory variable, the algorithm</p>
+<ul>
+<li>Selects a candidate split value.</li>
+<li>Computes the mean of the response above and below the value.</li>
+<li>Computes the deviance (residual sum of squares) from the two means.</li>
+<li>Goes through all possible splits.</li>
+<li>Looks to see which split gives the lowest deviance. This is the split that gives the largest <span class="math inline">\(t\)</span> statistic.</li>
+<li>Splits the entire data set into high and low subsets based on this split value.</li>
+<li>Repeats this procedure on each subset of the data on either side of the first split.</li>
+<li>Keeps going until no additional reduction in deviance is obtained, or there are too few data values to merit further divisions.</li>
+</ul>
+<p>The importance of a split to the regression tree is the reduction in the deviance and the importance is represented on the tree plot as the length of the hanging branch. The reduction in deviance is larger for the split on <code>Population</code> than for the split on <code>Wet.days.</code></p>
+<p>The two key components of the training algorithm are: (1) Which variables to use in the split, and (2) how to best achieve the split given a variable. Tree regression is similar to forward selection in the stepwise regression procedure. Include the most important variable (the one that explains the most variance in the response) first then see if additional variables decrease the deviance keeping track of the cost associated with the loss of the degree of freedom.</p>
+<p>Model output from a trained regression tree is printed by typing the name of the model object.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="tuesday-october-28-2022.html#cb49-1" aria-hidden="true" tabindex="-1"></a>tree.model</span></code></pre></div>
+<p>The terminal nodes are denoted with an asterisk (6 of them). The node number is labeled on the left with the name of the variable on which the split is made.</p>
+<p>Next is the split criterion which shows the threshold value and an inequality sign. The number of observations going into the split (or terminal node) comes next. The deviance value and the mean over all observations are shown as the next two values.</p>
+<p>At the root node the mean is 30.05 (<code>mean(Pollution))</code> with a deviance of 22040 from 41 observations. The split on <code>Industry</code> at a threshold of 748 reduces the deviance to 11260 for values of <code>Pollution</code> less than 748 (node 2) and to 3002 for values of <code>Pollution</code> greater than or equal to 748 (node 3). The reduction in deviance is 22040 - (11260 + 3002) Since node 3 has less than 6 observations, it becomes a terminal node. The remaining deviance from node 2 is split using <code>Population</code> at a value of 190.</p>
+<p>Note how the nodes are nested: within node 2, for example, node 4 is terminal but node 5 is not; within node 5 node 10 is terminal but node 11 is not; within node 11, node 23 is terminal but node 22 is not, and so on.</p>
+<p>The highest mean value of <code>Pollution</code> according to this tree regression is 67 (node 3) and the lowest is 12 (node 10).</p>
+<p>The most extreme observations of <code>Industry</code> stand alone in leading to a large level of pollution. For the rest, <code>Population</code> is the most important variable, but it is low populations that are associated with the highest levels of pollution.</p>
+<p>For high levels of population (<code>Population</code> &gt; 190), the number of wet days becomes a key determinant of pollution; places with the fewest wet days (less than 108 per year) have the lowest pollution levels.</p>
+<p>For those places with more than 108 wet days, it’s temperature that is most important in explaining variation in pollution levels; the warmest places have the lowest air pollution levels. For the cooler places with more wet days, it is wind speed that matters; windier places are less polluted.</p>
+<p>This kind of nuanced and contingent explanation of how the explanatory variables influence the response is made possible with a regression tree. The cost is the potential to interpret noise as signal.</p>
+<p>Regression trees are used mainly for predictions. Predicted values are easy to anticipate. For example it is obvious that, given the model, if <code>Industry</code> exceeds 748, then the <code>Pollution</code> level is predicted to be 67. If <code>Industry</code> is less than 748 and <code>Population</code> is less than 190, then the <code>Pollution</code> level is predicted to be 43.43. The <code>predict()</code> method works like it does for a linear regression model object. The first argument is the model object and the next is the data frame containing the variables.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="tuesday-october-28-2022.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(tree.model, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">Industry =</span> <span class="dv">750</span>, <span class="at">Population =</span> <span class="dv">0</span>, </span>
+<span id="cb50-2"><a href="tuesday-october-28-2022.html#cb50-2" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">Wet.days =</span> <span class="dv">0</span>, <span class="at">Temp =</span> <span class="dv">0</span>, <span class="at">Wind =</span> <span class="dv">0</span>, <span class="at">Rain =</span> <span class="dv">0</span>))</span></code></pre></div>
+<pre><code>##  1 
+## 67</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="tuesday-october-28-2022.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(tree.model, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">Industry =</span> <span class="dv">740</span>, <span class="at">Population =</span> <span class="dv">180</span>, </span>
+<span id="cb52-2"><a href="tuesday-october-28-2022.html#cb52-2" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">Wet.days =</span> <span class="dv">0</span>, <span class="at">Temp =</span> <span class="dv">0</span>, <span class="at">Wind =</span> <span class="dv">0</span>, <span class="at">Rain =</span> <span class="dv">0</span>))</span></code></pre></div>
+<pre><code>##        1 
+## 43.42857</code></pre>
+<p>Note that you need to specify all the explanatory variables even if they are not involved with the final predicted value.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="tuesday-october-28-2022.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(tree.model, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">Industry =</span> <span class="dv">740</span>, <span class="at">Population =</span> <span class="dv">200</span>, </span>
+<span id="cb54-2"><a href="tuesday-october-28-2022.html#cb54-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">Wet.days =</span> <span class="dv">120</span>, <span class="at">Temp =</span> <span class="dv">50</span>, <span class="at">Wind =</span> <span class="dv">8</span>, <span class="at">Rain =</span> <span class="dv">0</span>))</span></code></pre></div>
+<pre><code>##  1 
+## 15</code></pre>
+<p>Prediction amounts to following the rules defined by the regression tree. You start with the value of the variable <code>Industry</code> and work your way down until you come to a terminal node. The predicted value is the group mean of the response.</p>
+<p>The standard error on the predicted value is more difficult to work out. You could use the standard error on the subset mean for that leaf. But this ignores the uncertainty surrounding the other decisions (branches) that came before.</p>
+<p>There is no simple way to get an uncertainty estimate about the predicted level of pollution.</p>
+<p>Simplifying the model is a trade-off between minimizing the bias and maximizing the variance explained. If the regression tree has many explanatory variables with many branches then it will explain more variance, but it is biased toward the particular data set. If the tree is too simple it will not explain much of the variance. If the tree is too complex predictions on new data will be poor.</p>
+<p>Pruning the tree helps balance this trade-off. The <code>prune.tree()</code> function gives a sequence of smaller trees from the largest tree by removing the least important splits.</p>
+<p>The function returns the tree size (number of terminal nodes), the total deviance of each tree, and the increase in deviance by going from a larger tree to a smaller tree.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="tuesday-october-28-2022.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prune.tree</span>(tree.model)</span></code></pre></div>
+<pre><code>## $size
+## [1] 6 5 3 2 1
+## 
+## $dev
+## [1]  8633.905  9183.912 11284.887 14262.750 22037.902
+## 
+## $k
+## [1]      -Inf  550.0073 1050.4873 2977.8633 7775.1524
+## 
+## $method
+## [1] &quot;deviance&quot;
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;prune&quot;         &quot;tree.sequence&quot;</code></pre>
+<p>Here you see the largest tree (6 terminal nodes) results in the smallest deviance (8877). By pruning one branch the deviance increases (9240) but only by a relatively small amount (364 or 4%). Similarly by pruning a second branch the deviance increases, this time a bit more. It is helpful to plot the deviance as a function of tree size.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="tuesday-october-28-2022.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">prune.tree</span>(tree.model))</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p>Here the plot is opposite of the table. Deviance declines with increasing complexity.</p>
+<p>Code challenge: Make this using the grammar of graphs. Hint: save the prune tree object and then create a data frame from the object lists. Then use <code>scale_x_reverse()</code>.</p>
+<p>You see that the amount of decline diminishes with each node (diminishing return). In fact, you can argue that a tree with 4 terminal nodes is best since the deviance from 4 to 5 nodes is relatively small.</p>
+<p>Suppose you want the best tree with four nodes.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="tuesday-october-28-2022.html#cb59-1" aria-hidden="true" tabindex="-1"></a>tree.model2 <span class="ot">&lt;-</span> <span class="fu">prune.tree</span>(tree.model, <span class="at">best =</span> <span class="dv">4</span>)</span>
+<span id="cb59-2"><a href="tuesday-october-28-2022.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tree.model2)</span>
+<span id="cb59-3"><a href="tuesday-october-28-2022.html#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(tree.model2)</span>
+<span id="cb59-4"><a href="tuesday-october-28-2022.html#cb59-4" aria-hidden="true" tabindex="-1"></a>tree.model2</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="thursday-october-21-2022.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
