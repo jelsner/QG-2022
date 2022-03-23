@@ -181,7 +181,7 @@ MASS::boxcox(Pollution ~ Temp + Industry + Population + Wind + Rain,
 
 ## Regression trees {-}
 
-A regression tree is a machine learning algorithm. The focus with machine learning algorithms is prediction rather than inference or causality.
+A regression tree (decision tree) is a type of machine learning algorithm. Machine learning focuses on prediction rather than on inference or causality.
 
 Linear regression is a prediction model for the conditional mean. The conditional mean is the average response for specific values of the explanatory variables. For example, the average maximum heart rate for specific values of age. 
 
