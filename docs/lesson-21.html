@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1 Lesson 21 | GEO5156: Quantitative Geography</title>
+  <meta name="description" content="1 Lesson 21 | GEO5156: Quantitative Geography" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1 Lesson 21 | GEO5156: Quantitative Geography" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="jelsner/QG-2022" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1 Lesson 21 | GEO5156: Quantitative Geography" />
+  
+  
+  
+
+<meta name="author" content="James B. Elsner" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tuesday-october-28-2022.html"/>
+
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Quantitative Geography</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html"><i class="fa fa-check"></i>Syllabus</a>
+<ul>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#geo5165c-quantitative-geography"><i class="fa fa-check"></i>GEO5165C: Quantitative Geography</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#contact-information"><i class="fa fa-check"></i>Contact information</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#course-description"><i class="fa fa-check"></i>Course description</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#expected-learning-outcomes"><i class="fa fa-check"></i>Expected learning outcomes</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#materials"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#class-meetings"><i class="fa fa-check"></i>Class meetings</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#grades"><i class="fa fa-check"></i>Grades</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#academic-honor-code"><i class="fa fa-check"></i>Academic honor code</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#students-with-disabilities-act"><i class="fa fa-check"></i>Students With Disabilities Act</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#inclusiveness"><i class="fa fa-check"></i>Inclusiveness</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#more-about-your-instructor"><i class="fa fa-check"></i>More about your instructor</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#syllabus-change-policy"><i class="fa fa-check"></i>Syllabus change policy</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#schedule-subject-to-change-with-notice"><i class="fa fa-check"></i>Schedule (subject to change with notice)</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#other-materials-to-check-out"><i class="fa fa-check"></i>Other materials to check out</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#julia-programming-language"><i class="fa fa-check"></i>Julia programming language</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html"><i class="fa fa-check"></i>Tuesday, August 23, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#today"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#what-is-this-course"><i class="fa fa-check"></i>What is this course?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#where-are-the-materials-for-this-course"><i class="fa fa-check"></i>Where are the materials for this course?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#join-rstudio-cloud"><i class="fa fa-check"></i>Join RStudio Cloud</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#examples"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#course-syllabus"><i class="fa fa-check"></i>Course Syllabus</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#tallahassee-daily-temperatures"><i class="fa fa-check"></i>Tallahassee daily temperatures</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html"><i class="fa fa-check"></i>Thursday, August 25, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#today-1"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#data-analysis"><i class="fa fa-check"></i>Data Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#reproducibility"><i class="fa fa-check"></i>Reproducibility</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#communication"><i class="fa fa-check"></i>Communication</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#automation"><i class="fa fa-check"></i>Automation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#the-r-programming-language"><i class="fa fa-check"></i>The R programming language</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#overview-of-this-course"><i class="fa fa-check"></i>Overview of this course</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#work-in-plain-text-using-r-markdown"><i class="fa fa-check"></i>Work in plain text, using R Markdown</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#visualizing-data"><i class="fa fa-check"></i>Visualizing data</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-code-template"><i class="fa fa-check"></i>A code template</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#the-code"><i class="fa fa-check"></i>The code</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-graphing-workflow"><i class="fa fa-check"></i>A graphing workflow</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-graphing-template"><i class="fa fa-check"></i>A graphing template</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#common-problems"><i class="fa fa-check"></i>Common problems</a></li>
+<li><a href="thursday-august-25-2022.html#location-of-the-sign">location of the <code>+</code> sign</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#help"><i class="fa fa-check"></i>help</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#things-to-know"><i class="fa fa-check"></i>Things to know</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#everything-has-a-name"><i class="fa fa-check"></i>Everything has a name</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#everything-is-an-object"><i class="fa fa-check"></i>Everything is an object</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#you-do-things-using-functions"><i class="fa fa-check"></i>You do things using functions</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#functions-come-in-packages-libraries"><i class="fa fa-check"></i>Functions come in packages (libraries)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#your-turn"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html"><i class="fa fa-check"></i>Tuesday, August 30, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#today-2"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#scatter-plots"><i class="fa fa-check"></i>Scatter plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#facets"><i class="fa fa-check"></i>Facets</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#calculations"><i class="fa fa-check"></i>Calculations</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#functions"><i class="fa fa-check"></i>Functions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#syntax-is-important"><i class="fa fa-check"></i>Syntax is important</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#saving-an-object"><i class="fa fa-check"></i>Saving an object</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#object-names"><i class="fa fa-check"></i>Object names</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#entering-data"><i class="fa fa-check"></i>Entering data</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#applying-a-function"><i class="fa fa-check"></i>Applying a function</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#averge"><i class="fa fa-check"></i>Averge</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#data-vectors"><i class="fa fa-check"></i>Data vectors</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#variance"><i class="fa fa-check"></i>Variance</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#data-vectors-have-a-type"><i class="fa fa-check"></i>Data vectors have a type</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#working-smarter"><i class="fa fa-check"></i>Working smarter</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html"><i class="fa fa-check"></i>Thursday, September 1, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#today-3"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#data-as-vectors"><i class="fa fa-check"></i>Data as vectors</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#mean"><i class="fa fa-check"></i>Mean</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#variance-1"><i class="fa fa-check"></i>Variance</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#median"><i class="fa fa-check"></i>Median</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#spread"><i class="fa fa-check"></i>Spread</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#vector-types"><i class="fa fa-check"></i>Vector types</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#structured-data"><i class="fa fa-check"></i>Structured data</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#asking-questions"><i class="fa fa-check"></i>Asking questions</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#tables-and-summaries"><i class="fa fa-check"></i>Tables and summaries</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html"><i class="fa fa-check"></i>Tuesday, September 6, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#today-4"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#getting-your-data-into-r"><i class="fa fa-check"></i>Getting your data into R</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-structured-data-files"><i class="fa fa-check"></i>Creating structured data files</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#data-frames"><i class="fa fa-check"></i>Data frames</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#quantiles"><i class="fa fa-check"></i>Quantiles</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-a-data-frame"><i class="fa fa-check"></i>Creating a data frame</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#pipes"><i class="fa fa-check"></i>Pipes</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#your-turn-1"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html"><i class="fa fa-check"></i>Thursday, September 8, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#today-5"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#pipe-operator"><i class="fa fa-check"></i>Pipe operator</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#wrangling-data-frames"><i class="fa fa-check"></i>Wrangling data frames</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#selecting-and-filtering"><i class="fa fa-check"></i>Selecting and filtering</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#example-palmer-penguins"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#stringing-functions-together"><i class="fa fa-check"></i>Stringing functions together</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#summarize"><i class="fa fa-check"></i>Summarize</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#grouping"><i class="fa fa-check"></i>Grouping</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#your-turn-2"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html"><i class="fa fa-check"></i>Tuesday, September 12, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#today-6"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#example-1-new-york-city-flight-data"><i class="fa fa-check"></i>Example 1: New York City flight data</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#example-2-daily-weather-data-from-tallahassee"><i class="fa fa-check"></i>Example 2: Daily weather data from Tallahassee</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#putting-everything-together"><i class="fa fa-check"></i>Putting everything together</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#example-3-food-consumption-and-co2-emissions"><i class="fa fa-check"></i>Example 3: Food consumption and CO2 emissions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-12-2022.html"><a href="tuesday-september-12-2022.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html"><i class="fa fa-check"></i>Thursday, September 14, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#today-7"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#bar-chart"><i class="fa fa-check"></i>Bar chart</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#pie-preference"><i class="fa fa-check"></i>Pie preference</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#histogram"><i class="fa fa-check"></i>Histogram</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#density-plot"><i class="fa fa-check"></i>Density plot</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#box-plot"><i class="fa fa-check"></i>Box plot</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-14-2022.html"><a href="thursday-september-14-2022.html#side-by-side-box-plots"><i class="fa fa-check"></i>Side-by-side box plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html"><i class="fa fa-check"></i>Tuesday, September 19, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#today-8"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#comparing-distributions"><i class="fa fa-check"></i>Comparing distributions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#box-plots"><i class="fa fa-check"></i>Box plots</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#long-data-frames"><i class="fa fa-check"></i>Long data frames</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#scatter-plots-1"><i class="fa fa-check"></i>Scatter plots</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#facets-1"><i class="fa fa-check"></i>Facets</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#example-palmer-penguins-1"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#an-expository-graph"><i class="fa fa-check"></i>An expository graph</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-19-2022.html"><a href="tuesday-september-19-2022.html#exporting-your-graph"><i class="fa fa-check"></i>Exporting your graph</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html"><i class="fa fa-check"></i>Thursday, September 21, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#today-9"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#simple-feature-data-frames"><i class="fa fa-check"></i>Simple feature data frames</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#making-a-boundary-map"><i class="fa fa-check"></i>Making a boundary map</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#fills"><i class="fa fa-check"></i>Fills</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#adding-data"><i class="fa fa-check"></i>Adding data</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#inset-maps"><i class="fa fa-check"></i>Inset maps</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#map-projections"><i class="fa fa-check"></i>Map projections</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022.html"><a href="thursday-september-21-2022.html#bivariate-maps"><i class="fa fa-check"></i>Bivariate maps</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html"><i class="fa fa-check"></i>Thursday, September 21, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#today-10"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#making-maps-using-functions-from-the-tmap-package"><i class="fa fa-check"></i>Making maps using functions from the {tmap} package</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#example-mapping-tornadoes"><i class="fa fa-check"></i>Example: Mapping tornadoes</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#example-mapping-the-frequency-of-tornadoes-by-state"><i class="fa fa-check"></i>Example: Mapping the frequency of tornadoes by state</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#calculations-using-the-geometry-simple-feature-column"><i class="fa fa-check"></i>Calculations using the geometry simple feature column</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#making-raster-maps"><i class="fa fa-check"></i>Making raster maps</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#get-map-images-using-functions-from-the-ggmap-package"><i class="fa fa-check"></i>Get map images using functions from the {ggmap} package</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#add-data-to-the-raster-map"><i class="fa fa-check"></i>Add data to the raster map</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-21-2022-1.html"><a href="thursday-september-21-2022-1.html#spatial-density-maps-extra-material"><i class="fa fa-check"></i>Spatial density maps (extra material)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html"><i class="fa fa-check"></i>Tuesday, September 26, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#today-11"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#one-sample-test-of-the-population-mean"><i class="fa fa-check"></i>One-sample test of the population mean</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#about-p-values"><i class="fa fa-check"></i>About p-values</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#example-strongest-atlantic-hurricanes"><i class="fa fa-check"></i>Example: Strongest Atlantic hurricanes</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#graphical-inference"><i class="fa fa-check"></i>Graphical inference</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#two-sample-test-of-the-difference-in-population-means"><i class="fa fa-check"></i>Two-sample test of the difference in population means</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#example-hurricanes-in-the-north-atlantic-and-the-eastern-north-pacific"><i class="fa fa-check"></i>Example: hurricanes in the North Atlantic and the eastern North Pacific</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#example-palmer-penguins-2"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#your-turn-3"><i class="fa fa-check"></i>Your turn</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#test-of-equal-variance"><i class="fa fa-check"></i>Test of equal variance</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-26-2022.html"><a href="tuesday-september-26-2022.html#wilcoxon-mann-whitney-u-non-parameteric-test-of-difference-in-means"><i class="fa fa-check"></i>Wilcoxon (Mann-Whitney U) non-parameteric test of difference in means</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html"><i class="fa fa-check"></i>Thursday, September 28, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#today-12"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#review"><i class="fa fa-check"></i>Review</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#paired-observations"><i class="fa fa-check"></i>Paired observations</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#example-reaction-time-while-driving"><i class="fa fa-check"></i>Example: Reaction time while driving</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#chi-squared-test-for-independence"><i class="fa fa-check"></i>Chi-squared test for independence</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-28-2022.html"><a href="thursday-september-28-2022.html#example-smoking-and-exercise"><i class="fa fa-check"></i>Example: Smoking and exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html"><i class="fa fa-check"></i>Tuesday, October 3, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html#today-13"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html#distributions"><i class="fa fa-check"></i>Distributions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html#normal-distribution"><i class="fa fa-check"></i>Normal distribution</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html#uniform-distribution"><i class="fa fa-check"></i>Uniform distribution</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html#how-many-blue-marbles"><i class="fa fa-check"></i>How many blue marbles?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html#what-percentage-of-the-globe-is-covered-by-water"><i class="fa fa-check"></i>What percentage of the globe is covered by water?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-3-2022.html"><a href="tuesday-october-3-2022.html#how-many-fish-are-in-the-lake"><i class="fa fa-check"></i>How many fish are in the lake?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html"><i class="fa fa-check"></i>Thursday, October 5, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#today-14"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#how-many-fish-are-in-the-lake-1"><i class="fa fa-check"></i>How many fish are in the lake?</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#percentage-of-survey-signups"><i class="fa fa-check"></i>Percentage of survey signups</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#a-generative-model-for-people-agreeing-to-take-your-survey"><i class="fa fa-check"></i>A generative model for people agreeing to take your survey</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#prior-for-the-response-rate"><i class="fa fa-check"></i>Prior for the response rate</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#define-the-generative-model-and-simulate-the-data"><i class="fa fa-check"></i>Define the generative model and simulate the data</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#prediction"><i class="fa fa-check"></i>Prediction</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#approximate-bayesian-computation"><i class="fa fa-check"></i>Approximate Bayesian computation</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#what-bayesian-data-analysis-is-not"><i class="fa fa-check"></i>What Bayesian data analysis is not</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#comparing-two-hypotheses"><i class="fa fa-check"></i>Comparing two hypotheses</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#reaction-times-while-driving"><i class="fa fa-check"></i>Reaction times while driving</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-5-2022.html"><a href="thursday-october-5-2022.html#repeat-the-survey-example"><i class="fa fa-check"></i>Repeat the survey example</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html"><i class="fa fa-check"></i>Tuesday, October 12, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#today-15"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#linear-regression-a-t-test-by-another-name"><i class="fa fa-check"></i>Linear regression: A t test by another name</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#motivating-regression"><i class="fa fa-check"></i>Motivating regression</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#eyeballing-the-regression"><i class="fa fa-check"></i>Eyeballing the regression</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#example-increasing-heart-rates-with-age"><i class="fa fa-check"></i>Example: Increasing heart rates with age</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#making-predictions-with-regression"><i class="fa fa-check"></i>Making predictions with regression</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#uncertainty-about-the-regression-coefficients"><i class="fa fa-check"></i>Uncertainty about the regression coefficients</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#bootstrapping-the-uncertainty"><i class="fa fa-check"></i>Bootstrapping the uncertainty</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-12-2022.html"><a href="tuesday-october-12-2022.html#predictive-uncertainty"><i class="fa fa-check"></i>Predictive uncertainty</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html"><i class="fa fa-check"></i>Thursday, October 14, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#today-16"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#uncertainty-about-a-particular-predicted-value"><i class="fa fa-check"></i>Uncertainty about a particular predicted value</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#example-predicting-body-mass-from-fipper-length"><i class="fa fa-check"></i>Example: Predicting body mass from fipper length</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#model-adequacy"><i class="fa fa-check"></i>Model Adequacy</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-14-2022.html"><a href="thursday-october-14-2022.html#transforming-the-response-variable"><i class="fa fa-check"></i>Transforming the response variable</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-october-19-2022.html"><a href="tuesday-october-19-2022.html"><i class="fa fa-check"></i>Tuesday, October 19, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-october-19-2022.html"><a href="tuesday-october-19-2022.html#today-17"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-19-2022.html"><a href="tuesday-october-19-2022.html#example-average-income-vs-percent-college-graduates-at-the-state-level"><i class="fa fa-check"></i>Example: Average income vs percent college graduates at the state level</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-19-2022.html"><a href="tuesday-october-19-2022.html#outliers"><i class="fa fa-check"></i>Outliers</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-19-2022.html"><a href="tuesday-october-19-2022.html#summarizing"><i class="fa fa-check"></i>Summarizing</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-19-2022.html"><a href="tuesday-october-19-2022.html#example-a-regression-model-for-trend"><i class="fa fa-check"></i>Example: A regression model for trend</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-19-2022.html"><a href="tuesday-october-19-2022.html#simpsons-paradox"><i class="fa fa-check"></i>Simpson’s paradox</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-october-21-2022.html"><a href="thursday-october-21-2022.html"><i class="fa fa-check"></i>Thursday, October 21, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-october-21-2022.html"><a href="thursday-october-21-2022.html#today-18"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-21-2022.html"><a href="thursday-october-21-2022.html#multiple-variable-linear-regression"><i class="fa fa-check"></i>Multiple variable linear regression</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-21-2022.html"><a href="thursday-october-21-2022.html#a-grid-of-scatter-plots"><i class="fa fa-check"></i>A grid of scatter plots</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-21-2022.html"><a href="thursday-october-21-2022.html#fit-a-multiple-variable-regression-model"><i class="fa fa-check"></i>Fit a multiple variable regression model</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-21-2022.html"><a href="thursday-october-21-2022.html#should-you-remove-a-variable-from-the-model"><i class="fa fa-check"></i>Should you remove a variable from the model?</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-21-2022.html"><a href="thursday-october-21-2022.html#checking-on-the-model-assumptions"><i class="fa fa-check"></i>Checking on the model assumptions</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-21-2022.html"><a href="thursday-october-21-2022.html#example-predicting-house-prices"><i class="fa fa-check"></i>Example: Predicting house prices</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-21-2022.html"><a href="thursday-october-21-2022.html#collinearity"><i class="fa fa-check"></i>Collinearity</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-21-2022.html"><a href="thursday-october-21-2022.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-october-28-2022.html"><a href="tuesday-october-28-2022.html"><i class="fa fa-check"></i>Tuesday, October 28, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-october-28-2022.html"><a href="tuesday-october-28-2022.html#today-19"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-28-2022.html"><a href="tuesday-october-28-2022.html#removing-variables-from-a-model"><i class="fa fa-check"></i>Removing variables from a model</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-28-2022.html"><a href="tuesday-october-28-2022.html#the-stepwise-regression-procedure"><i class="fa fa-check"></i>The stepwise regression procedure</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-28-2022.html"><a href="tuesday-october-28-2022.html#transforming-a-response-variable"><i class="fa fa-check"></i>Transforming a response variable</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-28-2022.html"><a href="tuesday-october-28-2022.html#regression-trees"><i class="fa fa-check"></i>Regression trees</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="lesson-21.html"><a href="lesson-21.html"><i class="fa fa-check"></i><b>1</b> Lesson 21</a>
+<ul>
+<li class="chapter" data-level="" data-path="lesson-21.html"><a href="lesson-21.html#today-20"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="lesson-21.html"><a href="lesson-21.html#regression-tree-example"><i class="fa fa-check"></i>Regression tree example</a></li>
+<li class="chapter" data-level="" data-path="lesson-21.html"><a href="lesson-21.html#predictive-uncertainty-1"><i class="fa fa-check"></i>Predictive uncertainty</a></li>
+<li class="chapter" data-level="" data-path="lesson-21.html"><a href="lesson-21.html#random-forest-algorithm"><i class="fa fa-check"></i>Random forest algorithm</a></li>
+<li class="chapter" data-level="" data-path="lesson-21.html"><a href="lesson-21.html#cross-validation"><i class="fa fa-check"></i>Cross validation</a></li>
+<li class="chapter" data-level="" data-path="lesson-21.html"><a href="lesson-21.html#classification-trees"><i class="fa fa-check"></i>Classification trees</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GEO5156: Quantitative Geography</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="lesson-21" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Lesson 21</h1>
+<div id="today-20" class="section level2 unnumbered">
+<h2>Today</h2>
+<ul>
+<li>Predictive uncertainty</li>
+<li>Random forests</li>
+<li>Cross validation</li>
+<li>Classification trees</li>
+</ul>
+</div>
+<div id="regression-tree-example" class="section level2 unnumbered">
+<h2>Regression tree example</h2>
+<p>Example: Let’s return to the Palmer penguins data frame. You are interested in using machine learning (regression tree) to predict the body mass of male Gentoo penguins using the penguin’s bill and flipper dimensions.</p>
+<p>First you filter the data frame keeping only the male Gentoo penguins.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="lesson-21.html#cb1-1" aria-hidden="true" tabindex="-1"></a>Gentoo.df <span class="ot">&lt;-</span> palmerpenguins<span class="sc">::</span>penguins <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a href="lesson-21.html#cb1-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">&quot;Gentoo&quot;</span>, </span>
+<span id="cb1-3"><a href="lesson-21.html#cb1-3" aria-hidden="true" tabindex="-1"></a>                sex <span class="sc">==</span> <span class="st">&quot;male&quot;</span>)</span></code></pre></div>
+<p>To train (fit) the model you use the <code>tree()</code> function from the {tree} package. The response variable is <code>body_mass_g</code> and the explanatory variables are <code>bill_length_mm</code>, <code>bill_depth_mm</code>, and <code>flipper_length_mm</code>.</p>
+<p>The first argument in the function is the model formula and the formula has the same format as that for fitting a linear regression model.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="lesson-21.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tree)</span></code></pre></div>
+<pre><code>## Registered S3 method overwritten by &#39;tree&#39;:
+##   method     from
+##   print.tree cli</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="lesson-21.html#cb4-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">tree</span>(body_mass_g <span class="sc">~</span> bill_length_mm <span class="sc">+</span> bill_depth_mm <span class="sc">+</span> flipper_length_mm,</span>
+<span id="cb4-2"><a href="lesson-21.html#cb4-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> Gentoo.df)</span>
+<span id="cb4-3"><a href="lesson-21.html#cb4-3" aria-hidden="true" tabindex="-1"></a>model</span></code></pre></div>
+<pre><code>## node), split, n, deviance, yval
+##       * denotes terminal node
+## 
+##   1) root 61 5884000 5485  
+##     2) bill_length_mm &lt; 47.45 13  795800 5238  
+##       4) bill_depth_mm &lt; 15.7 8   89690 5131 *
+##       5) bill_depth_mm &gt; 15.7 5  467000 5410 *
+##     3) bill_length_mm &gt; 47.45 48 4086000 5552  
+##       6) flipper_length_mm &lt; 228.5 38 3300000 5498  
+##        12) flipper_length_mm &lt; 216.5 9  942500 5375 *
+##        13) flipper_length_mm &gt; 216.5 29 2179000 5536  
+##          26) flipper_length_mm &lt; 224.5 20 1554000 5595  
+##            52) bill_length_mm &lt; 49 5  458000 5430 *
+##            53) bill_length_mm &gt; 49 15  915000 5650  
+##             106) bill_length_mm &lt; 50.45 9  553900 5711 *
+##             107) bill_length_mm &gt; 50.45 6  277100 5558 *
+##          27) flipper_length_mm &gt; 224.5 9  402200 5406 *
+##       7) flipper_length_mm &gt; 228.5 10  262200 5755 *</code></pre>
+<p>A <em>tree diagram</em> helps make sense of this output. Use the generic <code>plot()</code> method and add text with the <code>text()</code> function.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="lesson-21.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model)</span>
+<span id="cb6-2"><a href="lesson-21.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(model)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>The most important variable in explaining body mass of the male Gentoo penguins is bill length. It is the variable named on the top of the tree diagram. For penguins with bills less than 47.45 mm, the next most important variable is bill depth (if the condition is true, then branch to the left). For those penguins with shorter bills if bill depth is less than 15.7 mm then the average body mass is 5131 grams and if the bill depth is greater or equal to 15.7 mm then the average body mass is larger at 5410 g. Again, if the condition is tree, then branch left.</p>
+<p>For Gentoo penguins with a bills at least 47.45 mm in length, the next most important variable is flipper length. For these larger-billed penguins, if flippers are longer (at least 228.5 mm) then the average body mass is 5755 g. For these larger-bill length penguins, if flippers are shorter than 228.5 mm, then split on flipper length again.</p>
+<p>As we move down the tree the branches get smaller (the vertical lines get shorter) indicating the splits are <em>less</em> important in reducing the residual sum of squares (RSS).</p>
+<p>Interpreting a tree regression is easier than interpreting a linear regression because the splits have the same units as the explanatory variables. In a linear regression the coefficients have units of response variable divided by the units of the explanatory variable.</p>
+<p>Machine learning algorithms are often used solely for predictions. Given the branching structure of the tree, the predicted values are easy to anticipate.</p>
+<p>Prediction amounts to following the rules defined by the final model. You start with the value of the variable <code>bill_length_mm</code> and work your way down until you come to a terminal node (a branch that ends in a value rather than a split). The value is the <em>average of the response variable</em> conditional on the splits.</p>
+<p>For example, if <code>bill_length_mm</code> is less than 47.45 mm and <code>bill_depth_mm</code> is less than 15.7 mm, then the mass of the penguin is predicted to be 5131 grams. Said another way, 5131 is the average body mass for all male Gentoo penguins with bill length less than 47.45 and bill depth less than 15.7.</p>
+<p>You can check this as follows.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="lesson-21.html#cb7-1" aria-hidden="true" tabindex="-1"></a>Gentoo.df <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="lesson-21.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(bill_length_mm <span class="sc">&lt;</span> <span class="fl">47.45</span> <span class="sc">&amp;</span> bill_depth_mm <span class="sc">&lt;</span> <span class="fl">15.7</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="lesson-21.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="fu">mean</span>(body_mass_g))</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 1
+##   `mean(body_mass_g)`
+##                 &lt;dbl&gt;
+## 1               5131.</code></pre>
+<p>The <code>predict()</code> method is used to make predictions with the model. The first argument is the model object and the next is the data frame containing the variables.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="lesson-21.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model, </span>
+<span id="cb9-2"><a href="lesson-21.html#cb9-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">bill_length_mm =</span> <span class="dv">45</span>,</span>
+<span id="cb9-3"><a href="lesson-21.html#cb9-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">bill_depth_mm =</span> <span class="dv">15</span>,</span>
+<span id="cb9-4"><a href="lesson-21.html#cb9-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">flipper_length_mm =</span> <span class="dv">220</span>))</span></code></pre></div>
+<pre><code>##       1 
+## 5131.25</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="lesson-21.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model, </span>
+<span id="cb11-2"><a href="lesson-21.html#cb11-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">bill_length_mm =</span> <span class="dv">45</span>,</span>
+<span id="cb11-3"><a href="lesson-21.html#cb11-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">bill_depth_mm =</span> <span class="dv">16</span>,</span>
+<span id="cb11-4"><a href="lesson-21.html#cb11-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">flipper_length_mm =</span> <span class="dv">220</span>))</span></code></pre></div>
+<pre><code>##    1 
+## 5410</code></pre>
+<p>Note that you need to specify values for all the explanatory variables (even if the variables are not involved with any of the splits).</p>
+<p>The uncertainty on the predicted value is more difficult to work out. You can use the standard error on the mean for that terminal node, but this error ignores the uncertainty surrounding what variable to split and at what value to make the split. Because of this limitation machine learning algorithms are not usually used for inference.</p>
+<p>Another question that arises is can the tree be simplified? The question is answered by considering the trade-off between minimizing the bias and maximizing the variance explained in the response variable.</p>
+<p>If the tree has many explanatory variables and lots of decision splits then it will explain more variance. But this will make the tree biased toward the particular data set used in the training and predictions made with the model on new data (data not used in the training) will be poor. On the other hand, if the tree is too simple (few variables and few splits), it will not explain much of the variance in the response.</p>
+<p>Pruning the tree solves for this trade-off. The <code>prune.tree()</code> function gives a sequence of smaller trees from the largest tree by removing the least important splits.</p>
+<p>The function returns the tree size (number of terminal nodes), the total deviance for each tree, and the increase in deviance by going from a larger tree to a smaller tree.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="lesson-21.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prune.tree</span>(model)</span></code></pre></div>
+<pre><code>## $size
+## [1] 8 7 6 4 3 2 1
+## 
+## $dev
+## [1] 3452632 3536660 3718160 4119414 4358496 4881277 5884098
+## 
+## $k
+## [1]       -Inf   84027.78  181500.00  200627.38  239081.73  522780.84 1002821.32
+## 
+## $method
+## [1] &quot;deviance&quot;
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;prune&quot;         &quot;tree.sequence&quot;</code></pre>
+<p>From the output you see the largest tree (8 terminal nodes) results in the smallest deviance (<code>$dev</code>) (3452632). By pruning one branch the deviance increases (3536660) but only by a relatively small amount (84028 which is an increase of about 2.4%). Similarly by pruning a second branch the deviance increases, this time a bit more.</p>
+<p>It is helpful to plot the deviance as a function of tree size.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="lesson-21.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">prune.tree</span>(model))</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Deviance declines with increasing complexity. You see that the amount of decline (vertical line between the steps) generally diminishes with each node. You see that at a tree size of 6 branches the vertical lines are quite small.</p>
+<p><em>Code challenge:</em> Recreate this plot using the grammar of graphs. Hint: save the prune tree object and then create a data frame from the object lists. Then use <code>scale_x_reverse()</code>.</p>
+<p>Suppose you want a tree with six terminal nodes.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="lesson-21.html#cb16-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">prune.tree</span>(model, </span>
+<span id="cb16-2"><a href="lesson-21.html#cb16-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">best =</span> <span class="dv">6</span>)</span>
+<span id="cb16-3"><a href="lesson-21.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model2)</span>
+<span id="cb16-4"><a href="lesson-21.html#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(model2)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="predictive-uncertainty-1" class="section level2 unnumbered">
+<h2>Predictive uncertainty</h2>
+<p>Let’s look at another example. Predicting Atlantic hurricanes using a regression tree.</p>
+<p>Import the annual hurricane data and filter on years since 1950. Create a data frame containing only the basin-wide hurricane counts and Southern Oscillation Index (El Nino) and SST as the two explanatory variables. The SOI has units of standard deviation and the SST has units of degrees C.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="lesson-21.html#cb17-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_table</span>(<span class="st">&quot;http://myweb.fsu.edu/jelsner/temp/data/AnnualData.txt&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="lesson-21.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Year <span class="sc">&gt;=</span> <span class="dv">1950</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="lesson-21.html#cb17-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="at">Year =</span> Year, <span class="at">H =</span> B<span class="fl">.1</span>, <span class="at">SOI =</span> soi, <span class="at">SST =</span> sst)</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   .default = col_double(),
+##   RowID = col_character()
+## )
+## ℹ Use `spec()` for the full column specifications.</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="lesson-21.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##    Year     H    SOI       SST
+##   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
+## 1  1950    11  3.43  -0.000737
+## 2  1951     8 -3.47   0.293   
+## 3  1952     6 -0.567  0.399   
+## 4  1953     6 -3.6    0.257   
+## 5  1954     8  1.07   0.0113  
+## 6  1955     9  4.23   0.252</code></pre>
+<p>Then fit a regression tree to these data with the annual count of hurricanes as the response variable and <code>SOI</code> and <code>SST</code> as the explanatory variables.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="lesson-21.html#cb21-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">tree</span>(H <span class="sc">~</span> SOI <span class="sc">+</span> SST, </span>
+<span id="cb21-2"><a href="lesson-21.html#cb21-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> df)</span>
+<span id="cb21-3"><a href="lesson-21.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model)</span>
+<span id="cb21-4"><a href="lesson-21.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(model)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>The predicted number of hurricanes when <code>SOI</code> is -2 s.d. and when <code>SST</code> is .2C is found using the <code>predict()</code> method.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="lesson-21.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model, </span>
+<span id="cb22-2"><a href="lesson-21.html#cb22-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">SOI =</span> <span class="sc">-</span><span class="dv">2</span>, <span class="at">SST =</span> .<span class="dv">2</span>))</span></code></pre></div>
+<pre><code>##        1 
+## 7.347826</code></pre>
+<p>So, on average, you can expect between 7 and 8 hurricanes in the Atlantic in years with the SOI is -2 s.d. and the SST is .2C above normal.</p>
+<p>The predicted value depends on the tree, which in turn depends exactly on what values of SOI and SST are used to “grow” it.</p>
+<p>To see this, you grow a new tree for hurricane count, but this time leaving the values of SOI and SST from the last year in the data frame out.</p>
+<p>Since there are 61 years, leaving the last year out amounts to sub-setting the data frame as <code>df[-61, ]</code>.</p>
+<p>Then you fit a new tree model (<code>model2</code>) and make a prediction for the same values of <code>SOI</code> and <code>SST</code> (<code>SOI</code> = -2 s.d. and <code>SST</code> = .2C).</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="lesson-21.html#cb24-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">tree</span>(H <span class="sc">~</span> SOI <span class="sc">+</span> SST, </span>
+<span id="cb24-2"><a href="lesson-21.html#cb24-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> df[<span class="sc">-</span><span class="dv">61</span>, ])</span>
+<span id="cb24-3"><a href="lesson-21.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model2, </span>
+<span id="cb24-4"><a href="lesson-21.html#cb24-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">SOI =</span> <span class="sc">-</span><span class="dv">2</span>, <span class="at">SST =</span> .<span class="dv">2</span>))</span></code></pre></div>
+<pre><code>##        1 
+## 5.714286</code></pre>
+<p>The predicted value is quite different even though you left out only one year of data!</p>
+<p>Predictive uncertainty occurs with any model, but the level of uncertainty is much larger with machine learning algorithms because they have many parameters. Each branch in a regression tree is a parameter and so is every split so with our two explanatory variables there are at least 10 parameters.</p>
+<p>For example, compare the predicted hurricane rates from a linear regression model with and without the last year.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="lesson-21.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(<span class="fu">lm</span>(H <span class="sc">~</span> SOI <span class="sc">+</span> SST, <span class="at">data =</span> df),</span>
+<span id="cb26-2"><a href="lesson-21.html#cb26-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">SOI =</span> <span class="sc">-</span><span class="dv">2</span>, <span class="at">SST =</span> .<span class="dv">2</span>))</span></code></pre></div>
+<pre><code>##        1 
+## 6.230173</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="lesson-21.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(<span class="fu">lm</span>(H <span class="sc">~</span> SOI <span class="sc">+</span> SST, <span class="at">data =</span> df[<span class="sc">-</span><span class="dv">61</span>, ]),</span>
+<span id="cb28-2"><a href="lesson-21.html#cb28-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">SOI =</span> <span class="sc">-</span><span class="dv">2</span>, <span class="at">SST =</span> .<span class="dv">2</span>))</span></code></pre></div>
+<pre><code>##        1 
+## 6.219233</code></pre>
+<p>The difference in predicted values is very small with a linear regression model. On the order of .2% 0.1605136 compared with 22% (<code>(7.35 - 5.71)/7.35 * 100</code>) for the machine learning algorithm</p>
+</div>
+<div id="random-forest-algorithm" class="section level2 unnumbered">
+<h2>Random forest algorithm</h2>
+<p>A random forest algorithm solves some of the problem of large predictive uncertainty by fitting many regression trees (a ‘forest’). The algorithm takes many samples (e.g., 100) from the set of all observations and then using these samples fits many regression trees. Given a set of new values for the explanatory variables, each regression tree provides a predicted value. The average over all predicted values is taken as the random forest prediction.</p>
+<p>The <code>randomForest()</code> function in the {randomForest} package provides a random forest algorithm.</p>
+<p>For comparison here you apply a random forest algorithm to the hurricane data frame. I use the word <em>algorithm</em> because there is no single model. The number of trees is set at 500 (by default).</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="lesson-21.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomForest)</span></code></pre></div>
+<pre><code>## randomForest 4.7-1</code></pre>
+<pre><code>## Type rfNews() to see new features/changes/bug fixes.</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="lesson-21.html#cb33-1" aria-hidden="true" tabindex="-1"></a>rfa <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(H <span class="sc">~</span> SOI <span class="sc">+</span> SST,</span>
+<span id="cb33-2"><a href="lesson-21.html#cb33-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> df,</span>
+<span id="cb33-3"><a href="lesson-21.html#cb33-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ntree =</span> <span class="dv">500</span>)</span></code></pre></div>
+<p>Then to make a prediction you use (again) the <code>predict()</code> method.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="lesson-21.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(rfa, </span>
+<span id="cb34-2"><a href="lesson-21.html#cb34-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">SOI =</span> <span class="sc">-</span><span class="dv">2</span>, <span class="at">SST =</span> .<span class="dv">2</span>))</span></code></pre></div>
+<pre><code>##        1 
+## 4.803933</code></pre>
+<p>The predicted value is less sensitive to removing single observations. To see this you apply the random forest algorithm with the last observation removed.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="lesson-21.html#cb36-1" aria-hidden="true" tabindex="-1"></a>rfa <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(H <span class="sc">~</span> SOI <span class="sc">+</span> SST, </span>
+<span id="cb36-2"><a href="lesson-21.html#cb36-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> df[<span class="sc">-</span><span class="dv">61</span>, ],</span>
+<span id="cb36-3"><a href="lesson-21.html#cb36-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ntree =</span> <span class="dv">500</span>)</span>
+<span id="cb36-4"><a href="lesson-21.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(rfa, </span>
+<span id="cb36-5"><a href="lesson-21.html#cb36-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">SOI =</span> <span class="sc">-</span><span class="dv">2</span>, <span class="at">SST =</span> .<span class="dv">2</span>))</span></code></pre></div>
+<pre><code>##        1 
+## 4.722367</code></pre>
+<p>In summary: Regression trees tend to produce predicted values that are unstable, which means a small change in the data used to grow the tree results in a large difference in the predicted value.</p>
+<p>The <em>in-sample error</em> (the error made when using the model to predict the data that were used to fit the model) might be small, but the <em>out-of-sample error</em> (the error made when using the model to predict new data) can be large.</p>
+<p>A random forest algorithm solves some of the problem (but not all) of unstable predictions by growing many trees.</p>
+</div>
+<div id="cross-validation" class="section level2 unnumbered">
+<h2>Cross validation</h2>
+<p>Why use a machine learning algorithm? They are useful when you have a large amount of data. They can find features in the data that are not accessible with linear regression.</p>
+<p>But how do you compare the predictive skill of a random forest algorithm against the predictive skill of another model?</p>
+<p>You use a method called <em>cross validation</em>. Cross validation helps you decide what model to use across the span of many models.</p>
+<p>Key idea: Cross validation is a method that removes noise specific to each observation and estimates how well the model/algorithm finds useful prediction rules when this coincident information is unavailable.</p>
+<p>For example, here you compare the skill of a random forest algorithm against the skill of a <em>Poisson</em> regression model for predicting hurricane counts. You arrange the cross validation as follows.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="lesson-21.html#cb38-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(df<span class="sc">$</span>H)</span>
+<span id="cb38-2"><a href="lesson-21.html#cb38-2" aria-hidden="true" tabindex="-1"></a>rfx <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n)</span>
+<span id="cb38-3"><a href="lesson-21.html#cb38-3" aria-hidden="true" tabindex="-1"></a>prx <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n)</span>
+<span id="cb38-4"><a href="lesson-21.html#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n){</span>
+<span id="cb38-5"><a href="lesson-21.html#cb38-5" aria-hidden="true" tabindex="-1"></a>  rfa <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(H <span class="sc">~</span> SOI <span class="sc">+</span> SST, <span class="at">data =</span> df[<span class="sc">-</span>i, ])</span>
+<span id="cb38-6"><a href="lesson-21.html#cb38-6" aria-hidden="true" tabindex="-1"></a>  prm <span class="ot">&lt;-</span> <span class="fu">glm</span>(H <span class="sc">~</span> SOI <span class="sc">+</span> SST, <span class="at">data =</span> df[<span class="sc">-</span>i, ], </span>
+<span id="cb38-7"><a href="lesson-21.html#cb38-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">family =</span> <span class="st">&quot;poisson&quot;</span>)</span>
+<span id="cb38-8"><a href="lesson-21.html#cb38-8" aria-hidden="true" tabindex="-1"></a>  new <span class="ot">&lt;-</span> df[i, ]</span>
+<span id="cb38-9"><a href="lesson-21.html#cb38-9" aria-hidden="true" tabindex="-1"></a>  rfx[i] <span class="ot">&lt;-</span> <span class="fu">predict</span>(rfa, <span class="at">newdata =</span> new)</span>
+<span id="cb38-10"><a href="lesson-21.html#cb38-10" aria-hidden="true" tabindex="-1"></a>  prx[i] <span class="ot">&lt;-</span> <span class="fu">predict</span>(prm, <span class="at">newdata =</span> new, </span>
+<span id="cb38-11"><a href="lesson-21.html#cb38-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb38-12"><a href="lesson-21.html#cb38-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>You compute the out-of-sample averaged prediction error squared (mean squared prediction error) for both models.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="lesson-21.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>((df<span class="sc">$</span>H <span class="sc">-</span> prx)<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 5.070468</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="lesson-21.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>((df<span class="sc">$</span>H <span class="sc">-</span> rfx)<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 5.293627</code></pre>
+<p>The Poisson regression model performs slightly better than the random forest model in this case although the difference is not large.</p>
+<p>Correlations between the actual and predicted value are</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="lesson-21.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(df<span class="sc">$</span>H, prx)</span></code></pre></div>
+<pre><code>## [1] 0.5385559</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="lesson-21.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(df<span class="sc">$</span>H, rfx)</span></code></pre></div>
+<pre><code>## [1] 0.5096272</code></pre>
+<p>The influence each of the two explanatory variables has on the hurricane counts is seen by plotting the predictions on a grid.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="lesson-21.html#cb47-1" aria-hidden="true" tabindex="-1"></a>newdat <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">SST =</span> <span class="fu">seq</span>(<span class="sc">-</span>.<span class="dv">5</span>, .<span class="dv">7</span>, .<span class="dv">01</span>), </span>
+<span id="cb47-2"><a href="lesson-21.html#cb47-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">SOI =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">4</span>, .<span class="dv">1</span>))</span>
+<span id="cb47-3"><a href="lesson-21.html#cb47-3" aria-hidden="true" tabindex="-1"></a>z1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(rfa, <span class="at">newdata =</span> newdat)</span>
+<span id="cb47-4"><a href="lesson-21.html#cb47-4" aria-hidden="true" tabindex="-1"></a>prm <span class="ot">&lt;-</span> <span class="fu">glm</span>(H <span class="sc">~</span> SOI <span class="sc">+</span> SST, <span class="at">data =</span> df, <span class="at">family =</span> <span class="st">&quot;poisson&quot;</span>)</span>
+<span id="cb47-5"><a href="lesson-21.html#cb47-5" aria-hidden="true" tabindex="-1"></a>z2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(prm, <span class="at">newdata =</span> newdat, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb47-6"><a href="lesson-21.html#cb47-6" aria-hidden="true" tabindex="-1"></a>newdat<span class="sc">$</span>Hrf <span class="ot">&lt;-</span> z1</span>
+<span id="cb47-7"><a href="lesson-21.html#cb47-7" aria-hidden="true" tabindex="-1"></a>newdat<span class="sc">$</span>Hpr <span class="ot">&lt;-</span> z2</span>
+<span id="cb47-8"><a href="lesson-21.html#cb47-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-9"><a href="lesson-21.html#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;ggplot2&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:randomForest&#39;:
+## 
+##     margin</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="lesson-21.html#cb50-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(newdat, <span class="fu">aes</span>(<span class="at">x =</span> SST, <span class="at">y =</span> SOI, <span class="at">fill =</span> Hrf)) <span class="sc">+</span> </span>
+<span id="cb50-2"><a href="lesson-21.html#cb50-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
+<span id="cb50-3"><a href="lesson-21.html#cb50-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_fill_viridis_c</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>)) <span class="sc">+</span></span>
+<span id="cb50-4"><a href="lesson-21.html#cb50-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Rate&quot;</span>) <span class="sc">+</span></span>
+<span id="cb50-5"><a href="lesson-21.html#cb50-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">&quot;Atlantic Sea Surface Temperature (°C)&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb50-6"><a href="lesson-21.html#cb50-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ylab</span>(<span class="st">&quot;Southern Oscillation Index (s.d.)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb50-7"><a href="lesson-21.html#cb50-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ggtitle</span>(<span class="at">subtitle =</span> <span class="st">&quot;Random forest algorithm&quot;</span>,</span>
+<span id="cb50-8"><a href="lesson-21.html#cb50-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">label =</span> <span class="st">&quot;Annual Atlantic hurricane rate&quot;</span>) <span class="sc">+</span></span>
+<span id="cb50-9"><a href="lesson-21.html#cb50-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme_minimal</span>()</span>
+<span id="cb50-10"><a href="lesson-21.html#cb50-10" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(newdat, <span class="fu">aes</span>(<span class="at">x =</span> SST, <span class="at">y =</span> SOI, <span class="at">fill =</span> Hpr)) <span class="sc">+</span> </span>
+<span id="cb50-11"><a href="lesson-21.html#cb50-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
+<span id="cb50-12"><a href="lesson-21.html#cb50-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_fill_viridis_c</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>)) <span class="sc">+</span></span>
+<span id="cb50-13"><a href="lesson-21.html#cb50-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Rate&quot;</span>) <span class="sc">+</span></span>
+<span id="cb50-14"><a href="lesson-21.html#cb50-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">&quot;Atlantic Sea Surface Temperature (°C)&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Southern Oscillation Index (s.d.)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb50-15"><a href="lesson-21.html#cb50-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ggtitle</span>(<span class="at">subtitle =</span> <span class="st">&quot;Poisson regression model&quot;</span>,</span>
+<span id="cb50-16"><a href="lesson-21.html#cb50-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">label =</span> <span class="st">&quot;Annual Atlantic hurricane rate&quot;</span>) <span class="sc">+</span></span>
+<span id="cb50-17"><a href="lesson-21.html#cb50-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme_minimal</span>()</span>
+<span id="cb50-18"><a href="lesson-21.html#cb50-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-19"><a href="lesson-21.html#cb50-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb50-20"><a href="lesson-21.html#cb50-20" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>Hurricane counts increase with SST and SOI but for high values of SOI the influence of SST is stronger. For high values of SST the influence of the SOI is more pronounced. The random forest algorithm is able to capture more subtle features but at the expense of interpreting some noise as signal as seen by the relative high count with SOI values near -3 s.d. and SST values near -.1C.</p>
+</div>
+<div id="classification-trees" class="section level2 unnumbered">
+<h2>Classification trees</h2>
+<p>When the response variable is categorical (e.g., species) a regression tree is called a <em>classification tree</em>. The classification tree is a set of if-then rules that results in a probability for each category.</p>
+<p>If instability is high and wind shear is strong, then predict a high chance of damaging tornadoes. If a patient’s resting heart rate exceeds 120 bpm, then predict a high chance that the patient will suffer a heart attack within the next 5 years.</p>
+<p>Consider again the <code>penguins</code> data frame from the {palmerpenguins} package.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="lesson-21.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(palmerpenguins<span class="sc">::</span>penguins)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
+## 3 Adelie  Torge…           40.3          18                195        3250 fema…
+## 4 Adelie  Torge…           NA            NA                 NA          NA &lt;NA&gt; 
+## 5 Adelie  Torge…           36.7          19.3              193        3450 fema…
+## 6 Adelie  Torge…           39.3          20.6              190        3650 male 
+## # … with 1 more variable: year &lt;int&gt;</code></pre>
+<p>With <code>species</code> as the categorical response variable (there are three different penguin species) and the other columns as explanatory variables we can specify the model formula as <code>species ~ .</code>. The period after the tilde (<code>~</code>) indicating all other variables in the data frame.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="lesson-21.html#cb53-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">tree</span>(species <span class="sc">~</span> .,</span>
+<span id="cb53-2"><a href="lesson-21.html#cb53-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> palmerpenguins<span class="sc">::</span>penguins)</span>
+<span id="cb53-3"><a href="lesson-21.html#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model)</span>
+<span id="cb53-4"><a href="lesson-21.html#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(model)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>From the plot you see that flipper length split at 206.5 mm is the most important variable in distinguishing the species. The next two branches are bill length split at 43.45 mm and island.</p>
+<p>Since island is a categorical explanatory variable there is a <code>:a</code> next to the name <code>island</code>. This indicates that the spit is on the first island in alphabetical order. The island names are</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="lesson-21.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(palmerpenguins<span class="sc">::</span>penguins<span class="sc">$</span>island)</span></code></pre></div>
+<pre><code>## [1] Torgersen Biscoe    Dream    
+## Levels: Biscoe Dream Torgersen</code></pre>
+<p>Biscoe Island is the first in alphabetical order so the split says that if the island is Biscoe (yes, means branch left) then predict the species is Gentoo and if the island is not Biscoe (either Dream or Torgersen) then predict the species to be Chinstrap.</p>
+<p>After these three splits resulting in four branches, the branches become very small (the vertical lines are short) indicating that these additional splits do not reduce the RSS by much at all.</p>
+<p>So you prune the tree by setting <code>best = 4</code>. That is, you ask the model to grow a tree with the four most important branches.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="lesson-21.html#cb56-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">prune.tree</span>(model, </span>
+<span id="cb56-2"><a href="lesson-21.html#cb56-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">best =</span> <span class="dv">4</span>)</span>
+<span id="cb56-3"><a href="lesson-21.html#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model2)</span>
+<span id="cb56-4"><a href="lesson-21.html#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(model2)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>You examine the model quantitatively by the misclassification error rate. This is given in the last line of the output from the <code>summary()</code> method.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="lesson-21.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code></pre></div>
+<pre><code>## 
+## Classification tree:
+## snip.tree(tree = model, nodes = 4:5)
+## Variables actually used in tree construction:
+## [1] &quot;flipper_length_mm&quot; &quot;bill_length_mm&quot;    &quot;island&quot;           
+## Number of terminal nodes:  4 
+## Residual mean deviance:  0.2791 = 91.81 / 329 
+## Misclassification error rate: 0.03604 = 12 / 333</code></pre>
+<p>You see that the model misclassifies the species in 12 of the 333 penguins resulting in a misclassification error rate of 3.6%.</p>
+<p>Note that the full model has a misclassification error rate of only 1.8% (6 out of the 333 penguins). But this requires twice as many nodes so the model has greater bias.</p>
+<p>Suppose you are able to observe a penguin on Biscoe Island with a flipper length of 200 mm, a bill length of 44 mm, a bill depth 18 mm, and a body mass of 4000 g. What is the likely species?</p>
+<p>You use the <code>predict()</code> method with the <code>newdata =</code> argument specified as a data frame. You must include by name all the variables in the model specification. This includes <code>island</code> and <code>sex</code> as factors along with <code>year</code>, <code>flipper_length_mm</code>, <code>bill_length_mm</code>, <code>bill_depth_mm</code>, and <code>body_mass_g</code> as integers or numeric values. Note that since the final tree only includes the variables <code>island</code>, <code>flipper_length_mm</code>, and <code>bill_length_mm</code> it does not matter what values you use for the other variables.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="lesson-21.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model2,</span>
+<span id="cb59-2"><a href="lesson-21.html#cb59-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">island =</span> <span class="fu">factor</span>(<span class="st">&quot;Biscoe&quot;</span>),</span>
+<span id="cb59-3"><a href="lesson-21.html#cb59-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">sex =</span> <span class="fu">factor</span>(<span class="st">&quot;male&quot;</span>),</span>
+<span id="cb59-4"><a href="lesson-21.html#cb59-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">year =</span> <span class="dv">2020</span>,</span>
+<span id="cb59-5"><a href="lesson-21.html#cb59-5" aria-hidden="true" tabindex="-1"></a>                             <span class="at">flipper_length_mm =</span> <span class="dv">200</span>,</span>
+<span id="cb59-6"><a href="lesson-21.html#cb59-6" aria-hidden="true" tabindex="-1"></a>                             <span class="at">bill_length_mm =</span> <span class="dv">44</span>,</span>
+<span id="cb59-7"><a href="lesson-21.html#cb59-7" aria-hidden="true" tabindex="-1"></a>                             <span class="at">bill_depth_mm =</span> <span class="dv">18</span>,</span>
+<span id="cb59-8"><a href="lesson-21.html#cb59-8" aria-hidden="true" tabindex="-1"></a>                             <span class="at">body_mass_g =</span> <span class="dv">4000</span>))</span></code></pre></div>
+<pre><code>##       Adelie Chinstrap     Gentoo
+## 1 0.06349206 0.9206349 0.01587302</code></pre>
+<p>The result says that there is a 92% chance that it is a Chinstrap penguin, a 6% chance that it is an Adelie penguin and a 2% chance that it is a Gentoo penguin.</p>
+<p>The <code>ctree()</code> function in {party} package can be used to model binary, nominal, ordinal and numeric variables.</p>
+<p>The {rpart} packages contains additional functions for modeling our data with decision trees. See also: <a href="http://rstatistics.net/decision-trees-with-r/" class="uri">http://rstatistics.net/decision-trees-with-r/</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tuesday-october-28-2022.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
