@@ -74,8 +74,8 @@ As with simple linear regression, before you model the data you should make a sc
 
 Consider the data set `PetrolConsumption.txt` that has gasoline consumption by state for a given year.
 ```{r}
-loc <- "http://myweb.fsu.edu/jelsner/temp/data/PetrolConsumption.txt"
-PC.df <- readr::read_table(loc)
+url <- "http://myweb.fsu.edu/jelsner/temp/data/PetrolConsumption.txt"
+PC.df <- readr::read_table(url)
 head(PC.df)
 ```
 
@@ -243,6 +243,19 @@ These plots indicate some evidence against normality and constant variance. The 
 
 To improve model adequacy you might transform the response variable or use a weighted regression model. We will return to this shortly.
 
+## Checking predictions {-}
+
+https://easystats.github.io/performance/reference/check_predictions.html
+
+Posterior predictive checks mean simulating replicated data under the fitted model and then comparing these to the observed data. Posterior predictive checks are used to look for systematic discrepancies between real and simulated data.
+
+The {performance} package gives posterior predictive check methods for a variety of frequentist and Bayesian models.
+```{r}
+performance::check_predictions(model2)
+```
+
+The model predicted lines should resemble the observed data line (smoothed density of response variable). Here you see that it looks pretty good, but improvements could be made.
+
 ## Example: Predicting house prices {-}
 
 A Realtor can use multiple variable regression to justify a selling price for a house based on a list of features the house has. Here you consider a data file (`houseprice.txt`) containing a random sample of 107 home sales in Albuquerque, New Mexico during the period February 15 through April 30, 1993 (Albuquerque Board of Realtors, 1993).
@@ -327,9 +340,10 @@ The negative coefficient on the variable `biceps` is opposite of the sign on the
 cor(bf.df$bodyfat, bf.df$biceps)
 ```
 
-This is an indication of collinearity. The problem is that there is a large correlation between `abdomen` and `biceps` leading to a model that may not make physical sense. 
+This is an indication of collinearity. The problem is that there is a large correlation between `abdomen` and `biceps` leading to a model that may not make physical sense.
 
-Key idea: The rule is that when the correlation between two explanatory variables exceeds .6, collinearity can be a problem.  
+Key idea: The rule is that when the correlation between two explanatory variables exceeds .6, collinearity can be a problem.
+
 
 When explanatory variables have large correlation then estimates of the model parameters are not precise. A model with imprecise parameter estimates is not useful. The best way to proceed in this situation is to reduce the set of explanatory variables. 
 
@@ -393,4 +407,4 @@ summary(model1d)
 
 In both cases the intercept difference is negative. In the second case it is insignificant. 
 
-When interpreting the results from models with interaction terms, the rule is don't interpret the coefficients on the main effects (marginal coefficients). As demonstrated the presence of interactions implies that the meaning of coefficients for terms vary depending on the values of the variables.
+When interpreting the results from models that contain interaction terms, the rule is to not interpret the coefficients on the main effects (marginal coefficients). As demonstrated the presence of interactions implies that the meaning of coefficients for terms vary depending on the values of the other variables and thus are not directly interpretable.
