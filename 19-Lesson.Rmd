@@ -407,4 +407,4 @@ summary(model1d)
 
 In both cases the intercept difference is negative. In the second case it is insignificant. 
 
-When interpreting the results from models that contain interaction terms, the rule is to not interpret the coefficients on the main effects (marginal coefficients). As demonstrated the presence of interactions implies that the meaning of coefficients for terms vary depending on the values of the other variables and thus are not directly interpretable.
+When interpreting the results from models that contain interaction terms, the rule is to not interpret the coefficients on the main effects (marginal coefficients). As demonstrated the presence of interactions implies that the meaning of coefficients for terms vary depending on the values of the other variables and thus are not easily interpreted.

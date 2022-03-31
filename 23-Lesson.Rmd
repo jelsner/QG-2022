@@ -136,14 +136,14 @@ plot(nbs,
      sf::st_centroid(CC.sf$geometry))
 ```
 
-The graph is a network showing the contiguity pattern (topology). Tracts close to the center of the city have more neighbors than those on the outskirts.
+The graph is a network of nodes and links showing the contiguity pattern (topology). Each node is a tract and each link indicates spatial contiguity. The graph makes it clear that tracts in the center of the city have more neighbors than tracts away from the center.
 
-The number of links per node (tract) [link number distribution] is obtained with the `summary()` method.
+The number of links per node [link number distribution] is obtained with the `summary()` method applied to the neighborhood list object.
 ```{r}
 summary(nbs)
 ``` 
 
-We list the neighboring tracts for the first two tracts.
+You print the neighboring tracts for the first two tracts using the double bracket notation.
 ```{r}
 nbs[[1]]
 nbs[[2]]
@@ -158,9 +158,9 @@ Tract 5 has 8 neighbors.
 
 ## Weights matrix
 
-Next we add weights to the neighbor list object. The weights specifying how 'close' each neighbor is. We do this  with the `nb2listw()` function. The function turns the neighbor list object into a spatial weights object. 
+Next you add weights to the neighbor list object. The weights specifying how 'close' each neighbor is. You do this with the `nb2listw()` function from the {spdep} package. The function turns the neighbor list object into a spatial weights object. 
 ```{r}
-wts <- nb2listw(nbs)
+wts <- spdep::nb2listw(nbs)
 class(wts)
 ```
 
@@ -169,7 +169,7 @@ This new `wts` object is a list with two elements. The first element (`listw`) i
 summary(wts)
 ```
 
-The network statistics are given along with information about the weights. By default all neighboring tracts are assigned a weight equal to the inverse of the number of neighbors  (`style = "W"`). For a tract with 5 neighbors each neighbor gets a weight of 1/5. The sum over all weights (`S0`) is the number of tracts.
+By default all neighboring tracts are assigned a weight equal to the inverse of the number of neighbors  (`style = "W"`). For a tract with 5 neighbors each neighbor gets a weight of 1/5. The sum over all weights (`S0`) is the number of tracts.
 
 To see the weights for the first two tracts type
 ```{r}
@@ -185,19 +185,21 @@ wts$neighbours[1:2]
 
 Tract 1 has two neighbors (tract 2 & 3) so each are given a weight of 1/2. Tract 2 has three neighbors (tract 1, 3, & 4) so each are given a weight of 1/3.
 
-With the weights matrix specified and saved as an object we are ready to compute a metric of spatial autocorrelation.
+With the weights matrix specified and saved as an object you are ready to compute a metric of spatial autocorrelation.
 
 Caution: Using contiguity as a indicator of closeness can result in areas having no neighbors; islands for example.
 
-By default the `nb2listw()` function assumes each area has at least one neighbor. If this is not the case we need to specify how areas without neighbors are handled using the argument `zero.policy = TRUE`. This permits the weights list to be formed with zero-length weights vectors.
+By default the `nb2listw()` function assumes each area has at least one neighbor. If this is not the case you need to specify how areas without neighbors are handled using the argument `zero.policy = TRUE`. This allows the weights list to be formed with zero-length vectors.
 
 For example, consider the districts in Scotland.
 ```{r}
-download.file("http://myweb.fsu.edu/jelsner/temp/data/scotlip.zip",
-              "scotlip.zip")
-unzip("scotlip.zip")
+url <- "http://myweb.fsu.edu/jelsner/temp/data/scotlip.zip"
+download.file(url,
+              destfile = here::here("data", "scotlip.zip"))
+unzip(zipfile = here::here("data", "scotlip.zip"),
+      exdir = here::here("data"))
 
-SL.sf <- read_sf(dsn = "scotlip", 
+SL.sf <- read_sf(dsn = here::here("data", "scotlip"), 
                  layer = "scotlip")
 plot(SL.sf$geometry)
 ```
