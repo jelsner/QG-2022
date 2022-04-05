@@ -283,3 +283,5 @@ p +
 That is bill depth _increases_ with increasing bill length. So you conclude that the negative relationship is an artifact of grouping the penguins with different body masses together.
 
 The paradox is resolved when the relations are appropriately addressed in the statistical modeling.
+
+See also Berkson's paradox https://en.wikipedia.org/wiki/Berkson%27s_paradox

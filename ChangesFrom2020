@@ -7,6 +7,7 @@ First pass
 4. Change pipes `%>%` to `|>`
 5. Change `read.table (read.csv)` to `readr::read_table`
 6. Use package names::function names for {dplyr} and other {tidyverse} functions
+7. Use here::here() for putting downloaded data into data directories
 
 Second pass
 1. Update example data sets. More contemporary. Replace the `iris` data set. Replace the bodyfat data set in lesson 19
