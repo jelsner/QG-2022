@@ -4,7 +4,7 @@
 
 - logistic regression
 
-Linear regression is one of the most powerful tool in data science. But it's utility is limited to response variables that can be approximated with a normal distribution. 
+Linear regression is one of the most powerful tools in data science. But it's utility is limited to response variables that can be approximated with a normal distribution. 
 
 When the response variable is binary (only two outcomes) a linear regression model should not be used.
 
