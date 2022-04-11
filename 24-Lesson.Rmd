@@ -63,9 +63,9 @@ Weights are specified using the `style =` argument in the `nb2listw()` function.
 Each style gives a slightly different value for I.
 ```{r}
 x <- SIDS.sf$SIDR79
-moran.test(x, nb2listw(nbs, style = "W"))$estimate[1]
-moran.test(x, nb2listw(nbs, style = "B"))$estimate[1]  # binary
-moran.test(x, nb2listw(nbs, style = "S"))$estimate[1]  # variance-stabilizing
+spdep::moran.test(x, spdep::nb2listw(nbs, style = "W"))$estimate[1]
+spdep::moran.test(x, spdep::nb2listw(nbs, style = "B"))$estimate[1]  # binary
+spdep::moran.test(x, spdep::nb2listw(nbs, style = "S"))$estimate[1]  # variance-stabilizing
 ```
 
 Thus when reporting Moran's I you need to indicate what weighting scheme you used.
@@ -190,9 +190,9 @@ For example, if you want draw inference on your value for I using 99 simulations
 ```{r}
 set.seed(4102)
 
-( mP <- moran.mc(sids, 
-                 listw = wts,
-                 nsim = 99) )
+( mP <- spdep::moran.mc(sids, 
+                        listw = wts,
+                        nsim = 99) )
 ```
 
 You see that only two of the 99 simulations give a Moran's I value exceeding .1428.
@@ -371,7 +371,7 @@ knn <- spdep::knearneigh(coords,
 head(knn$nn)
 ```
 
-The output is a list of five elements with the first being a matrix of dimension number of counties by the number of neighbors. You see here that the neighborhoods are non-symmetric. County 3 is a neighbor of county 2, but county 2 is not a neighbor of county 3. This is important since some kinds of spatial regression models require symmetric neighborhood definitions.
+The output is a list of five elements with the first being a matrix of dimension number of counties by the number of neighbors. You see here that the neighborhoods are non-symmetric. County 3 is a neighbor of county 2, but county 2 is not a neighbor of county 3. This is important since some spatial regression models require symmetric neighborhood definitions.
 
 You turn this list into a neighborhood object (class `nb`) with the `knn2nb()` function. 
 ```{r}
@@ -379,7 +379,7 @@ nbs2 <- spdep::knn2nb(knn)
 summary(nbs2)
 ```
 
-The argument `sym = TRUE` will force the output neighbors list to be symmetric. Let's create another neighborhood object.
+The argument `sym = TRUE` forces the output neighbors list to be symmetric. Create another neighborhood object.
 ```{r}
 nbs3 <- spdep::knn2nb(knn,
                       sym = TRUE)
@@ -390,10 +390,10 @@ Compare the neighborhood topologies.
 ```{r, eval=FALSE}
 par(mfrow = c(1, 2))
 
-plot(st_geometry(PE.sf), border = "grey")
+plot(sf::st_geometry(PE.sf), border = "grey")
 plot(nbs, coords, add = TRUE)
 
-plot(st_geometry(PE.sf), border = "grey")
+plot(sf::st_geometry(PE.sf), border = "grey")
 plot(nbs2, coords, add = TRUE)
 ```
 
@@ -421,9 +421,9 @@ spdep::moran(PE.sf$WHITE,
              S0 = spdep::Szero(wts3))
 ```
 
-Values of Moran I are constrained between -1 and +1. In this case the neighborhood definition has little or no impact on inferences made about spatial autocorrelation. The kurtosis is between 2 and 4 consistent with a set of values from a normal distribution.
+Values of Moran I are constrained between -1 and +1. In this case the neighborhood definition has little impact on inferences made about spatial autocorrelation. The kurtosis is between 2 and 4 consistent with a set of values from a normal distribution.
 
-In a similar way we compute Geary's c statistic.
+In a similar way you compute Geary's c statistic.
 ```{r}
 spdep::geary(PE.sf$WHITE, 
              listw = wts,
@@ -434,7 +434,7 @@ spdep::geary(PE.sf$WHITE,
 
 Values of Geary's c are between 0 and 2 with values less than one indicating positive autocorrelation. If the interpretation on the amount of spatial autocorrelation based on Geary's c is different than the interpretation on the amount of autocorrelation based on Moran I then it is a good idea to examine local variations in autocorrelation.
 
-Finally, recall that to create a Moran scatter plot. We first assign to `white` the percentage of whites in each county (variable `WHITE`) and to `Wwhite` the spatial lagged value of percentage of whites. We then use `ggplot()` as follows.
+Finally, recall that to create a Moran scatter plot. You first assign to `white` the percentage of whites in each county (variable `WHITE`) and to `Wwhite` the spatial lagged value of percentage of whites. You then use `ggplot()` as follows.
 ```{r}
 white <- PE.sf$WHITE
 Wwhite <- spdep::lag.listw(wts, 
@@ -451,7 +451,7 @@ ggplot(mapping = aes(x = white, y = Wwhite)) +
   theme_minimal()
 ```
 
-The line is the best-fit linear regression of `Wwhite` onto `white` and it's slope is equal to the value of Moran I. This is true regardless of the neighborhood definition used to compute to
+The line is the best-fit linear regression of `Wwhite` onto `white` and it's slope is equal to the value of Moran I. This is true regardless of the neighborhood definition.
 ```{r}
 lm(Wwhite ~ white)
 ```
