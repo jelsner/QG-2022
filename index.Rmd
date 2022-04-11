@@ -30,6 +30,8 @@ install.packages("bayesAB")
 install.packages("palmerpenguins")
 ```
 
+Also, check out the data in {gapminder} https://youtu.be/fO2X-8FXY6k
+
 
 ```{r, echo=FALSE}
 DiagrammeR::grViz("digraph rmarkdown {
