@@ -5,7 +5,7 @@ First pass
 2. Use only single level (##) sections
 3. Change `we` to `you`
 4. Change pipes `%>%` to `|>`
-5. Change `read.table (read.csv)` to `readr::read_table`
+5. Change `read.table (read.csv)` to `readr::read_table` change to `st_read()`
 6. Use package names::function names for {dplyr} and other {tidyverse} functions
 7. Use here::here() for putting downloaded data into data directories
 
