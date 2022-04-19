@@ -5,3 +5,4 @@ monte-carlo-approach-to-inference
 spatial-autocorrelation-in-model-residuals
 example-percentage-of-folks-identifying-as-white-in-mississippi-counties
 covid-data
+assignment-11
