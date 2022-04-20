@@ -1,4 +1,4 @@
-# Tuesday, November 15, 2022 {-}
+# Thursday, November 17, 2022 {-}
 
 ## Today {-}
 
@@ -6,7 +6,7 @@
 
 ## Geographic regression {-}
 
-Geographic regression (geographically weighted regression or GWR) fits separate regression models for each location (e.g., polygon) using only values in neighboring locations defined by distance (bandwidth) or contiguity. This is useful for showing where the response variable is most strongly related to the explanatory variables. GWR is not a single model but a procedure for fitting a set of models.
+Geographic regression (geographically weighted regression or GWR) fits separate regression models for each location (e.g., polygon) using only values in neighboring locations defined by distance (bandwidth) or contiguity. This is useful for showing where the response variable is most strongly related to the explanatory variables. GWR is not a single model but a procedure for fitting many models, one at each location.
 
 The bandwidth is determined by a cross-validation procedure. GWR is used in epidemiology, particularly for research on infectious diseases and for evaluating health policies or health programs.
 

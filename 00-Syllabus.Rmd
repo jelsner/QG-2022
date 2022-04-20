@@ -4,13 +4,12 @@
 
 ## Contact information {-}
 
-* Instructor Name: Professor James B. Elsner (he/him/his)
+* Instructor Name: Professor James B. Elsner
 * Instructor Location: Bellamy Building, Room 323a
 * Lesson Hours: TR 3:05-4:20 p.m.
 * Student Hours: TR 9-10 a.m., 2-3 p.m.
 
 Email: <jelsner@fsu.edu>
-
 
 ## Course description {-}
 
@@ -74,36 +73,36 @@ This syllabus is a guide for the course and is subject to change with advanced n
 
 Week | Dates                       | Topic
 -----|-----------------------------|-------
-1    | August 24, 26, 28           | RStudio Cloud and R
-2    | August 31, September 2, 4   | Working with R
-3    | September 9, 11             | Data and data frames
-4    | September 14, 16, 18        | Data analysis
-5    | September 21, 23, 25        | Graphical analysis
-6    | September 28, 30, October 1 | Mapping
-7    | October 5, 7, 9             | Bayesian data analysis
-8    | October 12, 14, 16          | Regression
-9    | October 19, 21, 23          | Multiple regression
-10   | October 26, 28, 30          | Regression trees
-11   | November 2, 4, 6            | Spatial data
-12   | November 9, 13              | Spatial autocorrelation
-13   | November 16, 18, 19         | Spatial autocorrelation
-14   | November 30, December 2, 3  | Geographic regression
+1    | August 23, 25               | RStudio Cloud and R
+2    | August 30, September 1      | Working with R
+3    | September 6, 8              | Data and data frames
+4    | September 13, 15            | Data analysis
+5    | September 20, 22            | Graphical analysis
+6    | September 27, 29            | Mapping data
+7    | October 4, 6                | Bayesian data analysis
+8    | October 11, 13              | Regression
+9    | October 18, 20              | Multiple regression
+10   | October 25, 27              | Regression trees
+11   | November 1, 3               | Spatial data
+12   | November 8, 10              | Spatial autocorrelation
+13   | November 15, 17             | Geographic regression
+14   | November 29, December 1     | Finish assignments
 
-I will cover new material on Mondays and Wednesdays. On Fridays you will work on your assignment. Assignments are due Fridays at 5p.
+28 dates 26 lessons
 
-Assignment | Due Date (no later than 5 pm)
+Assignment | Due Date (5 pm)
 -----------|---------------
-1          | August 28
-2          | September 4
-3          | September 11
-4          | September 25
-5          | October 1
-6          | October 9
-7          | October 16
-8          | October 23
-9          | October 30
-10         | November 19
-11         | December 3
+1          | August 30
+2          | September 6
+3          | September 13
+4          | September 27
+5          | October 4
+6          | October 18
+7          | October 25
+8          | November 1
+9          | November 8
+10         | November 15
+11         | November 29
 
 ## Other materials to check out {-}
 
