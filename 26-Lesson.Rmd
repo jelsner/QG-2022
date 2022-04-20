@@ -83,9 +83,9 @@ Based on the AIC you find that the new model (`model.lm2`) should not be simplif
 drop1(model.lm2)
 ```
 
-All the AIC values exceed those in the first row so we are content with this model.
+All the AIC values exceed those in the first row so you are content with this model.
 
-Next we map the predicted values. We first add the predicted values to the simple features data frame as a column with name `predLM2`. The predicted values from the model object are extracted with the `predict()` method.
+Next you map the predicted values. You first add the predicted values to the simple features data frame as a column with name `predLM2`. The predicted values from the model object are extracted with the `predict()` method.
 ```{r}
 SH.sf$predLM2 <- predict(model.lm2)
 head(cbind(SH.sf$HR90, SH.sf$predLM2))
@@ -97,18 +97,19 @@ A scatter plot of the observed versus the predicted shows this clearly.
 ```{r}
 library(ggplot2)
 
-ggplot(SH.sf, aes(x = HR90, y = predLM2)) +
+ggplot(data = SH.sf, 
+       mapping = aes(x = HR90, y = predLM2)) +
   geom_point() +
   geom_abline(slope = 1) +
   geom_smooth(method = lm, se = FALSE) +
   theme_minimal()
 ```
 
-Since the homicide rates are non-negative, we create a new column in the `SH.sf` data frame called `logHR90`, which is the logarithm of `HR90`.
+Since the homicide rates are non-negative, you create a new column in the `SH.sf` data frame called `logHR90`, which is the logarithm of `HR90`.
 
-Since there are some counties with no homicides [log(0) = -Inf] we change values in those counties to the minimum observed value before taking logarithms. 
+Since there are some counties with no homicides [log(0) = -Inf] you change values in those counties to the minimum observed value before taking logarithms. 
 
-Here we first create a logical vector `x` corresponding to the rows with non-zero homicide rates. We then find the minimum non-zero rate and assign it to `e`. Next we subset on this value for all rates equal to zero and finally we create a new column as the logarithm of the non-zero rates.
+Here you first create a logical vector `x` corresponding to the rows with non-zero homicide rates. You then find the minimum non-zero rate and assign it to `e`. Next you subset on this value for all rates equal to zero and finally you create a new column as the logarithm of the non-zero rates.
 ```{r}
 x <- SH.sf$HR90 != 0
 e <- min(SH.sf$HR90[x])
@@ -116,44 +117,44 @@ SH.sf$HR90[!x] <- e
 SH.sf$logHR90 <- log(SH.sf$HR90)
 ```
 
-We then fit a model with `logHR90` as our response variable.
+You then fit a model with `logHR90` as our response variable.
 ```{r}
 model.lm3 <- lm(logHR90 ~ RD90 + PS90 + DV90 + UE90, 
                 data = SH.sf)
 summary(model.lm3)
 ```
-
-We again compute the predicted values and include them in the data frame as `predLM3`. The predictions are on the natural logarithm scale so we use the exponential function `exp()`. We then create a scatter plot of the observed versus predicted as before.
+You again compute the predicted values and include them in the data frame as `predLM3`. The predictions are on the logarithm scale so you use the exponential function `exp()` to transform the output to rates. You then create a scatter plot of the observed versus predicted as before.
 ```{r}
 SH.sf$predLM3 <- exp(predict(model.lm3))
 
-ggplot(SH.sf, aes(x = HR90, y = predLM3)) +
+ggplot(data = SH.sf, 
+       mapping = aes(x = HR90, y = predLM3)) +
   geom_point() +
   geom_abline(slope = 1) +
   geom_smooth(method = lm, se = FALSE) +
   theme_minimal()
 ```
 
-The range of predicted values is much better.
+The range of predicted values is better.
 
 It is likely that homicide rates are similar in neighboring counties. It also might be the case that the similarity is statistically explained by the variables in the model.
 
-So our next step it to test for significant autocorrelation in the model residuals. We create a weights matrix using the functions from the {spdep} package and then use the `lm.morantest()` function.
+So your next step it to test for significant autocorrelation in the model residuals. You create a weights matrix using the functions from the {spdep} package and then use the `lm.morantest()` function.
 ```{r}
-library(spdep)
+nbs <- spdep::poly2nb(SH.sf)
+wts <- spdep::nb2listw(nbs)
 
-nbs <- poly2nb(SH.sf)
-wts <- nb2listw(nbs)
-
-lm.morantest(model.lm3, 
-             listw = wts)
+spdep::lm.morantest(model.lm3, 
+                    listw = wts)
 ```
 
-Moran I is only .11 but it is statistically significant ($p$ value < .01) because there are many counties.
+Moran I is only .11 but it is statistically significant ($p$ value < .01) because of the large number of counties.
 
-Next we map the residuals. First we add the residuals as a column named `res3` in the simple feature data frame.
+Next you map the residuals. First add the residuals as a column named `res3` in the simple feature data frame.
 ```{r}
 SH.sf$res3 <- residuals(model.lm3)
+
+library(tmap)
 
 tm_shape(SH.sf) +
   tm_fill("res3", title = "Model\nResiduals")
@@ -167,14 +168,14 @@ Linear regression is a model for the conditional mean. The mean of the response 
 
 A model is fit at each location. All observations contribute to the fit but they are weighted inversely by their distance to the location. At the shortest distances observations are given the largest weights based on a Gaussian function. The process results in a set of regression coefficients for each observation.
 
-We do this with functions from the {spgwr} package. The geometry information in simple feature data frames is NOT accessible by functions in this package so we need to create another type of spatial data frame.
+You do this with functions from the {spgwr} package. The geometry information in simple feature data frames is NOT accessible by functions in this package so we need to create another type of spatial data frame.
 ```{r}
 SH.sp <- as(SH.sf, "Spatial")
 ```
 
 The spatial information in the `SH.sp` is separated from the data frame but accessible by the functions `gwr.sel()` and `gwr()`. The variables remain the same.
 
-We obtain the optimal bandwidth with the `gwr.sel()` function from the {spgwr} package. We include the model formula, the data, and since the CRS is geographic we use the argument `longlat = TRUE` to get the distances in kilometers.
+You obtain the optimal bandwidth with the `gwr.sel()` function from the {spgwr} package. You include the model formula, the data, and since the CRS is geographic you use the argument `longlat = TRUE` to get the distances in kilometers.
 ```{r}
 library(spgwr)
 
@@ -190,7 +191,7 @@ The selection procedure continues by changing the initial guess at the bandwidth
 
 The bandwidth is assigned to the object `bw` as a single value.
 
-To get a feel for what a bandwidth distance of 165 km means in terms of the average number of neighbors per county we note that one-half the distance squared times $\pi$ is the area captured by the bandwidth.
+To get a feel for what a bandwidth distance of 165 km means in terms of the average number of neighbors per county you note that one-half the distance squared times $\pi$ is the area captured by the bandwidth.
 ```{r}
 ( bwA <- pi * (bw * 1000 /2)^2 ) 
 ```
@@ -199,14 +200,14 @@ Or 21,519 square kilometers.
 
 County areas are computed using the `st_area()` function. The average size of the counties and the ratio of the bandwidth area to the average county area is also computed.
 ```{r}
-areas <- st_area(SH.sf)
+areas <- sf::st_area(SH.sf)
 ctyA <- mean(areas)
 bwA/ctyA
 ```
 
 The ratio indicates that, on average, a neighborhood consists of 13 counties. For comparison, on a raster there are 8 first-order neighboring cells (queen contiguity) and 16 second-order neighboring cells (neighbors of neighbors) or a total of 24 neighbors.
 
-We then use the `gwr()` function from the {spgwr} package to includes the formula, data, and the `bandwith =` argument.
+You then use the `gwr()` function from the {spgwr} package that includes the formula, data, and the `bandwith =` argument.
 ```{r}
 model.gwr <- gwr(formula = logHR90 ~ RD90 + PS90 + DV90 + UE90, 
                  data = SH.sp, 
@@ -227,7 +228,7 @@ The structure of the S4 spatial class is obtained with the `str()` function and 
 str(model.gwr$SDF, max.level = 2)
 ```
 
-Here we see there are 5 slots with the first slot being the attribute table labeled `@data`. The dimension of the attribute table is retrieved with the `dim()` function.
+Here there are 5 slots with the first slot being the attribute table labeled `@data`. The dimension of the attribute table is retrieved with the `dim()` function.
 ```{r}
 dim(model.gwr$SDF)
 ```
@@ -239,7 +240,7 @@ names(model.gwr$SDF)
 
 They include the sum of the weights `sum.w` (the larger the sum the more often the county was included in the local regressions--favoring smaller counties and ones farther from the borders of the spatial domain), the five regression coefficients (one for each of the 4 explanatory variables and an intercept term), the residual (`gwr.e`), the predicted value (`pred`) and the local goodness-of-fit (`localR2`).
 
-We put the predictions into the `SH.sf` simple feature data frame with the column name `predGWR`.
+You put the predictions into the `SH.sf` simple feature data frame with the column name `predGWR`.
 ```{r}
 SH.sf$predGWR <- exp(model.gwr$SDF$pred)
 
@@ -247,7 +248,7 @@ tm_shape(SH.sf) +
   tm_fill("predGWR", title = "Predicted\nHomicide Rates\n[/100,000]") 
 ```
 
-The geographic regressions similarly capture the spatial pattern of homicides across the south. The spread of predicted values matches the observed spread better than the linear model. The pattern is also a smoother.
+The geographic regressions similarly capture the spatial pattern of homicides across the south. The spread of predicted values matches the observed spread better than the regression model. The pattern is also a smoother.
 
 With many more model parameters metrics of predictive skill will favor the geographic regression. For example, the root mean-square-error is lower for GWR.
 ```{r}
@@ -255,7 +256,7 @@ sqrt(sum(residuals(model.lm3)^2))
 sqrt(sum(model.gwr$SDF$gwr.e^2))
 ```
 
-Geographic regression is valuable for generating hypothesis. From the linear model we saw that homicide rates increased with resource deprivation. How does this relationship vary across the South.
+Geographic regression is useful for generating hypotheses. From the linear regression model we saw that homicide rates increased with resource deprivation. How does this relationship between homicide rates and resource deprivation vary across the South?
 ```{r}
 coef(model.lm3)[2]
 range(model.gwr$SDF$RD90)
@@ -263,7 +264,7 @@ range(model.gwr$SDF$RD90)
 
 The global regression coefficient is .51 but locally the coefficients range from 0.08 to .98.
 
-Importantly we can map where resource deprivation has the most influence on the response variable.
+Importantly you can map where resource deprivation has the most (and least) influence on homicide rates.
 ```{r}
 SH.sf$RDcoef <- model.gwr$SDF$RD90
 
@@ -271,9 +272,9 @@ tm_shape(SH.sf) +
   tm_fill("RDcoef", title = "Resource\nDeprivation\nCoefficient", palette = 'Blues')
 ```
 
-All values are above zero, but areas in darker blue indicate where resource deprivation plays a stronger role in explaining homicide rates. Western Texas and southern Florida.
+All values are above zero indicating the importance of resource deprivation as a predictor of homicides, but areas in darker blue indicate where resource deprivation plays a bigger role in explaining homicides. Places like western Texas and southern Florida.
 
-How about the unemployment rate?
+What about the influence of unemployment on homicide rates?
 ```{r}
 SH.sf$UEcoef <- model.gwr$SDF$UE90
 
@@ -283,7 +284,7 @@ tm_shape(SH.sf) +
 
 While the global coefficient is negative indicating homicide rates tend to be lower in areas with more unemployment, the opposite is the case over much of Texas into Oklahoma.
 
-Where does the model provide the best fit to the data? This is answered with a map of local R squared values (`localR2`).
+Finally, where does the model provide the best fit to the data? This is answered with a map of local R squared values (`localR2`).
 ```{r}
 SH.sf$localR2 <- model.gwr$SDF$localR2
 
@@ -291,31 +292,8 @@ tm_shape(SH.sf) +
   tm_fill("localR2", title = "Local\nR Squared", palette = 'Purples') 
 ```
 
-Key point: When we fit a regression model to data that vary spatially we are assuming an underlying stationary process. This means we believe the explanatory variables 'provoke' the same statistical response across the entire domain. 
+You see that the models are best at statistical explaining homicides in places like western Texas and southern Florida.
 
-If this is not the case then it shows up in a map of correlated residuals. One approach to investigate things further is to use geographic regression. Another approach is to use a single spatial regression model.
+Key point: When you fit a regression model to data that vary spatially you are assuming an underlying stationary process. This means you believe the explanatory variables 'provoke' the same statistical response across the entire domain. 
 
-## Assignment 11
-
-Due Date: December 4, 2020 (3pm)
-
-Total Points: 50
-
-**1** Consider the demographic data at the county level in the state of Georgia located in the folder _Georgia_ as shape files.
-
-(a) Import the data to create a simple feature data frame called `GE.sf`. Remove the row with `FID_1` equal to 65. Hint: Use the `read_sf()` function from {sf} and then the `filter()` function from {dplyr} with `FID_1 != 65`. (5)
-(b) Plot a map showing the county borders. Hint: Apply the `plot()` method to the `geometry` column of the simple feature data frame (3)
-(c) Create a spatial weights matrix using queen contiguity. Hint: This is the default when using the `poly2nb()` function from {spedep}. (5)
-(d) Compute the Moran I for the variable percent elderly (`PctEld`) and test for statistical significance. Hint: Use the `moran.test()` function. (3)
-(e) Compute local Moran I for the variable percent elderly. Hint: Use the `localmoran()` function. (4)
-(f) Create side-by-side choropleth maps showing county-level percent elderly values and values of local Moran I. Hint: Use the `tm_fill()` function from the {tmap} package. (5)
-
-**2** Consider the police expenditure data at the county level in the state of Mississippi located in the folder _police_.
-
-(a) Import the data to create a simple feature data frame called `PE.sf`. (3)
-(b) Create a new variable in the data frame that is the logarithm of the police expenditure. Name the column `logPOLICE`. (3)
-(c) Create a spatial polygons data frame from the simple feature data frame using the `as()` function. Call this data frame `PE.sp`. (3)
-(d) Use the `gwr.sel()` function from the {spgwr} package to determine the bandwidth for a geographic regression of `logPOLICE` onto `CRIME` and `INC`. Save the bandwidth in an object called `bw`. (3)
-(e) Fit the geographic regression model of `logPOLICE` onto `CRIME` and `INC` using the `gwr()` function. Assign the model output to the object `model.gwr`. (5)
-(f) Add the local R squared output from the model to the simple feature data frame. Hint: This output is in the spatial data frame `model.gwr$SDF`. (5)
-(g) Create a choropleth map of the local R squared values using functions from the {tmap} OR {ggplot2} packages. (3)
+If this is not the case then it shows up in a map of correlated residuals. One approach to investigate this assumption is to use geographic regression. Another approach is to use a single spatial regression model.
