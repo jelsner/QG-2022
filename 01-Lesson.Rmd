@@ -3,12 +3,12 @@
 - Is it getting hotter here in Tallahassee?
 - Are Atlantic hurricanes getting stronger?
 
-Data science (formerly known as 'statistics') is an exciting discipline that allows you to turn data into understanding, insight, and knowledge.
+Data science (also known as 'statistics') is an exciting discipline that allows you to turn data into understanding, insight, and knowledge.
 
 ## Today {-}
 
-- Understand what this course is about, how it is structured, and my expectations for you
-- Start working with RStudio and R.
+- Understand what this course is about, how it is structured, and what I expect from you
+- Start working with RStudio and R
 
 ## What is this course? {-}
 
@@ -36,13 +36,6 @@ A - We can discuss that over coffee.
 
 [Github](https://github.com/jelsner/QG-2022)
 
-[RStudio Cloud](https://rstudio.cloud)
-
-## Join RStudio Cloud {-}
-
-* Go to [RStudio Cloud](https://rstudio.cloud), and log in.
-* Click on this link https://rstudio.cloud/spaces/75344/join?access_code=drxxMUzCFzMd2hUzGi5EZZaR9CgXY2jJVC6mz54L to join the Quantitative Geography Using R Space on RStudio Cloud.
-
 ## Examples {-}
 
 Some of my recent research:
@@ -57,10 +50,54 @@ Other research:
 
 ## Course Syllabus {-}
 
-- Log on to RStudio Cloud and click on this course's Space (Quantitative Geography Using R).
-- Click on the project `00_Syllabus` and launch it.
-- Open the `00-Syllabus.Rmd` file (lower-right panel), and then click on the "Knit" button.
-- Review
+- Navigate to https://github.com/jelsner/QG-2022
+- Click on the file labeled `00-Syllabus.Rmd`
+- Click on the button `[Raw]`
+- You can `Save as` to download a copy to your computer
+
+## Getting setup for this course {-}
+
+First get R
+
+* Go to http://www.r-project.org.
+* Select the CRAN (Comprehensive R Archive Network). Scroll to a mirror site. 
+* Choose the appropriate file for your hardware.
+* Follow the instructions to install R.
+
+Then get RStudio
+
+* Go to on http://rstudio.org
+* Download RStudio Desktop
+* Install and open RStudio
+
+Finally (Optional), learn git
+
+https://happygitwithr.com/install-git.html
+
+## The RStudio IDE {-}
+
+* Written in HTML
+* Top menus
+  + File > New File > R Markdown
+  + Tools > Global Options > Appearance
+  
+* Upper left panel is the markdown file. This is where we put our text and code. 
+  + Run code chunks from this panel 
+  + Output from the operations can be placed in this panel or in the Console (see the gear icon above)
+  + All the text, code, and output can be rendered to an HTML file or a PDF or Word document (see the Knit button above)
+  
+* Upper right panel shows what is in your current environment and the history of the commands you issued.
+  + This is also where you can connect to github
+  
+* Lower left panel is the Console
+  + I think of this as a sandbox where you try out small bits of code. If it works and is relevant move it to the markdown file.
+  + This is also where output from running code will be placed.
+  + Not a place for plain text
+  
+* Lower right panel shows your project files, the plots that get made, and all the packages associated with the project.
+  + The File tab shows the files in the project. The most important one is the .Rmd.
+  + The Plot tab currently shows a blank sheet
+  + The Packages tab shows all the packages that have been downloaded from CRAN and are associated with this project.
 
 ## Tallahassee daily temperatures {-}
 
@@ -82,7 +119,7 @@ TLH.df <- readr::read_csv(file = here::here('data', 'TLH_SOD1892.csv'),
 
 package::function  (`::` is called a library specifier).
 
-Or, load the packages into your current environment with the `library()` function in the file above where they are first used.
+Or, load the packages into your current environment with the `library()` function.
 
 Create a plot of the frequency of high temperatures.
 ```{r, create a plot}
