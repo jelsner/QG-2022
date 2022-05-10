@@ -11,11 +11,15 @@
 
 Email: <jelsner@fsu.edu>
 
+Links to my stuff
+
+* [Website](http://myweb.fsu.edu/jelsner/_site/)
+* [GitHub](https://github.com/jelsner/)
+* [Twitter](https://twitter.com/JBElsner)
+
 ## Course description {-}
 
-This course is an introduction to the quantitative analysis of geographic data (data analysis for geographers). Most of the course content will be available through Canvas and through RStudio Cloud. Please open an account with RStudio Cloud at (https://rstudio.cloud). 
-
-Please use this link https://rstudio.cloud/spaces/12733/join?access_code=NuhGFcK71GlGuzoKzAUIe1lqgcMDyOIC7UnnFtNG to join the Spatial Data Analysis workspace on RStudio Cloud.
+This course is an introduction to the quantitative analysis of geographic data (data analysis for geographers). The course content is available on GitHub https://github.com/jelsner/QG-2022
 
 ## Expected learning outcomes {-}
 
@@ -23,51 +27,52 @@ You will describe and demonstrate the principles of data science. You will do th
 
 ## Materials {-}
 
-* You will need access to the internet and either an iPad, laptop, or desktop computer. 
-* All course materials are available through RStudio Cloud (https://rstudio.cloud/spaces/12733/projects) and archived on Canvas.
+* You will need access to the internet and either a laptop or desktop computer.
+* All course materials are available through GitHub.
 * There is no required textbook. 
 * Much of the material for the course comes from the online book: R for Data Science https://r4ds.had.co.nz/
 * Additional help is available online (e.g., https://tinystats.github.io/teacups-giraffes-and-statistics/index.html)
 
 ## Class meetings {-}
 
-- Online: synchronous, interactive, asynchronous recordings available on Canvas
-- Some lectures, lots of learn-by-doing
+During each lesson I will work through and explain the R code within an `xx-Lesson.Rmd` file in the physical classroom. The notes in the lesson files are comprehensive, so you can work through them on your own if you can't make it to class. The notes are written using the markdown language. Markdown is a way to write content for the Web. An R markdown file has the suffix `.Rmd` (R markdown file). The file is opened using the RStudio application.
 
 ## Grades {-}
 
-* Grades are determined solely by how well you do on the regularly scheduled homework/classwork assignments. 
-* There are NO quizzes, tests, or exams. 
-* Synchronous attendance is expected but not required. 
-* Late classwork or homework assignments will not be accepted.
-* Cumulative numerical averages of 90 - 100 (outstanding) are guaranteed at least an A-, 80 - 89 (good) at least a B-, and 70 - 79 (satisfactory) at least a C-, however the exact ranges for letter grades will be determined after all work is complete.
+You are responsible for:
 
-## Academic honor code {-}
+1. Reading and running the code in the lesson R markdown files (`.Rmd`) files. You can do this during the remote lessons as I talk and run my code or outside of class on your own.
+2. Completing and returning the lab assignments on time.
 
-http://www.eng.fsu.edu/~peterson/fsuhc.html
+Grades are determined only by how well you do on the assignments.
 
-## Students With Disabilities Act {-}
+There are no quizzes, tests, or exams.
 
-Students needing academic accommodation should: (1) register with and provide documentation to the Student Disability Resource Center (https://dos.fsu.edu/sdrc/); (2) bring a letter to me indicating the need for accommodation and what type. This should be done sometime during the first week of classes.
+Grades are determined only by how well you do on the assignments. based on the following standard:
 
-## Inclusiveness {-}
+* A: Outstanding: few, in any, errors/omissions
+* B: Good: only minor errors/omissions
+* C: Satisfactory: minor omissions, at least one major error/omission
+* D: Poor: several major errors/omissions
+* F: Fail: many major errors/omissions
 
-It is my intent to present materials and activities that are respectful of diversity: gender identity, sexuality, disability, age, socioeconomic status, ethnicity, race, nationality, religion, and culture. Let me know ways to improve the effectiveness of the course for you personally, or for other students or student groups.
+I'll use the +/- grading system.
 
-- If you have a name and/or set of pronouns that differ from those that appear in your official FSU records, please let me know.
-- If you feel your performance is being impacted by your experiences outside of class, please don't hesitate to come and talk with me. If you prefer to speak with someone outside of the course, your academic dean is an excellent resource. 
-- If something was said in class (by anyone) that made you feel uncomfortable, please talk to me about it.
+Grades will be posted as they are recorded on [FSU Canvas](https://canvas.fsu.edu)
 
-## More about your instructor {-}
+## Ethics {-}
 
-* [Canvas](https://cas.fsu.edu/cas/login)
-* [GitHub](https://github.com/jelsner/)
-* [Twitter](https://twitter.com/JBElsner)
-* [Research Website](http://myweb.fsu.edu/jelsner/_site/)
+Academic honor code
 
-## Syllabus change policy {-}
+https://fda.fsu.edu/academic-resources/academic-integrity-and-grievances/academic-honor-policy
 
-This syllabus is a guide for the course and is subject to change with advanced notice.
+Americans With Disabilities Act
+
+Students with disabilities needing academic accommodation should: (1) register with and provide documentation to the Student Disability Resource Center; (2) bring a letter indicating the need for accommodation and what type. This should be done during the first week of classes.
+
+Diversity and inclusiveness
+
+It is my intent to present notes and data that are respectful of diversity: gender identity, sexuality, disability, age, socioeconomic status, ethnicity, race, nationality, religion, and culture.
 
 ## Schedule (subject to change with notice) {-}
 
@@ -104,7 +109,7 @@ Assignment | Due Date (5 pm)
 10         | November 15
 11         | November 29
 
-## Other materials to check out {-}
+## Other relevant materials {-}
 
 * [Best practices for working with R](https://twitter.com/DanOvand0/status/1309223236740083712)
 Develop a project-oriented work flow and don't use `setwd()`. Don't hard-coded file path names. Use version control (github). Manage package dependencies. Pick a style of writing code and stick with it. Do as much as you can in RMarkdown (notes, lectures, slides, etc). Check out [Openscapes](https://www.openscapes.org/).
@@ -114,33 +119,3 @@ Develop a project-oriented work flow and don't use `setwd()`. Don't hard-coded f
 * Towards a more open and reproducible approach to geographic and spatial data science [Opening practice: supporting reproducibility and critical spatial data science](https://link.springer.com/article/10.1007/s10109-020-00334-2)
 
 * [Transportation Network Analysis Tools](https://www.eventbrite.com/e/new-rstats-transportation-network-analysis-tools-tickets-121594443253) A workshop with Kyle Walker on the {Mapboxapi} package that makes a host of complex transportation network and routing tools accessible to beginners.
-
-
-## Julia programming language {-}
-
-Julia programming language https://julialang.org/
-Download > Open
-
-Jupyter Notebook
-(1) Anaconda > Individual > Download > Install
-(2) In the Julia REPL type:
-using Pkg
-Pkg.add("IJulia")
-(3) Then click on the Anaconda-Navigator icon and Launch Jupyter Notebook
-(4) Click on the New button and select Julia.
-Problems? watch https://www.youtube.com/watch?v=oyx8M1yoboY
-
-Pluto Notebook
-In the Julia REPL type:
-import Pkg; Pkg.add("Pluto")
-import Pluto
-Pluto.run()
-
-md"""
-# This Pluto notebook is a test.
-"""
-begin
-a = [1, 4, 7, 22]
-	a * 10
-end
-
