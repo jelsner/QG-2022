@@ -1,48 +1,48 @@
-# Syllabus {-}
+# Syllabus {.unnumbered}
 
-## GEO5165C: Quantitative Geography {-}
+## GEO5165C: Quantitative Geography {.unnumbered}
 
-## Contact information {-}
+## Contact information {.unnumbered}
 
-* Instructor Name: Professor James B. Elsner
-* Instructor Location: Bellamy Building, Room 323a
-* Lesson Hours: TR 3:05-4:20 p.m.
-* Student Hours: TR 9-10 a.m., 2-3 p.m.
+-   Instructor Name: Professor James B. Elsner
+-   Instructor Location: Bellamy Building, Room 323a
+-   Lesson Hours: TR 3:05-4:20 p.m.
+-   Student Hours: TR 9-10 a.m., 2-3 p.m.
 
-Email: <jelsner@fsu.edu>
+Email: [jelsner\@fsu.edu](mailto:jelsner@fsu.edu){.email}
 
 Links to my stuff
 
-* [Website](http://myweb.fsu.edu/jelsner/_site/)
-* [GitHub](https://github.com/jelsner/)
-* [Twitter](https://twitter.com/JBElsner)
+-   [Website](http://myweb.fsu.edu/jelsner/_site/)
+-   [GitHub](https://github.com/jelsner/)
+-   [Twitter](https://twitter.com/JBElsner)
 
-## Course description {-}
+## Course description {.unnumbered}
 
-This course is an introduction to the quantitative analysis of geographic data (data analysis for geographers). The course content is available on GitHub https://github.com/jelsner/QG-2022
+This course is an introduction to the quantitative analysis of geographic data (data analysis for geographers). The course content is available on GitHub <https://github.com/jelsner/QG-2022>
 
-## Expected learning outcomes {-}
+## Expected learning outcomes {.unnumbered}
 
 You will describe and demonstrate the principles of data science. You will do this with a grammar for manipulating data and a grammar for making graphs. The grammars are implemented in R using the syntax of tidyverse.
 
-## Materials {-}
+## Materials {.unnumbered}
 
-* You will need access to the internet and either a laptop or desktop computer.
-* All course materials are available through GitHub.
-* There is no required textbook. 
-* Much of the material for the course comes from the online book: R for Data Science https://r4ds.had.co.nz/
-* Additional help is available online (e.g., https://tinystats.github.io/teacups-giraffes-and-statistics/index.html)
+-   You will need access to the internet and either a laptop or desktop computer.
+-   All course materials are available through GitHub.
+-   There is no required textbook.
+-   Much of the material for the course comes from the online book: R for Data Science <https://r4ds.had.co.nz/>
+-   Additional help is available online (e.g., <https://tinystats.github.io/teacups-giraffes-and-statistics/index.html>)
 
-## Class meetings {-}
+## Class meetings {.unnumbered}
 
 During each lesson I will work through and explain the R code within an `xx-Lesson.Rmd` file in the physical classroom. The notes in the lesson files are comprehensive, so you can work through them on your own if you can't make it to class. The notes are written using the markdown language. Markdown is a way to write content for the Web. An R markdown file has the suffix `.Rmd` (R markdown file). The file is opened using the RStudio application.
 
-## Grades {-}
+## Grades {.unnumbered}
 
 You are responsible for:
 
-1. Reading and running the code in the lesson R markdown files (`.Rmd`) files. You can do this during the remote lessons as I talk and run my code or outside of class on your own.
-2. Completing and returning the lab assignments on time.
+1.  Reading and running the code in the lesson R markdown files (`.Rmd`) files. You can do this during the remote lessons as I talk and run my code or outside of class on your own.
+2.  Completing and returning the lab assignments on time.
 
 Grades are determined only by how well you do on the assignments.
 
@@ -50,21 +50,21 @@ There are no quizzes, tests, or exams.
 
 Grades are determined only by how well you do on the assignments. based on the following standard:
 
-* A: Outstanding: few, in any, errors/omissions
-* B: Good: only minor errors/omissions
-* C: Satisfactory: minor omissions, at least one major error/omission
-* D: Poor: several major errors/omissions
-* F: Fail: many major errors/omissions
+-   A: Outstanding: few, in any, errors/omissions
+-   B: Good: only minor errors/omissions
+-   C: Satisfactory: minor omissions, at least one major error/omission
+-   D: Poor: several major errors/omissions
+-   F: Fail: many major errors/omissions
 
 I'll use the +/- grading system.
 
 Grades will be posted as they are recorded on [FSU Canvas](https://canvas.fsu.edu)
 
-## Ethics {-}
+## Ethics {.unnumbered}
 
 Academic honor code
 
-https://fda.fsu.edu/academic-resources/academic-integrity-and-grievances/academic-honor-policy
+<https://fda.fsu.edu/academic-resources/academic-integrity-and-grievances/academic-honor-policy>
 
 Americans With Disabilities Act
 
@@ -74,48 +74,49 @@ Diversity and inclusiveness
 
 It is my intent to present notes and data that are respectful of diversity: gender identity, sexuality, disability, age, socioeconomic status, ethnicity, race, nationality, religion, and culture.
 
-## Schedule (subject to change with notice) {-}
+## Schedule (subject to change with notice) {.unnumbered}
 
-Week | Dates                       | Topic
------|-----------------------------|-------
-1    | August 23, 25               | RStudio Cloud and R
-2    | August 30, September 1      | Working with R
-3    | September 6, 8              | Data and data frames
-4    | September 13, 15            | Data analysis
-5    | September 20, 22            | Graphical analysis
-6    | September 27, 29            | Mapping data
-7    | October 4, 6                | Bayesian data analysis
-8    | October 11, 13              | Regression
-9    | October 18, 20              | Multiple regression
-10   | October 25, 27              | Regression trees
-11   | November 1, 3               | Spatial data
-12   | November 8, 10              | Spatial autocorrelation
-13   | November 15, 17             | Geographic regression
-14   | November 29, December 1     | Finish assignments
+| Week | Dates                   | Topic                   |
+|------|-------------------------|-------------------------|
+| 1    | August 23, 25           | RStudio Cloud and R     |
+| 2    | August 30, September 1  | Working with R          |
+| 3    | September 6, 8          | Data and data frames    |
+| 4    | September 13, 15        | Data analysis           |
+| 5    | September 20, 22        | Graphical analysis      |
+| 6    | September 27, 29        | Mapping data            |
+| 7    | October 4, 6            | Bayesian data analysis  |
+| 8    | October 11, 13          | Regression              |
+| 9    | October 18, 20          | Multiple regression     |
+| 10   | October 25, 27          | Regression trees        |
+| 11   | November 1, 3           | Spatial data            |
+| 12   | November 8, 10          | Spatial autocorrelation |
+| 13   | November 15, 17         | Geographic regression   |
+| 14   | November 29, December 1 | Finish assignments      |
 
 28 dates 26 lessons
 
-Assignment | Due Date (5 pm)
------------|---------------
-1          | August 30
-2          | September 6
-3          | September 13
-4          | September 27
-5          | October 4
-6          | October 18
-7          | October 25
-8          | November 1
-9          | November 8
-10         | November 15
-11         | November 29
+| Assignment | Due Date (5 pm) |
+|------------|-----------------|
+| 1          | August 30       |
+| 2          | September 6     |
+| 3          | September 13    |
+| 4          | September 27    |
+| 5          | October 4       |
+| 6          | October 18      |
+| 7          | October 25      |
+| 8          | November 1      |
+| 9          | November 8      |
+| 10         | November 15     |
+| 11         | November 29     |
 
-## Other relevant materials {-}
+## Other relevant materials {.unnumbered}
 
-* [Best practices for working with R](https://twitter.com/DanOvand0/status/1309223236740083712)
-Develop a project-oriented work flow and don't use `setwd()`. Don't hard-coded file path names. Use version control (github). Manage package dependencies. Pick a style of writing code and stick with it. Do as much as you can in RMarkdown (notes, lectures, slides, etc). Check out [Openscapes](https://www.openscapes.org/).
+-   [Best practices for working with R](https://twitter.com/DanOvand0/status/1309223236740083712) Develop a project-oriented work flow and don't use `setwd()`. Don't hard-coded file path names. Use version control (github). Manage package dependencies. Pick a style of writing code and stick with it. Do as much as you can in RMarkdown (notes, lectures, slides, etc). Check out [Openscapes](https://www.openscapes.org/).
 
-* [Reading R](https://kieranhealy.org/blog/archives/2020/09/24/us-excess-mortality/)
+-   [Reading R](https://kieranhealy.org/blog/archives/2020/09/24/us-excess-mortality/)
 
-* Towards a more open and reproducible approach to geographic and spatial data science [Opening practice: supporting reproducibility and critical spatial data science](https://link.springer.com/article/10.1007/s10109-020-00334-2)
+-   Towards a more open and reproducible approach to geographic and spatial data science [Opening practice: supporting reproducibility and critical spatial data science](https://link.springer.com/article/10.1007/s10109-020-00334-2)
 
-* [Transportation Network Analysis Tools](https://www.eventbrite.com/e/new-rstats-transportation-network-analysis-tools-tickets-121594443253) A workshop with Kyle Walker on the {Mapboxapi} package that makes a host of complex transportation network and routing tools accessible to beginners.
+-   [Transportation Network Analysis Tools](https://www.eventbrite.com/e/new-rstats-transportation-network-analysis-tools-tickets-121594443253) A workshop with Kyle Walker on the {Mapboxapi} package that makes a host of complex transportation network and routing tools accessible to beginners.
+
+-   [Analyzing US Census Data: Methods, Maps, and Models in R](https://walker-data.com/census-r/index.html)
