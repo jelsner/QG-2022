@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Thursday, October 20, 2022 | GEO5156: Quantitative Geography</title>
+  <meta name="description" content="Thursday, October 20, 2022 | GEO5156: Quantitative Geography" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Thursday, October 20, 2022 | GEO5156: Quantitative Geography" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="jelsner/QG-2022" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Thursday, October 20, 2022 | GEO5156: Quantitative Geography" />
+  
+  
+  
+
+<meta name="author" content="James B. Elsner" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="thursday-september-15-2022.html"/>
+<link rel="next" href="tuesday-october-25-2022.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.9/grViz.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Quantitative Geography</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section" id="toc-section"></a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html"><i class="fa fa-check"></i>Syllabus</a>
+<ul>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#geo5165c-quantitative-geography"><i class="fa fa-check"></i>GEO5165C: Quantitative Geography</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#contact-information"><i class="fa fa-check"></i>Contact information</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#course-description"><i class="fa fa-check"></i>Course description</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#grades"><i class="fa fa-check"></i>Grades</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#ethics"><i class="fa fa-check"></i>Ethics</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#schedule-subject-to-change-with-notice"><i class="fa fa-check"></i>Schedule (subject to change with notice)</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#other-relevant-materials"><i class="fa fa-check"></i>Other relevant materials</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html"><i class="fa fa-check"></i>Tuesday, August 23, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#today"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#what-is-this-course"><i class="fa fa-check"></i>What is this course?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#where-are-the-materials-for-this-course"><i class="fa fa-check"></i>Where are the materials for this course?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#examples"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#course-syllabus"><i class="fa fa-check"></i>Course Syllabus</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#getting-setup-for-this-course"><i class="fa fa-check"></i>Getting setup for this course</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#the-rstudio-ide"><i class="fa fa-check"></i>The RStudio IDE</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#tallahassee-daily-temperatures"><i class="fa fa-check"></i>Tallahassee daily temperatures</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html"><i class="fa fa-check"></i>Thursday, August 25, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#today-1"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#data-analysis"><i class="fa fa-check"></i>Data Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#reproducibility"><i class="fa fa-check"></i>Reproducibility</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#communication"><i class="fa fa-check"></i>Communication</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#automation"><i class="fa fa-check"></i>Automation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#the-r-programming-language"><i class="fa fa-check"></i>The R programming language</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#overview-of-this-course"><i class="fa fa-check"></i>Overview of this course</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#work-in-plain-text-using-r-markdown"><i class="fa fa-check"></i>Work in plain text, using R Markdown</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#visualizing-data"><i class="fa fa-check"></i>Visualizing data</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-code-template"><i class="fa fa-check"></i>A code template</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#the-code"><i class="fa fa-check"></i>The code</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-graphing-workflow"><i class="fa fa-check"></i>A graphing workflow</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-graphing-template"><i class="fa fa-check"></i>A graphing template</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#common-problems"><i class="fa fa-check"></i>Common problems</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#location-of-the-sign"><i class="fa fa-check"></i>location of the <code>+</code> sign</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#help"><i class="fa fa-check"></i>help</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#things-to-know"><i class="fa fa-check"></i>Things to know</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#everything-has-a-name"><i class="fa fa-check"></i>Everything has a name</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#everything-is-an-object"><i class="fa fa-check"></i>Everything is an object</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#you-do-things-using-functions"><i class="fa fa-check"></i>You do things using functions</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#functions-come-in-packages-libraries"><i class="fa fa-check"></i>Functions come in packages (libraries)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#your-turn"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html"><i class="fa fa-check"></i>Tuesday, August 30, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#today-2"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#scatter-plots"><i class="fa fa-check"></i>Scatter plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#facets"><i class="fa fa-check"></i>Facets</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#calculations"><i class="fa fa-check"></i>Calculations</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#functions"><i class="fa fa-check"></i>Functions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#syntax-is-important"><i class="fa fa-check"></i>Syntax is important</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#saving-an-object"><i class="fa fa-check"></i>Saving an object</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#object-names"><i class="fa fa-check"></i>Object names</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#entering-data"><i class="fa fa-check"></i>Entering data</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#applying-a-function"><i class="fa fa-check"></i>Applying a function</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#averge"><i class="fa fa-check"></i>Averge</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#data-vectors"><i class="fa fa-check"></i>Data vectors</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#variance"><i class="fa fa-check"></i>Variance</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#data-vectors-have-a-type"><i class="fa fa-check"></i>Data vectors have a type</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#working-smarter"><i class="fa fa-check"></i>Working smarter</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html"><i class="fa fa-check"></i>Thursday, September 1, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#today-3"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#data-as-vectors"><i class="fa fa-check"></i>Data as vectors</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#mean"><i class="fa fa-check"></i>Mean</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#variance-1"><i class="fa fa-check"></i>Variance</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#median"><i class="fa fa-check"></i>Median</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#spread"><i class="fa fa-check"></i>Spread</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#vector-types"><i class="fa fa-check"></i>Vector types</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#structured-data"><i class="fa fa-check"></i>Structured data</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#asking-questions"><i class="fa fa-check"></i>Asking questions</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#tables-and-summaries"><i class="fa fa-check"></i>Tables and summaries</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html"><i class="fa fa-check"></i>Tuesday, September 6, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#today-4"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#getting-your-data-into-r"><i class="fa fa-check"></i>Getting your data into R</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-structured-data-files"><i class="fa fa-check"></i>Creating structured data files</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#data-frames"><i class="fa fa-check"></i>Data frames</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#quantiles"><i class="fa fa-check"></i>Quantiles</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-a-data-frame"><i class="fa fa-check"></i>Creating a data frame</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#pipes"><i class="fa fa-check"></i>Pipes</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#your-turn-1"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html"><i class="fa fa-check"></i>Thursday, September 8, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#today-5"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#pipe-operator"><i class="fa fa-check"></i>Pipe operator</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#wrangling-data-frames"><i class="fa fa-check"></i>Wrangling data frames</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#selecting-and-filtering"><i class="fa fa-check"></i>Selecting and filtering</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#example-palmer-penguins"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#stringing-functions-together"><i class="fa fa-check"></i>Stringing functions together</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#summarize"><i class="fa fa-check"></i>Summarize</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#grouping"><i class="fa fa-check"></i>Grouping</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#your-turn-2"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html"><i class="fa fa-check"></i>Tuesday, September 13, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#today-6"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#example-1-new-york-city-flight-data"><i class="fa fa-check"></i>Example 1: New York City flight data</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#example-2-daily-weather-data-from-tallahassee"><i class="fa fa-check"></i>Example 2: Daily weather data from Tallahassee</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#putting-everything-together"><i class="fa fa-check"></i>Putting everything together</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#example-3-food-consumption-and-co2-emissions"><i class="fa fa-check"></i>Example 3: Food consumption and CO2 emissions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html"><i class="fa fa-check"></i>Thursday, September 15, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#today-7"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#bar-chart"><i class="fa fa-check"></i>Bar chart</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#pie-preference"><i class="fa fa-check"></i>Pie preference</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#histogram"><i class="fa fa-check"></i>Histogram</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#transforming-the-response-variable"><i class="fa fa-check"></i>Transforming the response variable</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html"><i class="fa fa-check"></i>Thursday, October 20, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#today-8"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#example-average-income-vs-percent-college-graduates-at-the-state-level"><i class="fa fa-check"></i>Example: Average income vs percent college graduates at the state level</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#outliers"><i class="fa fa-check"></i>Outliers</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#summarizing"><i class="fa fa-check"></i>Summarizing</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#example-a-regression-model-for-trend"><i class="fa fa-check"></i>Example: A regression model for trend</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#simpsons-paradox"><i class="fa fa-check"></i>Simpson’s paradox</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html"><i class="fa fa-check"></i>Tuesday, October 25, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#today-9"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#multiple-variable-linear-regression"><i class="fa fa-check"></i>Multiple variable linear regression</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#a-grid-of-scatter-plots"><i class="fa fa-check"></i>A grid of scatter plots</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#fit-a-multiple-variable-regression-model"><i class="fa fa-check"></i>Fit a multiple variable regression model</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#should-you-remove-a-variable-from-the-model"><i class="fa fa-check"></i>Should you remove a variable from the model?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#checking-on-the-model-assumptions"><i class="fa fa-check"></i>Checking on the model assumptions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#checking-predictions"><i class="fa fa-check"></i>Checking predictions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#example-predicting-house-prices"><i class="fa fa-check"></i>Example: Predicting house prices</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#collinearity"><i class="fa fa-check"></i>Collinearity</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html"><i class="fa fa-check"></i>Thursday, October 27, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#today-10"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#removing-variables-from-a-model"><i class="fa fa-check"></i>Removing variables from a model</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#the-stepwise-regression-procedure"><i class="fa fa-check"></i>The stepwise regression procedure</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#transforming-a-response-variable"><i class="fa fa-check"></i>Transforming a response variable</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#regression-trees"><i class="fa fa-check"></i>Regression trees</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html"><i class="fa fa-check"></i>Tuesday, November 1, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#today-11"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#regression-tree-example"><i class="fa fa-check"></i>Regression tree example</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#predictive-uncertainty"><i class="fa fa-check"></i>Predictive uncertainty</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#random-forest-algorithm"><i class="fa fa-check"></i>Random forest algorithm</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#cross-validation"><i class="fa fa-check"></i>Cross validation</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#classification-trees"><i class="fa fa-check"></i>Classification trees</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html"><i class="fa fa-check"></i>Thursday, November 3, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html#today-12"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html#binary-outcomes-and-probabilities"><i class="fa fa-check"></i>Binary outcomes and probabilities</a></li>
+<li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html#logistic-regression"><i class="fa fa-check"></i>Logistic regression</a></li>
+<li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html#example-who-survives-in-the-donner-party"><i class="fa fa-check"></i>Example: Who survives in the Donner Party?</a></li>
+<li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html#example-probability-of-rocket-damage-on-liftoff"><i class="fa fa-check"></i>Example: Probability of rocket damage on liftoff</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html"><i class="fa fa-check"></i>Tuesday, November 8, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#today-13"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#quantifying-autocorrelation-in-spatial-data"><i class="fa fa-check"></i>Quantifying autocorrelation in spatial data</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#spatial-data-as-polygons"><i class="fa fa-check"></i>Spatial data as polygons</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#list-of-neighbors"><i class="fa fa-check"></i>List of neighbors</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#spatial-weights-matrix"><i class="fa fa-check"></i>Spatial weights matrix</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#morans-i"><i class="fa fa-check"></i>Moran’s I</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#spatial-lag-variable"><i class="fa fa-check"></i>Spatial lag variable</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html"><i class="fa fa-check"></i>Thursday, November 10, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html#today-14"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html#statistical-significance-of-spatial-autocorrelation"><i class="fa fa-check"></i>Statistical significance of spatial autocorrelation</a></li>
+<li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html#a-monte-carlo-approach-to-inference-about-spatial-autocorrelation"><i class="fa fa-check"></i>A Monte Carlo approach to inference about spatial autocorrelation</a></li>
+<li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html#spatial-autocorrelation-in-model-residuals"><i class="fa fa-check"></i>Spatial autocorrelation in model residuals</a></li>
+<li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html#example-percentage-of-folks-identifying-as-white-in-mississippi-counties"><i class="fa fa-check"></i>Example: Percentage of folks identifying as white in Mississippi counties</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html"><i class="fa fa-check"></i>Tuesday, November 15, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#today-15"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#bi-variate-spatial-autocorrelation"><i class="fa fa-check"></i>Bi-variate spatial autocorrelation</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#local-autocorrelation"><i class="fa fa-check"></i>Local autocorrelation</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#local-regression"><i class="fa fa-check"></i>Local regression</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#weights-matrix"><i class="fa fa-check"></i>Weights matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-november-17-2022.html"><a href="thursday-november-17-2022.html"><i class="fa fa-check"></i>Thursday, November 17, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-november-17-2022.html"><a href="thursday-november-17-2022.html#today-16"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-november-17-2022.html"><a href="thursday-november-17-2022.html#geographic-regression"><i class="fa fa-check"></i>Geographic regression</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GEO5156: Quantitative Geography</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="thursday-october-20-2022" class="section level1 unnumbered hasAnchor">
+<h1>Thursday, October 20, 2022<a href="thursday-october-20-2022.html#thursday-october-20-2022" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="today-8" class="section level2 unnumbered hasAnchor">
+<h2>Today<a href="thursday-october-20-2022.html#today-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>More examples</li>
+<li>Outliers</li>
+<li>Simpson’s paradox</li>
+</ul>
+<p>Linear regression provides an adequate model for your data under the following four assumptions.</p>
+<ul>
+<li>Linearity: Average values of Y in ordered intervals of X are a straight-line function of X. Each interval creates a ‘sub-population’ of Y values.</li>
+<li>Constant variance: Sub-populations of Y have about the same standard deviation.</li>
+<li>Normality: Values from each sub-population are described by a normal distribution.</li>
+<li>Independence: Each observation is independent from the other observations.</li>
+</ul>
+<p>Key idea: A model can be statistically significant, but not adequate.</p>
+</div>
+<div id="example-average-income-vs-percent-college-graduates-at-the-state-level" class="section level2 unnumbered hasAnchor">
+<h2>Example: Average income vs percent college graduates at the state level<a href="thursday-october-20-2022.html#example-average-income-vs-percent-college-graduates-at-the-state-level" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The file <em>Inc.txt</em> on my website contains average annual household income vs percentage of college graduates by state. Fit a linear regression model to these data and check the model assumption. Does the linear model appear to be adequate?</p>
+<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="thursday-october-20-2022.html#cb572-1" aria-hidden="true" tabindex="-1"></a>Inc.df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;http://myweb.fsu.edu/jelsner/temp/data/Inc.txt&quot;</span>, </span>
+<span id="cb572-2"><a href="thursday-october-20-2022.html#cb572-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb572-3"><a href="thursday-october-20-2022.html#cb572-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Inc.df)</span></code></pre></div>
+<pre><code>##   State College Income
+## 1    AL    20.4  20487
+## 2    AK    28.1  26171
+## 3    AZ    24.6  21947
+## 4    AR    18.4  19479
+## 5    CA    27.5  26808
+## 6    CO    34.6  27573</code></pre>
+<p>What is the type and strength of the relationship between percent college graduates and income? These are answered by a scatter plot and correlation, respectively.</p>
+<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="thursday-october-20-2022.html#cb574-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(Inc.df<span class="sc">$</span>College, Inc.df<span class="sc">$</span>Income)</span></code></pre></div>
+<pre><code>## [1] 0.7773291</code></pre>
+<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="thursday-october-20-2022.html#cb576-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb576-2"><a href="thursday-october-20-2022.html#cb576-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Inc.df, </span>
+<span id="cb576-3"><a href="thursday-october-20-2022.html#cb576-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> College, <span class="at">y =</span> Income)) <span class="sc">+</span></span>
+<span id="cb576-4"><a href="thursday-october-20-2022.html#cb576-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb576-5"><a href="thursday-october-20-2022.html#cb576-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm) <span class="sc">+</span></span>
+<span id="cb576-6"><a href="thursday-october-20-2022.html#cb576-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;College Graduates (%)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb576-7"><a href="thursday-october-20-2022.html#cb576-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Average Income ($)&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-548-1.png" width="672" /></p>
+<p>The plot shows that there is a linear relationship between percent college graduates and income. The relationship is positive indicating that states with higher percentage of college graduates also have higher incomes on average.</p>
+<p>The relationship is quite strong (the correlation value is .78), with few, if any, of the states deviating from the linear pattern.</p>
+<p>When the data have a spatial component it’s a good idea to make a map. Here you create a choropleth map using functions from the {tmap} package.</p>
+<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="thursday-october-20-2022.html#cb578-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
+<span id="cb578-2"><a href="thursday-october-20-2022.html#cb578-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(USAboundaries)</span>
+<span id="cb578-3"><a href="thursday-october-20-2022.html#cb578-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div>
+<pre><code>## Linking to GEOS 3.10.2, GDAL 3.4.2, PROJ 8.2.1; sf_use_s2() is TRUE</code></pre>
+<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="thursday-october-20-2022.html#cb580-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb580-2"><a href="thursday-october-20-2022.html#cb580-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb580-3"><a href="thursday-october-20-2022.html#cb580-3" aria-hidden="true" tabindex="-1"></a>states.sf <span class="ot">&lt;-</span> <span class="fu">us_states</span>() </span>
+<span id="cb580-4"><a href="thursday-october-20-2022.html#cb580-4" aria-hidden="true" tabindex="-1"></a>Inc.df <span class="ot">&lt;-</span> Inc.df <span class="sc">|&gt;</span></span>
+<span id="cb580-5"><a href="thursday-october-20-2022.html#cb580-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">stusps =</span> State)</span>
+<span id="cb580-6"><a href="thursday-october-20-2022.html#cb580-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb580-7"><a href="thursday-october-20-2022.html#cb580-7" aria-hidden="true" tabindex="-1"></a>states.sf <span class="ot">&lt;-</span> <span class="fu">left_join</span>(states.sf, </span>
+<span id="cb580-8"><a href="thursday-october-20-2022.html#cb580-8" aria-hidden="true" tabindex="-1"></a>                       Inc.df, </span>
+<span id="cb580-9"><a href="thursday-october-20-2022.html#cb580-9" aria-hidden="true" tabindex="-1"></a>                       <span class="at">by =</span> <span class="st">&quot;stusps&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb580-10"><a href="thursday-october-20-2022.html#cb580-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>stusps <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;AK&quot;</span>, <span class="st">&quot;HI&quot;</span>, <span class="st">&quot;PR&quot;</span>))</span>
+<span id="cb580-11"><a href="thursday-october-20-2022.html#cb580-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb580-12"><a href="thursday-october-20-2022.html#cb580-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(states.sf) <span class="sc">+</span></span>
+<span id="cb580-13"><a href="thursday-october-20-2022.html#cb580-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;Income&quot;</span>, <span class="st">&quot;College&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb580-14"><a href="thursday-october-20-2022.html#cb580-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_legend</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-549-1.png" width="672" /></p>
+<p>Regress annual household income on percent of college graduates.</p>
+<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="thursday-october-20-2022.html#cb581-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Income <span class="sc">~</span> College, </span>
+<span id="cb581-2"><a href="thursday-october-20-2022.html#cb581-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> Inc.df)</span>
+<span id="cb581-3"><a href="thursday-october-20-2022.html#cb581-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Income ~ College, data = Inc.df)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4136.0 -1344.6    74.9  1275.6  5121.4 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 10459.85    1614.70   6.478 4.27e-08 ***
+## College       545.27      63.04   8.649 1.98e-11 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2078 on 49 degrees of freedom
+## Multiple R-squared:  0.6042, Adjusted R-squared:  0.5962 
+## F-statistic: 74.81 on 1 and 49 DF,  p-value: 1.975e-11</code></pre>
+<p>Results indicate a significant relationship (<span class="math inline">\(p\)</span>-value &lt; .001). Percent college graduates explains 60% of the variation in average income by state. The significant effect implies it is unlikely that income and education have no relationship.</p>
+<p>Not only is the effect significant but it is large. For every 1 percentage point increase in graduates, average annual household income increases by $545.</p>
+<p>From the small standard error (relative to the estimate) on the slope extracted as</p>
+<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="thursday-october-20-2022.html#cb583-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)<span class="sc">$</span>coefficients[<span class="dv">2</span>, <span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] 63.04127</code></pre>
+<p>You can say that the effect is quite precise.</p>
+<p>This precision shows in the narrow uncertainty interval for the slope estimate.</p>
+<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="thursday-october-20-2022.html#cb585-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(model1)</span></code></pre></div>
+<pre><code>##                 2.5 %     97.5 %
+## (Intercept) 7214.9929 13704.7171
+## College      418.5846   671.9569</code></pre>
+<p>Is the model adequate?</p>
+<p>Check linearity and equal spread.</p>
+<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="thursday-october-20-2022.html#cb587-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Inc.df, </span>
+<span id="cb587-2"><a href="thursday-october-20-2022.html#cb587-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">cut</span>(College, <span class="at">breaks =</span> <span class="dv">6</span>), <span class="at">y =</span> Income)) <span class="sc">+</span> </span>
+<span id="cb587-3"><a href="thursday-october-20-2022.html#cb587-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb587-4"><a href="thursday-october-20-2022.html#cb587-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Percentage of College Graduates&quot;</span>) <span class="sc">+</span></span>
+<span id="cb587-5"><a href="thursday-october-20-2022.html#cb587-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Average Income ($)&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-553-1.png" width="672" /></p>
+<p>It looks favorable for these two assumptions. Although the effect seems to level off for the highest percentage of graduates.</p>
+<p>Next look at the distribution of the residuals. Does the distribution look like a normal distribution?</p>
+<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="thursday-october-20-2022.html#cb588-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">residuals</span>(model1)</span>
+<span id="cb588-2"><a href="thursday-october-20-2022.html#cb588-2" aria-hidden="true" tabindex="-1"></a>sm<span class="sc">::</span><span class="fu">sm.density</span>(res, </span>
+<span id="cb588-3"><a href="thursday-october-20-2022.html#cb588-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">model =</span> <span class="st">&quot;Normal&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-554-1.png" width="672" /></p>
+<p>The black curve falls within the blue envelope of a normal distribution, so you have no reason to suspect the assumption of normally distributed residuals.</p>
+<p>Another check is to use the quantile-quantile plot. A quantile-quantile plot (or Q-Q plot) is a graph of the quantiles of one distribution against the quantiles of another distribution. If the distributions have similar shapes, the points on the plot fall roughly along the straight line.</p>
+<p>To check the normality assumption of a regression model you want to compare the quantiles of the residuals against the quantiles of a normal distribution. You do that with the <code>qqnorm()</code> function.</p>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="thursday-october-20-2022.html#cb589-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(res)</span>
+<span id="cb589-2"><a href="thursday-october-20-2022.html#cb589-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(res)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-555-1.png" width="672" /></p>
+<p>Departures from normality are seen as a systematic departure of the points from a straight line on the Q-Q plot.</p>
+<p>Interpreting Q-Q plots is somewhat subjective. Here are the common situations.</p>
+<p>Description: interpretation</p>
+<ul>
+<li>All but a few points fall on a line: few outliers in the data</li>
+<li>Left end of pattern is below the line; right end of pattern is above the line: long tails at both ends of the distribution</li>
+<li>Left end of pattern is above the line; right end of pattern is below the line: short tails at both ends of the data distribution</li>
+<li>Curved pattern with slope increasing from left to right: data is skewed to the right</li>
+<li>Curved pattern with slope decreasing from left to right: data is skewed to the left</li>
+<li>Staircase pattern (plateaus and gaps): data have been rounded or are discrete</li>
+</ul>
+</div>
+<div id="outliers" class="section level2 unnumbered hasAnchor">
+<h2>Outliers<a href="thursday-october-20-2022.html#outliers" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>What state is most/least favorable with respect to income after graduating from college? These are the states where incomes for a given % graduates fall farthest from the regression line.</p>
+<p>The residuals are what is left over once percent graduated is in the model—or in statistical language, “after controlling for percent graduated.”</p>
+<p>The above assumptions concern the conditional distribution of the residuals. The residuals for each of the observations are computed when you use the <code>lm()</code> function to fit the model.</p>
+<p>In the code below, the <code>fortify()</code> function from the {ggplot2} package creates a data frame with elements computed from the fitted model.</p>
+<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="thursday-october-20-2022.html#cb590-1" aria-hidden="true" tabindex="-1"></a>model1.df <span class="ot">&lt;-</span> <span class="fu">fortify</span>(model1)</span>
+<span id="cb590-2"><a href="thursday-october-20-2022.html#cb590-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(model1.df)</span></code></pre></div>
+<pre><code>##   Income College       .hat   .sigma      .cooksd  .fitted     .resid
+## 1  20487    20.4 0.04076339 2093.191 0.0061668998 21583.38 -1096.3784
+## 2  26171    28.1 0.02738038 2098.646 0.0005072964 25781.96   389.0367
+## 3  21947    24.6 0.01993274 2080.543 0.0089192327 23873.52 -1926.5156
+## 4  19479    18.4 0.06209651 2093.973 0.0084026089 20492.84 -1013.8369
+## 5  26808    27.5 0.02450204 2090.083 0.0054600928 25454.80  1353.1992
+## 6  27573    34.6 0.10104189 2082.383 0.0445065637 29326.22 -1753.2232
+##    .stdresid
+## 1 -0.5387362
+## 2  0.1898443
+## 3 -0.9365331
+## 4 -0.5038109
+## 5  0.6593668
+## 6 -0.8899099</code></pre>
+<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="thursday-october-20-2022.html#cb592-1" aria-hidden="true" tabindex="-1"></a>model1.df<span class="sc">$</span>State <span class="ot">&lt;-</span> Inc.df<span class="sc">$</span>stusps</span></code></pre></div>
+<p>The variables in the model are given in the first two columns with information about the regression that is specific to each of the cases (observations) given in the next six columns.</p>
+<p>The first three of those columns contain information that allows you to assess how influential that observation is to the model. If that particularly observation is removed and the regression model refit without it, how much difference would it make in terms of the coefficients? If removing an observation changes the coefficients a lot then that observation is said to be influential.</p>
+<p>A plot of the model residuals as a function of the explanatory variables lets us easily identify which states have the largest positive and negative residuals. To make the plot more readable use the <code>geom_label_repel()</code> function from the {ggrepel} package. This labels the points while avoiding overlapping labels.</p>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="thursday-october-20-2022.html#cb593-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb593-2"><a href="thursday-october-20-2022.html#cb593-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb593-3"><a href="thursday-october-20-2022.html#cb593-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> model1.df, </span>
+<span id="cb593-4"><a href="thursday-october-20-2022.html#cb593-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> College, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
+<span id="cb593-5"><a href="thursday-october-20-2022.html#cb593-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb593-6"><a href="thursday-october-20-2022.html#cb593-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb593-7"><a href="thursday-october-20-2022.html#cb593-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Percent College Graduates&quot;</span>) <span class="sc">+</span></span>
+<span id="cb593-8"><a href="thursday-october-20-2022.html#cb593-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>( <span class="st">&quot;Model Residuals&quot;</span>) <span class="sc">+</span></span>
+<span id="cb593-9"><a href="thursday-october-20-2022.html#cb593-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> State), <span class="at">color =</span> <span class="st">&quot;darkblue&quot;</span>) </span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-557-1.png" width="672" /></p>
+<p>Nevada and Connecticut stand out as states where the model underestimates income from percent graduation rates. While Utah, New Mexico, and Montana are states where the model over estimates income.</p>
+<p>Statistically significant outliers are those that are outside +/- 2 standard deviations from the regression line. The standardized residuals are plotted and the corresponding significance lines drawn.</p>
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="thursday-october-20-2022.html#cb594-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> model1.df, </span>
+<span id="cb594-2"><a href="thursday-october-20-2022.html#cb594-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> College, <span class="at">y =</span> .stdresid)) <span class="sc">+</span></span>
+<span id="cb594-3"><a href="thursday-october-20-2022.html#cb594-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb594-4"><a href="thursday-october-20-2022.html#cb594-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb594-5"><a href="thursday-october-20-2022.html#cb594-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="sc">-</span><span class="dv">2</span>, <span class="at">lty =</span> <span class="st">&quot;dotted&quot;</span>) <span class="sc">+</span></span>
+<span id="cb594-6"><a href="thursday-october-20-2022.html#cb594-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="st">&quot;dotted&quot;</span>) <span class="sc">+</span></span>
+<span id="cb594-7"><a href="thursday-october-20-2022.html#cb594-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Percent College Graduates&quot;</span>) <span class="sc">+</span></span>
+<span id="cb594-8"><a href="thursday-october-20-2022.html#cb594-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Studentized Residuals&quot;</span>) <span class="sc">+</span></span>
+<span id="cb594-9"><a href="thursday-october-20-2022.html#cb594-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> State), <span class="at">color =</span> <span class="st">&quot;darkblue&quot;</span>) </span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-558-1.png" width="672" /></p>
+</div>
+<div id="summarizing" class="section level2 unnumbered hasAnchor">
+<h2>Summarizing<a href="thursday-october-20-2022.html#summarizing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Regression modeling is statistical control.</li>
+</ol>
+<ul>
+<li>You often want to do more than just summarize the relationship between variables. That is go beyond reporting the correlation.</li>
+<li>Regression provides a strategy to control for effects of an explanatory variable to see what is left over.</li>
+<li>These left overs (residuals) are interpreted as “controlled observations” (e.g. percent income controlling for percent graduates).</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Observations that result in large residuals are called outliers. Outliers can distort regression results or they can be interesting on their own (e.g. unusually destructive tornadoes).</li>
+</ol>
+<ul>
+<li>Inspect scatter plots and plots of residuals to determine whether there are outliers that have a strong influence on the regression line.</li>
+<li>If there are you should re-fit the regression model without those observations and compare results.</li>
+<li>Regardless of how you decide to handle them, you need to let our readers know about these unusual cases.</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>When interpreting a regression model fit to our data, you are making some implicit assumptions.</li>
+</ol>
+<ul>
+<li>Before accepting a model you need to examine those assumptions to make sure they are tenable.</li>
+<li>The model fit may be excellent, but you can’t be sure your conclusions are correct unless you can defend the assumptions.</li>
+<li>Examining the model residuals helps you defend (if warranted) the assumptions.</li>
+</ul>
+</div>
+<div id="example-a-regression-model-for-trend" class="section level2 unnumbered hasAnchor">
+<h2>Example: A regression model for trend<a href="thursday-october-20-2022.html#example-a-regression-model-for-trend" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The rate at which something is changing over time is called a trend. Trend analysis is common in climate change studies and it often involves fitting a linear regression model to quantify the trend where the “explanatory variable” is some index of time.</p>
+<p>Returning to the Florida precipitation data. Import the data and make a line plot showing March values each year. Add the best-fit line through these values.</p>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="thursday-october-20-2022.html#cb595-1" aria-hidden="true" tabindex="-1"></a>loc <span class="ot">&lt;-</span> <span class="st">&quot;http://myweb.fsu.edu/jelsner/temp/data/FLprecip.txt&quot;</span></span>
+<span id="cb595-2"><a href="thursday-october-20-2022.html#cb595-2" aria-hidden="true" tabindex="-1"></a>FLp <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_table</span>(loc, <span class="at">na =</span> <span class="st">&quot;-9.900&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   Year = col_double(),
+##   Jan = col_double(),
+##   Feb = col_double(),
+##   Mar = col_double(),
+##   Apr = col_double(),
+##   May = col_double(),
+##   Jun = col_double(),
+##   Jul = col_double(),
+##   Aug = col_double(),
+##   Sep = col_double(),
+##   Oct = col_double(),
+##   Nov = col_double(),
+##   Dec = col_double()
+## )</code></pre>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="thursday-october-20-2022.html#cb597-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb597-2"><a href="thursday-october-20-2022.html#cb597-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb597-3"><a href="thursday-october-20-2022.html#cb597-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(FLp, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Mar)) <span class="sc">+</span></span>
+<span id="cb597-4"><a href="thursday-october-20-2022.html#cb597-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb597-5"><a href="thursday-october-20-2022.html#cb597-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb597-6"><a href="thursday-october-20-2022.html#cb597-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Statewide March Precipitation (in)&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-559-1.png" width="672" /></p>
+<p>There is an upward trend (increasing precipitation) but you can see that the uncertainty ribbon would allow a horizontal line. Thus you do not anticipate a significant trend term in a regression model.</p>
+<p>To check on this expectation, you regress March precipitation onto year.</p>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="thursday-october-20-2022.html#cb599-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Mar <span class="sc">~</span> Year, </span>
+<span id="cb599-2"><a href="thursday-october-20-2022.html#cb599-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> FLp)</span>
+<span id="cb599-3"><a href="thursday-october-20-2022.html#cb599-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Mar ~ Year, data = FLp)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.7877 -1.4772 -0.3558  1.0638  4.9677 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept) -19.206620  10.260642  -1.872   0.0638 .
+## Year          0.011710   0.005253   2.229   0.0277 *
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.919 on 115 degrees of freedom
+## Multiple R-squared:  0.04142,    Adjusted R-squared:  0.03309 
+## F-statistic: 4.969 on 1 and 115 DF,  p-value: 0.02774</code></pre>
+<p>You see that the statewide annual average precipitation has been increasing by .01 inches per year. This upward trend has a <span class="math inline">\(p\)</span>-value of .04 providing suggestive but inconclusive evidence against the null hypothesis of no trend. The larger the <span class="math inline">\(p\)</span>-value the more evidence you have that the trend is not significant.</p>
+<p>You can fit regression models for all months. First convert the wide to a long data frame.</p>
+<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="thursday-october-20-2022.html#cb601-1" aria-hidden="true" tabindex="-1"></a>FLpL <span class="ot">&lt;-</span> FLp <span class="sc">|&gt;</span></span>
+<span id="cb601-2"><a href="thursday-october-20-2022.html#cb601-2" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">cols =</span> Jan<span class="sc">:</span>Dec,</span>
+<span id="cb601-3"><a href="thursday-october-20-2022.html#cb601-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">names_to =</span> <span class="st">&quot;Month&quot;</span>,</span>
+<span id="cb601-4"><a href="thursday-october-20-2022.html#cb601-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">values_to =</span> <span class="st">&quot;Precipitation&quot;</span>)</span></code></pre></div>
+<p>Then to fit trend models <em>separately</em> for each month you use the <code>do()</code> function from the {dplyr} package together with the <code>tidy()</code> function from the {broom} package.</p>
+<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="thursday-october-20-2022.html#cb602-1" aria-hidden="true" tabindex="-1"></a>FLpL <span class="sc">|&gt;</span> </span>
+<span id="cb602-2"><a href="thursday-october-20-2022.html#cb602-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">MonthF =</span> <span class="fu">factor</span>(Month, <span class="at">levels =</span> month.abb)) <span class="sc">|&gt;</span></span>
+<span id="cb602-3"><a href="thursday-october-20-2022.html#cb602-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(MonthF) <span class="sc">|&gt;</span></span>
+<span id="cb602-4"><a href="thursday-october-20-2022.html#cb602-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">do</span>(broom<span class="sc">::</span><span class="fu">tidy</span>(<span class="fu">lm</span>(Precipitation <span class="sc">~</span> Year, <span class="at">data =</span> .)))</span></code></pre></div>
+<pre><code>## # A tibble: 24 × 6
+## # Groups:   MonthF [12]
+##    MonthF term          estimate std.error statistic p.value
+##    &lt;fct&gt;  &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+##  1 Jan    (Intercept) -10.6        8.14      -1.30    0.197 
+##  2 Jan    Year          0.00691    0.00417    1.66    0.100 
+##  3 Feb    (Intercept)   4.46       8.22       0.543   0.588 
+##  4 Feb    Year         -0.000664   0.00421   -0.158   0.875 
+##  5 Mar    (Intercept) -19.2       10.3       -1.87    0.0638
+##  6 Mar    Year          0.0117     0.00525    2.23    0.0277
+##  7 Apr    (Intercept)   2.61       8.34       0.313   0.755 
+##  8 Apr    Year          0.000162   0.00427    0.0380  0.970 
+##  9 May    (Intercept)   8.76       9.72       0.901   0.369 
+## 10 May    Year         -0.00252    0.00498   -0.506   0.614 
+## # … with 14 more rows
+## # ℹ Use `print(n = ...)` to see more rows</code></pre>
+<p>The table shows the intercept and slope coefficients for each month.</p>
+</div>
+<div id="simpsons-paradox" class="section level2 unnumbered hasAnchor">
+<h2>Simpson’s paradox<a href="thursday-october-20-2022.html#simpsons-paradox" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The four assumptions that under gird a linear regression model include (1) linearity, (2) equal variance, (3) normality of residuals, and (4) independence of observations.</p>
+<p>But even if those assumptions are valid, another issue is that of scale.</p>
+<p>Simpson’s paradox occurs when a trend appears in different groups of data but disappears or reverses when the groups are combined.</p>
+<p>It is encountered in social-science and medical-science statistics and is problematic when data are aggregated at various scales (spatial or otherwise).</p>
+<p>The paradox can be resolved when causal relations are appropriately addressed in the statistical modeling.</p>
+<p>As an example, consider again the relationship between bill length and bill depth in the Palmer penguins data without regards to species.</p>
+<p>You start with a scatter plot and a linear regression model.</p>
+<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="thursday-october-20-2022.html#cb604-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb604-2"><a href="thursday-october-20-2022.html#cb604-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb604-3"><a href="thursday-october-20-2022.html#cb604-3" aria-hidden="true" tabindex="-1"></a>( p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> penguins,</span>
+<span id="cb604-4"><a href="thursday-october-20-2022.html#cb604-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> bill_depth_mm, <span class="at">x =</span> bill_length_mm)) <span class="sc">+</span></span>
+<span id="cb604-5"><a href="thursday-october-20-2022.html#cb604-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb604-6"><a href="thursday-october-20-2022.html#cb604-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm) )</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-563-1.png" width="672" /></p>
+<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="thursday-october-20-2022.html#cb606-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(bill_depth_mm <span class="sc">~</span> bill_length_mm,</span>
+<span id="cb606-2"><a href="thursday-october-20-2022.html#cb606-2" aria-hidden="true" tabindex="-1"></a>   <span class="at">data =</span> penguins)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = bill_depth_mm ~ bill_length_mm, data = penguins)
+## 
+## Coefficients:
+##    (Intercept)  bill_length_mm  
+##       15.86202         0.05983</code></pre>
+<p>The plot shows an inverse relationship between bill depth and bill length. And the regression model shows a statistically significant relationship with bill depth decreasing by .85 cm for every one mm increase in bill length.</p>
+<p>However the relationship is across all species of penguins. If you group by species you see that for each species the relationship is the opposite.</p>
+<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="thursday-october-20-2022.html#cb608-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> </span>
+<span id="cb608-2"><a href="thursday-october-20-2022.html#cb608-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> bill_depth_mm, <span class="at">x =</span> bill_length_mm, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb608-3"><a href="thursday-october-20-2022.html#cb608-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, </span>
+<span id="cb608-4"><a href="thursday-october-20-2022.html#cb608-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb608-5"><a href="thursday-october-20-2022.html#cb608-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;purple&quot;</span>, <span class="st">&quot;cyan4&quot;</span>))</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;
+## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-564-1.png" width="672" /></p>
+<p>That is bill depth <em>increases</em> with increasing bill length. So you conclude that the negative relationship is an artifact of grouping the penguins with different body masses together.</p>
+<p>The paradox is resolved when the relations are appropriately addressed in the statistical modeling.</p>
+<p>See also Berkson’s paradox <a href="https://en.wikipedia.org/wiki/Berkson%27s_paradox" class="uri">https://en.wikipedia.org/wiki/Berkson%27s_paradox</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="thursday-september-15-2022.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tuesday-october-25-2022.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

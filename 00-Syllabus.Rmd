@@ -21,11 +21,11 @@ Links to my stuff
 
 This course is an introduction to the quantitative analysis of geographic data (data analysis for geographers). The course content is available on GitHub <https://github.com/jelsner/QG-2022>
 
-## Expected learning outcomes {.unnumbered}
+Expected learning outcomes
 
 You will describe and demonstrate the principles of data science. You will do this with a grammar for manipulating data and a grammar for making graphs. The grammars are implemented in R using the syntax of tidyverse.
 
-## Materials {.unnumbered}
+Materials
 
 -   You will need access to the internet and either a laptop or desktop computer.
 -   All course materials are available through GitHub.
@@ -33,7 +33,7 @@ You will describe and demonstrate the principles of data science. You will do th
 -   Much of the material for the course comes from the online book: R for Data Science <https://r4ds.had.co.nz/>
 -   Additional help is available online (e.g., <https://tinystats.github.io/teacups-giraffes-and-statistics/index.html>)
 
-## Class meetings {.unnumbered}
+Class meetings
 
 During each lesson I will work through and explain the R code within an `xx-Lesson.Rmd` file in the physical classroom. The notes in the lesson files are comprehensive, so you can work through them on your own if you can't make it to class. The notes are written using the markdown language. Markdown is a way to write content for the Web. An R markdown file has the suffix `.Rmd` (R markdown file). The file is opened using the RStudio application.
 
@@ -109,14 +109,10 @@ It is my intent to present notes and data that are respectful of diversity: gend
 | 10         | November 15     |
 | 11         | November 29     |
 
-## Other relevant materials {.unnumbered}
+## Deeper dives {.unnumbered}
 
 -   [Best practices for working with R](https://twitter.com/DanOvand0/status/1309223236740083712) Develop a project-oriented work flow and don't use `setwd()`. Don't hard-coded file path names. Use version control (github). Manage package dependencies. Pick a style of writing code and stick with it. Do as much as you can in RMarkdown (notes, lectures, slides, etc). Check out [Openscapes](https://www.openscapes.org/).
 
--   [Reading R](https://kieranhealy.org/blog/archives/2020/09/24/us-excess-mortality/)
-
 -   Towards a more open and reproducible approach to geographic and spatial data science [Opening practice: supporting reproducibility and critical spatial data science](https://link.springer.com/article/10.1007/s10109-020-00334-2)
-
--   [Transportation Network Analysis Tools](https://www.eventbrite.com/e/new-rstats-transportation-network-analysis-tools-tickets-121594443253) A workshop with Kyle Walker on the {Mapboxapi} package that makes a host of complex transportation network and routing tools accessible to beginners.
 
 -   [Analyzing US Census Data: Methods, Maps, and Models in R](https://walker-data.com/census-r/index.html)

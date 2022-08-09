@@ -1,0 +1,14 @@
+```{r, echo=FALSE}
+DiagrammeR::grViz("digraph rmarkdown {
+
+D [shape = square]
+A [shape = square]
+L [shape = circle]
+H [shape = circle]
+W [shape = circle, color = orange]
+
+{D A L H} -> W
+
+}
+", height = 250)
+```

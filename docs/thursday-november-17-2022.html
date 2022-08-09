@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Thursday, November 17, 2022 | GEO5156: Quantitative Geography</title>
+  <meta name="description" content="Thursday, November 17, 2022 | GEO5156: Quantitative Geography" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Thursday, November 17, 2022 | GEO5156: Quantitative Geography" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="jelsner/QG-2022" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Thursday, November 17, 2022 | GEO5156: Quantitative Geography" />
+  
+  
+  
+
+<meta name="author" content="James B. Elsner" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tuesday-november-15-2022.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.9/grViz.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Quantitative Geography</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section" id="toc-section"></a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html"><i class="fa fa-check"></i>Syllabus</a>
+<ul>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#geo5165c-quantitative-geography"><i class="fa fa-check"></i>GEO5165C: Quantitative Geography</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#contact-information"><i class="fa fa-check"></i>Contact information</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#course-description"><i class="fa fa-check"></i>Course description</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#grades"><i class="fa fa-check"></i>Grades</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#ethics"><i class="fa fa-check"></i>Ethics</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#schedule-subject-to-change-with-notice"><i class="fa fa-check"></i>Schedule (subject to change with notice)</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#other-relevant-materials"><i class="fa fa-check"></i>Other relevant materials</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html"><i class="fa fa-check"></i>Tuesday, August 23, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#today"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#what-is-this-course"><i class="fa fa-check"></i>What is this course?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#where-are-the-materials-for-this-course"><i class="fa fa-check"></i>Where are the materials for this course?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#examples"><i class="fa fa-check"></i>Examples</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#course-syllabus"><i class="fa fa-check"></i>Course Syllabus</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#getting-setup-for-this-course"><i class="fa fa-check"></i>Getting setup for this course</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#the-rstudio-ide"><i class="fa fa-check"></i>The RStudio IDE</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#tallahassee-daily-temperatures"><i class="fa fa-check"></i>Tallahassee daily temperatures</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html"><i class="fa fa-check"></i>Thursday, August 25, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#today-1"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#data-analysis"><i class="fa fa-check"></i>Data Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#reproducibility"><i class="fa fa-check"></i>Reproducibility</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#communication"><i class="fa fa-check"></i>Communication</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#automation"><i class="fa fa-check"></i>Automation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#the-r-programming-language"><i class="fa fa-check"></i>The R programming language</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#overview-of-this-course"><i class="fa fa-check"></i>Overview of this course</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#work-in-plain-text-using-r-markdown"><i class="fa fa-check"></i>Work in plain text, using R Markdown</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#visualizing-data"><i class="fa fa-check"></i>Visualizing data</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-code-template"><i class="fa fa-check"></i>A code template</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#the-code"><i class="fa fa-check"></i>The code</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-graphing-workflow"><i class="fa fa-check"></i>A graphing workflow</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#a-graphing-template"><i class="fa fa-check"></i>A graphing template</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#common-problems"><i class="fa fa-check"></i>Common problems</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#location-of-the-sign"><i class="fa fa-check"></i>location of the <code>+</code> sign</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#help"><i class="fa fa-check"></i>help</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#things-to-know"><i class="fa fa-check"></i>Things to know</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#everything-has-a-name"><i class="fa fa-check"></i>Everything has a name</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#everything-is-an-object"><i class="fa fa-check"></i>Everything is an object</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#you-do-things-using-functions"><i class="fa fa-check"></i>You do things using functions</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#functions-come-in-packages-libraries"><i class="fa fa-check"></i>Functions come in packages (libraries)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#your-turn"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html"><i class="fa fa-check"></i>Tuesday, August 30, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#today-2"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#scatter-plots"><i class="fa fa-check"></i>Scatter plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#facets"><i class="fa fa-check"></i>Facets</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#calculations"><i class="fa fa-check"></i>Calculations</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#functions"><i class="fa fa-check"></i>Functions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#syntax-is-important"><i class="fa fa-check"></i>Syntax is important</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#saving-an-object"><i class="fa fa-check"></i>Saving an object</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#object-names"><i class="fa fa-check"></i>Object names</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#entering-data"><i class="fa fa-check"></i>Entering data</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#applying-a-function"><i class="fa fa-check"></i>Applying a function</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#averge"><i class="fa fa-check"></i>Averge</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#data-vectors"><i class="fa fa-check"></i>Data vectors</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#variance"><i class="fa fa-check"></i>Variance</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#data-vectors-have-a-type"><i class="fa fa-check"></i>Data vectors have a type</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#working-smarter"><i class="fa fa-check"></i>Working smarter</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html"><i class="fa fa-check"></i>Thursday, September 1, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#today-3"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#data-as-vectors"><i class="fa fa-check"></i>Data as vectors</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#mean"><i class="fa fa-check"></i>Mean</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#variance-1"><i class="fa fa-check"></i>Variance</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#median"><i class="fa fa-check"></i>Median</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#spread"><i class="fa fa-check"></i>Spread</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#vector-types"><i class="fa fa-check"></i>Vector types</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#structured-data"><i class="fa fa-check"></i>Structured data</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#asking-questions"><i class="fa fa-check"></i>Asking questions</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#tables-and-summaries"><i class="fa fa-check"></i>Tables and summaries</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html"><i class="fa fa-check"></i>Tuesday, September 6, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#today-4"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#getting-your-data-into-r"><i class="fa fa-check"></i>Getting your data into R</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-structured-data-files"><i class="fa fa-check"></i>Creating structured data files</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#data-frames"><i class="fa fa-check"></i>Data frames</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#quantiles"><i class="fa fa-check"></i>Quantiles</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-a-data-frame"><i class="fa fa-check"></i>Creating a data frame</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#pipes"><i class="fa fa-check"></i>Pipes</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#your-turn-1"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html"><i class="fa fa-check"></i>Thursday, September 8, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#today-5"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#pipe-operator"><i class="fa fa-check"></i>Pipe operator</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#wrangling-data-frames"><i class="fa fa-check"></i>Wrangling data frames</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#selecting-and-filtering"><i class="fa fa-check"></i>Selecting and filtering</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#example-palmer-penguins"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#stringing-functions-together"><i class="fa fa-check"></i>Stringing functions together</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#summarize"><i class="fa fa-check"></i>Summarize</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#grouping"><i class="fa fa-check"></i>Grouping</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#your-turn-2"><i class="fa fa-check"></i>Your turn</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html"><i class="fa fa-check"></i>Tuesday, September 13, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#today-6"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#example-1-new-york-city-flight-data"><i class="fa fa-check"></i>Example 1: New York City flight data</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#example-2-daily-weather-data-from-tallahassee"><i class="fa fa-check"></i>Example 2: Daily weather data from Tallahassee</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#putting-everything-together"><i class="fa fa-check"></i>Putting everything together</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#example-3-food-consumption-and-co2-emissions"><i class="fa fa-check"></i>Example 3: Food consumption and CO2 emissions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html"><i class="fa fa-check"></i>Thursday, September 15, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#today-7"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#bar-chart"><i class="fa fa-check"></i>Bar chart</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#pie-preference"><i class="fa fa-check"></i>Pie preference</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#histogram"><i class="fa fa-check"></i>Histogram</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#transforming-the-response-variable"><i class="fa fa-check"></i>Transforming the response variable</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html"><i class="fa fa-check"></i>Thursday, October 20, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#today-8"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#example-average-income-vs-percent-college-graduates-at-the-state-level"><i class="fa fa-check"></i>Example: Average income vs percent college graduates at the state level</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#outliers"><i class="fa fa-check"></i>Outliers</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#summarizing"><i class="fa fa-check"></i>Summarizing</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#example-a-regression-model-for-trend"><i class="fa fa-check"></i>Example: A regression model for trend</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#simpsons-paradox"><i class="fa fa-check"></i>Simpson’s paradox</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html"><i class="fa fa-check"></i>Tuesday, October 25, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#today-9"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#multiple-variable-linear-regression"><i class="fa fa-check"></i>Multiple variable linear regression</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#a-grid-of-scatter-plots"><i class="fa fa-check"></i>A grid of scatter plots</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#fit-a-multiple-variable-regression-model"><i class="fa fa-check"></i>Fit a multiple variable regression model</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#should-you-remove-a-variable-from-the-model"><i class="fa fa-check"></i>Should you remove a variable from the model?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#checking-on-the-model-assumptions"><i class="fa fa-check"></i>Checking on the model assumptions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#checking-predictions"><i class="fa fa-check"></i>Checking predictions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#example-predicting-house-prices"><i class="fa fa-check"></i>Example: Predicting house prices</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#collinearity"><i class="fa fa-check"></i>Collinearity</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html"><i class="fa fa-check"></i>Thursday, October 27, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#today-10"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#removing-variables-from-a-model"><i class="fa fa-check"></i>Removing variables from a model</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#the-stepwise-regression-procedure"><i class="fa fa-check"></i>The stepwise regression procedure</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#transforming-a-response-variable"><i class="fa fa-check"></i>Transforming a response variable</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#regression-trees"><i class="fa fa-check"></i>Regression trees</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html"><i class="fa fa-check"></i>Tuesday, November 1, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#today-11"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#regression-tree-example"><i class="fa fa-check"></i>Regression tree example</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#predictive-uncertainty"><i class="fa fa-check"></i>Predictive uncertainty</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#random-forest-algorithm"><i class="fa fa-check"></i>Random forest algorithm</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#cross-validation"><i class="fa fa-check"></i>Cross validation</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#classification-trees"><i class="fa fa-check"></i>Classification trees</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html"><i class="fa fa-check"></i>Thursday, November 3, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html#today-12"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html#binary-outcomes-and-probabilities"><i class="fa fa-check"></i>Binary outcomes and probabilities</a></li>
+<li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html#logistic-regression"><i class="fa fa-check"></i>Logistic regression</a></li>
+<li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html#example-who-survives-in-the-donner-party"><i class="fa fa-check"></i>Example: Who survives in the Donner Party?</a></li>
+<li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html#example-probability-of-rocket-damage-on-liftoff"><i class="fa fa-check"></i>Example: Probability of rocket damage on liftoff</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html"><i class="fa fa-check"></i>Tuesday, November 8, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#today-13"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#quantifying-autocorrelation-in-spatial-data"><i class="fa fa-check"></i>Quantifying autocorrelation in spatial data</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#spatial-data-as-polygons"><i class="fa fa-check"></i>Spatial data as polygons</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#list-of-neighbors"><i class="fa fa-check"></i>List of neighbors</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#spatial-weights-matrix"><i class="fa fa-check"></i>Spatial weights matrix</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#morans-i"><i class="fa fa-check"></i>Moran’s I</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#spatial-lag-variable"><i class="fa fa-check"></i>Spatial lag variable</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html"><i class="fa fa-check"></i>Thursday, November 10, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html#today-14"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html#statistical-significance-of-spatial-autocorrelation"><i class="fa fa-check"></i>Statistical significance of spatial autocorrelation</a></li>
+<li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html#a-monte-carlo-approach-to-inference-about-spatial-autocorrelation"><i class="fa fa-check"></i>A Monte Carlo approach to inference about spatial autocorrelation</a></li>
+<li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html#spatial-autocorrelation-in-model-residuals"><i class="fa fa-check"></i>Spatial autocorrelation in model residuals</a></li>
+<li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html#example-percentage-of-folks-identifying-as-white-in-mississippi-counties"><i class="fa fa-check"></i>Example: Percentage of folks identifying as white in Mississippi counties</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html"><i class="fa fa-check"></i>Tuesday, November 15, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#today-15"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#bi-variate-spatial-autocorrelation"><i class="fa fa-check"></i>Bi-variate spatial autocorrelation</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#local-autocorrelation"><i class="fa fa-check"></i>Local autocorrelation</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#local-regression"><i class="fa fa-check"></i>Local regression</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#weights-matrix"><i class="fa fa-check"></i>Weights matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-november-17-2022.html"><a href="thursday-november-17-2022.html"><i class="fa fa-check"></i>Thursday, November 17, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-november-17-2022.html"><a href="thursday-november-17-2022.html#today-16"><i class="fa fa-check"></i>Today</a></li>
+<li class="chapter" data-level="" data-path="thursday-november-17-2022.html"><a href="thursday-november-17-2022.html#geographic-regression"><i class="fa fa-check"></i>Geographic regression</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GEO5156: Quantitative Geography</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="thursday-november-17-2022" class="section level1 unnumbered hasAnchor">
+<h1>Thursday, November 17, 2022<a href="thursday-november-17-2022.html#thursday-november-17-2022" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="today-16" class="section level2 unnumbered hasAnchor">
+<h2>Today<a href="thursday-november-17-2022.html#today-16" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Geographic regression</li>
+</ul>
+</div>
+<div id="geographic-regression" class="section level2 unnumbered hasAnchor">
+<h2>Geographic regression<a href="thursday-november-17-2022.html#geographic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Geographic regression (geographically weighted regression or GWR) fits separate regression models for each location (e.g., polygon) using only values in neighboring locations defined by distance (bandwidth) or contiguity. This is useful for showing where the response variable is most strongly related to the explanatory variables. GWR is not a single model but a procedure for fitting many models, one at each location.</p>
+<p>The bandwidth is determined by a cross-validation procedure. GWR is used in epidemiology, particularly for research on infectious diseases and for evaluating health policies or health programs.</p>
+<p>Example: Southern homicides {-}</p>
+<div class="sourceCode" id="cb1064"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1064-1"><a href="thursday-november-17-2022.html#cb1064-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;http://myweb.fsu.edu/jelsner/temp/data/south.zip&quot;</span></span>
+<span id="cb1064-2"><a href="thursday-november-17-2022.html#cb1064-2" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(url,</span>
+<span id="cb1064-3"><a href="thursday-november-17-2022.html#cb1064-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">destfile =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;south.zip&quot;</span>))</span>
+<span id="cb1064-4"><a href="thursday-november-17-2022.html#cb1064-4" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span>(<span class="at">zipfile =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;south.zip&quot;</span>),</span>
+<span id="cb1064-5"><a href="thursday-november-17-2022.html#cb1064-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">exdir =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>))</span></code></pre></div>
+<p>The folder <code>south</code> contains shapefiles with homicide rates and explanatory variables for counties in the southern United States.</p>
+<p>Import the data using the <code>st_read()</code> from the {sf} package. The data have latitude/longitude coordinates but there is no projection information so you set the CRS to long-lat with the <code>st_crs()</code> function.</p>
+<div class="sourceCode" id="cb1065"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1065-1"><a href="thursday-november-17-2022.html#cb1065-1" aria-hidden="true" tabindex="-1"></a>SH.sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="at">dsn =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;south&quot;</span>), </span>
+<span id="cb1065-2"><a href="thursday-november-17-2022.html#cb1065-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">layer =</span> <span class="st">&quot;south&quot;</span>)</span></code></pre></div>
+<pre><code>## Reading layer `south&#39; from data source 
+##   `/Users/jameselsner/Desktop/ClassNotes/QG-2022/data/south&#39; 
+##   using driver `ESRI Shapefile&#39;
+## Simple feature collection with 1412 features and 69 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -106.6495 ymin: 24.95597 xmax: -75.046 ymax: 40.63714
+## CRS:           NA</code></pre>
+<div class="sourceCode" id="cb1067"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1067-1"><a href="thursday-november-17-2022.html#cb1067-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(SH.sf) <span class="ot">&lt;-</span> <span class="dv">4326</span></span>
+<span id="cb1067-2"><a href="thursday-november-17-2022.html#cb1067-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(SH.sf)</span></code></pre></div>
+<pre><code>##  [1] &quot;NAME&quot;       &quot;STATE_NAME&quot; &quot;STATE_FIPS&quot; &quot;CNTY_FIPS&quot;  &quot;FIPS&quot;      
+##  [6] &quot;STFIPS&quot;     &quot;COFIPS&quot;     &quot;FIPSNO&quot;     &quot;SOUTH&quot;      &quot;HR60&quot;      
+## [11] &quot;HR70&quot;       &quot;HR80&quot;       &quot;HR90&quot;       &quot;HC60&quot;       &quot;HC70&quot;      
+## [16] &quot;HC80&quot;       &quot;HC90&quot;       &quot;PO60&quot;       &quot;PO70&quot;       &quot;PO80&quot;      
+## [21] &quot;PO90&quot;       &quot;RD60&quot;       &quot;RD70&quot;       &quot;RD80&quot;       &quot;RD90&quot;      
+## [26] &quot;PS60&quot;       &quot;PS70&quot;       &quot;PS80&quot;       &quot;PS90&quot;       &quot;UE60&quot;      
+## [31] &quot;UE70&quot;       &quot;UE80&quot;       &quot;UE90&quot;       &quot;DV60&quot;       &quot;DV70&quot;      
+## [36] &quot;DV80&quot;       &quot;DV90&quot;       &quot;MA60&quot;       &quot;MA70&quot;       &quot;MA80&quot;      
+## [41] &quot;MA90&quot;       &quot;POL60&quot;      &quot;POL70&quot;      &quot;POL80&quot;      &quot;POL90&quot;     
+## [46] &quot;DNL60&quot;      &quot;DNL70&quot;      &quot;DNL80&quot;      &quot;DNL90&quot;      &quot;MFIL59&quot;    
+## [51] &quot;MFIL69&quot;     &quot;MFIL79&quot;     &quot;MFIL89&quot;     &quot;FP59&quot;       &quot;FP69&quot;      
+## [56] &quot;FP79&quot;       &quot;FP89&quot;       &quot;BLK60&quot;      &quot;BLK70&quot;      &quot;BLK80&quot;     
+## [61] &quot;BLK90&quot;      &quot;GI59&quot;       &quot;GI69&quot;       &quot;GI79&quot;       &quot;GI89&quot;      
+## [66] &quot;FH60&quot;       &quot;FH70&quot;       &quot;FH80&quot;       &quot;FH90&quot;       &quot;geometry&quot;</code></pre>
+<p>Each row is a separate county in the southeast U.S. There are 1412 counties.</p>
+<p>You want a model to predict homicide rates (<code>HR</code>). The values are given as the number of homicides per 100,000 people. You consider five explanatory variables for your model including <code>RD</code>: resource deprivation index, <code>PS</code>: population structure index, <code>MA</code>: marriage age, <code>DV</code>: divorce rate, and <code>UE</code>: unemployment rate. The two digit number in the column names is the census year from the 20th century.</p>
+<p>First use the <code>plot()</code> method on the <code>geometry</code> column to see the extent of the data and the spatial geometries.</p>
+<div class="sourceCode" id="cb1069"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1069-1"><a href="thursday-november-17-2022.html#cb1069-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(SH.sf<span class="sc">$</span>geometry, <span class="at">col =</span> <span class="st">&quot;gray70&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-792-1.png" width="672" /></p>
+<p>Next you reduce the number of variables in the data frame keeping only the variables of interest using the <code>select()</code> function from the {dplyr} package.</p>
+<div class="sourceCode" id="cb1070"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1070-1"><a href="thursday-november-17-2022.html#cb1070-1" aria-hidden="true" tabindex="-1"></a>SH.sf <span class="ot">&lt;-</span> SH.sf <span class="sc">|&gt;</span></span>
+<span id="cb1070-2"><a href="thursday-november-17-2022.html#cb1070-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(HR90, RD90, PS90, MA90, DV90, UE90)</span></code></pre></div>
+<p>You then create a thematic map of the homicide rates from the 1990 census (<code>HR90</code>) using the functions from the {tmap} package.</p>
+<div class="sourceCode" id="cb1071"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1071-1"><a href="thursday-november-17-2022.html#cb1071-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
+<span id="cb1071-2"><a href="thursday-november-17-2022.html#cb1071-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1071-3"><a href="thursday-november-17-2022.html#cb1071-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(SH.sf) <span class="sc">+</span></span>
+<span id="cb1071-4"><a href="thursday-november-17-2022.html#cb1071-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_fill</span>(<span class="st">&quot;HR90&quot;</span>, <span class="at">title =</span> <span class="st">&quot;1990</span><span class="sc">\n</span><span class="st">Homicide Rates</span><span class="sc">\n</span><span class="st">[/100,000]&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1071-5"><a href="thursday-november-17-2022.html#cb1071-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">legend.outside =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-794-1.png" width="672" /></p>
+<p>You start with a regression model regressing homicide rate onto resource deprivation, population structure, marriage age, divorce rate, and unemployment rate in 1990.</p>
+<div class="sourceCode" id="cb1072"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1072-1"><a href="thursday-november-17-2022.html#cb1072-1" aria-hidden="true" tabindex="-1"></a>model.lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(HR90 <span class="sc">~</span> RD90 <span class="sc">+</span> PS90 <span class="sc">+</span> MA90 <span class="sc">+</span> DV90 <span class="sc">+</span> UE90, </span>
+<span id="cb1072-2"><a href="thursday-november-17-2022.html#cb1072-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> SH.sf)</span>
+<span id="cb1072-3"><a href="thursday-november-17-2022.html#cb1072-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model.lm)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = HR90 ~ RD90 + PS90 + MA90 + DV90 + UE90, data = SH.sf)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -19.583  -3.514  -0.747   2.591  41.833 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  8.96250    1.78133   5.031 5.50e-07 ***
+## RD90         4.58778    0.21457  21.381  &lt; 2e-16 ***
+## PS90         1.95589    0.20540   9.522  &lt; 2e-16 ***
+## MA90        -0.04948    0.04890  -1.012    0.312    
+## DV90         0.46159    0.11517   4.008 6.45e-05 ***
+## UE90        -0.52440    0.07003  -7.489 1.22e-13 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 5.861 on 1406 degrees of freedom
+## Multiple R-squared:  0.3092, Adjusted R-squared:  0.3067 
+## F-statistic: 125.8 on 5 and 1406 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>You see that <code>RD90</code>, <code>PS90</code>, and <code>DV90</code> all have a direct relationship to <code>HR90</code> (positive coefficient) while both <code>MA90</code> and <code>UE90</code> have an indirect relationship to <code>HR90</code> (negative coefficient).</p>
+<p>Based on the <span class="math inline">\(p\)</span> values listed in the table of coefficients you suggest that the model might be simplified by removing marriage age (<code>MA90</code>). You check this suggestion with the <code>drop1()</code> function.</p>
+<div class="sourceCode" id="cb1074"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1074-1"><a href="thursday-november-17-2022.html#cb1074-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(model.lm)</span></code></pre></div>
+<pre><code>## Single term deletions
+## 
+## Model:
+## HR90 ~ RD90 + PS90 + MA90 + DV90 + UE90
+##        Df Sum of Sq   RSS    AIC
+## &lt;none&gt;              48296 4999.7
+## RD90    1   15703.4 63999 5395.2
+## PS90    1    3114.7 51410 5085.9
+## MA90    1      35.2 48331 4998.7
+## DV90    1     551.8 48848 5013.7
+## UE90    1    1926.3 50222 5052.9</code></pre>
+<p>You see that when marriage age (<code>MA90</code>) is removed from the model the RSS (residual sum of squares) value increases by 35.2 units. This increase is not enough to justify the loss in the degrees of freedom. Thus the AIC value is lower (4998.7) than the AIC when all terms are retained (4999.7) (see the row labeled <code>&lt;none&gt;</code>).</p>
+<p>The AIC is a way to balance the trade-off between bias and variance. Choose a model that has the lowest AIC. A model may have too much bias (toward the particular data set) if it has too many coefficients and a model may have too much residual variance if there are too few coefficients.</p>
+<p>You then remove the marriage age variable and refit the model.</p>
+<div class="sourceCode" id="cb1076"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1076-1"><a href="thursday-november-17-2022.html#cb1076-1" aria-hidden="true" tabindex="-1"></a>model.lm2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(HR90 <span class="sc">~</span> RD90 <span class="sc">+</span> PS90 <span class="sc">+</span> DV90 <span class="sc">+</span> UE90, </span>
+<span id="cb1076-2"><a href="thursday-november-17-2022.html#cb1076-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> SH.sf)</span></code></pre></div>
+<p>Based on the AIC you find that the new model (<code>model.lm2</code>) should not be simplified further.</p>
+<div class="sourceCode" id="cb1077"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1077-1"><a href="thursday-november-17-2022.html#cb1077-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(model.lm2)</span></code></pre></div>
+<pre><code>## Single term deletions
+## 
+## Model:
+## HR90 ~ RD90 + PS90 + DV90 + UE90
+##        Df Sum of Sq   RSS    AIC
+## &lt;none&gt;              48331 4998.7
+## RD90    1   16830.1 65161 5418.6
+## PS90    1    3750.2 52081 5102.2
+## DV90    1     516.7 48848 5011.7
+## UE90    1    1902.9 50234 5051.2</code></pre>
+<p>All the AIC values exceed those in the first row so you are content with this model.</p>
+<p>Next you map the predicted values. You first add the predicted values to the simple features data frame as a column with name <code>predLM2</code>. The predicted values from the model object are extracted with the <code>predict()</code> method.</p>
+<div class="sourceCode" id="cb1079"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1079-1"><a href="thursday-november-17-2022.html#cb1079-1" aria-hidden="true" tabindex="-1"></a>SH.sf<span class="sc">$</span>predLM2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model.lm2)</span>
+<span id="cb1079-2"><a href="thursday-november-17-2022.html#cb1079-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">cbind</span>(SH.sf<span class="sc">$</span>HR90, SH.sf<span class="sc">$</span>predLM2))</span></code></pre></div>
+<pre><code>##           [,1]     [,2]
+## [1,] 0.9460827 6.965969
+## [2,] 1.2349338 4.719254
+## [3,] 2.6210087 9.876765
+## [4,] 4.4615769 6.786793
+## [5,] 6.7127356 8.695625
+## [6,] 1.6475415 7.549207</code></pre>
+<p>The first column is the actual homicide rates in the first six counties and the second column printed is the predicted homicide rate from the linear regression model. The predictions do not appear to be very good.</p>
+<p>A scatter plot of the observed versus the predicted shows this clearly.</p>
+<div class="sourceCode" id="cb1081"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1081-1"><a href="thursday-november-17-2022.html#cb1081-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1081-2"><a href="thursday-november-17-2022.html#cb1081-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1081-3"><a href="thursday-november-17-2022.html#cb1081-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> SH.sf, </span>
+<span id="cb1081-4"><a href="thursday-november-17-2022.html#cb1081-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> HR90, <span class="at">y =</span> predLM2)) <span class="sc">+</span></span>
+<span id="cb1081-5"><a href="thursday-november-17-2022.html#cb1081-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb1081-6"><a href="thursday-november-17-2022.html#cb1081-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb1081-7"><a href="thursday-november-17-2022.html#cb1081-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb1081-8"><a href="thursday-november-17-2022.html#cb1081-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-800-1.png" width="672" /></p>
+<p>Since the homicide rates are non-negative, you create a new column in the <code>SH.sf</code> data frame called <code>logHR90</code>, which is the logarithm of <code>HR90</code>.</p>
+<p>Since there are some counties with no homicides [log(0) = -Inf] you change values in those counties to the minimum observed value before taking logarithms.</p>
+<p>Here you first create a logical vector <code>x</code> corresponding to the rows with non-zero homicide rates. You then find the minimum non-zero rate and assign it to <code>e</code>. Next you subset on this value for all rates equal to zero and finally you create a new column as the logarithm of the non-zero rates.</p>
+<div class="sourceCode" id="cb1083"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1083-1"><a href="thursday-november-17-2022.html#cb1083-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> SH.sf<span class="sc">$</span>HR90 <span class="sc">!=</span> <span class="dv">0</span></span>
+<span id="cb1083-2"><a href="thursday-november-17-2022.html#cb1083-2" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="fu">min</span>(SH.sf<span class="sc">$</span>HR90[x])</span>
+<span id="cb1083-3"><a href="thursday-november-17-2022.html#cb1083-3" aria-hidden="true" tabindex="-1"></a>SH.sf<span class="sc">$</span>HR90[<span class="sc">!</span>x] <span class="ot">&lt;-</span> e</span>
+<span id="cb1083-4"><a href="thursday-november-17-2022.html#cb1083-4" aria-hidden="true" tabindex="-1"></a>SH.sf<span class="sc">$</span>logHR90 <span class="ot">&lt;-</span> <span class="fu">log</span>(SH.sf<span class="sc">$</span>HR90)</span></code></pre></div>
+<p>You then fit a model with <code>logHR90</code> as our response variable.</p>
+<div class="sourceCode" id="cb1084"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1084-1"><a href="thursday-november-17-2022.html#cb1084-1" aria-hidden="true" tabindex="-1"></a>model.lm3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(logHR90 <span class="sc">~</span> RD90 <span class="sc">+</span> PS90 <span class="sc">+</span> DV90 <span class="sc">+</span> UE90, </span>
+<span id="cb1084-2"><a href="thursday-november-17-2022.html#cb1084-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> SH.sf)</span>
+<span id="cb1084-3"><a href="thursday-november-17-2022.html#cb1084-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model.lm3)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = logHR90 ~ RD90 + PS90 + DV90 + UE90, data = SH.sf)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.54480 -0.34707  0.09298  0.46404  3.11601 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  1.490522   0.118854  12.541  &lt; 2e-16 ***
+## RD90         0.506974   0.027083  18.720  &lt; 2e-16 ***
+## PS90         0.378972   0.025063  15.121  &lt; 2e-16 ***
+## DV90         0.068451   0.014464   4.733 2.44e-06 ***
+## UE90        -0.048356   0.009042  -5.348 1.04e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.758 on 1407 degrees of freedom
+## Multiple R-squared:  0.2929, Adjusted R-squared:  0.2909 
+## F-statistic: 145.7 on 4 and 1407 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>You again compute the predicted values and include them in the data frame as <code>predLM3</code>. The predictions are on the logarithm scale so you use the exponential function <code>exp()</code> to transform the output to rates. You then create a scatter plot of the observed versus predicted as before.</p>
+<div class="sourceCode" id="cb1086"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1086-1"><a href="thursday-november-17-2022.html#cb1086-1" aria-hidden="true" tabindex="-1"></a>SH.sf<span class="sc">$</span>predLM3 <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">predict</span>(model.lm3))</span>
+<span id="cb1086-2"><a href="thursday-november-17-2022.html#cb1086-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1086-3"><a href="thursday-november-17-2022.html#cb1086-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> SH.sf, </span>
+<span id="cb1086-4"><a href="thursday-november-17-2022.html#cb1086-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> HR90, <span class="at">y =</span> predLM3)) <span class="sc">+</span></span>
+<span id="cb1086-5"><a href="thursday-november-17-2022.html#cb1086-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb1086-6"><a href="thursday-november-17-2022.html#cb1086-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb1086-7"><a href="thursday-november-17-2022.html#cb1086-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb1086-8"><a href="thursday-november-17-2022.html#cb1086-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-803-1.png" width="672" /></p>
+<p>The range of predicted values is better.</p>
+<p>It is likely that homicide rates are similar in neighboring counties. It also might be the case that the similarity is statistically explained by the variables in the model.</p>
+<p>So your next step it to test for significant autocorrelation in the model residuals. You create a weights matrix using the functions from the {spdep} package and then use the <code>lm.morantest()</code> function.</p>
+<div class="sourceCode" id="cb1088"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1088-1"><a href="thursday-november-17-2022.html#cb1088-1" aria-hidden="true" tabindex="-1"></a>nbs <span class="ot">&lt;-</span> spdep<span class="sc">::</span><span class="fu">poly2nb</span>(SH.sf)</span>
+<span id="cb1088-2"><a href="thursday-november-17-2022.html#cb1088-2" aria-hidden="true" tabindex="-1"></a>wts <span class="ot">&lt;-</span> spdep<span class="sc">::</span><span class="fu">nb2listw</span>(nbs)</span>
+<span id="cb1088-3"><a href="thursday-november-17-2022.html#cb1088-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1088-4"><a href="thursday-november-17-2022.html#cb1088-4" aria-hidden="true" tabindex="-1"></a>spdep<span class="sc">::</span><span class="fu">lm.morantest</span>(model.lm3, </span>
+<span id="cb1088-5"><a href="thursday-november-17-2022.html#cb1088-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">listw =</span> wts)</span></code></pre></div>
+<pre><code>## 
+##  Global Moran I for regression residuals
+## 
+## data:  
+## model: lm(formula = logHR90 ~ RD90 + PS90 + DV90 + UE90, data = SH.sf)
+## weights: wts
+## 
+## Moran I statistic standard deviate = 7.1847, p-value = 3.367e-13
+## alternative hypothesis: greater
+## sample estimates:
+## Observed Moran I      Expectation         Variance 
+##     0.1139749888    -0.0021045133     0.0002610288</code></pre>
+<p>Moran I is only .11 but it is statistically significant (<span class="math inline">\(p\)</span> value &lt; .01) because of the large number of counties.</p>
+<p>Next you map the residuals. First add the residuals as a column named <code>res3</code> in the simple feature data frame.</p>
+<div class="sourceCode" id="cb1090"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1090-1"><a href="thursday-november-17-2022.html#cb1090-1" aria-hidden="true" tabindex="-1"></a>SH.sf<span class="sc">$</span>res3 <span class="ot">&lt;-</span> <span class="fu">residuals</span>(model.lm3)</span>
+<span id="cb1090-2"><a href="thursday-november-17-2022.html#cb1090-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1090-3"><a href="thursday-november-17-2022.html#cb1090-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
+<span id="cb1090-4"><a href="thursday-november-17-2022.html#cb1090-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1090-5"><a href="thursday-november-17-2022.html#cb1090-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(SH.sf) <span class="sc">+</span></span>
+<span id="cb1090-6"><a href="thursday-november-17-2022.html#cb1090-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_fill</span>(<span class="st">&quot;res3&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Model</span><span class="sc">\n</span><span class="st">Residuals&quot;</span>)</span></code></pre></div>
+<pre><code>## Variable(s) &quot;res3&quot; contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show the full spectrum of the color palette.</code></pre>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-805-1.png" width="672" /></p>
+<p>There are small clusters of counties with positive residuals and other small clusters of negative residuals. Interestingly the pattern of these clusters appears to be different over western and northern areas compared to over the deep south.</p>
+<p>This suggests that the <em>relationships</em> between homicide rates and the socioeconomic factors might vary across the domain. GWR is a procedure to fit local regression models.</p>
+<p>Linear regression is a model for the conditional mean. The mean of the response variable depends on the explanatory variable(s). Geographic regression might show how this dependency varies by location. It is an exploratory technique intended to indicate where local regression coefficients are different from the global values.</p>
+<p>A model is fit at each location. All observations contribute to the fit but they are weighted inversely by their distance to the location. At the shortest distances observations are given the largest weights based on a Gaussian function. The process results in a set of regression coefficients for each observation.</p>
+<p>You do this with functions from the {spgwr} package. The geometry information in simple feature data frames is NOT accessible by functions in this package so we need to create another type of spatial data frame.</p>
+<div class="sourceCode" id="cb1092"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1092-1"><a href="thursday-november-17-2022.html#cb1092-1" aria-hidden="true" tabindex="-1"></a>SH.sp <span class="ot">&lt;-</span> <span class="fu">as</span>(SH.sf, <span class="st">&quot;Spatial&quot;</span>)</span></code></pre></div>
+<p>The spatial information in the <code>SH.sp</code> is separated from the data frame but accessible by the functions <code>gwr.sel()</code> and <code>gwr()</code>. The variables remain the same.</p>
+<p>You obtain the optimal bandwidth with the <code>gwr.sel()</code> function from the {spgwr} package. You include the model formula, the data, and since the CRS is geographic you use the argument <code>longlat = TRUE</code> to get the distances in kilometers.</p>
+<div class="sourceCode" id="cb1093"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1093-1"><a href="thursday-november-17-2022.html#cb1093-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spgwr)</span></code></pre></div>
+<pre><code>## Loading required package: sp</code></pre>
+<pre><code>## Loading required package: spData</code></pre>
+<pre><code>## 
+## Attaching package: &#39;spData&#39;</code></pre>
+<pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
+## 
+##     coords</code></pre>
+<pre><code>## NOTE: This package does not constitute approval of GWR
+## as a method of spatial analysis; see example(gwr)</code></pre>
+<div class="sourceCode" id="cb1099"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1099-1"><a href="thursday-november-17-2022.html#cb1099-1" aria-hidden="true" tabindex="-1"></a>bw <span class="ot">&lt;-</span> <span class="fu">gwr.sel</span>(<span class="at">formula =</span> logHR90 <span class="sc">~</span> RD90 <span class="sc">+</span> PS90 <span class="sc">+</span> DV90 <span class="sc">+</span> UE90, </span>
+<span id="cb1099-2"><a href="thursday-november-17-2022.html#cb1099-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> SH.sp,</span>
+<span id="cb1099-3"><a href="thursday-november-17-2022.html#cb1099-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">longlat =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## Bandwidth: 1264.192 CV score: 803.4638 
+## Bandwidth: 2043.463 CV score: 809.8007 
+## Bandwidth: 782.5756 CV score: 792.1951 
+## Bandwidth: 484.9205 CV score: 776.8019 
+## Bandwidth: 300.9595 CV score: 759.9205 
+## Bandwidth: 187.2653 CV score: 748.7083 
+## Bandwidth: 116.9985 CV score: 757.0343 
+## Bandwidth: 202.3323 CV score: 749.7891 
+## Bandwidth: 178.7092 CV score: 748.2676 
+## Bandwidth: 155.1378 CV score: 748.2124 
+## Bandwidth: 166.1585 CV score: 747.9707 
+## Bandwidth: 166.318 CV score: 747.9712 
+## Bandwidth: 165.6051 CV score: 747.97 
+## Bandwidth: 161.6069 CV score: 748.0019 
+## Bandwidth: 165.5209 CV score: 747.9699 
+## Bandwidth: 165.5242 CV score: 747.9699 
+## Bandwidth: 165.5245 CV score: 747.9699 
+## Bandwidth: 165.5244 CV score: 747.9699 
+## Bandwidth: 165.5245 CV score: 747.9699 
+## Bandwidth: 165.5245 CV score: 747.9699</code></pre>
+<div class="sourceCode" id="cb1101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1101-1"><a href="thursday-november-17-2022.html#cb1101-1" aria-hidden="true" tabindex="-1"></a>bw</span></code></pre></div>
+<pre><code>## [1] 165.5245</code></pre>
+<p>The automatic selection procedure makes an initial guess at the bandwidth distance then fits local regression models in each county using neighbors defined by that distance. A cross-validated (CV) skill score is the root mean square prediction error. The cross-validation procedures successively removes one county from the modeling and that county’s homicide rate is predicted. Each county takes turn getting removed.</p>
+<p>The selection procedure continues by changing the initial guess at the bandwidth and computing the CV score. If the CV score is higher than with the initial guess the bandwidth is changed in the other direction. If it is lower than the bandwidth is changed in the same direction. The entire procedure continues until no additional improvement is made to the CV score. This results in an optimal bandwidth distance. In this case it is 165.5 km.</p>
+<p>The bandwidth is assigned to the object <code>bw</code> as a single value.</p>
+<p>To get a feel for what a bandwidth distance of 165 km means in terms of the average number of neighbors per county you note that one-half the distance squared times <span class="math inline">\(\pi\)</span> is the area captured by the bandwidth.</p>
+<div class="sourceCode" id="cb1103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1103-1"><a href="thursday-november-17-2022.html#cb1103-1" aria-hidden="true" tabindex="-1"></a>( bwA <span class="ot">&lt;-</span> pi <span class="sc">*</span> (bw <span class="sc">*</span> <span class="dv">1000</span> <span class="sc">/</span><span class="dv">2</span>)<span class="sc">^</span><span class="dv">2</span> ) </span></code></pre></div>
+<pre><code>## [1] 21518612143</code></pre>
+<p>Or 21,519 square kilometers.</p>
+<p>County areas are computed using the <code>st_area()</code> function. The average size of the counties and the ratio of the bandwidth area to the average county area is also computed.</p>
+<div class="sourceCode" id="cb1105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1105-1"><a href="thursday-november-17-2022.html#cb1105-1" aria-hidden="true" tabindex="-1"></a>areas <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_area</span>(SH.sf)</span>
+<span id="cb1105-2"><a href="thursday-november-17-2022.html#cb1105-2" aria-hidden="true" tabindex="-1"></a>ctyA <span class="ot">&lt;-</span> <span class="fu">mean</span>(areas)</span>
+<span id="cb1105-3"><a href="thursday-november-17-2022.html#cb1105-3" aria-hidden="true" tabindex="-1"></a>bwA<span class="sc">/</span>ctyA</span></code></pre></div>
+<pre><code>## 13.2473 [1/m^2]</code></pre>
+<p>The ratio indicates that, on average, a neighborhood consists of 13 counties. For comparison, on a raster there are 8 first-order neighboring cells (queen contiguity) and 16 second-order neighboring cells (neighbors of neighbors) or a total of 24 neighbors.</p>
+<p>You then use the <code>gwr()</code> function from the {spgwr} package that includes the formula, data, and the <code>bandwith =</code> argument.</p>
+<div class="sourceCode" id="cb1107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1107-1"><a href="thursday-november-17-2022.html#cb1107-1" aria-hidden="true" tabindex="-1"></a>model.gwr <span class="ot">&lt;-</span> <span class="fu">gwr</span>(<span class="at">formula =</span> logHR90 <span class="sc">~</span> RD90 <span class="sc">+</span> PS90 <span class="sc">+</span> DV90 <span class="sc">+</span> UE90, </span>
+<span id="cb1107-2"><a href="thursday-november-17-2022.html#cb1107-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> SH.sp, </span>
+<span id="cb1107-3"><a href="thursday-november-17-2022.html#cb1107-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">bandwidth =</span> bw)</span></code></pre></div>
+<pre><code>## Warning in proj4string(data): CRS object has comment, which is lost in output; in tests, see
+## https://cran.r-project.org/web/packages/sp/vignettes/CRS_warnings.html</code></pre>
+<p>The warning message can be safely ignored.</p>
+<p>The model and observed data are assigned to list object with element names extracted with the <code>names()</code> function.</p>
+<div class="sourceCode" id="cb1109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1109-1"><a href="thursday-november-17-2022.html#cb1109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(model.gwr)</span></code></pre></div>
+<pre><code>##  [1] &quot;SDF&quot;       &quot;lhat&quot;      &quot;lm&quot;        &quot;results&quot;   &quot;bandwidth&quot; &quot;adapt&quot;    
+##  [7] &quot;hatmatrix&quot; &quot;gweight&quot;   &quot;gTSS&quot;      &quot;this.call&quot; &quot;fp.given&quot;  &quot;timings&quot;</code></pre>
+<p>The first element of the list named <code>SDF</code> contains the model output as a S4 spatial class data frame. The geometry of the spatial data frame is inherited from the type of data frame specified in the <code>data =</code> argument.</p>
+<p>The structure of the S4 spatial class is obtained with the <code>str()</code> function and by setting the <code>max.level</code> argument to 2.</p>
+<div class="sourceCode" id="cb1111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1111-1"><a href="thursday-november-17-2022.html#cb1111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(model.gwr<span class="sc">$</span>SDF, <span class="at">max.level =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## Formal class &#39;SpatialPolygonsDataFrame&#39; [package &quot;sp&quot;] with 5 slots
+##   ..@ data       :&#39;data.frame&#39;:  1412 obs. of  9 variables:
+##   ..@ polygons   :List of 1412
+##   ..@ plotOrder  : int [1:1412] 1247 1172 1091 1088 1253 1368 1286 1201 1089 292 ...
+##   ..@ bbox       : num [1:2, 1:2] -106.6 25 -75 40.6
+##   .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   ..@ proj4string:Formal class &#39;CRS&#39; [package &quot;sp&quot;] with 1 slot
+##   ..$ comment: chr &quot;TRUE&quot;</code></pre>
+<p>Here there are 5 slots with the first slot being the attribute table labeled <code>@data</code>. The dimension of the attribute table is retrieved with the <code>dim()</code> function.</p>
+<div class="sourceCode" id="cb1113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1113-1"><a href="thursday-november-17-2022.html#cb1113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(model.gwr<span class="sc">$</span>SDF)</span></code></pre></div>
+<pre><code>## [1] 1412    9</code></pre>
+<p>There are 1412 rows and 9 columns. Each row corresponds to a county and information about the regression localized to the county is given in the columns. The attribute names are extracted with the <code>names()</code> function.</p>
+<div class="sourceCode" id="cb1115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1115-1"><a href="thursday-november-17-2022.html#cb1115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(model.gwr<span class="sc">$</span>SDF)</span></code></pre></div>
+<pre><code>## [1] &quot;sum.w&quot;        &quot;X.Intercept.&quot; &quot;RD90&quot;         &quot;PS90&quot;         &quot;DV90&quot;        
+## [6] &quot;UE90&quot;         &quot;gwr.e&quot;        &quot;pred&quot;         &quot;localR2&quot;</code></pre>
+<p>They include the sum of the weights <code>sum.w</code> (the larger the sum the more often the county was included in the local regressions–favoring smaller counties and ones farther from the borders of the spatial domain), the five regression coefficients (one for each of the 4 explanatory variables and an intercept term), the residual (<code>gwr.e</code>), the predicted value (<code>pred</code>) and the local goodness-of-fit (<code>localR2</code>).</p>
+<p>You put the predictions into the <code>SH.sf</code> simple feature data frame with the column name <code>predGWR</code>.</p>
+<div class="sourceCode" id="cb1117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1117-1"><a href="thursday-november-17-2022.html#cb1117-1" aria-hidden="true" tabindex="-1"></a>SH.sf<span class="sc">$</span>predGWR <span class="ot">&lt;-</span> <span class="fu">exp</span>(model.gwr<span class="sc">$</span>SDF<span class="sc">$</span>pred)</span>
+<span id="cb1117-2"><a href="thursday-november-17-2022.html#cb1117-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1117-3"><a href="thursday-november-17-2022.html#cb1117-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(SH.sf) <span class="sc">+</span></span>
+<span id="cb1117-4"><a href="thursday-november-17-2022.html#cb1117-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_fill</span>(<span class="st">&quot;predGWR&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Predicted</span><span class="sc">\n</span><span class="st">Homicide Rates</span><span class="sc">\n</span><span class="st">[/100,000]&quot;</span>) </span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-815-1.png" width="672" /></p>
+<p>The geographic regressions similarly capture the spatial pattern of homicides across the south. The spread of predicted values matches the observed spread better than the regression model. The pattern is also a smoother.</p>
+<p>With many more model parameters metrics of predictive skill will favor the geographic regression. For example, the root mean-square-error is lower for GWR.</p>
+<div class="sourceCode" id="cb1118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1118-1"><a href="thursday-november-17-2022.html#cb1118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">sum</span>(<span class="fu">residuals</span>(model.lm3)<span class="sc">^</span><span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## [1] 28.43259</code></pre>
+<div class="sourceCode" id="cb1120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1120-1"><a href="thursday-november-17-2022.html#cb1120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">sum</span>(model.gwr<span class="sc">$</span>SDF<span class="sc">$</span>gwr.e<span class="sc">^</span><span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## [1] 25.68342</code></pre>
+<p>Geographic regression is useful for generating hypotheses. From the linear regression model we saw that homicide rates increased with resource deprivation. How does this relationship between homicide rates and resource deprivation vary across the South?</p>
+<div class="sourceCode" id="cb1122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1122-1"><a href="thursday-november-17-2022.html#cb1122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(model.lm3)[<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>##      RD90 
+## 0.5069745</code></pre>
+<div class="sourceCode" id="cb1124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1124-1"><a href="thursday-november-17-2022.html#cb1124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(model.gwr<span class="sc">$</span>SDF<span class="sc">$</span>RD90)</span></code></pre></div>
+<pre><code>## [1] 0.08433603 0.98150259</code></pre>
+<p>The global regression coefficient is .51 but locally the coefficients range from 0.08 to .98.</p>
+<p>Importantly you can map where resource deprivation has the most (and least) influence on homicide rates.</p>
+<div class="sourceCode" id="cb1126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1126-1"><a href="thursday-november-17-2022.html#cb1126-1" aria-hidden="true" tabindex="-1"></a>SH.sf<span class="sc">$</span>RDcoef <span class="ot">&lt;-</span> model.gwr<span class="sc">$</span>SDF<span class="sc">$</span>RD90</span>
+<span id="cb1126-2"><a href="thursday-november-17-2022.html#cb1126-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1126-3"><a href="thursday-november-17-2022.html#cb1126-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(SH.sf) <span class="sc">+</span></span>
+<span id="cb1126-4"><a href="thursday-november-17-2022.html#cb1126-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_fill</span>(<span class="st">&quot;RDcoef&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Resource</span><span class="sc">\n</span><span class="st">Deprivation</span><span class="sc">\n</span><span class="st">Coefficient&quot;</span>, <span class="at">palette =</span> <span class="st">&#39;Blues&#39;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-818-1.png" width="672" /></p>
+<p>All values are above zero indicating the importance of resource deprivation as a predictor of homicides, but areas in darker blue indicate where resource deprivation plays a bigger role in explaining homicides. Places like western Texas and southern Florida.</p>
+<p>What about the influence of unemployment on homicide rates?</p>
+<div class="sourceCode" id="cb1127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1127-1"><a href="thursday-november-17-2022.html#cb1127-1" aria-hidden="true" tabindex="-1"></a>SH.sf<span class="sc">$</span>UEcoef <span class="ot">&lt;-</span> model.gwr<span class="sc">$</span>SDF<span class="sc">$</span>UE90</span>
+<span id="cb1127-2"><a href="thursday-november-17-2022.html#cb1127-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1127-3"><a href="thursday-november-17-2022.html#cb1127-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(SH.sf) <span class="sc">+</span></span>
+<span id="cb1127-4"><a href="thursday-november-17-2022.html#cb1127-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_fill</span>(<span class="st">&quot;UEcoef&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Unemployment</span><span class="sc">\n</span><span class="st">Coefficient&quot;</span>, <span class="at">palette =</span> <span class="st">&#39;PiYG&#39;</span>)</span></code></pre></div>
+<pre><code>## Variable(s) &quot;UEcoef&quot; contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show the full spectrum of the color palette.</code></pre>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-819-1.png" width="672" /></p>
+<p>While the global coefficient is negative indicating homicide rates tend to be lower in areas with more unemployment, the opposite is the case over much of Texas into Oklahoma.</p>
+<p>Finally, where does the model provide the best fit to the data? This is answered with a map of local R squared values (<code>localR2</code>).</p>
+<div class="sourceCode" id="cb1129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1129-1"><a href="thursday-november-17-2022.html#cb1129-1" aria-hidden="true" tabindex="-1"></a>SH.sf<span class="sc">$</span>localR2 <span class="ot">&lt;-</span> model.gwr<span class="sc">$</span>SDF<span class="sc">$</span>localR2</span>
+<span id="cb1129-2"><a href="thursday-november-17-2022.html#cb1129-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1129-3"><a href="thursday-november-17-2022.html#cb1129-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(SH.sf) <span class="sc">+</span></span>
+<span id="cb1129-4"><a href="thursday-november-17-2022.html#cb1129-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_fill</span>(<span class="st">&quot;localR2&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Local</span><span class="sc">\n</span><span class="st">R Squared&quot;</span>, <span class="at">palette =</span> <span class="st">&#39;Purples&#39;</span>) </span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-820-1.png" width="672" /></p>
+<p>You see that the models are best at statistical explaining homicides in places like western Texas and southern Florida.</p>
+<p>Key point: When you fit a regression model to data that vary spatially you are assuming an underlying stationary process. This means you believe the explanatory variables ‘provoke’ the same statistical response across the entire domain.</p>
+<p>If this is not the case then it shows up in a map of correlated residuals. One approach to investigate this assumption is to use geographic regression. Another approach is to use a single spatial regression model.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tuesday-november-15-2022.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

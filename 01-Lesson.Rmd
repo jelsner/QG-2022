@@ -5,7 +5,7 @@
 
 Data science (also known as 'statistics') is an exciting discipline that allows you to turn data into understanding, insight, and knowledge.
 
-## Today {-}
+Today
 
 - Understand what this course is about, how it is structured, and what I expect from you
 - Start working with RStudio and R
@@ -36,7 +36,7 @@ A - We can discuss that over coffee.
 
 [Github](https://github.com/jelsner/QG-2022)
 
-## Examples {-}
+Examples
 
 Some of my recent research:
 
@@ -48,14 +48,14 @@ Other research:
 - [A year as told by fitbit](http://livefreeordichotomize.com/2017/12/27/a-year-as-told-by-fitbit/) by Nick Strayer
 - [R-Ladies global tour](http://www.masalmon.eu/2017/10/06/globalrladiestour/) by Maelle Salmon
 
-## Course Syllabus {-}
+## Syllabus {-}
 
 - Navigate to https://github.com/jelsner/QG-2022
 - Click on the file labeled `00-Syllabus.Rmd`
 - Click on the button `[Raw]`
 - You can `Save as` to download a copy to your computer
 
-## Getting setup for this course {-}
+## Getting set {-}
 
 First get R
 
@@ -74,7 +74,7 @@ Finally (Optional), learn git
 
 https://happygitwithr.com/install-git.html
 
-## The RStudio IDE {-}
+## RStudio's integrated development environment (IDE) {-}
 
 * Written in HTML
 * Top menus
@@ -99,13 +99,14 @@ https://happygitwithr.com/install-git.html
   + The Plot tab currently shows a blank sheet
   + The Packages tab shows all the packages that have been downloaded from CRAN and are associated with this project.
 
-## Tallahassee daily temperatures {-}
+## Example: Tallahassee daily temperatures {-}
 
 - Packages > Install
 - In the Packages window, type tidyverse, lubridate, here, ggplot2 then select Install
 
 Get the data into your environment.
-```{r, get the data}
+
+```{r}
 TLH.df <- readr::read_csv(file = here::here('data', 'TLH_SOD1892.csv'),
                           show_col_types = FALSE) |>
       dplyr::filter(STATION == 'USW00093805') |>
@@ -121,14 +122,14 @@ package::function  (`::` is called a library specifier).
 
 Or, load the packages into your current environment with the `library()` function.
 
-Create a plot of the frequency of high temperatures.
-```{r, create a plot}
-library(dplyr)
+Create a plot showing the frequency of high temperatures.
+
+```{r}
 library(ggplot2)
 
 TLH.df |>
-  group_by(TMAX) |>
-  summarize(nH = n()) |>
+  dplyr::group_by(TMAX) |>
+  dplyr::summarize(nH = dplyr::n()) |>
 ggplot(mapping = aes(x = TMAX, y = nH)) +
   geom_col(col = 'white', fill = "gray70") +
   labs(title = "Frequency of Daily High Temperatures",
