@@ -1,14 +1,15 @@
 # Tuesday, October 4, 2022 {-}
 
-## Today {-}
+Today
+
+- Paired observations
+- Test for independence
 
 Last time you saw how to perform a $t$ test in R and how the correspondence between the test's $p$-value and the ease it was to find a plot of the actual data against the plots created from data under a null hypothesis (fake data). 
 
 If you find it easy to pick out the plot of the actual data in line up of plots generated from fake data, then the $p$-value from a formal statistical test will be small providing you with evidence to reject the null hypothesis. 
 
-## Review {-}
-
-Example: Palmer penguins {-}
+Example: Palmer penguins
 
 On average do Adelie penguins have shorter flippers than Chinstrap penguins? 
 
@@ -235,7 +236,7 @@ t.test(df$Diff,
        alternative = "two.sided")
 ```
 
-## Example: Reaction time while driving {-}
+Example: Reaction time while driving
 
 Cell phone use while driving is believed to increase the chance of an accident due to slowed reaction time. The data set `reaction.time` in the package {UsingR} gives the time it takes to react to an external event while driving by various groups.
 ```{r}
@@ -321,7 +322,7 @@ E_{r,c} = \frac{n_r \times n_c}{n}
 $$
 where $n_r$ is the total number of sample observations of variable A and $n_c$ is the total number of sample observations of variable B, and $n$ is the total sample size.
 
-## Example: Smoking and exercise {-}
+Example: Smoking and exercise
 
 In the data set `survey` ({MASS} package), the `Smoke` column records the students smoking habit, while the `Exer` column records their exercise level. The allowed values in `Smoke` are "Heavy", "Regul" (regularly), "Occas" (occasionally) and "Never". As for `Exer`, they are "Freq" (frequently), "Some" and "None".
 

@@ -1,8 +1,10 @@
 # Thursday, October 6, 2022 {-}
 
-## Today {-}
+Today
 
-- Introduction to Bayesian data analysis
+- Bayesian data analysis
+
+## Bayesian data analysis {-}
 
 Bayesian methods are used in a variety of applications from predicting elections to directing self-driving cars.
 
@@ -12,13 +14,13 @@ Bayesian methods are not routinely taught in school. While there is an increasin
 
 With this introduction you will (1) be able to identify the important components of a Bayesian data analysis, and (2) be able to interpret and explain the components.
 
-## Distributions {-}
+Distributions
 
 The first thing you need to appreciate is a distribution, and be familiar with some of the most common types. A distribution is like a Lego brick. It can be stacked together with other Lego bricks to create a variety of models.
 
 A distribution describes which values of a variable are common and which are less so. For example, averages taken from samples follow the bell-shaped normal distribution. Two-thirds of all averages are within one standard deviations of the overall mean. Averages greater than three standard deviations from the mean are rare.
 
-## Normal distribution {-}
+Normal distribution
 
 Formally, the normal distribution is defined by the following (probability) density function (pdf), where $\mu$ is the population mean and $\sigma^2$ is the variance.
 $$
@@ -67,7 +69,7 @@ p + geom_line(data = df2,
 
 The two curves are members of a distributional family all having the same shape.
 
-## Uniform distribution {-}
+Uniform distribution
 
 The uniform distribution is one in which all intervals of the same width are equally likely. It has two parameters $a$, $b$ where $a$ < $b$ defining the end points.
 ```{r}
@@ -109,7 +111,7 @@ In this case you first generate a bunch of $\lambda$s from a gamma distribution 
 
 If you know the data then you can estimate the parameters: data (5, 3, 4, 0, 1, ...) --> generative model --> Parameters ($\mu$, $\theta$, $\sigma$): Going from data to parameters is called _Bayesian data analysis_.
 
-## How many blue marbles? {-}
+Example: How many blue marbles?
 
 Consider an example from _Statistical Rethinking_ (McElreth 2016). You have a bag containing four marbles. Each marble is either blue (B) or white (W). You don't know how many blue marbles are in the bag. 
 
@@ -180,7 +182,7 @@ All these calculations correspond to quantities in applied probability theory.
 - The prior plausibility of a specific $p$ is called the _prior probability_.
 - The updated plausibility of any specific $p$ is called the _posterior probability_.
 
-## What percentage of the globe is covered by water? {-}
+Example: What percentage of the globe is covered by water?
 
 Imagine a globe of the world. You want to know how much of the globe is water. Your strategy is to throw the globe up, catch it, and note the surface (water or land) under the right index finger. Suppose you do this globe tossing 9 times.
 ```{r}
@@ -263,62 +265,3 @@ The next panel (n = 2) shows what happens to this diagonal line (now shown as da
 As more and more data are collected the difference between the prior (previous) and posterior (current) diminishes. Note that these Bayesian estimates are valid and interpretable at any sample size. This is in contrast to interpretations around a minimum number of samples in non-Bayesian contexts. In non-Bayesian contexts, statistical inference is justified by behavior at large samples sizes (this is called 'asymptotic behavior'). 
 
 You get answers by counting things rather than by solving equations.
-
-## How many fish are in the lake? {-}
-
-Source material: http://sumsar.net/
-
-A common problem in wildlife management. Estimate species abundance. Problem: you can't count them all. You can catch some, mark them, release them, then catch some more and so on. Here are the steps:
-
-1. Catch some fish
-2. Mark and return them
-3. At a later point, catch some fish again
-4. Count how many new fish caught that are marked.
-
-For example: 20 fish are caught and marked. Then five out of the 20 fish that were caught the second time were ones that were previously marked. How many fish are in the lake?
-
-Parameter = Number of Fish in the Lake (unknown)
-Generative Model: 1. Mark 20 fish, Sample 20 fish and count the number that are marked.
-Data: 5 marked fish out of 20 sampled.
-
-Two types of uncertainty: Parameter uncertainty, Model uncertainty (e.g., why only 20?, how long before attempting recapture?)
-
-To answer the question of how many fish in the lake:
-
-1. Draw a random sample from the prior distribution on the parameter.
-2. Plug in each draw into the generative model to get a vector of 'fake' data. For example: If the number of fish in the lake is 63 you might get four marked fish on your recapture. If the number of fish is 30, you might get 13, etc.
-3. Keep only those parameter values that generated the data that was actually observed (5 out of the 20 sampled).
-
-Draw a large (`M = 100000`) sample from the prior distribution (discrete uniform) on the parameter representing the number of fish in the lake (`priorNF`). Here you use the `sample()` function on a vector of counts between 21 and 250.
-```{r}
-M <- 100000
-priorNF <- sample(21:250, size = M, replace = TRUE)
-head(priorNF)
-```
-
-The result is a vector of length `M` containing counts with values between 21 and 250. What is the distribution of these values?
-```{r}
-head(table(priorNF))
-tail(table(priorNF))
-```
-
-Plot the distribution of parameter values.
-```{r}
-ggplot(data = as.data.frame(priorNF), 
-       mapping = aes(priorNF)) +
-  geom_histogram(binwidth = 10, boundary = 20, 
-                 color = "white", fill = "salmon") +
-  xlab("Number of Fish in the Lake") +
-  ggtitle(label = "Prior distribution on the number of fish in the lake") +
-  theme_minimal()
-```
-
-Next: define the generative model. 
-
-In summary, we considered a toy problem where you want to know how many blue marbles are in a bag. You start with a prior distribution on this number representing all possible hypotheses on the number of blue marbles in the bag. You then collect some data and determined the likelihood of these data under each of the hypotheses. Finally you keep only those hypotheses that produce the data that you collected. This gives you a posterior distribution.
-
-We then considered a problem where you want to know the ratio of water to land on a globe. A solution involves sampling locations at random by successively throwing and catching the globe and noting where your index finger lands, either touching water or touching land. Each sample improves your estimate of the [ratio](figures/Rplot.png).
-
-Solutions to these problems illustrate the knowledge building process. You obtain posterior knowledge by balancing information from your data and from your prior knowledge. As more data comes in you continue to refine this knowledge as the influence of our original prior fades into the background. In light of more and more data, two analysts that start out with opposing knowledge will converge on the same posterior knowledge.
-
-With Bayesian data analysis you assess the uncertainty of the hypothesis in light of the observed data. In contrast with classical (frequentist) data analysis (last week) you assess the uncertainty of the observed data in light of an assumed hypothesis (null).

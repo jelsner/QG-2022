@@ -1,10 +1,12 @@
 # Tuesday, October 11, 2022 {-}
 
-## Today {-}
+Today
 
 - More examples of Bayesian data analyses
 
-## How many fish are in the lake? {-}
+## More examples of Bayesian data analyses {-}
+
+Example: How many fish are in the lake?
 
 A common problem in wildlife management is the estimation of a species abundance. For example: Start by catching and marking 20 fish. Then after some time catch another 20 fish and count how many of them have a mark. Suppose that out of the 20 fish caught 5 are marked. How many fish are in the lake?
 
@@ -225,7 +227,7 @@ median(post2NF)
 sum(post2NF > 200)/length(post2NF) * 100
 ```
 
-## Percentage of survey signups {-}
+Example: Percentage of survey signups
 
 Let's consider another example. You are studying attitudes toward race in America since the election of Trump and you want to determine the likely response rate before you send out a large survey on attitudes. I use the pronoun 'you' because I really want you to imagine yourself in this situation.
 
@@ -235,7 +237,7 @@ What is a good guess for the positive response rate when you start sending out t
 
 Recall: A Bayesian data analysis requires three things: 1) Data, 2) Generative Model, and 3) Prior: information you have before examining the data.
 
-## A generative model for people agreeing to take your survey {-}
+A generative model for people agreeing to take your survey
 
 A. Assume there is single underlying rate at which each person agrees to take your survey. Say 55%.
 B. "Ask" a number of people, where the chance of each person agreeing to take the survey is 55%.
@@ -261,7 +263,7 @@ You want to go backwards. You have P(D|$\theta$) but you want P($\theta$|D). Fro
 
 The good news is you're almost there. You just need one more thing; a prior.
 
-## Prior for the response rate {-}
+Prior for the response rate
 
 What information do you have before seeing the data?
 
@@ -283,7 +285,7 @@ ggplot(data = as.data.frame(priorRate),
   theme_minimal()
 ```
 
-## Define the generative model and simulate the data {-}
+Define the generative model and simulate the data
 
 You could use the `sample()` function as before and then added up all the `yes` responses but here the `rbinom()` function does that for you. It returns the number of 1's in a sample of `size =` (here 16) when the probability of agreeing equals the `rate`.
 ```{r}
@@ -368,7 +370,7 @@ P(\theta | D) = \frac{P(\theta) \times P(D|\theta)}{\sum P(\theta) \times P(D|\t
 \]
 Bayes Theorem.
 
-## Prediction {-}
+Prediction
 
 Suppose the listserv you used had 100 people. What is the likely number of surveys that will get returned?
 
@@ -435,13 +437,13 @@ quantile(nSurveys, probs = c(.25, .75))
 quantile(nSurveysX, probs = c(.25, .75))
 ```
   
-## Approximate Bayesian computation {-}
+Approximate Bayesian computation
 
 The approximate Bayesian computation only works in rare cases. Conceptually easy, but very slow. Other much faster methods are available. All with the same end result (posterior distribution).
 
 You don't really need to worry about how they work precisely. They are just different ways of applying Bayes Theorem (combining the prior with the generative model (likelihood function) to get the posterior).
 
-## What Bayesian data analysis is not {-}
+What Bayesian data analysis is not
 
 A category of models (e.g., regression models, decision trees). Rather it is a way of thinking about and constructing models. You can do regression or machine learning with a Bayesian framework (e.g., Bayesian decision analysis).
 
@@ -449,7 +451,7 @@ Not subjective. All statistics require you make assumptions. Results have to be 
 
 Nothing new. Thomas Bayes, Simon LaPlace, Ronald Fischer (first to use the term Bayesian statistics).
 
-## Comparing two hypotheses {-}
+Comparing two hypotheses
 
 Recall that your adviser suggested that you will get the best response rate using a listserv. So you asked 16 people on the listserv and get 6 to respond positively (they would be willing to take your survey).
 
@@ -497,7 +499,7 @@ What is the probability you are correct? That is answered from the posterior val
 sum(difference > 0)/length(difference) * 100
 ```
 
-## Reaction times while driving {-}
+Example: Reaction times while driving
 
 Cell phone use while driving is believed to increase the chance of an accident due to slowed reaction time. Recall that the data set `reaction.time` {UsingR} gives the time it takes to react to an external event while driving by various groups.
 ```{r}
@@ -549,7 +551,7 @@ You can use the `plot` method on our `bayesAB` object to plot the prior and post
 plot(AB)
 ```
 
-## Repeat the survey example {-}
+Example: Repeat the survey example
 
 Here you repeat the survey example using function from the {bayesAB} package.
 ```{r}
