@@ -1,9 +1,9 @@
 # Thursday, August 25, 2022 {.unnumbered}
 
 -   Any questions about assignments or grades?
--   Make sure you have a copy of `02_Lesson` project and have the `02-Lesson.Rmd` file open.
+-   Make sure you have a copy of the file `02_Lesson.Rmd` and have it opened in the RStudio IDE.
 -   Follow along in your copy of the lesson file as I go line by line through the file
--   Note that your file's background and text might look different. Is it? If so, go to Tools \> Global Options \> Appearance \> Cobalt
+-   Note that your file's background and text might look different. You change things by going to Tools \> Global Options \> Appearance
 -   Much of the lesson materials come from online books: <https://www.bigbookofr.com/index.html>
 -   Datasets: <https://kieranhealy.org/blog/archives/2020/08/25/some-data-packages/>
 
@@ -16,15 +16,15 @@ Today
 
 ## Data science {.unnumbered}
 
-Data analytics are done on a computer. You have two choices: use a spreadsheet or write code.
+Data science is done on a computer. You have two choices: use a spreadsheet or write code.
 
 A spreadsheet is convenient, but it makes the three conditions for a good data analysis *reproducibility*, *communication*, and *automation* difficult to achieve.
 
 Reproducibility
 
-A scientific paper is advertisement for a claim. But the *proof* is the procedure that was used to obtain the result. ![SciencePaper](figures/ScientificPaper.png)
+A scientific paper is advertisement for a claim. But the *proof* of the claim is the procedure that was used to obtain the result. ![SciencePaper](figures/ScientificPaper.png)
 
-If your analysis is to be convincing, the trail from the data you started with all the way to the final output must be available to the public. A reproducible trail with a spreadsheet is hard. It is easy to make mistakes (e.g., accidentally sorting just a column rather than the entire table).
+If your data science is to be convincing, the trail from the data you started with all the way to the final output must be freely available to the public. A reproducible trail with a spreadsheet is hard. It is easy to make mistakes (e.g., accidentally sorting just a column rather than the entire table).
 
 A set of instructions written as computer code is the exact procedure. (Open `stronger-hur.Rmd` in the folder `Other_Rmds`.
 
@@ -32,11 +32,11 @@ Communication
 
 Computer code is a recipe. It communicates precisely what you did to get the result. Communication to others and to your future self.
 
-It's hard to explain to someone precisely what you did when working with a spreadsheet. Click here, then right click here, then choose menu X, etc. The words needed to describe these procedures are not standard. Code is an efficient way to communicate because all important information is given as plain text with no ambiguity.
+It's hard to explain precisely what you did when working with a spreadsheet. Click here, then right click here, then choose menu X, etc. The words needed to describe these procedures are not standard. Code is standardized so it provides an efficient way to communicate because all important information is given as plain text with no ambiguity.
 
 Automation
 
-If you've ever made a map using a geographic information system (GIS) you know how hard it is to make another one with a new set of data (even a very similar one). Running code with new data is simple.
+If you've ever made a map using a geographic information system (GIS) you know how hard it is to make another one (even one that is quite similar) with a new set of data (even a very similar one). Running code with new data is simple.
 
 Being able to code is an important skill for nearly all technical jobs. Here you will learn how to code. But keep in mind: Just like learning to write doesn't mean you will be a writer (i.e., make a living writing), learning to code doesn't mean you will be a coder.
 
@@ -49,17 +49,17 @@ The R programming language
 
 Overview of this course
 
-We will start with making graphs. You will make clear, informative plots that help you understand your data. You will learn the basic structure of a making a plot.
+We start by making graphs. You will learn to make clear, informative plots that help you understand your data. You will learn the basic structure of a making a plot.
 
 Visualization alone is not enough, so you will also learn the key verbs that allow you to select important variables, filter out key observations, create new variables, and compute summaries (data wrangling).
 
-You will then combine data wrangling and visualization with your curiosity to ask and answer interesting questions by learning how to fit models to your data. Data models extend your ability to ask and answer questions about the world you live in.
+You will then combine data wrangling and visualization with your curiosity to ask and answer interesting questions by learning how to fit models to your data. Data models extend your ability to ask and answer questions about this wonderful world of ours.
 
-With geographic and environmental data collected at different locations these models will include a spatial component.
+Finally, with geographic and environmental data collected the models will include a spatial component.
 
 ## Structure of markdown files {.unnumbered}
 
-The ability to reproduce your work is important to a scientific process. It is also pragmatic. The person most likely to reproduce your work a few months later is you.
+The ability to exactly reproduce your work is important to a scientific process. It is also pragmatic. The person most likely to reproduce your work is you.
 
 This is especially true for graphs and figures. These often have a finished quality to them as a result of tweaking and adjustments to the details. This makes it hard to reproduce them later.
 
@@ -69,15 +69,15 @@ You will find yourself constantly going back and forth between three things:
 
 (1) Writing code: You will write code to produce plots. You will also write code to load your data (get your data into R), to look quickly at tables of that data. Sometimes you will want to summarize, rearrange, subset, or augment your data, or fit a statistical model to it. You will want to be able to write that code as easily and effectively as possible.
 
-(2) Looking at output. Your code is a set of instructions that produces the output you want: a table, a model, or a figure. It is helpful to be able to see that output.
+(2) Looking at the output generated by your code. Your code is a set of instructions that produces the output you want: a table, a model, or a figure. It is helpful to be able to see and interpret the output.
 
 (3) Taking notes. You will also write about what you are doing, and what your results mean.
 
-To do these things efficiently you want to write your code along with comments. This is where markdown files help (files that end with `.Rmd`)
+To do these things efficiently you want to write your code along with comments. This is where markdown files come into play (files that end with `.Rmd`)
 
-A R markdown file is a plain text document where text (such as notes or discussion) is interspersed with pieces, or chunks, of R code. When you `Knit` this file the R code is executed piece by piece, in sequence starting at the top of the file, and either supplementing or replacing the chunks of code with output.
+A R markdown file is a plain text document where text (such as notes or discussion) is interspersed with R code. When you `Knit` the markdown file the R code is executed line by line starting at the top of the file and the output supplements or replaces the code.
 
-The resulting file is then converted into a more easily-readable document formatted in HTML, PDF, or Word. The non-code segments of the document are plain text with simple formatting instructions (e.g., `##` for section header).
+The resulting file is then converted into a easily readable document formatted in HTML, PDF, or Word. The non-code segments of the document are plain text with simple formatting instructions (e.g., `##` for section header).
 
 There is a set of conventions for marking up plain text in a way that indicates how it should be formatted. Markdown treats text surrounded by *asterisks*, **double asterisks**, and `backticks` in special ways. It is R Markdown's way of saying that these words are in
 
@@ -98,32 +98,28 @@ Three back ticks (on a U.S. keyboard, the character under the escape key) follow
 
 The back ticks-and-braces signals that what follows is code. You write your code as needed, and then end the chunk with a new line containing three more back ticks.
 
-If you keep your notes in this way, you will be able to see the code you wrote, the output it produces, and your own commentary or clarification on what the code did, all in a convenient way. Moreover, you can turn it into a good-looking document straight away with the `Knit` button.
+If you keep your notes in this way, you will be able to see the code you write, the output it produces, and your own commentary or clarification on what the code did, all in a convenient way. Moreover, you can turn it into a good-looking document straight away with the `Knit` button.
 
 This is how you will do everything in this course. In the end you will have a set of notes that you can turn into a book with `bookdown`.
 
-[Everything markdown](https://bookdown.org/yihui/rmarkdown/)
+To learn more about markdown see: [Everything markdown](https://bookdown.org/yihui/rmarkdown/)
 
 ## How to make a plot {.unnumbered}
 
 To help motivate your interest in this course, you start by making a graph. There are three things to learn:
 
-1.  How to create graphs with a reusable {ggplot2} template
+1.  How to create a graph with a reusable {ggplot2} template
 2.  How to add variables to a graph with aesthetics
-3.  How to select the 'type' of your graph with *geoms*
+3.  How to select the 'type' of graph with *geoms*
 
-The following examples are taken from R for Data Science by Hadley Wickham and Garrett Grolemund, published by O'Reilly Media, Inc., 2016, ISBN: 9781491910399. <https://r4ds.had.co.nz/>.
+The following examples are taken from the online book entitled: `R for Data Science` by Hadley Wickham and Garrett Grolemund, published by O'Reilly Media, Inc., 2016, ISBN: 9781491910399. <https://r4ds.had.co.nz/>.
 
-A code template
-
-Let's begin with a question to explore.
-
-What do you think: Do cars with big engines use more fuel than cars with small engines?
+Let's begin with a question. Do cars with big engines use more fuel than cars with small engines?
 
 -   A: Cars with bigger engines use more fuel.
 -   B: Cars with bigger engines use less fuel.
 
-You check your answer with two things: the `mpg` data that comes in {ggplot2} and a plot. The `mpg` object contains observations collected on 38 models of cars by the US Environmental Protection Agency. Among the variables in `mpg` are:
+You check which answer is correct using the `mpg` data that comes in {ggplot2} and a plot. The `mpg` object contains observations collected on 38 models of cars by the US Environmental Protection Agency. Among the variables in `mpg` are:
 
 -   `displ`, a car's engine size, in liters.
 -   `hwy`, a car's fuel efficiency on the highway, in miles per gallon (mpg).
@@ -143,7 +139,7 @@ Each row is a different car. The first row is the Audi A4 1999 model with automa
 
 The column labeled `displ` is the engine size in liters. Bigger number means the car has a larger engine. The column labeled `hwy` is the miles per gallon. Bigger number means the car uses more fuel to go the same distance (lower efficiency).
 
-It is hard to check which answer is correct by looking only at these 10 cars. Note that bigger engines appear to have smaller values of highway mileage but it is far from clear.
+It is hard to check which answer is correct by only looking at these 10 cars. Note that bigger engines appear to have smaller values of highway mileage but it is far from clear.
 
 You want to look at all 234 cars.
 
@@ -158,11 +154,9 @@ ggplot(data = mpg) +
 
 The plot shows an inverse relationship between engine size (`displ`) and fuel efficiency (`hwy`). Each point is a different car. Cars that have a large value of `displ` tend to have a small value of `hwy` and cars with a small value of `displ` tend to have a large value of `hwy`.
 
-In other words, cars with big engines use more fuel. If that was your hypothesis, you were right!
+In other words, cars with big engines use more fuel. If that was your answer, you were right!
 
 Now let's look at how you made the plot.
-
-The code {-}
 
 Here's the code used to make the plot. Notice that it contains three functions: `ggplot()`, `geom_point()`, and `aes()`.
 
@@ -184,7 +178,7 @@ Here, you want to map the `displ` variable to the x axis (horizontal axis) and t
 -   Knit to generate HTML.
 -   Compare the HTML with the Rmd.
 
-A graphing workflow {-}
+A graphing workflow
 
 The code above follows the common work flow for making graphs. To make a graph, you:
 
@@ -192,7 +186,7 @@ The code above follows the common work flow for making graphs. To make a graph, 
 2.  Add elements to the graph with a `geom_` function
 3.  Select variables with the `mapping = aes()` argument
 
-A graphing template {-}
+A graphing template
 
 In fact, you can turn your code into a reusable template for making graphs. To make a graph, replace the bracketed sections in the code below with a data set, a `geom_` function, or a collection of mappings.
 
@@ -212,13 +206,13 @@ ggplot(data = mpg) +
  geom_boxplot(mapping = aes(x = class, y = hwy))
 ```
 
-Common problems {-}
+Common problems
 
 As you start to work with R code, you are likely to run into problems. Don't worry --- it happens to everyone. I've been writing R code for decades, and I still write code that doesn't work!
 
 Start by comparing the code that you are running to the code in the examples in these notes. R is extremely picky, and a misplaced character can make all the difference. Make sure that every `(` is matched with a `)` and every `"` is paired with another `"`. Also pay attention to capitalization; R is case sensitive.
 
-Location of the `+` sign {-}
+Location of the `+` sign
 
 One common problem when creating {ggplot2} graphics is to put the `+` in the wrong place: it must come at the end of a line, not the start. In other words, make sure you haven't accidentally written code like this:
 
@@ -227,7 +221,7 @@ ggplot(data = mpg)
 + geom_point(mapping = aes(x = displ, y = hwy))
 ```
 
-Help! {-}
+Help!
 
 If you're still stuck, try the help. You can get help about any R function by running `?function_name` in a code chunk, e.g. `?geom_point`. Don't worry if the help doesn't seem that helpful --- instead skip down to the bottom of the help page and look for a code example that matches what you're trying to do.
 

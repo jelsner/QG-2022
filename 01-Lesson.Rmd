@@ -3,21 +3,21 @@
 - Is it getting hotter here in Tallahassee?
 - Are Atlantic hurricanes getting stronger?
 
-Data science (also known as 'statistics') is an exciting discipline that allows you to turn data into understanding, insight, and knowledge.
+Data science is an exciting discipline that turns data into understanding, insight, and knowledge. This course teaches you data science in the context of geography.
 
 Today
 
-- Understand what this course is about, how it is structured, and what I expect from you
-- Start working with RStudio and R
+- What this course is about, how it is structured, and what I expect from you
+- Getting started with R and RStudio
 
 ## What is this course? {-}
 
-This is designed as first course in data science for geographers.
+This is a first course in data science for geographers.
 
 **Q - What statistics background does this course assume?**  
 A - None.
 
-**Q - Is this an intro stat course?**  
+**Q - Is this an intro statistics course?**  
 A - Statistics and data science are closely related with much overlap. Hence, this course is a great way to get started with statistics. But this course is **not** your typical high school/college statistics course.
 
 **Q - Will you be doing computing?**   
@@ -55,7 +55,7 @@ Other research:
 - Click on the button `[Raw]`
 - You can `Save as` to download a copy to your computer
 
-## Getting set {-}
+## Getting setup {-}
 
 First get R
 
@@ -70,9 +70,21 @@ Then get RStudio
 * Download RStudio Desktop
 * Install and open RStudio
 
-Finally (Optional), learn git
+Then get the course materials from GitHub
 
-https://happygitwithr.com/install-git.html
+* Navigate to https://github.com/jelsner/QG-2022
+* Click the Green Code button
+* Then Download ZIP
+* Unzip the file on your computer to create the folder `QG-2022-main`
+
+Then open the first two Rmd files
+
+* Open the folder to see all the lesson files (and more)
+* Click on the files `00-Syllabus.Rmd` and `01-Lesson.Rmd`
+
+This should bring up the files in RStudio.
+
+Finally, learn git (optional) https://happygitwithr.com/install-git.html
 
 ## RStudio's integrated development environment (IDE) {-}
 
@@ -122,7 +134,7 @@ package::function  (`::` is called a library specifier).
 
 Or, load the packages into your current environment with the `library()` function.
 
-Create a plot showing the frequency of high temperatures.
+Create a plot showing the frequency of daily high temperatures in Tallahassee.
 
 ```{r}
 library(ggplot2)

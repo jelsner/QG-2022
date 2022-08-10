@@ -93,21 +93,21 @@ It is my intent to present notes and data that are respectful of diversity: gend
 | 13   | November 15, 17         | Geographic regression   |
 | 14   | November 29, December 1 | Finish assignments      |
 
-28 dates 26 lessons
+28 dates, 26 lessons, 11 Assignments
 
 | Assignment | Due Date (5 pm) |
 |------------|-----------------|
-| 1          | August 30       |
-| 2          | September 6     |
-| 3          | September 13    |
-| 4          | September 27    |
-| 5          | October 4       |
-| 6          | October 18      |
-| 7          | October 25      |
-| 8          | November 1      |
-| 9          | November 8      |
-| 10         | November 15     |
-| 11         | November 29     |
+| 1          | September 1     |
+| 2          | September 8     |
+| 3          | September 15    |
+| 4          | September 29    |
+| 5          | October 6       |
+| 6          | October 20      |
+| 7          | October 27      |
+| 8          | November 3      |
+| 9          | November 10     |
+| 10         | November 17     |
+| 11         | December 1      |
 
 ## Deeper dives {.unnumbered}
 
