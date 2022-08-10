@@ -1,13 +1,16 @@
 # Tuesday, August 30, 2022 {-}
 
-## Today {-}
+Today
 
-- More graphing examples
-- How R works
+- Graphing examples
+- Working with R
+- Data vectors
 
 If your analysis is to be a convincing, the trail from data to final output must be open and available to all. Markdown helps you create scientific reports that are a mixture of text and code. This makes it easy to create an understandable trail from hypothesis, to data, to analysis, to results. Reproducible research.
 
-## Scatter plots {-}
+## Graphing examples {-}
+
+Scatter plots
 
 Functions from the {ggplot2} package are used to make graphs. You make these graphing functions available for a given session of R (every time you open RStudio) with the `library(ggplot2)` function.
 
@@ -185,7 +188,7 @@ Here, the color doesn't convey information about a variable, but only changes th
 
 R has 25 shapes that are identified by numbers. There are some seeming duplicates: for example, 0, 15, and 22 are all squares. The difference comes from the interaction of the `color` and `fill` aesthetics. The hollow shapes (0--14) have a border determined by `color`; the solid shapes (15--18) are filled with `color`; the filled shapes (21--24) have a border of `color` and are filled with `fill`.
 
-### Facets {-}
+Facets
 
 Another way to add additional variables useful for categorical variables is to split the plot into facets. A facet is a subplot on one subset of the data. 
 
@@ -208,7 +211,9 @@ ggplot(data = mpg,
 
 The output produces separate scatter plots one for each of the seven classes. More on graphs later.
 
-## Calculations {-}
+## Working with R {-}
+
+Calculations
 
 Let's see how you can do some arithmetic in R.
 
@@ -229,7 +234,7 @@ How about 4.5% of 12,000?
 .045 * 12000 
 ```
 
-## Functions {-}
+Functions
 
 Many math and statistical functions are available. A function has a name followed by a pair of parentheses. Arguments are placed inside the parentheses as needed.
 
@@ -256,7 +261,7 @@ rnorm(10)
 rnorm(10, mean = 5)
 ```
 
-## Syntax is important {-}
+Syntax is important
 
 You get an error message when you type a function that R does not understand. For example:
 ```{r eval=FALSE}
@@ -279,7 +284,7 @@ sqrt(2
 
 The last command shows what happens if R encounters a line that is not complete. The continuation prompt (`+`) is printed, indicating you did not finish the command.
 
-## Saving an object {-}
+Saving an object
 
 Use the assignment operator to save an object. You put a name on the left-hand side of the left pointing arrow (`<-`) and the value on the right. Assignments do not produce output.
 ```{r}
@@ -290,7 +295,7 @@ x <- 10
 
 Here you assigned `x` to be a numeric object. Assignments are made using the left-pointing arrow (less than followed by a dash) [or an equal sign.]
 
-## Object names {-}
+Object names
 
 You are free to make object names out of letters, numbers, and the dot or underline characters.  A name starts with a letter or a dot (a leading dot may not be followed by a number). But you can't use mathematical operators, such as +, -, *, and /.
 
@@ -308,7 +313,7 @@ Some names are commonly used to represent certain types of data. For instance, `
 
 These conventions are not forced, but consistent use of them makes it easier for you (and others) to understand what you've done.
 
-## Entering data {-}
+Entering data
 
 The `c()` function is useful for getting a small amount of data into R. The function combines (concatenates) items (elements). Example: consider a set of hypothetical annual land falling hurricane counts over a ten-year period.
 
@@ -326,7 +331,7 @@ They are printed by typing the object name as you did on the second line. Finall
 
 You can save some typing by using the arrow keys to retrieve previous commands.  Each command is stored in a history file and the up arrow key will move backwards through the history file and the down arrow forwards.  The left and right arrow keys will work as expected.
  
-## Applying a function {-}
+Applying a function
 
 Once the data are stored in an object, you use functions on them. R comes with all sorts of functions that you can apply to your counts data.
 ```{r}
@@ -339,7 +344,7 @@ For this example, the `sum()` function returns the total number of hurricanes ma
 
 Other useful functions include, `sort()`, `min()`, `max()`, `range()`, `diff()`, and `cumsum()`. Try these on the landfall counts.  What does `range()` do?  What does `diff()` do?
 
-## Averge {-}
+Averge
 
 The average (or mean) value of a set of numbers ($x$'s) is defined as:
 $$
@@ -383,7 +388,7 @@ In this case a single number (the mean of the first decade) is subtracted from e
 
 This is an example of data recycling. R repeats values from one vector so that its length matches the other vector. Here the mean is repeated 10 times.
 
-## Variance {-}
+Variance
 
 Suppose you are interested in the variance of the set of landfall counts. The formula is given by:
 $$
@@ -411,7 +416,7 @@ To verify type
 var(x)
 ```
 
-## Data vectors have a type {-}
+Data vectors have a type
 
 One restriction on data vectors is that all the values have the same type. This can be numeric, as in counts, character strings, as in
 ```{r}
@@ -448,7 +453,7 @@ cD2[c(1, 3, 5, 7, 9)]   # print the counts from the odd years
 
 One way to remember how to use functions is to think of them as pets.  They don't come unless they are called by name (spelled properly). They have a mouth (parentheses) that likes to be fed (arguments), and they will complain if they are not feed properly.
 
-## Working smarter {-}
+Working smarter
 
 R's console keeps a history of your commands. The previous commands are accessed using the up and down arrow keys. Repeatedly pushing the up arrow will scroll backward through the history so you can reuse previous commands.
 

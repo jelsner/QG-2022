@@ -1,9 +1,11 @@
 # Thursday, September 8, 2022 {-}
 
-## Today {-}
+Today
 
-- Pipe operator
+- Using pipes
 - Wrangling data
+
+## Using pipes {-}
 
 Data wrangling (munging) is the process of transforming data from one format into another to make it easier to interpret it.
 
@@ -21,8 +23,6 @@ You get a statistical summary of the values in each column with the `summary()` 
 summary(airquality)
 ```
 
-## Pipe operator {-}
-
 Importantly you can apply the `summary()` function using the pipe operator (`|>`). The pipe operator is part of the {dplyr} package and when used together with the wrangling functions, it provides a easy way to make code easy to read.
 
 For example, you read the pipe as THEN. "`airquality` data frame THEN summarize".
@@ -31,7 +31,7 @@ airquality |>
   summary()
 ```
 
-The pipe operator allows us to string together functions while keeping the code readable. You want your code to be machine readable (correct syntax) but also human readable.
+The pipe operator allows you to string together functions while keeping the code readable. You want your code to be machine readable (correct syntax) but also human readable.
 
 For example, suppose the object of interest is called `me` and suppose there is a function called `wake_up()`. I can apply the function in two ways.
 ```{r, eval=FALSE}
@@ -118,7 +118,7 @@ class(airquality)
 
 Click on `airquality` in the environment. It is a data frame.
 
-## Selecting and filtering {-}
+Selecting and filtering
 
 The function `select()` chooses variables by name to create a data frame with fewer columns. For example, choose the month, day, and temperature columns from the `airquality` data frame.
 ```{r}
@@ -155,7 +155,7 @@ df <- airquality |>
 df
 ```
 
-## Example: Palmer penguins {-}
+Example: Palmer penguins
 
 Let's return to the penguins data set. The data set is located on the web, and you import it as a data frame using the `readr::read_csv()` function.
 ```{r}
@@ -224,7 +224,7 @@ penguins |>
 
 Note that this filtering will keep rows with other column values that are missing values but there will be no penguins where the `sex` value is `NA`.
 
-## Stringing functions together {-}
+Stringing functions together
 
 The function `arrange()` orders the rows by values given in a particular column.
 ```{r}
@@ -270,7 +270,7 @@ airquality |>
   dplyr::arrange(TempAp)
 ```
 
-## Summarize {-}
+Summarize
 
 The `summarize()` function reduces (flattens) the data frame based on a function that computes a statistic. For example, to compute the average wind speed during July type
 ```{r}
@@ -314,7 +314,7 @@ airquality |>
             NumDays = dplyr::n())
 ```
 
-## Grouping {-}
+Grouping by column name
 
 If you want to summarize separately for each month you use the `group_by()` function. You split the data frame by some variable (e.g., `Month`), apply a function to the individual data frames, and then combine the output.
 
@@ -359,6 +359,6 @@ These properties make it easy to chain together many simple lines of code to do 
 
 The five functions form the basis of a grammar for data. At the most basic level, you can only alter a data frame in five useful ways: you can reorder the rows (`arrange()`), pick observations and variables of interest (`filter()` and `select()`), add new variables that are functions of existing variables (`mutate()`), or collapse many values to a summary (`summarise()`).
 
-## Your turn {-}
+Your turn
 
 Consider again the Florida precipitation data set (http://myweb.fsu.edu/jelsner/temp/data/FLprecip.txt). Import the data as a data frame, select the columns `April` and `Year`, group by years > 1960, then compute the mean and variance of the April rainfall with the `summarize()` function.

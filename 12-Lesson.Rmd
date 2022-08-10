@@ -1,8 +1,15 @@
 # Thursday, September 29, 2022 {-}
 
-## Today {-}
+Today
 
-- Inferential statistics
+Inferential statistics
+
+- One-sample test
+- About $p$-values
+- Graphical inference
+- Two-sample test for difference in means
+- Test for equal variance
+- Wilcoxon (Mann-Whitney U) non-parametric test for difference in means
 
 How to apply common statistical tests and how to understand their meaning using graphs.
 
@@ -138,7 +145,7 @@ So 13% of the area lies to the left of the first red line. The distribution is s
 pt(q = -1.2239, df = 7) + pt(q = 1.2239, df = 7, lower.tail = FALSE)
 ```
 
-## Example: Strongest Atlantic hurricanes {-}
+Example: Strongest Atlantic hurricanes
 
 Are hurricanes getting stronger? Let's say you know that the strongest hurricanes in the past have an average minimum pressure of 915 mb. Lower central pressure means a stronger hurricane.
 
@@ -273,7 +280,7 @@ Graphical inference can be used in a variety of applications. Here is an example
 
 More information on the {nullabor} package [here](https://cran.r-project.org/web/packages/nullabor/vignettes/nullabor.html)
 
-## Two-sample test of the difference in population means {-}
+## Two-sample test for the difference in population means {-}
 
 With two data samples the null hypothesis is that the two samples have the same population mean. You assume both samples can be modeled with a normal distribution. 
 
@@ -287,7 +294,7 @@ There are two ways to calculate SEDM.
 
 Usually the methods give similar results (unless group sizes and variances are widely different between the two samples).
 
-## Example: hurricanes in the North Atlantic and the eastern North Pacific {-}
+Example: hurricanes in the North Atlantic and the eastern North Pacific
 
 Are hurricanes that occur over the eastern North Pacific weaker (or stronger) than those that occur over the Atlantic? Let's look at the evidence.
 
@@ -329,7 +336,7 @@ t.test(minP ~ Basin,
 
 You write a summary and conclusion as follows: "The sample mean intensity of Atlantic hurricanes is 905.4 mb and the sample mean intensity of the Pacific hurricanes is 915.2 mb. Given this amount of difference (the effect size) together with a sample size of 29, you conclude there is moderate evidence that the mean hurricane intensity in the Atlantic is different than the mean hurricane intensity of the Pacific."
 
-## Example: Palmer penguins {-}
+Example: Palmer penguins
 
 Let $A$ be the length of Adelie penguin flippers and $C$ be the length of Chinstrap penguin flippers. Then you formally write the statistical test as
 $$
@@ -387,7 +394,7 @@ What do you write in your summary and conclusions?
 
 Adelie penguins in the sample have a mean flipper length of 190 mm, which is shorter than the mean flipper length of the Chinstrap penguins by about 6 mm. Given a sample size of 218 penguins this difference provides convincing evidence against the null hypothesis that population mean flipper length is the same (or longer) for the Chinstrap penguins.
 
-## Your turn {-}
+Your turn
 
 Perform a test of the hypothesis that females have shorter bill lengths.
 ```{r, eval=FALSE}

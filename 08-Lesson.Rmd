@@ -1,8 +1,10 @@
 # Thursday, September 15, 2022 {-}
 
-## Today {-}
+Today
 
 - Making graphs
+
+## Data visualization {-}
 
 Data visualization is a cornerstone of data science. It gives insights into your data that are not accessible by looking at a spreadsheet or data frame of values. 
 
@@ -27,7 +29,7 @@ Make the functions from the {ggplot2} package available in your current session.
 library(ggplot2)
 ```
 
-## Bar chart {-}
+Bar chart
 
 A simple graph is the bar chart showing the number of cases within each group. Consider again the annual hurricane counts.
 
@@ -78,7 +80,7 @@ ggplot(data = LH.df) +
 
 Here axes labels are placed on the plot with the functions `ylab()` and `xlab()`. With this type of 'layering' it's easy to go from data on the web to a publishable plot.
 
-## Pie preference {-}
+Pie preference
 
 Thirty graduate students are surveyed about their favor pie. Categories are (1) chocolate cream, (2) coconut custard, (3) georgia peach, and (4) strawberry. To make a bar chart first create the data as a character vector and then change the vector to a data frame.
 ```{r}
@@ -216,7 +218,7 @@ ggplot(data = df) +
   coord_flip()
 ```
 
-## Histogram {-}
+Histogram
 
 The histogram is similar to the bar chart except it uses bars to indicate frequency (or proportion) over an interval of continuous values. For instance, with continuous values the function `table()` is not useful.
 ```{r}
@@ -277,7 +279,7 @@ ggplot(data = FLp.df, mapping = aes(x = May)) +
   geom_rug()
 ```
 
-## Density plot {-}
+Density plot
 
 A density plot is a smoothed histogram with units of probability on the vertical axis. It's motivated by the fact that for a continuous variable, the probability that the variable takes on any particular value is 0. Instead you need a range of values over which a probability is defined.
 
@@ -298,7 +300,7 @@ ggplot(data = FLp.df, aes(x = May)) +
   geom_rug()
 ```
 
-## Box plot {-}
+Box and whisker plot
 
 The box plot graphs the summary statistics. These statistics include the minimum value, the maximum value, the 1st & 3rd quartile values, and the median value. The easiest way to create a box plot is to use the function `boxplot()`.
 ```{r}
@@ -330,7 +332,7 @@ ggplot(FLp.df) +
   ylab("May Precipitation in Florida (in)")
 ```
 
-## Side-by-side box plots {-}
+Side-by-side box plots
 
 Suppose you want to show box plots for each month. In this case you make the x argument in the `aes()` the name of a column containing the vector of month names. 
 
@@ -384,6 +386,7 @@ FLpW.df <- FLpL.df |>
 To help conceptualize what is going on take a look at this [gif](http://myweb.fsu.edu/jelsner/WideLong.gif).
 
 Then to create the box plot specify that the x-axis be the key variable (here `Month`) and the y-axis to be the measured variable (here `Precipitation`).
+
 ```{r}
 ggplot(data = FLpL.df) + 
   geom_boxplot(mapping = aes(x = Month, y = Precipitation)) +
@@ -395,6 +398,7 @@ This is a climograph.
 Each `geom_` function is a layer. Data for the layer is specified in the function `ggplot()` with the data frame argument and the `aes()` function. To add another layer to the plot with different data you specify the data within the geom function. For example, lets repeat the climograph of monthly precipitation highlighting the month of May.
 
 You add a `geom_boxplot()` layer and specify a subset of the data using the subset `[]` operator when specifying the `data =` argument.
+
 ```{r}
 ggplot(data = FLpL.df, 
        aes(x = Month, y = Precipitation)) + 

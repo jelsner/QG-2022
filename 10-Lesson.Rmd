@@ -1,6 +1,6 @@
 # Thursday, September 22, 2022 {-}
 
-## Today {-}
+Today
 
 - Making maps
 
@@ -144,7 +144,7 @@ You add layers with the `+` symbol as before.
 
 Boundaries serve as the background canvas for spatial data analysis. You usually need to add data to this canvas. Depending on the type of data, you either overlay it on top of the boundaries or use it to fill in the areas between the boundaries.
 
-## Fills {-}
+Fills
 
 Choropleth maps (heat maps, thematic maps) map data values from a column in the simple feature data frame to the `fill` aesthetic. The aesthetic assigns colors to the various map areas (e.g. countries, states, counties, zip codes).
 
@@ -200,7 +200,7 @@ ggplot(data = USA_48.sf) +
   geom_sf(aes(fill = AWATER/ALAND * 100))
 ```
 
-## Adding data {-}
+Adding data
 
 The `USA_48.sf` simple feature data frame uses longitude and latitude for it's coordinate reference system (CRS). All spatial data frames have a CRS.
 
@@ -356,6 +356,6 @@ See maptiles package https://github.com/riatelab/maptiles/
 
 Why map projections matter. Clip from The West Wing.  https://youtu.be/vVX-PrBRtTY
 
-## Bivariate maps {-}
+## Bivariate maps (extra material) {-}
 
 See `Other_Rmds/BivariateMaps.Rmd`.

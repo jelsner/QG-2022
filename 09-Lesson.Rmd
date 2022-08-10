@@ -1,10 +1,12 @@
 # Tuesday, September 20, 2022 {-}
 
-## Today {-} 
+Today 
 
-- More about making graphs in R
+- More on making graphs
 
-## Comparing distributions {-}
+## Data visualization continued {-}
+
+Comparing distributions
 
 Previously you learned how to make a histogram from data. To review, consider again the Florida rainfall data.
 
@@ -99,7 +101,7 @@ library(patchwork)
 
 What distribution best matches the shape of the March rainfall values?
 
-## Box plots {-}
+Box and whisker plots
 
 A box plot graphically illustrates summary statistics. The summary statistics include the minimum value, the maximum value, the 1st & 3rd quartile values, and the median value. 
 
@@ -133,7 +135,7 @@ ggplot(data = FLp.df) +
   ylab("May Rainfall in Florida (in)")
 ```
 
-## Long data frames {-}
+Long data frames
 
 Suppose you want to make a separate box plot for each month. In this case you make the `x` aesthetic the name of a column containing the vector of month names. The problem is that the month names are column labels rather than a single character vector.
 
@@ -219,7 +221,7 @@ ggplot(data = FLpL.df, aes(x = Month, y = Rainfall)) +
   theme_minimal()
 ```
 
-## Scatter plots {-}
+Scatter plots
 
 An import graph is the scatter plot which shows the relationship between two numeric variables. It plots the values of one variable against the values of the other as points $(x_i, y_i)$ in a Cartesian plane.  
 
@@ -287,7 +289,7 @@ To map an aesthetic to a variable, associate the name of the aesthetic to the na
 
 The colors show that many of the unusual points are two-seater cars. Sports cars have large engines like SUVs and pickup trucks, but small bodies like midsize and compact cars, which improves their gas mileage.
 
-## Facets {-}
+Facets
 
 One way to add additional variables is with aesthetics. Another way, particularly useful for categorical variables, is to split our plot into facets, subplots that each display one subset of the data.
 
@@ -307,7 +309,7 @@ ggplot(data = mpg) +
 
 Here `drv` refers to the drive train: front-wheel (`f`), rear-wheel (`r`) or 4-wheel (`4`).
 
-## Example: Palmer penguins {-}
+Example: Palmer penguins
 
 Let's return to the penguins data set. You import it as a data frame using `readr::read_csv()` function.
 ```{r}
@@ -347,7 +349,7 @@ ggplot(data = penguins) +
   facet_wrap(~ island)
 ```
 
-## An expository graph {-}
+An expository graph
 
 Adding labels and titles turns an exploratory graph into an expository graph. Consider again the `mpg` dataset and plot highway mileage (`hwy`) as a function of engine size (`displ`) with the color of the point layer given by automobile class (`class`).
 ```{r}
@@ -373,7 +375,7 @@ ggplot(data = mpg,
        caption = "Data are from fueleconomy.gov")
 ```
 
-## Exporting your graph {-}
+Exporting your graph
 
 When you knit to HTML and a plot is produced it gets output as a png file in our project directory.
 

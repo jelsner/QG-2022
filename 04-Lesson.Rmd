@@ -1,23 +1,12 @@
 # Thursday, September 1, 2022 {-}
 
-## Today {-}
+Today
 
-- Data as vectors
 - Sample statistics
 - Structured data
 - Tables and summaries
 
-## Data as vectors {-}
-
-The `c()` function is used to get small amounts of data into R. The function combines (concatenates) items (elements). Example: consider a set of hypothetical annual land falling hurricane counts over a ten-year period.
-
-2  3  0  3  1  0  0  1  2  1
-
-To save these values in our environment as a data object, type
-```{r, test}
-counts <- c(2, 3, 0, 3, 1, 0, 0, 1, 2, 1)
-counts
-```
+## Sample statistics {-}
 
 Once data are stored as an object, you use functions on them. Some common functions used on simple data objects include
 ```{r}
@@ -28,7 +17,7 @@ sum(counts)/length(counts)
 
 For this example, the `sum()` function returns the total number of hurricanes making landfall. The `length()` function returns the number of years, and `sum(counts)/length(counts)` returns the average number of hurricanes per year.
 
-## Mean {-}
+Mean
 
 The average (or mean) value of a set of numbers ($x$'s) is defined as:
 $$
@@ -73,7 +62,7 @@ In this case a single number (the mean of the first decade) is subtracted from e
 
 This is an example of data recycling. R repeats values from one vector so that the length of this vector matches the other, longer vector. Here the mean is repeated 10 times.
 
-## Variance {-}
+Variance
 
 Suppose you are interested in by how much the set of annual landfall counts varies from year to year. The formula for the variance is given by:
 $$
@@ -101,7 +90,7 @@ So the variance is 1.344. To verify with the `var()` function type
 var(x)
 ```
 
-## Median {-}
+Median
 
 Recall that the mean is a statistic calculated on our data. Typically there are more data values close to the mean than far from it. A normal random variable is within two standard deviations of its mean about 95% of the time.
 
@@ -191,7 +180,7 @@ Note: Some packages come with data sets. To see what data is available in a pack
 data(package = "UsingR")
 ```
 
-## Spread {-}
+Spread
 
 A simple measure of the spread of data values is the range. The range is given by the minimum and maximum value or by the difference between them.
 ```{r}
@@ -221,8 +210,6 @@ mean(ts2)
 var(ts1)
 var(ts2)
 ```
-
-## Vector types {-}
 
 All the elements of a vector must have the same type. That is you can't mix numbers with character strings.
 
@@ -290,8 +277,6 @@ More complicated patterns can be repeated by specifying pairs of equal-sized vec
 ```{r}
 rep(c("long", "short"), times = c(1, 2))
 ```
-
-## Asking questions {-}
 
 To find the most landfalls in the first decade, type:
 ```{r}

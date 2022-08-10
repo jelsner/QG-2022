@@ -1,10 +1,9 @@
 # Tuesday, September 6, 2022 {-}
 
-## Today {-} 
+Today
 
-- Getting data into R
+- Getting your data into R
 - Data frames
-- Quantiles
 - Pipes
 
 More information about how to use RStudio and markdown files is available here:
@@ -65,8 +64,7 @@ table(LH.df$FL)
 
 There are 93 years without a FL hurricane, 43 years with one hurricanes, 24 years with two hurricanes, and so on.
 
-## Creating structured data files {-}
-https://environmentalcomputing.net/getting-started-with-r/
+Creating structured data files: https://environmentalcomputing.net/getting-started-with-r/
 
 Golden rules of data entry.
 
@@ -172,7 +170,7 @@ ggplot(data = FLp.df, aes(x = Year, y = Jan)) +
 
 A minimal, complete, reproducible example.
 
-## Quantiles {-}
+Quantiles
 
 The median value cuts a set of ordered data values into two equal parts. Values larger than the median and values less than the median. The ordering comes from arranging the data from lowest to highest. 
 
@@ -233,7 +231,7 @@ summary(FLp.df)
 
 Columns with missing values get a row output from the `summary()` function indicating the number of them (NA's).
 
-## Creating a data frame {-}
+Creating a data frame
 
 The `data.frame()` function creates a data frame from a set of vectors.
 
@@ -270,8 +268,6 @@ head(H.df)
 
 The column name in the data frame is the name of the vector.
 
-## Pipes {-}
-
 So far you have computed statistics on data stored as vectors (mean, median, quantiles, etc). But you often import data as data frames so you need to know how to manipulate them.
 
 The {dplyr} package has functions ('verbs') that manipulate data frames in a friendly and logical way. Manipulations include, selecting columns, filtering rows, re-ordering rows, adding new columns, and summarizing data.
@@ -302,7 +298,7 @@ airquality |>
 
 You read the pipe as THEN. "airquality data frame THEN summarize".
 
-The pipe operator allows us to string together a bunch of functions that makes it easy for humans to understand what was done. This is a key point. You want your code to be readable by a computer (correct syntax) but also readable to other humans.
+The pipe operator allows you to string together a bunch of functions that makes it easy for humans to understand what was done. This is a key point. You want your code to be readable by a computer (correct syntax) but also readable to other humans.
 
 For example, suppose the object of interest is called `me` and suppose there is a function called `wake_up()`. I could apply the function in two ways.
 ```{r, eval=FALSE}
@@ -312,29 +308,6 @@ me |>
 ```
 
 The second way involves a bit more typing but it is easier for a human to read and thus it is easier to understand. This becomes clear when stringing together many functions. 
-
-For example, what happens to the result of `me` after the function `wake_up()` has been applied? How about `get_out_of_bed()` and the `get_dressed()`? Again, I can apply these functions in two ways.
-```{r, eval=FALSE}
-get_dressed(get_out_of_bed(wake_up(me)))
-
-me |>
-  wake_up() |>
-  get_out_of_bed() |>
-  get_dressed()
-```
-
-Continuing
-```{r, eval=FALSE}
-me |>
-  wake_up() |>
-  get_out_of_bed() |>
-  get_dressed() |>
-  make_coffee() |>
-  drink_coffee() |>
-  leave_house()
-```
-
-Which is much better in terms of 'readability' then `leave_house(drink_coffee(make_coffee(get_dressed(get_out_of_bed(wake_up(me))))))`.
 
 Consider again the `FLp.df`. How would you use the above syntax to compute the mean value of June precipitation?
 
@@ -355,7 +328,7 @@ FLp.df |>
 
 Note that the next function in the sequence receives the output from the previous function as its FIRST argument so the function `mean()` has nothing inside the parentheses. 
 
-## Your turn {-}
+Your turn
 
 (1) Use the piping operator and compute the average wind speed in the `airquality` data frame.
 (2) Use the piping operator and compute the 10th and 90th percentiles (lower and upper decile values) of May precipitation in Florida.

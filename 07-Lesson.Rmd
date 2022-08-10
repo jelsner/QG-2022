@@ -1,8 +1,11 @@
 # Tuesday, September 13, 2022 {-}
 
-## Today {-}
+Today
 
-- Examples of data munging with functions from the {dplyr} package
+- Examples of data munging
+- Putting things together
+
+## Data munging examples
 
 You work with data frames. The functions are verbs. The verbs include:
 
@@ -37,7 +40,7 @@ FLp.df |>
                    Var = var(Apr))
 ```
 
-## Example 1: New York City flight data {-}
+Example: New York City flight data
 
 Let's consider the `flights` data frame from the package {nycflights13}.
 ```{r}
@@ -141,7 +144,7 @@ flights |>
 
 Repeat but arrange from most to fewest planes.
 
-## Example 2: Daily weather data from Tallahassee {-}
+Example: Daily weather data from Tallahassee
 
 Let's consider another set of data. Daily high and low temperatures and precipitation in Tallahassee. 
 
@@ -225,7 +228,7 @@ TLH90.df |>
   dplyr::arrange(desc(nHotDays))
 ```
 
-## Putting everything together {-}
+## Putting things together {-}
 
 Let's put together your first piece of original research. You know how to import a data file, you know how to manipulate the data frame to compute something of interest, and you know how to make a graph.
 
@@ -287,7 +290,7 @@ ggplot(aes(x = Year, y = TotalPrecip)) +
   theme_minimal()
 ```
 
-## Example 3: Food consumption and CO2 emissions {-}
+Example: Food consumption and CO2 emissions
 
 Source: https://www.nu3.de/blogs/nutrition/food-carbon-footprint-index-2018
 ```{r}
@@ -321,7 +324,7 @@ fc.df |>
   dplyr::arrange(desc(totalEmission))
 ```
 
-## Summary {-}
+Summary
 
 Data munging is a big part of data science. Data science is an iterative cycle:
 
