@@ -1,10 +1,16 @@
 # Thursday, October 13, 2022 {-}
 
-## Today {-}
+Today
 
-- Regression 
+Linear regression
 
-Regression provides another way to implement a $t$ test but it is much more than that. In this lesson: how to fit a regression model, make predictions, interpret the output, and quantify the uncertainty about the model (coefficients) and about predictions made from the model.
+Linear regression provides another way to implement a $t$ test on the difference in means, but it can be used for a wide range of inference problems. Here you learn how to fit a regression model, make predictions, interpret the output, and quantify the uncertainty about the model (coefficients) and about predictions made from the model.
+
+- A $t$ test by another name
+- Motivation for the regression model
+- Making prediction with the regression model
+- Uncertainty about the regression model coefficients
+- Bootstrapping the uncertainty
 
 ## Linear regression: A t test by another name {-}
 
@@ -43,7 +49,7 @@ In the table of coefficients you see the value of `7.245` next to `am` in the co
 
 Linear regression provides a way to generalize comparisons across any number of groups (not just two as is the case with a $t$ test).
 
-## Motivating regression {-}
+## Motivation for the regression model {-}
 
 Suppose you have the following values for variables `y` and `x`. Let `y` be the 'response' variable and `x` be the 'explanatory' variable.
 ```{r}
@@ -196,11 +202,9 @@ With this output you write that the mean of y = -0.8 + 0.76x.
 
 Question: Does `y` modeled by `x` give the same coefficient values as `x` modeled by `y`? Try it.
 
-## Eyeballing the regression {-}
+Eyeballing a regression: https://sophieehill.shinyapps.io/eyeball-regression/
 
-https://sophieehill.shinyapps.io/eyeball-regression/
-
-## Example: Increasing heart rates with age {-}
+Example: Increasing heart rates with age
 
 The maximum heart rate in beats per minute of a person declines with age. You say maximum heart rate is inversely related to the person's age. 
 
@@ -236,7 +240,7 @@ lm(HR ~ Age, data = df)
 
 You interpret the model as follows: On average a person's maximum HR *decreases* by .8 beats per minute (bpm) every year. Or more easily understood as a decrease of 8 bpm every 10 years.
 
-## Making predictions with regression {-}
+## Making predictions with the regression model {-}
 
 The model is useful for making predictions. Suppose you want to predict the maximum heart rate for 50-year old individuals. You apply the equation
 ```{r}
@@ -259,7 +263,7 @@ predict(model,
         newdata = data.frame(Age = seq(from = 40, to = 60, by = 10)))
 ```
 
-## Uncertainty about the regression coefficients {-}
+## Uncertainty about the regression model coefficients {-}
 
 Information about the model is obtained with the `summary()` method.
 ```{r}
@@ -411,42 +415,3 @@ sd(slope)
 ```
 
 Uncertainty bounds are estimated from a single sample without reference to statistical theory.
-
-## Predictive uncertainty {-}
-
-The `predict()` function (method) is used to make a prediction. You specify the model object and value(s) of the explanatory variable as a data frame.
-```{r}
-predict(model, 
-        newdata = data.frame(Age = c(50, 60)))
-```
-
-To get the uncertainty intervals on the predicted values:  Use the `level =` and `interval = "confidence"` arguments.
-```{r}
-predict(model, 
-        newdata = data.frame(Age = c(50, 60)), 
-        level = .95, interval = "confidence")
-ggplot(data = df, 
-       mapping = aes(x = Age, y = HR)) +
-  geom_point() +
-  geom_smooth(method = lm)
-```
-
-The lower (`lwr`) and upper (`upr`) bounds represent the 95% uncertainty interval about the location of the line for the particular value of the explanatory variable `Age`.
-
-You state that the best prediction for average maximum heart rate for people at age 50 is 170 bpm with a 95% uncertainty interval between 167 and 173 bpm. 
-
-Thus if you repeat the sampling 100 times and make the same prediction, our CI on the prediction will cover the true predicted value 95 times.
-
-Note: repeated sampling is not the same as bootstrap re-sampling. Repeated sampling refers to the theoretical ideal of a true model, while bootstrap re-sampling is a procedure that you implement on your data.
-
-With `interval = "prediction"` you get a 95% _prediction_ interval. That interval is wider than the confidence interval as it represents two sources of uncertainty. 
-
-The uncertainty associated with the mean value GIVEN the person's age AND the uncertainty associated with a particular maximum heart rate GIVEN the conditional mean.  
-```{r}
-predict(model, data.frame(Age = c(50, 60)), 
-        level = .95, interval = "prediction")
-```
-
-This is an example of compound uncertainty that we discussed in the context of Bayesian data analysis. The difference between the posterior distribution on the parameter of interest and the posterior distribution on the prediction of a specific value.
-
-If you are 90% certain that your spouse is faithful and 90% certain he is not a cross-dresser, then you must be less than 90% certain he is a faithful, non-cross dresser.

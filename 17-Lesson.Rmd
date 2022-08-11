@@ -1,9 +1,12 @@
 # Tuesday, October 18, 2022 {-}
 
-## Today {-} 
+Today 
 
-- Review
+- Predictive uncertainty
 - Model adequacy
+- Transforming the response variable
+
+Example: Age affects maximum heart rate
 
 Suppose you are interested in predicting maximum heart rate by age using 15 randomly chosen people who are tested for maximum heart rate. The data are listed below. Age is in years and heart rate is in beats per minute. Create a data frame called `heart.df`.
 ```{r}
@@ -232,7 +235,7 @@ ggplot(data = heart.df2,
   geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = .2)
 ```
 
-## Example: Predicting body mass from fipper length {-}
+Example: Predicting body mass from fipper length
 
 You can imagine that measuring the body mass of a penguin is more difficult than measuring the length of its flipper. So you might want to infer body mass from flipper length.
 

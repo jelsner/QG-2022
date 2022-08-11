@@ -1,11 +1,13 @@
 # Thursday, October 27, 2022 {-}
 
-## Today {-}
+Today {-}
 
-- More about multiple variable regression
+- Removing variable from a regression model
+- The stepwise regression procedure
+- Transforming a response variable
 - Regression trees
 
-## Removing variables from a model {-}
+## Removing variables from a regression model {-}
 
 Often you start with a model that includes many explanatory variables. This is because you are not sure what variables are important in explaining the response variable.
 

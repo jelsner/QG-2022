@@ -1,10 +1,18 @@
 # Tuesday, October 25, 2022 {-}
 
-## Today {-}
+Today
 
-- Multiple variable linear regression
+Multiple variable linear regression
 
-## Multiple variable linear regression {-}
+- A regression plane
+- Fitting a multiple variable regression model
+- Removing a variable from the model
+- Checking model assumptions
+- Using the model to make predictions
+- Collinearity
+- Interactions
+
+## A regression plane {-}
 
 Multiple variable (multi-variable) linear regression is used to model a dependent variable when there is more than one explanatory variable.
 
@@ -68,7 +76,7 @@ y_i - \hat y_i = \varepsilon_i
 $$
 and are assumed to be described by a set of normal distributions each centered on zero and having the same variance ($\sigma^2$).
 
-## A grid of scatter plots {-}
+A grid of scatter plots
 
 As with simple linear regression, before you model the data you should make a scatter plot. With more than one explanatory variable you rely on a series of scatter plots.
 
@@ -115,7 +123,7 @@ From the plots and the correlation matrix you anticipate the proportion of peopl
 
 Further you anticipate that the gas tax will be an important variable but the coefficient on this term will be a negative number.
 
-## Fit a multiple variable regression model {-}
+## Fitting a multiple variable regression model {-}
 
 You fit a multiple variable regression model to the gas data using the `lm()` function. You put the name of the response variable (`Petrol.Consumption`) to the left of the `~` and then the names of the explanatory variables to the right. After each variable you include a `+` sign (except for the last variable). 
 
@@ -243,7 +251,7 @@ These plots indicate some evidence against normality and constant variance. The 
 
 To improve model adequacy you might transform the response variable or use a weighted regression model. We will return to this shortly.
 
-## Checking predictions {-}
+## Using the model to make predictions {-}
 
 https://easystats.github.io/performance/reference/check_predictions.html
 
@@ -256,7 +264,7 @@ performance::check_predictions(model2)
 
 The model predicted lines should resemble the observed data line (smoothed density of response variable). Here you see that it looks pretty good, but improvements could be made.
 
-## Example: Predicting house prices {-}
+Example: Predicting house prices
 
 A Realtor can use multiple variable regression to justify a selling price for a house based on a list of features the house has. Here you consider a data file (`houseprice.txt`) containing a random sample of 107 home sales in Albuquerque, New Mexico during the period February 15 through April 30, 1993 (Albuquerque Board of Realtors, 1993).
 

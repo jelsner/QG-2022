@@ -1,10 +1,12 @@
 # Thursday, October 20, 2022 {-}
 
-## Today {-}
+Today
 
-- More examples
+- More regression examples
 - Outliers
 - Simpson's paradox
+
+## More regression examples {-}
 
 Linear regression provides an adequate model for your data under the following four assumptions.
 
@@ -15,7 +17,7 @@ Linear regression provides an adequate model for your data under the following f
 
 Key idea: A model can be statistically significant, but not adequate.
 
-## Example: Average income vs percent college graduates at the state level {-}
+Example: Average income vs percent college graduates at the state level
 
 The file _Inc.txt_ on my website contains average annual household income vs percentage of college graduates by state. Fit a linear regression model to these data and check the model assumption. Does the linear model appear to be adequate?
 ```{r}
@@ -175,7 +177,7 @@ ggplot(data = model1.df,
   geom_label_repel(aes(label = State), color = "darkblue") 
 ```
 
-## Summarizing {-}
+Summary
 
 (1) Regression modeling is statistical control.
 
@@ -195,7 +197,7 @@ ggplot(data = model1.df,
 * The model fit may be excellent, but you can't be sure your conclusions are correct unless you can defend the assumptions.
 * Examining the model residuals helps you defend (if warranted) the assumptions.
 
-## Example: A regression model for trend {-}
+Example: A regression model for trend
 
 The rate at which something is changing over time is called a trend. Trend analysis is common in climate change studies and it often involves fitting a linear regression model to quantify the trend where the "explanatory variable" is some index of time.
 
