@@ -5,7 +5,7 @@ Today
 - Examples of data munging
 - Putting things together
 
-## Data munging examples
+## Data munging examples {-}
 
 You work with data frames. The functions are verbs. The verbs include:
 
@@ -50,7 +50,7 @@ dim(flights)
 
 The data contains all 336,776 flights that departed NYC in 2013 and comes from the U.S. Bureau of Transportation Statistics. More information is available by typing `?nycflights13`.
 
-The object `flights` is a tibble (tabled data frame). When we have a large data frame it is useful to make it a tibble.
+The object `flights` is a tibble (tabled data frame). When you have a large data frame it is useful to make it a tibble.
 ```{r}
 head(flights)
 ```
@@ -164,7 +164,7 @@ TLH.df <- TLH.df |>
 TLH.df
 ```
 
-Note that you've recycled the name of the data frame. You started with `TLH.df` containing all the columns and we ended with `TLH.df` with only the columns selected.
+Note that you've recycled the name of the data frame. You started with `TLH.df` containing all the columns and you ended with `TLH.df` with only the columns selected.
 
 Then use the `filter()` function to keep only days at or above 90F. Similarly you recycle the name of the data frame. Use the `glimpse()` function to take a look at the resulting data frame.
 ```{r}

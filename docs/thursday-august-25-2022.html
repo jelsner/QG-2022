@@ -51,6 +51,22 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -150,7 +166,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#what-is-this-course"><i class="fa fa-check"></i>What is this course?</a></li>
 <li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#where-are-the-materials-for-this-course"><i class="fa fa-check"></i>Where are the materials for this course?</a></li>
 <li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#syllabus-1"><i class="fa fa-check"></i>Syllabus</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#getting-set"><i class="fa fa-check"></i>Getting set</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#getting-setup"><i class="fa fa-check"></i>Getting setup</a></li>
 <li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#rstudios-integrated-development-environment-ide"><i class="fa fa-check"></i>RStudio’s integrated development environment (IDE)</a></li>
 <li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#example-tallahassee-daily-temperatures"><i class="fa fa-check"></i>Example: Tallahassee daily temperatures</a></li>
 </ul></li>
@@ -163,258 +179,95 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html"><i class="fa fa-check"></i>Tuesday, August 30, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#today"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#scatter-plots"><i class="fa fa-check"></i>Scatter plots</a>
-<ul>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#facets"><i class="fa fa-check"></i>Facets</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#calculations"><i class="fa fa-check"></i>Calculations</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#functions"><i class="fa fa-check"></i>Functions</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#syntax-is-important"><i class="fa fa-check"></i>Syntax is important</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#saving-an-object"><i class="fa fa-check"></i>Saving an object</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#object-names"><i class="fa fa-check"></i>Object names</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#entering-data"><i class="fa fa-check"></i>Entering data</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#applying-a-function"><i class="fa fa-check"></i>Applying a function</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#averge"><i class="fa fa-check"></i>Averge</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#graphing-examples"><i class="fa fa-check"></i>Graphing examples</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#working-with-r"><i class="fa fa-check"></i>Working with R</a></li>
 <li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#data-vectors"><i class="fa fa-check"></i>Data vectors</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#variance"><i class="fa fa-check"></i>Variance</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#data-vectors-have-a-type"><i class="fa fa-check"></i>Data vectors have a type</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#working-smarter"><i class="fa fa-check"></i>Working smarter</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html"><i class="fa fa-check"></i>Thursday, September 1, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#today-1"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#data-as-vectors"><i class="fa fa-check"></i>Data as vectors</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#mean"><i class="fa fa-check"></i>Mean</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#variance-1"><i class="fa fa-check"></i>Variance</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#median"><i class="fa fa-check"></i>Median</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#spread"><i class="fa fa-check"></i>Spread</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#vector-types"><i class="fa fa-check"></i>Vector types</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#sample-statistics"><i class="fa fa-check"></i>Sample statistics</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#structured-data"><i class="fa fa-check"></i>Structured data</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#asking-questions"><i class="fa fa-check"></i>Asking questions</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#tables-and-summaries"><i class="fa fa-check"></i>Tables and summaries</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html"><i class="fa fa-check"></i>Tuesday, September 6, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#today-2"><i class="fa fa-check"></i>Today</a></li>
 <li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#getting-your-data-into-r"><i class="fa fa-check"></i>Getting your data into R</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-structured-data-files"><i class="fa fa-check"></i>Creating structured data files</a></li>
 <li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#data-frames"><i class="fa fa-check"></i>Data frames</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#quantiles"><i class="fa fa-check"></i>Quantiles</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-a-data-frame"><i class="fa fa-check"></i>Creating a data frame</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#pipes"><i class="fa fa-check"></i>Pipes</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#your-turn"><i class="fa fa-check"></i>Your turn</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html"><i class="fa fa-check"></i>Thursday, September 8, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#today-3"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#pipe-operator"><i class="fa fa-check"></i>Pipe operator</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#using-pipes"><i class="fa fa-check"></i>Using pipes</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#wrangling-data-frames"><i class="fa fa-check"></i>Wrangling data frames</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#selecting-and-filtering"><i class="fa fa-check"></i>Selecting and filtering</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#example-palmer-penguins"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#stringing-functions-together"><i class="fa fa-check"></i>Stringing functions together</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#summarize"><i class="fa fa-check"></i>Summarize</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#grouping"><i class="fa fa-check"></i>Grouping</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#your-turn-1"><i class="fa fa-check"></i>Your turn</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html"><i class="fa fa-check"></i>Tuesday, September 13, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#today-4"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#example-1-new-york-city-flight-data"><i class="fa fa-check"></i>Example 1: New York City flight data</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#example-2-daily-weather-data-from-tallahassee"><i class="fa fa-check"></i>Example 2: Daily weather data from Tallahassee</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#putting-everything-together"><i class="fa fa-check"></i>Putting everything together</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#example-3-food-consumption-and-co2-emissions"><i class="fa fa-check"></i>Example 3: Food consumption and CO2 emissions</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="0.1" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#data-munging-examples"><i class="fa fa-check"></i><b>0.1</b> Data munging examples</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#putting-things-together"><i class="fa fa-check"></i>Putting things together</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html"><i class="fa fa-check"></i>Thursday, September 15, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#today-5"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#bar-chart"><i class="fa fa-check"></i>Bar chart</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#pie-preference"><i class="fa fa-check"></i>Pie preference</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#histogram"><i class="fa fa-check"></i>Histogram</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#density-plot"><i class="fa fa-check"></i>Density plot</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#box-plot"><i class="fa fa-check"></i>Box plot</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#side-by-side-box-plots"><i class="fa fa-check"></i>Side-by-side box plots</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html"><i class="fa fa-check"></i>Tuesday, September 20, 2022</a>
-<ul>
-<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html#today-6"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html#comparing-distributions"><i class="fa fa-check"></i>Comparing distributions</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html#box-plots"><i class="fa fa-check"></i>Box plots</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html#long-data-frames"><i class="fa fa-check"></i>Long data frames</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html#scatter-plots-1"><i class="fa fa-check"></i>Scatter plots</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html#facets-1"><i class="fa fa-check"></i>Facets</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html#example-palmer-penguins-1"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html#an-expository-graph"><i class="fa fa-check"></i>An expository graph</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html#exporting-your-graph"><i class="fa fa-check"></i>Exporting your graph</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="thursday-september-22-2022.html"><a href="thursday-september-22-2022.html"><i class="fa fa-check"></i>Thursday, September 22, 2022</a>
-<ul>
-<li class="chapter" data-level="" data-path="thursday-september-22-2022.html"><a href="thursday-september-22-2022.html#today-7"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-22-2022.html"><a href="thursday-september-22-2022.html#simple-feature-data-frames"><i class="fa fa-check"></i>Simple feature data frames</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-22-2022.html"><a href="thursday-september-22-2022.html#making-a-boundary-map"><i class="fa fa-check"></i>Making a boundary map</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-22-2022.html"><a href="thursday-september-22-2022.html#fills"><i class="fa fa-check"></i>Fills</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-22-2022.html"><a href="thursday-september-22-2022.html#adding-data"><i class="fa fa-check"></i>Adding data</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-22-2022.html"><a href="thursday-september-22-2022.html#inset-maps"><i class="fa fa-check"></i>Inset maps</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-22-2022.html"><a href="thursday-september-22-2022.html#map-projections"><i class="fa fa-check"></i>Map projections</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-22-2022.html"><a href="thursday-september-22-2022.html#bivariate-maps"><i class="fa fa-check"></i>Bivariate maps</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="tuesday-september-27-2022.html"><a href="tuesday-september-27-2022.html"><i class="fa fa-check"></i>Tuesday, September 27, 2022</a>
-<ul>
-<li class="chapter" data-level="" data-path="tuesday-september-27-2022.html"><a href="tuesday-september-27-2022.html#today-8"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-27-2022.html"><a href="tuesday-september-27-2022.html#making-maps-using-functions-from-the-tmap-package"><i class="fa fa-check"></i>Making maps using functions from the {tmap} package</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-27-2022.html"><a href="tuesday-september-27-2022.html#example-mapping-tornadoes"><i class="fa fa-check"></i>Example: Mapping tornadoes</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-27-2022.html"><a href="tuesday-september-27-2022.html#example-mapping-the-frequency-of-tornadoes-by-state"><i class="fa fa-check"></i>Example: Mapping the frequency of tornadoes by state</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-27-2022.html"><a href="tuesday-september-27-2022.html#calculations-using-the-geometry-simple-feature-column"><i class="fa fa-check"></i>Calculations using the geometry simple feature column</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-27-2022.html"><a href="tuesday-september-27-2022.html#making-raster-maps"><i class="fa fa-check"></i>Making raster maps</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-27-2022.html"><a href="tuesday-september-27-2022.html#get-map-images-using-functions-from-the-ggmap-package"><i class="fa fa-check"></i>Get map images using functions from the {ggmap} package</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-27-2022.html"><a href="tuesday-september-27-2022.html#add-data-to-the-raster-map"><i class="fa fa-check"></i>Add data to the raster map</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-27-2022.html"><a href="tuesday-september-27-2022.html#spatial-density-maps-extra-material"><i class="fa fa-check"></i>Spatial density maps (extra material)</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html"><i class="fa fa-check"></i>Thursday, September 29, 2022</a>
-<ul>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#today-9"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#one-sample-test-of-the-population-mean"><i class="fa fa-check"></i>One-sample test of the population mean</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#about-p-values"><i class="fa fa-check"></i>About p-values</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#example-strongest-atlantic-hurricanes"><i class="fa fa-check"></i>Example: Strongest Atlantic hurricanes</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#graphical-inference"><i class="fa fa-check"></i>Graphical inference</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#two-sample-test-of-the-difference-in-population-means"><i class="fa fa-check"></i>Two-sample test of the difference in population means</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#example-hurricanes-in-the-north-atlantic-and-the-eastern-north-pacific"><i class="fa fa-check"></i>Example: hurricanes in the North Atlantic and the eastern North Pacific</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#example-palmer-penguins-2"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#your-turn-2"><i class="fa fa-check"></i>Your turn</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#test-of-equal-variance"><i class="fa fa-check"></i>Test of equal variance</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#wilcoxon-mann-whitney-u-non-parameteric-test-of-difference-in-means"><i class="fa fa-check"></i>Wilcoxon (Mann-Whitney U) non-parameteric test of difference in means</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="tuesday-october-4-2022.html"><a href="tuesday-october-4-2022.html"><i class="fa fa-check"></i>Tuesday, October 4, 2022</a>
-<ul>
-<li class="chapter" data-level="" data-path="tuesday-october-4-2022.html"><a href="tuesday-october-4-2022.html#today-10"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-4-2022.html"><a href="tuesday-october-4-2022.html#review"><i class="fa fa-check"></i>Review</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-4-2022.html"><a href="tuesday-october-4-2022.html#paired-observations"><i class="fa fa-check"></i>Paired observations</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-4-2022.html"><a href="tuesday-october-4-2022.html#example-reaction-time-while-driving"><i class="fa fa-check"></i>Example: Reaction time while driving</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-4-2022.html"><a href="tuesday-october-4-2022.html#chi-squared-test-for-independence"><i class="fa fa-check"></i>Chi-squared test for independence</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-4-2022.html"><a href="tuesday-october-4-2022.html#example-smoking-and-exercise"><i class="fa fa-check"></i>Example: Smoking and exercise</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="thursday-october-6-2022.html"><a href="thursday-october-6-2022.html"><i class="fa fa-check"></i>Thursday, October 6, 2022</a>
-<ul>
-<li class="chapter" data-level="" data-path="thursday-october-6-2022.html"><a href="thursday-october-6-2022.html#today-11"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-6-2022.html"><a href="thursday-october-6-2022.html#distributions"><i class="fa fa-check"></i>Distributions</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-6-2022.html"><a href="thursday-october-6-2022.html#normal-distribution"><i class="fa fa-check"></i>Normal distribution</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-6-2022.html"><a href="thursday-october-6-2022.html#uniform-distribution"><i class="fa fa-check"></i>Uniform distribution</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-6-2022.html"><a href="thursday-october-6-2022.html#how-many-blue-marbles"><i class="fa fa-check"></i>How many blue marbles?</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-6-2022.html"><a href="thursday-october-6-2022.html#what-percentage-of-the-globe-is-covered-by-water"><i class="fa fa-check"></i>What percentage of the globe is covered by water?</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-6-2022.html"><a href="thursday-october-6-2022.html#how-many-fish-are-in-the-lake"><i class="fa fa-check"></i>How many fish are in the lake?</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html"><i class="fa fa-check"></i>Tuesday, October 11, 2022</a>
-<ul>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#today-12"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#how-many-fish-are-in-the-lake-1"><i class="fa fa-check"></i>How many fish are in the lake?</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#percentage-of-survey-signups"><i class="fa fa-check"></i>Percentage of survey signups</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#a-generative-model-for-people-agreeing-to-take-your-survey"><i class="fa fa-check"></i>A generative model for people agreeing to take your survey</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#prior-for-the-response-rate"><i class="fa fa-check"></i>Prior for the response rate</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#define-the-generative-model-and-simulate-the-data"><i class="fa fa-check"></i>Define the generative model and simulate the data</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#prediction"><i class="fa fa-check"></i>Prediction</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#approximate-bayesian-computation"><i class="fa fa-check"></i>Approximate Bayesian computation</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#what-bayesian-data-analysis-is-not"><i class="fa fa-check"></i>What Bayesian data analysis is not</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#comparing-two-hypotheses"><i class="fa fa-check"></i>Comparing two hypotheses</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#reaction-times-while-driving"><i class="fa fa-check"></i>Reaction times while driving</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#repeat-the-survey-example"><i class="fa fa-check"></i>Repeat the survey example</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html"><i class="fa fa-check"></i>Thursday, October 13, 2022</a>
-<ul>
-<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html#today-13"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html#linear-regression-a-t-test-by-another-name"><i class="fa fa-check"></i>Linear regression: A t test by another name</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html#motivating-regression"><i class="fa fa-check"></i>Motivating regression</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html#eyeballing-the-regression"><i class="fa fa-check"></i>Eyeballing the regression</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html#example-increasing-heart-rates-with-age"><i class="fa fa-check"></i>Example: Increasing heart rates with age</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html#making-predictions-with-regression"><i class="fa fa-check"></i>Making predictions with regression</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html#uncertainty-about-the-regression-coefficients"><i class="fa fa-check"></i>Uncertainty about the regression coefficients</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html#bootstrapping-the-uncertainty"><i class="fa fa-check"></i>Bootstrapping the uncertainty</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html#predictive-uncertainty"><i class="fa fa-check"></i>Predictive uncertainty</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="tuesday-october-18-2022.html"><a href="tuesday-october-18-2022.html"><i class="fa fa-check"></i>Tuesday, October 18, 2022</a>
-<ul>
-<li class="chapter" data-level="" data-path="tuesday-october-18-2022.html"><a href="tuesday-october-18-2022.html#today-14"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-18-2022.html"><a href="tuesday-october-18-2022.html#uncertainty-about-a-particular-predicted-value"><i class="fa fa-check"></i>Uncertainty about a particular predicted value</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-18-2022.html"><a href="tuesday-october-18-2022.html#example-predicting-body-mass-from-fipper-length"><i class="fa fa-check"></i>Example: Predicting body mass from fipper length</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-18-2022.html"><a href="tuesday-october-18-2022.html#model-adequacy"><i class="fa fa-check"></i>Model Adequacy</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-18-2022.html"><a href="tuesday-october-18-2022.html#transforming-the-response-variable"><i class="fa fa-check"></i>Transforming the response variable</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#data-visualization"><i class="fa fa-check"></i>Data visualization</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#transforming-the-response-variable"><i class="fa fa-check"></i>Transforming the response variable</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html"><i class="fa fa-check"></i>Thursday, October 20, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#today-15"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#example-average-income-vs-percent-college-graduates-at-the-state-level"><i class="fa fa-check"></i>Example: Average income vs percent college graduates at the state level</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#more-regression-examples"><i class="fa fa-check"></i>More regression examples</a></li>
 <li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#outliers"><i class="fa fa-check"></i>Outliers</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#summarizing"><i class="fa fa-check"></i>Summarizing</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#example-a-regression-model-for-trend"><i class="fa fa-check"></i>Example: A regression model for trend</a></li>
 <li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#simpsons-paradox"><i class="fa fa-check"></i>Simpson’s paradox</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html"><i class="fa fa-check"></i>Tuesday, October 25, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#today-16"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#multiple-variable-linear-regression"><i class="fa fa-check"></i>Multiple variable linear regression</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#a-grid-of-scatter-plots"><i class="fa fa-check"></i>A grid of scatter plots</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#fit-a-multiple-variable-regression-model"><i class="fa fa-check"></i>Fit a multiple variable regression model</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#a-regression-plane"><i class="fa fa-check"></i>A regression plane</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#fitting-a-multiple-variable-regression-model"><i class="fa fa-check"></i>Fitting a multiple variable regression model</a></li>
 <li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#should-you-remove-a-variable-from-the-model"><i class="fa fa-check"></i>Should you remove a variable from the model?</a></li>
 <li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#checking-on-the-model-assumptions"><i class="fa fa-check"></i>Checking on the model assumptions</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#checking-predictions"><i class="fa fa-check"></i>Checking predictions</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#example-predicting-house-prices"><i class="fa fa-check"></i>Example: Predicting house prices</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#using-the-model-to-make-predictions"><i class="fa fa-check"></i>Using the model to make predictions</a></li>
 <li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#collinearity"><i class="fa fa-check"></i>Collinearity</a></li>
 <li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html"><i class="fa fa-check"></i>Thursday, October 27, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#today-17"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#removing-variables-from-a-model"><i class="fa fa-check"></i>Removing variables from a model</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#the-stepwise-regression-procedure"><i class="fa fa-check"></i>The stepwise regression procedure</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#removing-variables-from-a-regression-model"><i class="fa fa-check"></i>Removing variables from a regression model</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#the-stepwise-selection-procedure"><i class="fa fa-check"></i>The stepwise selection procedure</a></li>
 <li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#transforming-a-response-variable"><i class="fa fa-check"></i>Transforming a response variable</a></li>
 <li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#regression-trees"><i class="fa fa-check"></i>Regression trees</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html"><i class="fa fa-check"></i>Tuesday, November 1, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#today-18"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#regression-tree-example"><i class="fa fa-check"></i>Regression tree example</a></li>
-<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#predictive-uncertainty-1"><i class="fa fa-check"></i>Predictive uncertainty</a></li>
-<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#random-forest-algorithm"><i class="fa fa-check"></i>Random forest algorithm</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#predictive-uncertainty-with-regression-trees"><i class="fa fa-check"></i>Predictive uncertainty with regression trees</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#the-random-forest-algorithm"><i class="fa fa-check"></i>The random forest algorithm</a></li>
 <li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#cross-validation"><i class="fa fa-check"></i>Cross validation</a></li>
 <li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#classification-trees"><i class="fa fa-check"></i>Classification trees</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html"><i class="fa fa-check"></i>Thursday, November 3, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html#today-19"><i class="fa fa-check"></i>Today</a></li>
 <li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html#binary-outcomes-and-probabilities"><i class="fa fa-check"></i>Binary outcomes and probabilities</a></li>
 <li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html#logistic-regression"><i class="fa fa-check"></i>Logistic regression</a></li>
-<li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html#example-who-survives-in-the-donner-party"><i class="fa fa-check"></i>Example: Who survives in the Donner Party?</a></li>
-<li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html#example-probability-of-rocket-damage-on-liftoff"><i class="fa fa-check"></i>Example: Probability of rocket damage on liftoff</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html"><i class="fa fa-check"></i>Tuesday, November 8, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#today-20"><i class="fa fa-check"></i>Today</a></li>
 <li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#quantifying-autocorrelation-in-spatial-data"><i class="fa fa-check"></i>Quantifying autocorrelation in spatial data</a></li>
-<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#spatial-data-as-polygons"><i class="fa fa-check"></i>Spatial data as polygons</a></li>
-<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#list-of-neighbors"><i class="fa fa-check"></i>List of neighbors</a></li>
-<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#spatial-weights-matrix"><i class="fa fa-check"></i>Spatial weights matrix</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#spatial-data-as-polygon-areas"><i class="fa fa-check"></i>Spatial data as polygon areas</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#nearest-neighbors"><i class="fa fa-check"></i>Nearest neighbors</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#spatial-weights"><i class="fa fa-check"></i>Spatial weights</a></li>
 <li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#morans-i"><i class="fa fa-check"></i>Moran’s I</a></li>
 <li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#spatial-lag-variable"><i class="fa fa-check"></i>Spatial lag variable</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html"><i class="fa fa-check"></i>Thursday, November 10, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html#today-21"><i class="fa fa-check"></i>Today</a></li>
 <li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html#statistical-significance-of-spatial-autocorrelation"><i class="fa fa-check"></i>Statistical significance of spatial autocorrelation</a></li>
 <li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html#a-monte-carlo-approach-to-inference-about-spatial-autocorrelation"><i class="fa fa-check"></i>A Monte Carlo approach to inference about spatial autocorrelation</a></li>
 <li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html#spatial-autocorrelation-in-model-residuals"><i class="fa fa-check"></i>Spatial autocorrelation in model residuals</a></li>
-<li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html#example-percentage-of-folks-identifying-as-white-in-mississippi-counties"><i class="fa fa-check"></i>Example: Percentage of folks identifying as white in Mississippi counties</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html"><i class="fa fa-check"></i>Tuesday, November 15, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#today-22"><i class="fa fa-check"></i>Today</a></li>
 <li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#bi-variate-spatial-autocorrelation"><i class="fa fa-check"></i>Bi-variate spatial autocorrelation</a></li>
 <li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#local-autocorrelation"><i class="fa fa-check"></i>Local autocorrelation</a></li>
-<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#local-regression"><i class="fa fa-check"></i>Local regression</a></li>
-<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#weights-matrix"><i class="fa fa-check"></i>Weights matrix</a></li>
+<li class="chapter" data-level="0.2" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#local-regression"><i class="fa fa-check"></i><b>0.2</b> Local regression</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#spatial-weights-1"><i class="fa fa-check"></i>Spatial weights</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="thursday-november-17-2022.html"><a href="thursday-november-17-2022.html"><i class="fa fa-check"></i>Thursday, November 17, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="thursday-november-17-2022.html"><a href="thursday-november-17-2022.html#today-23"><i class="fa fa-check"></i>Today</a></li>
 <li class="chapter" data-level="" data-path="thursday-november-17-2022.html"><a href="thursday-november-17-2022.html#geographic-regression"><i class="fa fa-check"></i>Geographic regression</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -440,10 +293,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="thursday-august-25-2022" class="section level1 unnumbered hasAnchor">
 <h1>Thursday, August 25, 2022<a href="thursday-august-25-2022.html#thursday-august-25-2022" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <ul>
-<li>Any questions about my grading of your assignments?</li>
-<li>Make sure you have a copy of <code>02_Lesson</code> project and have the <code>02-Lesson.Rmd</code> file open.</li>
-<li>Follow along in your copy of the lesson as I go line by line through the file</li>
-<li>Your files background and text might look different. Is it? If so, go to Tools &gt; Global Options &gt; Appearance &gt; Cobalt</li>
+<li>Any questions about assignments or grades?</li>
+<li>Make sure you have a copy of the file <code>02_Lesson.Rmd</code> and have it opened in the RStudio IDE.</li>
+<li>Follow along in your copy of the lesson file as I go line by line through the file</li>
+<li>Note that your file’s background and text might look different. You change things by going to Tools &gt; Global Options &gt; Appearance</li>
 <li>Much of the lesson materials come from online books: <a href="https://www.bigbookofr.com/index.html" class="uri">https://www.bigbookofr.com/index.html</a></li>
 <li>Datasets: <a href="https://kieranhealy.org/blog/archives/2020/08/25/some-data-packages/" class="uri">https://kieranhealy.org/blog/archives/2020/08/25/some-data-packages/</a></li>
 </ul>
@@ -456,18 +309,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div id="data-science" class="section level2 unnumbered hasAnchor">
 <h2>Data science<a href="thursday-august-25-2022.html#data-science" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Data analytics are done on a computer. You have two choices: use a spreadsheet or write code.</p>
-<p>A spreadsheet is convenient, but they make the three conditions for a good data analysis <em>reproducibility</em>, <em>communication</em>, and <em>automation</em> difficult to achieve.</p>
+<p>Data science is done on a computer. You have two choices: use a spreadsheet or write code.</p>
+<p>A spreadsheet is convenient, but it makes the three conditions for a good data analysis <em>reproducibility</em>, <em>communication</em>, and <em>automation</em> difficult to achieve.</p>
 <p>Reproducibility</p>
-<p>A scientific paper is advertisement for a claim. But the <em>proof</em> is the procedure that was used to obtain the result.
-<img src="figures/ScientificPaper.png" alt="SciencePaper" /></p>
-<p>If your analysis is to be convincing, the trail from the data you started with to the final output must be available to the public. A reproducible trail with a spreadsheet is hard. It is easy to make mistakes (e.g., accidentally sorting just a column rather than the entire table).</p>
-<p>A set of instructions written as computer code is the exact procedure. (Open <code>stronger-hur.Rmd</code>).</p>
+<p>A scientific paper is advertisement for a claim. But the <em>proof</em> of the claim is the procedure that was used to obtain the result. <img src="figures/ScientificPaper.png" alt="SciencePaper" /></p>
+<p>If your data science is to be convincing, the trail from the data you started with all the way to the final output must be freely available to the public. A reproducible trail with a spreadsheet is hard. It is easy to make mistakes (e.g., accidentally sorting just a column rather than the entire table).</p>
+<p>A set of instructions written as computer code is the exact procedure. (Open <code>stronger-hur.Rmd</code> in the folder <code>Other_Rmds</code>.</p>
 <p>Communication</p>
-<p>Code is a recipe for what you did. It communicates precisely what was done. Communication to others and to your future self.</p>
-<p>It’s hard to explain to someone precisely what you did when working with a spreadsheet. Click here, then right click here, then choose menu X, etc. The words needed to describe these procedures are not standard. Code is an efficient way to communicate because all important information is given as plain text with no ambiguity.</p>
+<p>Computer code is a recipe. It communicates precisely what you did to get the result. Communication to others and to your future self.</p>
+<p>It’s hard to explain precisely what you did when working with a spreadsheet. Click here, then right click here, then choose menu X, etc. The words needed to describe these procedures are not standard. Code is standardized so it provides an efficient way to communicate because all important information is given as plain text with no ambiguity.</p>
 <p>Automation</p>
-<p>If you’ve ever made a map using a geographic information system (GIS) you know how hard it is to make another one with a new set of data (even a very similar one). Running code with new data is simple.</p>
+<p>If you’ve ever made a map using a geographic information system (GIS) you know how hard it is to make another one (even one that is quite similar) with a new set of data (even a very similar one). Running code with new data is simple.</p>
 <p>Being able to code is an important skill for nearly all technical jobs. Here you will learn how to code. But keep in mind: Just like learning to write doesn’t mean you will be a writer (i.e., make a living writing), learning to code doesn’t mean you will be a coder.</p>
 <p>The R programming language</p>
 <ul>
@@ -477,25 +329,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Used by scientists of all stripes. Most of the world’s statisticians use it (and contribute to it).</li>
 </ul>
 <p>Overview of this course</p>
-<p>We will start with making graphs. You will make clear, informative plots that help you understand your data. You will learn the basic structure of a making a plot.</p>
+<p>We start by making graphs. You will learn to make clear, informative plots that help you understand your data. You will learn the basic structure of a making a plot.</p>
 <p>Visualization alone is not enough, so you will also learn the key verbs that allow you to select important variables, filter out key observations, create new variables, and compute summaries (data wrangling).</p>
-<p>You will then combine data wrangling and visualization with your curiosity to ask and answer interesting questions by learning how to fit models to your data. Data models extend your ability to ask and answer questions about the world you live in.</p>
-<p>With geographic and environmental data collected at different locations these models will include a spatial component.</p>
+<p>You will then combine data wrangling and visualization with your curiosity to ask and answer interesting questions by learning how to fit models to your data. Data models extend your ability to ask and answer questions about this wonderful world of ours.</p>
+<p>Finally, with geographic and environmental data collected the models will include a spatial component.</p>
 </div>
 <div id="structure-of-markdown-files" class="section level2 unnumbered hasAnchor">
 <h2>Structure of markdown files<a href="thursday-august-25-2022.html#structure-of-markdown-files" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The ability to reproduce your work is important to a scientific process. It is also pragmatic. The person most likely to reproduce your work a few months later is you.</p>
+<p>The ability to exactly reproduce your work is important to a scientific process. It is also pragmatic. The person most likely to reproduce your work is you.</p>
 <p>This is especially true for graphs and figures. These often have a finished quality to them as a result of tweaking and adjustments to the details. This makes it hard to reproduce them later.</p>
 <p>The goal is to do as much of this tweaking as possible with the code you write, rather than in a way that is invisible (retrospectively). Contrast editing an image in Adobe Illustrator.</p>
 <p>You will find yourself constantly going back and forth between three things:</p>
 <ol style="list-style-type: decimal">
 <li><p>Writing code: You will write code to produce plots. You will also write code to load your data (get your data into R), to look quickly at tables of that data. Sometimes you will want to summarize, rearrange, subset, or augment your data, or fit a statistical model to it. You will want to be able to write that code as easily and effectively as possible.</p></li>
-<li><p>Looking at output. Your code is a set of instructions that produces the output you want: a table, a model, or a figure. It is helpful to be able to see that output.</p></li>
+<li><p>Looking at the output generated by your code. Your code is a set of instructions that produces the output you want: a table, a model, or a figure. It is helpful to be able to see and interpret the output.</p></li>
 <li><p>Taking notes. You will also write about what you are doing, and what your results mean.</p></li>
 </ol>
-<p>To do these things efficiently you want to write your code along with comments. This is where markdown files help (files that end with <code>.Rmd</code>)</p>
-<p>A R markdown file is a plain text document where text (such as notes or discussion) is interspersed with pieces, or chunks, of R code. When you <code>Knit</code> this file the R code is executed piece by piece, in sequence starting at the top of the file, and either supplementing or replacing the chunks of code with output.</p>
-<p>The resulting file is then converted into a more easily-readable document formatted in HTML, PDF, or Word. The non-code segments of the document are plain text with simple formatting instructions (e.g., <code>##</code> for section header).</p>
+<p>To do these things efficiently you want to write your code along with comments. This is where markdown files come into play (files that end with <code>.Rmd</code>)</p>
+<p>A R markdown file is a plain text document where text (such as notes or discussion) is interspersed with R code. When you <code>Knit</code> the markdown file the R code is executed line by line starting at the top of the file and the output supplements or replaces the code.</p>
+<p>The resulting file is then converted into a easily readable document formatted in HTML, PDF, or Word. The non-code segments of the document are plain text with simple formatting instructions (e.g., <code>##</code> for section header).</p>
 <p>There is a set of conventions for marking up plain text in a way that indicates how it should be formatted. Markdown treats text surrounded by <em>asterisks</em>, <strong>double asterisks</strong>, and <code>backticks</code> in special ways. It is R Markdown’s way of saying that these words are in</p>
 <ul>
 <li><em>italics</em></li>
@@ -504,39 +356,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>code font</code></li>
 </ul>
 <p>Your class notes include code. There is a set format for including code into your markdown file (lines of code; code chunk). They look like this.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="thursday-august-25-2022.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="thursday-august-25-2022.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
 <p>These markings are called <code>code chunk delimiters</code>.</p>
 <p>Three back ticks (on a U.S. keyboard, the character under the escape key) followed by a pair of curly braces containing the name of the language you are using. The format is language-agnostic and can be used with, e.g. Python and other languages.</p>
 <p>The back ticks-and-braces signals that what follows is code. You write your code as needed, and then end the chunk with a new line containing three more back ticks.</p>
-<p>If you keep your notes in this way, you will be able to see the code you wrote, the output it produces, and your own commentary or clarification on what the code did, all in a convenient way. Moreover, you can turn it into a good-looking document straight away with the <code>Knit</code> button.</p>
+<p>If you keep your notes in this way, you will be able to see the code you write, the output it produces, and your own commentary or clarification on what the code did, all in a convenient way. Moreover, you can turn it into a good-looking document straight away with the <code>Knit</code> button.</p>
 <p>This is how you will do everything in this course. In the end you will have a set of notes that you can turn into a book with <code>bookdown</code>.</p>
-<p><a href="https://bookdown.org/yihui/rmarkdown/">Everything markdown</a></p>
+<p>To learn more about markdown see: <a href="https://bookdown.org/yihui/rmarkdown/">Everything markdown</a></p>
 </div>
 <div id="how-to-make-a-plot" class="section level2 unnumbered hasAnchor">
 <h2>How to make a plot<a href="thursday-august-25-2022.html#how-to-make-a-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To help motivate your interest in this course, you start by making a graph. There are three things to learn:</p>
 <ol style="list-style-type: decimal">
-<li>How to create graphs with a reusable {ggplot2} template</li>
+<li>How to create a graph with a reusable {ggplot2} template</li>
 <li>How to add variables to a graph with aesthetics</li>
-<li>How to select the ‘type’ of your graph with <em>geoms</em></li>
+<li>How to select the ‘type’ of graph with <em>geoms</em></li>
 </ol>
-<p>The following examples are taken from R for Data Science by Hadley Wickham and Garrett Grolemund, published by O’Reilly Media, Inc., 2016, ISBN: 9781491910399. <a href="https://r4ds.had.co.nz/" class="uri">https://r4ds.had.co.nz/</a>.</p>
-<p>A code template</p>
-<p>Let’s begin with a question to explore.</p>
-<p>What do you think: Do cars with big engines use more fuel than cars with small engines?</p>
+<p>The following examples are taken from the online book entitled: <code>R for Data Science</code> by Hadley Wickham and Garrett Grolemund, published by O’Reilly Media, Inc., 2016, ISBN: 9781491910399. <a href="https://r4ds.had.co.nz/" class="uri">https://r4ds.had.co.nz/</a>.</p>
+<p>Let’s begin with a question. Do cars with big engines use more fuel than cars with small engines?</p>
 <ul>
 <li>A: Cars with bigger engines use more fuel.</li>
 <li>B: Cars with bigger engines use less fuel.</li>
 </ul>
-<p>You check your answer with two things: the <code>mpg</code> data that comes in {ggplot2} and a plot. The <code>mpg</code> object contains observations collected on 38 models of cars by the US Environmental Protection Agency. Among the variables in <code>mpg</code> are:</p>
+<p>You check which answer is correct using the <code>mpg</code> data that comes in {ggplot2} and a plot. The <code>mpg</code> object contains observations collected on 38 models of cars by the US Environmental Protection Agency. Among the variables in <code>mpg</code> are:</p>
 <ul>
 <li><code>displ</code>, a car’s engine size, in liters.</li>
 <li><code>hwy</code>, a car’s fuel efficiency on the highway, in miles per gallon (mpg).</li>
 </ul>
 <p>A car with a low fuel efficiency consumes more fuel than a car with a high fuel efficiency when they travel the same distance.</p>
 <p>To see a portion of the <code>mpg</code> data, type <code>mpg</code> after you loaded the package using the <code>library()</code> function.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="thursday-august-25-2022.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb2-2"><a href="thursday-august-25-2022.html#cb2-2" aria-hidden="true" tabindex="-1"></a>mpg</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="thursday-august-25-2022.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-2"><a href="thursday-august-25-2022.html#cb5-2" aria-hidden="true" tabindex="-1"></a>mpg</span></code></pre></div>
 <pre><code>## # A tibble: 234 × 11
 ##    manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
 ##    &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
@@ -555,20 +405,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You see the first 10 rows and 10 columns of the data. Note that there are 234 rows and 11 columns so you are only viewing a portion of this <code>spreadsheet</code>.</p>
 <p>Each row is a different car. The first row is the Audi A4 1999 model with automatic transmission (5 gears). The tenth car listed is the Audi A4 Quattro with manual transmission (6 gears).</p>
 <p>The column labeled <code>displ</code> is the engine size in liters. Bigger number means the car has a larger engine. The column labeled <code>hwy</code> is the miles per gallon. Bigger number means the car uses more fuel to go the same distance (lower efficiency).</p>
-<p>It is hard to check which answer is correct by looking only at these 10 cars. Note that bigger engines appear to have smaller values of highway mileage but it is far from clear.</p>
+<p>It is hard to check which answer is correct by only looking at these 10 cars. Note that bigger engines appear to have smaller values of highway mileage but it is far from clear.</p>
 <p>You want to look at all 234 cars.</p>
 <p>The code below uses functions from the {ggplot2} package to plot the relationship between <code>displ</code> and <code>hwy</code> for all cars.</p>
 <p>Let’s look at the plot and then talk about the code itself. To see the plot, click on the little green triangle in the upper right corner of the gray shaded region.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="thursday-august-25-2022.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
-<span id="cb4-2"><a href="thursday-august-25-2022.html#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="thursday-august-25-2022.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
+<span id="cb7-2"><a href="thursday-august-25-2022.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>The plot shows an inverse relationship between engine size (<code>displ</code>) and fuel efficiency (<code>hwy</code>). Each point is a different car. Cars that have a large value of <code>displ</code> tend to have a small value of <code>hwy</code> and cars with a small value of <code>displ</code> tend to have a large value of <code>hwy</code>.</p>
-<p>In other words, cars with big engines use more fuel. If that was your hypothesis, you were right!</p>
+<p>In other words, cars with big engines use more fuel. If that was your answer, you were right!</p>
 <p>Now let’s look at how you made the plot.</p>
-<p>The code {-}</p>
 <p>Here’s the code used to make the plot. Notice that it contains three functions: <code>ggplot()</code>, <code>geom_point()</code>, and <code>aes()</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="thursday-august-25-2022.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
-<span id="cb5-2"><a href="thursday-august-25-2022.html#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="thursday-august-25-2022.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
+<span id="cb8-2"><a href="thursday-august-25-2022.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))</span></code></pre></div>
 <p>The first function, <code>ggplot()</code>, creates a coordinate system that you can add layers to. The first argument of <code>ggplot()</code> is the dataset to use in the graph.</p>
 <p>By itself, <code>ggplot(data = mpg)</code> creates an empty graph, but it is not very interesting so I’m not going to show it here.</p>
 <p>The function <code>geom_point()</code> adds a layer of points to the empty plot created by <code>ggplot()</code>. As a result, you get a scatterplot.</p>
@@ -578,35 +427,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Knit to generate HTML.</li>
 <li>Compare the HTML with the Rmd.</li>
 </ul>
-<p>A graphing workflow {-}</p>
+<p>A graphing workflow</p>
 <p>The code above follows the common work flow for making graphs. To make a graph, you:</p>
 <ol style="list-style-type: decimal">
 <li>Start the graph with <code>ggplot()</code></li>
 <li>Add elements to the graph with a <code>geom_</code> function</li>
 <li>Select variables with the <code>mapping = aes()</code> argument</li>
 </ol>
-<p>A graphing template {-}</p>
+<p>A graphing template</p>
 <p>In fact, you can turn your code into a reusable template for making graphs. To make a graph, replace the bracketed sections in the code below with a data set, a <code>geom_</code> function, or a collection of mappings.</p>
 <p>Give it a try!</p>
 <ol style="list-style-type: decimal">
 <li>Copy and paste the above code chunk, including the code chunk delimiters, and replace the <code>y = hwy</code> with <code>y = cty</code>.</li>
 </ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="thursday-august-25-2022.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
-<span id="cb6-2"><a href="thursday-august-25-2022.html#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> cty))</span></code></pre></div>
-<p><img src="QG-2022_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="thursday-august-25-2022.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
+<span id="cb9-2"><a href="thursday-august-25-2022.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> cty))</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Replace the bracketed sections <code>&lt; &gt;</code> with <code>mpg</code>, <code>geom_boxplot</code>, and <code>x = class</code>, <code>y = hwy</code> to make a slightly different graph.</li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="thursday-august-25-2022.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
-<span id="cb7-2"><a href="thursday-august-25-2022.html#cb7-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">geom_boxplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">y =</span> hwy))</span></code></pre></div>
-<p>Common problems {-}</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="thursday-august-25-2022.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
+<span id="cb10-2"><a href="thursday-august-25-2022.html#cb10-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">geom_boxplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">y =</span> hwy))</span></code></pre></div>
+<p>Common problems</p>
 <p>As you start to work with R code, you are likely to run into problems. Don’t worry — it happens to everyone. I’ve been writing R code for decades, and I still write code that doesn’t work!</p>
 <p>Start by comparing the code that you are running to the code in the examples in these notes. R is extremely picky, and a misplaced character can make all the difference. Make sure that every <code>(</code> is matched with a <code>)</code> and every <code>"</code> is paired with another <code>"</code>. Also pay attention to capitalization; R is case sensitive.</p>
-<p>Location of the <code>+</code> sign {-}</p>
+<p>Location of the <code>+</code> sign</p>
 <p>One common problem when creating {ggplot2} graphics is to put the <code>+</code> in the wrong place: it must come at the end of a line, not the start. In other words, make sure you haven’t accidentally written code like this:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="thursday-august-25-2022.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) </span>
-<span id="cb8-2"><a href="thursday-august-25-2022.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))</span></code></pre></div>
-<p>Help! {-}</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="thursday-august-25-2022.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) </span>
+<span id="cb11-2"><a href="thursday-august-25-2022.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))</span></code></pre></div>
+<p>Help!</p>
 <p>If you’re still stuck, try the help. You can get help about any R function by running <code>?function_name</code> in a code chunk, e.g. <code>?geom_point</code>. Don’t worry if the help doesn’t seem that helpful — instead skip down to the bottom of the help page and look for a code example that matches what you’re trying to do.</p>
 <p>If that doesn’t help, carefully read the error message that appears when you run your (non-working) code. Sometimes the answer will be buried there! But when you’re new to R, you might not yet know how to understand the error message. Another great tool is Google: try googling the error message, as it’s likely someone else has had the same problem, and has gotten help online.</p>
 </div>
@@ -622,13 +471,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Everything is an object</p>
 <p>Some objects are part of R, some are added via packages, and some are created by you. But almost everything is some kind of object. The code you write will create, manipulate, and use named objects.</p>
 <p>Here you create a vector of numbers. The command <code>c()</code> is a function. It’s short for “combine” or “concatenate”. It will take a sequence of comma-separated things inside the parentheses and join them into a vector where each element is still accessible.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="thursday-august-25-2022.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="thursday-august-25-2022.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">25</span>)</span></code></pre></div>
 <pre><code>## [1]  1  2  3  1  3  5 25</code></pre>
 <p>Instead of sending the result to the console, here you instead assign the result to an object.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="thursday-august-25-2022.html#cb11-1" aria-hidden="true" tabindex="-1"></a>my_numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">25</span>)</span>
-<span id="cb11-2"><a href="thursday-august-25-2022.html#cb11-2" aria-hidden="true" tabindex="-1"></a>your_numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">31</span>, <span class="dv">71</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">21</span>, <span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="thursday-august-25-2022.html#cb14-1" aria-hidden="true" tabindex="-1"></a>my_numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">25</span>)</span>
+<span id="cb14-2"><a href="thursday-august-25-2022.html#cb14-2" aria-hidden="true" tabindex="-1"></a>your_numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">31</span>, <span class="dv">71</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">21</span>, <span class="dv">6</span>)</span></code></pre></div>
 <p>To see what you created, type the name of the object and hit return.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="thursday-august-25-2022.html#cb12-1" aria-hidden="true" tabindex="-1"></a>my_numbers</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="thursday-august-25-2022.html#cb15-1" aria-hidden="true" tabindex="-1"></a>my_numbers</span></code></pre></div>
 <pre><code>## [1]  1  2  3  1  3  5 25</code></pre>
 <p>Each of our numbers is still there, and can be accessed directly if you want. They are now just part of a new object, a vector, called <code>my_numbers</code>.</p>
 <p>You create objects by assigning them to names. The assignment operator is <code>&lt;-</code>. Think of assignment as the verb “gets”, reading left to right. So, the bit of code above is read as “The object <code>my_numbers</code> gets the result of concatenating the following numbers: 1, 2, …”</p>
@@ -638,18 +487,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You give the function some information, it acts on that information, and some results come out the other side. Functions can be recognized by the parentheses at the end of their names. This distinguishes them from other objects, such as single numbers, named vectors, tables of data, and so on.</p>
 <p>You send information to the function between the parentheses. Most functions accept at least one argument. A function’s arguments are the things it needs to know in order to do something. They can be some bit of your data (<code>data = my_numbers</code>), or specific instructions (<code>title = "GDP per Capita"</code>), or an option you want to choose (<code>smoothing = "splines", show = FALSE</code>).</p>
 <p>For example, the object <code>my_numbers</code> is a numeric vector:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="thursday-august-25-2022.html#cb14-1" aria-hidden="true" tabindex="-1"></a>my_numbers</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="thursday-august-25-2022.html#cb17-1" aria-hidden="true" tabindex="-1"></a>my_numbers</span></code></pre></div>
 <pre><code>## [1]  1  2  3  1  3  5 25</code></pre>
 <p>But the thing you used to create it, <code>c()</code>, is a function. It combines the items into a vector composed of the series of comma-separated elements you give it. Similarly, <code>mean()</code> is a function that calculates a simple average for a vector of numbers. What happens if you just type <code>mean()</code> without any arguments inside the parentheses?</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="thursday-august-25-2022.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="thursday-august-25-2022.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>()</span></code></pre></div>
 <p>The error message is terse but informative. The function needs an argument to work, and you haven’t given it one. In this case, ‘x’, the name of another object that <code>mean()</code> can perform its calculation on:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="thursday-august-25-2022.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="at">x =</span> my_numbers)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="thursday-august-25-2022.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="at">x =</span> my_numbers)</span></code></pre></div>
 <pre><code>## [1] 5.714286</code></pre>
 <p>Or</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="thursday-august-25-2022.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="at">x =</span> your_numbers)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="thursday-august-25-2022.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="at">x =</span> your_numbers)</span></code></pre></div>
 <pre><code>## [1] 19.71429</code></pre>
 <p>While the function arguments have names that are used internally, (here, <code>x =</code>), you don’t strictly need to specify the name for the function to work:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="thursday-august-25-2022.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(my_numbers)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="thursday-august-25-2022.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(my_numbers)</span></code></pre></div>
 <pre><code>## [1] 5.714286</code></pre>
 <p>If you omit the name of the argument, R will just assume you are giving the function what it needs, and in some order. The documentation for a function will tell you what the order of required arguments is for any particular function.</p>
 <p>For simple functions that only require one or two arguments, omitting their names is usually not confusing. For more complex functions, you will typically want to use the names of the arguments rather than try to remember what the ordering is.</p>
@@ -658,9 +507,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Functions can return far more than single numbers. The output returned by functions can be a table of data, or a complex object such as the results of a linear model, or the instructions needed to draw a plot. They can even be other functions. For example, the <code>summary()</code> function performs a series of calculations on a vector and produces what is in effect a little table with named elements.</p>
 <p>A function’s argument names are internal to that function. Say you have created an object in your environment named <code>x</code>, for example. A function like <code>mean()</code> also has a named argument, <code>x</code>, but R will not get confused by this. It will not use your <code>x</code> object by mistake.</p>
 <p>As you have already seen with <code>c()</code> and <code>mean()</code>, you can assign the result of a function to an object:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="thursday-august-25-2022.html#cb23-1" aria-hidden="true" tabindex="-1"></a>my_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(my_numbers)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="thursday-august-25-2022.html#cb26-1" aria-hidden="true" tabindex="-1"></a>my_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(my_numbers)</span></code></pre></div>
 <p>When you do this, there’s no output to the console. R just puts the results into the new object, as you instructed. To look inside the object you can type its name and hit return:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="thursday-august-25-2022.html#cb24-1" aria-hidden="true" tabindex="-1"></a>my_summary</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="thursday-august-25-2022.html#cb27-1" aria-hidden="true" tabindex="-1"></a>my_summary</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   1.000   1.500   3.000   5.714   4.000  25.000</code></pre>
 <p>Functions come in packages (libraries)</p>
@@ -672,17 +521,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Most of the mistakes you will make, and the errors you will fix, will involve having not picked the right function, or having not fed the function the right arguments, or having failed to provide information in a form the function can understand.</p>
 <p>For now, just remember that you do things in R by creating and manipulating named objects. You manipulate objects by feeding information about them to functions. The functions do something useful with that information (calculate a mean, re-code a variable, fit a model) and give you the results back.</p>
 <p>Try these out.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="thursday-august-25-2022.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(my_numbers)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="thursday-august-25-2022.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(my_numbers)</span></code></pre></div>
 <pre><code>## my_numbers
 ##  1  2  3  5 25 
 ##  2  1  2  1  1</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="thursday-august-25-2022.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(my_numbers)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="thursday-august-25-2022.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(my_numbers)</span></code></pre></div>
 <pre><code>## [1] 8.616153</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="thursday-august-25-2022.html#cb30-1" aria-hidden="true" tabindex="-1"></a>my_numbers <span class="sc">*</span> <span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="thursday-august-25-2022.html#cb33-1" aria-hidden="true" tabindex="-1"></a>my_numbers <span class="sc">*</span> <span class="dv">5</span></span></code></pre></div>
 <pre><code>## [1]   5  10  15   5  15  25 125</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="thursday-august-25-2022.html#cb32-1" aria-hidden="true" tabindex="-1"></a>my_numbers <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="thursday-august-25-2022.html#cb35-1" aria-hidden="true" tabindex="-1"></a>my_numbers <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1]  2  3  4  2  4  6 26</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="thursday-august-25-2022.html#cb34-1" aria-hidden="true" tabindex="-1"></a>my_numbers <span class="sc">+</span> my_numbers</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="thursday-august-25-2022.html#cb37-1" aria-hidden="true" tabindex="-1"></a>my_numbers <span class="sc">+</span> my_numbers</span></code></pre></div>
 <pre><code>## [1]  2  4  6  2  6 10 50</code></pre>
 <p>The first two functions here gave us a simple table of counts and calculated the standard deviation of <code>my_numbers</code>.</p>
 <p>It’s worth noticing what R did in the last three cases. First you multiplied <code>my_numbers</code> by two. R interprets that as you asking it to take each element of my_numbers one at a time and multiply it by five. It does the same with the instruction <code>my_numbers + 1</code>. The single value is “recycled” down the length of the vector.</p>
@@ -752,6 +601,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

@@ -308,7 +308,7 @@ tm_shape(PE.sf) +
 
 Areas in dark green indicate where the correlation between crime and policing is most influenced by neighboring crime and policing.
 
-## Local regression
+## Local regression {-}
 
 When you fit a regression model to your data you get a single set of coefficients that quantifies the relationship between the response variable and the explanatory variables. When you fit a geographic regression model to your data yet get an entire set of coefficients, one for every location.
 

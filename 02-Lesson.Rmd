@@ -49,7 +49,7 @@ The R programming language
 
 Overview of this course
 
-We start by making graphs. You will learn to make clear, informative plots that help you understand your data. You will learn the basic structure of a making a plot.
+You start by making some graphs. You will learn to make clear, informative plots that help you understand your data. You will learn the basic structure of a making a plot.
 
 Visualization alone is not enough, so you will also learn the key verbs that allow you to select important variables, filter out key observations, create new variables, and compute summaries (data wrangling).
 
@@ -154,7 +154,7 @@ ggplot(data = mpg) +
 
 The plot shows an inverse relationship between engine size (`displ`) and fuel efficiency (`hwy`). Each point is a different car. Cars that have a large value of `displ` tend to have a small value of `hwy` and cars with a small value of `displ` tend to have a large value of `hwy`.
 
-In other words, cars with big engines use more fuel. If that was your answer, you were right!
+In other words, cars with big engines use more fuel. If that was your answer, you are right!
 
 Now let's look at how you made the plot.
 
@@ -376,7 +376,7 @@ The first two functions here gave us a simple table of counts and calculated the
 
 It's worth noticing what R did in the last three cases. First you multiplied `my_numbers` by two. R interprets that as you asking it to take each element of my_numbers one at a time and multiply it by five. It does the same with the instruction `my_numbers + 1`. The single value is "recycled" down the length of the vector.
 
-By contrast, in the last case we add `my_numbers` to itself. Because the two objects being added are the same length, R adds each element in the first vector to the corresponding element in the second vector.
+By contrast, in the last case you add `my_numbers` to itself. Because the two objects being added are the same length, R adds each element in the first vector to the corresponding element in the second vector.
 
 Your turn
 

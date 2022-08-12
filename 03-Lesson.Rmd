@@ -157,7 +157,7 @@ ggplot(data = mpg,
   geom_point()
 ```
 
-The colors reveal that the unusual points (on the right side of the plot) are two-seaters. Sports cars have large engines like SUVs and pickup trucks, but small bodies like midsize and compact cars, which improves their gas mileage. In hindsight, these cars were unlikely to be hybrids since they have large engines.
+The colors reveal that the unusual points (on the right side of the plot) are two-seaters. Sports cars have large engines like SUVs and pickup trucks, but small bodies like midsize and compact cars, which improves their gas mileage. In hindsight, these cars are unlikely to be hybrids since they have large engines.
 
 In the above example, you mapped `class` to the color aesthetic, but you could have mapped `class` to the shape aesthetic, which controls point shapes.
 ```{r}
@@ -357,7 +357,7 @@ mean(counts)
 
 ## Data vectors {-}
 
-The count data is stored as a vector. R keeps track of the order that the data were entered. First element,second element, and so on. This is good for a couple of reasons. Here the data has a natural order - year 1, year 2, etc. You don't want to mix these. You would like to be able to make changes to the data item by item instead of entering the entire data again. Also vectors are math objects making them easy to manipulate.
+The count data is stored as a vector. R keeps track of the order that the data are entered. First element,second element, and so on. This is good for a couple of reasons. Here the data has a natural order - year 1, year 2, etc. You don't want to mix these. You would like to be able to make changes to the data item by item instead of entering the entire data again. Also vectors are math objects making them easy to manipulate.
 
 Suppose `counts` contain the annual number of land-falling hurricanes from the first decade of a longer record. You want to keep track of counts over other decades. This could be done by the following, example.
 ```{r}

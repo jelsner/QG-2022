@@ -93,7 +93,7 @@ Finally, learn git (optional) https://happygitwithr.com/install-git.html
   + File > New File > R Markdown
   + Tools > Global Options > Appearance
   
-* Upper left panel is the markdown file. This is where we put our text and code. 
+* Upper left panel is the markdown file. This is where you put your text and code. 
   + Run code chunks from this panel 
   + Output from the operations can be placed in this panel or in the Console (see the gear icon above)
   + All the text, code, and output can be rendered to an HTML file or a PDF or Word document (see the Knit button above)

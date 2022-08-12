@@ -283,7 +283,7 @@ airquality |>
   dplyr::summarize(Tavg = mean(Temp))
 ```
 
-We have seen functions that compute statistics on vectors including `sum()`, `sd()`, `min()`, `max()`, `var()`, `range()`, `median()`. Others include
+You already seen functions that compute statistics on vectors including `sum()`, `sd()`, `min()`, `max()`, `var()`, `range()`, `median()`. Others include
 
 Summary function  | Description
 -----------------:|:-----------

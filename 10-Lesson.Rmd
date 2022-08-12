@@ -303,7 +303,7 @@ Depending on how a curved surface is projected onto a 2-D surface (map), at leas
 
 With a geographic projection the longitudes and latitudes are treated as x (horizontal) and y (vertical) coordinates. 
 
-Consider again the boundary map of the lower 48 states. Here we get the boundary file using the `us_states()` function from the {USAboundaries} package and use the `filter()` function to remove rows corresponding to Hawaii, Alaska, and Puerto Rico.
+Consider again the boundary map of the lower 48 states. Here you get the boundary file using the `us_states()` function from the {USAboundaries} package and use the `filter()` function to remove rows corresponding to Hawaii, Alaska, and Puerto Rico.
 ```{r}
 USA_48.sf <- USAboundaries::us_states() |>
    dplyr::filter(!state_name %in% c("Hawaii", "Alaska", "Puerto Rico"))

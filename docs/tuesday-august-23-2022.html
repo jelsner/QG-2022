@@ -51,6 +51,22 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -150,7 +166,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#what-is-this-course"><i class="fa fa-check"></i>What is this course?</a></li>
 <li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#where-are-the-materials-for-this-course"><i class="fa fa-check"></i>Where are the materials for this course?</a></li>
 <li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#syllabus-1"><i class="fa fa-check"></i>Syllabus</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#getting-set"><i class="fa fa-check"></i>Getting set</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#getting-setup"><i class="fa fa-check"></i>Getting setup</a></li>
 <li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#rstudios-integrated-development-environment-ide"><i class="fa fa-check"></i>RStudio’s integrated development environment (IDE)</a></li>
 <li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#example-tallahassee-daily-temperatures"><i class="fa fa-check"></i>Example: Tallahassee daily temperatures</a></li>
 </ul></li>
@@ -163,258 +179,95 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html"><i class="fa fa-check"></i>Tuesday, August 30, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#today"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#scatter-plots"><i class="fa fa-check"></i>Scatter plots</a>
-<ul>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#facets"><i class="fa fa-check"></i>Facets</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#calculations"><i class="fa fa-check"></i>Calculations</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#functions"><i class="fa fa-check"></i>Functions</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#syntax-is-important"><i class="fa fa-check"></i>Syntax is important</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#saving-an-object"><i class="fa fa-check"></i>Saving an object</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#object-names"><i class="fa fa-check"></i>Object names</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#entering-data"><i class="fa fa-check"></i>Entering data</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#applying-a-function"><i class="fa fa-check"></i>Applying a function</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#averge"><i class="fa fa-check"></i>Averge</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#graphing-examples"><i class="fa fa-check"></i>Graphing examples</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#working-with-r"><i class="fa fa-check"></i>Working with R</a></li>
 <li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#data-vectors"><i class="fa fa-check"></i>Data vectors</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#variance"><i class="fa fa-check"></i>Variance</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#data-vectors-have-a-type"><i class="fa fa-check"></i>Data vectors have a type</a></li>
-<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#working-smarter"><i class="fa fa-check"></i>Working smarter</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html"><i class="fa fa-check"></i>Thursday, September 1, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#today-1"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#data-as-vectors"><i class="fa fa-check"></i>Data as vectors</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#mean"><i class="fa fa-check"></i>Mean</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#variance-1"><i class="fa fa-check"></i>Variance</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#median"><i class="fa fa-check"></i>Median</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#spread"><i class="fa fa-check"></i>Spread</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#vector-types"><i class="fa fa-check"></i>Vector types</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#sample-statistics"><i class="fa fa-check"></i>Sample statistics</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#structured-data"><i class="fa fa-check"></i>Structured data</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#asking-questions"><i class="fa fa-check"></i>Asking questions</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#tables-and-summaries"><i class="fa fa-check"></i>Tables and summaries</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html"><i class="fa fa-check"></i>Tuesday, September 6, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#today-2"><i class="fa fa-check"></i>Today</a></li>
 <li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#getting-your-data-into-r"><i class="fa fa-check"></i>Getting your data into R</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-structured-data-files"><i class="fa fa-check"></i>Creating structured data files</a></li>
 <li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#data-frames"><i class="fa fa-check"></i>Data frames</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#quantiles"><i class="fa fa-check"></i>Quantiles</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#creating-a-data-frame"><i class="fa fa-check"></i>Creating a data frame</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#pipes"><i class="fa fa-check"></i>Pipes</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#your-turn"><i class="fa fa-check"></i>Your turn</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html"><i class="fa fa-check"></i>Thursday, September 8, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#today-3"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#pipe-operator"><i class="fa fa-check"></i>Pipe operator</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#using-pipes"><i class="fa fa-check"></i>Using pipes</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#wrangling-data-frames"><i class="fa fa-check"></i>Wrangling data frames</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#selecting-and-filtering"><i class="fa fa-check"></i>Selecting and filtering</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#example-palmer-penguins"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#stringing-functions-together"><i class="fa fa-check"></i>Stringing functions together</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#summarize"><i class="fa fa-check"></i>Summarize</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#grouping"><i class="fa fa-check"></i>Grouping</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#your-turn-1"><i class="fa fa-check"></i>Your turn</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html"><i class="fa fa-check"></i>Tuesday, September 13, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#today-4"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#example-1-new-york-city-flight-data"><i class="fa fa-check"></i>Example 1: New York City flight data</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#example-2-daily-weather-data-from-tallahassee"><i class="fa fa-check"></i>Example 2: Daily weather data from Tallahassee</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#putting-everything-together"><i class="fa fa-check"></i>Putting everything together</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#example-3-food-consumption-and-co2-emissions"><i class="fa fa-check"></i>Example 3: Food consumption and CO2 emissions</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="0.1" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#data-munging-examples"><i class="fa fa-check"></i><b>0.1</b> Data munging examples</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#putting-things-together"><i class="fa fa-check"></i>Putting things together</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html"><i class="fa fa-check"></i>Thursday, September 15, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#today-5"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#bar-chart"><i class="fa fa-check"></i>Bar chart</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#pie-preference"><i class="fa fa-check"></i>Pie preference</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#histogram"><i class="fa fa-check"></i>Histogram</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#density-plot"><i class="fa fa-check"></i>Density plot</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#box-plot"><i class="fa fa-check"></i>Box plot</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#side-by-side-box-plots"><i class="fa fa-check"></i>Side-by-side box plots</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html"><i class="fa fa-check"></i>Tuesday, September 20, 2022</a>
-<ul>
-<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html#today-6"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html#comparing-distributions"><i class="fa fa-check"></i>Comparing distributions</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html#box-plots"><i class="fa fa-check"></i>Box plots</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html#long-data-frames"><i class="fa fa-check"></i>Long data frames</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html#scatter-plots-1"><i class="fa fa-check"></i>Scatter plots</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html#facets-1"><i class="fa fa-check"></i>Facets</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html#example-palmer-penguins-1"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html#an-expository-graph"><i class="fa fa-check"></i>An expository graph</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html#exporting-your-graph"><i class="fa fa-check"></i>Exporting your graph</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="thursday-september-22-2022.html"><a href="thursday-september-22-2022.html"><i class="fa fa-check"></i>Thursday, September 22, 2022</a>
-<ul>
-<li class="chapter" data-level="" data-path="thursday-september-22-2022.html"><a href="thursday-september-22-2022.html#today-7"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-22-2022.html"><a href="thursday-september-22-2022.html#simple-feature-data-frames"><i class="fa fa-check"></i>Simple feature data frames</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-22-2022.html"><a href="thursday-september-22-2022.html#making-a-boundary-map"><i class="fa fa-check"></i>Making a boundary map</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-22-2022.html"><a href="thursday-september-22-2022.html#fills"><i class="fa fa-check"></i>Fills</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-22-2022.html"><a href="thursday-september-22-2022.html#adding-data"><i class="fa fa-check"></i>Adding data</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-22-2022.html"><a href="thursday-september-22-2022.html#inset-maps"><i class="fa fa-check"></i>Inset maps</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-22-2022.html"><a href="thursday-september-22-2022.html#map-projections"><i class="fa fa-check"></i>Map projections</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-22-2022.html"><a href="thursday-september-22-2022.html#bivariate-maps"><i class="fa fa-check"></i>Bivariate maps</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="tuesday-september-27-2022.html"><a href="tuesday-september-27-2022.html"><i class="fa fa-check"></i>Tuesday, September 27, 2022</a>
-<ul>
-<li class="chapter" data-level="" data-path="tuesday-september-27-2022.html"><a href="tuesday-september-27-2022.html#today-8"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-27-2022.html"><a href="tuesday-september-27-2022.html#making-maps-using-functions-from-the-tmap-package"><i class="fa fa-check"></i>Making maps using functions from the {tmap} package</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-27-2022.html"><a href="tuesday-september-27-2022.html#example-mapping-tornadoes"><i class="fa fa-check"></i>Example: Mapping tornadoes</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-27-2022.html"><a href="tuesday-september-27-2022.html#example-mapping-the-frequency-of-tornadoes-by-state"><i class="fa fa-check"></i>Example: Mapping the frequency of tornadoes by state</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-27-2022.html"><a href="tuesday-september-27-2022.html#calculations-using-the-geometry-simple-feature-column"><i class="fa fa-check"></i>Calculations using the geometry simple feature column</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-27-2022.html"><a href="tuesday-september-27-2022.html#making-raster-maps"><i class="fa fa-check"></i>Making raster maps</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-27-2022.html"><a href="tuesday-september-27-2022.html#get-map-images-using-functions-from-the-ggmap-package"><i class="fa fa-check"></i>Get map images using functions from the {ggmap} package</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-27-2022.html"><a href="tuesday-september-27-2022.html#add-data-to-the-raster-map"><i class="fa fa-check"></i>Add data to the raster map</a></li>
-<li class="chapter" data-level="" data-path="tuesday-september-27-2022.html"><a href="tuesday-september-27-2022.html#spatial-density-maps-extra-material"><i class="fa fa-check"></i>Spatial density maps (extra material)</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html"><i class="fa fa-check"></i>Thursday, September 29, 2022</a>
-<ul>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#today-9"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#one-sample-test-of-the-population-mean"><i class="fa fa-check"></i>One-sample test of the population mean</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#about-p-values"><i class="fa fa-check"></i>About p-values</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#example-strongest-atlantic-hurricanes"><i class="fa fa-check"></i>Example: Strongest Atlantic hurricanes</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#graphical-inference"><i class="fa fa-check"></i>Graphical inference</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#two-sample-test-of-the-difference-in-population-means"><i class="fa fa-check"></i>Two-sample test of the difference in population means</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#example-hurricanes-in-the-north-atlantic-and-the-eastern-north-pacific"><i class="fa fa-check"></i>Example: hurricanes in the North Atlantic and the eastern North Pacific</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#example-palmer-penguins-2"><i class="fa fa-check"></i>Example: Palmer penguins</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#your-turn-2"><i class="fa fa-check"></i>Your turn</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#test-of-equal-variance"><i class="fa fa-check"></i>Test of equal variance</a></li>
-<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#wilcoxon-mann-whitney-u-non-parameteric-test-of-difference-in-means"><i class="fa fa-check"></i>Wilcoxon (Mann-Whitney U) non-parameteric test of difference in means</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="tuesday-october-4-2022.html"><a href="tuesday-october-4-2022.html"><i class="fa fa-check"></i>Tuesday, October 4, 2022</a>
-<ul>
-<li class="chapter" data-level="" data-path="tuesday-october-4-2022.html"><a href="tuesday-october-4-2022.html#today-10"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-4-2022.html"><a href="tuesday-october-4-2022.html#review"><i class="fa fa-check"></i>Review</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-4-2022.html"><a href="tuesday-october-4-2022.html#paired-observations"><i class="fa fa-check"></i>Paired observations</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-4-2022.html"><a href="tuesday-october-4-2022.html#example-reaction-time-while-driving"><i class="fa fa-check"></i>Example: Reaction time while driving</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-4-2022.html"><a href="tuesday-october-4-2022.html#chi-squared-test-for-independence"><i class="fa fa-check"></i>Chi-squared test for independence</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-4-2022.html"><a href="tuesday-october-4-2022.html#example-smoking-and-exercise"><i class="fa fa-check"></i>Example: Smoking and exercise</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="thursday-october-6-2022.html"><a href="thursday-october-6-2022.html"><i class="fa fa-check"></i>Thursday, October 6, 2022</a>
-<ul>
-<li class="chapter" data-level="" data-path="thursday-october-6-2022.html"><a href="thursday-october-6-2022.html#today-11"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-6-2022.html"><a href="thursday-october-6-2022.html#distributions"><i class="fa fa-check"></i>Distributions</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-6-2022.html"><a href="thursday-october-6-2022.html#normal-distribution"><i class="fa fa-check"></i>Normal distribution</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-6-2022.html"><a href="thursday-october-6-2022.html#uniform-distribution"><i class="fa fa-check"></i>Uniform distribution</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-6-2022.html"><a href="thursday-october-6-2022.html#how-many-blue-marbles"><i class="fa fa-check"></i>How many blue marbles?</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-6-2022.html"><a href="thursday-october-6-2022.html#what-percentage-of-the-globe-is-covered-by-water"><i class="fa fa-check"></i>What percentage of the globe is covered by water?</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-6-2022.html"><a href="thursday-october-6-2022.html#how-many-fish-are-in-the-lake"><i class="fa fa-check"></i>How many fish are in the lake?</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html"><i class="fa fa-check"></i>Tuesday, October 11, 2022</a>
-<ul>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#today-12"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#how-many-fish-are-in-the-lake-1"><i class="fa fa-check"></i>How many fish are in the lake?</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#percentage-of-survey-signups"><i class="fa fa-check"></i>Percentage of survey signups</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#a-generative-model-for-people-agreeing-to-take-your-survey"><i class="fa fa-check"></i>A generative model for people agreeing to take your survey</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#prior-for-the-response-rate"><i class="fa fa-check"></i>Prior for the response rate</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#define-the-generative-model-and-simulate-the-data"><i class="fa fa-check"></i>Define the generative model and simulate the data</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#prediction"><i class="fa fa-check"></i>Prediction</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#approximate-bayesian-computation"><i class="fa fa-check"></i>Approximate Bayesian computation</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#what-bayesian-data-analysis-is-not"><i class="fa fa-check"></i>What Bayesian data analysis is not</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#comparing-two-hypotheses"><i class="fa fa-check"></i>Comparing two hypotheses</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#reaction-times-while-driving"><i class="fa fa-check"></i>Reaction times while driving</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#repeat-the-survey-example"><i class="fa fa-check"></i>Repeat the survey example</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html"><i class="fa fa-check"></i>Thursday, October 13, 2022</a>
-<ul>
-<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html#today-13"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html#linear-regression-a-t-test-by-another-name"><i class="fa fa-check"></i>Linear regression: A t test by another name</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html#motivating-regression"><i class="fa fa-check"></i>Motivating regression</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html#eyeballing-the-regression"><i class="fa fa-check"></i>Eyeballing the regression</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html#example-increasing-heart-rates-with-age"><i class="fa fa-check"></i>Example: Increasing heart rates with age</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html#making-predictions-with-regression"><i class="fa fa-check"></i>Making predictions with regression</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html#uncertainty-about-the-regression-coefficients"><i class="fa fa-check"></i>Uncertainty about the regression coefficients</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html#bootstrapping-the-uncertainty"><i class="fa fa-check"></i>Bootstrapping the uncertainty</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html#predictive-uncertainty"><i class="fa fa-check"></i>Predictive uncertainty</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="tuesday-october-18-2022.html"><a href="tuesday-october-18-2022.html"><i class="fa fa-check"></i>Tuesday, October 18, 2022</a>
-<ul>
-<li class="chapter" data-level="" data-path="tuesday-october-18-2022.html"><a href="tuesday-october-18-2022.html#today-14"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-18-2022.html"><a href="tuesday-october-18-2022.html#uncertainty-about-a-particular-predicted-value"><i class="fa fa-check"></i>Uncertainty about a particular predicted value</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-18-2022.html"><a href="tuesday-october-18-2022.html#example-predicting-body-mass-from-fipper-length"><i class="fa fa-check"></i>Example: Predicting body mass from fipper length</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-18-2022.html"><a href="tuesday-october-18-2022.html#model-adequacy"><i class="fa fa-check"></i>Model Adequacy</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-18-2022.html"><a href="tuesday-october-18-2022.html#transforming-the-response-variable"><i class="fa fa-check"></i>Transforming the response variable</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#data-visualization"><i class="fa fa-check"></i>Data visualization</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-15-2022.html"><a href="thursday-september-15-2022.html#transforming-the-response-variable"><i class="fa fa-check"></i>Transforming the response variable</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html"><i class="fa fa-check"></i>Thursday, October 20, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#today-15"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#example-average-income-vs-percent-college-graduates-at-the-state-level"><i class="fa fa-check"></i>Example: Average income vs percent college graduates at the state level</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#more-regression-examples"><i class="fa fa-check"></i>More regression examples</a></li>
 <li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#outliers"><i class="fa fa-check"></i>Outliers</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#summarizing"><i class="fa fa-check"></i>Summarizing</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#example-a-regression-model-for-trend"><i class="fa fa-check"></i>Example: A regression model for trend</a></li>
 <li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#simpsons-paradox"><i class="fa fa-check"></i>Simpson’s paradox</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html"><i class="fa fa-check"></i>Tuesday, October 25, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#today-16"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#multiple-variable-linear-regression"><i class="fa fa-check"></i>Multiple variable linear regression</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#a-grid-of-scatter-plots"><i class="fa fa-check"></i>A grid of scatter plots</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#fit-a-multiple-variable-regression-model"><i class="fa fa-check"></i>Fit a multiple variable regression model</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#a-regression-plane"><i class="fa fa-check"></i>A regression plane</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#fitting-a-multiple-variable-regression-model"><i class="fa fa-check"></i>Fitting a multiple variable regression model</a></li>
 <li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#should-you-remove-a-variable-from-the-model"><i class="fa fa-check"></i>Should you remove a variable from the model?</a></li>
 <li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#checking-on-the-model-assumptions"><i class="fa fa-check"></i>Checking on the model assumptions</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#checking-predictions"><i class="fa fa-check"></i>Checking predictions</a></li>
-<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#example-predicting-house-prices"><i class="fa fa-check"></i>Example: Predicting house prices</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#using-the-model-to-make-predictions"><i class="fa fa-check"></i>Using the model to make predictions</a></li>
 <li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#collinearity"><i class="fa fa-check"></i>Collinearity</a></li>
 <li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html"><i class="fa fa-check"></i>Thursday, October 27, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#today-17"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#removing-variables-from-a-model"><i class="fa fa-check"></i>Removing variables from a model</a></li>
-<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#the-stepwise-regression-procedure"><i class="fa fa-check"></i>The stepwise regression procedure</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#removing-variables-from-a-regression-model"><i class="fa fa-check"></i>Removing variables from a regression model</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#the-stepwise-selection-procedure"><i class="fa fa-check"></i>The stepwise selection procedure</a></li>
 <li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#transforming-a-response-variable"><i class="fa fa-check"></i>Transforming a response variable</a></li>
 <li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#regression-trees"><i class="fa fa-check"></i>Regression trees</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html"><i class="fa fa-check"></i>Tuesday, November 1, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#today-18"><i class="fa fa-check"></i>Today</a></li>
-<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#regression-tree-example"><i class="fa fa-check"></i>Regression tree example</a></li>
-<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#predictive-uncertainty-1"><i class="fa fa-check"></i>Predictive uncertainty</a></li>
-<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#random-forest-algorithm"><i class="fa fa-check"></i>Random forest algorithm</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#predictive-uncertainty-with-regression-trees"><i class="fa fa-check"></i>Predictive uncertainty with regression trees</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#the-random-forest-algorithm"><i class="fa fa-check"></i>The random forest algorithm</a></li>
 <li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#cross-validation"><i class="fa fa-check"></i>Cross validation</a></li>
 <li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#classification-trees"><i class="fa fa-check"></i>Classification trees</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html"><i class="fa fa-check"></i>Thursday, November 3, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html#today-19"><i class="fa fa-check"></i>Today</a></li>
 <li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html#binary-outcomes-and-probabilities"><i class="fa fa-check"></i>Binary outcomes and probabilities</a></li>
 <li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html#logistic-regression"><i class="fa fa-check"></i>Logistic regression</a></li>
-<li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html#example-who-survives-in-the-donner-party"><i class="fa fa-check"></i>Example: Who survives in the Donner Party?</a></li>
-<li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html#example-probability-of-rocket-damage-on-liftoff"><i class="fa fa-check"></i>Example: Probability of rocket damage on liftoff</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html"><i class="fa fa-check"></i>Tuesday, November 8, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#today-20"><i class="fa fa-check"></i>Today</a></li>
 <li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#quantifying-autocorrelation-in-spatial-data"><i class="fa fa-check"></i>Quantifying autocorrelation in spatial data</a></li>
-<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#spatial-data-as-polygons"><i class="fa fa-check"></i>Spatial data as polygons</a></li>
-<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#list-of-neighbors"><i class="fa fa-check"></i>List of neighbors</a></li>
-<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#spatial-weights-matrix"><i class="fa fa-check"></i>Spatial weights matrix</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#spatial-data-as-polygon-areas"><i class="fa fa-check"></i>Spatial data as polygon areas</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#nearest-neighbors"><i class="fa fa-check"></i>Nearest neighbors</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#spatial-weights"><i class="fa fa-check"></i>Spatial weights</a></li>
 <li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#morans-i"><i class="fa fa-check"></i>Moran’s I</a></li>
 <li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#spatial-lag-variable"><i class="fa fa-check"></i>Spatial lag variable</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html"><i class="fa fa-check"></i>Thursday, November 10, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html#today-21"><i class="fa fa-check"></i>Today</a></li>
 <li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html#statistical-significance-of-spatial-autocorrelation"><i class="fa fa-check"></i>Statistical significance of spatial autocorrelation</a></li>
 <li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html#a-monte-carlo-approach-to-inference-about-spatial-autocorrelation"><i class="fa fa-check"></i>A Monte Carlo approach to inference about spatial autocorrelation</a></li>
 <li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html#spatial-autocorrelation-in-model-residuals"><i class="fa fa-check"></i>Spatial autocorrelation in model residuals</a></li>
-<li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html#example-percentage-of-folks-identifying-as-white-in-mississippi-counties"><i class="fa fa-check"></i>Example: Percentage of folks identifying as white in Mississippi counties</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html"><i class="fa fa-check"></i>Tuesday, November 15, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#today-22"><i class="fa fa-check"></i>Today</a></li>
 <li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#bi-variate-spatial-autocorrelation"><i class="fa fa-check"></i>Bi-variate spatial autocorrelation</a></li>
 <li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#local-autocorrelation"><i class="fa fa-check"></i>Local autocorrelation</a></li>
-<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#local-regression"><i class="fa fa-check"></i>Local regression</a></li>
-<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#weights-matrix"><i class="fa fa-check"></i>Weights matrix</a></li>
+<li class="chapter" data-level="0.2" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#local-regression"><i class="fa fa-check"></i><b>0.2</b> Local regression</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#spatial-weights-1"><i class="fa fa-check"></i>Spatial weights</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="thursday-november-17-2022.html"><a href="thursday-november-17-2022.html"><i class="fa fa-check"></i>Thursday, November 17, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="thursday-november-17-2022.html"><a href="thursday-november-17-2022.html#today-23"><i class="fa fa-check"></i>Today</a></li>
 <li class="chapter" data-level="" data-path="thursday-november-17-2022.html"><a href="thursday-november-17-2022.html#geographic-regression"><i class="fa fa-check"></i>Geographic regression</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -489,8 +342,8 @@ A - We can discuss that over coffee.</p>
 <li>You can <code>Save as</code> to download a copy to your computer</li>
 </ul>
 </div>
-<div id="getting-set" class="section level2 unnumbered hasAnchor">
-<h2>Getting set<a href="tuesday-august-23-2022.html#getting-set" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="getting-setup" class="section level2 unnumbered hasAnchor">
+<h2>Getting setup<a href="tuesday-august-23-2022.html#getting-setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>First get R</p>
 <ul>
 <li>Go to <a href="http://www.r-project.org" class="uri">http://www.r-project.org</a>.</li>
@@ -504,8 +357,20 @@ A - We can discuss that over coffee.</p>
 <li>Download RStudio Desktop</li>
 <li>Install and open RStudio</li>
 </ul>
-<p>Finally (Optional), learn git</p>
-<p><a href="https://happygitwithr.com/install-git.html" class="uri">https://happygitwithr.com/install-git.html</a></p>
+<p>Then get the course materials from GitHub</p>
+<ul>
+<li>Navigate to <a href="https://github.com/jelsner/QG-2022" class="uri">https://github.com/jelsner/QG-2022</a></li>
+<li>Click the Green Code button</li>
+<li>Then Download ZIP</li>
+<li>Unzip the file on your computer to create the folder <code>QG-2022-main</code></li>
+</ul>
+<p>Then open the first two Rmd files</p>
+<ul>
+<li>Open the folder to see all the lesson files (and more)</li>
+<li>Click on the files <code>00-Syllabus.Rmd</code> and <code>01-Lesson.Rmd</code></li>
+</ul>
+<p>This should bring up the files in RStudio.</p>
+<p>Finally, learn git (optional) <a href="https://happygitwithr.com/install-git.html" class="uri">https://happygitwithr.com/install-git.html</a></p>
 </div>
 <div id="rstudios-integrated-development-environment-ide" class="section level2 unnumbered hasAnchor">
 <h2>RStudio’s integrated development environment (IDE)<a href="tuesday-august-23-2022.html#rstudios-integrated-development-environment-ide" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -637,6 +502,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
