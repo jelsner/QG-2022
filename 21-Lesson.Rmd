@@ -1,13 +1,11 @@
 # Tuesday, November 1, 2022 {-}
 
-## Today {-} 
+Today 
 
-- Predictive uncertainty
-- Random forests
+- Predictive uncertainty with regression trees
+- The random forest algorithm
 - Cross validation
 - Classification trees
-
-## Regression tree example {-}
 
 Example: Let's return to the Palmer penguins data frame. You are interested in using machine learning (regression tree) to predict the body mass of male Gentoo penguins using the penguin's bill and flipper dimensions. 
 
@@ -103,7 +101,7 @@ plot(model2)
 text(model2)
 ```
 
-## Predictive uncertainty {-}
+## Predictive uncertainty with regression trees {-}
 
 Let's look at another example. Predicting Atlantic hurricanes using a regression tree.
 
@@ -159,7 +157,7 @@ predict(lm(H ~ SOI + SST, data = df[-61, ]),
 
 The difference in predicted values is very small with a linear regression model. On the order of .2% `r (6.23 - 6.22)/6.23 * 100` compared with 22% (`(7.35 - 5.71)/7.35 * 100`) for the machine learning algorithm
 
-## Random forest algorithm {-}
+## The random forest algorithm {-}
 
 A random forest algorithm solves some of the problem of large predictive uncertainty by fitting many regression trees (a 'forest'). The algorithm takes many samples (e.g., 100) from the set of all observations and then using these samples fits many regression trees. Given a set of new values for the explanatory variables, each regression tree provides a predicted value. The average over all predicted values is taken as the random forest prediction.
 

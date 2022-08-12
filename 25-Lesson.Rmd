@@ -1,9 +1,11 @@
 # Tuesday, November 15, 2022 {-}
 
-## Today {-}
+Today
 
 - Bivariate spatial autocorrelation
 - Local spatial autocorrelation
+- Local regression
+- Spatial weights
 
 Recall the demographic data from the state of Mississippi at the county level. The data are available as ESRI shape files in the folder _police_. First we import the data to create a simple feature data frame called `PE.sf`.
 ```{r}
@@ -306,7 +308,7 @@ tm_shape(PE.sf) +
 
 Areas in dark green indicate where the correlation between crime and policing is most influenced by neighboring crime and policing.
 
-## Local regression {-}
+## Local regression
 
 When you fit a regression model to your data you get a single set of coefficients that quantifies the relationship between the response variable and the explanatory variables. When you fit a geographic regression model to your data yet get an entire set of coefficients, one for every location.
 
@@ -329,7 +331,7 @@ This is done by weighting the observations based on 'distance' to `Temp = 70`. O
 
 The change in ozone per degree change in temperature is small for temperatures less than 75F, but this change increases as temperatures rise through the 80's.
 
-## Weights matrix {-}
+## Spatial weights {-}
 
 This 'inverse-distance' weighting (more weight to nearby observations) is applied to each observation and the weights are stored in matrix (W). Elements of the weights matrix W are labeled $w_{ij}$, where $i$ indexes the location and $j$ indexes all other values. The precise values in W are determined by a function called a kernel.
 

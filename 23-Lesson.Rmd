@@ -1,8 +1,15 @@
 # Tuesday, November 8, 2022 {-}
 
-## Today {-}
+Today
 
-- Spatial autocorrelation
+Spatial autocorrelation
+
+- Quantifying autocorrelation in spatial data
+- Spatial data as polygon areas
+- Nearest neighbors
+- Spatial weights
+- Moran's I
+- Spatial lag variable
 
 When your data set contains observations made across space (spatial data), the assumption of independent values is usually not valid. This is because nearby locations tend to have similar values.
 
@@ -37,7 +44,7 @@ The set of weights is called a spatial weights matrix and $N$ is the number of o
 
 The spatial unit of observation can be points or polygons. Temperatures measured by thermometers across the cities is an example of point observations. The number of people living within a census block is an example of polygon observations.
 
-## Spatial data as polygons {-}
+## Spatial data as polygon areas {-}
 
 Consider crime data at the census tract level in the city of Columbus, Ohio. The data are available in a zipped folder containing ESRI shapefiles on my website. Here you use the `download.file()` function and then the `unzip()` function to get the data into our project folder. 
 ```{r}
@@ -116,7 +123,7 @@ The map shows that high crime areas tend to cluster. That is census tracts with 
 
 Spatial autocorrelation quantifies the amount of clustering. To compute the spatial autocorrelation you first need to define a list of neighbors for each tract (each polygon).
 
-## List of neighbors {-}
+## Nearest neighbors {-}
 
 You create a list of neighbors for each tract using the `poly2nb()` function from the {spdep} package.
 ```{r}
@@ -156,7 +163,7 @@ spdep::card(nbs)
 
 Tract 5 has 8 neighbors.
 
-## Spatial weights matrix {-}
+## Spatial weights {-}
 
 Next you add weights to the neighbor list object. The weights specifying how 'close' each neighbor is. You do this with the `nb2listw()` function from the {spdep} package. The function turns the neighbor list object into a spatial weights object. 
 ```{r}

@@ -1,9 +1,9 @@
 # Thursday, November 10, 2022 {-}
 
-## Today {-}
+Today
 
 - Statistical significance of spatial autocorrelation
-- The Monte Carlo approach to inference
+- A Monte Carlo approach to inference
 - Spatial autocorrelation in model residuals
 
 As a review let us consider another data set where we start by compute spatial autocorrelation. The data are sudden infant deaths (SIDS) rates in the 100 counties of North Carolina for the period July 1, 1979 to June 30, 1984. Download and unzip the data in your working directory.
@@ -324,7 +324,7 @@ The $z$-value takes into account the fact that these are residuals so the varian
 
 The next step is to choose the type of spatial regression model. Before that, let's look at one more example.
 
-## Example: Percentage of folks identifying as white in Mississippi counties {-}
+Example: Percentage of folks identifying as white in Mississippi counties
 
 Download the county-level police data. Import the data as a simple feature data frame and assign the geometry a geographic CRS. The file _police.zip_ contains shapefiles in a folder on my website. 
 ```{r}

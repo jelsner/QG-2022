@@ -1,8 +1,11 @@
 # Thursday, November 3, 2022 {-}
 
-## Today {-} 
+Today 
 
-- logistic regression
+Logistic regression
+
+- Binary outcomes and probability
+- The logistic regression model
 
 Linear regression is one of the most powerful tools in data science. But it's utility is limited to response variables that can be approximated with a normal distribution. 
 
@@ -153,7 +156,7 @@ A negative regression coefficient means the variable decreases the probability o
 
 A large regression coefficient means the variable strongly influences the probability of that outcome; while a near-zero regression coefficient means the variable has little influence on the probability of that outcome.
 
-## Example: Who survives in the Donner Party? {-}
+Example: Who survives in the Donner Party?
 
 The Donner and Reed families from Springfield, Illinois headed to California in 1846. The group, which became know as the 'Donner Party', was stranded in the Sierra Nevada mountains by heavy late October snows. By the time the last survivor was rescued in April 1847, 40 of the 87 members had died from famine and exposure to the cold.
  
@@ -323,7 +326,7 @@ pchisq(q = 51.256,
 
 Since the $p$ value exceeds .05 you fail to reject the null hypothesis that the model is adequate and report that there is no compelling evidence that the model needs to be improved.
 
-## Example: Probability of rocket damage on liftoff {-}
+Example: Probability of rocket damage on liftoff
 
 Returning to the data on the Space Shuttle O-ring damage and launch time temperature. The recovered booster rockets were checked for damage to the rings. A damaged rocket booster is coded as `1`.
 ```{r}

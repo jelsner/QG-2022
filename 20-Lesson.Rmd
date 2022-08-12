@@ -3,7 +3,7 @@
 Today {-}
 
 - Removing variable from a regression model
-- The stepwise regression procedure
+- The stepwise selection procedure
 - Transforming a response variable
 - Regression trees
 
@@ -82,11 +82,11 @@ drop1(modelReduced)
 
 Now all the AIC values _exceed_ the value given in the row labeled `<none>`, so you conclude there is no reason to remove any of the remaining variables so you are finished and this is your final model.
 
-## The stepwise regression procedure {-}
+## The stepwise selection procedure {-}
 
 With only a hand full of variables to check the `drop1()` function is recommended. With a large number of variables an automated procedure is preferred.
 
-Stepwise regression is a procedure (not a model) that automates this. It finds the best model from a set of candidate models when the models are nested, and it can be useful for sifting through a large number of explanatory variables.
+Stepwise selection (sometimes called stepwise regression) is a procedure (not a model) that automates this. It finds the best model from a set of candidate models when the models are nested, and it can be useful for sifting through a large number of explanatory variables.
 
 Stepwise regression can be done by backward deletion of variables or by forward selection of the variables. Backward deletion amounts to automating the `drop1()` function and forward selection amounts to automating the `add1()` function.
 
