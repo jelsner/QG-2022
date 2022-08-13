@@ -37,7 +37,7 @@ The most important variable in explaining body mass of the male Gentoo penguins 
 
 For Gentoo penguins with a bills at least 47.45 mm in length, the next most important variable is flipper length. For these larger-billed penguins, if flippers are longer (at least 228.5 mm) then the average body mass is 5755 g. For these larger-bill length penguins, if flippers are shorter than 228.5 mm, then split on flipper length again.
 
-As we move down the tree the branches get smaller (the vertical lines get shorter) indicating the splits are _less_ important in reducing the residual sum of squares (RSS). 
+As you move down the tree the branches get smaller (the vertical lines get shorter) indicating the splits are _less_ important in reducing the residual sum of squares (RSS). 
 
 Interpreting a tree regression is easier than interpreting a linear regression because the splits have the same units as the explanatory variables. In a linear regression the coefficients have units of response variable divided by the units of the explanatory variable.
 
@@ -187,7 +187,7 @@ predict(rfa,
 
 In summary: Regression trees tend to produce predicted values that are unstable, which means a small change in the data used to grow the tree results in a large difference in the predicted value. 
 
-The _in-sample error_ (the error made when using the model to predict the data that were used to fit the model) might be small, but the _out-of-sample error_ (the error made when using the model to predict new data) can be large. 
+The _in-sample error_ (the error made when using the model to predict the data that you used to fit the model) might be small, but the _out-of-sample error_ (the error made when using the model to predict new data) can be large. 
 
 A random forest algorithm solves some of the problem (but not all) of unstable predictions by growing many trees.
 
@@ -278,7 +278,7 @@ Consider again the `penguins` data frame from the {palmerpenguins} package.
 head(palmerpenguins::penguins)
 ```
 
-With `species` as the categorical response variable (there are three different penguin species) and the other columns as explanatory variables we can specify the model formula as `species ~ .`. The period after the tilde (`~`) indicating all other variables in the data frame.
+With `species` as the categorical response variable (there are three different penguin species) and the other columns as explanatory variables you can specify the model formula as `species ~ .`. The period after the tilde (`~`) indicating all other variables in the data frame.
 ```{r}
 model <- tree(species ~ .,
               data = palmerpenguins::penguins)

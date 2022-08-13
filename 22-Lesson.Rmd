@@ -21,7 +21,7 @@ The method of maximum likelihood answers the question, what is the probability o
 
 ## Binary outcomes and probabilities {-}
 
-A key understanding here is that the _average value_ over a set of binary responses is a number between 0 and 1. To see this, here we generate a set of random binary responses using the `rbinom()` function. `r` for random and `binom` for binomial distribution with a long-run probability of .2.
+A key understanding here is that the _average value_ over a set of binary responses is a number between 0 and 1. To see this, here you generate a set of random binary responses using the `rbinom()` function. `r` for random and `binom` for binomial distribution with a long-run probability of .2.
 ```{r}
 rbinom(n = 100, 
        size = 1, 
@@ -30,16 +30,16 @@ rbinom(n = 100,
 
 The `n = 100` is the number of binary responses to generate, `size = 1` indicates two choices (`0` or `1`), and `prob = .2` is the long-run probability of getting a `1`.
 
-If we say that an outcome of `1` is a success and that an outcome of `0` is a failure, then the average taken over all outcomes is the sample probability of success.
+If you say that an outcome of `1` is a success and that an outcome of `0` is a failure, then the average taken over all outcomes is the sample probability of success.
 
-Here we compute averages over a samples of binary outcomes where the probability of a `1` (success) is .2, .5, and .9.
+Here yiu compute averages over a samples of binary outcomes where the probability of a `1` (success) is .2, .5, and .9.
 ```{r}
 mean(rbinom(n = 100, size = 1, prob = .2))
 mean(rbinom(n = 100, size = 1, prob = .5))
 mean(rbinom(n = 100, size = 1, prob = .9))
 ```
 
-Repeat. We see that the sample means are close to the long-run probabilities.
+Repeat. You see that the sample means are close to the long-run probabilities.
 
 Recall that a regression model predicts the conditional mean values of the response variable. When the response variable is binary, the mean values are probabilities, so a logistic regression predicts the conditional probability of something happening. For example, the probability of getting COVID-19 given your social distancing and mask-wearing habits.
 
@@ -53,7 +53,7 @@ Damage <- c(0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1)
 
 The variable `Damage` is the response variable and `Temperature` is the explanatory variable.
 
-We start with a scatter plot of these two variables along with the linear regression line.
+Start with a scatter plot of these two variables along with the linear regression line.
 ```{r}
 df <- data.frame(Damage, Temperature)
 
@@ -68,9 +68,9 @@ ggplot(data = df,
 
 The plot shows more points at a value of 1 (at least some damage to the O-rings) when temperatures are lower and more more points at a value of 0 (no damage) when the temperatures are higher.
 
-The linear regression line indicates this inverse relationship. The line slopes from upper left to lower right. We conclude that there is less chance of O-ring damage when temperatures are higher. But we note that the straight line does not capture this relationship very well.
+The linear regression line indicates this inverse relationship. The line slopes from upper left to lower right. You conclude that there is less chance of O-ring damage when temperatures are higher. But you note that the straight line does not capture this relationship very well.
 
-We fit a linear regression model to these data.
+You fit a linear regression model to these data.
 ```{r}
 lrm <- lm(Damage ~ Temperature, 
           data = df)
@@ -79,11 +79,11 @@ summary(lrm)
 
 The model diagnostics indicate temperature is significant in explaining O-ring damage. 
 
-Looking at the slope coefficient we can state that for every one degree F _decrease_ in temperature the chance of damage increases by 3.7 percentage points.
+Looking at the slope coefficient you state that for every one degree F _decrease_ in temperature the chance of damage increases by 3.7 percentage points.
 
-We interpret the predicted damage as the probability of damage for a given temperature (conditional mean). 
+You interpret the predicted damage as the probability of damage for a given temperature (conditional mean). 
 
-We use the `predict()` method to predict the probability of damage when the launch temperatures are 77 F, 65 F, and 51 F. We multiply the predicted mean values by 100 so that the probabilities are in percentages.
+You use the `predict()` method to predict the probability of damage when the launch temperatures are 77 F, 65 F, and 51 F. You multiply the predicted mean values by 100 so that the probabilities are in percentages.
 ```{r}
 predict(lrm, 
         newdata = data.frame(Temperature = c(77, 65, 51))) * 100
@@ -105,14 +105,14 @@ Key point: Linear regression can not capture the bounded nature of probabilities
 
 A regression model has a response function and a regression structure. The response function is specified on the left side of the regression equation and the regression structure on the right side of the equation.
 
-With linear regression, the response function is the identity function. That is, for any value of $y$ the function returns the value of $y$. We write it as
+With linear regression, the response function is the identity function. That is, for any value of $y$ the function returns the value of $y$. You write it as
 $$
 f(y) = y
 $$
 
 With logistic regression, the response function is the _logit_ function. Said another way, logistic regression is a generalization of the linear regression model where the response function is the _logit_ function.
 
-We write the _logit_ function as
+The _logit_ function is written as
 $$
 f(y) = \hbox{logit}(y)
 $$
@@ -122,14 +122,14 @@ $$
 \hbox{logit}(\pi) = \log\left(\frac{\pi}{1 - \pi}\right).
 $$
 
-We write odds as _for:against_. If there is a 2:1 odds of something happening, then the probability it will happen is 2/(1 + 2) or 2/3 (67%).
+You write odds as _for:against_. If there is a 2:1 odds of something happening, then the probability it will happen is 2/(1 + 2) or 2/3 (67%).
 
-The inverse of the logit function is the logistic function. With logit($\pi$) = $z$, we have
+The inverse of the logit function is the logistic function. With logit($\pi$) = $z$, you have
 $$
 \pi = \frac{\exp(z)}{1 + \exp(z)} = \frac{1}{1 + \exp(-z)}.
 $$
 
-To make a graph of the logistic function we use the `curve()` function.
+To make a graph of the logistic function you use the `curve()` function.
 ```{r}
 curve(1/(1 + exp(-x)), 
       from = -6, to = 6, 
@@ -290,7 +290,7 @@ predict(logrm,
                              Sex = "male"))
 ```
 
-By default the predicted value is the logarithm of the odds. To convert this to a probability we use the logistic function or we use the `type = "response"` argument in the `predict()` method.
+By default the predicted value is the logarithm of the odds. To convert this to a probability you use the logistic function or you include the `type = "response"` argument in the `predict()` method.
 ```{r}
 exp(-2.277)/(1 + exp(-2.277))
 

@@ -249,7 +249,7 @@ qqline(model2$residuals)
 
 These plots indicate some evidence against normality and constant variance. The fact that the residuals do not exactly follow a normal distribution decreases the confidence you can place on your inferences (e.g., stating a particular variable is significant in explaining variations in the response variable).
 
-To improve model adequacy you might transform the response variable or use a weighted regression model. We will return to this shortly.
+To improve model adequacy you might transform the response variable or use a weighted regression model. You will return to this shortly.
 
 ## Using the model to make predictions {-}
 
@@ -359,7 +359,7 @@ Remove the explanatory variable that makes the least sense from physical argumen
 
 ## Interactions {-}
 
-Sometimes the _relationship_ between an explanatory variable and the response variable _depends on_ another explanatory variable. In this case we say there is an interaction between the two explanatory variables.
+Sometimes the _relationship_ between an explanatory variable and the response variable _depends on_ another explanatory variable. In this case you say there is an _interaction_ between the two explanatory variables.
 
 For instance, the relationship between selling price and living space might depend on whether the house was custom built. To see if the interaction might need to be included in the regression model first make a plot.
 ```{r}

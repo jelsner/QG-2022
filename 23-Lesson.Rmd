@@ -21,7 +21,7 @@ Causality: something within an area directly influences outcomes within nearby a
 
 Interaction: the movement of people, goods or information creates relationships between nearby areas. Infectious diseases might spread from a source region thus increasing the disease rates in surrounding areas as the direct result of contact or movement of people between regions.
 
-We quantify how similar nearby values tend to be through a metric called _spatial autocorrelation_. Statistical methods can quantify, and condition on, spatial autocorrelation but they are silent about it's physical cause.
+You quantify how similar nearby values tend to be through a metric called _spatial autocorrelation_. Statistical methods can quantify, and condition on, spatial autocorrelation but they are silent about it's physical cause.
 
 Understanding the reason for spatial autocorrelation is important for causal inference because the causal mechanism  might be statistically confounded by it. Divorce rates are high in states in the South but so to are the number of Waffle Houses.
 
@@ -80,7 +80,7 @@ names(CC.sf)
 
 The first twenty columns in the spatial data frame contain observations (attributes) and the last column contains the geometry information associated with each observation (row). The `geometry` column contains the spatial coordinates in well-known text (WKT) format.
 
-The {sf} package has a `plot()` method for viewing the geographic data on a map. For example to plot the census tract borders in the city of Columbus we apply the method to the geometry column of the spatial data frame.
+The {sf} package has a `plot()` method for viewing the geographic data on a map. For example to plot the census tract borders in the city of Columbus you apply the method to the geometry column of the spatial data frame.
 ```{r}
 plot(CC.sf$geometry)
 ```
@@ -227,7 +227,7 @@ wts2 <- spdep::nb2listw(nbs2,
 head(wts2$weights)
 ```
 
-Here we see that district 6 in Scotland has no neighbors.
+Here you see that district 6 in Scotland has no neighbors.
 
 ## Moran's I {-}
 
@@ -287,11 +287,11 @@ The I value of -3.5 indicates that the center cell which has a value less than t
 
 Now repeat this calculation for every cell and then add all the results.
 
-This is done with the `moran()` function from the {spdep} package. The first argument is the vector containing the values for which we are interested in determining the magnitude of the spatial autocorrelation and the second argument is the `listw` object. 
+This is done with the `moran()` function from the {spdep} package. The first argument is the vector containing the values for which you are interested in determining the magnitude of the spatial autocorrelation and the second argument is the `listw` object. 
 
-We also need to specify the number of regions and the global sum of the weights `S0`. The latter is obtained from the `Szero()` function applied to the `listw` object.
+You also need to specify the number of regions and the global sum of the weights `S0`. The latter is obtained from the `Szero()` function applied to the `listw` object.
 
-Returning to the Columbus crime data here we let `m` be the number of census tracts and `s` be the sum of the weights.
+Returning to the Columbus crime data here you let `m` be the number of census tracts and `s` be the sum of the weights using the assignment operator.
 ```{r}
 m <- length(CC.sf$CRIME)
 s <- spdep::Szero(wts)
