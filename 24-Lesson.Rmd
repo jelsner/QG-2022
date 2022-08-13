@@ -6,7 +6,7 @@ Today
 - A Monte Carlo approach to inference
 - Spatial autocorrelation in model residuals
 
-As a review let us consider another data set where we start by compute spatial autocorrelation. The data are sudden infant deaths (SIDS) rates in the 100 counties of North Carolina for the period July 1, 1979 to June 30, 1984. Download and unzip the data in your working directory.
+As a review let us consider another data set where you start by computing spatial autocorrelation. The data are sudden infant deaths (SIDS) rates in the 100 counties of North Carolina for the period July 1, 1979 to June 30, 1984. Download and unzip the data in your working directory.
 ```{r}
 url <- "http://myweb.fsu.edu/jelsner/temp/data/sids2.zip"
 download.file(url,
@@ -110,7 +110,7 @@ lm(Wsids ~ sids)
 
 ## Statistical significance of spatial autocorrelation {-}
 
-Even if the county SIDS rates are randomly distributed across the state, the value of Moran's I will not necessarily be close to zero (-1/(n-1)). If we want to use I to establish statistically significant clustering, you need a way to guard against this randomness.
+Even if the county SIDS rates are randomly distributed across the state, the value of Moran's I will not necessarily be close to zero (-1/(n-1)). If you want to use I to establish statistically significant clustering, you need a way to guard against this randomness.
 
 Said another way: Is the value of Moran's I significant with respect to the null hypothesis of no spatial autocorrelation? 
 
@@ -127,7 +127,7 @@ The function takes a variable name or numeric vector and a spatial weights list 
 
 I is .143 with a variance of .0043. The $z$ value for the I statistic is 2.3438 giving a $p$ value slightly less than .01 under the null hypothesis of no spatial autocorrelation. 
 
-Thus we reject the null hypothesis and conclude there is weak (I is small) but significant spatial autocorrelation in SIDS rates across North Carolina at the county level.
+Thus you reject the null hypothesis and conclude there is weak (I is small) but significant spatial autocorrelation in SIDS rates across North Carolina at the county level.
 
 Look at the output in the object `mt` with the `str()` function.
 ```{r}
@@ -363,7 +363,7 @@ coords <- PE.sf |>
 head(coords)
 ```
 
-You can specify that each county for example has six neighbors where the neighbors are based on proximity. Since the CRS is geographic we include the `longlat = TRUE` argument so the distances are based on great circles.
+You can specify that each county for example has six neighbors where the neighbors are based on proximity. Since the CRS is geographic you include the `longlat = TRUE` argument so the distances are based on great circles.
 ```{r}
 knn <- spdep::knearneigh(coords, 
                          k = 6, 

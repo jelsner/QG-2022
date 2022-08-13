@@ -7,7 +7,7 @@ Today
 - Local regression
 - Spatial weights
 
-Recall the demographic data from the state of Mississippi at the county level. The data are available as ESRI shape files in the folder _police_. First we import the data to create a simple feature data frame called `PE.sf`.
+Recall the demographic data from the state of Mississippi at the county level. The data are available as ESRI shape files in the folder _police_. First you import the data to create a simple feature data frame called `PE.sf`.
 ```{r}
 PE.sf <- sf::read_sf(dsn = here::here("data", "police"), 
                      layer = "police")
@@ -35,7 +35,7 @@ nbs <- spdep::poly2nb(PE.sf)
 wts <- spdep::nb2listw(nbs)
 ```
 
-You then apply the `moran.test()` function. Here we apply the function to the variable labeled `WHITE`.
+You then apply the `moran.test()` function. Here you apply the function to the variable labeled `WHITE`.
 ```{r}
 spdep::moran.test(PE.sf$WHITE, 
                   listw = wts)
@@ -92,7 +92,7 @@ sm::sm.density(police, model = "normal")
 
 So you use a non-parametric (Monte Carlo) test for significance on the bivariate spatial autocorrelation with the `lee.mc()` function.
 
-The crime and police expenditure values are randomly permuted across the counties and values of `L` are computed for each permutation. Here we set the number of permutations to 999 with the `nsim =` argument.
+The crime and police expenditure values are randomly permuted across the counties and values of `L` are computed for each permutation. Set the number of permutations to 999 with the `nsim =` argument.
 ```{r}
 spdep::lee.mc(x = crime, 
               y = police, 
@@ -132,7 +132,7 @@ The neighborhood average percent white is computed as
 mean(PE.sf$WHITE[unlist(wts$neighbours[10])])
 ```
 
-The neighbor average percentage of whites is lower than the percentage of whites in Union County. This two dimensional point (86, 74) contributes to the global Moran's I, but it also contributes to the local Moran's I if we consider only these 8 counties.
+The neighbor average percentage of whites is lower than the percentage of whites in Union County. This two dimensional point (86, 74) contributes to the global Moran's I, but it also contributes to the local Moran's I if you consider only these 8 counties.
 
 For example, consider the first neighbor of Union County.
 ```{r}
@@ -323,7 +323,7 @@ ggplot(data = airquality,
   geom_smooth(method = lm, se = FALSE, color = "red")
 ```
 
-Global regression is represented by the red line. Local regression is represented by the blue curve. Global regression over estimates the relationship at low temperature (the red line has a steeper slope compared to the blue line for temperatures less than 75F) and it under estimates the relationship at high temperature (the red line has a shallower slope compared to the blue line for temperatures above 75F). Note: It is the relationship we are describing not the observations.
+Global regression is represented by the red line. Local regression is represented by the blue curve. Global regression over estimates the relationship at low temperature (the red line has a steeper slope compared to the blue line for temperatures less than 75F) and it under estimates the relationship at high temperature (the red line has a shallower slope compared to the blue line for temperatures above 75F). Note: It is the relationship you are describing, not the observations.
 
 The red line has a single value for the slope and a single value for the intercept across all values of temperature. You can get these two values with the `lm()` function. The local regression has a slope and intercept at each observation.
 
@@ -363,7 +363,7 @@ p <- p + geom_segment(aes(y = 1/sqrt(2 * pi) * exp(-.5 * 0^2),
 p
 ```
 
-Data values at neighboring locations get less weight. For example, the second data value at location x2 we have a weight w12. The first index indicates the kernel centered on observation 1, and the second index is location of observation 2. 
+Data values at neighboring locations get less weight. For example, the second data value at location x2 y has a weight w12. The first index indicates the kernel centered on observation 1, and the second index is location of observation 2. 
 ```{r}
 p <- p + geom_point(aes(x = 1, y = 0), col = "black", size = 3) + 
     geom_text(aes(x = 1, y = -.02, label = "x2"))
@@ -375,7 +375,7 @@ p <- p + geom_segment(aes(y = 1/sqrt(2 * pi) * exp(-.5 * 1^2),
 p
 ```
 
-Similarly, at the third data value at location x3 we have a weight w13.
+Similarly, the third data value at location x3 has a weight w13.
 ```{r}
 p <- p + geom_point(aes(x = -2, y = 0), col = "black", size = 3) + 
     geom_text(aes(x = -2, y = -.02, label = "x3"))

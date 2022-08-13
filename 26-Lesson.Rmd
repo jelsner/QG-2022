@@ -168,7 +168,7 @@ Linear regression is a model for the conditional mean. The mean of the response 
 
 A model is fit at each location. All observations contribute to the fit but they are weighted inversely by their distance to the location. At the shortest distances observations are given the largest weights based on a Gaussian function. The process results in a set of regression coefficients for each observation.
 
-You do this with functions from the {spgwr} package. The geometry information in simple feature data frames is NOT accessible by functions in this package so we need to create another type of spatial data frame.
+You do this with functions from the {spgwr} package. The geometry information in simple feature data frames is NOT accessible by functions in this package so you need to create another kind of spatial data frame.
 ```{r}
 SH.sp <- as(SH.sf, "Spatial")
 ```
@@ -256,7 +256,7 @@ sqrt(sum(residuals(model.lm3)^2))
 sqrt(sum(model.gwr$SDF$gwr.e^2))
 ```
 
-Geographic regression is useful for generating hypotheses. From the linear regression model we saw that homicide rates increased with resource deprivation. How does this relationship between homicide rates and resource deprivation vary across the South?
+Geographic regression is useful for generating hypotheses. From the linear regression model you saw that homicide rates increased with resource deprivation. How does this relationship between homicide rates and resource deprivation vary across the South?
 ```{r}
 coef(model.lm3)[2]
 range(model.gwr$SDF$RD90)
