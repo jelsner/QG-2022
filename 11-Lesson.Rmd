@@ -271,7 +271,7 @@ The `zoom =` argument in the `get_stamenmap()` function controls the level of de
 
 Trial and error helps you decide on the appropriate level of detail depending on the data you need to visualize. Use [boxfinder](bboxfinder.com) to determine the exact longitude/latitude coordinates for the bounding box you wish to obtain.
 
-Or you can use the `tmaptools::geocode_OSM()` function from the {tmaptools} package. We first specify a location then get a geocoded coordinate.
+Or you can use the `tmaptools::geocode_OSM()` function from the {tmaptools} package. You first specify a location then get a geocoded coordinate.
 ```{r}
 FSU.list <- tmaptools::geocode_OSM("Florida State University")
 FSU.list
@@ -307,7 +307,7 @@ CHI_map <- get_stamenmap(bbox = CHI_bb,
 ggmap(CHI_map)
 ```
 
-The city of Chicago has a data portal publishing a large volume of public records. Here we look at crime data from 2017. The file `car_thefts.csv` is a spreadsheet obtained from that portal with a list of car thefts. 
+The city of Chicago has a data portal publishing a large volume of public records. Here you look at crime data from 2017. The file `car_thefts.csv` is a spreadsheet obtained from that portal with a list of car thefts. 
 
 You read these data using the `readr::read_csv()` function.
 ```{r}

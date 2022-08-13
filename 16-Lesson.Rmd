@@ -28,7 +28,7 @@ t.test(mpg ~ am,
        var.equal = TRUE)
 ```
 
-The $t$ value, computed as the difference in means divided by the standard error of the difference, is -4.1061. 
+The $t$ value, computed as the difference in means divided by the standard error of the difference, is -4.11. 
 
 With 30 degrees of freedom (sample size = 32 and you loose one degree of freedom for each mean), the $p$-value is less than .01 so you reject the null hypothesis of no difference in average miles per gallon between the two types of transmission. 
 
@@ -352,7 +352,7 @@ Under the null hypothesis that the regression is no better than the unconditiona
 pf(130, df1 = 1, df2 = 13, lower.tail = FALSE)
 ```
 
-The $p$-value is very small (< .001) so we reject the null hypothesis that the mean model is better than the linear regression model.
+The $p$-value is very small (< .001) so you reject the null hypothesis that the mean model is better than the linear regression model.
 
 ## Bootstrapping the uncertainty {-}
 

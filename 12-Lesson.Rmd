@@ -219,7 +219,7 @@ fun <- nullabor::null_dist(var = "Height",
                            params = list(mean = 183, sd = sd(ht)))
 ```
 
-The magic happens when we use the `lineup()` function that takes as it's arguments the saved function (here `fun`) and the true data frame (here `ht.df`) and returns a data frame in long format (here assigned to the object `dfL`).
+The magic happens when you use the `lineup()` function that takes as it's arguments the saved function (here `fun`) and the true data frame (here `ht.df`) and returns a data frame in long format (here assigned to the object `dfL`).
 ```{r}
 dfL <- nullabor::lineup(method = fun, 
                         true = ht.df)
@@ -276,7 +276,7 @@ Said another way: you have data and want to use it to say something about the wo
 
 The possible realities are generated with computer code using statistical distributions.
 
-Graphical inference can be used in a variety of applications. Here is an example from my tornado research. Here the innocent is a spatially random distribution of [genesis](http://myweb.fsu.edu/jelsner/temp/TornadoLineup.png). Can we pick out the actual data?
+Graphical inference can be used in a variety of applications. Here is an example from my tornado research. Here the innocent is a spatially random distribution of [genesis](http://myweb.fsu.edu/jelsner/temp/TornadoLineup.png). Can you pick out the actual data?
 
 More information on the {nullabor} package [here](https://cran.r-project.org/web/packages/nullabor/vignettes/nullabor.html)
 
@@ -369,7 +369,7 @@ ggplot(data = penguins,
   theme_minimal()
 ```
 
-We see that, on average, Adelie penguins have shorter flippers than Chinstrap penguins, but there is substantial variability from one individual to another. 
+You see that Adelie penguins have shorter flippers than Chinstrap penguins (on average), but there is substantial variability from one individual penguin to another. 
 
 Again you start with a lineup of plots where you permute flipper length between the species.
 ```{r}
@@ -406,7 +406,7 @@ t.test(___ ~ ___,
 
 ## Test of equal variance {-}
 
-In the test of the population means above we assume that the variability among penguins is the same regardless of species (`var.equal = TRUE`).
+In the test of the population means above you assumed that the variability among penguins is the same regardless of species (`var.equal = TRUE`).
 
 You check this assumption by computing the variance by species.
 ```{r}
