@@ -19,36 +19,38 @@ Links to my stuff
 
 ## Course description {.unnumbered}
 
-This course is an introduction to the quantitative analysis of geographic data (data analysis for geographers). The course content is available on GitHub <https://github.com/jelsner/QG-2022>
+This course is an introduction to the quantitative analysis of geographic data (data science for geographers). The course content is available on GitHub <https://github.com/jelsner/QG-2022>
 
 Expected learning outcomes
 
-You will describe and demonstrate the principles of data science. You will do this with a grammar for manipulating data and a grammar for making graphs. The grammars are implemented in R using the syntax of tidyverse.
+You will demonstrate the core principles of data science as applied to geographic data. You will do this with a grammar for manipulating data and a grammar for making graphs. The grammars are implemented in R using the syntax of tidyverse.
 
 Materials
 
--   You will need access to the internet and either a laptop or desktop computer.
--   All course materials are available through GitHub.
--   There is no required textbook.
+-   You will need access to the internet and a laptop or desktop computer
+-   All course materials are available through GitHub
+-   There is no required textbook
 -   Much of the material for the course comes from the online book: R for Data Science <https://r4ds.had.co.nz/>
 -   Additional help is available online (e.g., <https://tinystats.github.io/teacups-giraffes-and-statistics/index.html>)
 
 Class meetings
 
-During each lesson I will work through and explain the R code within an `xx-Lesson.Rmd` file in the physical classroom. The notes in the lesson files are comprehensive, so you can work through them on your own if you can't make it to class. The notes are written using the markdown language. Markdown is a way to write content for the Web. An R markdown file has the suffix `.Rmd` (R markdown file). The file is opened using the RStudio application.
+During each lesson I will work through and explain the R code contained within an `xx-Lesson.Rmd` file in this classroom (BEL 320). The lesson files are comprehensive, so you can work through them on your own if you can't make it to class on a particular day.
+
+The notes are written using the markdown language. Markdown is a way to write content for the Web. An R markdown file has the suffix `.Rmd` (R markdown file). The file is opened using the RStudio application.
 
 ## Grades {.unnumbered}
 
 You are responsible for:
 
-1.  Reading and running the code in the lesson R markdown files (`.Rmd`) files. You can do this during the remote lessons as I talk and run my code or outside of class on your own.
+1.  Reading and running the code in the lesson R markdown files (`.Rmd`) files. You can do this during the remote lessons as I talk and run the code or you can work through the file outside of class on your own.
 2.  Completing and returning the lab assignments on time.
 
-Grades are determined only by how well you do on the assignments.
+Grades are determined entirely by how well you do on the assignments.
 
 There are no quizzes, tests, or exams.
 
-Grades are determined only by how well you do on the assignments. based on the following standard:
+Grades are based on the following rubric:
 
 -   A: Outstanding: few, in any, errors/omissions
 -   B: Good: only minor errors/omissions
