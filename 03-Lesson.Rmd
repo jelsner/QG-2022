@@ -355,9 +355,9 @@ The function `mean()` makes this calculation on your set of counts.
 mean(counts)
 ```
 
-## Data vectors {-}
+## Data as vectors {-}
 
-The count data is stored as a vector. R keeps track of the order that the data are entered. First element,second element, and so on. This is good for a couple of reasons. Here the data has a natural order - year 1, year 2, etc. You don't want to mix these. You would like to be able to make changes to the data item by item instead of entering the entire data again. Also vectors are math objects making them easy to manipulate.
+The count data is stored as a vector. R keeps track of the order that the data are entered. First element,second element, and so on. This is good for a couple of reasons. Here the data has a natural order - year 1, year 2, etc. You don't want to mix these. You can make changes to the data item by item instead of entering the entire data again. Also, vectors are math objects making them easy to use in formulas.
 
 Suppose `counts` contain the annual number of land-falling hurricanes from the first decade of a longer record. You want to keep track of counts over other decades. This could be done by the following, example.
 ```{r}

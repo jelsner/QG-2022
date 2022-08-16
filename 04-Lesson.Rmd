@@ -2,11 +2,11 @@
 
 Today
 
-- Sample statistics
+- Summary statistics on data
 - Structured data
 - Tables and summaries
 
-## Sample statistics {-}
+## Summary statistics on data {-}
 
 Once data are stored as an object, you use functions on them. Some common functions used on simple data objects include
 ```{r}
@@ -322,7 +322,7 @@ To remove an object from the current environment you use the `rm()` function. Us
 rm(cD1, cD2)
 ```
 
-## Tables and summaries {-}
+## Tables {-}
 
 All elements of a vector must be of the same type. For example, the vectors `A`, `B`, and `C` below are constructed as numeric, logical, and character, respectively.
 

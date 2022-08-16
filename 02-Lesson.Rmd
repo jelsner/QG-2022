@@ -14,7 +14,7 @@ Today
 -   How to make a plot
 -   Getting started using R
 
-## Data science {.unnumbered}
+## Essentials of data science {.unnumbered}
 
 Data science is done on a computer. You have two choices: use a spreadsheet or write code.
 
@@ -106,7 +106,7 @@ To learn more about markdown see: [Everything markdown](https://bookdown.org/yih
 
 ## How to make a plot {.unnumbered}
 
-To help motivate your interest in this course, you start by making a graph. There are three things to learn:
+To help motivate your interest here you start by making a graph. There are three things to learn:
 
 1.  How to create a graph with a reusable {ggplot2} template
 2.  How to add variables to a graph with aesthetics

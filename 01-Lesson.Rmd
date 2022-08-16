@@ -84,7 +84,7 @@ This should bring up the files in RStudio.
 
 Finally, learn git (optional) https://happygitwithr.com/install-git.html
 
-## RStudio's integrated development environment (IDE) {-}
+## Getting to know RStudio's integrated development environment (IDE) {-}
 
 * Written in HTML
 * Top menus
@@ -128,11 +128,11 @@ TLH.df <- readr::read_csv(file = here::here('data', 'TLH_SOD1892.csv'),
       dplyr::select(Date, Year, Month, Day, doy, TMAX, TMIN, PRCP)
 ```
 
-package::function  (`::` is called a library specifier).
+Use package::function  (`::` is called a library specifier). Or, load the package functions into your current RStudio environment with the `library()` function.
 
-Or, load the packages into your current environment with the `library()` function.
+Click on the Environment tab to see the data object `TLH.df`.
 
-Create a plot showing the frequency of daily high temperatures in Tallahassee.
+Use the data object and create a plot showing the frequency of daily high temperatures in Tallahassee.
 
 ```{r}
 library(ggplot2)
