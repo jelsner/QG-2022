@@ -129,7 +129,8 @@ Instead of automated variable selection:
 
 When the response variable can't be adequately described by a normal distribution often a simple transformation of the variable can make it approximately normal.
 
-Consider the following data set containing city pollution levels. The data are in the file _pollute.txt_. The data set contains levels of pollution in 41 cities along with explanatory variables including average temperature, the amount of industry, the population, the average wind speed, the amount of rain, and the number of wet days.
+Consider the following data set containing city pollution levels in file _pollute.txt_. The response variable is the level of pollution in 41 cities and the explanatory variables including average temperature, the amount of industry, the population, the average wind speed, the amount of rain, and the number of wet days.
+
 ```{r}
 url <- "http://myweb.fsu.edu/jelsner/temp/data/pollute.txt"
 pollute.df <- readr::read_table(url)
