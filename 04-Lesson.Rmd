@@ -8,7 +8,7 @@ Today
 
 ## Summary statistics on data {-}
 
-Once data are stored as an object, you use functions on them. Some common functions used on simple data objects include
+Once data are stored as an object, you use functions on the objects to summarize, analyze, or model the data values. Some common functions applied to data objects include
 ```{r}
 sum(counts)
 length(counts)
@@ -16,8 +16,6 @@ sum(counts)/length(counts)
 ```
 
 For this example, the `sum()` function returns the total number of hurricanes making landfall. The `length()` function returns the number of years, and `sum(counts)/length(counts)` returns the average number of hurricanes per year.
-
-Mean
 
 The average (or mean) value of a set of numbers ($x$'s) is defined as:
 $$
@@ -62,8 +60,6 @@ In this case a single number (the mean of the first decade) is subtracted from e
 
 This is an example of data recycling. R repeats values from one vector so that the length of this vector matches the other, longer vector. Here the mean is repeated 10 times.
 
-Variance
-
 Suppose you are interested in by how much the set of annual landfall counts varies from year to year. The formula for the variance is given by:
 $$
 \hbox{var}(x) = \frac{(x_1 - \bar x)^2 + (x_2 - \bar x)^2 + \cdots + (x_n - \bar x)^2}{n-1}
@@ -90,11 +86,9 @@ So the variance is 1.344. To verify with the `var()` function type
 var(x)
 ```
 
-Median
+Means and variances are summary statistics calculated on our data. Typically there are more data values close to the mean than far from it. A normal random variable is within two standard deviations of its mean about 95% of the time.
 
-Recall that the mean is a statistic calculated on our data. Typically there are more data values close to the mean than far from it. A normal random variable is within two standard deviations of its mean about 95% of the time.
-
-The median is a statistic defined exactly as the middle value.
+The median is a statistic defined as the middle value. Half the values are above the median and half the values are below the median.
 
 For example, consider a set of seven data values. Here the seven values are generated randomly. The `set.seed()` function guarantees that everyone (with a particular seed number) will get the same set of values.
 ```{r}
@@ -180,9 +174,7 @@ Note: Some packages come with data sets. To see what data is available in a pack
 data(package = "UsingR")
 ```
 
-Spread
-
-A simple measure of the spread of data values is the range. The range is given by the minimum and maximum value or by the difference between them.
+One measure of the spread of data values is the range. The range is given by the minimum and maximum value or by the difference between them.
 ```{r}
 range(income)
 diff(range(income))
@@ -253,7 +245,8 @@ Many times you wish to change only a small part of a previous command, such as w
 
 ## Structured data {-}
 
-When data are in a pattern; for instance the integers 1 through 99. The colon `:` function is used for creating simple sequences.
+When data values occur in a pattern; for instance the integers 1 through 99. The colon `:` function is used for creating simple sequences.
+
 ```{r}
 1:100
 rev(1:100)
@@ -261,6 +254,7 @@ rev(1:100)
 ```
 
 It's often necessary to specify either the step size and the starting and ending points or the starting and ending points and the length of the sequence. The `seq()` function does this.
+
 ```{r}
 seq(from = 1, to = 9, by = 2)
 seq(from = 1, to = 10, by = 2)
@@ -359,3 +353,5 @@ ss
 ```
 
 The vector object is now an ordered factor. Printing the object results in a list of the elements in the vector and a list of the levels in order.  Note: if you do the same for the `wx` object, the order is alphabetical by default. Try it.
+
+Assignment #1

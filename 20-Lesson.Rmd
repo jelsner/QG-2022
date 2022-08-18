@@ -114,11 +114,22 @@ step(modelFull)
 
 Backward deletion of variables is the default method with the `step()` function. That is a successive application of the `drop1()` function. In the case of having a large number of explanatory variables it's a good idea to also try forward selection to see if the results are the same. This is done with the argument `direction = "forward"`.
 
+A strong word of caution about automated variable selection concerns final model stability or the robustness of the selected model to small perturbations of the data set. Bootstrap resampling with replacement or subsampling without replacement are needed to investigate and quantify model stability of selected models. The basic idea is to draw B resamples from the original data set and to repeat variable selection in each of the resamples. 
+
+Important types of quantities that this approach can provide are (i) bootstrap inclusion frequencies to quantify how likely a variable is selected, (ii) sampling distributions of regression coefficients, (iii) model selection frequencies to quantify how likely a particular set of variables is selected, and (iv) pairwise inclusion frequencies, evaluating whether pairs of (correlated) variables are competing for selection.
+
+Instead of automated variable selection:
+- Use a data reduction method (principal components) to reduce the number of explanatory variables (p << n)
+- Use the literature to eliminate unimportant variables
+- Eliminate variables whose distributions are too narrow
+- Eliminate variables with many missing observations
+- Don't use the response variable to decide which explanatory variables to use
+
 ## Transforming a response variable {-}
 
-When the response variable can't be adequately described by a normal distribution often a simple transformation of the variable will make it approximately normal.
+When the response variable can't be adequately described by a normal distribution often a simple transformation of the variable can make it approximately normal.
 
-Consider the following data set containing pollution levels in 41 cites. The data are in the file _pollute.txt_. The data set contains levels of pollution in 41 cites along with explanatory variables including average temperature, the amount of industry, the population, the average wind speed, the amount of rain, and the number of wet days.
+Consider the following data set containing city pollution levels. The data are in the file _pollute.txt_. The data set contains levels of pollution in 41 cities along with explanatory variables including average temperature, the amount of industry, the population, the average wind speed, the amount of rain, and the number of wet days.
 ```{r}
 url <- "http://myweb.fsu.edu/jelsner/temp/data/pollute.txt"
 pollute.df <- readr::read_table(url)
@@ -127,7 +138,8 @@ head(pollute.df)
 
 Here you want to fit a multiple regression model that can predict pollution levels (`Pollution`) from the explanatory variables including average temperature, the amount of industry, the population, the average wind speed, the amount of rain, and the number of wet days.
 
-You start with a histogram and a density plot of the response variable `Pollution`.
+Start with a histogram and a density plot of the response variable `Pollution`.
+
 ```{r}
 library(ggplot2)
 

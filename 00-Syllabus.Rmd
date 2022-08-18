@@ -97,7 +97,7 @@ It is my intent to present notes and data that are respectful of diversity: gend
 
 28 dates, 26 lessons, 11 Assignments
 
-| Assignment | Due Date (6 p.m.) |
+| Assignment | Due Date (8 p.m.) |
 |------------|-----------------|
 | 1          | September 1     |
 | 2          | September 8     |
@@ -110,6 +110,8 @@ It is my intent to present notes and data that are respectful of diversity: gend
 | 9          | November 10     |
 | 10         | November 17     |
 | 11         | December 1      |
+
+Email the finished assignment file to [jelsner\@fsu.edu](mailto:jelsner@fsu.edu){.email}
 
 ## Deeper dives {.unnumbered}
 
