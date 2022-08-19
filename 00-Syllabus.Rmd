@@ -5,7 +5,7 @@
 ## Contact information {.unnumbered}
 
 -   Instructor Name: Professor James B. Elsner
--   Instructor Location: Bellamy Building, Room 323a
+-   Instructor Location: Bellamy Building, Room 314
 -   Lesson Hours: TR 3:05-4:20 p.m.
 -   Student Hours: TR 9:15-10:30 a.m., 2-3 p.m.
 
@@ -17,29 +17,27 @@ Links to my stuff
 -   [GitHub](https://github.com/jelsner/)
 -   [Twitter](https://twitter.com/JBElsner)
 
-## Course description {.unnumbered}
+## Course description and expected learning outcomes {.unnumbered}
 
-This course is an introduction to the quantitative analysis of geographic data (data science for geographers). The course content is available on GitHub <https://github.com/jelsner/QG-2022>
-
-Expected learning outcomes
+This course is an introduction to the quantitative analysis of geographic data (data science for geographers). All the course content is available on GitHub <https://github.com/jelsner/QG-2022>
 
 You will demonstrate the core principles of data science as applied to geographic data. You will do this with a grammar for manipulating data and a grammar for making graphs. The grammars are implemented in R using the syntax of tidyverse.
 
 Materials
 
 -   You will need access to the internet and a laptop or desktop computer
--   All course materials are available through GitHub
+-   All course materials are available through GitHub <https://github.com/jelsner/QG-2022>
 -   There is no required textbook
 -   Much of the material for the course comes from the online book: R for Data Science <https://r4ds.had.co.nz/>
 -   Additional help is available online (e.g., <https://tinystats.github.io/teacups-giraffes-and-statistics/index.html>)
 
 Class meetings
 
-During each lesson I will work through and explain the R code contained within an `xx-Lesson.Rmd` file in this classroom (BEL 320). The lesson files are comprehensive, so you can work through them on your own if you can't make it to class on a particular day.
+During each lesson I will work through and explain the R code contained within an `xx-Lesson.Rmd` file. Lessons will be held in this classroom (BEL 320). The lesson files are comprehensive, so you can work through them on your own if you can't make it to class on a particular day.
 
 The notes are written using the markdown language. Markdown is a way to write content for the Web. An R markdown file has the suffix `.Rmd` (R markdown file). The file is opened using the RStudio application.
 
-## Grades {.unnumbered}
+## Grades and ethics {.unnumbered}
 
 You are responsible for:
 
@@ -62,8 +60,6 @@ I'll use the +/- grading system.
 
 Grades will be posted as they are recorded on [FSU Canvas](https://canvas.fsu.edu)
 
-## Ethics {.unnumbered}
-
 Academic honor code
 
 <https://fda.fsu.edu/academic-resources/academic-integrity-and-grievances/academic-honor-policy>
@@ -78,7 +74,7 @@ It is my intent to present notes and data that are respectful of diversity: gend
 
 ## Schedule (subject to change with notice) {.unnumbered}
 
-| Week | Dates                   | Topic                   |
+| Week | Dates                   | General topics          |
 |------|-------------------------|-------------------------|
 | 1    | August 23, 25           | RStudio Cloud and R     |
 | 2    | August 30, September 1  | Working with R          |
@@ -111,7 +107,7 @@ It is my intent to present notes and data that are respectful of diversity: gend
 | 10         | November 17     |
 | 11         | December 1      |
 
-Email the finished assignment file to [jelsner\@fsu.edu](mailto:jelsner@fsu.edu){.email}
+Email your completed assignment files to [jelsner\@fsu.edu](mailto:jelsner@fsu.edu){.email}
 
 ## Deeper dives {.unnumbered}
 
