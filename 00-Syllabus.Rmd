@@ -42,7 +42,7 @@ The notes are written using the markdown language. Markdown is a way to write co
 You are responsible for:
 
 1.  Reading and running the code in the lesson R markdown files (`.Rmd`) files. You can do this during the remote lessons as I talk and run the code or you can work through the file outside of class on your own.
-2.  Completing and returning the lab assignments on time.
+2.  Completing and returning the assignments on time.
 
 Grades are determined entirely by how well you do on the assignments.
 
@@ -116,3 +116,5 @@ Email your completed assignment files to [jelsner\@fsu.edu](mailto:jelsner@fsu.e
 -   Towards a more open and reproducible approach to geographic and spatial data science [Opening practice: supporting reproducibility and critical spatial data science](https://link.springer.com/article/10.1007/s10109-020-00334-2)
 
 -   [Analyzing US Census Data: Methods, Maps, and Models in R](https://walker-data.com/census-r/index.html)
+
+-   [Getting started with R and R-spatial](https://bakaniko.github.io/foss4g2022-getting-started-rspatial/)
