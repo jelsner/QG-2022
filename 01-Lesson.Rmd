@@ -82,7 +82,7 @@ Then open the first two Rmd files
 
 This should bring up the files in RStudio.
 
-Finally, learn git (optional) https://happygitwithr.com/install-git.html
+Finally, learn how to connect to GitHub (optional). See Jennifer Bryan's https://happygitwithr.com/install-git.html
 
 ## Getting to know RStudio's integrated development environment (IDE) {-}
 
