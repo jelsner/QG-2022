@@ -12,7 +12,7 @@ Today
 
 ## What is this course? {-}
 
-This is a first course in data science for geographers.
+This is a course in data science for geographers.
 
 **Q - What statistics background does this course assume?**  
 A - None.
@@ -46,7 +46,7 @@ Other research:
 - [A year as told by fitbit](http://livefreeordichotomize.com/2017/12/27/a-year-as-told-by-fitbit/) by Nick Strayer
 - [R-Ladies global tour](http://www.masalmon.eu/2017/10/06/globalrladiestour/) by Maelle Salmon
 
-## Syllabus {-}
+## Get the syllabus {-}
 
 - Navigate to https://github.com/jelsner/QG-2022
 - Click on the file labeled `00-Syllabus.Rmd`
