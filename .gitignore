@@ -4,3 +4,5 @@
 .Ruserdata
 AssignmentAnswers
 __MACOSX
+.DS_Store
+packages/
