@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
 # Thursday, August 25, 2022 {.unnumbered}
 
 -   Make sure you have a copy of the file `02_Lesson.Rmd` and have it opened in the RStudio IDE
@@ -170,7 +175,7 @@ The function `geom_point()` adds a layer of points to the empty plot created by 
 
 The function `geom_point()` takes a mapping argument (`mapping =`), which defines which variables in your data are mapped to which axes in your graph. The mapping argument is always paired with the function `aes()`, which you use to bring together the mappings you want to create.
 
-Here, you want to map the `displ` variable to the x axis (horizontal axis) and the `hwy` variable to the y axis (vertical axis), so you add `x = displ` and `y = hwy` inside of `aes()` (and you separate them with a comma). 
+Here, you want to map the `displ` variable to the x axis (horizontal axis) and the `hwy` variable to the y axis (vertical axis), so you add `x = displ` and `y = hwy` inside of `aes()` (and you separate them with a comma).
 
 Where will `ggplot()` look for these mapped variables? In the data frame that you passed to the data argument, in this case, `mpg`.
 
@@ -193,11 +198,16 @@ Give it a try!
 
 (1) Copy and paste the above code chunk, including the code chunk delimiters, and replace the `y = hwy` with `y = cty`.
 
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = cty))
+```
+
 (2) Replace the bracketed sections `<>` with `mpg`, `geom_boxplot`, and `x = class`, `y = hwy` to make a slightly different graph.
 
 ```{r, eval=FALSE}
-ggplot(data = <>) + 
- geom_<>(mapping = aes(x = <>, y = <>))
+ggplot(data = mpg) + 
+ geom_boxplot(mapping = aes(x = class, y = hwy))
 ```
 
 Common problems
@@ -211,15 +221,15 @@ Location of the `+` sign
 One common problem when creating {ggplot2} graphics is to put the `+` in the wrong place: it must come at the end of a line, not at the start. In other words, make sure you haven't accidentally written code like this:
 
 ```{r, eval=FALSE}
-ggplot(data = mpg) 
-+ geom_point(mapping = aes(x = displ, y = hwy))
+ggplot(mpg) + 
+  geom_point(aes(displ, hwy))
 ```
 
 Help!
 
 If you're still stuck, try the help. You can get help about any R function by running `?function_name` in a code chunk, e.g. `?geom_point`. Don't worry if the help doesn't seem that helpful --- instead skip down to the bottom of the help page and look for a code example that matches what you're trying to do.
 
-If that doesn't help, carefully read the error message that appears when you run your (non-working) code. Sometimes the answer will be buried there! But when you're new to R, you might not yet know how to understand the error message. 
+If that doesn't help, carefully read the error message that appears when you run your (non-working) code. Sometimes the answer will be buried there! But when you're new to R, you might not yet know how to understand the error message.
 
 Another great tool is Google: try googling the error message, as it's likely someone else has had the same problem, and has gotten help online.
 
@@ -379,3 +389,9 @@ By contrast, in the last case you add `my_numbers` to itself. Because the two ob
 Your turn
 
 Create a code chunk to compute the coefficient of variation (standard deviation divided by the mean) for your numbers (`my_numbers`).
+```{r}
+cv <- sd(my_numbers)/mean(my_numbers)
+```
+
+The coefficient of variation for my numbers is `r cv`.
+
