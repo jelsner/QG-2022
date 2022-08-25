@@ -128,6 +128,7 @@ TLH.df <- readr::read_csv(file = here::here('data', 'TLH_SOD1892.csv'),
       dplyr::select(Date, Year, Month, Day, doy, TMAX, TMIN, PRCP)
 ```
 
+
 Use package::function  (`::` is called a library specifier). Or, load the package functions into your current RStudio environment with the `library()` function.
 
 Click on the Environment tab to see the data object `TLH.df`.

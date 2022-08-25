@@ -41,7 +41,7 @@ The notes are written using the markdown language. Markdown is a way to write co
 
 You are responsible for:
 
-1.  Reading and running the code in the lesson R markdown files (`.Rmd`) files. You can do this during the remote lessons as I talk and run the code or you can work through the file outside of class on your own.
+1.  Reading and running the code in the lesson R markdown files (`.Rmd`) files. You can do this during the lessons as I talk and run the code or you can work through the file outside of class on your own.
 2.  Completing and returning the assignments on time.
 
 Grades are determined entirely by how well you do on the assignments.
@@ -76,7 +76,7 @@ It is my intent to present notes and data that are respectful of diversity: gend
 
 | Week | Dates                   | General topics          |
 |------|-------------------------|-------------------------|
-| 1    | August 23, 25           | RStudio Cloud and R     |
+| 1    | August 23, 25           | RStudio and R     |
 | 2    | August 30, September 1  | Working with R          |
 | 3    | September 6, 8          | Data and data frames    |
 | 4    | September 13, 15        | Data analysis           |
@@ -94,18 +94,18 @@ It is my intent to present notes and data that are respectful of diversity: gend
 28 dates, 26 lessons, 11 Assignments
 
 | Assignment | Due Date (8 p.m.) |
-|------------|-----------------|
-| 1          | September 1     |
-| 2          | September 8     |
-| 3          | September 15    |
-| 4          | September 29    |
-| 5          | October 6       |
-| 6          | October 20      |
-| 7          | October 27      |
-| 8          | November 3      |
-| 9          | November 10     |
-| 10         | November 17     |
-| 11         | December 1      |
+|------------|-------------------|
+| 1          | September 1       |
+| 2          | September 8       |
+| 3          | September 15      |
+| 4          | September 29      |
+| 5          | October 6         |
+| 6          | October 20        |
+| 7          | October 27        |
+| 8          | November 3        |
+| 9          | November 10       |
+| 10         | November 17       |
+| 11         | December 1        |
 
 Email your completed assignment files to [jelsner\@fsu.edu](mailto:jelsner@fsu.edu){.email}
 

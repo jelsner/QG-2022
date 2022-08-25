@@ -1,11 +1,8 @@
 # Thursday, August 25, 2022 {.unnumbered}
 
--   Any questions about assignments or grades?
--   Make sure you have a copy of the file `02_Lesson.Rmd` and have it opened in the RStudio IDE.
+-   Make sure you have a copy of the file `02_Lesson.Rmd` and have it opened in the RStudio IDE
 -   Follow along in your copy of the lesson file as I go line by line through the file
 -   Note that your file's background and text might look different. You change things by going to Tools \> Global Options \> Appearance
--   Much of the lesson materials come from online books: <https://www.bigbookofr.com/index.html>
--   Datasets: <https://kieranhealy.org/blog/archives/2020/08/25/some-data-packages/>
 
 Today
 
@@ -14,7 +11,7 @@ Today
 -   How to make a plot
 -   Getting started using R
 
-## Essentials of data science {.unnumbered}
+## Data science {.unnumbered}
 
 Data science is done on a computer. You have two choices: use a spreadsheet or write code.
 
@@ -36,30 +33,28 @@ It's hard to explain precisely what you did when working with a spreadsheet. Cli
 
 Automation
 
-If you've ever made a map using a geographic information system (GIS) you know how hard it is to make another one (even one that is quite similar) with a new set of data (even a very similar one). Running code with new data is simple.
+If you've ever made a map using a geographic information system (GIS) you know how hard it is to make another one (even one that is quite similar) with a new set of data. Running code with new data is simple.
 
-Being able to code is an important skill for nearly all technical jobs. Here you will learn how to code. But keep in mind: Just like learning to write doesn't mean you will be a writer (i.e., make a living writing), learning to code doesn't mean you will be a coder.
+Being able to code is an important skill for most technical jobs. Here you will learn how to code. But keep in mind: Just like learning to write doesn't mean you will be a writer (i.e., make a living writing), learning to code doesn't mean you will be a coder.
 
 The R programming language
 
--   R is a leading open source programming language for data science. R and Python.
+-   R is the leading open source programming language for data science.
 -   Free, open-source, runs on Windows, Macs, etc. Excellent graphing capabilities. Powerful, extensible, and relatively easy to learn syntax. Thousands of functions.
 -   Has all the cutting edge statistical methods including methods in spatial statistics.
--   Used by scientists of all stripes. Most of the world's statisticians use it (and contribute to it).
+-   Used by scientists across many disciplines. Most of the world's statisticians use it (and contribute to it).
 
-Overview of this course
+Overview of this course in data science for geographers
 
-You start by making some graphs. You will learn to make clear, informative plots that help you understand your data. You will learn the basic structure of a making a plot.
+You will start by learning how to work with data. Filtering key observations, selecting important variables, and creating new variables. You will learn how to create summary tables of your data.
 
-Visualization alone is not enough, so you will also learn the key verbs that allow you to select important variables, filter out key observations, create new variables, and compute summaries (data wrangling).
+Data wrangling (as it is sometimes called) is not enough. You will learn how to make graphs that are informative and that help you understand your data. You will learn the basic structures of informative plots (sometimes referred to as data visualization).
 
-You will then combine data wrangling and visualization with your curiosity to ask and answer interesting questions by learning how to fit models to your data. Data models extend your ability to ask and answer questions about this wonderful world of ours.
-
-Finally, with geographic and environmental data collected the models will include a spatial component.
+You will then learn how to fit various models to your data. Data models extend your ability to understand your data. When your data are geographic, the models will include a spatial component.
 
 ## Structure of markdown files {.unnumbered}
 
-The ability to exactly reproduce your work is important to a scientific process. It is also pragmatic. The person most likely to reproduce your work is you.
+The ability to reproduce your work is important to the scientific process. It is also pragmatic. The person most likely to reproduce your work is you.
 
 This is especially true for graphs and figures. These often have a finished quality to them as a result of tweaking and adjustments to the details. This makes it hard to reproduce them later.
 
@@ -86,6 +81,8 @@ There is a set of conventions for marking up plain text in a way that indicates 
 -   **bold**, and
 -   `code font`
 
+File \> New File \> R Markdown
+
 Your class notes include code. There is a set format for including code into your markdown file (lines of code; code chunk). They look like this.
 
 ```{r}
@@ -106,7 +103,7 @@ To learn more about markdown see: [Everything markdown](https://bookdown.org/yih
 
 ## How to make a plot {.unnumbered}
 
-To help motivate your interest here you start by making a graph. There are three things to learn:
+To help motivate interest, let us start by making a graph. There are three things to learn:
 
 1.  How to create a graph with a reusable {ggplot2} template
 2.  How to add variables to a graph with aesthetics
@@ -114,7 +111,7 @@ To help motivate your interest here you start by making a graph. There are three
 
 The following examples are taken from the online book entitled: `R for Data Science` by Hadley Wickham and Garrett Grolemund, published by O'Reilly Media, Inc., 2016, ISBN: 9781491910399. <https://r4ds.had.co.nz/>.
 
-Let's begin with a question. Do cars with big engines use more fuel than cars with small engines?
+Let's begin with a question. Do cars with big engines use more fuel than cars with small engines? Given a large enough data set, there are only two possibilities
 
 -   A: Cars with bigger engines use more fuel.
 -   B: Cars with bigger engines use less fuel.
@@ -154,7 +151,7 @@ ggplot(data = mpg) +
 
 The plot shows an inverse relationship between engine size (`displ`) and fuel efficiency (`hwy`). Each point is a different car. Cars that have a large value of `displ` tend to have a small value of `hwy` and cars with a small value of `displ` tend to have a large value of `hwy`.
 
-In other words, cars with big engines use more fuel. If that was your answer, you are right!
+In other words, cars with big engines use more fuel.
 
 Now let's look at how you made the plot.
 
@@ -165,15 +162,17 @@ ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy))
 ```
 
-The first function, `ggplot()`, creates a coordinate system that you can add layers to. The first argument of `ggplot()` is the dataset to use in the graph.
+The first function, `ggplot()`, creates a coordinate system that you can add layers to. The first argument of `ggplot()` is the name of the data object.
 
-By itself, `ggplot(data = mpg)` creates an empty graph, but it is not very interesting so I'm not going to show it here.
+By itself, `ggplot(data = mpg)` creates an empty graph, but it is not very interesting.
 
 The function `geom_point()` adds a layer of points to the empty plot created by `ggplot()`. As a result, you get a scatterplot.
 
-The function `geom_point()` takes a mapping argument, which defines which variables in your dataset are mapped to which axes in your graph. The mapping argument is always paired with the function `aes()`, which you use to bring together the mappings you want to create.
+The function `geom_point()` takes a mapping argument (`mapping =`), which defines which variables in your data are mapped to which axes in your graph. The mapping argument is always paired with the function `aes()`, which you use to bring together the mappings you want to create.
 
-Here, you want to map the `displ` variable to the x axis (horizontal axis) and the `hwy` variable to the y axis (vertical axis), so you add `x = displ` and `y = hwy` inside of `aes()` (and you separate them with a comma). Where will `ggplot()` look for these mapped variables? In the data frame that you passed to the data argument, in this case, `mpg`.
+Here, you want to map the `displ` variable to the x axis (horizontal axis) and the `hwy` variable to the y axis (vertical axis), so you add `x = displ` and `y = hwy` inside of `aes()` (and you separate them with a comma). 
+
+Where will `ggplot()` look for these mapped variables? In the data frame that you passed to the data argument, in this case, `mpg`.
 
 -   Knit to generate HTML.
 -   Compare the HTML with the Rmd.
@@ -194,16 +193,11 @@ Give it a try!
 
 (1) Copy and paste the above code chunk, including the code chunk delimiters, and replace the `y = hwy` with `y = cty`.
 
-```{r}
-ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = cty))
-```
-
-(2) Replace the bracketed sections `< >` with `mpg`, `geom_boxplot`, and `x = class`, `y = hwy` to make a slightly different graph.
+(2) Replace the bracketed sections `<>` with `mpg`, `geom_boxplot`, and `x = class`, `y = hwy` to make a slightly different graph.
 
 ```{r, eval=FALSE}
-ggplot(data = mpg) + 
- geom_boxplot(mapping = aes(x = class, y = hwy))
+ggplot(data = <>) + 
+ geom_<>(mapping = aes(x = <>, y = <>))
 ```
 
 Common problems
@@ -214,7 +208,7 @@ Start by comparing the code that you are running to the code in the examples in 
 
 Location of the `+` sign
 
-One common problem when creating {ggplot2} graphics is to put the `+` in the wrong place: it must come at the end of a line, not the start. In other words, make sure you haven't accidentally written code like this:
+One common problem when creating {ggplot2} graphics is to put the `+` in the wrong place: it must come at the end of a line, not at the start. In other words, make sure you haven't accidentally written code like this:
 
 ```{r, eval=FALSE}
 ggplot(data = mpg) 
@@ -225,7 +219,9 @@ Help!
 
 If you're still stuck, try the help. You can get help about any R function by running `?function_name` in a code chunk, e.g. `?geom_point`. Don't worry if the help doesn't seem that helpful --- instead skip down to the bottom of the help page and look for a code example that matches what you're trying to do.
 
-If that doesn't help, carefully read the error message that appears when you run your (non-working) code. Sometimes the answer will be buried there! But when you're new to R, you might not yet know how to understand the error message. Another great tool is Google: try googling the error message, as it's likely someone else has had the same problem, and has gotten help online.
+If that doesn't help, carefully read the error message that appears when you run your (non-working) code. Sometimes the answer will be buried there! But when you're new to R, you might not yet know how to understand the error message. 
+
+Another great tool is Google: try googling the error message, as it's likely someone else has had the same problem, and has gotten help online.
 
 ## Getting started using R {.unnumbered}
 
@@ -233,7 +229,9 @@ You are getting oriented to the language itself (what happens at the console), w
 
 Everything has a name
 
-In R, everything you deal with has a name. You refer to things by their names as you examine, use, or modify them. Named entities include variables (like x, or y), data that you have loaded (like my_data), and functions that you use. (More about functions soon.) You will spend a lot of time talking about, creating, referring to, and modifying things with names.
+In R, everything you deal with has a name. You refer to things by their names as you examine, use, or modify them. Named entities include variables (like x, or y), data that you have loaded (like my_data), and functions that you use. (More about functions soon.)
+
+You will spend a lot of time talking about, creating, referring to, and modifying things with names.
 
 Things are listed under the Environment tab in the upper right panel.
 
@@ -304,7 +302,7 @@ Or
 mean(x = your_numbers)
 ```
 
-While the function arguments have names that are used internally, (here, `x =`), you don't strictly need to specify the name for the function to work:
+While the function arguments have names that are used internally, (here, `x =`), you don't strictly need to specify the name for the function to work.
 
 ```{r}
 mean(my_numbers)
@@ -314,7 +312,7 @@ If you omit the name of the argument, R will just assume you are giving the func
 
 For simple functions that only require one or two arguments, omitting their names is usually not confusing. For more complex functions, you will typically want to use the names of the arguments rather than try to remember what the ordering is.
 
-In general, when providing arguments to a function the syntax is `<argument> = <value>`. If `<value>` is a named object that already exists in your workspace, like a vector of numbers of a table of data, then you provide it unquoted, as in `mean(my_numbers)`. If `<value>` is not an object, a number, or a logical value like TRUE, then you usually put it in quotes, e.g., `labels(x = "X Axis Label")`.
+In general, when providing arguments to a function the syntax is `<argument name> = <value>`. If `<value>` is a named object that already exists in your environment, like a vector of numbers of a table of data, then you provide it unquoted, as in `mean(my_numbers)`. If `<value>` is not an object, a number, or a logical value like TRUE, then you usually put it in quotes, e.g., `labels(x = "X Axis Label")`.
 
 Functions take inputs via their arguments, do something, and return outputs. What the output is depends on what the function does. The `c()` function takes a sequence of comma-separated elements and returns a vector consisting of those same elements. The `mean()` function takes a vector of numbers and returns a single number, their average.
 
