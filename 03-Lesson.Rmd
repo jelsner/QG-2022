@@ -10,8 +10,6 @@ If your analysis is to be a convincing, the trail from data to final output must
 
 ## Graphing examples {.unnumbered}
 
-Scatter plots
-
 Functions from the {ggplot2} package are used to make graphs. You make these graphing functions available for a given session of R (every time you open RStudio) with the `library(ggplot2)` function.
 
 As an example, consider the data frame called `airquality`. The data contains daily air quality measurements from a location in New York City between May and September of 1973.
