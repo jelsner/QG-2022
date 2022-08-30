@@ -61,6 +61,7 @@ In this case a single number (the mean of the first decade) is subtracted from e
 This is an example of data recycling. R repeats values from one vector so that the length of this vector matches the other, longer vector. Here the mean is repeated 10 times.
 
 Suppose you are interested in by how much the set of annual landfall counts varies from year to year. The formula for the variance is given by:
+
 $$
 \hbox{var}(x) = \frac{(x_1 - \bar x)^2 + (x_2 - \bar x)^2 + \cdots + (x_n - \bar x)^2}{n-1}
 $$
