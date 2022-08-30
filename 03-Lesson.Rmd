@@ -33,7 +33,7 @@ The scatter plot is one of the most useful statistical graphs. It describes the 
 
 Using the {ggplot2} functions, you answer the question above by mapping the `Temp` variable to the x aesthetic and mapping the `Ozone` variable to the y aesthetic.
 
-More simply you could say that you plot `Temp` on the x axis and `Ozone` on the y axis. Put you want to acknowledge that the axes are aesthetics (there are others like color, size, etc).
+More simply you could say that you plot `Temp` on the x axis and `Ozone` on the y axis. But you want to acknowledge that the axes are aesthetics (there are others like color, size, etc).
 
 ```{r}
 library(ggplot2)
@@ -78,7 +78,10 @@ Question: On average is ozone concentration higher on windy days? Create a graph
 Since you have the template from the previous code. You first copy/paste and then simply change the x-axis aesthetic to `Wind` and the y-axis aesthetic to `Ozone`.
 
 ```{r}
-
+ggplot(data = airquality,
+       mapping =  aes(x = Wind, y = Ozone)) + 
+  geom_point(na.rm = TRUE) +
+  geom_smooth(na.rm = TRUE)
 ```
 
 What is your answer?
@@ -88,7 +91,7 @@ You can use a label instead of a dot for the locations in this two-dimensional s
 ```{r}
 ggplot(data = airquality, 
        mapping = aes(x = Wind, y = Ozone, label = Ozone)) +
-  geom_text(na.rm = TRUE)
+  geom_text(na.rm = TRUE) 
 ```
 
 The result is a scatter plot that has the values of ozone as the location in the 2-D plot instead of points.
@@ -160,7 +163,7 @@ You answer this question with another aesthetic. You assign a level of the aesth
 ggplot(data = penguins.df, 
        mapping = aes(x = flipper_length_mm, y = body_mass_g, color = species)) + 
   geom_point() +
-  scale_color_manual(values = c("darkorange","darkorchid","cyan4")) 
+  scale_color_manual(values = c("darkorange", "darkorchid", "cyan4")) 
 ```
 
 Returning to the `mpg` data set from last time.
@@ -328,8 +331,6 @@ Some names are commonly used to represent certain types of data. For instance, `
 
 These conventions are not forced, but consistent use of them makes it easier for you (and others) to understand what you've done.
 
-Entering data
-
 The `c()` function is useful for getting a small amount of data into R. The function combines (concatenates) items (elements). Example: consider a set of hypothetical annual land falling hurricane counts over a ten-year period.
 
 2 3 0 3 1 0 0 1 2 1
@@ -341,7 +342,7 @@ counts <- c(2, 3, 0, 3, 1, 0, 0, 1, 2, 1)
 counts
 ```
 
-Notice a few things. You assigned the values to an object called counts. The assignment operator is an equal sign (`=`). Values do not print. They are assigned to an object name.
+Notice a few things. You assigned the values to an object called counts. The assignment operator is an equal sign (`<-`). Values do not print. They are assigned to an object name.
 
 They are printed by typing the object name as you did on the second line. Finally, the values when printed are prefaced with a `[1]`. This indicates that the object is a vector and the first entry in the vector is a value of 2 (The number immediately to the right of [1]). More on this later.
 
@@ -363,7 +364,8 @@ The average (or mean) value of a set of numbers ($x$'s) is defined as:
 
 $$
 \bar x = \frac{x_1 + x_2 + \cdots + x_n}{n}
-$$ The function `mean()` makes this calculation on your set of counts.
+$$ 
+The function `mean()` makes this calculation on your set of counts.
 
 ```{r}
 mean(counts)
@@ -371,7 +373,7 @@ mean(counts)
 
 ## Data as vectors {.unnumbered}
 
-The count data is stored as a vector. R keeps track of the order that the data are entered. First element,second element, and so on. This is good for a couple of reasons. Here the data has a natural order - year 1, year 2, etc. You don't want to mix these. You can make changes to the data item by item instead of entering the entire data again. Also, vectors are math objects making them easy to use in formulas.
+The count data is stored as a vector. R keeps track of the order that the data are entered. First element, second element, and so on. This is good for a couple of reasons. Here the data has a natural order - year 1, year 2, etc. You don't want to mix these. You can make changes to the data item by item instead of entering the entire data again. Also, vectors are math objects making them easy to use in formulas.
 
 Suppose `counts` contain the annual number of land-falling hurricanes from the first decade of a longer record. You want to keep track of counts over other decades. This could be done by the following, example.
 
