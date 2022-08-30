@@ -3,7 +3,7 @@
 Today
 
 -   Graphing examples
--   Introduction to working with R
+-   Introduction to working with base R
 -   Data as vectors
 
 If your analysis is to be a convincing, the trail from data to final output must be open and available to all. Markdown helps you create scientific reports that are a mixture of text and code. This makes it easy to create an understandable trail from hypothesis, to data, to analysis, to results. Reproducible research.
@@ -33,9 +33,9 @@ Question: Are ozone concentrations higher on warmer days? Let's see what the dat
 
 The scatter plot is one of the most useful statistical graphs. It describes the *relationship* between two variables. It is made by plotting the variables in a plane defined by the values of the variables.
 
-Using the {ggplot2} functions, you answer the question above by mapping the `Temp` variable to the x aesthetic and the `Ozone` variable to the y aesthetic.
+Using the {ggplot2} functions, you answer the question above by mapping the `Temp` variable to the x aesthetic and mapping the `Ozone` variable to the y aesthetic.
 
-More simply you could say that you plot `Temp` on the x axis and `Ozone` on the y axis. Put you want to recognize that the axes are aesthetics (there are other aesthetics like color, size, etc).
+More simply you could say that you plot `Temp` on the x axis and `Ozone` on the y axis. Put you want to acknowledge that the axes are aesthetics (there are others like color, size, etc).
 
 ```{r}
 library(ggplot2)
@@ -64,7 +64,9 @@ ggplot(data = airquality) +
 
 The smooth line describes how the average ozone concentration varies with temperature. For lower temperatures there is not much change in ozone concentrations as temperatures increase, but for higher temperatures the increase in ozone concentrations is more pronounced.
 
-In the above code you used the same mapping for the point layer and the smooth layer. You can simplify the code by putting the `mapping =` argument into the `ggplot()` function.
+In the above code you use the same mapping (`x = Temp` and `y = Ozone`) in the point layer (`geom_point()`) and in the smooth layer (`geom_smooth()`). 
+
+By putting the mapping argument in the `ggplot()` function, you do not need to re-specify the mapping in the geom layers.
 
 ```{r}
 ggplot(data = airquality,
@@ -73,16 +75,15 @@ ggplot(data = airquality,
   geom_smooth(na.rm = TRUE)
 ```
 
-Question: On average is ozone concentration higher on windy days? Create a graph to help you answer this question.
+Question: On average is ozone concentration higher on windy days? Create a graph to help you answer this question. 
+
+Since you have the template from the previous code. You first copy/paste and then simply change the x-axis aesthetic to `Wind` and the y-axis aesthetic to `Ozone`.
 
 ```{r}
-ggplot(data = airquality, 
-       mapping = aes(x = Wind, y = Ozone)) + 
-  geom_point(na.rm = TRUE) +
-  geom_smooth(na.rm = TRUE)
+
 ```
 
-What is the answer?
+What is your answer?
 
 You can use a label instead of a dot for the locations in this two-dimensional scatter plot by adding the `label` aesthetic and using `geom_text`.
 
@@ -92,7 +93,9 @@ ggplot(data = airquality,
   geom_text(na.rm = TRUE)
 ```
 
-To map an aesthetic to a variable, associate the name of the aesthetic to the name of the variable inside `aes()`.
+The result is a scatter plot that has the values of ozone as the location in the 2-D plot instead of points.
+
+To map an aesthetic to a variable, provide the name of the aesthetic to the name of the variable inside the `aes()` function.
 
 You can make the plot interactive by using the `ggplotly()` function from the {plotly} package. You simply put the above code inside this function.
 
@@ -107,44 +110,44 @@ plotly::ggplotly(
 
 Hover/zoom etc.
 
-As another example, consider the Palmer penguin data set from <https://education.rstudio.com/blog/2020/07/palmerpenguins-cran/>.
+Example, consider the Palmer penguin data set from <https://education.rstudio.com/blog/2020/07/palmerpenguins-cran/>.
 
-The data are located on the web at the following URL. You first save the location as an object called `loc`.
+The data are located on the Web at the following URL. You first save the location as an object called `loc`.
 
 ```{r}
 loc <- "https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/inst/extdata/penguins.csv"
 ```
 
-Note that this object is now located in our environment. It is simply a string of characters (letters, backslashes, etc) in quotes. A character object.
+Note that this object is now located in our environment. It is a character string involving letters, backslashes, etc and it is given inside double quotes.
 
-Next you get the data and save it as an object called `penguins` with the `read_csv()` function from the {readr} package. Inside the parentheses of the function you put the name of the location.
+Next you get the data and save it as an object called `penguins.df` with the `read_csv()` function from the {readr} package. Inside the parentheses of the function you put the name of the location.
 
 ```{r}
-penguins <- readr::read_csv(loc)
+penguins.df <- readr::read_csv(loc)
 ```
 
-Note that the object `penguins` is now in your environment. It is a data frame containing 344 rows (observations) and 8 variables. You list the first 10 rows and 7 columns by typing the name of the object as follows.
+Note that the object `penguins.df` is now in your environment. It is a data frame containing 344 rows (observations) and 8 variables. You list the first 10 rows and 7 columns by typing the name of the object as follows.
 
 ```{r}
-penguins
+penguins.df
 ```
 
 The data are 344 individual penguins each described by species (Adelie, Chinstrap, Gentoo), where it was found (island name), length of bill (mm), depth of bill (mm), body mass (g), male or female, and year.
 
-Each penguin belongs to one of three species. To see how many of the 344 penguins are in each species you use the `table()` function. Between the parentheses of this function you put the name of the data `penguins` followed by the `$` sign followed by the name of the column `species`.
+Each penguin belongs to one of three species. To see how many of the 344 penguins are in each species you use the `table()` function. Between the parentheses of this function you put the name of the data `penguins.df` followed by the `$` sign followed by the name of the column `species`.
 
 ```{r}
-table(penguins$species)
+table(penguins.df$species)
 ```
 
-Said another way, you reference columns in the data with the `$` sign so that `penguins$species` is how you refer to the column `species` in the data object named `penguins`.
+Said another way, you reference columns in the data with the `$` sign so that `penguins.df$species` is how you refer to the column `species` in the data object named `penguins.df`.
 
 There are 152 Adelie, 68 Chinstrap, and 124 Gentoo penguins.
 
 You plot the relationship between flipper length and body mass for each of the three species.
 
 ```{r}
-ggplot(data = penguins, 
+ggplot(data = penguins.df, 
        mapping = aes(x = flipper_length_mm, y = body_mass_g)) + 
   geom_point()  
 ```
@@ -156,7 +159,7 @@ How does this positive relationship vary by species?
 You answer this question with another aesthetic. You assign a level of the aesthetic (here a color) to each unique value of the variable, a process known as scaling. The `ggplot()` function also adds a legend that explains which levels correspond to which values.
 
 ```{r}
-ggplot(data = penguins, 
+ggplot(data = penguins.df, 
        mapping = aes(x = flipper_length_mm, y = body_mass_g, color = species)) + 
   geom_point() +
   scale_color_manual(values = c("darkorange","darkorchid","cyan4")) 
@@ -228,7 +231,7 @@ ggplot(data = mpg,
 
 The output produces separate scatter plots one for each of the seven classes. More on graphs later.
 
-## Introduction to working with R {.unnumbered}
+## Introduction to working with base R {.unnumbered}
 
 R evaluates commands typed at the prompt and returns the result to the screen. The prompt is the blue greater than symbol (`>`). To find the sum of the square root of 25 and 2, at the prompt type
 
@@ -472,8 +475,6 @@ cD2[c(1, 3, 5, 7, 9)]   # print the counts from the odd years
 
 One way to remember how to use functions is to think of them as pets. They don't come unless they are called by name (spelled properly). They have a mouth (parentheses) that likes to be fed (arguments), and they will complain if they are not feed properly.
 
-Working smarter
-
-R's console keeps a history of your commands. The previous commands are available using the up and down arrow keys. Repeatedly pushing the up arrow will scroll you backward through the history file, so you can reuse previous commands.
+Work smarter. R's console keeps a history of your commands. The previous commands are available using the up and down arrow keys. Repeatedly pushing the up arrow will scroll you backward through the history file, so you can reuse previous commands.
 
 Many times you wish to change only a small part of a previous command, such as when a typo is made. With the arrow keys you access the previous command then edit it.
