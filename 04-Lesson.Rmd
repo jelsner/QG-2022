@@ -2,26 +2,32 @@
 
 Today
 
--   Summary statistics on data
+-   Statistical summaries of data
 -   Structured data
 -   Tables and summaries
 
-## Summary statistics on data {.unnumbered}
+## Statistical summaries of data {.unnumbered}
 
-Means and variances are summary statistics calculated on our data. Typically there are more data values close to the mean than far from it. A normal random variable is within two standard deviations of its mean about 95% of the time.
+The mean and variance are common summary statistics calculated on data. Typically there are more data values close to the mean than far from it. A variable that can be described with a normal distribution will have a random value that lies within two standard deviations of its mean about 95% of the time.
 
-The median is a statistic defined as the middle value. Half the values are above the median and half the values are below the median.
+The median is a statistic defined as the middle value in the set of values. Half the values are above the median and half the values are below the median.
 
-For example, consider a set of seven data values. Here the seven values are generated randomly. The `set.seed()` function guarantees that everyone (with a particular seed number) will get the same set of values.
+For example, consider a set of seven data values. Here the seven values are generated randomly from a standard normal distribution. A standard normal distribution has a mean of zero and a variance of one.
+
+First you use the `set.seed()` function with a particular seed value to guarantee everyone (with that seed number) will get the same set of values. The argument `n = 7` in the random number generator function `rnorm()` specifies the number of values.
 
 ```{r}
 set.seed(3043)
-
 y <- rnorm(n = 7)
+y
+```
+Next use the `sort()` function on the vector of values to arrange them from lowest (on the left) to highest. 
+
+```{r}
 sort(y)
 ```
 
-The argument value `n = 7` guarantees seven values. They are sorted from lowest on the left to highest on the right with the `sort()` function. The middle value is the fourth value from the left in the ordered list of data values.
+The middle value is the fourth value from the left in the ordered list of data values.
 
 ```{r}
 median(y)
@@ -29,7 +35,7 @@ median(y)
 
 The median divides the data set into the top half (50%) of the data values and the bottom half of the data values.
 
-With an odd number of values, the median is the middle one; with an even number of values, the median is the average of the two middle values.
+With an odd number of values, the median is the middle value. With an even number of values, the median is the average of the two middle values.
 
 ```{r}
 y <- rnorm(n = 8)
@@ -40,7 +46,7 @@ median(y)
 You check to see this is true no matter what the values are or what even number of values you choose.
 
 ```{r}
-N = 20
+N <- 20
 y <- rnorm(n = N)
 y_sorted <- sort(y)
 median(y) == (y_sorted[N/2] + y_sorted[N/2 + 1]) / 2
@@ -48,16 +54,16 @@ median(y) == (y_sorted[N/2] + y_sorted[N/2 + 1]) / 2
 
 The median value, as a statistic representing the middle of a set of data values, is said to be resistant to extreme values (outliers).
 
-Consider the wealth (in 1000s of \$) of five bar patrons.
+Consider the wealth of five bar patrons (in 1000s of \$).
 
 ```{r}
 patrons <- c(50, 60, 100, 75, 200)
 ```
 
-Now consider the same bar and patrons after a multimillionaire walks in.
+Now consider the same bar and patrons after a billionaire walks in.
 
 ```{r}
-patrons_with_mm <- c(patrons, 50000)
+patrons_with_mm <- c(patrons, 1000000)
 ```
 
 ```{r}
@@ -67,23 +73,24 @@ median(patrons)
 median(patrons_with_mm)
 ```
 
-The difference in the mean wealth with and without the millionaire present is substantial while the difference in median wealth with and without the millionaire is small.
+The difference in the mean wealth with and without the billionaire present is substantial while the difference in median wealth with and without the billionaire is small.
 
-Statistics that are not greatly influenced be a few values far from the bulk of the data are called *resistant*.
+Statistics that are not influenced be a few values far from the bulk of the data are called *resistant*.
 
-The `cfb` data set from the {UsingR} package has data from the Survey of Consumer Finances conducted by the U.S. Federal Reserve Board (in 2001). Some of the income values are much higher than the bulk of the data. This tendency is common in income distributions. A few people tend to accumulate enormous wealth.
+The `cfb` data set from the {UsingR} package has a sample of data from the survey of individual consumer finances conducted by the U.S. Federal Reserve Board (in 2001).
 
-Make the data available with the `library()` function, then show the first ten rows and ten columns by typing the name of the data object (`cfb`).
+Show the first ten rows and ten columns of the data frame by typing the name of the data object (`UsingR::cfb`).
 
 ```{r}
-library(UsingR)
-cfb
+UsingR::cfb
 ```
 
-Next, assign to `income` the column `INCOME` in the `cfb` data frame, and determine the mean and median income values.
+Each row is an individual with columns indicating savings, mutual funds, stocks, and other assets. Some of the income values are much higher than the bulk of the data. This tendency is common in income distributions. A few people tend to accumulate enormous wealth.
+
+Next, assign to an object called `income` the column `INCOME` in the data frame, and determine the mean and median incomes. The income is the individual annual income in 2001 for each participant of the survey.
 
 ```{r}
-income <- cfb$INCOME
+income <- UsingR::cfb$INCOME
 mean(income)
 median(income)
 ```
@@ -140,7 +147,7 @@ var(ts1)
 var(ts2)
 ```
 
-All the elements of a vector must have the same type. That is you can't mix numbers with character strings.
+All the elements of a vector must have the same type. That is you can't mix numeric values with character strings.
 
 Consider the following character strings.
 
@@ -151,7 +158,7 @@ simpsons
 
 Note that character strings are made with matching quotes, either double, ", or single, '.
 
-If you mix element types within a data vector, all elements will change into the 'lowest' common type, which is usually a character. Arithmetic does not work on character elements.
+If you mix element types within a data vector, all elements will change into the 'lowest' common type, which is usually a character. Arithmetic does not work on vectors that contain character strings.
 
 Returning to the land falling hurricane counts.
 
@@ -305,6 +312,32 @@ class(ss)
 ss
 ```
 
-The vector object is now an ordered factor. Printing the object results in a list of the elements in the vector and a list of the levels in order. Note: if you do the same for the `wx` object, the order is alphabetical by default. Try it.
+The vector object is now an ordered factor instead of a character. Printing the object results in a list of the elements in the vector and a list of the levels. Note: if you do the same for the `wx` object, the order is alphabetical by default. Try it.
 
-Assignment #1
+## Assignment #1 {-}
+
+---
+title: "Assignment 1"
+author: "Your Full Name"
+output: html_document
+---
+
+Due Date: September 1, 2022 (8 p.m.)
+
+Total Points: 35
+
+**1** (5) Change the name of the Rmd file to `your_last_name_A1.Rmd`.
+
+**2** (5) Inside the Rmd file, change `Your Full Name` above to your name.
+
+**3** (5) Write a sentence describing what you want to do after you graduate.
+
+**4** (5) Insert the code delimiters (back ticks and curly braces) and then, between the delimiters, type `library(ggplot2)` on one line and `mpg` on the next line.
+
+**5** (5) Insert code that (a) lists the column names of the data frame `mpg` and (b) computes the average city mileage (in miles per gallon).
+
+**6** (5) Using the data frame `mpg` create a scatter plot showing city mileage on the horizontal axis and highway mileage on the vertical axis. 
+
+**7** (5) Knit this Rmd file to create an HTML file.
+
+Email your finished assignment file (the Rmd file) to [jelsner\@fsu.edu](mailto:jelsner@fsu.edu){.email}
