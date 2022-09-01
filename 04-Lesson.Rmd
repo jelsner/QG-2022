@@ -5,16 +5,17 @@ Today
 -   Statistical summaries of data
 -   Structured data
 -   Tables and summaries
+-   Assignment #1
 
 ## Statistical summaries of data {.unnumbered}
 
-The mean and variance are common summary statistics calculated on data. Typically there are more data values close to the mean than far from it. A variable that can be described with a normal distribution will have a random value that lies within two standard deviations of its mean about 95% of the time.
+The mean and variance are common summary statistics calculated on data. There are usually more data values close to the mean than far from it. A variable that can be described with a normal distribution will have most values (~95% of them) within two standard deviations of the mean.
 
-The median is a statistic defined as the middle value in the set of values. Half the values are above the median and half the values are below the median.
+The median is a statistic defined as the middle value in a set of values. Half the values are above the median and half the values are below the median.
 
 For example, consider a set of seven data values. Here the seven values are generated randomly from a standard normal distribution. A standard normal distribution has a mean of zero and a variance of one.
 
-First you use the `set.seed()` function with a particular seed value to guarantee everyone (with that seed number) will get the same set of values. The argument `n = 7` in the random number generator function `rnorm()` specifies the number of values.
+First use the `set.seed()` function with a particular seed value to guarantee you (with that seed number) will get the same set of values. The argument `n = 7` in the random number generator function `rnorm()` specifies the number of values.
 
 ```{r}
 set.seed(3043)
@@ -315,12 +316,6 @@ ss
 The vector object is now an ordered factor instead of a character. Printing the object results in a list of the elements in the vector and a list of the levels. Note: if you do the same for the `wx` object, the order is alphabetical by default. Try it.
 
 ## Assignment #1 {-}
-
----
-title: "Assignment 1"
-author: "Your Full Name"
-output: html_document
----
 
 Due Date: September 1, 2022 (8 p.m.)
 
