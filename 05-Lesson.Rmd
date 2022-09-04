@@ -8,39 +8,39 @@ Today
 
 More information about how to use RStudio and markdown files is available here: <https://www.pipinghotdata.com/posts/2020-09-07-introducing-the-rstudio-ide-and-r-markdown/>
 
+Ten simple rules for teaching yourself R <https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010372#sec007>
+
 ## Getting data into R {.unnumbered}
 
-You need to know two things: (1) where the data are located, and (2) what type of data file is it.
+In order to get data from outside into R you need to know two things: (1) where the data are located, and (2) what type of data file is it.
 
-Consider the file `US.txt` located in your project folder. It is in the `data` directory. Click on the file name. It opens a file tab displaying the contents.
+Consider the file `US.txt` located in your project folder (in the `data` directory). Click on the file name. It opens a file tab displaying the contents.
 
-It is a file with the column headings `Year`, `All`, `MUS`, `G`, `FL`, `E`. Each row is a year and the count is the number of hurricanes making landfall in the United States. `All` indicates anywhere in the continental U.S, `MUS` indicates at major hurricane intensity (at least 33 m/s). Each column is separated by a space.
+The file contains columns with names `Year`, `All`, `MUS`, `G`, `FL`, `E`. Each row is a year and the count is the number of hurricanes making landfall in the United States. `All` indicates anywhere in the continental U.S, `MUS` indicates at major hurricane intensity (at least 33 m/s). Each column is separated by a space.
 
-To create a data object you use the `readr::read_table()` function. The only required argument is `file =`.
+To create a data object in R from this external file you use the `readr::read_table()` function. The required argument is `file =`.
 
-The `here()` function from the {here} package locates the file relative to your project root.
-
-You put the names of the directory and file in quotes.
+The `here::here()` function from the {here} package specifies the file relative to your project root. Within the `here::here()` function you put the name of the directory and the name of the file in quotes.
 
 ```{r}
 LH.df <- readr::read_table(file = here::here("data", "US.txt"))
 ```
 
-An data object called `LH.df` is now in your Environment under Data.
+A data object called `LH.df` is now in your Environment under Data.
 
 In this case the file name is simple because `US.txt` is in the same directory as your Rmd file.
 
 If you get an error message it is likely because the data file is not where you think it is.
 
-Note: No changes are made to your original data file.
-
 If there are missing values in the data file they should be coded as `NA`. If they are coded as something else then you specify the coding with the `na =` argument. For example, if the missing value character in our file is coded as `99`, you specify `na = "99"`.
 
 The `readr::read_csv()` has settings that are suitable for comma delimited (csv) files that have been exported from a spreadsheet.
 
-A work flow might include exporting data from a spreadsheet using the csv file format then importing it to R using the `readr::read_csv()` function.
+So a typical work flow might include exporting data from a spreadsheet using the csv file format then importing it to R using the `readr::read_csv()` function.
 
-You import data from the web by specifying the URL instead of the local file name.
+You import data from the web by specifying the URL instead of the local file name. 
+
+In this file there are spaces instead of commas separating the columns like in a table, so you use the `readr::read_table()` function.
 
 ```{r}
 loc <- "http://myweb.fsu.edu/jelsner/temp/data/US.txt"
@@ -62,11 +62,11 @@ table(LH.df$FL)
 
 There are 93 years without a FL hurricane, 43 years with one hurricanes, 24 years with two hurricanes, and so on.
 
-Creating structured data files: <https://environmentalcomputing.net/getting-started-with-r/>
+Some useful resources for getting data into R.
 
-Golden rules of data entry.
+-  Creating structured data files and the golden rules of data entry <https://environmentalcomputing.net/getting-started-with-r/>
 
-Convert unstructured data files (e.g., data stored in PDF forms) to structured data. <https://www.youtube.com/watch?v=yBkHfIO8YJk>
+-  Converting unstructured data files (e.g., data stored in PDF forms) to structured data. <https://www.youtube.com/watch?v=yBkHfIO8YJk>
 
 ## Data frames {.unnumbered}
 
@@ -95,7 +95,8 @@ The columns include year, number of hurricanes, number of major hurricanes, numb
 The last six lines of the data frame are listed similarly using the `tail()` function. The number of lines listed is changed using the argument `n =`.
 
 ```{r}
-tail(LH.df, n = 3)
+tail(LH.df, 
+     n = 3)
 ```
 
 The number of years in the record is assigned to the object `nY` and the annual average number of hurricanes (rate) is assigned to the object `rate`.
@@ -162,7 +163,8 @@ Here I did it for Florida and put the file on my website. Missing values are cod
 
 ```{r}
 loc <- "http://myweb.fsu.edu/jelsner/temp/data/FLprecip.txt"
-FLp.df <- readr::read_table(loc, na = "-9.900")
+FLp.df <- readr::read_table(loc, 
+                            na = "-9.900")
 ```
 
 Plot a time series graph.
@@ -170,7 +172,8 @@ Plot a time series graph.
 ```{r}
 library(ggplot2)
 
-ggplot(data = FLp.df, aes(x = Year, y = Jan)) +
+ggplot(data = FLp.df, 
+       mapping = aes(x = Year, y = Jan)) +
   geom_line() +
   ylab("Inches") +
   ggtitle(label = "January Precipitation in Florida",
@@ -178,8 +181,6 @@ ggplot(data = FLp.df, aes(x = Year, y = Jan)) +
 ```
 
 A minimal, complete, reproducible example.
-
-Quantiles
 
 The median value cuts a set of ordered data values into two equal parts. Values larger than the median and values less than the median. The ordering comes from arranging the data from lowest to highest.
 
@@ -226,8 +227,7 @@ First read the data consisting of monthly NAO values, then list the column names
 
 ```{r}
 loc <- "http://myweb.fsu.edu/jelsner/temp/data/NAO.txt"
-NAO.df <- read.table(loc, 
-                     header = TRUE)
+NAO.df <- readr::read_table(loc)
 head(NAO.df)
 ```
 
@@ -304,7 +304,6 @@ You summarize the values in each column with the `summary()` method.
 ```{r}
 summary(airquality)
 ```
-
 
 You get a statistical summary of the values in each column with the `summary()` method.
 ```{r}
