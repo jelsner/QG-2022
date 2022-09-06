@@ -1,0 +1,45 @@
+---
+title: "Assignment 1"
+author: "Answers"
+output: html_document
+---
+
+Due Date: September 1, 2022 (8 p.m.)
+
+Total Points: 35
+
+**1** (5) Change the name of the Rmd file to `your_last_name_A1.Rmd`.
+
+**2** (5) Inside the Rmd file, change `Your Full Name` above to your name.
+
+**3** (5) Write a sentence describing what you want to do after you graduate.
+
+I would like to become a professor.
+
+**4** (5) Insert the code delimiters (back ticks and curly braces) and then, between the delimiters, type `library(ggplot2)` on one line and `mpg` on the next line.
+
+```{r}
+library(ggplot2)
+mpg
+```
+
+
+**5** (5) Insert code that (a) lists the column names of the data frame `mpg` and (b) computes the average city mileage (in miles per gallon).
+
+```{r}
+names(mpg)
+mean(mpg$cty)
+```
+
+**6** (5) Using the data frame `mpg` create a scatter plot showing city mileage on the horizontal axis and highway mileage on the vertical axis. 
+
+```{r}
+ggplot(data = mpg,
+       mapping = aes(x = cty, y = hwy)) +
+  geom_point()
+```
+
+
+**7** (5) Knit this Rmd file to create an HTML file.
+
+Email your finished assignment file (the Rmd file) to [jelsner\@fsu.edu](mailto:jelsner@fsu.edu){.email}

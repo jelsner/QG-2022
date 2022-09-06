@@ -4,7 +4,7 @@ Today
 
 -   Getting data into R
 -   Data frames
--   Piping commands
+-   Piping your commands
 
 More information about how to use RStudio and markdown files is available here: <https://www.pipinghotdata.com/posts/2020-09-07-introducing-the-rstudio-ide-and-r-markdown/>
 
@@ -288,7 +288,7 @@ The column name in the data frame is the name of the vector.
 
 So far you have computed statistics on data stored as vectors (mean, median, quantiles, etc). But you often import data as data frames so you need to know how to manipulate them.
 
-## Piping commands
+## Piping your commands
 
 Recall the object `airquality` is a data frame containing New York air quality measurements from May to September 1973. (`?airquality`).
 
