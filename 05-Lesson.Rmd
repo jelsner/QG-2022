@@ -310,26 +310,30 @@ You get a statistical summary of the values in each column with the `summary()` 
 summary(airquality)
 ```
 
-Importantly you can apply the `summary()` function using the pipe operator (`|>`). The pipe operator is part of the {dplyr} package and when used together with the wrangling functions, it provides a easy way to make code easy to read.
+Importantly you can apply the `summary()` function using the pipe operator (`|>`). Using the pipe operator makes it easier for humans to read your code. You want your code to be machine readable (correct syntax) but also human readable.
 
 For example, you read the pipe as THEN. "`airquality` data frame THEN summarize".
+
 ```{r}
 airquality |> 
   summary()
 ```
 
-The pipe operator allows you to string together functions while keeping the code readable. You want your code to be machine readable (correct syntax) but also human readable.
+The pipe operator allows you to string together functions.
 
 For example, suppose the object of interest is called `me` and suppose there is a function called `wake_up()`. I can apply the function in two ways.
+
 ```{r, eval=FALSE}
 wake_up(me)
+
 me |> 
   wake_up()
 ```
 
-The second way involves a bit more typing but it is easier for someone to read and thus it is easier to understand. This becomes clear when stringing together many functions. 
+The second way involves a bit more typing but it is easier for someone to read and thus it is easier to understand. This becomes clear when stringing together functions. 
 
 For example, what happens to the result of `me` after the function `wake_up()` has been applied? How about `get_out_of_bed()` and then `get_dressed()`? I can apply these functions in two ways.
+
 ```{r, eval=FALSE}
 get_dressed(get_out_of_bed(wake_up(me)))
 
@@ -340,6 +344,7 @@ me |>
 ```
 
 Continuing
+
 ```{r, eval=FALSE}
 me |>
   wake_up() |>
@@ -352,43 +357,35 @@ me |>
 
 Which is much better in terms of 'readability' then `leave_house(drink_coffee(make_coffee(get_dressed(get_out_of_bed(wake_up(me))))))`.
 
-Consider again the `FLp.df`. 
+Consider again monthly values of statewide precipitation in Florida. Import the data using the `readr::read_table()` function and specifying that the missing value indicator is -9.900. Assign the data frame object to the name `FLp.df`.
+
 ```{r}
 loc <- "http://myweb.fsu.edu/jelsner/temp/data/FLprecip.txt"
-FLp.df <- read.table(loc, 
-                     header = TRUE,
-                     na.string = "-9.900")
+FLp.df <- readr::read_table(loc, 
+                            na = "-9.900")
 ```
 
-How would you use the above readable syntax to compute the mean value of June precipitation?
+How would you use the piping operator to compute the mean value of June precipitation?
 
 You ask three questions: what function, applied to what variable, from what data frame? Answers: `mean()`, `Jun`, `FLp.df`. You then write the code starting with the answer to the last question first.
+
 ```{r}
 FLp.df |>
-  pull(Jun)
+  dplyr::pull(Jun)
 ```
 
-The function `pull()` from the {dplyr} packages pulls out the column named `Jun` and returns a vector of the values.
+The function `dplyr::pull()` pulls out the column named `Jun` and returns a vector of the values.
 
-Then the `mean()` function takes these 118 values and computes the average.
+Then the function `mean()` takes these 118 values and compute an average.
+
 ```{r}
 FLp.df |>
-  pull(Jun) |>
+  dplyr::pull(Jun) |>
   mean()
 ```
 
-IMPORTANT: the next function in the sequence receives the output from the previous function as its FIRST argument so the function `mean()` has nothing inside the parentheses. 
+IMPORTANT: the next function in the sequence receives the output from the previous function as its FIRST argument so the function `mean()` has nothing inside the parentheses.
 
 (1) Use the piping operator and compute the average wind speed in the `airquality` data frame.
-```{r}
-airquality |>
-  pull(Wind) |>
-  mean()
-```
 
-(2) Use the piping operator and compute the 10th and 90th percentiles (lower and upper decile values) of May precipitation in Florida.
-```{r}
-FLp.df |>
-  pull(May) |>
-  quantile(probs = c(.1, .9))
-```
+(2) Use the piping operator and compute the 10th and 90th percentiles of May precipitation in Florida.

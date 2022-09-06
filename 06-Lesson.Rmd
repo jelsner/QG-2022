@@ -6,7 +6,7 @@ Today
 
 ## Wrangling data frames {-}
 
-You will wrangle data with functions from the {dplyr} package. The functions work on data frames but they work better if the data frame is a _tibble_. Tibbles are data frames that make life a little easier. 
+You can easily manipulate data frames with functions from the {dplyr} package. The functions work on data frames but they work better if the data frame is a _tibble_. Tibbles are data frames that make life a little easier.
 
 R is an old language, and some things that were useful 10 or 20 years ago now get in the way. To make a data frame a tibble (tabular data frame) type
 ```{r}
