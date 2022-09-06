@@ -16,7 +16,7 @@ In order to get data from outside into R you need to know two things: (1) where 
 
 Consider the file `US.txt` located in your project folder (in the `data` directory). Click on the file name. It opens a file tab displaying the contents.
 
-The file contains columns with names `Year`, `All`, `MUS`, `G`, `FL`, `E`. Each row is a year and the count is the number of hurricanes making landfall in the United States. `All` indicates anywhere in the continental U.S, `MUS` indicates at major hurricane intensity (at least 33 m/s). Each column is separated by a space.
+The file contains columns with names `Year`, `All`, `MUS`, `G`, `FL`, `E`. Each row is a year and the count is the number of hurricanes making landfall in the United States. `All` indicates anywhere in the continental U.S., `MUS` indicates at major hurricane intensity (at least 33 m/s). Each column is separated by a space.
 
 To create a data object in R from this external file you use the `readr::read_table()` function. The required argument is `file =`.
 
@@ -182,6 +182,21 @@ ggplot(data = FLp.df,
 
 A minimal, complete, reproducible example.
 
+```{r}
+loc <- "http://myweb.fsu.edu/jelsner/temp/data/FLprecip.txt"
+FLp <- readr::read_table(loc, 
+                  na = "-9.900")
+library(ggplot2)
+
+ggplot(data = FLp.df, 
+       mapping = aes(x = Year, y = Jan)) +
+  geom_line() +
+  ylab("Inches") +
+  ggtitle(label = "January Precipitation in Florida",
+          subtitle = "1895-2012")
+```
+
+
 The median value cuts a set of ordered data values into two equal parts. Values larger than the median and values less than the median. The ordering comes from arranging the data from lowest to highest.
 
 *Quantiles* cut a set of ordered data into arbitrary number of equal-sized parts. The quantile corresponding to cutting the data into two halves is called the median. Fifty percent of the data have values less than or equal to the median value. The median is the 50th percentile (.5 quantile).
@@ -244,7 +259,7 @@ The `summary()` function provides summary statistics for each column in your dat
 summary(FLp.df)
 ```
 
-Columns with missing values get a row output from the `summary()` function indicating the number of them (NA's).
+Columns with missing values get a row output from the `summary()` function indicating the number of them (`NA`'s).
 
 Creating a data frame
 
@@ -337,9 +352,9 @@ For example, what happens to the result of `me` after the function `wake_up()` h
 ```{r, eval=FALSE}
 get_dressed(get_out_of_bed(wake_up(me)))
 
-me |>
-  wake_up() |>
-  get_out_of_bed() |>
+me |> 
+  wake_up() |> 
+  get_out_of_bed() |> 
   get_dressed()
 ```
 
@@ -389,5 +404,16 @@ IMPORTANT: the next function in the sequence receives the output from the previo
 Your turn
 
 (1) Use the piping operator and compute the average wind speed in the `airquality` data frame.
+```{r}
+airquality |>
+  dplyr::pull(Wind) |>
+  mean(na.rm = TRUE)
+```
 
 (2) Use the piping operator and compute the 10th and 90th percentiles of May precipitation in Florida.
+```{r}
+FLp.df |>
+  dplyr::pull(May) |>
+  quantile(probs = c(.1, .9))
+```
+
