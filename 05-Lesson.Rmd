@@ -288,7 +288,7 @@ The column name in the data frame is the name of the vector.
 
 So far you have computed statistics on data stored as vectors (mean, median, quantiles, etc). But you often import data as data frames so you need to know how to manipulate them.
 
-## Piping your commands
+## Piping your commands {-}
 
 Recall the object `airquality` is a data frame containing New York air quality measurements from May to September 1973. (`?airquality`).
 
@@ -385,6 +385,8 @@ FLp.df |>
 ```
 
 IMPORTANT: the next function in the sequence receives the output from the previous function as its FIRST argument so the function `mean()` has nothing inside the parentheses.
+
+Your turn
 
 (1) Use the piping operator and compute the average wind speed in the `airquality` data frame.
 

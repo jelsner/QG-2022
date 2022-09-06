@@ -4,23 +4,23 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Thursday, September 1, 2022 | Assignment 1</title>
-  <meta name="description" content="Thursday, September 1, 2022 | Assignment 1" />
+  <title>Thursday, September 1, 2022 | GEO5156: Quantitative Geography</title>
+  <meta name="description" content="Thursday, September 1, 2022 | GEO5156: Quantitative Geography" />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Thursday, September 1, 2022 | Assignment 1" />
+  <meta property="og:title" content="Thursday, September 1, 2022 | GEO5156: Quantitative Geography" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="jelsner/QG-2022" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Thursday, September 1, 2022 | Assignment 1" />
+  <meta name="twitter:title" content="Thursday, September 1, 2022 | GEO5156: Quantitative Geography" />
   
   
   
 
-<meta name="author" content="Your Full Name" />
+<meta name="author" content="James B. Elsner" />
 
 
 
@@ -170,16 +170,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#statistical-summaries-of-data"><i class="fa fa-check"></i>Statistical summaries of data</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#structured-data"><i class="fa fa-check"></i>Structured data</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#tables"><i class="fa fa-check"></i>Tables</a></li>
-<li class="chapter" data-level="0.1" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#assignment-1"><i class="fa fa-check"></i><b>0.1</b> Assignment #1</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#assignment-1"><i class="fa fa-check"></i>Assignment #1</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html"><i class="fa fa-check"></i>Tuesday, September 6, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#getting-your-data-into-r"><i class="fa fa-check"></i>Getting your data into R</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#getting-data-into-r"><i class="fa fa-check"></i>Getting data into R</a></li>
 <li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#data-frames"><i class="fa fa-check"></i>Data frames</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#piping-your-commands"><i class="fa fa-check"></i>Piping your commands</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html"><i class="fa fa-check"></i>Thursday, September 8, 2022</a>
 <ul>
-<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#using-pipes"><i class="fa fa-check"></i>Using pipes</a></li>
 <li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#wrangling-data-frames"><i class="fa fa-check"></i>Wrangling data frames</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html"><i class="fa fa-check"></i>Tuesday, September 13, 2022</a>
@@ -319,7 +319,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Assignment 1</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GEO5156: Quantitative Geography</a>
           </h1>
         </div>
 
@@ -334,13 +334,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Statistical summaries of data</li>
 <li>Structured data</li>
 <li>Tables and summaries</li>
+<li>Assignment #1</li>
 </ul>
 <div id="statistical-summaries-of-data" class="section level2 unnumbered hasAnchor">
 <h2>Statistical summaries of data<a href="thursday-september-1-2022.html#statistical-summaries-of-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The mean and variance are common summary statistics calculated on data. Typically there are more data values close to the mean than far from it. A variable that can be described with a normal distribution will have a random value that lies within two standard deviations of its mean about 95% of the time.</p>
-<p>The median is a statistic defined as the middle value in the set of values. Half the values are above the median and half the values are below the median.</p>
+<p>The mean and variance are common summary statistics calculated on data. There are usually more data values close to the mean than far from it. A variable that can be described with a normal distribution will have most values (~95% of them) within two standard deviations of the mean.</p>
+<p>The median is a statistic defined as the middle value in a set of values. Half the values are above the median and half the values are below the median.</p>
 <p>For example, consider a set of seven data values. Here the seven values are generated randomly from a standard normal distribution. A standard normal distribution has a mean of zero and a variance of one.</p>
-<p>First you use the <code>set.seed()</code> function with a particular seed value to guarantee everyone (with that seed number) will get the same set of values. The argument <code>n = 7</code> in the random number generator function <code>rnorm()</code> specifies the number of values.</p>
+<p>First use the <code>set.seed()</code> function with a particular seed value to guarantee you (with that seed number) will get the same set of values. The argument <code>n = 7</code> in the random number generator function <code>rnorm()</code> specifies the number of values.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="thursday-september-1-2022.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3043</span>)</span>
 <span id="cb1-2"><a href="thursday-september-1-2022.html#cb1-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">7</span>)</span>
 <span id="cb1-3"><a href="thursday-september-1-2022.html#cb1-3" aria-hidden="true" tabindex="-1"></a>y</span></code></pre></div>
@@ -2560,8 +2561,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Levels: Cat 1 &lt; Cat 2 &lt; Cat 3</code></pre>
 <p>The vector object is now an ordered factor instead of a character. Printing the object results in a list of the elements in the vector and a list of the levels. Note: if you do the same for the <code>wx</code> object, the order is alphabetical by default. Try it.</p>
 </div>
-<div id="assignment-1" class="section level2 hasAnchor" number="0.1">
-<h2><span class="header-section-number">0.1</span> Assignment #1<a href="thursday-september-1-2022.html#assignment-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="assignment-1" class="section level2 unnumbered hasAnchor">
+<h2>Assignment #1<a href="thursday-september-1-2022.html#assignment-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Due Date: September 1, 2022 (8 p.m.)</p>
 <p>Total Points: 35</p>
 <p><strong>1</strong> (5) Change the name of the Rmd file to <code>your_last_name_A1.Rmd</code>.</p>
