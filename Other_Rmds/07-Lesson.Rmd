@@ -1,0 +1,339 @@
+# Tuesday, September 13, 2022 {-}
+
+Today
+
+- Examples of data munging
+- Putting things together
+
+## Data munging examples {-}
+
+You work with data frames. The functions are verbs. The verbs include:
+
+Verb          | Description
+-------------:|:-----------
+`dplyr::select()`    | selects columns; pick variables by their names
+`dplyr::filter()`    | filters rows; pick observations by their values
+`dplyr::arrange()`   | reorders rows
+`dplyr::mutate()`    | creates new columns; create new variables with functions of existing variables
+`dplyr::summarize()` | summarizes values; collapse many values down to a single summary
+`dplyr::group_by()`  | allows operations to be grouped
+
+Syntax for the verb functions are the same:
+
+Properties
+* The first argument is a data frame. This argument is implied when using the `|>` (pipe) operator (also `%>%`).
+* The subsequent arguments describe what to do with the data frame. You refer to columns in the data frame directly (without using `$`).
+* The result is a new data frame
+
+The properties make it easy to chain together simple lines of code to do something complex.
+
+The five functions form the basis of a grammar for data. At the most basic level, you can alter a data frame in five useful ways: you can reorder the rows (`arrange()`), pick observations and variables of interest (`filter()` and `select()`), add new variables that are functions of existing variables (`mutate()`), or collapse many values to a summary (`summarise()`).
+
+As a review consider again the Florida precipitation data set (http://myweb.fsu.edu/jelsner/temp/data/FLprecip.txt). Import the data as a data frame, _select_ the columns `April` and `Year`, _group by_ years > 1960, then _summarize_ by computing the mean and variance of the April rainfall.
+```{r}
+FLp.df <- readr::read_table(file = "http://myweb.fsu.edu/jelsner/temp/data/FLprecip.txt")
+
+FLp.df |>
+  dplyr::select(Apr, Year) |>
+  dplyr::group_by(Year > 1960) |>
+  dplyr::summarize(Avg = mean(Apr),
+                   Var = var(Apr))
+```
+
+Example: New York City flight data
+
+Let's consider the `flights` data frame from the package {nycflights13}.
+```{r}
+library(nycflights13)
+dim(flights)
+```
+
+The data contains all 336,776 flights that departed NYC in 2013 and comes from the U.S. Bureau of Transportation Statistics. More information is available by typing `?nycflights13`.
+
+The object `flights` is a tibble (tabled data frame). When you have a large data frame it is useful to make it a tibble.
+```{r}
+head(flights)
+```
+
+The function `filter()` selects a set of rows in a data frame. How would you select all flights occurring on February 1st?
+```{r}
+flights |>
+  dplyr::filter(month == 2 & 
+                day == 1)
+```
+
+The function `arrange()` reorders the rows. If you provide more than one column name as arguments, each additional column is used to break ties in the values of the preceding columns.
+
+How would you arrange all flights in descending order of departure delay?
+```{r}
+flights |>
+  dplyr::arrange(desc(dep_delay))
+```
+
+Often you work with large data sets with many columns but only a few are of interest. The function `select()` allows us to zoom in on an interesting subset of the columns.
+
+How would you create a data frame containing only the dates, carrier, and flight numbers?
+```{r}
+df <- flights |>
+  dplyr::select(year:day, carrier, flight)
+df
+```
+
+Note here the sequence operator `:` to get all columns between the column labeled `year` and the column labeled `day`.
+
+How many distinct carriers are there? 
+```{r}
+df |>
+  dplyr::distinct(carrier) |>
+  nrow()
+```
+
+You include new columns with the function `mutate()`. Compute the time gained during flight by subtracting the departure delay (minutes) from the arrival delay.
+```{r}
+flights |>
+  dplyr::mutate(gain = arr_delay - dep_delay) |>
+  dplyr::select(year:day, carrier, flight, gain) |>
+  dplyr::arrange(desc(gain))
+```
+
+Determine the average departure delay.
+```{r}
+flights |>
+  dplyr::summarize(avgDelay = mean(dep_delay, na.rm = TRUE))
+```
+
+Note that if there are missing values in a vector the function `mean()` needs to include the argument `na.rm = TRUE` otherwise the output will be `NA`.
+
+```{r}
+y <- c(5, 6, 7, NA)
+mean(y)
+mean(y, na.rm = TRUE)
+```
+
+You use `sample_n()` and `sample_frac()` to take random sample of rows from the data frame. Take a random sample of five rows from the flights data frame.
+```{r}
+flights |>
+  dplyr::sample_n(5)
+```
+
+Take a random sample of 1% of the rows.
+```{r}
+flights |>
+  dplyr::sample_frac(.01)
+```
+
+Use the argument `replace = TRUE` to perform a _bootstrap sample_. More on this later. 
+
+Random samples are important to modern data science.
+
+The verbs are powerful when you apply them to groups of observations within a data frame. This is done with the function `group_by()`. Determine the average arrival delay by airplane (tail number).
+```{r}
+flights |>
+  dplyr::group_by(tailnum) |>
+  dplyr::summarize(delayAvg = mean(arr_delay, na.rm = TRUE)) |>
+  dplyr::arrange(desc(delayAvg))
+```
+
+Determine the number of distinct planes and flights by destination location.
+```{r}
+flights |>
+  dplyr::group_by(dest) |>
+  dplyr::summarize(planes = dplyr::n_distinct(tailnum),
+            flights = dplyr::n())
+```
+
+Repeat but arrange from most to fewest planes.
+
+Example: Daily weather data from Tallahassee
+
+Let's consider another set of data. Daily high and low temperatures and precipitation in Tallahassee. 
+
+The file (`TLH_SOD1892.csv`) is available in this project in the folder `data`).
+
+Import the data as a data frame.
+```{r}
+TLH.df <- readr::read_csv(file = "data/TLH_SOD1892.csv")
+```
+
+The data frame contains daily high (`TMAX`) and low (`TMIN`) temperatures and total precipitation (`PRCP`) from two stations: Airport with `STATION` identification USW00093805 and downtown with `STATION` identification USC00088754.
+
+Use the `select()` function to create a new data frame with only `STATION`, `DATE`, `PRCP`, `TMAX` and `TMIN`.
+```{r}
+TLH.df <- TLH.df |>
+  dplyr::select(STATION, DATE, PRCP, TMAX, TMIN)
+TLH.df
+```
+
+Note that you've recycled the name of the data frame. You started with `TLH.df` containing all the columns and you ended with `TLH.df` with only the columns selected.
+
+Then use the `filter()` function to keep only days at or above 90F. Similarly you recycle the name of the data frame. Use the `glimpse()` function to take a look at the resulting data frame.
+```{r}
+TLH.df <- TLH.df |>
+  dplyr::filter(TMAX >= 90) |>
+  dplyr::glimpse()
+```
+
+Note that the `DATE` column is a vector of dates having class `date`. Note if this were a character string you convert the character string into a date with the `as.Date()` function.
+
+Functions from the {lubridate} package are used to extract information from dates. Here you add columns labeled `Year`, `Month`, and `Day` using the extractor functions `year()`, `month()`, etc.
+```{r}
+library(lubridate)
+
+TLH.df <- TLH.df |>
+  dplyr::mutate(Year = year(DATE),
+                Month = month(DATE),
+                Day = day(DATE),
+                DoW = weekdays(DATE))
+TLH.df
+```
+
+Next you keep only the temperature record from the airport. You use the `filter()` function on the column labeled `STATION`.
+```{r}
+TLH.df <- TLH.df |>
+  dplyr::filter(STATION == "USW00093805")
+```
+
+Now what if you want to know how many hot days (90F or higher) by year? You use the `group_by()` function and count using the `n()` function.
+```{r}
+TLH90.df <- TLH.df |>
+  dplyr::group_by(Year) |>
+  dplyr::summarize(nHotDays = dplyr::n())
+
+TLH90.df
+```
+
+Note that the `group_by()` function results in a data frame with the first column the variable used inside the function. In this case it is `Year`. The next columns are defined by what is in the `summarize()` function.
+
+Repeat but this time group by `Month`.
+```{r}
+TLH.df |>
+  dplyr::group_by(Month) |>
+  dplyr::summarize(nHotDays = dplyr::n())
+```
+
+As expected the number of 90F+ days is highest in July and August. Note that you've had 90F+ days in October. 
+
+Would you expect there to be more hot days on the weekend? How would you check this?
+```{r}
+TLH.df |>
+  dplyr::group_by(Year, DoW) |>
+  dplyr::summarize(nHotDays = dplyr::n())
+```
+  
+You can group by more than one variable. For example, add the variable `Year` to the `group_by()` function above.
+
+Recall that you can also `arrange()` the data frame ordered according to the values in a particular column.
+```{r}
+TLH90.df |>
+  dplyr::arrange(desc(nHotDays))
+```
+
+## Putting things together {-}
+
+Let's put together your first piece of original research. You know how to import a data file, you know how to manipulate the data frame to compute something of interest, and you know how to make a graph.
+
+Let's do this for the number of hot days. Let's say you want a plot of the annual number of hot days in Tallahassee since 1950. Let's define a hot day as one where the high temperature is at least 90F.
+```{r}
+library(ggplot2)
+
+readr::read_csv(file = "data/TLH_SOD1892.csv") |>
+  dplyr::filter(STATION == "USW00093805",
+                TMAX >= 90) |>
+  dplyr::mutate(Year = year(DATE)) |>
+  dplyr::filter(Year >= 1950) |>
+  dplyr::group_by(Year) |>
+  dplyr::summarize(nHotDays = dplyr::n()) |>
+ggplot(aes(x = Year, y = nHotDays)) +
+  geom_point() +
+  geom_smooth() +
+  scale_y_continuous(limits = c(0, NA)) +
+  ylab("Number of Days") +
+  ggtitle("Number of Hot Days in Tallahassee Since 1950",
+          subtitle = "High Temperature >= 90F") +
+  theme_minimal()
+```
+
+You go from data in a file to a plot of interest with a set of functions that are logically ordered and easy to read.
+
+What would you change to make a similar plot for the number of hot nights (say where the minimum temperature fails to drop below 74)?
+```{r}
+readr::read_csv(file = "data/TLH_SOD1892.csv") |>
+  dplyr::filter(STATION == "USW00093805",
+                TMIN >= 74) |>
+  dplyr::mutate(Year = year(DATE)) |>
+  dplyr::filter(Year >= 1950) |>
+  dplyr::group_by(Year) |>
+  dplyr::summarize(nHotNights = dplyr::n()) |>
+ggplot(aes(x = Year, y = nHotNights)) +
+  geom_point() +
+  geom_smooth() +
+  scale_y_continuous(limits = c(0, NA)) +
+  ylab("Number of Nights") +
+  ggtitle("Number of Hot Nights in Tallahassee Since 1950",
+          subtitle = "Low Temperature >= 74F") +
+  theme_minimal()
+```
+
+Make a similar plot showing the total precipitation by year.
+```{r}
+readr::read_csv(file = "data/TLH_SOD1892.csv") |>
+  dplyr::filter(STATION == "USW00093805") |>
+  dplyr::mutate(Year = year(DATE)) |>
+  dplyr::filter(Year >= 1950) |>
+  dplyr::group_by(Year) |>
+  dplyr::summarize(TotalPrecip = sum(PRCP)) |>
+ggplot(aes(x = Year, y = TotalPrecip)) +
+  geom_point() +
+  geom_smooth() +
+  scale_y_continuous(limits = c(0, NA)) +
+  ylab("Total Precipitation by Year") +
+  theme_minimal()
+```
+
+Example: Food consumption and CO2 emissions
+
+Source: https://www.nu3.de/blogs/nutrition/food-carbon-footprint-index-2018
+```{r}
+fc.df <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-02-18/food_consumption.csv')
+head(fc.df)
+```
+
+Consumption is kg/person/year and CO2 emission is kg CO2/person/year.
+
+(1) How many different countries are in the data frame?
+```{r}
+fc.df |>
+  dplyr::distinct(country) |>
+  nrow()
+```
+
+(2) Arrange the countries from most pork consumption per person to the least pork consumption.
+```{r}
+fc.df |>
+  dplyr::filter(food_category == "Pork") |>
+  dplyr::select(country, consumption) |>
+  dplyr::arrange(desc(consumption))
+```
+
+(3) Arrange the countries from the largest carbon footprint with respect to eating habits to the smallest carbon footprint.
+```{r}
+fc.df |>
+  dplyr::rename(co2_emission = co2_emmission) |>
+  dplyr::group_by(country) |>
+  dplyr::summarize(totalEmission = sum(co2_emission)) |>
+  dplyr::arrange(desc(totalEmission))
+```
+
+Summary
+
+Data munging is a big part of data science. Data science is an iterative cycle:
+
+1. Generate questions about our data.
+2. Search for answers by _transforming_, visualizing, and modeling the data.
+3. Use what you learn to refine our questions and/or ask new ones.
+
+You use questions as tools to guide our investigation. When you ask a question, the question focuses our attention on a specific part of our data set and helps us decide what to do.
+
+For additional practice please check out http://r4ds.had.co.nz/index.html.
+
+Cheat sheets http://rstudio.com/cheatsheets

@@ -1,14 +1,16 @@
-# Thursday, September 8, 2022 {-}
+# Thursday, September 8, 2022 {.unnumbered}
 
 Today
 
-- Wrangling data
+-   Extracting information from data frames
+-   From data import to final plot
 
-## Wrangling data frames {-}
+## Extracting information from data frames {.unnumbered}
 
-You can easily manipulate data frames with functions from the {dplyr} package. The functions work on data frames but they work better if the data frame is a _tibble_. Tibbles are data frames that make life a little easier.
+You extract information from data frames (data munging) with {dplyr} package functions. The functions work on data frames but they work better if the data frame is a *tibble*. Tibbles are data frames that make life a little easier.
 
 R is an old language, and some things that were useful 10 or 20 years ago now get in the way. To make a data frame a tibble (tabular data frame) type
+
 ```{r}
 airquality <- as_tibble(airquality)
 class(airquality)
@@ -19,12 +21,14 @@ Click on `airquality` in the environment. It is a data frame.
 Selecting and filtering
 
 The function `select()` chooses variables by name to create a data frame with fewer columns. For example, choose the month, day, and temperature columns from the `airquality` data frame.
+
 ```{r}
 airquality |>
   dplyr::select(Month, Day, Temp)
 ```
 
 Suppose you want a new data frame with only the temperature and ozone concentrations.
+
 ```{r}
 df <- airquality |>
         dplyr::select(Temp, Ozone)
@@ -35,10 +39,12 @@ You include an assignment operator (`<-`, left pointing arrow) and an object nam
 
 Note: The result of applying most {dplyr} verbs is a data frame. The take only data frames and return only data frames.
 
-The function `filter()` chooses observations based on specific values. 
+The function `filter()` chooses observations based on specific values.
+
 ![filter](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/dplyr_filter.jpg)
 
 Suppose you want only the observations where the temperature is at or above 80F.
+
 ```{r}
 airquality |>
   dplyr::filter(Temp >= 80)
@@ -47,15 +53,15 @@ airquality |>
 The result is a data frame with the same 6 columns but now only 73 observations. Each of the observations has a temperature of at least 80F.
 
 Suppose you want a new data frame keeping only observations where temperature is at least 80F AND winds less than 5 mph.
+
 ```{r}
 df <- airquality |> 
   dplyr::filter(Temp >= 80 & Wind < 5)
 df
 ```
 
-Example: Palmer penguins
+Example: Let's return to the penguins data set. The data set is located on the web, and you import it as a data frame using the `readr::read_csv()` function.
 
-Let's return to the penguins data set. The data set is located on the web, and you import it as a data frame using the `readr::read_csv()` function.
 ```{r}
 loc <- "https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/inst/extdata/penguins.csv"
 penguins <- readr::read_csv(loc)
@@ -63,30 +69,35 @@ penguins
 ```
 
 To keep only the penguins labeled in the column `sex` as `female` type
+
 ```{r}
 penguins |> 
   dplyr::filter(sex == "female")
 ```
-  
+
 To filter rows keeping only species that are not Adalie penguins.
+
 ```{r}
 penguins |> 
   dplyr::filter(species != "Adelie")
 ```
 
 When the column of interest is a numerical, you can filter rows by using greater than condition. For example, to create a data frame containing the heaviest penguins you filter keeping only rows with body mass greater than 6000 g.
+
 ```{r}
 penguins |> 
   dplyr::filter(body_mass_g > 6000)
 ```
-  
+
 You can also filter rows of a data frame with less than condition. For example, to create a data frame containing only penguins with short flippers you filter keeping only rows with flipper length less than 175 mm.
+
 ```{r}
 penguins |> 
   dplyr::filter(flipper_length_mm < 175)
 ```
-  
+
 You can also specify more than one conditions. For example to create a data frame with female penguins that have larger flippers you filter keeping only rows with flipper length greater than 220 mm and with sex equal to female.
+
 ```{r}
 penguins |> 
   dplyr::filter(flipper_length_mm > 220 & 
@@ -94,27 +105,32 @@ penguins |>
 ```
 
 You can also filter a data frame for rows satisfying one of the two conditions using OR. For example to create a data frame with penguins have large flippers or short bills you filter keeping rows with flipper length of at least 220 mm or with bill depth less than 10 mm.
+
 ```{r}
 penguins |> 
   dplyr::filter(flipper_length_mm > 220 | 
                 bill_depth_mm < 10)
 ```
-  
+
 Often you want to remove rows if one of the columns has a missing value. With `is.na()` on the column of interest, you can filter rows based on whether or not a column value is missing.
 
-Note the `is.na()` function returns a vector of TRUEs and FALSEs
+The `is.na()` function returns a vector of TRUEs and FALSEs
+
 ```{r}
 is.na(airquality$Ozone)
 ```
-The first four rows of the vector `Ozone` in the `airquality` data frame are not missing so the function `is.na()` returns four `FALSE`s. 
+
+The first four rows of the vector `Ozone` in the `airquality` data frame are not missing so the function `is.na()` returns four `FALSE`s.
 
 When you combine that with the `filter()` function you get a data frame containing all the rows where `is.na()` returns a `TRUE`. For example, create a data frame containing rows where the bill length value is missing.
+
 ```{r}
 penguins |> 
   dplyr::filter(is.na(bill_length_mm))
 ```
- 
+
 Usually you will want to do the reverse of this. That is keep all the rows where the column value is not missing. In this case use negation symbol `!` to reverse the selection. In this example, filter rows with no missing values for `sex` column.
+
 ```{r}
 penguins |> 
   dplyr::filter(!is.na(sex))
@@ -125,6 +141,7 @@ Note that this filtering will keep rows with other column values that are missin
 Stringing functions together
 
 The function `arrange()` orders the rows by values given in a particular column.
+
 ```{r}
 airquality |>
   dplyr::arrange(Solar.R)
@@ -133,12 +150,14 @@ airquality |>
 The ordering is from lowest value to highest value. Here the first 10 rows. Note `Month` and `Day` are no longer chronological.
 
 Repeat but order by the value of air temperature.
+
 ```{r}
 airquality |>
   dplyr::arrange(Temp)
 ```
 
 Importantly you can string the functions together. For example select the variables radiation, wind, and temperature then filter by temperatures above 90F and arrange from coolest to warmest by temperature.
+
 ```{r}
 airquality |>
   dplyr::select(Solar.R, Wind, Temp) |>
@@ -146,12 +165,14 @@ airquality |>
   dplyr::arrange(Temp)
 ```
 
-The result is a data frame with three columns and 14 rows arranged by increasing temperatures above 90F. 
+The result is a data frame with three columns and 14 rows arranged by increasing temperatures above 90F.
 
-The `mutate()` function adds new columns to the data frame. 
+The `mutate()` function adds new columns to the data frame.
+
 ![mutate](figures/dplyr_mutate.png)
 
-For example, create a new column called `TempC` as the temperature in degrees Celcius. Also create a column called `WindMS` as the wind speed in meters per second.
+For example, create a new column called `TempC` as the temperature in degrees Celsius. Also create a column called `WindMS` as the wind speed in meters per second.
+
 ```{r}
 airquality |>
   dplyr::mutate(TempC = (Temp - 32) * 5/9,
@@ -161,6 +182,7 @@ airquality |>
 The resulting data frame has 8 columns (two new ones) labeled `TempC` and `WindMS`.
 
 On days when the temperature is below 60 F add a column giving the apparent temperature based on the cooling effect of the wind (wind chill) and then arrange from coldest to warmest apparent temperature.
+
 ```{r}
 airquality |>
   dplyr::filter(Temp < 60) |>
@@ -168,9 +190,8 @@ airquality |>
   dplyr::arrange(TempAp)
 ```
 
-Summarize
-
 The `summarize()` function reduces (flattens) the data frame based on a function that computes a statistic. For example, to compute the average wind speed during July type
+
 ```{r}
 airquality |>
   dplyr::filter(Month == 7) |>
@@ -181,42 +202,43 @@ airquality |>
   dplyr::summarize(Tavg = mean(Temp))
 ```
 
-You already seen functions that compute statistics on vectors including `sum()`, `sd()`, `min()`, `max()`, `var()`, `range()`, `median()`. Others include
+R functions that compute statistics on vectors include `sum()`, `sd()`, `min()`, `max()`, `var()`, `range()`, `median()`. Others from the {dplyr} package include
 
-Summary function  | Description
------------------:|:-----------
-`dplyr::n()`             | Length of the column
-`dplyr::first()`         | First value of the column
-`dplyr::last()`          | Last value of the column
-`dplyr::n_distinct()`    | Number of distinct values
+|      Summary function | Description               |
+|----------------------:|:--------------------------|
+|          `dplyr::n()` | Length of the column      |
+|      `dplyr::first()` | First value of the column |
+|       `dplyr::last()` | Last value of the column  |
+| `dplyr::n_distinct()` | Number of distinct values |
 
 Find the maximum and median wind speed and maximum ozone concentration values during the month of May. Also determine the number of observations during May.
+
 ```{r}
 airquality |>
   dplyr::filter(Month == 5) |>
   dplyr::summarize(Wmax = max(Wind), 
-            Wmed = median(Wind), 
-            OzoneMax = max(Ozone, na.rm = TRUE), 
-            NumDays = dplyr::n())
+                   Wmed = median(Wind), 
+                   OzoneMax = max(Ozone), 
+                   NumDays = dplyr::n())
 ```
 
-Why do you get an `NA` for `OzoneMax`? 
+Why do you get an `NA` for `OzoneMax`?
 
 Fix this by including the argument `na.rm = TRUE` inside the `max()` function.
+
 ```{r}
 airquality |>
   dplyr::filter(Month == 5) |>
   dplyr::summarize(Wmax = max(Wind),
-            Wmed = median(Wind),
-            OzoneMax = max(Ozone, na.rm = TRUE),
-            NumDays = dplyr::n())
+                   Wmed = median(Wind),
+                   OzoneMax = max(Ozone, na.rm = TRUE),
+                   NumDays = dplyr::n())
 ```
 
-Grouping by column name
-
-If you want to summarize separately for each month you use the `group_by()` function. You split the data frame by some variable (e.g., `Month`), apply a function to the individual data frames, and then combine the output.
+To summarize separately for each month use the `group_by()` function. You split the data frame by some variable (e.g., `Month`), apply a function to the individual data frames, and then combine the output.
 
 Find the highest ozone concentration by month. Include the number of observations (days) in the month.
+
 ```{r}
 airquality |>
   dplyr::group_by(Month) |>
@@ -225,6 +247,7 @@ airquality |>
 ```
 
 Find the average ozone concentration when temperatures are above and below 70 F. Include the number of observations (days) in the two groups.
+
 ```{r}
 airquality |>
   dplyr::group_by(Temp >= 70) |>
@@ -232,31 +255,224 @@ airquality |>
             NumDays = dplyr::n())
 ```
 
-On average ozone concentration is higher on warm days (Temp >= 70 F) days. Said another way; mean ozone concentration statistically depends on temperature.
+On average ozone concentration is higher on warm days (Temp \>= 70 F) days. Said another way; mean ozone concentration statistically depends on temperature.
 
 The mean is a model for the data. The statistical dependency of the mean implies that a model for ozone concentration will likely be improved by including temperature as an explanatory variable.
 
 To summarize, the important verbs are
 
-Verb          | Description
--------------:|:-----------
-`dplyr::select()`    | selects columns; pick variables by their names
-`dplyr::filter()`    | filters rows; pick observations by their values
-`dplyr::mutate()`    | creates new columns; create new variables with functions of existing variables
-`dplyr::summarize()` | summarizes values; collapse many values down to a single summary
-`dplyr::group_by()`  | allows operations to be grouped
+|                 Verb | Description                                                                    |
+|--------------------------------------:|:--------------------------------|
+|    `dplyr::select()` | selects columns; pick variables by their names                                 |
+|    `dplyr::filter()` | filters rows; pick observations by their values                                |
+|    `dplyr::mutate()` | creates new columns; create new variables with functions of existing variables |
+| `dplyr::summarize()` | summarizes values; collapse many values down to a single summary               |
+|  `dplyr::group_by()` | allows operations to be grouped                                                |
 
 The syntax of the verb functions are all the same:
 
-Properties
-* The first argument is a data frame. This argument is implicit when using the `|>` operator.
-* The subsequent arguments describe what to do with the data frame. You refer to columns in the data frame directly (without using `$`).
-* The result is a new data frame
+Properties \* The first argument is a data frame. This argument is implicit when using the `|>` operator. \* The subsequent arguments describe what to do with the data frame. You refer to columns in the data frame directly (without using `$`). \* The result is a new data frame
 
 These properties make it easy to chain together many simple lines of code to do something complex.
 
 The five functions form the basis of a grammar for data. At the most basic level, you can only alter a data frame in five useful ways: you can reorder the rows (`arrange()`), pick observations and variables of interest (`filter()` and `select()`), add new variables that are functions of existing variables (`mutate()`), or collapse many values to a summary (`summarise()`).
 
-Your turn
+Example: Let's consider another set of data. Daily high and low temperatures and precipitation in Tallahassee.
 
-Consider again the Florida precipitation data set (http://myweb.fsu.edu/jelsner/temp/data/FLprecip.txt). Import the data as a data frame, select the columns `April` and `Year`, group by years > 1960, then compute the mean and variance of the April rainfall with the `summarize()` function.
+The file (`TLH_SOD1892.csv`) is available in this project in the folder `data`).
+
+Import the data as a data frame.
+
+```{r}
+TLH.df <- readr::read_csv(file = here::here("data", "TLH_SOD1892.csv"))
+```
+
+The data frame contains daily high (`TMAX`) and low (`TMIN`) temperatures and total precipitation (`PRCP`) from two stations: Airport with `STATION` identification USW00093805 and downtown with `STATION` identification USC00088754.
+
+Use the `select()` function to create a new data frame with only `STATION`, `DATE`, `PRCP`, `TMAX` and `TMIN`.
+
+```{r}
+( TLH.df <- TLH.df |>
+  dplyr::select(STATION, DATE, PRCP, TMAX, TMIN) )
+```
+
+Note that you've recycled the name of the data frame. You started with `TLH.df` containing all the columns and you ended with `TLH.df` with only the columns selected.
+
+Then use the `filter()` function to keep only days at or above 90F. Similarly you recycle the name of the data frame. Use the `glimpse()` function to take a look at the resulting data frame.
+
+```{r}
+TLH.df <- TLH.df |>
+  dplyr::filter(TMAX >= 90) |>
+  dplyr::glimpse()
+```
+
+Note that the `DATE` column is a vector of dates having class `date`. Note if this were a character string you convert the character string into a date with the `as.Date()` function.
+
+Functions from the {lubridate} package are used to extract information from dates. Here you add columns labeled `Year`, `Month`, and `Day` using the extractor functions `year()`, `month()`, etc.
+
+```{r}
+( TLH.df <- TLH.df |>
+  dplyr::mutate(Year = lubridate::year(DATE),
+                Month = lubridate::month(DATE),
+                Day = lubridate::day(DATE),
+                DoW = lubridate::weekdays(DATE)) )
+```
+
+Next you keep only the temperature record from the airport. You use the `filter()` function on the column labeled `STATION`.
+
+```{r}
+TLH.df <- TLH.df |>
+  dplyr::filter(STATION == "USW00093805")
+```
+
+Now what if you want to know how many hot days (90F or higher) by year? You use the `group_by()` function and count using the `n()` function.
+
+```{r}
+( TLH90.df <- TLH.df |>
+  dplyr::group_by(Year) |>
+  dplyr::summarize(nHotDays = dplyr::n()) )
+```
+
+Note that the `group_by()` function results in a data frame with the first column the variable used inside the function. In this case it is `Year`. The next columns are defined by what is in the `summarize()` function.
+
+Repeat but this time group by `Month`.
+
+```{r}
+TLH.df |>
+  dplyr::group_by(Month) |>
+  dplyr::summarize(nHotDays = dplyr::n())
+```
+
+As expected the number of 90F+ days is highest in July and August. Note that you've had 90F+ days in October.
+
+Would you expect there to be more hot days on the weekend? How would you check this?
+
+```{r}
+TLH.df |>
+  dplyr::group_by(Year, DoW) |>
+  dplyr::summarize(nHotDays = dplyr::n())
+```
+
+You can group by more than one variable. For example, add the variable `Year` to the `group_by()` function above.
+
+Recall that you can also `arrange()` the data frame ordered according to the values in a particular column.
+
+```{r}
+TLH90.df |>
+  dplyr::arrange(desc(nHotDays))
+```
+
+## From data import to final plot {.unnumbered}
+
+Let's put together a piece of original research. You know how to import a data, you know how to manipulate a data frame to compute something of interest, and you know how to make a graph.
+
+Let's do this for the number of hot days in Tallahassee. Let's say you want a plot of the annual number of hot days since 1950. Let's define a hot day as one where the high temperature is at least 90F.
+
+```{r}
+library(ggplot2)
+
+readr::read_csv(file = "data/TLH_SOD1892.csv") |>
+  dplyr::filter(STATION == "USW00093805",
+                TMAX >= 90) |>
+  dplyr::mutate(Year = year(DATE)) |>
+  dplyr::filter(Year >= 1950) |>
+  dplyr::group_by(Year) |>
+  dplyr::summarize(nHotDays = dplyr::n()) |>
+ggplot(aes(x = Year, y = nHotDays)) +
+  geom_point() +
+  geom_smooth() +
+  scale_y_continuous(limits = c(0, NA)) +
+  ylab("Number of Days") +
+  ggtitle("Number of Hot Days in Tallahassee Since 1950",
+          subtitle = "High Temperature >= 90F") +
+  theme_minimal()
+```
+
+You go from data in a file to a plot of interest with a set of functions that are logically ordered and easy to read.
+
+What would you change to make a similar plot for the number of hot nights (say where the minimum temperature fails to drop below 74)?
+
+```{r}
+readr::read_csv(file = "data/TLH_SOD1892.csv") |>
+  dplyr::filter(STATION == "USW00093805",
+                TMIN >= 74) |>
+  dplyr::mutate(Year = year(DATE)) |>
+  dplyr::filter(Year >= 1950) |>
+  dplyr::group_by(Year) |>
+  dplyr::summarize(nHotNights = dplyr::n()) |>
+ggplot(aes(x = Year, y = nHotNights)) +
+  geom_point() +
+  geom_smooth() +
+  scale_y_continuous(limits = c(0, NA)) +
+  ylab("Number of Nights") +
+  ggtitle("Number of Hot Nights in Tallahassee Since 1950",
+          subtitle = "Low Temperature >= 74F") +
+  theme_minimal()
+```
+
+Make a similar plot showing the total precipitation by year.
+
+```{r}
+readr::read_csv(file = "data/TLH_SOD1892.csv") |>
+  dplyr::filter(STATION == "USW00093805") |>
+  dplyr::mutate(Year = year(DATE)) |>
+  dplyr::filter(Year >= 1950) |>
+  dplyr::group_by(Year) |>
+  dplyr::summarize(TotalPrecip = sum(PRCP)) |>
+ggplot(aes(x = Year, y = TotalPrecip)) +
+  geom_point() +
+  geom_smooth() +
+  scale_y_continuous(limits = c(0, NA)) +
+  ylab("Total Precipitation by Year") +
+  theme_minimal()
+```
+
+Example: Food consumption and CO2 emissions
+
+Source: <https://www.nu3.de/blogs/nutrition/food-carbon-footprint-index-2018>
+
+```{r}
+fc.df <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-02-18/food_consumption.csv')
+head(fc.df)
+```
+
+Consumption is kg/person/year and CO2 emission is kg CO2/person/year.
+
+(1) How many different countries are in the data frame?
+
+```{r}
+fc.df |>
+  dplyr::distinct(country) |>
+  nrow()
+```
+
+(2) Arrange the countries from most pork consumption (per person) to the least pork consumption.
+
+```{r}
+fc.df |>
+  dplyr::filter(food_category == "Pork") |>
+  dplyr::select(country, consumption) |>
+  dplyr::arrange(desc(consumption))
+```
+
+(3) Arrange the countries from the largest carbon footprint with respect to eating habits to the smallest carbon footprint.
+
+```{r}
+fc.df |>
+  dplyr::rename(co2_emission = co2_emmission) |>
+  dplyr::group_by(country) |>
+  dplyr::summarize(totalEmission = sum(co2_emission)) |>
+  dplyr::arrange(desc(totalEmission))
+```
+
+To summarize: Data munging is a big part of data science. Data science is an iterative cycle:
+
+1.  Generate questions of interest that can be answered with your data.
+2.  Search for answers by transforming, visualizing, and modeling the data.
+3.  Use what you learn to refine your questions and/or ask new ones.
+
+You use questions as tools to guide the investigation. When you ask a question, the question focuses you attention on a specific part of the data and helps you decide what to do.
+
+For additional practice check out <http://r4ds.had.co.nz/index.html>
+
+Cheat sheets <http://rstudio.com/cheatsheets>
