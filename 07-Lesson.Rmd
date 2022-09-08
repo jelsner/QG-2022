@@ -2,7 +2,7 @@
 
 Today
 
--   Making graphs
+-   Data visualization
 
 ## Data visualization {.unnumbered}
 

@@ -1,3 +1,113 @@
+---
+title: "GEO5156: Quantitative Geography"
+subtitle: "Fall 2022"
+author: "James B. Elsner"
+date: "Date compiled: `r Sys.Date()`"
+bibliography: ["References.bib"]
+biblio-style: apalike
+link-citations: yes
+github-repo: jelsner/QG-2022
+site: "bookdown::bookdown_site"
+documentclass: book
+editor_options: 
+  chunk_output_type: console
+---
+---
+title: "GEO5156: Quantitative Geography"
+subtitle: "Fall 2022"
+author: "James B. Elsner"
+date: "Date compiled: `r Sys.Date()`"
+bibliography: ["References.bib"]
+biblio-style: apalike
+link-citations: yes
+github-repo: jelsner/QG-2022
+site: "bookdown::bookdown_site"
+documentclass: book
+editor_options: 
+  chunk_output_type: console
+---
+
+<!--chapter:end:index.Rmd-->
+
+
+# Syllabus {.unnumbered}
+
+Placeholder
+
+
+## GEO5165C: Quantitative Geography {.unnumbered}
+## Contact information {.unnumbered}
+## Course description and expected learning outcomes {.unnumbered}
+## Grades and ethics {.unnumbered}
+## Schedule (subject to change with notice) {.unnumbered}
+## Deeper dives {.unnumbered}
+
+<!--chapter:end:00-Syllabus.Rmd-->
+
+
+# Tuesday, August 23, 2022 {-}
+
+Placeholder
+
+
+## What is this course? {-}
+## Where are the materials for this course? {-}
+## Get the syllabus {-}
+## Getting setup {-}
+## Getting to know RStudio's integrated development environment (IDE) {-}
+
+<!--chapter:end:01-Lesson.Rmd-->
+
+
+# Thursday, August 25, 2022 {.unnumbered}
+
+Placeholder
+
+
+## Data science {.unnumbered}
+## Structure of markdown files {.unnumbered}
+## How to make a plot {.unnumbered}
+## Getting started using R {.unnumbered}
+
+<!--chapter:end:02-Lesson.Rmd-->
+
+
+# Tuesday, August 30, 2022 {.unnumbered}
+
+Placeholder
+
+
+## Graphing examples {.unnumbered}
+## Introduction to working with base R {.unnumbered}
+## Data as vectors {.unnumbered}
+
+<!--chapter:end:03-Lesson.Rmd-->
+
+
+# Thursday, September 1, 2022 {.unnumbered}
+
+Placeholder
+
+
+## Statistical summaries of data {.unnumbered}
+## Structured data {.unnumbered}
+## Tables {.unnumbered}
+## Assignment #1 {-}
+
+<!--chapter:end:04-Lesson.Rmd-->
+
+
+# Tuesday, September 6, 2022 {.unnumbered}
+
+Placeholder
+
+
+## Getting data into R {.unnumbered}
+## Data frames {.unnumbered}
+## Piping your commands {-}
+
+<!--chapter:end:05-Lesson.Rmd-->
+
 # Thursday, September 8, 2022 {.unnumbered}
 
 Today
@@ -325,12 +435,10 @@ Functions from the {lubridate} package are used to extract information from `dat
   dplyr::mutate(Year = lubridate::year(DATE),
                 Month = lubridate::month(DATE),
                 Day = lubridate::day(DATE),
-                Week = lubridate::wday(DATE)) )
+                DoW = lubridate::weekdays(DATE)) )
 ```
 
-The function `lubridate::wday()` gets the days of the week with 1 = Monday and 7 = Sunday.
-
-Next you keep only the temperature record from the airport. You use the `dplyr::filter()` function on the column labeled `STATION`.
+Next you keep only the temperature record from the airport. You use the `filter()` function on the column labeled `STATION`.
 
 ```{r}
 TLH.df <- TLH.df |>
@@ -489,3 +597,240 @@ You use questions as tools to guide the investigation. When you ask a question, 
 For additional practice check out <http://r4ds.had.co.nz/index.html> Data Transformation
 
 Cheat sheets <http://rstudio.com/resources/cheatsheets>
+
+<!--chapter:end:06-Lesson.Rmd-->
+
+
+# Thursday, September 13, 2022 {.unnumbered}
+
+Placeholder
+
+
+## Data visualization {.unnumbered}
+
+<!--chapter:end:07-Lesson.Rmd-->
+
+
+# Tuesday, September 20, 2022 {-}
+
+Placeholder
+
+
+## Data visualization continued {-}
+
+<!--chapter:end:09-Lesson.Rmd-->
+
+
+# Thursday, September 22, 2022 {-}
+
+Placeholder
+
+
+## Simple feature data frames {-}
+## Making a boundary map {-}
+## Inset maps {-}
+## Map projections {-}
+## Bivariate maps (extra material) {-}
+
+<!--chapter:end:10-Lesson.Rmd-->
+
+
+# Tuesday, September 27, 2022 {-}
+
+Placeholder
+
+
+## Making maps using functions from the {tmap} package {-}
+## Calculations using the geometry simple feature column {-}
+## Making raster maps {-}
+## Spatial density maps (extra material) {-}
+
+<!--chapter:end:11-Lesson.Rmd-->
+
+
+# Thursday, September 29, 2022 {-}
+
+Placeholder
+
+
+## One-sample test of the population mean {-}
+## About p-values {-}
+## Graphical inference {-}
+## Two-sample test for the difference in population means {-}
+## Test of equal variance {-}
+## Wilcoxon (Mann-Whitney U) non-parameteric test of difference in means {-}
+
+<!--chapter:end:12-Lesson.Rmd-->
+
+
+# Tuesday, October 4, 2022 {-}
+
+Placeholder
+
+
+## Paired observations {-}
+## Chi-squared test for independence {-}
+
+<!--chapter:end:13-Lesson.Rmd-->
+
+
+# Thursday, October 6, 2022 {-}
+
+Placeholder
+
+
+## Bayesian data analysis {-}
+
+<!--chapter:end:14-Lesson.Rmd-->
+
+
+# Tuesday, October 11, 2022 {-}
+
+Placeholder
+
+
+## More examples of Bayesian data analyses {-}
+
+<!--chapter:end:15-Lesson.Rmd-->
+
+
+# Thursday, October 13, 2022 {-}
+
+Placeholder
+
+
+## Linear regression: A t test by another name {-}
+## Motivation for the regression model {-}
+## Making predictions with the regression model {-}
+## Uncertainty about the regression model coefficients {-}
+## Bootstrapping the uncertainty {-}
+
+<!--chapter:end:16-Lesson.Rmd-->
+
+
+# Tuesday, October 18, 2022 {-}
+
+Placeholder
+
+
+## Uncertainty about a particular predicted value {-}
+## Model Adequacy {-}
+## Transforming the response variable {-}
+
+<!--chapter:end:17-Lesson.Rmd-->
+
+
+# Thursday, October 20, 2022 {-}
+
+Placeholder
+
+
+## More regression examples {-}
+## Outliers {-}
+## Simpson's paradox {-}
+
+<!--chapter:end:18-Lesson.Rmd-->
+
+
+# Tuesday, October 25, 2022 {-}
+
+Placeholder
+
+
+## A regression plane {-}
+## Fitting a multiple variable regression model {-}
+## Should you remove a variable from the model? {-}
+## Checking on the model assumptions {-}
+## Using the model to make predictions {-}
+## Collinearity {-}
+## Interactions {-}
+
+<!--chapter:end:19-Lesson.Rmd-->
+
+
+# Thursday, October 27, 2022 {-}
+
+Placeholder
+
+
+## Removing variables from a regression model {-}
+## The stepwise selection procedure {-}
+## Transforming a response variable {-}
+## Regression trees {-}
+
+<!--chapter:end:20-Lesson.Rmd-->
+
+
+# Tuesday, November 1, 2022 {-}
+
+Placeholder
+
+
+## Predictive uncertainty with regression trees {-}
+## The random forest algorithm {-}
+## Cross validation {-}
+## Classification trees {-}
+
+<!--chapter:end:21-Lesson.Rmd-->
+
+
+# Thursday, November 3, 2022 {-}
+
+Placeholder
+
+
+## Binary outcomes and probabilities {-}
+## Logistic regression {-}
+
+<!--chapter:end:22-Lesson.Rmd-->
+
+
+# Tuesday, November 8, 2022 {-}
+
+Placeholder
+
+
+## Quantifying autocorrelation in spatial data {-}
+## Spatial data as polygon areas {-}
+## Nearest neighbors {-}
+## Spatial weights {-}
+## Moran's I {-}
+## Spatial lag variable {-}
+
+<!--chapter:end:23-Lesson.Rmd-->
+
+
+# Thursday, November 10, 2022 {-}
+
+Placeholder
+
+
+## Statistical significance of spatial autocorrelation {-}
+## A Monte Carlo approach to inference about spatial autocorrelation {-}
+## Spatial autocorrelation in model residuals {-}
+
+<!--chapter:end:24-Lesson.Rmd-->
+
+
+# Tuesday, November 15, 2022 {-}
+
+Placeholder
+
+
+## Bi-variate spatial autocorrelation {-}
+## Local autocorrelation {-}
+## Local regression {-}
+## Spatial weights {-}
+
+<!--chapter:end:25-Lesson.Rmd-->
+
+
+# Thursday, November 17, 2022 {-}
+
+Placeholder
+
+
+## Geographic regression {-}
+
+<!--chapter:end:26-Lesson.Rmd-->
+
