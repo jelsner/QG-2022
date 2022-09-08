@@ -28,7 +28,7 @@ Click on `airquality` in the environment. It is a data frame.
 
 Selecting and filtering
 
-The function `select()` chooses variables by name to create a data frame with fewer columns. For example, choose the month, day, and temperature columns from the `airquality` data frame.
+The function `dplyr::select()` chooses variables by name to create a data frame with fewer columns. For example, choose the month, day, and temperature columns from the `airquality` data frame.
 
 ```{r}
 airquality |>
@@ -47,7 +47,7 @@ You include an assignment operator (`<-`) and an object name (here `df`).
 
 Note: The result of applying most {dplyr} verbs is a data frame. The take only data frames and return only data frames.
 
-The function `filter()` chooses observations based on specific values.
+The function `dplyr::filter()` chooses observations based on specific values.
 
 ![filter](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/dplyr_filter.jpg)
 
@@ -83,7 +83,7 @@ penguins |>
   dplyr::filter(sex == "female")
 ```
 
-To filter rows keeping only species that are not Adalie penguins.
+To filter rows keeping only species that are not Adelie penguins.
 
 ```{r}
 penguins |> 
@@ -149,7 +149,7 @@ Note that this filtering will keep rows with other column values that are missin
 
 Stringing functions together
 
-The function `arrange()` orders the rows by values given in a particular column.
+The function `dplyr::arrange()` orders the rows by values given in a particular column.
 
 ```{r}
 airquality |>
@@ -180,15 +180,15 @@ The `mutate()` function adds new columns to the data frame.
 
 ![mutate](figures/dplyr_mutate.png)
 
-For example, create a new column called `TempC` as the temperature in degrees Celsius. Also create a column called `WindMS` as the wind speed in meters per second.
+For example, create a new column called `Temp_C` as the temperature in degrees Celsius. Also create a column called `Wind_ms` as the wind speed in meters per second.
 
 ```{r}
 airquality |>
-  dplyr::mutate(TempC = (Temp - 32) * 5/9,
-                WindMS = Wind * .44704) 
+  dplyr::mutate(Temp_C = (Temp - 32) * 5/9,
+                Wind_ms = Wind * .44704) 
 ```
 
-The resulting data frame has 8 columns (two new ones) labeled `TempC` and `WindMS`.
+The resulting data frame has 8 columns (two new ones) labeled `Temp_C` and `Wind_ms`.
 
 On days when the temperature is colder than 60 F, add a column giving the apparent temperature based on the cooling effect of the wind (wind chill) and then arrange from coldest to warmest apparent temperature.
 
@@ -202,7 +202,7 @@ airquality |>
   dplyr::arrange(TempAp)
 ```
 
-The `summarize()` function reduces (flattens) the data frame based on a function that computes a statistic. For example, to compute the average wind speed during July type
+The `dplyr::summarize()` function reduces (flattens) the data frame based on a function that computes a statistic. For example, to compute the average wind speed during July type
 
 ```{r}
 airquality |>
@@ -223,7 +223,7 @@ R functions that compute statistics on vectors include `sum()`, `sd()`, `min()`,
 |       `dplyr::last()` | Last value of the column  |
 | `dplyr::n_distinct()` | Number of distinct values |
 
-Find the maximum and median wind speed and maximum ozone concentration values during the month of May. Also determine the number of observations during May.
+Find the maximum and median wind speed and maximum ozone concentration during the month of May. Also determine the number of observations during May.
 
 ```{r}
 airquality |>
@@ -247,7 +247,7 @@ airquality |>
                    NumDays = dplyr::n())
 ```
 
-To summarize separately for each month use the `group_by()` function. You split the data frame by some variable (e.g., `Month`), apply a function to the individual data frames, and then combine the output.
+To summarize separately for each month use the `dplyr::group_by()` function. You split the data frame by some variable (e.g., `Month`), apply a function to the individual data frames, and then combine the output.
 
 Find the highest ozone concentration by month. Include the number of observations (days) in the month.
 
@@ -318,14 +318,14 @@ TLH.df <- TLH.df |>
 
 Note that the `DATE` column is a vector of dates having class `date`. If this is a character string you can convert it to a `date` with the `as.Date()` function.
 
-Functions from the {lubridate} package are used to extract information from `date`s. Here you add columns labeled `Year`, `Month`, and `Day` using the functions `year()`, `month()`, `day()` and `weekdays()`.
+Functions from the {lubridate} package are used to extract information from `date`s. Here you add columns labeled `Year`, `Month`, and `Day` using the functions `lubridate::year()`, `lubridate::month()`, `lubridate::day()` and `lubridate::wday()`.
 
 ```{r}
 ( TLH.df <- TLH.df |>
   dplyr::mutate(Year = lubridate::year(DATE),
                 Month = lubridate::month(DATE),
                 Day = lubridate::day(DATE),
-                Week = lubridate::wday(DATE)) )
+                DoW = lubridate::wday(DATE)) )
 ```
 
 The function `lubridate::wday()` gets the days of the week with 1 = Monday and 7 = Sunday.
@@ -361,7 +361,7 @@ Would you expect there to be more hot days on the weekend? How would you check t
 
 ```{r}
 TLH.df |>
-  dplyr::group_by(Year, DoW) |>
+  dplyr::group_by(DoW) |>
   dplyr::summarize(nHotDays = dplyr::n())
 ```
 
@@ -383,14 +383,14 @@ Let's do this for the number of hot days in Tallahassee. Let's say you want a pl
 ```{r}
 library(ggplot2)
 
-readr::read_csv(file = "data/TLH_SOD1892.csv") |>
+readr::read_csv(file = here::here("data", "TLH_SOD1892.csv")) |>
   dplyr::filter(STATION == "USW00093805",
                 TMAX >= 90) |>
-  dplyr::mutate(Year = year(DATE)) |>
+  dplyr::mutate(Year = lubridate::year(DATE)) |>
   dplyr::filter(Year >= 1950) |>
   dplyr::group_by(Year) |>
   dplyr::summarize(nHotDays = dplyr::n()) |>
-ggplot(aes(x = Year, y = nHotDays)) +
+ggplot(mapping = aes(x = Year, y = nHotDays)) +
   geom_point() +
   geom_smooth() +
   scale_y_continuous(limits = c(0, NA)) +
@@ -405,10 +405,10 @@ You go from data in a file to a plot of interest with a set of functions that ar
 What would you change to make a similar plot for the number of hot nights (say where the minimum temperature fails to drop below 74)?
 
 ```{r}
-readr::read_csv(file = "data/TLH_SOD1892.csv") |>
+readr::read_csv(file = here::here("data", "TLH_SOD1892.csv")) |>
   dplyr::filter(STATION == "USW00093805",
                 TMIN >= 74) |>
-  dplyr::mutate(Year = year(DATE)) |>
+  dplyr::mutate(Year = lubridate::year(DATE)) |>
   dplyr::filter(Year >= 1950) |>
   dplyr::group_by(Year) |>
   dplyr::summarize(nHotNights = dplyr::n()) |>
@@ -427,7 +427,7 @@ Make a similar plot showing the total precipitation by year.
 ```{r}
 readr::read_csv(file = "data/TLH_SOD1892.csv") |>
   dplyr::filter(STATION == "USW00093805") |>
-  dplyr::mutate(Year = year(DATE)) |>
+  dplyr::mutate(Year = lubridate::year(DATE)) |>
   dplyr::filter(Year >= 1950) |>
   dplyr::group_by(Year) |>
   dplyr::summarize(TotalPrecip = sum(PRCP)) |>
@@ -449,7 +449,7 @@ fc.df <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidy
 head(fc.df)
 ```
 
-Consumption is kg/person/year and CO2 emission is kg CO2/person/year. I note that emission in the column name is mispelled.
+Consumption is kg/person/year and CO2 emission is kg CO2/person/year. I note that emission in the column name is misspelled.
 
 (1) How many different countries are in the data frame?
 
