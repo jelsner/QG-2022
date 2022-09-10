@@ -1,4 +1,4 @@
-# Thursday, September 13, 2022 {.unnumbered}
+# Tuesday, September 13, 2022 {.unnumbered}
 
 Today
 
@@ -6,7 +6,7 @@ Today
 
 ## Data visualization {.unnumbered}
 
-Data visualization is a cornerstone of data science. It gives insights into your data that are not accessible by looking at a spreadsheet or data frame of values.
+Data visualization is a cornerstone of data science. It allows you insights into your data that are not accessible by looking at a spreadsheet or data frame of values.
 
 The {ggplot2} package provides functions to make plots efficiently. The functions are an application of the grammar of graphics theory (Leland Wilkinson) of data visualization.
 
@@ -28,9 +28,7 @@ Make the functions from the {ggplot2} package available in your current session.
 library(ggplot2)
 ```
 
-Bar chart
-
-A simple graph is the bar chart showing the number of cases within each group. Consider again the annual hurricane counts.
+Bar chart: A simple graph is the bar chart showing the number of cases within each group. Consider again the annual hurricane counts.
 
 Import the data from the file on my website and print the first six rows.
 
@@ -221,7 +219,7 @@ Note: `geom_bar()` plots a bar chart AFTER tabulating a column. `geom_col()` plo
 Let's return to the weather data from Tallahassee.
 
 ```{r}
-df <- readr::read_csv(file = "data/TLH_SOD1892.csv") |>
+df <- readr::read_csv(file = here::here("data", "TLH_SOD1892.csv")) |>
   dplyr::filter(STATION == "USW00093805") |>
   dplyr::mutate(Year = lubridate::year(DATE),
          Month = lubridate::month(DATE)) |>
@@ -363,13 +361,13 @@ ggplot(FLp.df) +
 
 Side-by-side box plots
 
-Suppose you want to show box plots for each month. In this case you make the x argument in the `aes()` the name of a column containing the vector of month names.
+Suppose you want to show box plots for each month. In this case you make the x argument in the `aes()` function the name of a column containing the vector of month names.
 
 You first turn the data frame from its native 'wide' format to a {ggplot2} friendly 'long' format.
 
-Wide format data is called 'wide' because it typically has a lot of columns that stretch across our computer screen. Long format data is called 'long' because it has fewer columns while preserving all the information. In order to do have fewer columns, it has to be longer.
+Wide format data is called 'wide' because it typically has a lot of columns that stretch across the screen. Long format data is called 'long' because it has fewer columns while preserving all the information. In order to do have fewer columns, it has to be longer.
 
-Wide format data are most common. They are convenient for data entry. They let us see more of the data at one time. For example, the `FLp.df` data frame.
+Wide format data are most common. They are convenient for data entry. They let you see more of the data at one time. For example, the `FLp.df` data frame.
 
 ```{r}
 head(FLp.df)

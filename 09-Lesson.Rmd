@@ -46,7 +46,7 @@ The average value is larger than the median value and the histogram is not symme
 
 The histogram helps us to describe the statistical _distribution_ of the values.
 
-To see this, recall that you can generate values from any distribution. For example you generate values from a normal (Guassian distribution) with the `rnorm()` function by specifying the mean and the standard deviation. 
+To see this, recall that you can generate values from any distribution. For example you generate values from a normal (Gaussian distribution) with the `rnorm()` function by specifying the mean and the standard deviation. 
 
 Here you do this using the mean and standard deviation from our rainfall values. Since there are 118 March rainfall values (one for each year) you set `n = 118`.
 ```{r}
