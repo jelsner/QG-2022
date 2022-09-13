@@ -14,11 +14,11 @@ The {ggplot2} package provides functions to make plots efficiently. The function
 
 At a basic level, graphics/plots/charts (all interchangeable terms) provide a way to explore the patterns in data; the presence of extreme values, distributions of individual variables, and relationships between groups of variables.
 
-Graphics should emphasize the findings and insights you want your audience to understand. This requires a balance.
+Graphs should emphasize the findings and insights you want your audience to understand. This requires a balance.
 
-On the one hand, you want to highlight as many interesting findings as possible. On the other hand, you don't want to include so much information that it overwhelms the audience.
+On one hand, you want to highlight as many interesting findings as possible. On the other hand, you don't want to include too much information that it overwhelms the audience.
 
-The grammar of graphics specifies how a plot translates data to attributes and geometric objects. - Attributes are things like location on along an axes, color, shape, and size. - Geometric objects are things like points, lines, bars, and polygons.
+The grammar of graphics specifies how a plot translates data into attributes and geometric objects. - Attributes are things like location on along an axes, color, shape, and size. - Geometric objects are things like points, lines, bars, and polygons.
 
 The type of plot depends on the geometric object, which is specified as a function.
 
@@ -84,7 +84,7 @@ ggplot(data = LH.df) +
 
 Here axes labels are placed on the plot with the functions `ylab()` and `xlab()`. With this type of 'layering' it's easy to go from data on the web to a publishable plot.
 
-Example: Pie preference. Thirty graduate students were surveyed about their favorite pie. Categories were (1) chocolate cream, (2) coconut custard, (3) georgia peach, and (4) strawberry. 
+Example: Pie preference. Thirty graduate students were surveyed about their favorite pie. Categories were (1) chocolate cream, (2) coconut custard, (3) georgia peach, and (4) strawberry.
 
 To make a bar chart showing the number of students who choose each category first create a character vector and then change the vector to a data frame.
 
@@ -282,7 +282,9 @@ When making a histogram you need to vary the number of bins before deciding on a
 
 ```{r}
 ggplot(data = FLp.df) + 
-  geom_histogram(mapping = aes(x = May), col = "white", bins = 15)  +
+  geom_histogram(mapping = aes(x = May), 
+                 col = "white", 
+                 bins = 15)  +
   xlab("May Precipitation in Florida (in)") 
 ```
 
@@ -290,7 +292,10 @@ It looks even better by decreasing the number of bins to 11.
 
 ```{r}
 ggplot(data = FLp.df) + 
-  geom_histogram(mapping = aes(x = May), col = "white", bins = 11, fill = "green3")  +
+  geom_histogram(mapping = aes(x = May), 
+                 col = "white", 
+                 bins = 11, 
+                 fill = "green3")  +
   xlab("May Precipitation in Florida (in)") +
   ylab("Number of Years")
 ```
@@ -301,13 +306,18 @@ The `geom_rug()` layer adds the location of the data values as tic marks just ab
 
 ```{r}
 ggplot(data = FLp.df) + 
-  geom_histogram(mapping = aes(x = May), col = "white", bins = 11, fill = "green3")  +
+  geom_histogram(mapping = aes(x = May), 
+                 col = "white", 
+                 bins = 11, 
+                 fill = "green3")  +
   xlab("May Precipitation in Florida (in)") +
   ylab("Number of Years") +
   geom_rug(mapping = aes(x = May))
 
 ggplot(data = FLp.df, mapping = aes(x = May)) + 
-  geom_histogram(col = "black", bins = 11, fill = "pink")  +
+  geom_histogram(col = "black", 
+                 bins = 11, 
+                 fill = "pink")  +
   xlab("May Precipitation in Florida (in)") +
   ylab("Number of Years") +
   geom_rug()
@@ -371,8 +381,6 @@ ggplot(FLp.df) +
   ylab("May Precipitation in Florida (in)")
 ```
 
-Side-by-side box plots
-
 Suppose you want to show box plots for each month. In this case you make the x argument in the `aes()` function the name of a column containing the vector of month names.
 
 You first turn the data frame from its native 'wide' format to a {ggplot2} friendly 'long' format.
@@ -385,13 +393,11 @@ Wide format data are most common. They are convenient for data entry. They let y
 head(FLp.df)
 ```
 
-The long data format is less familiar. It corresponds to the relational model for storing data used by most modern databases like SQL.
+The long data format is less familiar. It corresponds to the relational model for storing data used by most modern databases.
 
 Use the `pivot_longer()` function from the {tidyr} package to turn the wide data frame into a long data frame. Let's do it and then decipher what happens.
 
 ```{r}
-library(tidyr)
-
 FLpL.df <- FLp.df |>
   tidyr::pivot_longer(cols = -Year, 
                       names_to = "Month",
@@ -406,7 +412,8 @@ Note that the column `Month` is a character vector. When making a plot using thi
 month.abb
 
 FLpL.df <- FLpL.df |>
-  dplyr::mutate(Month = factor(Month, levels = month.abb))
+  dplyr::mutate(Month = factor(Month, 
+                               levels = month.abb))
 ```
 
 The `pivot_longer()` function takes all the columns to pivot into a longer format. Here chose them all EXCEPT the one named after the `-` sign (`Year`). All variables are measured (precipitation in units of inches) except `Year`.
@@ -426,7 +433,7 @@ FLpW.df <- FLpL.df |>
                      values_from = Precipitation)
 ```
 
-To help conceptualize what is going on take a look at this [gif](http://myweb.fsu.edu/jelsner/WideLong.gif).
+This gif might help [gif](http://myweb.fsu.edu/jelsner/WideLong.gif).
 
 Then to create the box plot specify that the x-axis be the key variable (here `Month`) and the y-axis to be the measured variable (here `Precipitation`).
 
@@ -436,9 +443,9 @@ ggplot(data = FLpL.df) +
   ylab("Precipitation (in)")
 ```
 
-This is a climograph.
+This is a graph widely used in climatology.
 
-Each `geom_` function is a layer. Data for the layer is specified in the function `ggplot()` with the data frame argument and the `aes()` function. To add another layer to the plot with different data you specify the data within the geom function. For example, lets repeat the climograph of monthly precipitation highlighting the month of May.
+Each `geom_` function is a layer. Data for the layer is specified in the function `ggplot()` with the data argument and with the mapping argument through the `aes()` function. To add another layer to the plot with different data you specify the data within the `geom_` function. For example, lets repeat the climatology graph of monthly precipitation highlighting the month of May.
 
 You add a `geom_boxplot()` layer and specify a subset of the data using the subset `[]` operator when specifying the `data =` argument.
 
@@ -449,7 +456,11 @@ ggplot(data = FLpL.df,
   ylab("Precipitation (in)") +
   geom_boxplot(data = FLpL.df[FLpL.df$Month == "May", ], 
                aes(x = Month, y = Precipitation), 
-               fill = "green")
+                   fill = "green")
 ```
 
-Cheat sheets: <https://ggplot2tor.com/cheatsheets/> *Additional help*: See: <https://moderndive.com/2-viz.html>
+Cheat sheets: <https://www.rstudio.com/resources/cheatsheets/>
+
+Additional examples: <https://moderndive.com/2-viz.html>
+
+Your turn: Create a density plot of the March precipitation values in the `FLp.df` data frame. Color the density line green and label the axes.
