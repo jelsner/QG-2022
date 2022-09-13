@@ -12,9 +12,9 @@ Data visualization is one of the cornerstones of data science. It allows insight
 
 The {ggplot2} package provides functions to make plots efficiently. The functions are an application of the grammar of graphics theory (Leland Wilkinson) of data visualization.
 
-At a basic level, graphics/plots/charts (all interchangeable terms) provide a way to explore the patterns in data; the presence of extreme values, distributions of individual variables, and relationships between groups of variables.
+At a basic level, graphs/plots/charts (all interchangeable terms) provide a way to explore the patterns in data; the presence of extreme values, distributions of individual variables, and relationships between groups of variables.
 
-Graphs should emphasize the findings and insights you want your audience to understand. This requires a balance.
+A graph should emphasize the findings and insights you want your audience to understand. This requires a balance.
 
 On one hand, you want to highlight as many interesting findings as possible. On the other hand, you don't want to include too much information that it overwhelms the audience.
 
@@ -32,7 +32,7 @@ library(ggplot2)
 
 Bar chart: A simple graph is the bar chart showing the number of cases within each group. Consider again the annual hurricane counts.
 
-Import the data from the file on my website and print the first six rows.
+Import the data from the file on my website and list the first six rows.
 
 ```{r}
 loc <- "http://myweb.fsu.edu/jelsner/temp/data/US.txt"
@@ -46,7 +46,7 @@ Recall that each case is a year and that the function `table()` returns the numb
 table(LH.df$All)
 ```
 
-The number of cases for each count is tallied and displayed below the count. There were 36 cases of 0 hurricanes.
+The number of cases for each count is tallied and displayed below the count. There were 36 cases (years) with no hurricanes.
 
 The function `geom_bar()` creates a bar chart of this frequency table.
 
@@ -59,7 +59,7 @@ You begin a plot with the function `ggplot()` that creates a coordinate system t
 
 You complete the graph by adding one or more layers. The function `geom_bar()` adds a layer of bars to our plot, which creates a bar chart.
 
-Each `geom_` function takes a mapping argument. This defines how variables in our data frame are mapped to visual properties. The mapping argument is always paired with `aes()` function, and the `x` argument of `aes()` specifies which variables to map to the x axes, in this case `All`. `ggplot()` looks for the mapped variable in the data argument, in this case, `LH.df`.
+Each `geom_` function takes a mapping argument. This defines how variables in our data frame are mapped to visual properties. The mapping argument is always paired with `aes()` function, and the `x` argument of `aes()` specifies which variables to map to the x axes, in this case `All`. `ggplot()` looks for the mapped variable in the data frame defined by the data argument, in this case, `LH.df`.
 
 The function `geom_bar()` tables the counts and then maps the number of cases to bars with the bar height proportional to the number of cases. Here the number of cases is the number of years with that many hurricanes.
 
@@ -86,7 +86,7 @@ Here axes labels are placed on the plot with the functions `ylab()` and `xlab()`
 
 Example: Pie preference. Thirty graduate students were surveyed about their favorite pie. Categories were (1) chocolate cream, (2) coconut custard, (3) georgia peach, and (4) strawberry.
 
-To make a bar chart showing the number of students who choose each category first create a character vector and then change the vector to a data frame.
+To make a bar chart showing the number of students who chose each category first create a character vector and then change the vector to a data frame.
 
 ```{r}
 pie <- c(rep('chocolate cream', times = 4), 
@@ -124,7 +124,7 @@ This is a start. Improvements should be made.
 
 First, the bar order is alphabetical from left to right. This is the default ordering for character vectors. It is easier to make comparisons if frequency determines the order.
 
-To change the order on the bar chart (1) convert the variable from character to factor with the `as.factor()` function then (2) specify the order of the factor levels based on frequency with the `forcats::fct_infreq()` function.
+To change the order on the bar chart (1) convert the variable from character to factor with the `factor()` function then (2) specify the order of the factor levels based on frequency with the `forcats::fct_infreq()` function.
 
 ```{r}
 pie <- pie |>
@@ -159,7 +159,7 @@ To override this default you add a new y-axis layer. The layer is the function `
 ```{r}
 ggplot(data = pie.df) + 
   geom_bar(mapping = aes(x = pie)) +
-  xlab("Beer Preference") + 
+  xlab("Pie Preference") + 
   ylab("Number of Students") +
   scale_y_continuous(limits = c(0, 15))
 ```
@@ -414,6 +414,8 @@ month.abb
 FLpL.df <- FLpL.df |>
   dplyr::mutate(Month = factor(Month, 
                                levels = month.abb))
+
+str(FLpL.df)
 ```
 
 The `pivot_longer()` function takes all the columns to pivot into a longer format. Here chose them all EXCEPT the one named after the `-` sign (`Year`). All variables are measured (precipitation in units of inches) except `Year`.
@@ -435,7 +437,7 @@ FLpW.df <- FLpL.df |>
 
 This gif might help [gif](http://myweb.fsu.edu/jelsner/WideLong.gif).
 
-Then to create the box plot specify that the x-axis be the key variable (here `Month`) and the y-axis to be the measured variable (here `Precipitation`).
+Then to create the box plot map the `Month` variable to the x aesthetic and `Precipitation` to y aesthetic.
 
 ```{r}
 ggplot(data = FLpL.df) + 
@@ -451,12 +453,12 @@ You add a `geom_boxplot()` layer and specify a subset of the data using the subs
 
 ```{r}
 ggplot(data = FLpL.df, 
-       aes(x = Month, y = Precipitation)) + 
+       mapping = aes(x = Month, y = Precipitation)) + 
   geom_boxplot() +
   ylab("Precipitation (in)") +
   geom_boxplot(data = FLpL.df[FLpL.df$Month == "May", ], 
-               aes(x = Month, y = Precipitation), 
-                   fill = "green")
+               mapping = aes(x = Month, y = Precipitation), 
+                             fill = "green")
 ```
 
 Cheat sheets: <https://www.rstudio.com/resources/cheatsheets/>
