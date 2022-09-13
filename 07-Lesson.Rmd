@@ -6,7 +6,7 @@ Today
 
 ## Data visualization {.unnumbered}
 
-Data visualization is a cornerstone of data science. It allows you insights into your data that are not accessible by looking at a spreadsheet or data frame of values.
+Data visualization is one of the cornerstones of data science. It allows insights into your data that are not accessible by looking at a spreadsheet or data frame of values.
 
 The {ggplot2} package provides functions to make plots efficiently. The functions are an application of the grammar of graphics theory (Leland Wilkinson) of data visualization.
 
@@ -82,60 +82,70 @@ ggplot(data = LH.df) +
 
 Here axes labels are placed on the plot with the functions `ylab()` and `xlab()`. With this type of 'layering' it's easy to go from data on the web to a publishable plot.
 
-Pie preference
+Example: Pie preference. Thirty graduate students were surveyed about their favorite pie. Categories were (1) chocolate cream, (2) coconut custard, (3) georgia peach, and (4) strawberry. 
 
-Thirty graduate students are surveyed about their favor pie. Categories are (1) chocolate cream, (2) coconut custard, (3) georgia peach, and (4) strawberry. To make a bar chart first create the data as a character vector and then change the vector to a data frame.
+To make a bar chart showing the number of students who choose each category first create a character vector and then change the vector to a data frame.
 
 ```{r}
 pie <- c(rep('chocolate cream', times = 4), 
          rep('coconut custard', times =  12), 
          rep('georgia peach', times =  5), 
          rep('strawberry', times =  9))
-piePref.df <- as.data.frame(pie)
+pie.df <- pie |>
+  as.data.frame()
 ```
 
-Use the function `str()` to see the column type in the data frame.
+Use the function `str()` to see the data type in the data frame.
 
 ```{r}
-str(piePref.df)
+str(pie.df)
 ```
 
-There is a single column in the data frame with the name `pie`. It is a factor variable with 4 levels one for each type of pie. A factor is a categorical vector. It looks like a character but it can be ordered. This is important when factors are used in statistical models.
+There is a single variable in the data frame with the name `pie`. The variable is a character string.
 
 Create a table.
 
 ```{r}
-table(piePref.df$pie)
+table(pie.df$pie)
 ```
 
 Create a bar chart and specify the axis labels.
 
 ```{r}
-ggplot(data = piePref.df) + 
+ggplot(data = pie.df) + 
   geom_bar(mapping = aes(x = pie)) +
   xlab("Pie Preference") + 
   ylab("Number of Students")
 ```
 
-This is a good start. Improvements should be made.
+This is a start. Improvements should be made.
 
-First, the bar order is alphabetical from left to right. This is the default ordering for character vectors or for factor variables created from character vectors. It is much easier to make comparisons if frequency determines the order.
+First, the bar order is alphabetical from left to right. This is the default ordering for character vectors. It is easier to make comparisons if frequency determines the order.
 
-To change the order on the bar chart specify the order of the factor levels on the vector beer.
+To change the order on the bar chart (1) convert the variable from character to factor with the `as.factor()` function then (2) specify the order of the factor levels based on frequency with the `forcats::fct_infreq()` function.
 
 ```{r}
-pie <- factor(pie, 
-               levels = c("coconut custard", "strawberry", "georgia peach", "chocolate cream"))
-piePref.df <- as.data.frame(pie)
+pie <- pie |>
+  factor() |>
+  forcats::fct_infreq()
 ```
 
-Or use `forcats::fct_infreq()` <https://forcats.tidyverse.org/reference/fct_inorder.html>
+Make the table.
+
+```{r}
+table(pie)
+```
 
 Now remake the bar chart.
 
 ```{r}
-ggplot(data = piePref.df) + 
-  geom_bar(mapping = aes(pie)) +
+pie.df <- pie |>
+  as.data.frame()
+```
+
+```{r}
+ggplot(data = pie.df) + 
+  geom_bar(mapping = aes(x = pie)) +
   xlab("Pie Preference") + 
   ylab("Number of Students")
 ```
@@ -145,8 +155,8 @@ Second, the vertical axis tic labels are fractions. Since the bar heights are co
 To override this default you add a new y-axis layer. The layer is the function `scale_y_continuous()` where you indicate the lower and upper limits of the axis with the concatenate (`limits = c()`) function. Now remake the bar chart.
 
 ```{r}
-ggplot(data = piePref.df) + 
-  geom_bar(mapping = aes(pie)) +
+ggplot(data = pie.df) + 
+  geom_bar(mapping = aes(x = pie)) +
   xlab("Beer Preference") + 
   ylab("Number of Students") +
   scale_y_continuous(limits = c(0, 15))
@@ -157,7 +167,7 @@ Now the chart is publishable. Options exist for changing the look of the plot fo
 For example to change the bar color use the `fill =` argument in the function `geom_bar()`. To change the orientation of the bars use the layer function `coord_flip`, and to change the background use the layer function `theme_minimal()`. You make changes to the look of the plot with additional layers.
 
 ```{r}
-ggplot(data = piePref.df) + 
+ggplot(data = pie.df) + 
   geom_bar(mapping = aes(x = pie), fill = "blue") +
   xlab("Pie Preference") + 
   ylab("Number of Students") +
@@ -166,7 +176,7 @@ ggplot(data = piePref.df) +
   theme_minimal()
 ```
 
-Recall: the `fill =` is used on the variable named in the `aes()` function but it is specified outside the `aes()` function.
+Note that the `fill =` is used on the variable named in the `aes()` function but it is specified outside the `aes()` function.
 
 Available colors include
 
@@ -174,20 +184,22 @@ Available colors include
 colors()
 ```
 
-In the above example you manually reordered the levels in the factor vector `pie` according to preference. Let's see how to do this automatically.
-
-Consider storm intensity of tropical cyclones during 2017. First create two vectors one numeric containing the minimum pressures (millibars) and the other character containing the storm names.
+Example: Consider storm intensity of tropical cyclones during 2017. First create two vectors one numeric containing the minimum pressures (millibars) and the other character containing the storm names.
 
 ```{r}
-minP <- c(990, 1007, 992, 1007, 1005, 981, 967, 938, 914, 938, 972, 971)
-name <- c("Arlene", "Bret", "Cindy", "Don", "Emily", "Franklin", "Gert", 
-         "Harvey", "Irma", "Jose", "Katia", "Lee")
+minP <- c(990, 1007, 992, 1007, 1005, 
+          981, 967, 938, 914, 938, 
+          972, 971)
+name <- c("Arlene", "Bret", "Cindy", "Don", "Emily", 
+          "Franklin", "Gert", "Harvey", "Irma", "Jose", 
+          "Katia", "Lee")
 ```
 
 The function `reorder()` takes a character vector as the first argument and returns an ordered factor with the order dictated by the numeric values in the second argument.
 
 ```{r}
-reorder(name, minP)
+name <- name |>
+  reorder(minP)
 ```
 
 The vector `name` is in alphabetically order but the factor levels indicate the order of storms from lowest pressure (Irma) to highest pressure (Don).
@@ -233,8 +245,6 @@ ggplot(data = df) +
   ylab("September Rainfall [in]") +
   coord_flip()
 ```
-
-Histogram
 
 The histogram is similar to the bar chart except it uses bars to indicate frequency (or proportion) over an interval of continuous values. For instance, with continuous values the function `table()` is not useful.
 
