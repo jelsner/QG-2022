@@ -386,7 +386,7 @@ coef(modelBS1)[2]
 
 The slope value is different.
 
-You repeat this entire procedure (repeadedly selecting integers and corresponding values of the variables) 1000 times and create a histogram of the slope values.
+You repeat this entire procedure (repeatedly selecting integers and corresponding values of the variables) 1000 times and create a histogram of the slope values.
 ```{r}
 slope <- numeric()
 int <- numeric()

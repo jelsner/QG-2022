@@ -2,22 +2,22 @@
 
 Today
 
--   More on making graphs
+-   Comparing distributions
+-   Visualizing uncertainty
 
-## Data visualization continued {.unnumbered}
+## Comparing distributions {.unnumbered}
 
-Comparing distributions
-
-Previously you learned how to make a histogram from data. To review, consider again the Florida rainfall data.
-
-Import the data.
+Consider again the Florida rainfall data. Import the data and apply the missing value label to any value that is recorded as -9.900.
 
 ```{r}
 loc <- "http://myweb.fsu.edu/jelsner/temp/data/FLprecip.txt"
+
 FLp.df <- readr::read_table(loc, na = "-9.900")
 ```
 
-Then use `ggplot()` and `geom_histogram()` functions to make a histogram of rainfall during March and add a label on the horizontal axis (x-axis). Here you assign the plot to an object called `p1`. An list object is created in your environment but nothing is plotted until you type the object name.
+Then use `ggplot()` and `geom_histogram()` functions to make a histogram of rainfall during March and add a label on the horizontal axis (x-axis). Here you assign the plot to an object called `p1`.
+
+A list object is created in your environment but nothing is plotted until you type the object name.
 
 ```{r}
 library(ggplot2)
@@ -384,7 +384,7 @@ The graph title should summarize the main finding. Avoid titles that just descri
 
 ```{r}
 ggplot(data = mpg, 
-       mapping = aes(displ, hwy)) +
+       mapping = aes(x = displ, y = hwy)) +
   geom_point(mapping = aes(color = class)) +
   geom_smooth(se = FALSE) +
   labs(title = "Fuel efficiency generally decreases with engine size",
@@ -410,4 +410,64 @@ Note that the function `png()` opens the device and the function `dev.off()` clo
 
 You list the files in your working directory with the command `dir()`.
 
-CHECK OUT {ggdist}
+## Visualizing uncertainty {.unnumbered}
+
+The {ggdist} package provides a flexible set of {ggplot2} `geoms` and `stats` designed for visualizing distributions and uncertainty.
+
+The functions are designed for frequentist and Bayesian uncertainty visualization, taking the view that uncertainty visualization can be unified through the perspective of distribution visualization.
+
+With frequentist models you visualize confidence distributions or bootstrap distributions. For Bayesian models, you visualize probability distributions.
+
+As one example, consider again the Palmer penguins. Here you filter to keep only the Chinstrap penguins.
+
+```{r}
+( Chinstrap.df <- penguins |>
+    dplyr::filter(species == "Chinstrap") )
+```
+
+You compute the average and standard deviation of body mass conditional on sex.
+
+```{r}
+Chinstrap.df |>
+  dplyr::group_by(sex) |>
+  dplyr::summarise(avg = mean(body_mass_g),
+                   sd = sd(body_mass_g))
+```
+
+On average male penguins are heavier but there is some variation. There is more variation among the males than among the females.
+
+While useful, these statistics do not give information about the shape of the distribution and how those shapes compare in distributional space.
+
+A plot showing the body mass values conditional on sex is a good start. Here you first remove cases where the sex of the penguin is missing and then plot the body mass variable along the horizontal axis using a point layer with a transparency (alpha) level set to .5.
+
+```{r}
+Chinstrap.df |>
+  ggplot(mapping = aes(y = sex, x = body_mass_g)) +
+  geom_point(alpha = .5) 
+```
+
+The plot shows that some of the heaviest penguins are male and some of the lightest penguins are female there is considerable overlap in the values.
+
+To make the visualization even more informative you can use functions from the {ggdist} package. Here you substitute the `ggdist::stat_halfeye()` for `geom_point()`.
+
+```{r}
+Chinstrap.df |>
+  ggplot(mapping = aes(y = sex, x = body_mass_g)) +
+  ggdist::stat_halfeye()
+```
+
+The result is a plot showing the location of the respective average values (black dot) along with the 66th (thick line) and 95th percentile intervals (thin line).
+
+Also displayed are the density plots in gray.
+
+Another example showing quantile intervals.
+
+```{r}
+Chinstrap.df |>
+  ggplot(mapping = aes(y = sex, x = body_mass_g)) +
+  ggdist::stat_interval()
+```
+
+The half intervals (.5) do not overlap.
+
+More information on using functions from the {ggdist} package for visualizing uncertainty is available from <https://mjskay.github.io/ggdist/>
