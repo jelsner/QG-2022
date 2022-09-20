@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
 # Tuesday, September 20, 2022 {.unnumbered}
 
 Today
@@ -9,7 +14,7 @@ Today
 
 ## Comparing distributions {.unnumbered}
 
-Consider again the Florida rainfall data. Import the data and apply the missing value label to any value that is recorded as -9.900.
+Consider again the Florida rainfall data. Import the data and apply the not available label (`NA`) to any value that is recorded as -9.900.
 
 ```{r}
 loc <- "http://myweb.fsu.edu/jelsner/temp/data/FLprecip.txt"
@@ -52,11 +57,11 @@ The average is larger than the median and the histogram is not symmetric. The nu
 
 The histogram helps describe the statistical *distribution* of the values. Data from samples often form similar patterns. These patterns are known as 'distributions', because they describe how the data are 'distributed' across the range of possible values.
 
-To see this you can generate values from various standard distributions and then make a histogram. These standard distributions are used in statistical analysis as reference distributions. This means that they allow researchers to easily compare data and groups of samples.
+To see this you can generate values from various standard distributions and then make a histogram. These standard distributions are used in statistical analysis as reference. This means that they allow researchers to easily compare data and groups of samples.
 
 For instance you generate values from a normal (Gaussian distribution) with the `rnorm()` function by specifying the mean (`mean =`) and the standard deviation (`sd =`). It is also known as the bell curve, because of its shape, and the Gaussian distribution after the mathematician Carl F Gauss, who first described it.
 
-Here you do this using the mean and standard deviation from the rainfall values. Since there are 118 March rainfall values (one for each year) you set `n = 118`.
+Here you generate values with the same mean and standard deviation as the rainfall values. Since there are 118 March rainfall values (one for each year) you set `n = 118`.
 
 ```{r}
 nd <- rnorm(n = 118, 
@@ -181,7 +186,7 @@ ggplot(data = mpg) +
              color = "blue")
 ```
 
-You add a third variable, like `class`, to a two dimensional scatter plot by mapping it to an aesthetic. An aesthetic is a visual property of the objects in our plot. Aesthetics include things like the size, the shape, or the color of our points. You can display a point in different ways by changing the levels of its aesthetic properties (e.g., changing the level by size, color, type).
+You add a third variable, like `class`, to a two dimensional scatter plot by mapping it to an aesthetic. An aesthetic is a visual property of the objects in your plot. Aesthetics include things like the size, the shape, or the color of your points. You can display a point in different ways by changing the levels of its aesthetic properties (e.g., changing the level by size, color, type).
 
 For example, you map the colors of our points to the `class` variable to reveal the class of each car.
 
@@ -270,7 +275,7 @@ ggplot(data = mpg,
        mapping = aes(x = displ, 
                      y = hwy)) +
   geom_point(aes(color = class)) +
-  geom_smooth(se = FALSE) +
+  geom_smooth() +
   labs(title = "Fuel efficiency generally decreases with engine size")
 ```
 
@@ -287,12 +292,14 @@ ggplot(data = mpg,
   geom_smooth(se = FALSE) +
   labs(title = "Fuel efficiency generally decreases with engine size",
        subtitle = "Two seaters (sports cars) are an exception because of their light weight",
-       caption = "Data are from fueleconomy.gov")
+       caption = "Data are from fueleconomy.gov",
+       x = "Engine size (liters)",
+       y = "Highway mpg")
 ```
 
 Exporting your graph
 
-When you knit your Rmd file and render it to HTML any plots that are generated from code gets output as a png file in your project directory.
+When you knit your Rmd file and render it to HTML any plots that are generated from code get output as a png file in your project directory.
 
 You can use the Export button under the Plots tab after selecting `Chunk Output in Console`.
 
@@ -342,7 +349,7 @@ A plot showing the body mass values conditional on sex is a good start. Here you
 Chinstrap.df |>
   ggplot(mapping = aes(y = sex, 
                        x = body_mass_g)) +
-  geom_point(alpha = .5) 
+    geom_point(alpha = .5) 
 ```
 
 The plot shows that some of the heaviest penguins are male and some of the lightest penguins are female there is considerable overlap in the values.
