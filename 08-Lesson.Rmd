@@ -34,7 +34,7 @@ p1 <- ggplot(data = FLp.df) +
 p1
 ```
 
-The histogram shows the shape of the distribution. The distribution contains all 118 years of March rainfall. Most years have rainfall values between 2 and 4 inches. A few years have values that exceed 7.5 inches.
+The histogram shows the shape of the distribution. The distribution contains all 118 years of March rainfall. Most years have rainfall between 2 and 4 inches. During a few years rainfall exceeded 7.5 inches.
 
 The average, median, and standard deviations can be obtained using {dplyr} functions.
 
@@ -48,7 +48,7 @@ FLp.df |>
                    max = max(Mar))
 ```
 
-The average is larger than the median and the histogram is not symmetric. That is, the number of cases with with low rainfall exceeds the number of cases with heavy rainfall.
+The average is larger than the median and the histogram is not symmetric. The number of March's with low rainfall exceeds the number of March's with heavy rainfall.
 
 The histogram helps describe the statistical *distribution* of the values. Data from samples often form similar patterns. These patterns are known as 'distributions', because they describe how the data are 'distributed' across the range of possible values.
 
