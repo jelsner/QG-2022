@@ -52,7 +52,7 @@ The average is larger than the median and the histogram is not symmetric. That i
 
 The histogram helps describe the statistical *distribution* of the values. Data from samples often form similar patterns. These patterns are known as 'distributions', because they describe how the data are 'distributed' across the range of possible values.
 
-To see this you can generate values from various standard distributions and then make a histogram. These standard distributions are used in statistical analysis as reference distributions. This means that they allow researchers to compare data and groups of samples more easily.
+To see this you can generate values from various standard distributions and then make a histogram. These standard distributions are used in statistical analysis as reference distributions. This means that they allow researchers to easily compare data and groups of samples.
 
 For instance you generate values from a normal (Gaussian distribution) with the `rnorm()` function by specifying the mean (`mean =`) and the standard deviation (`sd =`). It is also known as the bell curve, because of its shape, and the Gaussian distribution after the mathematician Carl F Gauss, who first described it.
 
@@ -77,7 +77,7 @@ p2 <- ggplot(data = df) +
 p2
 ```
 
-Let's do the same for a set of values from a uniform distribution and from a gamma distribution.
+Do the same for a set of values from a uniform distribution and from a gamma distribution.
 
 ```{r}
 ud <- runif(n = 118,
@@ -121,15 +121,14 @@ Standard distributions share a number of characteristics.
 
 -   They are good estimations for real data. In a sample of real-world data, it is impossible to get an exact normal distribution. However, these distributions are good approximations of real data.
 
-A box plot graphically illustrates summary statistics. The summary statistics include the minimum value, the maximum value, the 1st & 3rd quartile values, and the median value.
-
 Perhaps the most import scientific graph is the scatter plot which shows the relationship between two numeric variables. It plots the values of one variable against the values of the other as points $(x_i, y_i)$ in a Cartesian plane.
 
 For example, to show the relationship between April and September values of rainfall you type
 
 ```{r}
-ggplot(FLp.df) + 
-  geom_point(mapping = aes(x = Apr, y = Sep)) + 
+ggplot(data = FLp.df) + 
+  geom_point(mapping = aes(x = Apr, 
+                           y = Sep)) + 
   xlab("April Rainfall (in)") + 
   ylab("September Rainfall (in)")
 ```
@@ -145,8 +144,9 @@ Here you put the September values on the vertical axis since a predictive model 
 If the points have a natural ordering then you use the `geom_line()` function. For example, to plot the September Rainfall values as a time series type
 
 ```{r}
-ggplot(FLp.df) + 
-  geom_line(mapping = aes(x = Year, y = Sep)) + 
+ggplot(data = FLp.df) + 
+  geom_line(mapping = aes(x = Year, 
+                          y = Sep)) + 
   xlab("Year") + 
   ylab("September Rainfall (in)")
 ```
@@ -158,7 +158,9 @@ Create a plot of the May values of the North Atlantic oscillation (NAO) with Yea
 ```{r eval=FALSE}
 loc <- "http://myweb.fsu.edu/jelsner/temp/data/NAO.txt"
 NAO.df <- readr::read_table(file = loc)
-ggplot(NAO.df, aes(x = Year, y = May)) + 
+ggplot(data = NAO.df, 
+       mapping = aes(x = Year, 
+                     y = May)) + 
   geom_line() + 
   xlab("Year") + 
   ylab("North Atlantic Oscillation (s.d.)")
@@ -173,12 +175,13 @@ names(mpg)
 Let's start with a scatter plot showing highway mileage on the vertical axis and engine size on the horizontal axis.
 
 ```{r}
-ggplot(mpg) +
-  geom_point(mapping = aes(x = displ, y = hwy), 
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, 
+                           y = hwy), 
              color = "blue")
 ```
 
-You add a third variable, like `class`, to a two dimensional scatterplot by mapping it to an aesthetic. An aesthetic is a visual property of the objects in our plot. Aesthetics include things like the size, the shape, or the color of our points. You can display a point in different ways by changing the levels of its aesthetic properties (e.g., changing the level by size, color, type).
+You add a third variable, like `class`, to a two dimensional scatter plot by mapping it to an aesthetic. An aesthetic is a visual property of the objects in our plot. Aesthetics include things like the size, the shape, or the color of our points. You can display a point in different ways by changing the levels of its aesthetic properties (e.g., changing the level by size, color, type).
 
 For example, you map the colors of our points to the `class` variable to reveal the class of each car.
 
@@ -201,7 +204,8 @@ To facet a plot by a single variable, use `facet_wrap()`. The first argument of 
 
 ```{r}
 ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy)) + 
+  geom_point(mapping = aes(x = displ, 
+                           y = hwy)) + 
   facet_wrap(~ class, nrow = 2)
 ```
 
@@ -209,15 +213,16 @@ To facet a plot on the combination of two variables, add `facet_grid()` to the p
 
 ```{r}
 ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy)) + 
-  facet_grid(drv ~ cyl)
+  geom_point(mapping = aes(x = displ, 
+                           y = hwy)) + 
+  facet_grid(drv ~ cyl, scales = "free")
 ```
 
-Here `drv` refers to the drive train: front-wheel (`f`), rear-wheel (`r`) or 4-wheel (`4`).
+Here `drv` refers to the drive train: front-wheel (`f`), rear-wheel (`r`) or 4-wheel (`4`). 
 
-Example: Palmer penguins
+Notes: (1) Some categories have no values. For instances, there are no 5 cycle cars that have rear-wheel drives. (2) The `scales = "free"` argument allows each plot to have different x and y scales.
 
-Let's return to the penguins data set. You import it as a data frame using `readr::read_csv()` function.
+Example: Palmer penguins. Let's return to the penguins data set. You import it as a data frame using `readr::read_csv()` function.
 
 ```{r}
 loc <- "https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/inst/extdata/penguins.csv"
@@ -225,15 +230,12 @@ penguins <- readr::read_csv(loc)
 head(penguins)
 ```
 
-Here you will visualize the relationship between `flipper_length_mm` and `body_mass_g` with respect to each species.
-
-<https://towardsdatascience.com/penguins-dataset-overview-iris-alternative-9453bb8c8d95>
-
-Start by creating a scatter plot with flipper length on the horizontal axis and body mass on the vertical axis.
+Here you visualize the relationship between `flipper_length_mm` and `body_mass_g` with respect to each species. Start by creating a scatter plot with flipper length on the horizontal axis and body mass on the vertical axis.
 
 ```{r}
 ggplot(data = penguins) +
-  geom_point(aes(x = flipper_length_mm, y = body_mass_g))
+  geom_point(aes(x = flipper_length_mm, 
+                 y = body_mass_g))
 ```
 
 Next, make the color and shape of the points correspond to the species type. Use the colors "darkorange", "purple", "cyan4".
@@ -259,13 +261,14 @@ ggplot(data = penguins) +
   facet_wrap(~ island)
 ```
 
-An expository graph
+Adding labels and titles turns an exploratory graph into an expository graph. 
 
-Adding labels and titles turns an exploratory graph into an expository graph. Consider again the `mpg` dataset and plot highway mileage (`hwy`) as a function of engine size (`displ`) with the color of the point layer given by automobile class (`class`).
+Consider again the `mpg` dataset and plot highway mileage (`hwy`) as a function of engine size (`displ`) with the color of the point layer given by automobile class (`class`). Note: when you want to plot variable y as a function of variable x, you put variable y on the vertical axis.
 
 ```{r}
 ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy)) +
+       mapping = aes(x = displ, 
+                     y = hwy)) +
   geom_point(aes(color = class)) +
   geom_smooth(se = FALSE) +
   labs(title = "Fuel efficiency generally decreases with engine size")
@@ -278,7 +281,8 @@ The graph title should summarize the main finding. Avoid titles that just descri
 
 ```{r}
 ggplot(data = mpg, 
-       mapping = aes(x = displ, y = hwy)) +
+       mapping = aes(x = displ, 
+                     y = hwy)) +
   geom_point(mapping = aes(color = class)) +
   geom_smooth(se = FALSE) +
   labs(title = "Fuel efficiency generally decreases with engine size",
@@ -288,11 +292,11 @@ ggplot(data = mpg,
 
 Exporting your graph
 
-When you knit to HTML and a plot is produced it gets output as a png file in our project directory.
+When you knit your Rmd file and render it to HTML any plots that are generated from code gets output as a png file in your project directory.
 
-You can use the Export button under the Plots tab.
+You can use the Export button under the Plots tab after selecting `Chunk Output in Console`.
 
-Or you can export the file directly using R code. Here the file gets put into our working directory.
+Or you can export the file directly using code. Here the file gets put into our working directory.
 
 ```{r eval = FALSE}
 png(file = "Test.png")
@@ -306,9 +310,9 @@ You list the files in your working directory with the command `dir()`.
 
 ## Visualizing uncertainty {.unnumbered}
 
-The {ggdist} package provides a flexible set of {ggplot2} `geoms` and `stats` designed for visualizing distributions and uncertainty.
+The {ggdist} package provides a flexible set of {ggplot2} style `geoms` and `stats` designed for visualizing distributions and uncertainty.
 
-The functions are designed for frequentist and Bayesian uncertainty visualization, taking the view that uncertainty visualization can be unified through the perspective of distribution visualization.
+The functions are designed for uncertainty visualization (frequentist and Bayesian), taking the view that uncertainty visualization can be unified through the perspective of distribution visualization.
 
 With frequentist models you visualize confidence distributions or bootstrap distributions. For Bayesian models, you visualize probability distributions.
 
@@ -319,7 +323,7 @@ As one example, consider again the Palmer penguins. Here you filter to keep only
     dplyr::filter(species == "Chinstrap") )
 ```
 
-You compute the average and standard deviation of body mass conditional on sex.
+You compute the average and standard deviation of body mass conditional on whether the penguin is male or female (`sex` variable).
 
 ```{r}
 Chinstrap.df |>
@@ -328,15 +332,16 @@ Chinstrap.df |>
                    sd = sd(body_mass_g))
 ```
 
-On average male penguins are heavier but there is some variation. There is more variation among the males than among the females.
+On average male penguins are heavier but there is some variation. There is more variation in body mass among the males than among the females.
 
 While useful, these statistics do not give information about the shape of the distribution and how those shapes compare in distributional space.
 
-A plot showing the body mass values conditional on sex is a good start. Here you first remove cases where the sex of the penguin is missing and then plot the body mass variable along the horizontal axis using a point layer with a transparency (alpha) level set to .5.
+A plot showing the body mass values conditional on sex is a good start. Here you plot the body mass variable along the horizontal axis using a point layer with a transparency (alpha) level set to .5. Alpha varies between 0 and 1.
 
 ```{r}
 Chinstrap.df |>
-  ggplot(mapping = aes(y = sex, x = body_mass_g)) +
+  ggplot(mapping = aes(y = sex, 
+                       x = body_mass_g)) +
   geom_point(alpha = .5) 
 ```
 
@@ -346,23 +351,23 @@ To make the visualization even more informative you can use functions from the {
 
 ```{r}
 Chinstrap.df |>
-  ggplot(mapping = aes(y = sex, x = body_mass_g)) +
+  ggplot(mapping = aes(y = sex, 
+                       x = body_mass_g)) +
   ggdist::stat_halfeye()
 ```
 
-The result is a plot showing the location of the respective average values (black dot) along with the 66th (thick line) and 95th percentile intervals (thin line).
-
-Also displayed are the density plots in gray.
+The result is a plot showing the location of the respective average values (black dot) along with the 66th (thick line) and 95th percentile intervals (thin line). Also displayed are the respective density plots shaded in gray.
 
 Another example showing quantile intervals.
 
 ```{r}
 Chinstrap.df |>
-  ggplot(mapping = aes(y = sex, x = body_mass_g)) +
+  ggplot(mapping = aes(y = sex, 
+                       x = body_mass_g)) +
   ggdist::stat_interval()
 ```
 
-The half intervals (.5) do not overlap.
+The half intervals (.5) do not overlap. You can change which levels are used with the `.width =` argument (e.g., `.width = c(.75, .9)`).
 
 More information on using functions from the {ggdist} package for visualizing uncertainty is available from <https://mjskay.github.io/ggdist/>
 
@@ -423,15 +428,11 @@ Features have a geometry describing where on Earth the feature is located. They 
 
 ## Making a boundary map {.unnumbered}
 
-The functions in the {ggplot2} package work with simple feature data frames to generate maps using the same grammar.
-
-The important function is `geom_sf()`. This function draws the geometries.
+Functions in the {ggplot2} package work with simple feature data frames and can be used to generate maps. The important function is `geom_sf()`. As a default this function renders the geometries.
 
 For example, to draw a map showing the state and territorial boundaries first use `ggplot()` with the data argument specifying the simple feature data frame `USA.sf` and then add the `geom_sf()` function as a layer with the `+` symbol.
 
 ```{r}
-library(ggplot2)
-
 ggplot(data = USA.sf) +
   geom_sf()
 ```
@@ -500,7 +501,7 @@ ggplot(data = Wisconsin.sf) +
           color = "black")
 ```
 
-Where is the state of Nebraska? Repeat but fill in Nebraska using the color brown.
+Where is Nebraska? Repeat but fill in Nebraska using the color brown.
 
 ```{r}
 Nebraska.sf <- USA_48.sf |>
