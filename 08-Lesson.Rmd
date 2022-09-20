@@ -4,6 +4,8 @@ Today
 
 -   Comparing distributions
 -   Visualizing uncertainty
+-   Simple feature data frames
+-   Making a boundary map
 
 ## Comparing distributions {.unnumbered}
 
@@ -12,12 +14,13 @@ Consider again the Florida rainfall data. Import the data and apply the missing 
 ```{r}
 loc <- "http://myweb.fsu.edu/jelsner/temp/data/FLprecip.txt"
 
-FLp.df <- readr::read_table(loc, na = "-9.900")
+FLp.df <- readr::read_table(loc, 
+                            na = "-9.900")
 ```
 
 Then use `ggplot()` and `geom_histogram()` functions to make a histogram of rainfall during March and add a label on the horizontal axis (x-axis). Here you assign the plot to an object called `p1`.
 
-A list object is created in your environment but nothing is plotted until you type the object name.
+A list object is created in your environment, but nothing is plotted until you type the object name.
 
 ```{r}
 library(ggplot2)
@@ -31,9 +34,9 @@ p1 <- ggplot(data = FLp.df) +
 p1
 ```
 
-The histogram shows the shape of the distribution. The distribution is made up of all 118 years of March rainfall. Most years have rainfall values between 2 and 4 inches. A few years have values that exceed 7.5 inches.
+The histogram shows the shape of the distribution. The distribution contains all 118 years of March rainfall. Most years have rainfall values between 2 and 4 inches. A few years have values that exceed 7.5 inches.
 
-The average, median, and standard deviations are obtained as follows:
+The average, median, and standard deviations can be obtained using {dplyr} functions.
 
 ```{r}
 FLp.df |>
@@ -45,13 +48,15 @@ FLp.df |>
                    max = max(Mar))
 ```
 
-The average value is larger than the median value and the histogram is not symmetric. That is, the number of cases with with low rainfall exceeds the number of cases with heavy rainfall.
+The average is larger than the median and the histogram is not symmetric. That is, the number of cases with with low rainfall exceeds the number of cases with heavy rainfall.
 
-The histogram helps us to describe the statistical *distribution* of the values.
+The histogram helps describe the statistical *distribution* of the values. Data from samples often form similar patterns. These patterns are known as 'distributions', because they describe how the data are 'distributed' across the range of possible values.
 
-To see this, recall that you can generate values from any distribution. For example you generate values from a normal (Gaussian distribution) with the `rnorm()` function by specifying the mean and the standard deviation.
+To see this you can generate values from various standard distributions and then make a histogram. These standard distributions are used in statistical analysis as reference distributions. This means that they allow researchers to compare data and groups of samples more easily.
 
-Here you do this using the mean and standard deviation from our rainfall values. Since there are 118 March rainfall values (one for each year) you set `n = 118`.
+For instance you generate values from a normal (Gaussian distribution) with the `rnorm()` function by specifying the mean (`mean =`) and the standard deviation (`sd =`). It is also known as the bell curve, because of its shape, and the Gaussian distribution after the mathematician Carl F Gauss, who first described it.
+
+Here you do this using the mean and standard deviation from the rainfall values. Since there are 118 March rainfall values (one for each year) you set `n = 118`.
 
 ```{r}
 nd <- rnorm(n = 118, 
@@ -108,126 +113,17 @@ library(patchwork)
 
 What distribution best matches the shape of the March rainfall values?
 
-Box and whisker plots
+Standard distributions share a number of characteristics.
+
+-   A clear mathematical definition. Their shape reflects just a few parameters, such as mean and standard deviation (for the normal distribution) or variance (for the chi-squared distribution).
+
+-   Established theoretical properties. We know a lot about these distributions (for example, the normal curve is symmetrical).
+
+-   They are good estimations for real data. In a sample of real-world data, it is impossible to get an exact normal distribution. However, these distributions are good approximations of real data.
 
 A box plot graphically illustrates summary statistics. The summary statistics include the minimum value, the maximum value, the 1st & 3rd quartile values, and the median value.
 
-A non-ggplot way to create a box plot is to use the function `boxplot()`. Here you get a box plot of the May rainfall.
-
-```{r}
-boxplot(FLp.df$May)
-```
-
-The function `boxplot()` is from the base {graphics} package. Others from this package include `hist()` for histograms and `plot()` for scatter plots.
-
-The base graphics lets you manipulate details of a graph. For example:
-
-```{r}
-boxplot(FLp.df$May, 
-        ylab = "May Rainfall in FL (in)")
-f <- fivenum(FLp.df$May)
-text(rep(1.3, 5), f, labels = c("Minimum", "1st Quartile", 
-                                "Median", "3rd Quartile",
-                                "Maximum"))
-text(1.3, 7.792, labels = "Last Value Within\n 1.5xIQR Above 3rd Q")
-```
-
-The box plot illustrates the five numbers graphically. The median is the line through the box. The bottom and top of the box are the 1st and 3rd quartile values. Whiskers extend vertically from the box downward toward the minimum and upward toward the maximum.
-
-If values extend beyond 1.5 times the interquartile range (either above or below the corresponding quartile) the whisker is truncated at the last value within the range and points are used to indicate outliers.
-
-To make the same box plot using functions from the {ggplot2} package you use the `geom_boxplot()` layer.
-
-```{r}
-ggplot(data = FLp.df) + 
-  geom_boxplot(mapping = aes(y = May)) +
-  xlab("") + 
-  ylab("May Rainfall in Florida (in)")
-```
-
-Long data frames
-
-Suppose you want to make a separate box plot for each month. In this case you make the `x` aesthetic the name of a column containing the vector of month names. The problem is that the month names are column labels rather than a single character vector.
-
-You need to turn the data frame from its native 'wide' format to a 'long' format. The `FLp.df` is 'wide' because there are separate columns for each month. Wide data are more common because they are convenient for entering data and they let you see more of the data at one time.
-
-```{r}
-head(FLp.df)
-```
-
-You can reduce the number of columns by stacking the rainfall values into a single column and then labeling the rows by month. This preserves all the information from the wide format but does so with fewer columns.
-
-The long data format is less familiar. It corresponds to the relational model for storing data used by databases like SQL.
-
-Consider the following wide data frame with column names w, x, y, and z. id w x y z 1 A C E G 2 B D F H
-
-The long data frame version would be id name value 1 w A 1 x C 1 y E 1 z G 2 w B 2 x D 2 y F 2 z H
-
-You use the `pivot_longer()` function from the {tidyr} package to turn the wide data frame into a long data frame. Let's do it and then decipher what happens.
-
-```{r}
-FLpL.df <- FLp.df |>
-  tidyr::pivot_longer(cols = -Year, 
-                      names_to = "Month",
-                      values_to = "Rainfall")
-
-str(FLpL.df)
-```
-
-The `pivot_longer()` function takes all the columns to pivot into a longer format. Here you chose them all EXCEPT the one named after the `-` sign (`Year`). All variables are measured (rainfall in units of inches) except `Year`.
-
-The resulting long data frame has the `Year` variable in the first column and the remaining column names as the `name` variable in the second column. You change the default `name` to `Month` by specifying the `names_to = "Month"` argument. The third column contains the corresponding rainfall values all in a single column names `value`. You change the default `value` by specifying the `values_to = "Rainfall"`.
-
-Note that the column `Month` is a character vector. When you make a plot using this variable the order will be alphabetical. So you change the variable from a character vector to a factor vector with levels equal to the month abbreviations.
-
-```{r}
-month.abb
-
-FLpL.df <- FLpL.df |>
-  dplyr::mutate(Month = factor(Month, levels = month.abb))
-```
-
-Note that you can reverse this with the `pivot_wider()` function.
-
-```{r}
-FLpW.df <- FLpL.df |>
-  tidyr::pivot_wider(id_cols = Year,
-                     names_from = Month,
-                     values_from = Rainfall)
-```
-
-Then to create the box plot specify that the x aesthetic (x-axis) to be `Month` and the y-axis to be `Rainfall`.
-
-```{r}
-ggplot(data = FLpL.df) + 
-  geom_boxplot(mapping = aes(x = Month, y = Rainfall)) +
-  ylab("Rainfall (in)")
-```
-
-The graph shows the variation of rainfall by month.
-
-Each `geom_` function is a layer. Data for the layer is specified in the function `ggplot()` with the data frame argument and the `aes()` function. To add another layer to the plot with different data you specify the data within the `geom_` function.
-
-For example, lets repeat the graph of monthly rainfall highlighting the month of May. First you filter the data frame keeping only rows labeled `May` and assign this to a new data frame object called `May.df`.
-
-You then repeat the plot but add another `geom_boxplot()` layer that includes the argument `data = May.df` along with the corresponding `aes()` function. Finally you color the box green.
-
-```{r}
-May.df <- FLpL.df |>
-  dplyr::filter(Month == "May")
-
-ggplot(data = FLpL.df, aes(x = Month, y = Rainfall)) + 
-  geom_boxplot() +
-  ylab("Rainfall (in)") +
-  geom_boxplot(data = May.df, 
-               mapping = aes(x = Month, y = Rainfall), 
-               fill = "green") +
-  theme_minimal()
-```
-
-Scatter plots
-
-An import graph is the scatter plot which shows the relationship between two numeric variables. It plots the values of one variable against the values of the other as points $(x_i, y_i)$ in a Cartesian plane.
+Perhaps the most import scientific graph is the scatter plot which shows the relationship between two numeric variables. It plots the values of one variable against the values of the other as points $(x_i, y_i)$ in a Cartesian plane.
 
 For example, to show the relationship between April and September values of rainfall you type
 
@@ -299,9 +195,7 @@ To map an aesthetic to a variable, associate the name of the aesthetic to the na
 
 The colors show that many of the unusual points are two-seater cars. Sports cars have large engines like SUVs and pickup trucks, but small bodies like midsize and compact cars, which improves their gas mileage.
 
-Facets
-
-One way to add additional variables is with aesthetics. Another way, particularly useful for categorical variables, is to split our plot into facets, subplots that each display one subset of the data.
+One way to add additional variables is with aesthetics. Another way, particularly useful for categorical variables, is to split the plot into facets, subplots that each display one subset of the data.
 
 To facet a plot by a single variable, use `facet_wrap()`. The first argument of `facet_wrap()` should be a formula, which you create with `~` (tilde) followed by a variable name (here 'formula' is the name of a data structure in R, not a synonym for 'equation'). The variable that you pass to `facet_wrap()` should be discrete.
 
@@ -471,3 +365,153 @@ Chinstrap.df |>
 The half intervals (.5) do not overlap.
 
 More information on using functions from the {ggdist} package for visualizing uncertainty is available from <https://mjskay.github.io/ggdist/>
+
+## Simple feature data frames {.unnumbered}
+
+Geographic visualization of data is important to geographers and environmental scientists. There are many tools for geo visualization from full-scale GIS applications such as ArcGIS and QGIS to web-based tools like Google maps.
+
+Using code to make maps (instead of point and click) has the benefit of transparency and reproducibility.
+
+Simple features (simple feature access) refers to a standard that describes how objects in the real world are represented in computers. Emphasis is on the spatial geometry of the objects.
+
+The standard also describes how such objects are stored in and retrieved from databases, and which geometrical operations are defined for them.
+
+The simple feature standard is implemented in spatial databases (such as PostGIS), commercial GIS (e.g., ESRI ArcGIS). R has an implementation in the {sf} package.
+
+One type of spatial data file is called a *shapefile*. As an example, the U.S. census information at the state and territory level in a file called `cb_2018_us_state_5m.shp`. <https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html>
+
+A shapefile encodes points, lines, and polygons in geographic space, and is actually a set of files. Shapefiles appear with a `.shp` extension and with accompanying files ending in `.dbf` and `.prj`.
+
+-   `.shp` stores the geographic coordinates of the geographic features (e.g. country, state, county)
+-   `.dbf` stores data associated with the geographic features (e.g. unemployment rates)
+-   `.prj` stores information about the projection of the coordinates in the shapefile
+
+To get a shapefile into R all the files need to be in the same folder (directory).
+
+As an example, you import the census data with the `sf::st_read()` function from the {sf} package. You assign to the object `USA.sf` the contents of the spatial data frame.
+
+```{r}
+USA.sf <- sf::st_read(dsn = here::here("data", "cb_2018_us_state_5m"))
+```
+
+The output includes information about the file. The object shows up in your environment as a data frame with 56 observations and 10 variables.
+
+Each observation is either a state or territory.
+
+The `class()` function tells you the type of data frame and the `names()` function list the variable names.
+
+```{r}
+class(USA.sf)
+names(USA.sf)
+```
+
+The file is a simple feature (`sf`) data frame (`data.frame`). This means it behaves like a data frame but it also contains information about where the observations are located.
+
+The first several columns serve as identifiers. The variable `ALAND` is the land area (square meters) and the `AWATER` is the water area (sq. m).
+
+The last column labeled `geometry` contains information about location stored as a 'feature'. The function `sf::st_geometry()` list the first 5 geometries.
+
+```{r}
+sf::st_geometry(USA.sf)
+```
+
+The geometry type in this case is `MULTIPOLYGON`.
+
+A feature is an object in the real world. Often features will consist of a set of features. For instance, a tree is a feature but a set of trees in a forest is itself a feature. The trees are represented as points while the forest boundary as a polygon.
+
+Features have a geometry describing where on Earth the feature is located. They also have attributes, which describe other properties of the feature.
+
+## Making a boundary map {.unnumbered}
+
+The functions in the {ggplot2} package work with simple feature data frames to generate maps using the same grammar.
+
+The important function is `geom_sf()`. This function draws the geometries.
+
+For example, to draw a map showing the state and territorial boundaries first use `ggplot()` with the data argument specifying the simple feature data frame `USA.sf` and then add the `geom_sf()` function as a layer with the `+` symbol.
+
+```{r}
+library(ggplot2)
+
+ggplot(data = USA.sf) +
+  geom_sf()
+```
+
+Note: you don't need the `mapping = aes()` function. The mapping is assumed based on the fact that there is a `geometry` column in the simple feature data frame.
+
+The `geom_sf()` function maps the east-west coordinate to the `x` aesthetic and the north-south coordinate to the `y` aesthetic.
+
+The map is not very informative. Let's zoom into the contiguous states.
+
+What states/territories are there in the data frame `USA.sf`?
+
+```{r}
+USA.sf$NAME
+```
+
+To zoom in you keep only rows corresponding to states (in the lower 48) from the simple feature data frame.
+
+Recall to pick out rows in a data frame you use the `dplyr::filter()` function from the {dplyr} package.
+
+First you need to get a list of all the states you want to keep. The `state.name` vector object contains all 50 state names. This is like the `month.abb` vector you saw earlier.
+
+```{r}
+state.name
+```
+
+Let's remove the rows corresponding to the names `"Alaska"` and `"Hawaii"`. These are elements 2 and 11 so you create a new vector object called `sn` containing only the names of the lower 48.
+
+```{r}
+sn <- state.name[c(-2, -11)]
+sn
+```
+
+Now you filter the `USA.sf` data frame keeping only the rows that are listed in the vector of state names. Assign this spatial data frame the name `USA_48.sf`.
+
+```{r}
+USA_48.sf <- USA.sf |>
+  dplyr::filter(NAME %in% sn)
+```
+
+The function `%in%` finds only the rows in `USA.sf` with `NAME` equal to the names in the vector `sn` and the `dplyr::filter()` function chooses these rows.
+
+Now redraw the map using the `USA_48.sf` simple feature data frame.
+
+```{r}
+ggplot(data = USA_48.sf) +
+  geom_sf()
+```
+
+Since the map is a `ggplot()` object, it is modified like any other `ggplot()` graph. For example, you change the color of the map and the borders as follows.
+
+```{r}
+ggplot(data = USA_48.sf) +
+  geom_sf(fill = "skyblue", 
+          color = "gray70")
+```
+
+You can filter by state. Here you create a new simple feature data frame called `Wisconsin.sf` then draw the boundary.
+
+```{r}
+Wisconsin.sf <- USA_48.sf |>
+  dplyr::filter(NAME == "Wisconsin")
+
+ggplot(data = Wisconsin.sf) +
+  geom_sf(fill = "palegreen", 
+          color = "black")
+```
+
+Where is the state of Nebraska? Repeat but fill in Nebraska using the color brown.
+
+```{r}
+Nebraska.sf <- USA_48.sf |>
+  dplyr::filter(NAME == "Nebraska")
+
+ggplot(data = USA_48.sf) +
+  geom_sf() +
+  geom_sf(data = Nebraska.sf, 
+          fill = "brown")
+```
+
+You add layers with the `+` symbol as before.
+
+Boundaries serve as the background canvas for spatial data analysis. You usually need to add data to this canvas. Depending on the type of data, you either overlay it on top of the boundaries or use it to fill in the areas between the boundaries.
