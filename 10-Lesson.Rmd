@@ -1,12 +1,129 @@
-# Tuesday, September 27, 2022 {-}
+# Tuesday, September 27, 2022 {.unnumbered}
 
 Today
 
-- Geo-computation on simple feature data frames 
-- Making raster maps
-- Spatial density maps
+-   Extended example: map tornado frequency
+-   Geo-computation on simple feature data frames
+-   Making raster maps
+-   Spatial density maps
 
-## Geo-computation on simple feature data frames {-}
+## Extended example: map tornado frequency {.unnumbered}
+
+Let's look at another example. Here we have the tornado data from the Storm Prediction Center (SPC) as a shapefile in the directory `1950-2018-torn-aspath`.
+
+Shapefiles are imported with the `st_read()` function from the {sf} package.
+
+```{r}
+library(sf)
+
+tornadoes.sf <- st_read(dsn = "1950-2018-torn-aspath", 
+                        layer = "1950-2018-torn-aspath")
+```
+
+The result is a simple feature data frame with 63645 features (observations) and 23 fields (variables).
+
+Each observation is a unique tornado. The coordinate reference system is geographic (longitude, latitude) with EPSG 4326.
+
+We peak inside the simple feature data frame with the `glimpse()` function from the {dplyr} package.
+
+```{r}
+glimpse(tornadoes.sf)
+```
+
+The first 22 columns are variables (attributes). The last column contains the geometry. Information in the `geometry` column is in well-known text (WKT) format.
+
+Each tornado is a coded as a `LINESTRING` with a start and end location. This is where the `tm_shape()` function looks for the mapping information.
+
+Let's map the tracks of all tornadoes since 2011. First we filter `tornadoes.sf` keeping only tornadoes occurring after the year (`yr`) 2010.
+
+```{r}
+tornadoes.sf <- tornadoes.sf %>%
+                  filter(yr > 2010) 
+```
+
+The objects `tornadoes.sf` and `usa_48.sf` are both simple feature data frames so we map variables in them as layers with successive calls to the `tm_shape()` function. For example, we start with a boundary map of the lower 48 states with `tm_polygons()` and then overlay the tornadoes with `tm_shape()` and `tm_lines()`.
+
+```{r}
+tm_shape(shp = usa_48.sf) +
+  tm_polygons() +
+tm_shape(shp = tornadoes.sf) +
+    tm_lines(col = "red")
+```
+
+We make the map interactive by first turning on the `"view"` mode with the `tmap_mode()` function and then rerunning the code.
+
+Here we use `tm_borders()` to remove the background gray fill. Note: Make sure you Chunk Output in Console
+
+```{r}
+tmap_mode("view")
+
+tm_shape(usa_48.sf) +
+  tm_borders() +
+tm_shape(tornadoes.sf) +
+    tm_lines(col = "red")
+```
+
+We can now zoom and pan. And change the background layers.
+
+We switch back to plot mode as follows.
+
+```{r}
+tmap_mode("plot")
+```
+
+Let's try something a bit more complicated. Suppose we want map the number of tornadoes originating in each state. We first filter to include only tornadoes occurring the lower 48 states, we then group by state and summarize with the `n()` function that returns the number of cases by the grouping variable (`st`). Finally we change the column name of `st` to `state_abbr` to match the state name abbreviation in the `usa_48.sf` data frame.
+
+```{r}
+tornado_counts.sf <- tornadoes.sf %>%
+  filter(st != "PR" & st != "HI" & st != "AK") %>%
+  group_by(st) %>%
+  summarize(nT = n()) %>%
+  rename(state_abbr = st)
+glimpse(tornado_counts.sf)
+```
+
+The resulting data frame contains the grouped-by column `state_abbr` (origin state) and the corresponding number of tornadoes. There were 459 tornadoes in Alabama since 2011, 255 in Arkansas, etc.
+
+Then we join the tornado counts with the map simple feature object. The `left_join()` function only works on data frames (not simple feature data frames) so we first convert them to data frames. We then convert the resulting data frame back to a simple feature data frame with the `st_as_sf()` function. Finally we select only the number of tornadoes column (`nT`).
+
+```{r}
+count_map.sf <- left_join(as.data.frame(usa_48.sf),
+                          as.data.frame(tornado_counts.sf),
+                          by = "state_abbr") %>%
+  st_as_sf() %>%
+  select(nT)
+head(count_map.sf)
+```
+
+NOTE: we want the result of the join to be the MULTIPOLGON geometry associated with each state so the first argument is the `usa_48.sf` simple feature data frame.
+
+Next we construct our map.
+
+```{r}
+tm_shape(shp = count_map.sf) +
+  tm_polygons(col = "nT", 
+           title = "Tornado Counts",
+           palette = "Reds")
+```
+
+We can improve the defaults with additional layers including text, compass, and scale bar. The last layer is the print view.
+
+```{r}
+tm_shape(shp = count_map.sf) +
+  tm_polygons(col = "nT", 
+              border.col = "gray70",
+              title = "Tornado Counts",
+              palette = "Reds") +
+  tm_text("nT", size = 1) +
+  tm_compass() + 
+  tm_scale_bar(lwd = .5)
+```
+
+Summary: The format of the {tmap} objects (meoms) are like those of the {ggplot2} geometric objects (geoms) making it easy to get to a publication-quality map. Fine details are worked out in production.
+
+[More information?](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html)
+
+## Geo-computation on simple feature data frames {.unnumbered}
 
 Spatial data analysis often requires calculations on the geometry. Two of the most common are computing centroids (geographic centers) and buffers.
 
@@ -26,6 +143,7 @@ sf::st_crs(USA_48.sf)
 Note the length unit (`LENGTHUNIT[]`) is meter.
 
 Here transform the CRS of the `USA_48.sf` simple feature data frame to a U.S. National Atlas equal area (EPSG: 2163) and then check it.
+
 ```{r}
 USA_48.sf <- USA_48.sf |>
   sf::st_transform(crs = 2163)
@@ -36,6 +154,7 @@ sf::st_crs(USA_48.sf)
 The centroid calculation locates the center of geographic objects representing the center of mass for the spatial object (think of balancing a plate on your finger).
 
 You calculate the geographic centroid of each of the lower 48 states with the `st_centroid()` function.
+
 ```{r}
 geo_centroid.sf <- sf::st_centroid(USA_48.sf)
 ```
@@ -45,6 +164,7 @@ The result is a simple feature data frame where the geometry is a single point f
 The warning tells you that the attributes in the new simple feature data frame may not make sense with the new geometry.
 
 For example, compare the first two rows of the two simple feature data frames.
+
 ```{r}
 head(geo_centroid.sf, n = 2)
 head(USA_48.sf, n = 2)
@@ -53,6 +173,7 @@ head(USA_48.sf, n = 2)
 The land area (`aland`) makes sense when the geometry is `MULTIPOLYGON` it is less congruent when the geometry is `POINT`.
 
 You map the points using the `tm_dots()` function after first mapping the state borders.
+
 ```{r}
 tm_shape(shp = USA_48.sf) +
   tm_borders(col = "gray70") +
@@ -61,11 +182,12 @@ tm_shape(shp = geo_centroid.sf) +
           col = "black")
 ```
 
-Buffers are polygons representing the area within a given distance of a geometric feature. Regardless of whether the feature is a point, a line, or a polygon. 
+Buffers are polygons representing the area within a given distance of a geometric feature. Regardless of whether the feature is a point, a line, or a polygon.
 
-The function `sf::st_buffer()` computes the buffer and you set the distance with the `dist = ` argument. Here you create a new simple feature data frame with only the state of Florida. 
+The function `sf::st_buffer()` computes the buffer and you set the distance with the `dist =` argument. Here you create a new simple feature data frame with only the state of Florida.
 
-You then compute a 50 km (50,000 meters) buffer and save the resulting polygon 
+You then compute a 50 km (50,000 meters) buffer and save the resulting polygon
+
 ```{r}
 FL.sf <- USA_48.sf |>
            dplyr::filter(state_abbr == "FL")
@@ -75,6 +197,7 @@ FL_buffer.sf <- sf::st_buffer(FL.sf,
 ```
 
 Create a map containing the state border, the 50 km buffer, and the centroid. Include a compass arrow and a scale bar.
+
 ```{r}
 tm_shape(FL_buffer.sf) +
   tm_borders(col = "gray70") +
@@ -88,7 +211,7 @@ tm_scale_bar(text.size = 1, position = c("left", "bottom"))
 
 The result is a map that could serve as a map of your study area (usually Figure 1 in scientific report).
 
-## Making raster maps {-}
+## Making raster maps {.unnumbered}
 
 The package {ggmap} retrieves raster map tiles (groups of pixels) from services like Google Maps and plots them using the {ggplot2} grammar.
 
@@ -101,6 +224,7 @@ Get map tiles using functions from the {ggmap} package
 You get map tiles with the `ggmap::get_map()` function from the {ggmap} package. You specify the bounding box (or the center and zoom). The bounding box requires the left-bottom and right-top corners of the region specified as longitude and latitude in decimal degrees.
 
 For instance, to obtain a map of Tallahassee from the stamen mapping service you first set the bounding box (left-bottom corner as -84.41, 30.37 and right-top corner as -84.19, 30.55) then use the `ggmap::get_stamenmap()` function with a zoom level of 12.
+
 ```{r, message=FALSE}
 library(ggmap)
 
@@ -117,6 +241,7 @@ TLH_map
 The saved object (`TLH_map`) is a raster map specified by the class `ggmap`.
 
 To view the map, use `ggmap()` function.
+
 ```{r}
 ggmap(TLH_map)
 ```
@@ -126,12 +251,14 @@ The `zoom =` argument in the `get_stamenmap()` function controls the level of de
 Trial and error helps you decide on the appropriate level of detail depending on the data you need to visualize. Use [boxfinder](bboxfinder.com) to determine the exact longitude/latitude coordinates for the bounding box you wish to obtain.
 
 Or you can use the `tmaptools::geocode_OSM()` function from the {tmaptools} package. You first specify a location then get a geocoded coordinate.
+
 ```{r}
 FSU.list <- tmaptools::geocode_OSM("Florida State University")
 FSU.list
 ```
 
 The object `FSU.list` is a list containing three elements `query`, `coords` and `bbox`. You are interested in the `bbox` element so you save that as vector that you assign `FSU_bb` and rename the elements to left, bottom, right, and top.
+
 ```{r}
 FSU_bb <- FSU.list$bbox
 names(FSU_bb) <- c("left", "bottom", 
@@ -140,6 +267,7 @@ FSU_bb
 ```
 
 You then get the map tiles corresponding to the bounding box from the stamen map service with a zoom of 16 and create the map.
+
 ```{r, message=FALSE}
 FSU_map <- ggmap::get_stamenmap(bbox = FSU_bb, 
                                 zoom = 16)
@@ -149,6 +277,7 @@ ggmap(FSU_map)
 Add data to the raster map
 
 Let's consider a map of Chicago.
+
 ```{r, message=FALSE}
 CHI_bb <- c(left = -87.936287,
             bottom = 41.679835,
@@ -161,9 +290,10 @@ CHI_map <- get_stamenmap(bbox = CHI_bb,
 ggmap(CHI_map)
 ```
 
-The city of Chicago has a data portal publishing a large volume of public records. Here you look at crime data from 2017. The file `car_thefts.csv` is a spreadsheet obtained from that portal with a list of car thefts. 
+The city of Chicago has a data portal publishing a large volume of public records. Here you look at crime data from 2017. The file `car_thefts.csv` is a spreadsheet obtained from that portal with a list of car thefts.
 
 You read these data using the `readr::read_csv()` function.
+
 ```{r}
 carTheft <- readr::read_csv(file = "data/car_thefts.csv")
 head(carTheft)
@@ -172,6 +302,7 @@ head(carTheft)
 Each row of the data frame is a single report of a vehicle theft. Location is encoded in several ways, though most importantly for us the longitude and latitude of the theft is encoded in the `Longitude` and `Latitude` columns, respectively.
 
 You use the `geom_point()` function to map the location of every theft. Because `ggmap()` uses the map tiles (here, defined by `CHI_map`) as the first layer, you specify data and mapping inside of `geom_point()`.
+
 ```{r}
 ggmap(CHI_map) +
   geom_point(data = carTheft,
@@ -183,13 +314,14 @@ ggmap(CHI_map) +
 
 Note `ggmap()` replaces `ggplot()`.
 
-## Spatial density maps {-}
+## Spatial density maps {.unnumbered}
 
-Instead of relying on `geom_point()` and plotting the raw data, another approach is to create a heat map. This is done with a density estimator. Since the map has two dimensions and the density estimator requires a 'kernel' function the procedure is called a 2-D kernel density estimation (KDE). 
+Instead of relying on `geom_point()` and plotting the raw data, another approach is to create a heat map. This is done with a density estimator. Since the map has two dimensions and the density estimator requires a 'kernel' function the procedure is called a 2-D kernel density estimation (KDE).
 
-KDE will take all the data (i.e. reported vehicle thefts) and convert it into a smoothed plot showing geographic concentrations of crime. KDE is a type of data smoothing where inferences about the population are made based on a finite data sample. 
+KDE will take all the data (i.e. reported vehicle thefts) and convert it into a smoothed plot showing geographic concentrations of crime. KDE is a type of data smoothing where inferences about the population are made based on a finite data sample.
 
 The core function in {ggplot2} to generate this kind of plot is `geom_density_2d()`.
+
 ```{r}
 ggmap(CHI_map) +
   geom_density_2d(data = carTheft,
@@ -200,6 +332,7 @@ ggmap(CHI_map) +
 By default, `geom_density_2d()` draws a contour plot with lines of constant value. That is, each line represents approximately the same frequency of crime along that specific line. Contour plots are often used in maps (known as topographic maps) to denote elevation.
 
 Rather than drawing lines you fill in the graph by using the fill aesthetic to draw bands of crime density. To do that, you use the related function `stat_density_2d()`.
+
 ```{r}
 ggmap(CHI_map) +
   stat_density_2d(data = carTheft,
@@ -211,16 +344,17 @@ ggmap(CHI_map) +
 
 Note the two new arguments:
 
-* `geom = "polygon"` - change the geometric object to be drawn from a `geom_density_2d()` geom to a polygon geom
-* `fill = stat(level)` - the value for the fill aesthetic is the level calculated within `stat_density_2d()`, which you access using the `stat()` notation.
+-   `geom = "polygon"` - change the geometric object to be drawn from a `geom_density_2d()` geom to a polygon geom
+-   `fill = stat(level)` - the value for the fill aesthetic is the level calculated within `stat_density_2d()`, which you access using the `stat()` notation.
 
 This is an improvement, but you can adjust some settings to make the graph visually more useful. Specifically,
 
-* Increase the number of bins, or unique bands of color allowed on the graph
-* Make the colors semi-transparent using alpha so you can still view the underlying map
-* Change the color palette to better distinguish between high and low crime areas. 
+-   Increase the number of bins, or unique bands of color allowed on the graph
+-   Make the colors semi-transparent using alpha so you can still view the underlying map
+-   Change the color palette to better distinguish between high and low crime areas.
 
 Here you use `RColorBrewer::brewer.pal()` from the {RColorBrewer} package to create a custom color palette using reds and yellows.
+
 ```{r}
 ggmap(CHI_map) +
   stat_density_2d(data = carTheft,
