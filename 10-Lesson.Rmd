@@ -2,20 +2,23 @@
 
 Today
 
-<<<<<<< HEAD
-=======
 - Geo-computation on simple feature data frames 
->>>>>>> 085e37c9858c03711c53d1870a94380c2ffffe51
 - Making raster maps
 - Spatial density maps
 
-<<<<<<< HEAD
-=======
 ## Geo-computation on simple feature data frames {-}
 
 Spatial data analysis often requires calculations on the geometry. Two of the most common are computing centroids (geographic centers) and buffers.
 
+Consider again the boundary map of the lower 48 states. Here you get the boundary file using the `USAboundaries::us_states()` function and use the `filter()` function to remove rows corresponding to Hawaii, Alaska, and Puerto Rico.
+
+```{r}
+USA_48.sf <- USAboundaries::us_states() |>
+   dplyr::filter(!state_name %in% c("Hawaii", "Alaska", "Puerto Rico"))
+```
+
 Geometry calculations should be done on projected coordinates. To see what CRS the simple feature data frame has use `st_crs()`.
+
 ```{r}
 sf::st_crs(USA_48.sf)
 ```
@@ -85,7 +88,6 @@ tm_scale_bar(text.size = 1, position = c("left", "bottom"))
 
 The result is a map that could serve as a map of your study area (usually Figure 1 in scientific report).
 
->>>>>>> 085e37c9858c03711c53d1870a94380c2ffffe51
 ## Making raster maps {-}
 
 The package {ggmap} retrieves raster map tiles (groups of pixels) from services like Google Maps and plots them using the {ggplot2} grammar.
