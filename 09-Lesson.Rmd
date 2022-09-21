@@ -1,160 +1,61 @@
-# Thursday, September 22, 2022 {-}
+# Thursday, September 22, 2022 {.unnumbered}
 
 Today
 
-- Making maps
+-   Making maps using functions from {ggplot2}
+-   Making maps using functions from {tmap}
+-   Calculations using the simple feature column
 
-## Simple feature data frames {-}
+## Making maps using functions from {ggplot2} {.unnumbered}
 
-Geographic visualization of data is important to geographers and environmental scientists. There are many tools for geo visualization from full-scale GIS applications such as ArcGIS and QGIS to web-based tools like Google maps.
+Start with a boundary map. Here you import the census data with the `sf::st_read()` function from the {sf} package. You assign to the object `USA.sf` the contents of the spatial data frame.
 
-Using code to make maps (instead of point and click) has the benefit of transparency and reproducibility.
-
-Simple features (simple feature access) refers to a standard that describes how objects in the real world are represented in computers. Emphasis is on the spatial geometry of the objects.
-
-The standard also describes how such objects are stored in and retrieved from databases, and which geometrical operations are defined for them.
-
-The simple feature standard is implemented in spatial databases (such as PostGIS), commercial GIS (e.g., ESRI ArcGIS). R has an implementation in the {sf} package.
-
-One type of spatial data file is called a _shapefile_. As an example, the U.S. census information at the state and territory level in a file called `cb_2018_us_state_5m.shp`. https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html
-
-A shapefile encodes points, lines, and polygons in geographic space, and is actually a set of files.  Shapefiles appear with a `.shp` extension and with accompanying files ending in `.dbf` and `.prj`.
-
-* `.shp` stores the geographic coordinates of the geographic features (e.g. country, state, county)
-* `.dbf` stores data associated with the geographic features (e.g. unemployment rates)
-* `.prj` stores information about the projection of the coordinates in the shapefile
-
-To get a shapefile into R all the files need to be in the same folder (directory). 
-
-As an example, you import the census data with the `sf::st_read()` function from the {sf} package. You assign to the object `USA.sf` the contents of the spatial data frame.
 ```{r}
-USA.sf <- sf::st_read(dsn = "data/cb_2018_us_state_5m")
+USA.sf <- sf::st_read(dsn = here::here("data", "cb_2018_us_state_5m"))
 ```
 
-The output includes information about the file. The object shows up in our environment as a data frame with 56 observations and 10 variables.
+The output includes information about the file. The object shows up in your environment as a data frame with 56 observations and 10 variables.
 
-Each observation is either a state or territory.
+Each observation is either a state or territory. The file is a simple feature (`sf`) data frame (`data.frame`). It behaves like a data frame but contains information about where the observations are located.
 
-The `class()` function tells us the type of data frame and the `names()` function list the variable names.
-```{r}
-class(USA.sf)
-names(USA.sf)
-```
+Let's keep only rows corresponding to states in the lower 48. The vector `state.name` contains a list of the 50 states by name. Elements 2 and 11 correspond to Alaska and Hawaii so you create a new vector object called `sn` containing only the names of the lower 48.
 
-The file is a simple feature (`sf`) data frame (`data.frame`). This means it behaves like a data frame but it also contains information about where the observations are located.
-
-The first several columns serve as identifiers. The variable `ALAND` is the land area (square meters) and the `AWATER` is the water area (sq. m).
-
-The last column labeled `geometry` contains information about location stored as a 'feature'. The function `sf::st_geometry()` list the first 5 geometries.
-```{r}
-sf::st_geometry(USA.sf)
-```
-
-The geometry type in this case is `MULTIPOLYGON`.
-
-A feature is an object in the real world. Often features will consist of a set of features. For instance, a tree is a feature but a set of trees in a forest is itself a feature. The trees are represented as points while the forest boundary as a polygon.
-
-Features have a geometry describing where on Earth the feature is located. They also have attributes, which describe other properties of the feature.
-
-More on spatial data in a few weeks.
-
-## Making a boundary map {-}
-
-The functions in the {ggplot2} package work with simple feature data frames to generate maps using the same grammar. 
-
-The important function is `geom_sf()`. This function draws the geometries. 
-
-For example, to draw a map showing the state and territorial boundaries first use `ggplot()` with the data argument specifying the simple feature data frame `USA.sf` and then add the `geom_sf()` function as a layer with the `+` symbol.
-```{r}
-library(ggplot2)
-
-ggplot(data = USA.sf) +
-  geom_sf()
-```
-
-Note: you don't need the `mapping = aes()` function. The mapping is assumed based on the fact that there is a `geometry` column in the simple feature data frame. 
-
-The `geom_sf()` function maps the east-west coordinate to the `x` aesthetic and the north-south coordinate to the `y` aesthetic.
-
-The map is not very informative. Let's zoom into the contiguous states.
-
-What states/territories are there in the data frame `USA.sf`?
-```{r}
-USA.sf$NAME
-```
-
-To zoom in you keep only rows corresponding to states (in the lower 48) from the simple feature data frame. 
-
-Recall to pick out rows in a data frame you use the `dplyr::filter()` function from the {dplyr} package. 
-
-First you need to get a list of all the states you want to keep. The `state.name` vector object contains all 50 state names. This is like the `month.abb` vector you saw earlier.
-```{r}
-state.name
-```
-
-Let's remove the rows corresponding to the names `"Alaska"` and `"Hawaii"`. These are elements 2 and 11 so you create a new vector object called `sn` containing only the names of the lower 48.
 ```{r}
 sn <- state.name[c(-2, -11)]
 sn
 ```
 
 Now you filter the `USA.sf` data frame keeping only the rows that are listed in the vector of state names. Assign this spatial data frame the name `USA_48.sf`.
+
 ```{r}
 USA_48.sf <- USA.sf |>
   dplyr::filter(NAME %in% sn)
 ```
 
-The function `%in%` finds only the rows in `USA.sf` with `NAME` equal to the names in the vector `sn` and the `dplyr::filter()` function chooses these rows.
+Now draw the map using the `USA_48.sf` simple feature data frame.
 
-Now redraw the map using the `USA_48.sf` simple feature data frame.
 ```{r}
+library(ggplot2)
+
 ggplot(data = USA_48.sf) +
   geom_sf()
 ```
 
-Since the map is a `ggplot()` object, it is modified like any other `ggplot()` graph. For example, you change the color of the map and the borders as follows.
-```{r}
-ggplot(data = USA_48.sf) +
-  geom_sf(fill = "skyblue", 
-          color = "gray70")
-```
+Note: you don't need the `mapping = aes()` function. The mapping is assumed based on the fact that there is a `geometry` column in the simple feature data frame.
 
-You can filter by state. Here you create a new simple feature data frame called `Wisconsin.sf` then draw the boundary.
-```{r}
-Wisconsin.sf <- USA_48.sf |>
-  dplyr::filter(NAME == "Wisconsin")
-
-ggplot(data = Wisconsin.sf) +
-  geom_sf(fill = "palegreen", 
-          color = "black")
-```
-
-Where is the state of Nebraska? Repeat but fill in Nebraska using the color brown.
-```{r}
-Nebraska.sf <- USA_48.sf |>
-  dplyr::filter(NAME == "Nebraska")
-
-ggplot(data = USA_48.sf) +
-  geom_sf() +
-  geom_sf(data = Nebraska.sf, 
-          fill = "brown")
-```
-
-You add layers with the `+` symbol as before. 
-
-Boundaries serve as the background canvas for spatial data analysis. You usually need to add data to this canvas. Depending on the type of data, you either overlay it on top of the boundaries or use it to fill in the areas between the boundaries.
-
-Fills
+The `geom_sf()` function maps the east-west coordinate to the `x` aesthetic and the north-south coordinate to the `y` aesthetic.
 
 Choropleth maps (heat maps, thematic maps) map data values from a column in the simple feature data frame to the `fill` aesthetic. The aesthetic assigns colors to the various map areas (e.g. countries, states, counties, zip codes).
 
-Recall the column labeled `AWATER` contains the water area in square meters. Since the values are very large first divide by million (10^9) to get the values in 1000s of square kilometers. This is done with the `mutate()` function.
+The column labeled `AWATER` contains the water area in square meters. Since the values are very large first divide by million (10\^9) to get the values in 1000s of square kilometers. This is done with the `mutate()` function.
+
 ```{r}
 USA_48.sf <- USA_48.sf |>
   dplyr::mutate(WaterArea_km2 = AWATER/10^9)
 ```
 
 Then create a choropleth map showing the water area by filling the area between the state borders with a color. This is done using the `aes()` function and the argument `fill = WaterArea_km2`.
+
 ```{r}
 ggplot(data = USA_48.sf) +
   geom_sf(aes(fill = WaterArea_km2))
@@ -162,14 +63,16 @@ ggplot(data = USA_48.sf) +
 
 Note how this differs from just drawing the boundaries. In this case you use the `aes()` function with the fill aesthetic.
 
-The map is not very informative. large water area of Michigan which includes Lakes Michigan, Superior, and Huron has by far the most water area with most other states have a lot less. 
+The map is not very informative. large water area of Michigan which includes Lakes Michigan, Superior, and Huron has by far the most water area with most other states have a lot less.
 
 To change that use the logarithm of the area. The base 10 logarithm is 0 when the value is 1, 1 when the value is 10, 2 when the value is 100 and so on. This is seen with the `log10()` function.
+
 ```{r}
 log10(c(1, 10, 100, 1000, 10000))
 ```
 
 You convert the area to logarithms with the `log10()` function inside the `aes()` function as follows.
+
 ```{r}
 ggplot(data = USA_48.sf) +
   geom_sf(aes(fill = log10(WaterArea_km2))) 
@@ -180,6 +83,7 @@ Another way to make the map more informative is to convert the continuous variab
 In the {dplyr} package the `cut_interval()` function takes a continuous variable and makes n groups each having an equal range, `cut_number()` makes n groups with (approximately) equal numbers of observations; `cut_width()` makes groups of equal width.
 
 As an example, if you want a map with 5 colors with each color representing a state having a similar amount of water area you would use `cut_number()` and specify `n = 5`. You do this with the `mutate()` function to create a new variable (column) called `WaterArea_cut`.
+
 ```{r}
 USA_48.sf <- USA_48.sf |>
   dplyr::mutate(WaterArea_cut = cut_number(WaterArea_km2, n = 5))
@@ -189,12 +93,14 @@ str(USA_48.sf)
 Essentially you added a new factor variable called `WaterArea_cut` with five levels corresponding to equal number of water area values.
 
 You can go directly to the mapping as follows.
+
 ```{r}
  ggplot(data = USA_48.sf) +
     geom_sf(aes(fill = WaterArea_cut))
 ```
 
 Make a choropleth map displaying the ratio of water area (`AWATER`) to land area (`ALAND`) by state.
+
 ```{r}
 ggplot(data = USA_48.sf) +
   geom_sf(aes(fill = AWATER/ALAND * 100))
@@ -205,6 +111,7 @@ Adding data
 The `USA_48.sf` simple feature data frame uses longitude and latitude for it's coordinate reference system (CRS). All spatial data frames have a CRS.
 
 To see what CRS a simple feature data frame use the `sf::st_crs()` function.
+
 ```{r}
 sf::st_crs(USA_48.sf)
 ```
@@ -213,9 +120,10 @@ The Coordinate Reference System information including the EPSG code (4269) and t
 
 Here it specifies a geographic reference system with longitude and latitude and a datum (North American 1983) that describes the sea-level shape of the planet as an ellipsoid.
 
-Because the CRS uses longitude and latitude you can add locations by specifying the geographic coordinates. 
+Because the CRS uses longitude and latitude you can add locations by specifying the geographic coordinates.
 
 For example, suppose you want to add the locations of two cities on the map. First you create a data frame containing the longitudes, latitudes, and names of the locations.
+
 ```{r}
 Cities.df <- data.frame(long = c(-84.2809, -87.9735),
                         lat = c(30.4381,43.0115),
@@ -224,6 +132,7 @@ class(Cities.df)
 ```
 
 Next you draw the map as before but add the locations with a point layer and label the locations with a text layer.
+
 ```{r}
 ggplot(data = USA_48.sf) +
   geom_sf(color = "gray80") +
@@ -236,12 +145,14 @@ ggplot(data = USA_48.sf) +
 ```
 
 As another example, let's consider the `airports` data frame from the {nycflights13} package. The data frame includes information on 1458 airports in the United States including their location with latitude and longitude.
+
 ```{r}
 library(nycflights13)
 airports
 ```
 
 Each row is an airport and the location of the airport is given in the columns `lat` and `lon`. You can make a map without boundaries by drawing a scatter plot with `x = lon` and `y = lat`.
+
 ```{r}
 ggplot(data = airports, 
        mapping = aes(x = lon, y = lat)) +
@@ -249,6 +160,7 @@ ggplot(data = airports,
 ```
 
 If you only want airports within the continental United States, you first plot the `USA_48.sf` boundaries and then add the airport locations as a separate point layer and the use the `coord_sf()` function specifying the limits of the plot in the longitude direction (`xlim`) and the latitude direction (`ylim`).
+
 ```{r}
 ggplot(data = USA_48.sf) + 
   geom_sf(color = "gray80") + 
@@ -260,6 +172,7 @@ ggplot(data = USA_48.sf) +
 ```
 
 Alternatively, you can use `sf::st_as_sf()` to convert the `airports` data frame to a simple features data frame. The argument `coords =` tells `sf::st_as_sf()` which columns contain the geographic coordinates of each airport. You also set the CRS using the `sf::st_crs()` function and use the EPSG code corresponding to a geographic CRS.
+
 ```{r}
 airports.sf <- sf::st_as_sf(airports, 
                         coords = c("lon", "lat"),
@@ -268,6 +181,7 @@ airports.sf
 ```
 
 To graph the points on the map, you use a second `geom_sf()`.
+
 ```{r}
 ggplot() + 
   geom_sf(data = USA_48.sf) + 
@@ -277,6 +191,7 @@ ggplot() +
 ```
 
 You can change the size or type of symbols on the map. For instance, you can draw a bubble plot (also known as a proportional symbol map) and encode the altitude of the airport through the `size =` aesthetic.
+
 ```{r}
 ggplot() + 
   geom_sf(data = USA_48.sf) + 
@@ -287,75 +202,253 @@ ggplot() +
   scale_size_area(guide = FALSE)
 ```
 
-Circle area is proportional to the airport’s altitude (in feet).
+Circle area is proportional to the airport's altitude (in feet).
 
-## Inset maps {-}
+## Making maps using functions from {tmap} {.unnumbered}
 
-A common challenge when creating maps is how to include an inset map. An inset map is a smaller map included on a corner that provides additional context to the main map. 
+The {tmap} package has functions for creating thematic maps. The syntax is like the syntax of the functions in {ggplot2}. The functions work with a variety of spatial data.
 
-It is also useful for representing spatial units that may form part of a country but its geographical location would imply an imperfect visualization, or even to include small units that otherwise won’t be shown on the map.
+Consider the simple feature data frame called `World` from the {tmap} package.
 
-https://dieghernan.github.io/202203_insetmaps/
+```{r}
+library(tmap)
 
-## Map projections {-}
+data("World")
+str(World)
+```
 
-Depending on how a curved surface is projected onto a 2-D surface (map), at least some features will be distorted. The `coord_sf()` function package provides a way to adjust projections.
+The spatial data frame contains socioeconomic indicators from 177 countries around the world. Each row is one country's indicators.
 
-With a geographic projection the longitudes and latitudes are treated as x (horizontal) and y (vertical) coordinates. 
+You make a map by first specifying the spatial data frame using the `tm_shape()` function and then you add a layer consistent with the geometry.
 
-Consider again the boundary map of the lower 48 states. Here you get the boundary file using the `us_states()` function from the {USAboundaries} package and use the `filter()` function to remove rows corresponding to Hawaii, Alaska, and Puerto Rico.
+For example, if you want a map showing the index of happiness (column name `HPI`) by country, use the `tm_shape()` function to identify the spatial data frame `World` then add a fill layer with the `tm_polygons()` function.
+
+The fill is specified by the argument `col =` indicating the specific column from the data frame. Here use `HPI`.
+
+```{r}
+tm_shape(shp = World) +
+    tm_polygons(col = "HPI")
+```
+
+The `tm_polygons()` function with the argument `col =` colors the countries based on the values in the column `HPI` of the `World` data frame.
+
+Map layers are added with the `+` operator.
+
+Caution: the column in the data frame `World` must be specified using quotes `"HPI"`. This is different from the functions in the {ggplot2} package.
+
+To show two thematic maps together each with a different variable, specify `col = c("HPI", "well_being")`
+
+The `tm_polygons()` function splits the values in the specified column into meaningful groups (here 8) and countries with missing values (`NA`) values are colored gray.
+
+More (or fewer) intervals can be specified with the `n =` argument, but the cutoff values are chosen at appropriate places.
+
+Example: Mapping tornadoes
+
+Consider the tornado data from the U.S. Storm Prediction Center (SPC). It is downloaded as a shapefile in the directory `data/1950-2018-torn-aspath`.
+
+A shapefile is imported with the `sf::st_read()` function from the {sf} package.
+
+```{r}
+Tornadoes.sf <- sf::st_read(dsn = "data/1950-2018-torn-aspath")
+```
+
+The assigned file is a simple feature data frame with 63645 features (observations) and 23 fields (variables).
+
+Each row (observation) is a unique tornado.
+
+Look inside the simple feature data frame with the `glimpse()` function from the {dplyr} package.
+
+```{r}
+dplyr::glimpse(Tornadoes.sf)
+```
+
+The first 22 columns are variables (attributes). The last column contains the geometry. Information in the `geometry` column is in well-known text (WKT) format.
+
+Each tornado is a coded as a `LINESTRING` with a start and end location. This is where the `tm_shape()` function looks for the geographic information.
+
+Here you make a map showing the tracks of all the tornadoes since 2011. First filter the data frame keeping only tornadoes occurring after the year (`yr`) 2010.
+
+```{r}
+TornadoesSince2011.sf <- 
+  Tornadoes.sf |>
+  dplyr::filter(yr >= 2011) 
+```
+
+Next get a file containing the boundaries of the lower 48 states.
+
 ```{r}
 USA_48.sf <- USAboundaries::us_states() |>
    dplyr::filter(!state_name %in% c("Hawaii", "Alaska", "Puerto Rico"))
 ```
 
-Here you first assign the map to an object called `base_map` and then render the map to the plot device by typing the object name.
+Then use the `tm_shape()` function together with the `tm_borders()` layer to draw the boundaries before adding the tornadoes. The tornadoes are in a separate spatial data frame so you use the `tm_shape()` function together with the `tm_lines()` layer.
+
 ```{r}
-base_map <- ggplot(data = USA_48.sf) +
-              geom_sf()
-base_map
+tm_shape(shp = USA_48.sf, projection = 5070) +
+  tm_borders() +
+tm_shape(shp = TornadoesSince2011.sf) +
+    tm_lines(col = "red")
 ```
 
-Note the equal spacing between the latitudes and between the longitudes. 1 degree latitude distance equals 1 degree longitude distance. This is called a carto-cartesian (geographic) projection.
+The objects named `TornadoesSince2011.sf` and `USA_48.sf` are simple feature data frames. You map variables in the data frames as layers with successive calls to the `tm_shape()` function.
 
-You change the projection by specifying the CRS. For example to change the base map to have a Mercator projection you use the `coord_sf()` function with `crs = "+proj=merc"` (or equivalently `crs = 3857`, which uses the EPSG code 3857 for world Mercator projection).
+The default projection is geographic (latitude-longitude) which is changed using the `projection =` argument and specifying a EPSG number (or proj4 string). Here you use 5070 corresponding to USA Contiguous Albers Equal Area Conic, USGS (EPSG = 5070 or 102003).
+
+You make the map interactive by first turning on the `"view"` mode with the `tmap_mode()` function before running the code.
+
 ```{r}
-base_map +
-  coord_sf(crs = "+proj=merc") +
-  ggtitle("Mercator projection")
+tmap_mode("view")
 
-base_map +
-  coord_sf(crs = 3857) +
-  ggtitle("Mercator projection")
+tm_shape(USA_48.sf) +
+  tm_borders() +
+tm_shape(TornadoesSince2011.sf) +
+    tm_lines(col = "red")
 ```
 
-Note the distance between the latitudes increases with increasing latitude. Note also the projection is applied to the rendered map and not the simple feature data frame used to create it.
+You can now zoom, pan, and change the background layers.
 
-The Mercator projection is widely used, but it makes areas closer to the poles appear larger than the same areas closer to the equator. Greenland appears as large as the continent of Africa. In reality Africa is 14 times larger in area than Greenland.
+Switch back to plot mode by typing.
 
-Other coordinate systems require specification of the standard lines, or lines that define areas of the surface of the map that are tangent to the globe. These include Gall-Peters, Albers equal-area, and Lambert azimuthal.
 ```{r}
-base_map +
-  coord_sf(crs = "+proj=cea +lon_0=0 +lat_ts=45") +
-  ggtitle("Gall-Peters projection")
+tmap_mode("plot")
 ```
 
-With this projection states having the same area appear with the same size, but the boundary shapes are distorted.
+Example: Mapping the frequency of tornadoes by state
 
-Distortions are smallest between latitudes defined by the Albers equal-area projection.
+Suppose you want to show the number of tornadoes originating in each state on a map. You first need to prepare the data.
+
+You do this with a series of `then` statements connected by pipes (`|>`). Start by assigning to the object `TornadoeCountsByState.df` the contents of `Tornadoes.sf` then remove the the geometry column, then remove states outside lower 48 using the `dplyr::filter()` function, then group by state, then summarize creating a colunm called `nT` that keeps track of the number of rows (`dplyr::n()`), then change the column name of `st` to `state_abbr` to match the state name abbreviation in the `USA_48.sf` data frame.
+
 ```{r}
-base_map +
-  coord_sf(crs = "+proj=aea +lat_1=25 +lat_2=50 +lon_0=-100") +
-  ggtitle("Albers equal-area projection")
+TornadoCountsByState.df <- Tornadoes.sf |>
+  sf::st_drop_geometry() |>
+  dplyr::filter(st != "PR" & st != "HI" & st != "AK") |>
+  dplyr::group_by(st) |>
+  dplyr::summarize(nT = dplyr::n()) |>
+  dplyr::rename(state_abbr = st)
+
+dplyr::glimpse(TornadoCountsByState.df)
 ```
 
-USA Contiguous Albers Equal Area Conic, USGS (EPSG = 5070 or 102003)
+The resulting data frame contains the grouped-by column `state_abbr` (origin state) and the corresponding number of tornadoes. There were 459 tornadoes in Alabama since 2011, 255 in Arkansas, etc.
 
-See Kyle Walker's get CRS 
-See maptiles package https://github.com/riatelab/maptiles/
+Next you need to join the new data frame with the spatial data frame. You join the `TornadoCountsByState.df` data frame with the map simple feature data frame `USA_48.sf` using the `dplyr::left_join()` function and recycling the name.
 
-Why map projections matter. Clip from The West Wing.  https://youtu.be/vVX-PrBRtTY
+```{r}
+USA_48.sf <-dplyr::left_join(USA_48.sf,
+                             TornadoCountsByState.df,
+                             by = "state_abbr") 
 
-## Bivariate maps {-}
+names(USA_48.sf)
+```
 
-See `Other_Rmds/BivariateMaps.Rmd`.
+Notice that you now have a new column in the spatial data frame `USA_48.sf` named `nT` that contains the number of tornadoes in that state.
+
+Next you create a draft map to see if things look correct.
+
+```{r}
+tm_shape(shp = USA_48.sf, projection = 5070) +
+  tm_polygons(col = "nT", 
+           title = "Tornado Counts",
+           palette = "Oranges")
+```
+
+Tornadoes are most common in the southern Great Plains into the Southeast.
+
+You improve the defaults with additional layers including text, compass, and scale bar. The last layer is the print view.
+
+```{r}
+tm_shape(shp = USA_48.sf, projection = 5070) +
+  tm_polygons(col = "nT", 
+              border.col = "gray70",
+              title = "Tornado Counts",
+              palette = "Oranges") +
+  tm_text("nT", size = .5) +
+  tm_compass() + 
+  tm_scale_bar(lwd = .5)
+```
+
+The format of the {tmap} objects (meoms) are like those of the {ggplot2} geometric objects (geoms) making it easy to quickly map your data. Fine details are worked out in production.
+
+[More information?](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html)
+
+## Calculations using the geometry simple feature column {.unnumbered}
+
+Spatial data analysis often requires calculations on the geometry. Two of the most common are computing centroids (geographic centers) and buffers.
+
+Geometry calculations should be done on projected coordinates. To see what CRS the simple feature data frame has use `st_crs()`.
+
+```{r}
+sf::st_crs(USA_48.sf)
+```
+
+Note the length unit (`LENGTHUNIT[]`) is meter.
+
+Here transform the CRS of the `USA_48.sf` simple feature data frame to a U.S. National Atlas equal area (EPSG: 2163) and then check it.
+
+```{r}
+USA_48.sf <- USA_48.sf |>
+  sf::st_transform(crs = 2163)
+
+sf::st_crs(USA_48.sf)
+```
+
+The centroid calculation locates the center of geographic objects representing the center of mass for the spatial object (think of balancing a plate on your finger).
+
+You calculate the geographic centroid of each of the lower 48 states with the `st_centroid()` function.
+
+```{r}
+geo_centroid.sf <- sf::st_centroid(USA_48.sf)
+```
+
+The result is a simple feature data frame where the geometry is a single point for each state. You keep track of the fact that this is a simple feature data frame by using an object name that includes appends with `.sf`.
+
+The warning tells you that the attributes in the new simple feature data frame may not make sense with the new geometry.
+
+For example, compare the first two rows of the two simple feature data frames.
+
+```{r}
+head(geo_centroid.sf, n = 2)
+head(USA_48.sf, n = 2)
+```
+
+The land area (`aland`) makes sense when the geometry is `MULTIPOLYGON` it is less congruent when the geometry is `POINT`.
+
+You map the points using the `tm_dots()` function after first mapping the state borders.
+
+```{r}
+tm_shape(shp = USA_48.sf) +
+  tm_borders(col = "gray70") +
+tm_shape(shp = geo_centroid.sf) +
+  tm_dots(size = 1,
+          col = "black")
+```
+
+Buffers are polygons representing the area within a given distance of a geometric feature. Regardless of whether the feature is a point, a line, or a polygon.
+
+The function `sf::st_buffer()` computes the buffer and you set the distance with the `dist =` argument. Here you create a new simple feature data frame with only the state of Florida.
+
+You then compute a 50 km (50,000 meters) buffer and save the resulting polygon
+
+```{r}
+FL.sf <- USA_48.sf |>
+           dplyr::filter(state_abbr == "FL")
+
+FL_buffer.sf <- sf::st_buffer(FL.sf, 
+                              dist = 50000)
+```
+
+Create a map containing the state border, the 50 km buffer, and the centroid. Include a compass arrow and a scale bar.
+
+```{r}
+tm_shape(FL_buffer.sf) +
+  tm_borders(col = "gray70") +
+tm_shape(FL.sf) +
+  tm_borders() +
+tm_shape(geo_centroid.sf) +
+  tm_dots(size = 2) +
+tm_compass(position = c("left", "bottom")) + 
+tm_scale_bar(text.size = 1, position = c("left", "bottom"))
+```
+
+The result is a map that could serve as a map of your study area (usually Figure 1 in scientific report).
