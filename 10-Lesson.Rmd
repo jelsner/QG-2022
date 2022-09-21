@@ -2,8 +2,90 @@
 
 Today
 
+<<<<<<< HEAD
+=======
+- Geo-computation on simple feature data frames 
+>>>>>>> 085e37c9858c03711c53d1870a94380c2ffffe51
 - Making raster maps
+- Spatial density maps
 
+<<<<<<< HEAD
+=======
+## Geo-computation on simple feature data frames {-}
+
+Spatial data analysis often requires calculations on the geometry. Two of the most common are computing centroids (geographic centers) and buffers.
+
+Geometry calculations should be done on projected coordinates. To see what CRS the simple feature data frame has use `st_crs()`.
+```{r}
+sf::st_crs(USA_48.sf)
+```
+
+Note the length unit (`LENGTHUNIT[]`) is meter.
+
+Here transform the CRS of the `USA_48.sf` simple feature data frame to a U.S. National Atlas equal area (EPSG: 2163) and then check it.
+```{r}
+USA_48.sf <- USA_48.sf |>
+  sf::st_transform(crs = 2163)
+
+sf::st_crs(USA_48.sf)
+```
+
+The centroid calculation locates the center of geographic objects representing the center of mass for the spatial object (think of balancing a plate on your finger).
+
+You calculate the geographic centroid of each of the lower 48 states with the `st_centroid()` function.
+```{r}
+geo_centroid.sf <- sf::st_centroid(USA_48.sf)
+```
+
+The result is a simple feature data frame where the geometry is a single point for each state. You keep track of the fact that this is a simple feature data frame by using an object name that includes appends with `.sf`.
+
+The warning tells you that the attributes in the new simple feature data frame may not make sense with the new geometry.
+
+For example, compare the first two rows of the two simple feature data frames.
+```{r}
+head(geo_centroid.sf, n = 2)
+head(USA_48.sf, n = 2)
+```
+
+The land area (`aland`) makes sense when the geometry is `MULTIPOLYGON` it is less congruent when the geometry is `POINT`.
+
+You map the points using the `tm_dots()` function after first mapping the state borders.
+```{r}
+tm_shape(shp = USA_48.sf) +
+  tm_borders(col = "gray70") +
+tm_shape(shp = geo_centroid.sf) +
+  tm_dots(size = 1,
+          col = "black")
+```
+
+Buffers are polygons representing the area within a given distance of a geometric feature. Regardless of whether the feature is a point, a line, or a polygon. 
+
+The function `sf::st_buffer()` computes the buffer and you set the distance with the `dist = ` argument. Here you create a new simple feature data frame with only the state of Florida. 
+
+You then compute a 50 km (50,000 meters) buffer and save the resulting polygon 
+```{r}
+FL.sf <- USA_48.sf |>
+           dplyr::filter(state_abbr == "FL")
+
+FL_buffer.sf <- sf::st_buffer(FL.sf, 
+                              dist = 50000)
+```
+
+Create a map containing the state border, the 50 km buffer, and the centroid. Include a compass arrow and a scale bar.
+```{r}
+tm_shape(FL_buffer.sf) +
+  tm_borders(col = "gray70") +
+tm_shape(FL.sf) +
+  tm_borders() +
+tm_shape(geo_centroid.sf) +
+  tm_dots(size = 2) +
+tm_compass(position = c("left", "bottom")) + 
+tm_scale_bar(text.size = 1, position = c("left", "bottom"))
+```
+
+The result is a map that could serve as a map of your study area (usually Figure 1 in scientific report).
+
+>>>>>>> 085e37c9858c03711c53d1870a94380c2ffffe51
 ## Making raster maps {-}
 
 The package {ggmap} retrieves raster map tiles (groups of pixels) from services like Google Maps and plots them using the {ggplot2} grammar.
@@ -99,7 +181,7 @@ ggmap(CHI_map) +
 
 Note `ggmap()` replaces `ggplot()`.
 
-## Spatial density maps (extra material) {-}
+## Spatial density maps {-}
 
 Instead of relying on `geom_point()` and plotting the raw data, another approach is to create a heat map. This is done with a density estimator. Since the map has two dimensions and the density estimator requires a 'kernel' function the procedure is called a 2-D kernel density estimation (KDE). 
 

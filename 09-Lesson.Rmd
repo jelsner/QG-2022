@@ -2,6 +2,7 @@
 
 Today
 
+<<<<<<< HEAD
 -   Making maps using functions from {ggplot2}
 -   Making maps using functions from {tmap}
 -   Calculations using the simple feature column
@@ -9,16 +10,32 @@ Today
 ## Making maps using functions from {ggplot2} {.unnumbered}
 
 Start with a boundary map. Here you import the census data with the `sf::st_read()` function from the {sf} package. You assign to the object `USA.sf` the contents of the spatial data frame.
+=======
+-   Adding data to maps
+-   Changing map projections
+-   Making maps using functions from {tmap}
+-   Making a map interactive
+
+## Adding data to maps {.unnumbered}
+
+You import state-level census data from the shape file directory `cb_2018_us_state_5m` with the `sf::st_read()` function as a simple feature data frame with name `USA.sf`.
+>>>>>>> 085e37c9858c03711c53d1870a94380c2ffffe51
 
 ```{r}
 USA.sf <- sf::st_read(dsn = here::here("data", "cb_2018_us_state_5m"))
 ```
 
+<<<<<<< HEAD
 The output includes information about the file. The object shows up in your environment as a data frame with 56 observations and 10 variables.
 
 Each observation is either a state or territory. The file is a simple feature (`sf`) data frame (`data.frame`). It behaves like a data frame but contains information about where the observations are located.
 
 Let's keep only rows corresponding to states in the lower 48. The vector `state.name` contains a list of the 50 states by name. Elements 2 and 11 correspond to Alaska and Hawaii so you create a new vector object called `sn` containing only the names of the lower 48.
+=======
+The output includes information about the file. The object shows up in your environment as a data frame with 56 observations and 10 variables. Each feature is either a state or territory.
+
+To focus on the contiguous U.S. you filter to keep only rows corresponding those states. The `state.name` vector object contains all 50 state names. You remove the rows corresponding to the names `"Alaska"` and `"Hawaii"`. These are elements 2 and 11 so you create a new vector object called `sn` containing only the names of the lower 48.
+>>>>>>> 085e37c9858c03711c53d1870a94380c2ffffe51
 
 ```{r}
 sn <- state.name[c(-2, -11)]
@@ -32,6 +49,7 @@ USA_48.sf <- USA.sf |>
   dplyr::filter(NAME %in% sn)
 ```
 
+<<<<<<< HEAD
 Now draw the map using the `USA_48.sf` simple feature data frame.
 
 ```{r}
@@ -48,6 +66,11 @@ The `geom_sf()` function maps the east-west coordinate to the `x` aesthetic and 
 Choropleth maps (heat maps, thematic maps) map data values from a column in the simple feature data frame to the `fill` aesthetic. The aesthetic assigns colors to the various map areas (e.g. countries, states, counties, zip codes).
 
 The column labeled `AWATER` contains the water area in square meters. Since the values are very large first divide by million (10\^9) to get the values in 1000s of square kilometers. This is done with the `mutate()` function.
+=======
+Choropleth maps (heat maps, thematic maps) map data values from a column in the simple feature data frame to the `fill` aesthetic. The aesthetic assigns colors to the various map areas (e.g. countries, states, counties, zip codes).
+
+Recall the column labeled `AWATER` contains the water area in square meters. Since the values are very large first divide by million (10\^9) to get the values in 1000s of square kilometers. This is done with the `mutate()` function.
+>>>>>>> 085e37c9858c03711c53d1870a94380c2ffffe51
 
 ```{r}
 USA_48.sf <- USA_48.sf |>
@@ -57,11 +80,13 @@ USA_48.sf <- USA_48.sf |>
 Then create a choropleth map showing the water area by filling the area between the state borders with a color. This is done using the `aes()` function and the argument `fill = WaterArea_km2`.
 
 ```{r}
+library(ggplot2)
+
 ggplot(data = USA_48.sf) +
   geom_sf(aes(fill = WaterArea_km2))
 ```
 
-Note how this differs from just drawing the boundaries. In this case you use the `aes()` function with the fill aesthetic.
+Note how this differs from just drawing the boundaries. In this case you use the `aes()` function with the `fill =` aesthetic.
 
 The map is not very informative. large water area of Michigan which includes Lakes Michigan, Superior, and Huron has by far the most water area with most other states have a lot less.
 
@@ -90,13 +115,13 @@ USA_48.sf <- USA_48.sf |>
 str(USA_48.sf)
 ```
 
-Essentially you added a new factor variable called `WaterArea_cut` with five levels corresponding to equal number of water area values.
+You added a new factor variable called `WaterArea_cut` with five levels corresponding to equal number of water area values.
 
 You can go directly to the mapping as follows.
 
 ```{r}
  ggplot(data = USA_48.sf) +
-    geom_sf(aes(fill = WaterArea_cut))
+    geom_sf(mapping = aes(fill = WaterArea_cut))
 ```
 
 Make a choropleth map displaying the ratio of water area (`AWATER`) to land area (`ALAND`) by state.
@@ -105,8 +130,6 @@ Make a choropleth map displaying the ratio of water area (`AWATER`) to land area
 ggplot(data = USA_48.sf) +
   geom_sf(aes(fill = AWATER/ALAND * 100))
 ```
-
-Adding data
 
 The `USA_48.sf` simple feature data frame uses longitude and latitude for it's coordinate reference system (CRS). All spatial data frames have a CRS.
 
@@ -147,8 +170,7 @@ ggplot(data = USA_48.sf) +
 As another example, let's consider the `airports` data frame from the {nycflights13} package. The data frame includes information on 1458 airports in the United States including their location with latitude and longitude.
 
 ```{r}
-library(nycflights13)
-airports
+airports <- nycflights13::airports
 ```
 
 Each row is an airport and the location of the airport is given in the columns `lat` and `lon`. You can make a map without boundaries by drawing a scatter plot with `x = lon` and `y = lat`.
@@ -174,10 +196,9 @@ ggplot(data = USA_48.sf) +
 Alternatively, you can use `sf::st_as_sf()` to convert the `airports` data frame to a simple features data frame. The argument `coords =` tells `sf::st_as_sf()` which columns contain the geographic coordinates of each airport. You also set the CRS using the `sf::st_crs()` function and use the EPSG code corresponding to a geographic CRS.
 
 ```{r}
-airports.sf <- sf::st_as_sf(airports, 
-                        coords = c("lon", "lat"),
-                        crs = 4269)
-airports.sf
+( airports.sf <- sf::st_as_sf(airports, 
+                            coords = c("lon", "lat"),
+                            crs = 4269) )
 ```
 
 To graph the points on the map, you use a second `geom_sf()`.
@@ -203,6 +224,7 @@ ggplot() +
 ```
 
 Circle area is proportional to the airport's altitude (in feet).
+<<<<<<< HEAD
 
 ## Making maps using functions from {tmap} {.unnumbered}
 
@@ -251,6 +273,16 @@ A shapefile is imported with the `sf::st_read()` function from the {sf} package.
 ```{r}
 Tornadoes.sf <- sf::st_read(dsn = "data/1950-2018-torn-aspath")
 ```
+=======
+
+A common challenge when creating maps is how to include an inset map. An inset map is a smaller map included on a corner that provides additional context to the main map.
+
+It is also useful for representing spatial units that may form part of a country but its geographical location would imply an imperfect visualization, or even to include small units that otherwise won't be shown on the map.
+
+<https://dieghernan.github.io/202203_insetmaps/>
+
+## Changing map projections {.unnumbered}
+>>>>>>> 085e37c9858c03711c53d1870a94380c2ffffe51
 
 The assigned file is a simple feature data frame with 63645 features (observations) and 23 fields (variables).
 
@@ -274,13 +306,21 @@ TornadoesSince2011.sf <-
   dplyr::filter(yr >= 2011) 
 ```
 
+<<<<<<< HEAD
 Next get a file containing the boundaries of the lower 48 states.
 
+=======
+With a geographic projection the longitudes and latitudes are treated as x (horizontal) and y (vertical) coordinates.
+
+Consider again the boundary map of the lower 48 states. Here you get the boundary file using the `us_states()` function from the {USAboundaries} package and use the `filter()` function to remove rows corresponding to Hawaii, Alaska, and Puerto Rico.
+
+>>>>>>> 085e37c9858c03711c53d1870a94380c2ffffe51
 ```{r}
 USA_48.sf <- USAboundaries::us_states() |>
    dplyr::filter(!state_name %in% c("Hawaii", "Alaska", "Puerto Rico"))
 ```
 
+<<<<<<< HEAD
 Then use the `tm_shape()` function together with the `tm_borders()` layer to draw the boundaries before adding the tornadoes. The tornadoes are in a separate spatial data frame so you use the `tm_shape()` function together with the `tm_lines()` layer.
 
 ```{r}
@@ -380,25 +420,54 @@ Geometry calculations should be done on projected coordinates. To see what CRS t
 
 ```{r}
 sf::st_crs(USA_48.sf)
+=======
+Here you first assign the map to an object called `base_map` and then render the map to the plot device by typing the object name.
+
+```{r}
+( base_map <- ggplot(data = USA_48.sf) +
+              geom_sf() )
+>>>>>>> 085e37c9858c03711c53d1870a94380c2ffffe51
 ```
 
 Note the length unit (`LENGTHUNIT[]`) is meter.
 
 Here transform the CRS of the `USA_48.sf` simple feature data frame to a U.S. National Atlas equal area (EPSG: 2163) and then check it.
 
+<<<<<<< HEAD
 ```{r}
 USA_48.sf <- USA_48.sf |>
   sf::st_transform(crs = 2163)
 
 sf::st_crs(USA_48.sf)
+=======
+You change the projection by specifying the CRS. For example to change the base map to have a Mercator projection you use the `coord_sf()` function with `crs = 3857`, which uses the EPSG code 3857 for world Mercator projection.
+
+```{r}
+base_map +
+  coord_sf(crs = 3857) +
+  ggtitle("Mercator projection")
+>>>>>>> 085e37c9858c03711c53d1870a94380c2ffffe51
 ```
 
 The centroid calculation locates the center of geographic objects representing the center of mass for the spatial object (think of balancing a plate on your finger).
 
 You calculate the geographic centroid of each of the lower 48 states with the `st_centroid()` function.
 
+<<<<<<< HEAD
 ```{r}
 geo_centroid.sf <- sf::st_centroid(USA_48.sf)
+=======
+Other coordinate systems require specification of the standard lines, or lines that define areas of the surface of the map that are tangent to the globe. These include Gall-Peters, Albers equal-area, and Lambert azimuthal. These can be specified with the proj.4 definitions which are implemented using character strings.
+
+For example the Gall-Peters projection uses the character string `"+proj=cea +lon_0=0 +lat_ts=45"`. Here you use the `sf::st_transform()` function to change the projection in the geometry column of `USA_48.sf`.
+
+```{r}
+USA_48.sf |>
+  sf::st_transform(crs = "+proj=cea +lon_0=0 +lat_ts=45") |>
+  ggplot() +
+  geom_sf() +
+  ggtitle("Gall-Peters projection")
+>>>>>>> 085e37c9858c03711c53d1870a94380c2ffffe51
 ```
 
 The result is a simple feature data frame where the geometry is a single point for each state. You keep track of the fact that this is a simple feature data frame by using an object name that includes appends with `.sf`.
@@ -407,6 +476,7 @@ The warning tells you that the attributes in the new simple feature data frame m
 
 For example, compare the first two rows of the two simple feature data frames.
 
+<<<<<<< HEAD
 ```{r}
 head(geo_centroid.sf, n = 2)
 head(USA_48.sf, n = 2)
@@ -452,3 +522,287 @@ tm_scale_bar(text.size = 1, position = c("left", "bottom"))
 ```
 
 The result is a map that could serve as a map of your study area (usually Figure 1 in scientific report).
+=======
+Distortions are smallest between latitudes defined by the Albers equal-area projection.
+
+```{r}
+USA_48.sf |>
+  sf::st_transform(crs = "+proj=aea +lat_1=25 +lat_2=50 +lon_0=-100") |>
+  ggplot() +
+  geom_sf() +
+  ggtitle("Albers equal-area projection")
+```
+
+The `crsuggest::suggest_crs()` function gives suggested projected CRS's for your simple feature data frame.
+
+```{r}
+crsuggest::suggest_crs(USA_48.sf)
+```
+
+```{r}
+USA_48.sf |>
+  sf::st_transform(crs = 6350) |>
+  ggplot() +
+  geom_sf() +
+  ggtitle("Conus Albers")
+```
+
+## Mapping using functions from tmap {.unnumbered}
+
+There are several other packages for making quick, nice maps. I particularly like the {tmap} package because it is agnostic to the type of spatial data object. Simple feature data frames as well as {sp} and {terra} objects can be combined on a single map. This is not the case with the `ggplot2::geom_sf()` function which only accepts simple feature data frames.
+
+```{r}
+if(!require(tmap)) install.packages(pkgs = "tmap", repos = "http://cran.us.r-project.org")
+```
+
+Functions in the {tmap} use the 'grammar of graphics' philosophy that separates the data frame from the aesthetics (how data are made visible). Functions translate the data into aesthetics. The aesthetics can include the location on a geographic map (defined by the geometry), color, and other visual components.
+
+A map made with functions from {tmap} starts with the `tmap::tm_shape()` function that takes as input a spatial data frame. The function is followed by one or more layers such as `tmap::tm_fill()`, `tmap::tm_dots()`, `tmap::tm_raster()`, etc that defines how a property in the data gets translated to a visual component.
+
+Returning to the New Zealand simple feature data frame (`nz`). To make a map of the region borders you first identify the spatial data frame with the `tmap::tm_shape()` function and then add a borders layer with the `tmap::tm_borders()` layer.
+
+```{r}
+tmap::tm_shape(shp = spData::nz) +
+  tmap::tm_borders() 
+```
+
+The function `tmap::tm_shape()` and its subsequent drawing layers (here `tmap::tm_borders()`) as a 'group'. The data in the `tmap::tm_shape()` function must be a spatial object of class simple feature, raster, or an S4 class spatial object.
+
+Compare with the {ggplot2} syntax.
+
+```{r}
+ggplot(data = spData::nz) +
+  geom_sf()
+```
+
+With {ggplot2} you use the `mapping = aes()` argument to specify how to handle the non-geometric aesthetics. With the {tmap} you use a different function.
+
+For example, here you use a fill layer (`tmap::tm_fill()`) instead of the borders layer.
+
+```{r}
+tmap::tm_shape(spData::nz) +
+  tmap::tm_fill() 
+```
+
+The polygons defining the boundaries are filled using the same gray color (default) as the borders so they disappear.
+
+Here you first add the fill layer and then add a border layer.
+
+```{r}
+tmap::tm_shape(spData::nz) +
+  tmap::tm_fill(col = 'green') +
+  tmap::tm_borders() 
+```
+
+Layers are added with the `+` operator and are functionally equivalent to adding a GIS layer.
+
+You can assign the resulting map to an object. For example here you assign the map of New Zealand to the object `map_nz`.
+
+```{r}
+map_nz <- tmap::tm_shape(spData::nz) + 
+  tmap::tm_polygons()
+
+class(map_nz)
+```
+
+The resulting object is of class `tmap`.
+
+Additional spatial data are added to the map object with `+ tmap::tm_shape(new_object)`, where `new_object` is another spatial data frame the values of which are used to plot on top of the preceding layers.
+
+When a new spatial data frame is added in this way, all subsequent aesthetic functions refer to it, until another spatial data frame is added.
+
+For example, here you add an elevation layer to the New Zealand map. The elevation raster (`spDataLarge::nz_elev`) spatial data frame is in the {spDataLarge} package on GitHub.
+
+The `install_github()` function from the {devtools} package is used to install packages on GitHub. GitHub is a company that provides hosting for software development version control using Git. Git is a version-control system for tracking changes in code during software development.
+
+```{r}
+if(!require(devtools)) install.packages(pkgs = "devtools", repos = "http://cran.us.r-project.org")
+library(devtools)
+
+if(!require(spDataLarge)) install_github(repo = "Nowosad/spDataLarge")
+library(spDataLarge)
+```
+
+Next you identify the spatial data for the the new layer by adding `tmap::tm_shape(nz_elev)`. Then add the raster layer with the `tmap::tm_raster()` function and set the transparency level to 70% (`alpha = .7`).
+
+```{r}
+( map_nz1 <- map_nz +
+  tmap::tm_shape(spDataLarge::nz_elev) + 
+    tmap::tm_raster(alpha = .7) )
+```
+
+You can see that the new map object, that you assign to `map_nz1`, builds on top of the existing map object `map_nz` by adding the raster layer `spDataLarge::nz_elev` representing elevation.
+
+You can also create new layers with functions. For instance, a function like `sf::st_union()` operates on the `geometry` column of a simple feature data frame.
+
+As an example, here you create a line string layer as a simple feature object using three geo-computation functions. You start by creating a union over all polygons (regions) with the `sf::st_union()` function applied to the `spData::nz` simple feature object. The result is a polygon defining the coastlines.
+
+Then you buffer this polygon out to a distance of 22.2 km using the `sf::st_buffer()` function. The result is a single polygon defining the coastal boundary around the entire country.
+
+Finally you change the polygon geometry to a line string geometry with the `sf::st_cast()` function.
+
+To keep your code human-readable, you link these operations together with the pipe operator as follows.
+
+```{r}
+( nz_water.sfc <- spData::nz |>
+  sf::st_union() |> 
+  sf::st_buffer(dist = 22200) |> 
+  sf::st_cast(to = "LINESTRING") )
+```
+
+The result is simple feature column. You then add the resulting `sfc` as a layer to the map.
+
+```{r}
+( map_nz2 <- map_nz1 +
+  tmap::tm_shape(nz_water.sfc) + 
+    tmap::tm_lines() )
+```
+
+Finally, you create a layer representing the country elevation high points (stored in the object `spData::nz_height`) onto the `map_nz2` object with `tmap::tm_dots()` function.
+
+```{r}
+( map_nz3 <- map_nz2 +
+  tmap::tm_shape(spData::nz_height) + 
+    tmap::tm_dots() )
+```
+
+Map layout and faceting.
+
+Layout functions help create a cartographic map. Elements include the title, the scale bar, margins, aspect ratios, etc. For example, here elements such as a north arrow and a scale bar are added with `tmap::tm_compass()` and `tmap::tm_scale_bar()`, respectively and the `tmap::tm_layout()` function is used to add the title and background color.
+
+```{r}
+map_nz + 
+  tmap::tm_compass(type = "8star", 
+                   position = c("left", "top")) +
+  tmap::tm_scale_bar(breaks = c(0, 100, 200), 
+                     text.size = 1) +
+  tmap::tm_layout(title = "New Zealand",
+                  bg.color = "lightblue")
+```
+
+Putting two or more maps with the same scale side by side allows for comparisons. You can see how spatial relationships change with respect to another variable.
+
+Creating small multiples of the same map with different variables is called 'faceting'.
+
+Consider the simple feature data frame `World`. Make the data frame accessible to this session with the `data()` function.
+
+```{r}
+library(tmap)
+
+data(World)
+head(World)
+```
+
+The simple feature data frame has socio-economic indicators by country. Each row is a country.
+
+Further, consider the simple feature data frame `spData::urban_agglomerations`. The data frame is from the United Nations population division with projections up to 2050 for the top 30 largest areas by population at 5 year intervals (in long form).
+
+The geometries are points indicating the location of the largest urban metro areas.
+
+You create a new data frame keeping only the years 1970, 1990, 2010, and 2030 by using the `dplyr::filter()` function.
+
+```{r}
+urb_1970_2030 <- spData::urban_agglomerations |> 
+  dplyr::filter(year %in% c(1970, 1990, 2010, 2030))
+```
+
+Again, the operator `%in%` acts like a recursive `or`. If year == 1970 or year == 1990, ... For example,
+
+The first map layer is the country polygons from the `World` data frame and the second layer is city locations from the `urb_1970_2030` data frame using the `tmap::tm_symbols()` function.
+
+Symbol size is scaled by the variable `population_millions`. Finally you group by the variable `year` with the `tmap::tm_facets()` function to produce a four-panel set of maps.
+
+```{r}
+tmap::tm_shape(World) + 
+  tmap::tm_polygons() + 
+tmap::tm_shape(urb_1970_2030) + 
+  tmap::tm_symbols(col = "black", 
+                   border.col = "white",
+                   size = "population_millions") +
+  tmap::tm_facets(by = "year", 
+                  nrow = 2, 
+                  free.coords = FALSE)
+```
+
+The above code chunk demonstrates key features of faceted maps created with functions from the {tmap} package.
+
+-   Shapes that do not have a facet variable are repeated (the countries in `World` in this case).
+-   The `by =` argument which varies depending on a variable (`year` in this case).
+-   nrow/ncol setting specifying the number of rows (and columns) that facets should be arranged into.
+-   The `free.coords =` argument specifies whether each map has its own bounding box.
+
+Small multiples are also generated by assigning more than one value to one of the aesthetic arguments.
+
+For example here you map the happiness index (`HPI`) on one map and gross domestic product per person (`gdp_cap_est`) on another map. Both variables are in the `World` data frame.
+
+```{r}
+tmap::tm_shape(World) +
+    tmap::tm_polygons(col = c("HPI", "gdp_cap_est"), 
+                      style = c("pretty", "kmeans"),
+                      palette = list("RdYlGn", "Purples"),
+                      title = c("Happy Planet Index", "GDP per capita")) 
+```
+
+Note that the variable names must be in quotes (e.g., "HPI"). This is different than variables named in the {ggplot2} functions.
+
+The maps are identical except for the variable being plotted. All arguments of the layer functions can be vectorized, one for each map. Arguments that normally take a vector, such as `palette =`, are placed in a `list()`.
+
+Multiple map objects can also be arranged in a single plot with the `tmap::tmap_arrange()` function. Here you create two separate maps then arrange them.
+
+```{r}
+map1 <- tmap::tm_shape(World) +
+           tmap::tm_polygons(col = "HPI", 
+                             style = "pretty",
+                             palette = "RdYlGn",
+                             title = "Happy Planet Index") 
+
+map2 <- tmap::tm_shape(World) +
+           tmap::tm_polygons(col = "gdp_cap_est", 
+                             style = "kmeans",
+                             palette = "Purples",
+                             title = "GDP per capita") 
+
+tmap::tmap_arrange(map1, map2)
+```
+
+## Making a map interactive {.unnumbered}
+
+A nice feature of the {tmap} package is that you can create an interactive map using the same code used to create a static map.
+
+From earlier you created a map of the county borders in Florida using the following code.
+
+```{r}
+tmap::tm_shape(USA_48.sf) +
+  tmap::tm_borders()
+```
+
+By default the map gets rendered directly to the Rmd screen or to the Plots window as a static image. To change the default to an interactive image you set the render mode to `"view"` in the `tmap::tmap_mode()` function.
+
+Here you repeat the county boundary map after specifying the render mode.
+
+```{r}
+tmap::tmap_mode("view")
+
+tmap::tm_shape(USA_48.sf) +
+  tmap::tm_borders()
+```
+
+The county borders from your spatial data frame are overlaid on zoom-able Leaflet tiles. You can change the underlying layers by clicking on the layering symbol.
+
+You can also create interactive maps with the `tmap::tmap_leaflet()` function.
+
+The view mode in {tmap} also works with faceted plots. The argument sync in `tmap::tm_facets()` is used to produce multiple maps with synchronized zoom and pan settings.
+
+Change the view mode back to a static plot.
+
+```{r}
+tmap::tmap_mode("plot")
+```
+
+Additional information
+
+-   Why map projections matter <https://youtu.be/vVX-PrBRtTY>
+-   Bivariate maps. See `Other_Rmds/BivariateMaps.Rmd`
+-   See the {maptiles} package <https://github.com/riatelab/maptiles/>
+-   Getting started with {tmap} <https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html>
+>>>>>>> 085e37c9858c03711c53d1870a94380c2ffffe51
