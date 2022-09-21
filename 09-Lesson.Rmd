@@ -1,10 +1,13 @@
-# Thursday, September 22, 2022 {-}
+# Thursday, September 22, 2022 {.unnumbered}
 
 Today
 
-- Adding data to maps
+-   Adding data to maps
+-   Changing map projections
+-   Making maps using functions from {tmap}
+-   Making a map interactive
 
-## Adding data to maps {-}
+## Adding data to maps {.unnumbered}
 
 You import state-level census data from the shape file directory `cb_2018_us_state_5m` with the `sf::st_read()` function as a simple feature data frame with name `USA.sf`.
 
@@ -30,7 +33,7 @@ USA_48.sf <- USA.sf |>
 
 Choropleth maps (heat maps, thematic maps) map data values from a column in the simple feature data frame to the `fill` aesthetic. The aesthetic assigns colors to the various map areas (e.g. countries, states, counties, zip codes).
 
-Recall the column labeled `AWATER` contains the water area in square meters. Since the values are very large first divide by million (10^9) to get the values in 1000s of square kilometers. This is done with the `mutate()` function.
+Recall the column labeled `AWATER` contains the water area in square meters. Since the values are very large first divide by million (10\^9) to get the values in 1000s of square kilometers. This is done with the `mutate()` function.
 
 ```{r}
 USA_48.sf <- USA_48.sf |>
@@ -48,7 +51,7 @@ ggplot(data = USA_48.sf) +
 
 Note how this differs from just drawing the boundaries. In this case you use the `aes()` function with the `fill =` aesthetic.
 
-The map is not very informative. large water area of Michigan which includes Lakes Michigan, Superior, and Huron has by far the most water area with most other states have a lot less. 
+The map is not very informative. large water area of Michigan which includes Lakes Michigan, Superior, and Huron has by far the most water area with most other states have a lot less.
 
 To change that use the logarithm of the area. The base 10 logarithm is 0 when the value is 1, 1 when the value is 10, 2 when the value is 100 and so on. This is seen with the `log10()` function.
 
@@ -57,6 +60,7 @@ log10(c(1, 10, 100, 1000, 10000))
 ```
 
 You convert the area to logarithms with the `log10()` function inside the `aes()` function as follows.
+
 ```{r}
 ggplot(data = USA_48.sf) +
   geom_sf(aes(fill = log10(WaterArea_km2))) 
@@ -77,6 +81,7 @@ str(USA_48.sf)
 You added a new factor variable called `WaterArea_cut` with five levels corresponding to equal number of water area values.
 
 You can go directly to the mapping as follows.
+
 ```{r}
  ggplot(data = USA_48.sf) +
     geom_sf(mapping = aes(fill = WaterArea_cut))
@@ -92,6 +97,7 @@ ggplot(data = USA_48.sf) +
 The `USA_48.sf` simple feature data frame uses longitude and latitude for it's coordinate reference system (CRS). All spatial data frames have a CRS.
 
 To see what CRS a simple feature data frame use the `sf::st_crs()` function.
+
 ```{r}
 sf::st_crs(USA_48.sf)
 ```
@@ -100,7 +106,7 @@ The Coordinate Reference System information including the EPSG code (4269) and t
 
 Here it specifies a geographic reference system with longitude and latitude and a datum (North American 1983) that describes the sea-level shape of the planet as an ellipsoid.
 
-Because the CRS uses longitude and latitude you can add locations by specifying the geographic coordinates. 
+Because the CRS uses longitude and latitude you can add locations by specifying the geographic coordinates.
 
 For example, suppose you want to add the locations of two cities on the map. First you create a data frame containing the longitudes, latitudes, and names of the locations.
 
@@ -112,6 +118,7 @@ class(Cities.df)
 ```
 
 Next you draw the map as before but add the locations with a point layer and label the locations with a text layer.
+
 ```{r}
 ggplot(data = USA_48.sf) +
   geom_sf(color = "gray80") +
@@ -124,11 +131,13 @@ ggplot(data = USA_48.sf) +
 ```
 
 As another example, let's consider the `airports` data frame from the {nycflights13} package. The data frame includes information on 1458 airports in the United States including their location with latitude and longitude.
+
 ```{r}
 airports <- nycflights13::airports
 ```
 
 Each row is an airport and the location of the airport is given in the columns `lat` and `lon`. You can make a map without boundaries by drawing a scatter plot with `x = lon` and `y = lat`.
+
 ```{r}
 ggplot(data = airports, 
        mapping = aes(x = lon, y = lat)) +
@@ -136,6 +145,7 @@ ggplot(data = airports,
 ```
 
 If you only want airports within the continental United States, you first plot the `USA_48.sf` boundaries and then add the airport locations as a separate point layer and the use the `coord_sf()` function specifying the limits of the plot in the longitude direction (`xlim`) and the latitude direction (`ylim`).
+
 ```{r}
 ggplot(data = USA_48.sf) + 
   geom_sf(color = "gray80") + 
@@ -155,6 +165,7 @@ Alternatively, you can use `sf::st_as_sf()` to convert the `airports` data frame
 ```
 
 To graph the points on the map, you use a second `geom_sf()`.
+
 ```{r}
 ggplot() + 
   geom_sf(data = USA_48.sf) + 
@@ -164,6 +175,7 @@ ggplot() +
 ```
 
 You can change the size or type of symbols on the map. For instance, you can draw a bubble plot (also known as a proportional symbol map) and encode the altitude of the airport through the `size =` aesthetic.
+
 ```{r}
 ggplot() + 
   geom_sf(data = USA_48.sf) + 
@@ -174,19 +186,19 @@ ggplot() +
   scale_size_area(guide = FALSE)
 ```
 
-Circle area is proportional to the airport’s altitude (in feet).
+Circle area is proportional to the airport's altitude (in feet).
 
-A common challenge when creating maps is how to include an inset map. An inset map is a smaller map included on a corner that provides additional context to the main map. 
+A common challenge when creating maps is how to include an inset map. An inset map is a smaller map included on a corner that provides additional context to the main map.
 
-It is also useful for representing spatial units that may form part of a country but its geographical location would imply an imperfect visualization, or even to include small units that otherwise won’t be shown on the map.
+It is also useful for representing spatial units that may form part of a country but its geographical location would imply an imperfect visualization, or even to include small units that otherwise won't be shown on the map.
 
-https://dieghernan.github.io/202203_insetmaps/
+<https://dieghernan.github.io/202203_insetmaps/>
 
-## Map projections {-}
+## Changing map projections {.unnumbered}
 
 Depending on how a curved surface is projected onto a 2-D surface (map), at least some features will be distorted. The `coord_sf()` function package provides a way to adjust projections.
 
-With a geographic projection the longitudes and latitudes are treated as x (horizontal) and y (vertical) coordinates. 
+With a geographic projection the longitudes and latitudes are treated as x (horizontal) and y (vertical) coordinates.
 
 Consider again the boundary map of the lower 48 states. Here you get the boundary file using the `us_states()` function from the {USAboundaries} package and use the `filter()` function to remove rows corresponding to Hawaii, Alaska, and Puerto Rico.
 
@@ -196,6 +208,7 @@ USA_48.sf <- USAboundaries::us_states() |>
 ```
 
 Here you first assign the map to an object called `base_map` and then render the map to the plot device by typing the object name.
+
 ```{r}
 ( base_map <- ggplot(data = USA_48.sf) +
               geom_sf() )
@@ -204,6 +217,7 @@ Here you first assign the map to an object called `base_map` and then render the
 Note the equal spacing between the latitudes and between the longitudes. 1 degree latitude distance equals 1 degree longitude distance. This is called a carto-cartesian (geographic) projection.
 
 You change the projection by specifying the CRS. For example to change the base map to have a Mercator projection you use the `coord_sf()` function with `crs = 3857`, which uses the EPSG code 3857 for world Mercator projection.
+
 ```{r}
 base_map +
   coord_sf(crs = 3857) +
@@ -229,6 +243,7 @@ USA_48.sf |>
 With this projection states having the same area appear with the same size, but the boundary shapes are distorted.
 
 Distortions are smallest between latitudes defined by the Albers equal-area projection.
+
 ```{r}
 USA_48.sf |>
   sf::st_transform(crs = "+proj=aea +lat_1=25 +lat_2=50 +lon_0=-100") |>
@@ -242,6 +257,7 @@ The `crsuggest::suggest_crs()` function gives suggested projected CRS's for your
 ```{r}
 crsuggest::suggest_crs(USA_48.sf)
 ```
+
 ```{r}
 USA_48.sf |>
   sf::st_transform(crs = 6350) |>
@@ -250,7 +266,7 @@ USA_48.sf |>
   ggtitle("Conus Albers")
 ```
 
-## Mapping using functions from the {tmap} package {.unnumbered}
+## Mapping using functions from tmap {.unnumbered}
 
 There are several other packages for making quick, nice maps. I particularly like the {tmap} package because it is agnostic to the type of spatial data object. Simple feature data frames as well as {sp} and {terra} objects can be combined on a single map. This is not the case with the `ggplot2::geom_sf()` function which only accepts simple feature data frames.
 
@@ -383,7 +399,7 @@ map_nz +
                   bg.color = "lightblue")
 ```
 
-Putting two or more maps with the same scale side by side allows for comparisons. You can see how spatial relationships change with respect to another variable. 
+Putting two or more maps with the same scale side by side allows for comparisons. You can see how spatial relationships change with respect to another variable.
 
 Creating small multiples of the same map with different variables is called 'faceting'.
 
@@ -468,7 +484,7 @@ map2 <- tmap::tm_shape(World) +
 tmap::tmap_arrange(map1, map2)
 ```
 
-## Creating an interactive map {.unnumbered}
+## Making a map interactive {.unnumbered}
 
 A nice feature of the {tmap} package is that you can create an interactive map using the same code used to create a static map.
 
@@ -490,9 +506,7 @@ tmap::tm_shape(USA_48.sf) +
   tmap::tm_borders()
 ```
 
-The county borders from your spatial data frame are overlaid on zoomable Leaflet tiles.
-
-You can change the underlying layers by to OpenStreetMap by clicking on the layering symbol.
+The county borders from your spatial data frame are overlaid on zoom-able Leaflet tiles. You can change the underlying layers by clicking on the layering symbol.
 
 You can also create interactive maps with the `tmap::tmap_leaflet()` function.
 
@@ -506,8 +520,7 @@ tmap::tmap_mode("plot")
 
 Additional information
 
-* Why map projections matter <https://youtu.be/vVX-PrBRtTY>
-* Bivariate maps. See `Other_Rmds/BivariateMaps.Rmd`
-* See the {maptiles} package <https://github.com/riatelab/maptiles/>
-* Getting started with {tmap} <https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html>
-
+-   Why map projections matter <https://youtu.be/vVX-PrBRtTY>
+-   Bivariate maps. See `Other_Rmds/BivariateMaps.Rmd`
+-   See the {maptiles} package <https://github.com/riatelab/maptiles/>
+-   Getting started with {tmap} <https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html>

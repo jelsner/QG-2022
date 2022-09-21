@@ -2,10 +2,11 @@
 
 Today
 
-- Calculations using the geometry simple feature column 
+- Geo-computation on simple feature data frames 
 - Making raster maps
+- Spatial density maps
 
-## Calculations using the geometry simple feature column {-}
+## Geo-computation on simple feature data frames {-}
 
 Spatial data analysis often requires calculations on the geometry. Two of the most common are computing centroids (geographic centers) and buffers.
 
@@ -174,7 +175,7 @@ ggmap(CHI_map) +
 
 Note `ggmap()` replaces `ggplot()`.
 
-## Spatial density maps (extra material) {-}
+## Spatial density maps {-}
 
 Instead of relying on `geom_point()` and plotting the raw data, another approach is to create a heat map. This is done with a density estimator. Since the map has two dimensions and the density estimator requires a 'kernel' function the procedure is called a 2-D kernel density estimation (KDE). 
 
