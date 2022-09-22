@@ -3,9 +3,9 @@
 Today
 
 -   Adding data to boundary maps
--   Changing map projections
--   Making maps using functions from {tmap}
--   Making a map interactive
+-   Changing projections
+-   Mapping using functions from {tmap}
+-   Making an interactive map
 
 ## Adding data to boundary maps {.unnumbered}
 
@@ -196,7 +196,7 @@ ggplot() +
 
 Circle area is proportional to the airport's altitude (in feet).
 
-## Changing map projections {.unnumbered}
+## Changing projections {.unnumbered}
 
 With a geographic projection the longitudes and latitudes are treated as x (horizontal) and y (vertical) coordinates.
 
@@ -487,7 +487,7 @@ map2 <- tmap::tm_shape(World) +
 tmap::tmap_arrange(map1, map2)
 ```
 
-## Making a map interactive {.unnumbered}
+## Making an interactive map {.unnumbered}
 
 A nice feature of the {tmap} package is that you can create an interactive map using the same code used to create a static map.
 
