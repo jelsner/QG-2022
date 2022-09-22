@@ -2,14 +2,14 @@
 
 Today
 
--   Adding data to maps
+-   Adding data to boundary maps
 -   Changing map projections
 -   Making maps using functions from {tmap}
 -   Making a map interactive
 
-## Adding data to maps {.unnumbered}
+## Adding data to boundary maps {.unnumbered}
 
-You import state-level census data from the shape file directory `cb_2018_us_state_5m` with the `sf::st_read()` function as a simple feature data frame with name `USA.sf`.
+Start with a boundary map. Here you import state-level census data from the shape file directory `cb_2018_us_state_5m` with the `sf::st_read()` function as a simple feature data frame with name `USA.sf`.
 
 ```{r}
 USA.sf <- sf::st_read(dsn = here::here("data", "cb_2018_us_state_5m"))
@@ -17,21 +17,20 @@ USA.sf <- sf::st_read(dsn = here::here("data", "cb_2018_us_state_5m"))
 
 The output includes information about the file. The object shows up in your environment as a data frame with 56 observations and 10 variables. Each feature is either a state or territory.
 
-To focus on the contiguous U.S. you filter to keep only rows corresponding those states. The `state.name` vector object contains all 50 state names. You remove the rows corresponding to the names `"Alaska"` and `"Hawaii"`. These are elements 2 and 11 so you create a new vector object called `sn` containing only the names of the lower 48.
+Focus on the contiguous U.S. by filtering to keep only rows corresponding those states. The `state.name` vector object contains all 50 state names. You remove the rows corresponding to the names `"Alaska"` and `"Hawaii"`. These are elements 2 and 11 so you create a new vector object called `sn` containing only the names of the lower 48.
 
 ```{r}
-sn <- state.name[c(-2, -11)]
-sn
+( sn <- state.name[c(-2, -11)] )
 ```
 
-Now you filter the `USA.sf` data frame keeping only the rows that are listed in the vector of state names. Assign this spatial data frame the name `USA_48.sf`.
+Now filter the `USA.sf` data frame keeping only the rows that are listed in the vector of state names. Assign this spatial data frame with name `USA_48.sf`.
 
 ```{r}
 USA_48.sf <- USA.sf |>
   dplyr::filter(NAME %in% sn)
 ```
 
-Now draw the map using the `geom_sf()` function with data set to the `USA_48.sf` simple feature data frame.
+Finally, draw the boundary map using the `geom_sf()` function with data set to the `USA_48.sf` simple feature data frame.
 
 ```{r}
 library(ggplot2)
@@ -40,31 +39,29 @@ ggplot(data = USA_48.sf) +
   geom_sf()
 ```
 
-Note: you don't need the `mapping = aes()` function. The mapping is assumed based on the fact that there is a `geometry` column in the simple feature data frame.
+Note: you don't need the `mapping = aes()` function. The mapping is assumed from on the `geometry` column in the simple feature data frame. That is, the `geom_sf()` function maps the east-west coordinate to the `x` aesthetic and the north-south coordinate to the `y` aesthetic.
 
-The `geom_sf()` function maps the east-west coordinate to the `x` aesthetic and the north-south coordinate to the `y` aesthetic.
+Thematic (choropleth, heat) maps take data values from a column in the simple feature data frame and map them to the `fill` aesthetic. The fill assigns colors to the various polygon areas (e.g. countries, states, etc).
 
-Choropleth maps (heat maps, thematic maps) map data values from a column in the simple feature data frame to the `fill` aesthetic. The aesthetic assigns colors to the various map areas (e.g. countries, states, counties, zip codes).
-
-The column in `USA_48.sf` labeled `AWATER` contains the water area in square meters. Since the values are very large first divide by million (10\^9) to get the values in 1000s of square kilometers. This is done with the `mutate()` function.
+For example, the column in `USA_48.sf` labeled `AWATER` contains the water area in square meters. Since the values are very large first divide by million (10\^9) to get the values in 1000s of square kilometers. This is done with the `dplyr::mutate()` function.
 
 ```{r}
 USA_48.sf <- USA_48.sf |>
   dplyr::mutate(WaterArea_km2 = AWATER/10^9)
 ```
 
-Then create a choropleth map showing the water area by filling the area between the state borders with a color. This is done using the `aes()` function and the argument `fill = WaterArea_km2`.
+Then create a choropleth map showing the water area by filling the area between the state borders with a color. This is done using the `mapping = aes()` argument with the `aes()` function containing the argument `fill = WaterArea_km2`.
 
 ```{r}
 ggplot(data = USA_48.sf) +
-  geom_sf(aes(fill = WaterArea_km2))
+  geom_sf(mapping = aes(fill = WaterArea_km2))
 ```
 
 Note how this differs from just drawing the boundaries. In this case you use the `aes()` function with the `fill =` aesthetic.
 
 The map is not very informative. large water area of Michigan which includes Lakes Michigan, Superior, and Huron has by far the most water area with most other states have a lot less.
 
-To change that use the logarithm of the area. The base 10 logarithm is 0 when the value is 1, 1 when the value is 10, 2 when the value is 100 and so on. This is seen with the `log10()` function.
+To change the range on the fill aesthetic here you use the logarithm of the area. The base 10 logarithm is 0 when the value is 1, 1 when the value is 10, 2 when the value is 100 and so on. This is seen with the `log10()` function.
 
 ```{r}
 log10(c(1, 10, 100, 1000, 10000))
@@ -74,14 +71,14 @@ You convert the area to logarithms with the `log10()` function inside the `aes()
 
 ```{r}
 ggplot(data = USA_48.sf) +
-  geom_sf(aes(fill = log10(WaterArea_km2))) 
+  geom_sf(mapping = aes(fill = log10(WaterArea_km2))) 
 ```
 
-Another way to make the map more informative is to convert the continuous variable to a discrete variable and map the discrete values.
+Another way to make the map more informative is to convert the continuous variable to a discrete variable.
 
-In the {dplyr} package the `cut_interval()` function takes a continuous variable and makes n groups each having an equal range, `cut_number()` makes n groups with (approximately) equal numbers of observations; `cut_width()` makes groups of equal width.
+In the {dplyr} package the `dplyr::cut_interval()` function takes a continuous variable and makes n groups each having an equal range, `dplyr::cut_number()` makes n groups with (approximately) equal numbers of observations; `dplyr::cut_width()` makes groups of equal width.
 
-As an example, if you want a map with 5 colors with each color representing a state having a similar amount of water area you would use `cut_number()` and specify `n = 5`. You do this with the `mutate()` function to create a new variable (column) called `WaterArea_cut`.
+As an example, if you want a map with 5 colors with each color representing a state having a similar amount of water area you would use `cut_number()` and specify `n = 5`. You do this with the `dplyr::mutate()` function to create a new variable (column) called `WaterArea_cut`.
 
 ```{r}
 USA_48.sf <- USA_48.sf |>
@@ -91,7 +88,7 @@ str(USA_48.sf)
 
 You added a new factor variable called `WaterArea_cut` with five levels corresponding to equal number of water area values.
 
-You can go directly to the mapping as follows.
+You go directly to the map as follows.
 
 ```{r}
  ggplot(data = USA_48.sf) +
@@ -171,8 +168,8 @@ Alternatively, you can use `sf::st_as_sf()` to convert the `airports` data frame
 
 ```{r}
 ( airports.sf <- sf::st_as_sf(airports, 
-                            coords = c("lon", "lat"),
-                            crs = 4269) )
+                              coords = c("lon", "lat"),
+                              crs = 4269) )
 ```
 
 To graph the points on the map, you use a second `geom_sf()`.
@@ -224,6 +221,9 @@ Here you first assign the map to an object called `base_map` and then render the
 ```
 
 Note the length unit (`LENGTHUNIT[]`) is meter.
+```{r}
+sf::st_crs(USA_48.sf)
+```
 
 You change the projection by specifying the CRS. For example to change the base map to have a Mercator projection you use the `coord_sf()` function with `crs = 3857`, which uses the EPSG code 3857 for world Mercator projection.
 
@@ -255,7 +255,7 @@ USA_48.sf |>
   ggtitle("Albers equal-area projection")
 ```
 
-The `crsuggest::suggest_crs()` function gives suggested projected CRS's for your simple feature data frame.
+The `crsuggest::suggest_crs()` function gives suggested planar projected CRS's for your simple feature data frame.
 
 ```{r}
 crsuggest::suggest_crs(USA_48.sf)
@@ -281,7 +281,9 @@ Functions in the {tmap} use the 'grammar of graphics' philosophy that separates 
 
 A map made with functions from {tmap} starts with the `tmap::tm_shape()` function that takes as input a spatial data frame. The function is followed by one or more layers such as `tmap::tm_fill()`, `tmap::tm_dots()`, `tmap::tm_raster()`, etc that defines how a property in the data gets translated to a visual component.
 
-Returning to the New Zealand simple feature data frame (`nz`). To make a map of the region borders you first identify the spatial data frame with the `tmap::tm_shape()` function and then add a borders layer with the `tmap::tm_borders()` layer.
+Consider the simple feature data frame `spData::nz` containing polygons representing the 16 regions of New Zealand (2018). See https://en.wikipedia.org/wiki/Regions_of_New_Zealand for a description of these regions and https://www.stats.govt.nz for information on the data source.
+
+To make a map of the region borders you first identify the spatial data frame with the `tmap::tm_shape()` function and then add a borders layer with the `tmap::tm_borders()` layer.
 
 ```{r}
 tmap::tm_shape(shp = spData::nz) +
