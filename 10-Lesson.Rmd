@@ -1,4 +1,4 @@
-# Tuesday, September 27, 2022 {.unnumbered}
+# Tuesday, October 4, 2022 {.unnumbered}
 
 A former PhD student from this department, who I supervised, is looking for a masters-level geographer to assist with disease mapping and basic spatial analysis as applied to livestock disease.
 
@@ -17,34 +17,33 @@ Today
 
 Let's look at another example. Here we have the tornado data from the Storm Prediction Center (SPC) as a shapefile in the directory `1950-2018-torn-aspath`.
 
-Shapefiles are imported with the `st_read()` function from the {sf} package.
+Shapefiles are imported with the `sf::st_read()` function.
 
 ```{r}
-library(sf)
-
-tornadoes.sf <- st_read(dsn = "1950-2018-torn-aspath", 
-                        layer = "1950-2018-torn-aspath")
+Torn.sf <- sf::st_read(dsn = here::here("data", "1950-2020-torn-aspath"), 
+                       layer = "1950-2020-torn-aspath")
 ```
 
-The result is a simple feature data frame with 63645 features (observations) and 23 fields (variables).
+The result is a simple feature data frame with 66244 features (observations) and 23 columns.
 
 Each observation is a unique tornado. The coordinate reference system is geographic (longitude, latitude) with EPSG 4326.
 
-We peak inside the simple feature data frame with the `glimpse()` function from the {dplyr} package.
+You look inside the simple feature data frame with the `glimpse()` function from the {dplyr} package.
 
 ```{r}
-glimpse(tornadoes.sf)
+Torn.sf |>
+  dplyr::glimpse()
 ```
 
 The first 22 columns are variables (attributes). The last column contains the geometry. Information in the `geometry` column is in well-known text (WKT) format.
 
-Each tornado is a coded as a `LINESTRING` with a start and end location. This is where the `tm_shape()` function looks for the mapping information.
+Each tornado is a coded as a `LINESTRING` with a start and end location. This is where the `tmap::tm_shape()` function looks for the mapping information.
 
-Let's map the tracks of all tornadoes since 2011. First we filter `tornadoes.sf` keeping only tornadoes occurring after the year (`yr`) 2010.
+You map the tracks of all tornadoes since 2011. First we filter `tornadoes.sf` keeping only tornadoes occurring after the year (`yr`) 2010.
 
 ```{r}
-tornadoes.sf <- tornadoes.sf %>%
-                  filter(yr > 2010) 
+Torn.sf <- Torn.sf |>
+             dplyr::filter(yr >= 2011) 
 ```
 
 The objects `tornadoes.sf` and `usa_48.sf` are both simple feature data frames so we map variables in them as layers with successive calls to the `tm_shape()` function. For example, we start with a boundary map of the lower 48 states with `tm_polygons()` and then overlay the tornadoes with `tm_shape()` and `tm_lines()`.
