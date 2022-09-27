@@ -39,52 +39,40 @@ The first 22 columns are variables (attributes). The last column contains the ge
 
 Each tornado is a coded as a `LINESTRING` with a start and end location. This is where the `tmap::tm_shape()` function looks for the mapping information.
 
-You map the tracks of all tornadoes since 2011. First we filter `tornadoes.sf` keeping only tornadoes occurring after the year (`yr`) 2010.
+You map the tracks of all tornadoes since 2011. First you filter `Torn.sf` keeping only tornadoes occurring after and include the year (`yr`) 2011.
 
 ```{r}
 Torn.sf <- Torn.sf |>
              dplyr::filter(yr >= 2011) 
 ```
 
-The objects `tornadoes.sf` and `usa_48.sf` are both simple feature data frames so we map variables in them as layers with successive calls to the `tm_shape()` function. For example, we start with a boundary map of the lower 48 states with `tm_polygons()` and then overlay the tornadoes with `tm_shape()` and `tm_lines()`.
+Next get a boundary map of the lower 48 states using the `USAboundaries::us_states()` function and remove rows corresponding to Hawaii, Alaska, and Puerto Rico.
 
 ```{r}
-tm_shape(shp = usa_48.sf) +
-  tm_polygons() +
-tm_shape(shp = tornadoes.sf) +
-    tm_lines(col = "red")
+USA_48.sf <- USAboundaries::us_states() |>
+   dplyr::filter(!state_name %in% c("Hawaii", "Alaska", "Puerto Rico"))
 ```
 
-We make the map interactive by first turning on the `"view"` mode with the `tmap_mode()` function and then rerunning the code.
-
-Here we use `tm_borders()` to remove the background gray fill. Note: Make sure you Chunk Output in Console
+The objects `Torn.sf` and `USA_48.sf` are both simple feature data frames so you map variables in them as layers with successive calls to the `tmap::tm_shape()` function. For example, you start with a boundary map of the lower 48 states with `tmap::tm_polygons()` and then overlay the tornadoes with `tmap::tm_shape()` and `tmap::tm_lines()`.
 
 ```{r}
-tmap_mode("view")
-
-tm_shape(usa_48.sf) +
-  tm_borders() +
-tm_shape(tornadoes.sf) +
-    tm_lines(col = "red")
+tmap::tm_shape(shp = USA_48.sf) +
+  tmap::tm_polygons() +
+tmap::tm_shape(shp = Torn.sf) +
+    tmap::tm_lines(col = "red")
 ```
 
-We can now zoom and pan. And change the background layers.
-
-We switch back to plot mode as follows.
+Let's try something a bit more complicated. Suppose you want to map the number of tornadoes originating in each state. You first filter to include only tornadoes occurring the lower 48 states, you then group by state and summarize with the `n()` function that returns the number of cases by the grouping variable (`st`). Finally you change the column name of `st` to `state_abbr` to match the state name abbreviation in the `USA_48.sf` data frame.
 
 ```{r}
-tmap_mode("plot")
-```
+Torn.sf <- Torn.sf |>
+  dplyr::filter(st != "PR" & st != "HI" & st != "AK") |>
+  dplyr::group_by(st) |>
+  dplyr::summarize(nT = dplyr::n()) |>
+  dplyr::rename(state_abbr = st)
 
-Let's try something a bit more complicated. Suppose we want map the number of tornadoes originating in each state. We first filter to include only tornadoes occurring the lower 48 states, we then group by state and summarize with the `n()` function that returns the number of cases by the grouping variable (`st`). Finally we change the column name of `st` to `state_abbr` to match the state name abbreviation in the `usa_48.sf` data frame.
-
-```{r}
-tornado_counts.sf <- tornadoes.sf %>%
-  filter(st != "PR" & st != "HI" & st != "AK") %>%
-  group_by(st) %>%
-  summarize(nT = n()) %>%
-  rename(state_abbr = st)
-glimpse(tornado_counts.sf)
+Torn.sf |>
+  dplyr::glimpse()
 ```
 
 The resulting data frame contains the grouped-by column `state_abbr` (origin state) and the corresponding number of tornadoes. There were 459 tornadoes in Alabama since 2011, 255 in Arkansas, etc.
@@ -94,8 +82,8 @@ Then we join the tornado counts with the map simple feature object. The `left_jo
 ```{r}
 count_map.sf <- left_join(as.data.frame(usa_48.sf),
                           as.data.frame(tornado_counts.sf),
-                          by = "state_abbr") %>%
-  st_as_sf() %>%
+                          by = "state_abbr") |>
+  st_as_sf() |>
   select(nT)
 head(count_map.sf)
 ```

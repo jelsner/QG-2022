@@ -31,10 +31,12 @@ Q: What is the difference between the medical treatment example and the climate 
 
 Oftentimes interest lies in the mean value (from a population of all values) being different than some prescribed value $M$. So the null hypothesis (what you want to disprove) is that the population mean equals $M$.
 
-Using textbook notation the test is written as $$
+Using textbook notation the test is written as 
+$$
 \hbox{H}_0: \mu = M \\
 \hbox{H}_A: \mu \neq M
-$$ where H sub naught ($\hbox{H}_0$) is the null hypothesis stating that the unknown population mean ($\mu$) equals a specific value $M$ and where H sub A ($\hbox{H}_A$) is the alternative hypothesis stating that the unknown population mean does equal $M$.
+$$ 
+where H sub naught ($\hbox{H}_0$) is the null hypothesis stating that the unknown population mean ($\mu$) equals a specific value $M$ and where H sub A ($\hbox{H}_A$) is the alternative hypothesis stating that the unknown population mean does equal $M$.
 
 For example, given a sample of FSU students where heights are measured in centimeters, you test the hypothesis that the mean height of all students at FSU (the population) is 183 cm (6 feet).
 
