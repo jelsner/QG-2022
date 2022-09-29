@@ -355,4 +355,7 @@ ggmap::ggmap(CHI_map) +
 
 The downtown region has the highest rate of vehicle theft. Not surprising given its population density during the workday. There are also clusters of vehicle thefts on the south and west sides of the city.
 
+More information: Fundamentals of data visualization <https://clauswilke.com/dataviz/>
+More information: Making maps with {rdeck} <https://www.mrworthington.com/articles/rstats/mapping-in-r/>
+
 ## Assignment #3 {.unnumbered}
