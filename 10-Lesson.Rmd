@@ -90,7 +90,9 @@ Count_Map.sf |>
   dplyr::glimpse()
 ```
 
-Next you make a thematic map of the counts.
+The `sf::st_join()` function can be used for spatial data joins. Instead of relying on a common (key) variable, it relies on spatial relations. More information is available here: <https://geocompr.robinlovelace.net/spatial-operations.html#spatial-joining>
+
+Finally you make a thematic map of the counts.
 
 ```{r}
 tmap::tm_shape(shp = Count_Map.sf) +
@@ -99,7 +101,7 @@ tmap::tm_shape(shp = Count_Map.sf) +
                     palette = "Reds")
 ```
 
-You can then improve the defaults with additional layers including text, compass, and scale bar.
+You can improve the defaults with additional layers including text, compass, and scale bar.
 
 ```{r}
 tmap::tm_shape(shp = Count_Map.sf) +
