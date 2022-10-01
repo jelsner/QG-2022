@@ -4,12 +4,12 @@ Today
 
 Inferential statistics
 
--   One-sample test
+-   One-sample test for the value of the population mean
 -   About $p$-values
 -   Graphical inference
--   Two-sample test for difference in means
+-   Two-sample test for a difference in population means
 -   Test for equal variance
--   Wilcoxon (Mann-Whitney U) non-parametric test for difference in means
+-   Wilcoxon (Mann-Whitney U) non-parametric test for difference in poplation means
 
 How to apply common statistical tests and how to understand their meaning using graphs.
 
@@ -27,16 +27,14 @@ To show that the climate is getting warmer, you first assume that it is not gett
 
 Q: What is the difference between the medical treatment example and the climate change example?
 
-## One-sample test of the population mean {.unnumbered}
+## One-sample test for the value of the population mean {.unnumbered}
 
 Oftentimes interest lies in the mean value (from a population of all values) being different than some prescribed value $M$. So the null hypothesis (what you want to disprove) is that the population mean equals $M$.
 
-Using textbook notation the test is written as 
-$$
+Using textbook notation the test is written as $$
 \hbox{H}_0: \mu = M \\
 \hbox{H}_A: \mu \neq M
-$$ 
-where H sub naught ($\hbox{H}_0$) is the null hypothesis stating that the unknown population mean ($\mu$) equals a specific value $M$ and where H sub A ($\hbox{H}_A$) is the alternative hypothesis stating that the unknown population mean does equal $M$.
+$$ where H sub naught ($\hbox{H}_0$) is the null hypothesis stating that the unknown population mean ($\mu$) equals a specific value $M$ and where H sub A ($\hbox{H}_A$) is the alternative hypothesis stating that the unknown population mean does equal $M$.
 
 For example, given a sample of FSU students where heights are measured in centimeters, you test the hypothesis that the mean height of all students at FSU (the population) is 183 cm (6 feet).
 
@@ -293,7 +291,7 @@ Graphical inference can be used in a variety of applications. Here is an example
 
 More information on the {nullabor} package [here](https://cran.r-project.org/web/packages/nullabor/vignettes/nullabor.html)
 
-## Two-sample test for the difference in population means {.unnumbered}
+## Two-sample test for a difference in population means {.unnumbered}
 
 With two data samples the null hypothesis is that the two samples have the same population mean. You assume both samples can be modeled with a normal distribution.
 
@@ -301,11 +299,7 @@ You test the null hypothesis that the two samples have the same population mean 
 
 There are two ways to calculate SEDM.
 
--   
-
     (1) Assume equal variance: use the pooled standard deviation ($s$). Under the null hypothesis, the $t$ value will follow a $t$ distribution with n1 + n2 - 2 degrees of freedom (df).
-
--   
 
     (2) Don't assume equal variances (this is the default assumption). Under the null hypothesis, the $t$ statistic approximates a $t$ distribution. In this case it is called the Welch procedure and the degrees of freedom is not an integer.
 
@@ -426,7 +420,7 @@ t.test(___ ~ ___,
        alternative = ___)
 ```
 
-## Test of equal variance {.unnumbered}
+## Test for equal variance {.unnumbered}
 
 In the test of the population means above you assumed that the variability among penguins is the same regardless of species (`var.equal = TRUE`).
 
@@ -461,7 +455,7 @@ The `t.test()` and `var.test()` functions are in the {stats} package as part of 
 
 The {ctest} package contains all the "classical tests," and has several alternative tests for variance homogeneity, each with its own assumptions, benefits, and drawbacks.
 
-## Wilcoxon (Mann-Whitney U) non-parameteric test of difference in means {.unnumbered}
+## Wilcoxon (Mann-Whitney U) non-parameteric test for difference in means {.unnumbered}
 
 You can avoid the distributional assumption (assume data have a normal distribution) by using a non-parametric test. The non-parametric alternative is the Wilcoxon test. Also known as the Mann-Whitney U test.
 

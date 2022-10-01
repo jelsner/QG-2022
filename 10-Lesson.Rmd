@@ -8,16 +8,16 @@ Here's the link: <https://www.zintellect.com/Opportunity/Details/USDA-ARS-2022-0
 
 Today
 
--   Extended example: map tornado frequency
+-   Extended mapping example: tornado frequency
 -   Geo-computation on simple feature data frames
 -   Making raster maps
 -   Spatial density maps
 
-## Extended example: map tornado frequency {.unnumbered}
+## Extended mapping example: tornado frequency {.unnumbered}
 
 Let's look at another example. Here we have the tornado data from the Storm Prediction Center (SPC) as a shapefile in the directory `1950-2018-torn-aspath`.
 
-Shapefiles are imported with the `sf::st_read()` function.
+The files are imported with the `sf::st_read()` function.
 
 ```{r}
 Torn.sf <- sf::st_read(dsn = here::here("data", "1950-2020-torn-initpoint"), 
@@ -26,7 +26,7 @@ Torn.sf <- sf::st_read(dsn = here::here("data", "1950-2020-torn-initpoint"),
 
 The result is a simple feature data frame with 66244 features (observations) and 23 columns.
 
-Each observation is a unique tornado. The coordinate reference system is geographic (longitude, latitude) with EPSG 4326.
+Each observation is a unique tornado. The coordinate reference system is geographic (longitude, latitude) with EPSG tag of 4326.
 
 You look inside the simple feature data frame with the `glimpse()` function from the {dplyr} package.
 
@@ -35,25 +35,25 @@ Torn.sf |>
   dplyr::glimpse()
 ```
 
-The first 22 columns are variables (attributes). The last column contains the geometry. Information in the `geometry` column is in well-known text (WKT) format.
+The first 22 columns are variables (attributes). The last column contains the geometry. The column labeled `geometry` is a simple feature column in well-known text (WKT) format.
 
-Each tornado is a coded as a `LINESTRING` with a start and end location. This is where the `tmap::tm_shape()` function looks for the mapping information.
+Each tornado is a coded as a `LINESTRING` with a start and end location. The simple feature column is where the `tmap::tm_shape()` and `gom_sf()` functions look for the mapping information.
 
-You map the tracks of all tornadoes since 2011. First you filter `Torn.sf` keeping only tornadoes occurring after 2010.
+Here start by mapping the tracks of all tornadoes since 2011. First you filter `Torn.sf` keeping only tornadoes occurring after 2010.
 
 ```{r}
 Torn.sf <- Torn.sf |>
              dplyr::filter(yr >= 2011) 
 ```
 
-Next get a boundary map of the lower 48 states using the `USAboundaries::us_states()` function and remove rows corresponding to Hawaii, Alaska, and Puerto Rico.
+Next you get a boundary file of the lower 48 states borders using the `USAboundaries::us_states()` function. You remove rows corresponding to Hawaii, Alaska, and Puerto Rico.
 
 ```{r}
 USA_48.sf <- USAboundaries::us_states() |>
    dplyr::filter(!state_name %in% c("Hawaii", "Alaska", "Puerto Rico"))
 ```
 
-The objects `Torn.sf` and `USA_48.sf` are both simple feature data frames so you map variables in them as layers with successive calls to the `tmap::tm_shape()` function. For example, you start with a boundary map of the lower 48 states with `tmap::tm_polygons()` and then overlay the tornadoes with `tmap::tm_shape()` and `tmap::tm_lines()`.
+The objects `Torn.sf` and `USA_48.sf` are simple feature data frames so you map variables in them as layers with successive calls to the `tmap::tm_shape()` function. For example, you start with the boundaries of the lower 48 states using `tmap::tm_polygons()` and then overlay the tornadoes with `tmap::tm_shape()` and `tmap::tm_lines()`.
 
 ```{r}
 tmap::tm_shape(shp = USA_48.sf) +
@@ -62,7 +62,7 @@ tmap::tm_shape(shp = Torn.sf) +
     tmap::tm_dots(col = "red")
 ```
 
-Let's try something a bit more complicated. Suppose you want to map the number of tornadoes originating in each state. You first filter `Torn.sf` to include only tornadoes occurring in the lower 48 states, you then group by state and summarize with the `n()` function that returns the number of cases by the grouping variable (`st`). You rename the variable `st` to match the variable `state_abbr` variable in the `USA_48.sf`. Finally you remove the `sfc` with the `sf::st_drop_geometry()` function.
+Let's try something a bit more complicated. Suppose you want a map displaying the number of tornadoes originating in each state. You first filter `Torn.sf` to include only tornadoes occurring in the lower 48 states, you then group by state and summarize with the `n()` function that returns the number of cases by the grouping variable (`st`). You rename the variable `st` to match the variable `state_abbr` variable in the `USA_48.sf`. Finally you remove the `sfc` with the `sf::st_drop_geometry()` function.
 
 ```{r}
 Torn_Counts.df <- Torn.sf |>
@@ -78,7 +78,7 @@ Torn_Counts.df |>
 
 The resulting data frame contains the state abbreviation and the corresponding number of tornadoes. There were 609 tornadoes in Alabama since 2011, 326 in Arkansas, etc.
 
-Then you join the counts data frame with the map boundary simple feature data frame using the `dplyr::left_join()` function. Note the `y =` argument to the function only works with data frames so that is why you dropped the geometry with `sf::st_drop_geometry()` above.
+You then join the counts data frame with the map boundary simple feature data frame using the `dplyr::left_join()` function. Note the `y =` argument to the function only works with data frames so that is why you dropped the geometry with `sf::st_drop_geometry()` above.
 
 ```{r}
 Count_Map.sf <- USA_48.sf |>
@@ -90,7 +90,7 @@ Count_Map.sf |>
   dplyr::glimpse()
 ```
 
-The `sf::st_join()` function can be used for spatial data joins. Instead of relying on a common (key) variable, it relies on spatial relations. More information is available here: <https://geocompr.robinlovelace.net/spatial-operations.html#spatial-joining>
+Note: the `sf::st_join()` function can be used for spatial data joins. Instead of relying on a common (key) variable, it relies on spatial relations. More information is available here: <https://geocompr.robinlovelace.net/spatial-operations.html#spatial-joining>
 
 Finally you make a thematic map of the counts.
 
@@ -122,7 +122,7 @@ Summary: The format of the {tmap} objects (meoms) are like those of the {ggplot2
 
 Spatial data analysis often requires calculations on the geometry. Two of the most common are computing centroids (geographic centers) and buffers.
 
-Geometry calculations should be done on projected coordinates. To see what CRS the simple feature data frame has use `sf::st_crs()`.
+Geo-computation should be done on coordinates that have been projected. To see what CRS the simple feature data frame has use `sf::st_crs()`.
 
 ```{r}
 sf::st_crs(USA_48.sf)
@@ -313,8 +313,8 @@ The core function in {ggplot2} to generate this kind of plot is `geom_density_2d
 ```{r}
 ggmap::ggmap(CHI_map) +
   geom_density_2d(data = carTheft,
-                  aes(x = Longitude,
-                      y = Latitude))
+                  mapping = aes(x = Longitude,
+                                y = Latitude))
 ```
 
 By default, `geom_density_2d()` draws a contour plot with lines of constant value. That is, each line represents approximately the same frequency of crime along that specific line. Contour plots are often used in maps (known as topographic maps) to denote elevation.
@@ -324,9 +324,9 @@ Rather than drawing lines you fill in the graph by using the fill aesthetic to d
 ```{r}
 ggmap::ggmap(CHI_map) +
   stat_density_2d(data = carTheft,
-                  aes(x = Longitude,
-                      y = Latitude,
-                      fill = stat(level)),
+                  mapping = aes(x = Longitude,
+                                y = Latitude,
+                                fill = stat(level)),
                   geom = "polygon")
 ```
 
@@ -346,9 +346,9 @@ Here you use `RColorBrewer::brewer.pal()` from the {RColorBrewer} package to cre
 ```{r}
 ggmap::ggmap(CHI_map) +
   stat_density_2d(data = carTheft,
-                  aes(x = Longitude,
-                      y = Latitude,
-                      fill = stat(level)),
+                  mapping = aes(x = Longitude,
+                                y = Latitude,
+                                fill = stat(level)),
                   alpha = .2,
                   bins = 25,
                   geom = "polygon") +
