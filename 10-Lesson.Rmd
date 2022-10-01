@@ -313,8 +313,8 @@ The core function in {ggplot2} to generate this kind of plot is `geom_density_2d
 ```{r}
 ggmap::ggmap(CHI_map) +
   geom_density_2d(data = carTheft,
-                  aes(x = Longitude,
-                      y = Latitude))
+                  mapping = aes(x = Longitude,
+                                y = Latitude))
 ```
 
 By default, `geom_density_2d()` draws a contour plot with lines of constant value. That is, each line represents approximately the same frequency of crime along that specific line. Contour plots are often used in maps (known as topographic maps) to denote elevation.
@@ -324,9 +324,9 @@ Rather than drawing lines you fill in the graph by using the fill aesthetic to d
 ```{r}
 ggmap::ggmap(CHI_map) +
   stat_density_2d(data = carTheft,
-                  aes(x = Longitude,
-                      y = Latitude,
-                      fill = stat(level)),
+                  mapping = aes(x = Longitude,
+                                y = Latitude,
+                                fill = stat(level)),
                   geom = "polygon")
 ```
 
@@ -346,9 +346,9 @@ Here you use `RColorBrewer::brewer.pal()` from the {RColorBrewer} package to cre
 ```{r}
 ggmap::ggmap(CHI_map) +
   stat_density_2d(data = carTheft,
-                  aes(x = Longitude,
-                      y = Latitude,
-                      fill = stat(level)),
+                  mapping = aes(x = Longitude,
+                                y = Latitude,
+                                fill = stat(level)),
                   alpha = .2,
                   bins = 25,
                   geom = "polygon") +
