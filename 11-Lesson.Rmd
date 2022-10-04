@@ -10,6 +10,8 @@ Inferential statistics
 -   Two-sample test for a difference in population means
 -   Test for equal variance
 -   Wilcoxon (Mann-Whitney U) non-parametric test for difference in population means
+-   Paired observations
+-   Chi-squared test for independence
 
 How to apply common statistical tests and how to understand their meaning using graphs.
 
@@ -31,10 +33,12 @@ Q: What is the difference between the medical treatment example and the climate 
 
 Oftentimes interest lies in the mean value (from a population of all values) being different than some prescribed value $M$. So the null hypothesis (what you want to disprove) is that the population mean equals $M$.
 
-Using textbook notation the test is written as $$
+Using textbook notation the test is written as 
+$$
 \hbox{H}_0: \mu = M \\
 \hbox{H}_A: \mu \neq M
-$$ where H sub naught ($\hbox{H}_0$) is the null hypothesis stating that the unknown population mean ($\mu$) equals a specific value $M$ and where H sub A ($\hbox{H}_A$) is the alternative hypothesis stating that the unknown population mean does equal $M$.
+$$ 
+where H sub naught ($\hbox{H}_0$) is the null hypothesis stating that the unknown population mean ($\mu$) equals a specific value $M$ and where H sub A ($\hbox{H}_A$) is the alternative hypothesis stating that the unknown population mean does equal $M$.
 
 For example, given a sample of FSU students where heights are measured in centimeters, you test the hypothesis that the mean height of all students at FSU (the population) is 183 cm (6 feet).
 
@@ -64,7 +68,8 @@ mean(ht)
 
 The median height in our sample is less than 180 cm (thick black line) and the hypothesized mean (red line) is within the interquartile range.
 
-You write the test as: $$
+You write the test as: 
+$$
 \hbox{H}_0: \mu = 183 \\
 \hbox{H}_A: \mu \neq 183
 $$
@@ -78,9 +83,11 @@ t.test(ht,
 
 Where do these values come from and how do you interpret them?
 
-The output includes the $t$ value (-1.2239). The $t$ value (or $t$ statistic) is computed as $$
+The output includes the $t$ value (-1.2239). The $t$ value (or $t$ statistic) is computed as
+$$
 t = \frac{\bar x - M}{s/\sqrt{n}}
-$$ where $\bar x$ is the sample mean, $M$ is the hypothesized value, $s$ is the standard deviation and $n$ is the sample size.
+$$ 
+where $\bar x$ is the sample mean, $M$ is the hypothesized value, $s$ is the standard deviation and $n$ is the sample size.
 
 In code the $t$ value is
 
@@ -165,7 +172,8 @@ You are interested in whether these recent Atlantic hurricanes since 1980 have a
 
 Your null hypothesis is that the average minimum pressure ($\mu$) is 915 mb or higher and the alternative hypothesis is that it is less than 915.
 
-Formally, you write the statistical test as $$
+Formally, you write the statistical test as 
+$$
 \hbox{H}_0: \mu \ge 915 \\
 \hbox{H}_A: \mu \lt 915
 $$
@@ -273,7 +281,8 @@ fun <- nullabor::null_dist(var = "Height",
                            dist = 'normal', 
                            params = list(mean = 190, sd = sd(ht)))
 inf <- nullabor::lineup(fun, ht.df)
-ggplot(inf, aes(x = "", y = Height)) + 
+ggplot(data = inf, 
+       mapping = aes(x = "", y = Height)) + 
   geom_boxplot() + 
   facet_wrap(~ .sample, nrow = 1, ncol = 20) +
   theme_minimal()
@@ -334,10 +343,12 @@ ggplot(inf, aes(x = Basin, y = minP, color = Basin)) +
 
 Based on these plots, what do you anticipate you will conclude when you formalize this with a $t$ test? This is important.
 
-Let $\mu_{A}$ be the population mean of Atlantic hurricanes and $\mu_{P}$ be the population mean of Pacific hurricanes, you formally write the statistical test as $$
+Let $\mu_{A}$ be the population mean of Atlantic hurricanes and $\mu_{P}$ be the population mean of Pacific hurricanes, you formally write the statistical test as 
+$$
 \hbox{H}_0: \mu_{A} = \mu_{P} \\
 \hbox{H}_A: \mu_{A} \neq \mu_{P}
-$$ You implement the test as follows
+$$ 
+You implement the test as follows
 
 ```{r}
 t.test(minP ~ Basin, 
@@ -350,7 +361,8 @@ You write a summary and conclusion as follows: "The sample mean intensity of Atl
 
 Example: Palmer penguins
 
-Let $A$ be the length of Adelie penguin flippers and $C$ be the length of Chinstrap penguin flippers. Then you formally write the statistical test as $$
+Let $A$ be the length of Adelie penguin flippers and $C$ be the length of Chinstrap penguin flippers. Then you formally write the statistical test as 
+$$
 \hbox{H}_0: \mu_{A} = \mu_{C} \\
 \hbox{H}_A: \mu_{A} \lt \mu_{C}
 $$
