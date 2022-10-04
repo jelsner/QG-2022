@@ -1,8 +1,6 @@
 # Tuesday, October 4, 2022 {.unnumbered}
 
-A former PhD student from this department, who I supervised, is looking for a masters-level geographer to assist with disease mapping and basic spatial analysis as applied to livestock disease.
-
-To support non-spatial scientists (virologists, field epidemiologists) and post-docs (some with spatial analysis expertise) in mapping and visualizing disease occurrence. Encouraged to develop independent projects leading to publication. Flexible work location especially if working toward a PhD.
+A former PhD student from this department is looking for a masters-level geographer to assist with disease mapping and basic spatial analysis as applied to livestock disease. The job entails supporting scientists (virologists, field epidemiologists) and post-docs (some with spatial analysis expertise) in mapping and visualizing disease occurrence. Encouraged to develop independent projects leading to publication. Flexible work location especially if working toward a PhD.
 
 Here's the link: <https://www.zintellect.com/Opportunity/Details/USDA-ARS-2022-0343>
 
@@ -38,20 +36,22 @@ Torn.sf |>
 
 The first 22 columns are variables (attributes). The last column contains the geometry. The column labeled `geometry` is a simple feature column in well-known text (WKT) format.
 
-Each tornado is a coded as a `LINESTRING` with a start and end location. The simple feature column is where the `tmap::tm_shape()` and `geom_sf()` functions look for the spatial information.
+Each tornado is a coded as a `POINT` as the start location. The simple feature column is where the `tmap::tm_shape()` and `geom_sf()` functions look for the spatial information.
 
-Start by mapping the tracks of all tornadoes since 2011. First filter `Torn.sf` keeping only tornadoes occurring after 2010.
+Start by mapping the locations of all tornadoes since 2011. First filter `Torn.sf` keeping only tornadoes occurring after 2010.
 
 ```{r}
 Torn.sf <- Torn.sf |>
              dplyr::filter(yr >= 2011) 
 ```
 
-Next get a boundary file of the lower 48 states borders using the `USAboundaries::us_states()` function. remove rows corresponding to Hawaii, Alaska, and Puerto Rico.
+Next get a boundary file of the lower 48 states borders using the `USAboundaries::us_states()` function. Remove rows corresponding to Hawaii, Alaska, and Puerto Rico.
 
 ```{r}
 USA_48.sf <- USAboundaries::us_states() |>
    dplyr::filter(!state_name %in% c("Hawaii", "Alaska", "Puerto Rico"))
+
+str(USA_48.sf)
 ```
 
 The objects `Torn.sf` and `USA_48.sf` are simple feature data frames so you map variables in them as layers with successive calls to the `tmap::tm_shape()` function. 
@@ -67,7 +67,7 @@ tmap::tm_shape(shp = Torn.sf) +
 
 Let's try something a bit more complicated. Suppose you want a map displaying the total number of tornadoes originating in each state since 2011. 
 
-First filter `Torn.sf` to include only tornadoes occurring in the lower 48 states, then group by state and summarize with the `n()` function that returns the number of cases by the grouping variable (`st`). Rename the variable `st` to match the variable `state_abbr` variable in the `USA_48.sf`. Then remove the `sfc` with the `sf::st_drop_geometry()` function.
+First filter `Torn.sf` to include only tornadoes occurring in the lower 48 states, then group by state and summarize with the `dplyr::n()` function that returns the number of cases by the grouping variable (`st`). Rename the variable `st` to match the variable `state_abbr` variable in the `USA_48.sf`. Then remove the `sfc` with the `sf::st_drop_geometry()` function.
 
 ```{r}
 Torn_Counts.df <- Torn.sf |>
@@ -87,7 +87,7 @@ Next join the counts data frame with the map boundary simple feature data frame 
 
 ```{r}
 Count_Map.sf <- USA_48.sf |>
-  dplyr::left_join(Torn_Counts.df,
+  dplyr::left_join(y = Torn_Counts.df,
                    by = "state_abbr") |>
   dplyr::select(nT)
 
@@ -287,8 +287,8 @@ Chicago has a data portal publishing a large volume of public records. Here you 
 You read these data using the `readr::read_csv()` function.
 
 ```{r}
-carTheft <- readr::read_csv(file = here::here("data", "car_thefts.csv"))
-head(carTheft)
+carTheft.df <- readr::read_csv(file = here::here("data", "car_thefts.csv"))
+head(carTheft.df)
 ```
 
 Each row of the data frame is a single report of a vehicle theft. Location is encoded in several ways, though most importantly for your purpose the longitude and latitude of the theft is encoded in the `Longitude` and `Latitude` columns, respectively.
@@ -299,7 +299,7 @@ You use the `geom_point()` function to map the location of every theft. Because 
 library(ggplot2)
 
 ggmap::ggmap(CHI_map) +
-  geom_point(data = carTheft,
+  geom_point(data = carTheft.df,
              mapping = aes(x = Longitude,
                            y = Latitude),
              size = .25,
@@ -310,7 +310,7 @@ Note the function `ggmap::ggmap()` replaces the function `ggplot()`.
 
 ## Spatial density maps {.unnumbered}
 
-Instead of relying on `geom_point()` and plotting the raw data, another approach is to create a heat map. This is done with a density estimator. Since the map has two dimensions and the density estimator requires a 'kernel' function the procedure is called a 2-D kernel density estimation (KDE).
+Instead of relying on `geom_point()` and plotting the raw data, another approach is to create a heat map. This is done with a density estimator. Since the map has two dimensions is called a 2-D kernel density estimation (KDE).
 
 KDE will take all the data (i.e. reported vehicle thefts) and convert it into a smoothed plot showing geographic concentrations of crime. KDE is a type of data smoothing where inferences about the population are made based on a finite data sample.
 
@@ -318,7 +318,7 @@ The core function in {ggplot2} to generate this kind of plot is `geom_density_2d
 
 ```{r}
 ggmap::ggmap(CHI_map) +
-  geom_density_2d(data = carTheft,
+  geom_density_2d(data = carTheft.df,
                   mapping = aes(x = Longitude,
                                 y = Latitude))
 ```
@@ -329,7 +329,7 @@ Rather than drawing lines you fill in the graph by using the fill aesthetic to d
 
 ```{r}
 ggmap::ggmap(CHI_map) +
-  stat_density_2d(data = carTheft,
+  stat_density_2d(data = carTheft.df,
                   mapping = aes(x = Longitude,
                                 y = Latitude,
                                 fill = stat(level)),
@@ -351,7 +351,7 @@ Here you use `RColorBrewer::brewer.pal()` from the {RColorBrewer} package to cre
 
 ```{r}
 ggmap::ggmap(CHI_map) +
-  stat_density_2d(data = carTheft,
+  stat_density_2d(data = carTheft.df,
                   mapping = aes(x = Longitude,
                                 y = Latitude,
                                 fill = stat(level)),
