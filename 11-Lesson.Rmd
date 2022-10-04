@@ -455,9 +455,9 @@ The `t.test()` and `var.test()` functions are in the {stats} package as part of 
 
 The {ctest} package contains all the "classical tests," and has several alternative tests for variance homogeneity, each with its own assumptions, benefits, and drawbacks.
 
-## Wilcoxon (Mann-Whitney U) non-parameteric test for difference in means {.unnumbered}
+## Wilcoxon (Mann-Whitney U) non-parameteric test for difference in population means {.unnumbered}
 
-You can avoid the distributional assumption (assume data have a normal distribution) by using a non-parametric test. The non-parametric alternative is the Wilcoxon test. Also known as the Mann-Whitney U test.
+You can avoid the distributional assumption (assume data have a normal distribution) by using a non-parametric test. The non-parametric alternative is the Wilcoxon test (aka Mann-Whitney U test).
 
 The test statistic 'W' is the sum of the ranks in the first group minus the sum of the ranks in the second. It is obtained with the `wilcox.test()` function.
 
@@ -512,3 +512,186 @@ wilcox.test(s1, s2)
 ```
 
 The $p$ value again exceeds .15 so your conclusion is the same. The average number of hurricanes during the second half of the record is statistically indistinguishable from the average number of hurricanes during the first half of the record.
+
+## Paired observations {.unnumbered}
+
+In cases where the observations come in pairs you can 'control' for individual variation by doing a paired $t$ test.
+
+Example: A shoe manufacturer makes two different materials (A and B). A sample of 10 kids try *both* materials. Wear times (in months) are recorded for each material. You want to know if one material is more resistant to wear.
+
+So you test if there is a difference in shoe material wear times. You start by creating a long data frame from the recorded wear times.
+
+```{r}
+matA <- c(14, 8.8, 11.2, 14.2, 11.8, 6.4, 9.8, 11.3, 9.3, 13.6)
+matB <- c(13.2, 8.2, 10.9, 14.3, 10.7, 6.6, 9.5, 10.8, 8.8, 13.3)
+
+df <- data.frame(Kid = rep(1:10, 2), 
+                 Material = c(rep("A", 10), rep("B", 10)), 
+                 Wear = c(matA, matB))
+```
+
+You then plot the wear times.
+
+```{r}
+( p <- ggplot(df, aes(x = Material, y = Wear, color = Material)) +
+         geom_boxplot() +
+         geom_point() +
+         scale_color_manual(values = c("#1F78B4", "#A6CEE3")) )
+```
+
+Wear times range from less than 7 months to more than 14 months. But there does not appear to be a significant difference in wear times between material A and B.
+
+On average, material A wears longer than material B (11 months versus 10.6 months) but the difference is small relative to the individual wear times. Thus, as expected when you run a $t$ test on these two samples you find a large $p$-value.
+
+```{r}
+t.test(matA, matB,
+       alternative = "two.sided")
+```
+
+Let's add a line layer to the plot where you group the points on the graph by `Kid`.
+
+```{r}
+p + geom_line(mapping = aes(group = Kid), color = "black")
+```
+
+This shows material A wears longer in 8 of the 10 kids (most of the connecting lines slope downward toward material B).
+
+In this case since there is a grouping variable you use the `paired = TRUE` argument in the $t$ test.
+
+```{r}
+t.test(matA, matB, 
+       paired = TRUE,
+       alternative = "two.sided")
+```
+
+Now you find a $p$-value less than .01 so you conclude there is a significant difference in wear times between the two materials.
+
+The paired test is a one-sample test where the hypothesized mean difference is zero. To see this create a new vector as the difference in wear times.
+
+```{r}
+( df <- data.frame(matA, matB) |>
+  mutate(Diff = matA - matB,
+         Kid = 1:10) )
+```
+
+Then use the one-sample version of the $t$ test with `mu = 0`.
+
+```{r}
+t.test(df$Diff, 
+       mu = 0,
+       alternative = "two.sided")
+```
+
+Example: Reaction time while driving
+
+Cell phone use while driving is believed to increase the chance of an accident due to slowed reaction time. The data set `reaction.time` in the package {UsingR} gives the time it takes to react to an external event while driving by various groups.
+
+```{r}
+df <- UsingR::reaction.time
+str(df)
+```
+
+The variable `time` is the reaction time in seconds. This is the response variable (the variable you are interested in). The factor variable `control` has two groups 'C' control (not using cell phone) and 'T' (using cell). The observations are not paired. The data set is in the long format.
+
+Suppose I was asked to test the hypothesis that, on average, reaction time is *shorter* for those not using a cell phone.
+
+Here is my thought process:
+
+I would start by computing the mean for each group (C: control and T: phone user) from the sample of data I have.
+
+```{r}
+df |>
+  dplyr::group_by(control) |>
+  dplyr::summarize(mean(time),
+                   sd(time))
+```
+
+First I note that the control group has a shorter reaction time than the phone-user group, on average. If this was not the case I would be finished concluding that the sample of data provides no evidence in support of the hypothesis.
+
+Second I note that the difference in means is 6 hundredths of a second. And the standard deviations are of nearly the same magnitude as the difference in means.
+
+Third I plot the response variable (`time`) conditional on the control variable.
+
+```{r}
+ggplot(df, aes(x = control, y = time)) +
+  geom_boxplot() +
+  geom_point() +
+  scale_x_discrete(labels = c("No Cell Phone Use", "Cell Phone Use")) +
+  xlab("") + ylab("Reaction Time (s)")
+```
+
+Fourth I note the median reaction time for the control group (no cell phone use) is shorter and the interquartile ranges overlap. This tells me a statistical test is needed.
+
+Fifth I note both distributions are approximately symmetric about the median so I am safe to use a $t$ test.
+
+Sixth I note the variability in reaction times for the two groups is about the same.
+
+The null hypothesis is that there is no difference in reaction times. Here the alternative is that the reaction time is *shorter* for those not using a phone.
+
+I use the model syntax: response \~ explanatory as the first argument in the `t.test()` function. I include an argument that names the data frame where the columns `time` and `control` are located. Here the argument `alternative = 'less'` is used.
+
+```{r}
+t.test(time ~ control, 
+       data = df, 
+       var.equal = TRUE,
+       alternative = 'less')
+```
+
+The evidence in support of the null hypothesis that the reaction times are the same in the population is summarized by the $p$-value. The $p$-value is .009, so I conclude there is convincing evidence indicating cell phone use slows reaction times.
+
+The adjective 'convincing' comes from the following table: $p$-value as evidence against the null hypothesis.
+
+       less than 0.01: convincing
+            0.01-0.05: moderate 
+            0.05-0.15: suggestive, but inconclusive
+    greater than 0.15: no
+
+## Chi-squared test for independence {.unnumbered}
+
+This test is used when you have two categorical variables from a single population. It determines whether there is a significant association between the two variables.
+
+For example, in an election survey, voters might be classified by male or female and voting preference (Democrat, Republican, or Independent). You use a chi-squared test for independence to determine whether sex is related to voting preference.
+
+The test is appropriate when the sampling method is random, the variables under study are each categorical, and the expected frequency count for each cell of the table is at least five.
+
+The hypothesis is: $$
+\hbox{H}_0: \hbox{Variable A and Variable B are independent}\\
+\hbox{H}_A: \hbox{Variable A and Variable B are not independent}
+$$
+
+The alternative hypothesis is that knowing the level of A can help us predict the level of B. Support for the alternative hypothesis does not imply causality.
+
+The test statistic is a chi-squared random variable defined by $$
+\chi^2 = \sum_{r = 1}^{n_r} \sum_{c = 1}^{n_c} \frac{(O_{r,c} - E_{r,c})^2}{E_{r,c}}
+$$ where $O_{r,c}$ is the observed frequency count at level $r$ of variable A and level $c$ of variable B, and $E_{r,c}$ is the corresponding expected frequency count, where $$
+E_{r,c} = \frac{n_r \times n_c}{n}
+$$ where $n_r$ is the total number of sample observations of variable A and $n_c$ is the total number of sample observations of variable B, and $n$ is the total sample size.
+
+Example: Smoking and exercise
+
+In the data set `survey` ({MASS} package), the `Smoke` column records the students smoking habit, while the `Exer` column records their exercise level. The allowed values in `Smoke` are "Heavy", "Regul" (regularly), "Occas" (occasionally) and "Never". As for `Exer`, they are "Freq" (frequently), "Some" and "None".
+
+You tally the students smoking habits against their exercise levels with the `table()` function.
+
+```{r}
+library(MASS)
+( SH.tbl <- table(survey$Smoke, survey$Exer) )
+```
+
+The result is called a contingency table of the two variables. Values for the level of exercise are in the columns and values for the level of smoking are in the rows.
+
+You test the hypothesis of whether student smoking levels are independent of their exercise level using
+
+```{r}
+chisq.test(SH.tbl)
+```
+
+You find a large $p$-value (greater than .15) and fail to reject the null hypothesis of independence.
+
+The warning message tells us that some of counts are less than 5.
+
+In the case where some of the counts have fewer than five cases it is better to use Fisher's exact test.
+
+```{r}
+fisher.test(SH.tbl)
+```
