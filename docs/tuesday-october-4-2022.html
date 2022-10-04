@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Tuesday, October 4, 2022 | GEO5156: Quantitative Geography</title>
+  <meta name="description" content="Tuesday, October 4, 2022 | GEO5156: Quantitative Geography" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Tuesday, October 4, 2022 | GEO5156: Quantitative Geography" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="jelsner/QG-2022" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Tuesday, October 4, 2022 | GEO5156: Quantitative Geography" />
+  
+  
+  
+
+<meta name="author" content="James B. Elsner" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="thursday-september-22-2022.html"/>
+<link rel="next" href="thursday-september-29-2022.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Quantitative Geography</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html"><i class="fa fa-check"></i>Syllabus</a>
+<ul>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#geo5165c-quantitative-geography"><i class="fa fa-check"></i>GEO5165C: Quantitative Geography</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#contact-information"><i class="fa fa-check"></i>Contact information</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#course-description-and-expected-learning-outcomes"><i class="fa fa-check"></i>Course description and expected learning outcomes</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#grades-and-ethics"><i class="fa fa-check"></i>Grades and ethics</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#schedule-subject-to-change-with-notice"><i class="fa fa-check"></i>Schedule (subject to change with notice)</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#deeper-dives"><i class="fa fa-check"></i>Deeper dives</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html"><i class="fa fa-check"></i>Tuesday, August 23, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#what-is-this-course"><i class="fa fa-check"></i>What is this course?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#where-are-the-materials-for-this-course"><i class="fa fa-check"></i>Where are the materials for this course?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#get-the-syllabus"><i class="fa fa-check"></i>Get the syllabus</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#getting-setup"><i class="fa fa-check"></i>Getting setup</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-23-2022.html"><a href="tuesday-august-23-2022.html#getting-to-know-rstudios-integrated-development-environment-ide"><i class="fa fa-check"></i>Getting to know RStudio’s integrated development environment (IDE)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html"><i class="fa fa-check"></i>Thursday, August 25, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#data-science"><i class="fa fa-check"></i>Data science</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#structure-of-markdown-files"><i class="fa fa-check"></i>Structure of markdown files</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#how-to-make-a-plot"><i class="fa fa-check"></i>How to make a plot</a></li>
+<li class="chapter" data-level="" data-path="thursday-august-25-2022.html"><a href="thursday-august-25-2022.html#getting-started-using-r"><i class="fa fa-check"></i>Getting started using R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html"><i class="fa fa-check"></i>Tuesday, August 30, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#graphing-examples"><i class="fa fa-check"></i>Graphing examples</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#introduction-to-working-with-base-r"><i class="fa fa-check"></i>Introduction to working with base R</a></li>
+<li class="chapter" data-level="" data-path="tuesday-august-30-2022.html"><a href="tuesday-august-30-2022.html#data-as-vectors"><i class="fa fa-check"></i>Data as vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html"><i class="fa fa-check"></i>Thursday, September 1, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#statistical-summaries-of-data"><i class="fa fa-check"></i>Statistical summaries of data</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#structured-data"><i class="fa fa-check"></i>Structured data</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#tables"><i class="fa fa-check"></i>Tables</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-1-2022.html"><a href="thursday-september-1-2022.html#assignment-1"><i class="fa fa-check"></i>Assignment #1</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html"><i class="fa fa-check"></i>Tuesday, September 6, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#getting-data-into-r"><i class="fa fa-check"></i>Getting data into R</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#data-frames"><i class="fa fa-check"></i>Data frames</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-6-2022.html"><a href="tuesday-september-6-2022.html#piping-your-commands"><i class="fa fa-check"></i>Piping your commands</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html"><i class="fa fa-check"></i>Thursday, September 8, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#data-transformation-with-dplyr"><i class="fa fa-check"></i>Data transformation with {dplyr}</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-8-2022.html"><a href="thursday-september-8-2022.html#from-data-import-to-final-plot"><i class="fa fa-check"></i>From data import to final plot</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html"><i class="fa fa-check"></i>Tuesday, September 13, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-13-2022.html"><a href="tuesday-september-13-2022.html#data-visualization"><i class="fa fa-check"></i>Data visualization</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html"><i class="fa fa-check"></i>Tuesday, September 20, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html#comparing-distributions"><i class="fa fa-check"></i>Comparing distributions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html#visualizing-uncertainty"><i class="fa fa-check"></i>Visualizing uncertainty</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html#simple-feature-data-frames"><i class="fa fa-check"></i>Simple feature data frames</a></li>
+<li class="chapter" data-level="" data-path="tuesday-september-20-2022.html"><a href="tuesday-september-20-2022.html#making-a-boundary-map"><i class="fa fa-check"></i>Making a boundary map</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-22-2022.html"><a href="thursday-september-22-2022.html"><i class="fa fa-check"></i>Thursday, September 22, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-22-2022.html"><a href="thursday-september-22-2022.html#adding-data-to-boundary-maps"><i class="fa fa-check"></i>Adding data to boundary maps</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-22-2022.html"><a href="thursday-september-22-2022.html#changing-projections"><i class="fa fa-check"></i>Changing projections</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-22-2022.html"><a href="thursday-september-22-2022.html#mapping-using-functions-from-tmap"><i class="fa fa-check"></i>Mapping using functions from tmap</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-22-2022.html"><a href="thursday-september-22-2022.html#making-an-interactive-map"><i class="fa fa-check"></i>Making an interactive map</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-october-4-2022.html"><a href="tuesday-october-4-2022.html"><i class="fa fa-check"></i>Tuesday, October 4, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-october-4-2022.html"><a href="tuesday-october-4-2022.html#extended-mapping-example-tornado-frequency"><i class="fa fa-check"></i>Extended mapping example: tornado frequency</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-4-2022.html"><a href="tuesday-october-4-2022.html#geo-computation-on-simple-feature-data-frames"><i class="fa fa-check"></i>Geo-computation on simple feature data frames</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-4-2022.html"><a href="tuesday-october-4-2022.html#making-raster-maps"><i class="fa fa-check"></i>Making raster maps</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-4-2022.html"><a href="tuesday-october-4-2022.html#spatial-density-maps"><i class="fa fa-check"></i>Spatial density maps</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-4-2022.html"><a href="tuesday-october-4-2022.html#assignment-3"><i class="fa fa-check"></i>Assignment #3</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html"><i class="fa fa-check"></i>Thursday, September 29, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#one-sample-test-for-the-value-of-the-population-mean"><i class="fa fa-check"></i>One-sample test for the value of the population mean</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#about-p-values"><i class="fa fa-check"></i>About p-values</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#graphical-inference"><i class="fa fa-check"></i>Graphical inference</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#two-sample-test-for-a-difference-in-population-means"><i class="fa fa-check"></i>Two-sample test for a difference in population means</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#test-for-equal-variance"><i class="fa fa-check"></i>Test for equal variance</a></li>
+<li class="chapter" data-level="" data-path="thursday-september-29-2022.html"><a href="thursday-september-29-2022.html#wilcoxon-mann-whitney-u-non-parameteric-test-for-difference-in-means"><i class="fa fa-check"></i>Wilcoxon (Mann-Whitney U) non-parameteric test for difference in means</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-october-4-2022-1.html"><a href="tuesday-october-4-2022-1.html"><i class="fa fa-check"></i>Tuesday, October 4, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-october-4-2022-1.html"><a href="tuesday-october-4-2022-1.html#paired-observations"><i class="fa fa-check"></i>Paired observations</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-4-2022-1.html"><a href="tuesday-october-4-2022-1.html#chi-squared-test-for-independence"><i class="fa fa-check"></i>Chi-squared test for independence</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-october-6-2022.html"><a href="thursday-october-6-2022.html"><i class="fa fa-check"></i>Thursday, October 6, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-october-6-2022.html"><a href="thursday-october-6-2022.html#bayesian-data-analysis"><i class="fa fa-check"></i>Bayesian data analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html"><i class="fa fa-check"></i>Tuesday, October 11, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-october-11-2022.html"><a href="tuesday-october-11-2022.html#more-examples-of-bayesian-data-analyses"><i class="fa fa-check"></i>More examples of Bayesian data analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html"><i class="fa fa-check"></i>Thursday, October 13, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html#linear-regression-a-t-test-by-another-name"><i class="fa fa-check"></i>Linear regression: A t test by another name</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html#motivation-for-the-regression-model"><i class="fa fa-check"></i>Motivation for the regression model</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html#making-predictions-with-the-regression-model"><i class="fa fa-check"></i>Making predictions with the regression model</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html#uncertainty-about-the-regression-model-coefficients"><i class="fa fa-check"></i>Uncertainty about the regression model coefficients</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-13-2022.html"><a href="thursday-october-13-2022.html#bootstrapping-the-uncertainty"><i class="fa fa-check"></i>Bootstrapping the uncertainty</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-october-18-2022.html"><a href="tuesday-october-18-2022.html"><i class="fa fa-check"></i>Tuesday, October 18, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-october-18-2022.html"><a href="tuesday-october-18-2022.html#uncertainty-about-a-particular-predicted-value"><i class="fa fa-check"></i>Uncertainty about a particular predicted value</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-18-2022.html"><a href="tuesday-october-18-2022.html#model-adequacy"><i class="fa fa-check"></i>Model Adequacy</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-18-2022.html"><a href="tuesday-october-18-2022.html#transforming-the-response-variable"><i class="fa fa-check"></i>Transforming the response variable</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html"><i class="fa fa-check"></i>Thursday, October 20, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#more-regression-examples"><i class="fa fa-check"></i>More regression examples</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#outliers"><i class="fa fa-check"></i>Outliers</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-20-2022.html"><a href="thursday-october-20-2022.html#simpsons-paradox"><i class="fa fa-check"></i>Simpson’s paradox</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html"><i class="fa fa-check"></i>Tuesday, October 25, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#a-regression-plane"><i class="fa fa-check"></i>A regression plane</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#fitting-a-multiple-variable-regression-model"><i class="fa fa-check"></i>Fitting a multiple variable regression model</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#should-you-remove-a-variable-from-the-model"><i class="fa fa-check"></i>Should you remove a variable from the model?</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#checking-on-the-model-assumptions"><i class="fa fa-check"></i>Checking on the model assumptions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#using-the-model-to-make-predictions"><i class="fa fa-check"></i>Using the model to make predictions</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#collinearity"><i class="fa fa-check"></i>Collinearity</a></li>
+<li class="chapter" data-level="" data-path="tuesday-october-25-2022.html"><a href="tuesday-october-25-2022.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html"><i class="fa fa-check"></i>Thursday, October 27, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#removing-variables-from-a-regression-model"><i class="fa fa-check"></i>Removing variables from a regression model</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#the-stepwise-selection-procedure"><i class="fa fa-check"></i>The stepwise selection procedure</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#transforming-a-response-variable"><i class="fa fa-check"></i>Transforming a response variable</a></li>
+<li class="chapter" data-level="" data-path="thursday-october-27-2022.html"><a href="thursday-october-27-2022.html#regression-trees"><i class="fa fa-check"></i>Regression trees</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html"><i class="fa fa-check"></i>Tuesday, November 1, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#predictive-uncertainty-with-regression-trees"><i class="fa fa-check"></i>Predictive uncertainty with regression trees</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#the-random-forest-algorithm"><i class="fa fa-check"></i>The random forest algorithm</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#cross-validation"><i class="fa fa-check"></i>Cross validation</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-1-2022.html"><a href="tuesday-november-1-2022.html#classification-trees"><i class="fa fa-check"></i>Classification trees</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html"><i class="fa fa-check"></i>Thursday, November 3, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html#binary-outcomes-and-probabilities"><i class="fa fa-check"></i>Binary outcomes and probabilities</a></li>
+<li class="chapter" data-level="" data-path="thursday-november-3-2022.html"><a href="thursday-november-3-2022.html#logistic-regression"><i class="fa fa-check"></i>Logistic regression</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html"><i class="fa fa-check"></i>Tuesday, November 8, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#quantifying-autocorrelation-in-spatial-data"><i class="fa fa-check"></i>Quantifying autocorrelation in spatial data</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#spatial-data-as-polygon-areas"><i class="fa fa-check"></i>Spatial data as polygon areas</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#nearest-neighbors"><i class="fa fa-check"></i>Nearest neighbors</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#spatial-weights"><i class="fa fa-check"></i>Spatial weights</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#morans-i"><i class="fa fa-check"></i>Moran’s I</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-8-2022.html"><a href="tuesday-november-8-2022.html#spatial-lag-variable"><i class="fa fa-check"></i>Spatial lag variable</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html"><i class="fa fa-check"></i>Thursday, November 10, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html#statistical-significance-of-spatial-autocorrelation"><i class="fa fa-check"></i>Statistical significance of spatial autocorrelation</a></li>
+<li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html#a-monte-carlo-approach-to-inference-about-spatial-autocorrelation"><i class="fa fa-check"></i>A Monte Carlo approach to inference about spatial autocorrelation</a></li>
+<li class="chapter" data-level="" data-path="thursday-november-10-2022.html"><a href="thursday-november-10-2022.html#spatial-autocorrelation-in-model-residuals"><i class="fa fa-check"></i>Spatial autocorrelation in model residuals</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html"><i class="fa fa-check"></i>Tuesday, November 15, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#bi-variate-spatial-autocorrelation"><i class="fa fa-check"></i>Bi-variate spatial autocorrelation</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#local-autocorrelation"><i class="fa fa-check"></i>Local autocorrelation</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#local-regression"><i class="fa fa-check"></i>Local regression</a></li>
+<li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#spatial-weights-1"><i class="fa fa-check"></i>Spatial weights</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="thursday-november-17-2022.html"><a href="thursday-november-17-2022.html"><i class="fa fa-check"></i>Thursday, November 17, 2022</a>
+<ul>
+<li class="chapter" data-level="" data-path="thursday-november-17-2022.html"><a href="thursday-november-17-2022.html#geographic-regression"><i class="fa fa-check"></i>Geographic regression</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GEO5156: Quantitative Geography</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tuesday-october-4-2022" class="section level1 unnumbered hasAnchor">
+<h1>Tuesday, October 4, 2022<a href="tuesday-october-4-2022.html#tuesday-october-4-2022" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>A former PhD student from this department, who I supervised, is looking for a masters-level geographer to assist with disease mapping and basic spatial analysis as applied to livestock disease.</p>
+<p>To support non-spatial scientists (virologists, field epidemiologists) and post-docs (some with spatial analysis expertise) in the mapping and visualizing of disease occurrence data from across the US and encouraged to develop independent projects leading to publication. Flexible work location especially if working toward a PhD.</p>
+<p>Here’s the link: <a href="https://www.zintellect.com/Opportunity/Details/USDA-ARS-2022-0343" class="uri">https://www.zintellect.com/Opportunity/Details/USDA-ARS-2022-0343</a></p>
+<p>Today</p>
+<ul>
+<li>Extended mapping example: tornado frequency</li>
+<li>Geo-computation on simple feature data frames</li>
+<li>Making raster maps</li>
+<li>Spatial density maps</li>
+<li>Assignment #3 (Due: Thursday)</li>
+</ul>
+<div id="extended-mapping-example-tornado-frequency" class="section level2 unnumbered hasAnchor">
+<h2>Extended mapping example: tornado frequency<a href="tuesday-october-4-2022.html#extended-mapping-example-tornado-frequency" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s look at another example. Here we have the tornado data from the Storm Prediction Center (SPC) as a shapefile in the directory <code>1950-2018-torn-aspath</code>.</p>
+<p>The files are imported with the <code>sf::st_read()</code> function.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="tuesday-october-4-2022.html#cb1-1" aria-hidden="true" tabindex="-1"></a>Torn.sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="at">dsn =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;1950-2020-torn-initpoint&quot;</span>), </span>
+<span id="cb1-2"><a href="tuesday-october-4-2022.html#cb1-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">layer =</span> <span class="st">&quot;1950-2020-torn-initpoint&quot;</span>)</span></code></pre></div>
+<pre><code>## Reading layer `1950-2020-torn-initpoint&#39; from data source 
+##   `/Users/jameselsner/Desktop/ClassNotes/QG-2022/data/1950-2020-torn-initpoint&#39; 
+##   using driver `ESRI Shapefile&#39;
+## Simple feature collection with 66244 features and 22 fields
+## Geometry type: POINT
+## Dimension:     XY
+## Bounding box:  xmin: -163.53 ymin: 17.7212 xmax: -64.7151 ymax: 61.02
+## Geodetic CRS:  WGS 84</code></pre>
+<p>The result is a simple feature data frame with 66244 features (observations) and 23 columns.</p>
+<p>Each observation is a unique tornado. The coordinate reference system is geographic (longitude, latitude) with EPSG tag of 4326.</p>
+<p>You look inside the simple feature data frame with the <code>glimpse()</code> function from the {dplyr} package.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="tuesday-october-4-2022.html#cb3-1" aria-hidden="true" tabindex="-1"></a>Torn.sf <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="tuesday-october-4-2022.html#cb3-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">glimpse</span>()</span></code></pre></div>
+<pre><code>## Rows: 66,244
+## Columns: 23
+## $ om       &lt;dbl&gt; 192, 193, 195, 196, 197, 194, 198, 199, 200, 201, 4, 5, 6, 7,…
+## $ yr       &lt;dbl&gt; 1950, 1950, 1950, 1950, 1950, 1950, 1950, 1950, 1950, 1950, 1…
+## $ mo       &lt;dbl&gt; 10, 10, 11, 11, 11, 11, 12, 12, 12, 12, 1, 1, 1, 1, 1, 1, 1, …
+## $ dy       &lt;dbl&gt; 1, 9, 20, 20, 20, 4, 2, 2, 2, 2, 13, 25, 25, 26, 3, 3, 3, 11,…
+## $ date     &lt;chr&gt; &quot;1950-10-01&quot;, &quot;1950-10-09&quot;, &quot;1950-11-20&quot;, &quot;1950-11-20&quot;, &quot;1950…
+## $ time     &lt;chr&gt; &quot;21:00:00&quot;, &quot;02:15:00&quot;, &quot;02:20:00&quot;, &quot;04:00:00&quot;, &quot;07:30:00&quot;, &quot;…
+## $ tz       &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3…
+## $ st       &lt;chr&gt; &quot;OK&quot;, &quot;NC&quot;, &quot;KY&quot;, &quot;KY&quot;, &quot;MS&quot;, &quot;PA&quot;, &quot;IL&quot;, &quot;IL&quot;, &quot;AR&quot;, &quot;IL&quot;, &quot;…
+## $ stf      &lt;dbl&gt; 40, 37, 21, 21, 28, 42, 17, 17, 5, 17, 5, 29, 17, 48, 29, 17,…
+## $ stn      &lt;dbl&gt; 23, 9, 1, 2, 14, 5, 7, 8, 12, 9, 1, 2, 3, 1, 1, 2, 1, 2, 3, 4…
+## $ mag      &lt;dbl&gt; 1, 3, 2, 1, 1, 3, 2, 3, 3, 1, 3, 2, 2, 2, 3, 3, 1, 2, 3, 2, 2…
+## $ inj      &lt;dbl&gt; 0, 3, 0, 0, 3, 1, 3, 25, 0, 0, 1, 5, 0, 2, 3, 3, 1, 0, 12, 5,…
+## $ fat      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0…
+## $ loss     &lt;dbl&gt; 4, 5, 5, 5, 4, 5, 4, 6, 1, 4, 3, 5, 5, 0, 6, 5, 4, 4, 4, 5, 5…
+## $ closs    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+## $ slat     &lt;dbl&gt; 36.73, 34.17, 37.37, 38.20, 32.42, 40.20, 38.97, 38.75, 36.12…
+## $ slon     &lt;dbl&gt; -102.52, -78.60, -87.20, -84.50, -89.13, -76.12, -90.05, -89.…
+## $ elat     &lt;dbl&gt; 36.8800, 34.1701, 37.3701, 38.2001, 32.4201, 40.4000, 39.0700…
+## $ elon     &lt;dbl&gt; -102.3000, -78.5999, -87.1999, -84.4999, -89.1299, -75.9300, …
+## $ len      &lt;dbl&gt; 15.8, 2.0, 0.1, 0.1, 2.0, 15.9, 18.8, 18.0, 7.8, 9.6, 0.6, 2.…
+## $ wid      &lt;dbl&gt; 10, 880, 10, 10, 37, 100, 50, 200, 10, 50, 17, 300, 100, 133,…
+## $ fc       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+## $ geometry &lt;POINT [°]&gt; POINT (-102.52 36.73), POINT (-78.6 34.17), POINT (-87.…</code></pre>
+<p>The first 22 columns are variables (attributes). The last column contains the geometry. The column labeled <code>geometry</code> is a simple feature column in well-known text (WKT) format.</p>
+<p>Each tornado is a coded as a <code>LINESTRING</code> with a start and end location. The simple feature column is where the <code>tmap::tm_shape()</code> and <code>gom_sf()</code> functions look for the mapping information.</p>
+<p>Here start by mapping the tracks of all tornadoes since 2011. First you filter <code>Torn.sf</code> keeping only tornadoes occurring after 2010.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="tuesday-october-4-2022.html#cb5-1" aria-hidden="true" tabindex="-1"></a>Torn.sf <span class="ot">&lt;-</span> Torn.sf <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="tuesday-october-4-2022.html#cb5-2" aria-hidden="true" tabindex="-1"></a>             dplyr<span class="sc">::</span><span class="fu">filter</span>(yr <span class="sc">&gt;=</span> <span class="dv">2011</span>) </span></code></pre></div>
+<p>Next you get a boundary file of the lower 48 states borders using the <code>USAboundaries::us_states()</code> function. You remove rows corresponding to Hawaii, Alaska, and Puerto Rico.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="tuesday-october-4-2022.html#cb6-1" aria-hidden="true" tabindex="-1"></a>USA_48.sf <span class="ot">&lt;-</span> USAboundaries<span class="sc">::</span><span class="fu">us_states</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="tuesday-october-4-2022.html#cb6-2" aria-hidden="true" tabindex="-1"></a>   dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>state_name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Hawaii&quot;</span>, <span class="st">&quot;Alaska&quot;</span>, <span class="st">&quot;Puerto Rico&quot;</span>))</span></code></pre></div>
+<p>The objects <code>Torn.sf</code> and <code>USA_48.sf</code> are simple feature data frames so you map variables in them as layers with successive calls to the <code>tmap::tm_shape()</code> function. For example, you start with the boundaries of the lower 48 states using <code>tmap::tm_polygons()</code> and then overlay the tornadoes with <code>tmap::tm_shape()</code> and <code>tmap::tm_lines()</code>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="tuesday-october-4-2022.html#cb7-1" aria-hidden="true" tabindex="-1"></a>tmap<span class="sc">::</span><span class="fu">tm_shape</span>(<span class="at">shp =</span> USA_48.sf) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="tuesday-october-4-2022.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_polygons</span>() <span class="sc">+</span></span>
+<span id="cb7-3"><a href="tuesday-october-4-2022.html#cb7-3" aria-hidden="true" tabindex="-1"></a>tmap<span class="sc">::</span><span class="fu">tm_shape</span>(<span class="at">shp =</span> Torn.sf) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="tuesday-october-4-2022.html#cb7-4" aria-hidden="true" tabindex="-1"></a>    tmap<span class="sc">::</span><span class="fu">tm_dots</span>(<span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Let’s try something a bit more complicated. Suppose you want a map displaying the number of tornadoes originating in each state. You first filter <code>Torn.sf</code> to include only tornadoes occurring in the lower 48 states, you then group by state and summarize with the <code>n()</code> function that returns the number of cases by the grouping variable (<code>st</code>). You rename the variable <code>st</code> to match the variable <code>state_abbr</code> variable in the <code>USA_48.sf</code>. Finally you remove the <code>sfc</code> with the <code>sf::st_drop_geometry()</code> function.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="tuesday-october-4-2022.html#cb8-1" aria-hidden="true" tabindex="-1"></a>Torn_Counts.df <span class="ot">&lt;-</span> Torn.sf <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="tuesday-october-4-2022.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>st <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;PR&quot;</span>, <span class="st">&quot;HI&quot;</span> , <span class="st">&quot;AK&quot;</span>, <span class="st">&quot;DC&quot;</span>, <span class="st">&quot;VI&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="tuesday-october-4-2022.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(st) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="tuesday-october-4-2022.html#cb8-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">nT =</span> dplyr<span class="sc">::</span><span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a href="tuesday-october-4-2022.html#cb8-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">state_abbr =</span> st) <span class="sc">|&gt;</span></span>
+<span id="cb8-6"><a href="tuesday-october-4-2022.html#cb8-6" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_drop_geometry</span>()</span>
+<span id="cb8-7"><a href="tuesday-october-4-2022.html#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="tuesday-october-4-2022.html#cb8-8" aria-hidden="true" tabindex="-1"></a>Torn_Counts.df <span class="sc">|&gt;</span></span>
+<span id="cb8-9"><a href="tuesday-october-4-2022.html#cb8-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">glimpse</span>()</span></code></pre></div>
+<pre><code>## Rows: 48
+## Columns: 2
+## $ state_abbr &lt;chr&gt; &quot;AL&quot;, &quot;AR&quot;, &quot;AZ&quot;, &quot;CA&quot;, &quot;CO&quot;, &quot;CT&quot;, &quot;DE&quot;, &quot;FL&quot;, &quot;GA&quot;, &quot;IA&quot;,…
+## $ nT         &lt;int&gt; 609, 326, 36, 79, 370, 24, 12, 413, 394, 456, 26, 529, 311,…</code></pre>
+<p>The resulting data frame contains the state abbreviation and the corresponding number of tornadoes. There were 609 tornadoes in Alabama since 2011, 326 in Arkansas, etc.</p>
+<p>You then join the counts data frame with the map boundary simple feature data frame using the <code>dplyr::left_join()</code> function. Note the <code>y =</code> argument to the function only works with data frames so that is why you dropped the geometry with <code>sf::st_drop_geometry()</code> above.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="tuesday-october-4-2022.html#cb10-1" aria-hidden="true" tabindex="-1"></a>Count_Map.sf <span class="ot">&lt;-</span> USA_48.sf <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="tuesday-october-4-2022.html#cb10-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(Torn_Counts.df,</span>
+<span id="cb10-3"><a href="tuesday-october-4-2022.html#cb10-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">by =</span> <span class="st">&quot;state_abbr&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="tuesday-october-4-2022.html#cb10-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(nT)</span>
+<span id="cb10-5"><a href="tuesday-october-4-2022.html#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="tuesday-october-4-2022.html#cb10-6" aria-hidden="true" tabindex="-1"></a>Count_Map.sf <span class="sc">|&gt;</span></span>
+<span id="cb10-7"><a href="tuesday-october-4-2022.html#cb10-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">glimpse</span>()</span></code></pre></div>
+<pre><code>## Rows: 49
+## Columns: 2
+## $ nT       &lt;int&gt; 79, 214, 26, 396, 456, 474, 94, 21, 107, 53, 12, 184, 529, 11…
+## $ geometry &lt;MULTIPOLYGON [°]&gt; MULTIPOLYGON (((-118.594 33..., MULTIPOLYGON (((…</code></pre>
+<p>Note: the <code>sf::st_join()</code> function can be used for spatial data joins. Instead of relying on a common (key) variable, it relies on spatial relations. More information is available here: <a href="https://geocompr.robinlovelace.net/spatial-operations.html#spatial-joining" class="uri">https://geocompr.robinlovelace.net/spatial-operations.html#spatial-joining</a></p>
+<p>Finally you make a thematic map of the counts.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="tuesday-october-4-2022.html#cb12-1" aria-hidden="true" tabindex="-1"></a>tmap<span class="sc">::</span><span class="fu">tm_shape</span>(<span class="at">shp =</span> Count_Map.sf) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="tuesday-october-4-2022.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_polygons</span>(<span class="at">col =</span> <span class="st">&quot;nT&quot;</span>, </span>
+<span id="cb12-3"><a href="tuesday-october-4-2022.html#cb12-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">title =</span> <span class="st">&quot;Tornado Counts&quot;</span>,</span>
+<span id="cb12-4"><a href="tuesday-october-4-2022.html#cb12-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">palette =</span> <span class="st">&quot;Reds&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>You can improve the defaults with additional layers including text, compass, and scale bar.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="tuesday-october-4-2022.html#cb13-1" aria-hidden="true" tabindex="-1"></a>tmap<span class="sc">::</span><span class="fu">tm_shape</span>(<span class="at">shp =</span> Count_Map.sf) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="tuesday-october-4-2022.html#cb13-2" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_polygons</span>(<span class="at">col =</span> <span class="st">&quot;nT&quot;</span>, </span>
+<span id="cb13-3"><a href="tuesday-october-4-2022.html#cb13-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">border.col =</span> <span class="st">&quot;gray70&quot;</span>,</span>
+<span id="cb13-4"><a href="tuesday-october-4-2022.html#cb13-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">title =</span> <span class="st">&quot;Tornado Counts&quot;</span>,</span>
+<span id="cb13-5"><a href="tuesday-october-4-2022.html#cb13-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">palette =</span> <span class="st">&quot;Reds&quot;</span>) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="tuesday-october-4-2022.html#cb13-6" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_text</span>(<span class="st">&quot;nT&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb13-7"><a href="tuesday-october-4-2022.html#cb13-7" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_compass</span>() <span class="sc">+</span> </span>
+<span id="cb13-8"><a href="tuesday-october-4-2022.html#cb13-8" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_scale_bar</span>(<span class="at">lwd =</span> .<span class="dv">5</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Summary: The format of the {tmap} objects (meoms) are like those of the {ggplot2} geometric objects (geoms) making it easy to get to a publication-quality map. Fine details are worked out in production.</p>
+<p><a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html">More information?</a></p>
+</div>
+<div id="geo-computation-on-simple-feature-data-frames" class="section level2 unnumbered hasAnchor">
+<h2>Geo-computation on simple feature data frames<a href="tuesday-october-4-2022.html#geo-computation-on-simple-feature-data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Spatial data analysis often requires calculations on the geometry. Two of the most common are computing centroids (geographic centers) and buffers.</p>
+<p>Geo-computation should be done on coordinates that have been projected. To see what CRS the simple feature data frame has use <code>sf::st_crs()</code>.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="tuesday-october-4-2022.html#cb14-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(USA_48.sf)</span></code></pre></div>
+<pre><code>## Coordinate Reference System:
+##   User input: EPSG:4326 
+##   wkt:
+## GEOGCRS[&quot;WGS 84&quot;,
+##     DATUM[&quot;World Geodetic System 1984&quot;,
+##         ELLIPSOID[&quot;WGS 84&quot;,6378137,298.257223563,
+##             LENGTHUNIT[&quot;metre&quot;,1]]],
+##     PRIMEM[&quot;Greenwich&quot;,0,
+##         ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##     CS[ellipsoidal,2],
+##         AXIS[&quot;geodetic latitude (Lat)&quot;,north,
+##             ORDER[1],
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##         AXIS[&quot;geodetic longitude (Lon)&quot;,east,
+##             ORDER[2],
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##     USAGE[
+##         SCOPE[&quot;Horizontal component of 3D system.&quot;],
+##         AREA[&quot;World.&quot;],
+##         BBOX[-90,-180,90,180]],
+##     ID[&quot;EPSG&quot;,4326]]</code></pre>
+<p>Note the length unit (<code>LENGTHUNIT[]</code>) is meter.</p>
+<p>Here transform the CRS of the <code>USA_48.sf</code> simple feature data frame to a U.S. National Atlas equal area (EPSG: 2163) and then check it.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="tuesday-october-4-2022.html#cb16-1" aria-hidden="true" tabindex="-1"></a>USA_48.sf <span class="ot">&lt;-</span> USA_48.sf <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="tuesday-october-4-2022.html#cb16-2" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_transform</span>(<span class="at">crs =</span> <span class="dv">2163</span>)</span>
+<span id="cb16-3"><a href="tuesday-october-4-2022.html#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="tuesday-october-4-2022.html#cb16-4" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(USA_48.sf)</span></code></pre></div>
+<pre><code>## Coordinate Reference System:
+##   User input: EPSG:2163 
+##   wkt:
+## PROJCRS[&quot;NAD27 / US National Atlas Equal Area&quot;,
+##     BASEGEOGCRS[&quot;NAD27&quot;,
+##         DATUM[&quot;North American Datum 1927&quot;,
+##             ELLIPSOID[&quot;Clarke 1866&quot;,6378206.4,294.978698213898,
+##                 LENGTHUNIT[&quot;metre&quot;,1]]],
+##         PRIMEM[&quot;Greenwich&quot;,0,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##         ID[&quot;EPSG&quot;,4267]],
+##     CONVERSION[&quot;US National Atlas Equal Area&quot;,
+##         METHOD[&quot;Lambert Azimuthal Equal Area (Spherical)&quot;,
+##             ID[&quot;EPSG&quot;,1027]],
+##         PARAMETER[&quot;Latitude of natural origin&quot;,45,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8801]],
+##         PARAMETER[&quot;Longitude of natural origin&quot;,-100,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8802]],
+##         PARAMETER[&quot;False easting&quot;,0,
+##             LENGTHUNIT[&quot;metre&quot;,1],
+##             ID[&quot;EPSG&quot;,8806]],
+##         PARAMETER[&quot;False northing&quot;,0,
+##             LENGTHUNIT[&quot;metre&quot;,1],
+##             ID[&quot;EPSG&quot;,8807]]],
+##     CS[Cartesian,2],
+##         AXIS[&quot;easting (X)&quot;,east,
+##             ORDER[1],
+##             LENGTHUNIT[&quot;metre&quot;,1]],
+##         AXIS[&quot;northing (Y)&quot;,north,
+##             ORDER[2],
+##             LENGTHUNIT[&quot;metre&quot;,1]],
+##     USAGE[
+##         SCOPE[&quot;Statistical analysis.&quot;],
+##         AREA[&quot;United States (USA) - onshore and offshore.&quot;],
+##         BBOX[15.56,167.65,74.71,-65.69]],
+##     ID[&quot;EPSG&quot;,9311]]</code></pre>
+<p>The centroid calculation locates the center of geographic objects representing the center of mass for the spatial object (think of balancing a plate on your finger).</p>
+<p>You calculate the geographic centroid of each of the lower 48 states with the <code>st_centroid()</code> function.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="tuesday-october-4-2022.html#cb18-1" aria-hidden="true" tabindex="-1"></a>geo_centroid.sf <span class="ot">&lt;-</span> USA_48.sf <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="tuesday-october-4-2022.html#cb18-2" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_centroid</span>()</span></code></pre></div>
+<pre><code>## Warning in st_centroid.sf(USA_48.sf): st_centroid assumes attributes are
+## constant over geometries of x</code></pre>
+<p>The result is a simple feature data frame where the geometry is a single point for each state. You keep track of the fact that this is a simple feature data frame by using an object name that includes appends with <code>.sf</code>.</p>
+<p>The warning tells you that the attributes in the new simple feature data frame may not make sense with the new geometry.</p>
+<p>For example, compare the first two rows of the two simple feature data frames.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="tuesday-october-4-2022.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(geo_centroid.sf, <span class="at">n =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## Simple feature collection with 2 features and 12 fields
+## Geometry type: POINT
+## Dimension:     XY
+## Bounding box:  xmin: -1711894 ymin: -666720.2 xmax: 791612.5 ymax: 7216.145
+## Projected CRS: NAD27 / US National Atlas Equal Area
+##   statefp  statens    affgeoid geoid stusps       name lsad        aland
+## 1      06 01779778 0400000US06    06     CA California   00 403671196038
+## 2      55 01779806 0400000US55    55     WI  Wisconsin   00 140292246684
+##        awater state_name state_abbr jurisdiction_type
+## 1 20294133830 California         CA             state
+## 2 29343721650  Wisconsin         WI             state
+##                     geometry
+## 1 POINT (-1711894 -666720.2)
+## 2  POINT (791612.5 7216.145)</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="tuesday-october-4-2022.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(USA_48.sf, <span class="at">n =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## Simple feature collection with 2 features and 12 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: -2036903 ymin: -1242190 xmax: 1027143 ymax: 269562.7
+## Projected CRS: NAD27 / US National Atlas Equal Area
+##   statefp  statens    affgeoid geoid stusps       name lsad        aland
+## 1      06 01779778 0400000US06    06     CA California   00 403671196038
+## 2      55 01779806 0400000US55    55     WI  Wisconsin   00 140292246684
+##        awater state_name state_abbr jurisdiction_type
+## 1 20294133830 California         CA             state
+## 2 29343721650  Wisconsin         WI             state
+##                         geometry
+## 1 MULTIPOLYGON (((-1719948 -1...
+## 2 MULTIPOLYGON (((1017108 129...</code></pre>
+<p>The land area (<code>aland</code>) makes sense when the geometry is <code>MULTIPOLYGON</code> it is less congruent when the geometry is <code>POINT</code>.</p>
+<p>You map the points using the <code>tm_dots()</code> function after first mapping the state borders.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="tuesday-october-4-2022.html#cb24-1" aria-hidden="true" tabindex="-1"></a>tmap<span class="sc">::</span><span class="fu">tm_shape</span>(<span class="at">shp =</span> USA_48.sf) <span class="sc">+</span></span>
+<span id="cb24-2"><a href="tuesday-october-4-2022.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_borders</span>(<span class="at">col =</span> <span class="st">&quot;gray70&quot;</span>) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="tuesday-october-4-2022.html#cb24-3" aria-hidden="true" tabindex="-1"></a>tmap<span class="sc">::</span><span class="fu">tm_shape</span>(<span class="at">shp =</span> geo_centroid.sf) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="tuesday-october-4-2022.html#cb24-4" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_dots</span>(<span class="at">size =</span> <span class="dv">1</span>,</span>
+<span id="cb24-5"><a href="tuesday-october-4-2022.html#cb24-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">col =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>Buffers are polygons representing the area within a given distance of a geometric feature. Regardless of whether the feature is a point, a line, or a polygon.</p>
+<p>The function <code>sf::st_buffer()</code> computes the buffer and you set the distance with the <code>dist =</code> argument. Here you create a new simple feature data frame with only the state of Florida.</p>
+<p>You then compute a 50 km (50,000 meters) buffer and save the resulting polygon</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="tuesday-october-4-2022.html#cb25-1" aria-hidden="true" tabindex="-1"></a>FL.sf <span class="ot">&lt;-</span> USA_48.sf <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="tuesday-october-4-2022.html#cb25-2" aria-hidden="true" tabindex="-1"></a>   dplyr<span class="sc">::</span><span class="fu">filter</span>(state_abbr <span class="sc">==</span> <span class="st">&quot;FL&quot;</span>)</span>
+<span id="cb25-3"><a href="tuesday-october-4-2022.html#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="tuesday-october-4-2022.html#cb25-4" aria-hidden="true" tabindex="-1"></a>FL_buffer.sf <span class="ot">&lt;-</span> FL.sf <span class="sc">|&gt;</span></span>
+<span id="cb25-5"><a href="tuesday-october-4-2022.html#cb25-5" aria-hidden="true" tabindex="-1"></a>   sf<span class="sc">::</span><span class="fu">st_buffer</span>(<span class="at">dist =</span> <span class="dv">50000</span>)</span></code></pre></div>
+<p>Create a map containing the state border, the 50 km buffer, and the centroid. Include a compass arrow and a scale bar.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="tuesday-october-4-2022.html#cb26-1" aria-hidden="true" tabindex="-1"></a>tmap<span class="sc">::</span><span class="fu">tm_shape</span>(FL_buffer.sf) <span class="sc">+</span></span>
+<span id="cb26-2"><a href="tuesday-october-4-2022.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_borders</span>(<span class="at">col =</span> <span class="st">&quot;gray70&quot;</span>) <span class="sc">+</span></span>
+<span id="cb26-3"><a href="tuesday-october-4-2022.html#cb26-3" aria-hidden="true" tabindex="-1"></a>tmap<span class="sc">::</span><span class="fu">tm_shape</span>(FL.sf) <span class="sc">+</span></span>
+<span id="cb26-4"><a href="tuesday-october-4-2022.html#cb26-4" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_borders</span>() <span class="sc">+</span></span>
+<span id="cb26-5"><a href="tuesday-october-4-2022.html#cb26-5" aria-hidden="true" tabindex="-1"></a>tmap<span class="sc">::</span><span class="fu">tm_shape</span>(geo_centroid.sf) <span class="sc">+</span></span>
+<span id="cb26-6"><a href="tuesday-october-4-2022.html#cb26-6" aria-hidden="true" tabindex="-1"></a>  tmap<span class="sc">::</span><span class="fu">tm_dots</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb26-7"><a href="tuesday-october-4-2022.html#cb26-7" aria-hidden="true" tabindex="-1"></a>tmap<span class="sc">::</span><span class="fu">tm_compass</span>(<span class="at">position =</span> <span class="fu">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb26-8"><a href="tuesday-october-4-2022.html#cb26-8" aria-hidden="true" tabindex="-1"></a>tmap<span class="sc">::</span><span class="fu">tm_scale_bar</span>(<span class="at">text.size =</span> <span class="dv">1</span>, </span>
+<span id="cb26-9"><a href="tuesday-october-4-2022.html#cb26-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">position =</span> <span class="fu">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>The result is a map that could serve as a map of your study area (usually Figure 1 in scientific report).</p>
+</div>
+<div id="making-raster-maps" class="section level2 unnumbered hasAnchor">
+<h2>Making raster maps<a href="tuesday-october-4-2022.html#making-raster-maps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The package {ggmap} retrieves raster map tiles (groups of pixels) from services like Google Maps and plots them using the {ggplot2} grammar.</p>
+<p>Map tiles are rasters as static image files generated by the mapping service. You do not need data files containing information on things like scale, projection, boundaries, etc. because that information is created by the map tile.</p>
+<p>This limits the ability to redraw or change the appearance of the map but it allows for easy data overlays onto the map.</p>
+<p>You get map tiles with the <code>ggmap::get_map()</code> function from the {ggmap} package. You specify the bounding box (or the center and zoom). The bounding box requires the left-bottom and right-top corners of the region specified as longitude and latitude in decimal degrees.</p>
+<p>For instance, to obtain a map of Tallahassee from the stamen mapping service you first set the bounding box (left-bottom corner as -84.41, 30.37 and right-top corner as -84.19, 30.55) then use the <code>ggmap::get_stamenmap()</code> function with a zoom level of 12.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="tuesday-october-4-2022.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggmap)</span>
+<span id="cb27-2"><a href="tuesday-october-4-2022.html#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="tuesday-october-4-2022.html#cb27-3" aria-hidden="true" tabindex="-1"></a>TLH_bb <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">left =</span> <span class="sc">-</span><span class="fl">84.41</span>,</span>
+<span id="cb27-4"><a href="tuesday-october-4-2022.html#cb27-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">bottom =</span> <span class="fl">30.37</span>,</span>
+<span id="cb27-5"><a href="tuesday-october-4-2022.html#cb27-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">right =</span> <span class="sc">-</span><span class="fl">84.19</span>,</span>
+<span id="cb27-6"><a href="tuesday-october-4-2022.html#cb27-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">top =</span> <span class="fl">30.55</span>)</span>
+<span id="cb27-7"><a href="tuesday-october-4-2022.html#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="tuesday-october-4-2022.html#cb27-8" aria-hidden="true" tabindex="-1"></a>TLH_map <span class="ot">&lt;-</span> ggmap<span class="sc">::</span><span class="fu">get_stamenmap</span>(<span class="at">bbox =</span> TLH_bb,</span>
+<span id="cb27-9"><a href="tuesday-october-4-2022.html#cb27-9" aria-hidden="true" tabindex="-1"></a>                                <span class="at">zoom =</span> <span class="dv">12</span>)</span>
+<span id="cb27-10"><a href="tuesday-october-4-2022.html#cb27-10" aria-hidden="true" tabindex="-1"></a>TLH_map</span></code></pre></div>
+<pre><code>## 609x641 terrain map image from Stamen Maps. 
+## See ?ggmap to plot it.</code></pre>
+<p>The saved object (<code>TLH_map</code>) is a raster map specified by the class <code>ggmap</code>.</p>
+<p>To view the map, use <code>ggmap()</code> function.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="tuesday-october-4-2022.html#cb29-1" aria-hidden="true" tabindex="-1"></a>ggmap<span class="sc">::</span><span class="fu">ggmap</span>(TLH_map)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>The <code>zoom =</code> argument in the <code>ggmap::get_stamenmap()</code> function controls the level of detail. The larger the number, the greater the detail.</p>
+<p>Trial and error helps you decide on the appropriate level of detail depending on the data you need to visualize. Use <a href="bboxfinder.com">boxfinder</a> to determine the exact longitude/latitude coordinates for the bounding box you wish to obtain.</p>
+<p>Or you can use the <code>tmaptools::geocode_OSM()</code> function from the {tmaptools} package. You first specify a location then get a geo-coded coordinate.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="tuesday-october-4-2022.html#cb30-1" aria-hidden="true" tabindex="-1"></a>FSU.list <span class="ot">&lt;-</span> tmaptools<span class="sc">::</span><span class="fu">geocode_OSM</span>(<span class="st">&quot;Florida State University&quot;</span>)</span>
+<span id="cb30-2"><a href="tuesday-october-4-2022.html#cb30-2" aria-hidden="true" tabindex="-1"></a>FSU.list</span></code></pre></div>
+<pre><code>## $query
+## [1] &quot;Florida State University&quot;
+## 
+## $coords
+##         x         y 
+## -84.29748  30.44236 
+## 
+## $bbox
+##      xmin      ymin      xmax      ymax 
+## -84.30650  30.43563 -84.28846  30.44907</code></pre>
+<p>The object <code>FSU.list</code> is a list containing three elements <code>query</code>, <code>coords</code> and <code>bbox</code>. You are interested in the <code>bbox</code> element so you save that as vector that you assign <code>FSU_bb</code> and rename the elements to left, bottom, right, and top.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="tuesday-october-4-2022.html#cb32-1" aria-hidden="true" tabindex="-1"></a>FSU_bb <span class="ot">&lt;-</span> FSU.list<span class="sc">$</span>bbox</span>
+<span id="cb32-2"><a href="tuesday-october-4-2022.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(FSU_bb) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>, </span>
+<span id="cb32-3"><a href="tuesday-october-4-2022.html#cb32-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;right&quot;</span>, <span class="st">&quot;top&quot;</span>)</span>
+<span id="cb32-4"><a href="tuesday-october-4-2022.html#cb32-4" aria-hidden="true" tabindex="-1"></a>FSU_bb</span></code></pre></div>
+<pre><code>##      left    bottom     right       top 
+## -84.30650  30.43563 -84.28846  30.44907</code></pre>
+<p>You then get the map tiles corresponding to the bounding box from the stamen map service with a zoom of 16 and create the map.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="tuesday-october-4-2022.html#cb34-1" aria-hidden="true" tabindex="-1"></a>FSU_map <span class="ot">&lt;-</span> ggmap<span class="sc">::</span><span class="fu">get_stamenmap</span>(<span class="at">bbox =</span> FSU_bb, </span>
+<span id="cb34-2"><a href="tuesday-october-4-2022.html#cb34-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">zoom =</span> <span class="dv">16</span>)</span>
+<span id="cb34-3"><a href="tuesday-october-4-2022.html#cb34-3" aria-hidden="true" tabindex="-1"></a>ggmap<span class="sc">::</span><span class="fu">ggmap</span>(FSU_map)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>Add data to the raster map. Let’s consider a map of Chicago.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="tuesday-october-4-2022.html#cb35-1" aria-hidden="true" tabindex="-1"></a>CHI_bb <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">left =</span> <span class="sc">-</span><span class="fl">87.936287</span>,</span>
+<span id="cb35-2"><a href="tuesday-october-4-2022.html#cb35-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">bottom =</span> <span class="fl">41.679835</span>,</span>
+<span id="cb35-3"><a href="tuesday-october-4-2022.html#cb35-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">right =</span> <span class="sc">-</span><span class="fl">87.447052</span>,</span>
+<span id="cb35-4"><a href="tuesday-october-4-2022.html#cb35-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">top =</span> <span class="fl">42.000835</span>)</span>
+<span id="cb35-5"><a href="tuesday-october-4-2022.html#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-6"><a href="tuesday-october-4-2022.html#cb35-6" aria-hidden="true" tabindex="-1"></a>CHI_map <span class="ot">&lt;-</span> ggmap<span class="sc">::</span><span class="fu">get_stamenmap</span>(<span class="at">bbox =</span> CHI_bb,</span>
+<span id="cb35-7"><a href="tuesday-october-4-2022.html#cb35-7" aria-hidden="true" tabindex="-1"></a>                                <span class="at">zoom =</span> <span class="dv">11</span>,</span>
+<span id="cb35-8"><a href="tuesday-october-4-2022.html#cb35-8" aria-hidden="true" tabindex="-1"></a>                                <span class="at">messaging =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb35-9"><a href="tuesday-october-4-2022.html#cb35-9" aria-hidden="true" tabindex="-1"></a>ggmap<span class="sc">::</span><span class="fu">ggmap</span>(CHI_map)</span></code></pre></div>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>The city of Chicago has a data portal publishing a large volume of public records. Here you look at crime data from 2017. The file <code>car_thefts.csv</code> is a spreadsheet obtained from that portal with a list of car thefts.</p>
+<p>You read these data using the <code>readr::read_csv()</code> function.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="tuesday-october-4-2022.html#cb36-1" aria-hidden="true" tabindex="-1"></a>carTheft <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;car_thefts.csv&quot;</span>))</span></code></pre></div>
+<pre><code>## New names:
+## Rows: 11416 Columns: 23
+## ── Column specification
+## ──────────────────────────────────────────────────────── Delimiter: &quot;,&quot; chr
+## (10): Case.Number, Date, Block, IUCR, Primary.Type, Description, Locatio... dbl
+## (11): ...1, ID, Beat, District, Ward, Community.Area, X.Coordinate, Y.Co... lgl
+## (2): Arrest, Domestic
+## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
+## Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## • `` -&gt; `...1`</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="tuesday-october-4-2022.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(carTheft)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 23
+##    ...1      ID Case.…¹ Date  Block IUCR  Prima…² Descr…³ Locat…⁴ Arrest Domes…⁵
+##   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;lgl&gt;  &lt;lgl&gt;  
+## 1     1  1.08e7 JA1075… 01/0… 004X… 0910  MOTOR … AUTOMO… STREET  FALSE  FALSE  
+## 2     2  1.08e7 JA1087… 01/0… 032X… 0930  MOTOR … THEFT/… STREET  FALSE  FALSE  
+## 3     3  1.08e7 JA1106… 01/0… 011X… 0910  MOTOR … AUTOMO… STREET  FALSE  FALSE  
+## 4     4  1.08e7 JA1099… 01/0… 061X… 0910  MOTOR … AUTOMO… SIDEWA… FALSE  FALSE  
+## 5     5  1.08e7 JA1109… 01/1… 049X… 0910  MOTOR … AUTOMO… STREET  FALSE  FALSE  
+## 6     6  1.08e7 JA1110… 01/1… 037X… 0910  MOTOR … AUTOMO… RESIDE… FALSE  FALSE  
+## # … with 12 more variables: Beat &lt;dbl&gt;, District &lt;dbl&gt;, Ward &lt;dbl&gt;,
+## #   Community.Area &lt;dbl&gt;, FBI.Code &lt;chr&gt;, X.Coordinate &lt;dbl&gt;,
+## #   Y.Coordinate &lt;dbl&gt;, Year &lt;dbl&gt;, Updated.On &lt;chr&gt;, Latitude &lt;dbl&gt;,
+## #   Longitude &lt;dbl&gt;, Location &lt;chr&gt;, and abbreviated variable names
+## #   ¹​Case.Number, ²​Primary.Type, ³​Description, ⁴​Location.Description, ⁵​Domestic
+## # ℹ Use `colnames()` to see all variable names</code></pre>
+<p>Each row of the data frame is a single report of a vehicle theft. Location is encoded in several ways, though most importantly for your purpose the longitude and latitude of the theft is encoded in the <code>Longitude</code> and <code>Latitude</code> columns, respectively.</p>
+<p>You use the <code>geom_point()</code> function to map the location of every theft. Because <code>ggmap()</code> uses the map tiles (here, defined by <code>CHI_map</code>) as the first layer, you specify data and mapping inside of <code>geom_point()</code>.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="tuesday-october-4-2022.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb40-2"><a href="tuesday-october-4-2022.html#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="tuesday-october-4-2022.html#cb40-3" aria-hidden="true" tabindex="-1"></a>ggmap<span class="sc">::</span><span class="fu">ggmap</span>(CHI_map) <span class="sc">+</span></span>
+<span id="cb40-4"><a href="tuesday-october-4-2022.html#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> carTheft,</span>
+<span id="cb40-5"><a href="tuesday-october-4-2022.html#cb40-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Longitude,</span>
+<span id="cb40-6"><a href="tuesday-october-4-2022.html#cb40-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">y =</span> Latitude),</span>
+<span id="cb40-7"><a href="tuesday-october-4-2022.html#cb40-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> .<span class="dv">25</span>,</span>
+<span id="cb40-8"><a href="tuesday-october-4-2022.html#cb40-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> .<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 425 rows containing missing values (geom_point).</code></pre>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>Note the function <code>ggmap::ggmap()</code> replaces the function <code>ggplot()</code>.</p>
+</div>
+<div id="spatial-density-maps" class="section level2 unnumbered hasAnchor">
+<h2>Spatial density maps<a href="tuesday-october-4-2022.html#spatial-density-maps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Instead of relying on <code>geom_point()</code> and plotting the raw data, another approach is to create a heat map. This is done with a density estimator. Since the map has two dimensions and the density estimator requires a ‘kernel’ function the procedure is called a 2-D kernel density estimation (KDE).</p>
+<p>KDE will take all the data (i.e. reported vehicle thefts) and convert it into a smoothed plot showing geographic concentrations of crime. KDE is a type of data smoothing where inferences about the population are made based on a finite data sample.</p>
+<p>The core function in {ggplot2} to generate this kind of plot is <code>geom_density_2d()</code>.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="tuesday-october-4-2022.html#cb42-1" aria-hidden="true" tabindex="-1"></a>ggmap<span class="sc">::</span><span class="fu">ggmap</span>(CHI_map) <span class="sc">+</span></span>
+<span id="cb42-2"><a href="tuesday-october-4-2022.html#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_2d</span>(<span class="at">data =</span> carTheft,</span>
+<span id="cb42-3"><a href="tuesday-october-4-2022.html#cb42-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Longitude,</span>
+<span id="cb42-4"><a href="tuesday-october-4-2022.html#cb42-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">y =</span> Latitude))</span></code></pre></div>
+<pre><code>## Warning: Removed 425 rows containing non-finite values (stat_density2d).</code></pre>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p>By default, <code>geom_density_2d()</code> draws a contour plot with lines of constant value. That is, each line represents approximately the same frequency of crime along that specific line. Contour plots are often used in maps (known as topographic maps) to denote elevation.</p>
+<p>Rather than drawing lines you fill in the graph by using the fill aesthetic to draw bands of crime density. To do that, you use the related function <code>stat_density_2d()</code>.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="tuesday-october-4-2022.html#cb44-1" aria-hidden="true" tabindex="-1"></a>ggmap<span class="sc">::</span><span class="fu">ggmap</span>(CHI_map) <span class="sc">+</span></span>
+<span id="cb44-2"><a href="tuesday-october-4-2022.html#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density_2d</span>(<span class="at">data =</span> carTheft,</span>
+<span id="cb44-3"><a href="tuesday-october-4-2022.html#cb44-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Longitude,</span>
+<span id="cb44-4"><a href="tuesday-october-4-2022.html#cb44-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">y =</span> Latitude,</span>
+<span id="cb44-5"><a href="tuesday-october-4-2022.html#cb44-5" aria-hidden="true" tabindex="-1"></a>                                <span class="at">fill =</span> <span class="fu">stat</span>(level)),</span>
+<span id="cb44-6"><a href="tuesday-october-4-2022.html#cb44-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">geom =</span> <span class="st">&quot;polygon&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 425 rows containing non-finite values (stat_density2d).</code></pre>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p>Note the two new arguments:</p>
+<ul>
+<li><code>geom = "polygon"</code> - change the geometric object to be drawn from a <code>geom_density_2d()</code> geom to a polygon geom</li>
+<li><code>fill = stat(level)</code> - the value for the fill aesthetic is the level calculated within <code>stat_density_2d()</code>, which you access using the <code>stat()</code> notation.</li>
+</ul>
+<p>This is an improvement, but you can adjust some settings to make the graph visually more useful. Specifically,</p>
+<ul>
+<li>Increase the number of bins, or unique bands of color allowed on the graph</li>
+<li>Make the colors semi-transparent using alpha so you can still view the underlying map</li>
+<li>Change the color palette to better distinguish between high and low crime areas.</li>
+</ul>
+<p>Here you use <code>RColorBrewer::brewer.pal()</code> from the {RColorBrewer} package to create a custom color palette using reds and yellows.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="tuesday-october-4-2022.html#cb46-1" aria-hidden="true" tabindex="-1"></a>ggmap<span class="sc">::</span><span class="fu">ggmap</span>(CHI_map) <span class="sc">+</span></span>
+<span id="cb46-2"><a href="tuesday-october-4-2022.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density_2d</span>(<span class="at">data =</span> carTheft,</span>
+<span id="cb46-3"><a href="tuesday-october-4-2022.html#cb46-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Longitude,</span>
+<span id="cb46-4"><a href="tuesday-october-4-2022.html#cb46-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">y =</span> Latitude,</span>
+<span id="cb46-5"><a href="tuesday-october-4-2022.html#cb46-5" aria-hidden="true" tabindex="-1"></a>                                <span class="at">fill =</span> <span class="fu">stat</span>(level)),</span>
+<span id="cb46-6"><a href="tuesday-october-4-2022.html#cb46-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">alpha =</span> .<span class="dv">2</span>,</span>
+<span id="cb46-7"><a href="tuesday-october-4-2022.html#cb46-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">bins =</span> <span class="dv">25</span>,</span>
+<span id="cb46-8"><a href="tuesday-october-4-2022.html#cb46-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">geom =</span> <span class="st">&quot;polygon&quot;</span>) <span class="sc">+</span></span>
+<span id="cb46-9"><a href="tuesday-october-4-2022.html#cb46-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors =</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">7</span>, <span class="st">&quot;YlOrRd&quot;</span>))</span></code></pre></div>
+<pre><code>## Warning: Removed 425 rows containing non-finite values (stat_density2d).</code></pre>
+<p><img src="QG-2022_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p>The downtown region has the highest rate of vehicle theft. Not surprising given its population density during the workday. There are also clusters of vehicle thefts on the south and west sides of the city.</p>
+<p>More information: Fundamentals of data visualization <a href="https://clauswilke.com/dataviz/" class="uri">https://clauswilke.com/dataviz/</a> More information: Making maps with {rdeck} <a href="https://www.mrworthington.com/articles/rstats/mapping-in-r/" class="uri">https://www.mrworthington.com/articles/rstats/mapping-in-r/</a></p>
+</div>
+<div id="assignment-3" class="section level2 unnumbered hasAnchor">
+<h2>Assignment #3<a href="tuesday-october-4-2022.html#assignment-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Due: October 6 at 6 p.m.</p>
+<p>Total Points: 40</p>
+<p><strong>1</strong> The {dplyr} package contains a data frame called <code>storms</code> containing hourly records of Atlantic tropical cyclones over the period 1975-2020.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Assign this data frame to a new data frame object called <code>TCs.df</code> (for tropical cyclones). Then print the column names and dimensions of this data frame. (5)</p></li>
+<li><p>Use functions from the {ggplot2} package to create a histogram of the wind speed (<code>wind</code>). Use 11 bins. Wind speeds are in mph. Label horizontal axis accordingly (5)</p></li>
+<li><p>Create a scatter plot showing the relationship between wind speed (<code>wind</code>) and minimum sea-level air pressure (<code>pressure</code>) in hPa (hecto-pascals). Put the pressure variable on the horizontal axis. Use the <code>geom_smooth()</code> function to add a local regression smooth line through the set of points. Label the axes accordingly. (10)</p></li>
+</ol>
+<p><strong>2</strong> Create a boundary map with the <code>geom_sf()</code> function that displays the borders of the state of Illinois. Use the state boundary file function <code>us_states()</code> from the {USAboundaries} package with argument <code>states =</code> to select the state. Use a blue border color and a sky blue fill color. Make sure you include the line <code>library(sf)</code> to start the code chunk. (10)</p>
+<p><strong>3</strong> Create a thematic map with functions from the {tmap} package that shows life expectancy (<code>life_exp</code>) by country using the values in the <code>World</code> simple feature data frame. Make <code>World</code> available to your session by typing <code>data("World")</code> after the line <code>library(tmap)</code>. (5)</p>
+<p><strong>4</strong> Create the same thematic map of life expectancy using functions from the {ggplot2} package. (5)</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="thursday-september-22-2022.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="thursday-september-29-2022.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

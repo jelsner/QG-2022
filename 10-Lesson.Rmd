@@ -12,6 +12,7 @@ Today
 -   Geo-computation on simple feature data frames
 -   Making raster maps
 -   Spatial density maps
+-   Assignment #3 (Due: Thursday)
 
 ## Extended mapping example: tornado frequency {.unnumbered}
 
@@ -357,7 +358,24 @@ ggmap::ggmap(CHI_map) +
 
 The downtown region has the highest rate of vehicle theft. Not surprising given its population density during the workday. There are also clusters of vehicle thefts on the south and west sides of the city.
 
-More information: Fundamentals of data visualization <https://clauswilke.com/dataviz/>
-More information: Making maps with {rdeck} <https://www.mrworthington.com/articles/rstats/mapping-in-r/>
+More information: Fundamentals of data visualization <https://clauswilke.com/dataviz/> More information: Making maps with {rdeck} <https://www.mrworthington.com/articles/rstats/mapping-in-r/>
 
 ## Assignment #3 {.unnumbered}
+
+Due: October 6 at 6 p.m.
+
+Total Points: 40
+
+**1** The {dplyr} package contains a data frame called `storms` containing hourly records of Atlantic tropical cyclones over the period 1975-2020.
+
+a.  Assign this data frame to a new data frame object called `TCs.df` (for tropical cyclones). Then print the column names and dimensions of this data frame. (5)
+
+b.  Use functions from the {ggplot2} package to create a histogram of the wind speed (`wind`). Use 11 bins. Wind speeds are in mph. Label horizontal axis accordingly (5)
+
+c.  Create a scatter plot showing the relationship between wind speed (`wind`) and minimum sea-level air pressure (`pressure`) in hPa (hecto-pascals). Put the pressure variable on the horizontal axis. Use the `geom_smooth()` function to add a local regression smooth line through the set of points. Label the axes accordingly. (10)
+
+**2** Create a boundary map with the `geom_sf()` function that displays the borders of the state of Illinois. Use the state boundary file function `us_states()` from the {USAboundaries} package with argument `states =` to select the state. Use a blue border color and a sky blue fill color. Make sure you include the line `library(sf)` to start the code chunk. (10)
+
+**3** Create a thematic map with functions from the {tmap} package that shows life expectancy (`life_exp`) by country using the values in the `World` simple feature data frame. Make `World` available to your session by typing `data("World")` after the line `library(tmap)`. (5)
+
+**4** Create the same thematic map of life expectancy using functions from the {ggplot2} package. (5)
