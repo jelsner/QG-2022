@@ -1,567 +1,417 @@
-# Tuesday, October 11, 2022 {-}
+# Thursday, October 13, 2022 {-}
 
 Today
 
-- More examples of Bayesian data analyses
+Linear regression
 
-## More examples of Bayesian data analyses {-}
+Linear regression provides another way to implement a $t$ test on the difference in means, but it can be used for a wide range of inference problems. Here you learn how to fit a regression model, make predictions, interpret the output, and quantify the uncertainty about the model (coefficients) and about predictions made from the model.
 
-Example: How many fish are in the lake?
+- A $t$ test by another name
+- Motivation for the regression model
+- Making prediction with the regression model
+- Uncertainty about the regression model coefficients
+- Bootstrapping the uncertainty
 
-A common problem in wildlife management is the estimation of a species abundance. For example: Start by catching and marking 20 fish. Then after some time catch another 20 fish and count how many of them have a mark. Suppose that out of the 20 fish caught 5 are marked. How many fish are in the lake?
+## Linear regression: A t test by another name {-}
 
-Parameter = Number of fish in the lake (the unknown that you want to estimate)
-Generative Model: First mark 20 fish and release them back into the lake, then recapture 20 fish and count how many are marked.
+Recall that a $t$ test quantifies the evidence about whether population means from two groups are statistically different. Regression extends this test to an arbitrary number of groups.
 
-Data: Five of the 20 fish were marked.
-
-Here is what you will do to answer the question how many fish are in the lake.
-
-1. Draw a random sample from the prior distribution on the parameter.
-2. Plug in each sampled value (draw) into the generative model to get a vector of 'fake' data. For example: If the number of fish in the lake is 80 you might get four marked fish on our recapture sample. If the number of fish is only 30, you might get 13 marked fish on our sample, etc. That makes sense, right?
-3. Keep only those parameter values that generated the data that was actually observed (5 out of the 20 sampled).
-
-Let's see this in action with code. Draw a large (`M = 100000`) sample from the prior distribution (discrete uniform) on the parameter representing the number of fish in the lake (`priorNF`). Here you use the `sample()` function on a vector of counts between 21 and 250.
+Consider again the `mtcars` data frame.
 ```{r}
-M <- 100000
-priorNF <- sample(21:250, size = M, replace = TRUE)
-head(priorNF, n = 20)
+head(mtcars)
 ```
 
-The result is a vector of length `M` containing counts with values between 21 and 250. What is the shape on the distribution of values?
+You test the null hypothesis that there is no difference in average miles per gallon (`mpg` variable) between cars with and without automatic transmission (`am` variable). If you assume the variance in the gas mileage is the same for both groups (recall the box plots will look similar) then you implement the test as follows. 
 ```{r}
-head(table(priorNF))
-tail(table(priorNF))
+t.test(mpg ~ am, 
+       data = mtcars, 
+       var.equal = TRUE)
 ```
 
-Plot a histogram of the parameter values.
+The $t$ value, computed as the difference in means divided by the standard error of the difference, is -4.11. 
+
+With 30 degrees of freedom (sample size = 32 and you loose one degree of freedom for each mean), the $p$-value is less than .01 so you reject the null hypothesis of no difference in average miles per gallon between the two types of transmission. 
+
+The average miles per gallon over the sample of cars is 17.1 and 24.4 mpg for automatic and manual transmissions, respectively.
+
+The test can be done with linear regression. Linear regression is a statistical model for data that uses a straight line to describe the relationship between variables.
+
+The function for linear regression is `lm()`. The syntax is the same as the `t.test()` function except the assumption of equal variance is the default. Here you first assign the output of the `lm()` function to an object (call the object `model`). Then to see the output use the `summary()` method.
 ```{r}
+model <- lm(mpg ~ am, 
+            data = mtcars)
+summary(model)
+```
+
+You see the $p$-value from the linear regression is identical to the $p$-value from the $t$ test. You state, as before, that you reject the null hypothesis of no difference in average miles per gallon between the two types of transmission.
+
+In the table of coefficients you see the value of `7.245` next to `am` in the column labeled `Estimate`. This is the difference in average mpg grouped by transmission (`mean in group 1` minus `mean in group 0`).
+
+Linear regression provides a way to generalize comparisons across any number of groups (not just two as is the case with a $t$ test).
+
+## Motivation for the regression model {-}
+
+Suppose you have the following values for variables `y` and `x`. Let `y` be the 'response' variable and `x` be the 'explanatory' variable.
+```{r}
+y <- c(2.9, -2.1, -0.5, 2.9, 4.2)
+x <- 1:5
+```
+
+You start with a scatter plot and assign the graph to an object called `p`.
+```{r}
+df <- data.frame(x, y)
+
 library(ggplot2)
-
-ggplot(data = as.data.frame(priorNF), 
-       mapping = aes(priorNF)) +
-  geom_histogram(binwidth = 10, boundary = 20, 
-                 color = "white", fill = "salmon") +
-  xlab("Number of Fish in the Lake") +
-  ggtitle(label = "Prior distribution on the number of fish in the lake") +
-  theme_minimal()
+p <- ggplot(data = df, 
+            mapping = aes(x = x, y = y)) +
+       geom_point(size = 2)
+p
 ```
 
-Uniform distribution. This is how you should start if you have no knowledge about how many fish are in the lake. You are maximally non-committal to any particular count.
+Next you add a horizontal line to the graph at the mean of `y`. The mean of `y` is given by the `mean()` function. The `scale_y_continuous()` function is used to set the range on y-axis scale.
+```{r, fig.keep='none'}
+p <- p + geom_hline(yintercept = mean(y)) +
+           scale_y_continuous(limits = c(-6, 6))
+p
+```
 
-Next you define the generative model. Here you create a function that takes a value for the unknown parameter (number of fish in the lake) as input and returns a data value. The data value is the number of tagged fish on recapture.
+The mean, indicated by the horizontal line, is a model for these data. Some points are above the line and other points are below it. No individual value of `y` fits the model precisely (no points are exactly on the line), but the model represents the 'best' guess at where the average from a set of new values will be.
 
-Suppose for example that the number of fish in the lake is in fact 63. Then you set up a vector of length 63 where 20 are labeled as marked and 63 - 20 = 43 are labeled as not marked.
+The closer the points are to the line, the better the data fit the model. Closeness is defined as the distance along the y axis (vertical) between the point and the line. 
+
+Points above the line indicate values that are larger than the mean, so `y - mean(y)` is positive for these values. Points below the line indicate values that are smaller than the mean, so `y - mean(y)` is negative for these values.
+
+You include these distances on the graph using the `geom_segment()` layer. Aesthetics for this layer include the begin and end values for the x and y variables.
 ```{r}
-fish <- rep(0:1, c(63 - 20, 20))
-fish
+p <- p + geom_segment(mapping = aes(y = mean(y), yend = y, 
+                                    x = x, xend = x))
+p
 ```
 
-Then you take a sample of size 20 without replacement (this is equivalent to catching 20 fish in a lake with 63 fish of which twenty of them are marked) from this vector and add the sampled values. This value represents the number of fish caught that were marked.
+The individual distances are called "errors." Statisticians call them "residuals." _Key idea_: A residual is always the observed value minus the modeled value.
+
+The sum of the five residuals is zero. 
 ```{r}
-sum(sample(fish, size = 20))
+sum( y - mean(y) )
 ```
 
-Sample and sum again.
-
-Let's save 1000 of these and then make a histogram. The `for(){}` function is used to create a loop over this process of sampling and summing. Here it says to repeat the sample and sum 1000 times. `j` is used as a 'dummy' indexing the set of integers between 1 and 1000. Each time you get a sum `nM` you include it as an element in the vector `nMarked`.
+If you sum the five residuals after squaring each of them you get a measure of how well the model fits the data. The smaller the sum, the better the fit. 
 ```{r}
-nMarked <- numeric()
-for(j in 1:1000){
-  nM <- sum(sample(fish, 20))
-  nMarked <- c(nMarked, nM)
-}
-
-ggplot(data = as.data.frame(nMarked), 
-       mapping = aes(nMarked)) +
-  geom_histogram(breaks = seq(-.5, 12.5, 1),
-    color = "white", fill = "salmon") +
-    xlab("Number of Recaptured Fish") +
-  ggtitle(label = "Conditional likelihood on the number of recaptured fish") +
-  theme_minimal()
+sum( (y - mean(y))^2 )
 ```
 
-This tells us that _IF_ the number of fish in the lake is 63, the _most likely_ number of marked recaptures would be either 6 or 7.
+This sum is called the _residual sum of squares_ (RSS) or the _mean squared error_. An RSS equal to 0 indicates that all points fall exactly on the line.
 
-But what if the number of fish in the lake is 64 or 74, or any other number? That is exactly what you want to estimate. So you create a function from your sampling code. 
+You include the RSS value as a label on the plot using the `geom_label()` function.
 ```{r}
-pickFish <- function(priorNF){
-  fish <- rep(0:1, c(priorNF - 20, 20))
-  sum(sample(fish, 20))
-  }
+RSS <- round(sum((y - mean(y))^2), 1)
+lab <- paste("RSS = ", RSS)
+lab
+p + geom_label(x = 4, y = -2, label = lab)
 ```
 
-The `function()` function takes as it's single input the prior guess at the number of fish in the lake. The two lines of code between the left `{` and the right `}` samples and sums. The only thing returned by the function is the number of marked fish on recapture. The function is assigned to the object you call `pickFish()`. 
+Notice the pattern. With the exception of the first, the residuals go from large negative with the 2nd value to large positive with the 5th value. 
 
-To apply the function include a guess at the number of fish in the lake.
+This pattern suggests that perhaps you can find a line through the data that has a smaller RSS. A line that is not horizontal but slopes upward. 
+
+Let's draw another graph.
+```{r, fig.keep='none'}
+p1 <- ggplot(data = data.frame(x, y), 
+             mapping = aes(x, y)) +
+        geom_point(size = 2) +
+        scale_y_continuous(limits = c(-6, 6)) 
+p1
+```
+
+Next add a sloped line using
+```{r, fig.keep='none'}
+p1 <- p1 + geom_smooth(method = lm, se = FALSE, col = "blue")
+p1
+```
+
+This is the regression line. You again plot the distance from a particular value to this new line (each distance is called a residual).
+```{r, fig.keep='none'}
+p1 <- p1 + geom_segment(aes(y = predict(lm(y ~ x)), yend = y, 
+                            x = x, xend = x))
+p1
+```
+
+The RSS for the regression model is
 ```{r}
-pickFish(104)
-pickFish(priorNF[10])
+lrm <- lm(y ~ x)
+epsilon <- residuals(lrm)
+
+RSS <- sum(epsilon^2)
+RSS
 ```
 
-Now you can simulate the data. The data are the number of marked fish on the recapture given a parameter value. The parameter values come from the prior distribution. You start by 'initializing' the object `nMarked`. 
+Include this value on the plot.
 ```{r}
-nMarked <- NULL
-for(i in 1:M) {
-  nMarked[i] <- pickFish(priorNF[i])
-}
-head(nMarked)
+lab <- paste("RSS = ", RSS)
+p1 + geom_label(x = 4, y = -2, label = lab)
 ```
 
-The `for` loop uses the `pickFish()` function for each count in the prior and there are `M` of them. The output of applying the function is saved, element by element, in the vector `nMarked`.
+Since the RSS from the sloped line is smaller than the RSS from the flat line you say that the regression line (conditional mean) provides a more precise model. Rule: When choosing a regression model from a set of competing models you choose the model that minimizes the RSS.
 
-Finally, you _keep_ only those parameter values that resulted in the data you actually observed (5 marked fish re-caught) and plot those as a histogram.
-```{r}
-postNF <- priorNF[nMarked == 5]
-ggplot(data = as.data.frame(postNF), 
-       mapping = aes(postNF)) +
-  geom_histogram(binwidth = 10, boundary = 20, 
-                 color = "white", fill = "salmon") +
-  xlab("Number of Fish in the Lake") +
-  ggtitle(label = "Posterior distribution on the number of fish in the lake") +
-  theme_minimal()
+For each value of `x` you have a corresponding value for `y` and a predicted value for `y`.
+```{r, fig.keep='none'}
+p1 + geom_point(mapping = aes(x, predict(lm(y ~ x))), 
+                pch = 15, size = 2)
 ```
 
-The result is a distribution on the unknown parameter (number of fish in the lake). It is called the posterior distribution. It shows us how many times the particular value of number of fish in the lake results in 5 out of 20 marked on recapture.
+You refer to the predicted value at $x_i$ as $\hat y_i$ and refer to the estimated regression line as the prediction line. 
 
-It tells us that it is unlikely there are more than 200 or less than 50 fish in the lake.
+The difference between the actual value $y_i$ and this predicted value $\hat y_i$ is the residual, $\varepsilon_i$. The residual is the vertical distance between the squares to the circles.
 
-For insight, put the prior and posterior values into a data frame.
-```{r}
-df <- data.frame(Distribution = rep(c("(A) Prior Distribution", 
-                                      "(B) Posterior Distribution"), 
-                                    c(M, length(postNF))), 
-                 Values = c(priorNF, postNF))
-head(df)
-tail(df)
-```
+The method of least squares determines the line such that the RSS is as small as possible.
 
-Then plot the prior and posterior distributions side by side.
-```{r}
-ggplot(data = df, 
-       mapping = aes(x = Values)) +
-  geom_histogram(aes(y = (..density..) * 20), 
-                 binwidth = 10, color = "white", 
-                 fill = "salmon") +
-  scale_x_continuous(limits = c(20, 250)) +
-  facet_wrap(~ Distribution, ncol = 1) +
-  xlab("Number of Fish in the Lake") +
-  ylab("Probability") +
-  ggtitle(label = "How many fish are there in the lake?") +
-  theme_minimal()
-```
+Recall that a line is uniquely determined by its slope and the value at which it intersects the vertical axis at x = 0 (y-intercept).
 
-As an answer to the question how many fish are in the lake, you start by thinking that there is no preference for any number between 20 and 250. That uniform uncertainty is the prior. It is quantified as a uniform distribution.
-
-Then, after collecting data and combining the information with the prior, the uncertainty is reduced. The reduction in uncertainty is seen in the posterior distribution.
-
-The most likely value for the number of fish in the lake is somewhere between 70 and 120 as seen by location of the tallest bar in the histogram. There is a 50% chance that the number of fish in the lake is between 78 and 132. This is obtained by using the `quantile()` function on the posterior values stored in `postNF`.
-```{r}
-quantile(postNF, probs = c(.25, .75))
-```
-
-If you want to be 95% certain of the correct answer to the question then you increase the interval to 
-```{r}
-quantile(postNF, probs = c(.025, .975))
-```
-
-If you need to make a single best guess you take the median of the posterior.
-```{r}
-median(postNF)
-```
-
-Let's look at the bars centered on the value of 100 fish. You start with the prior. The probability that there are 100 fish (more precisely between 90 & 110 fish) in the lake before you mark and recapture is .09 (9%). You write this as
-
-P(100 fish) = 9%  
-
-After observing 5 marked fish in 20 on the recapture the probability increases to 20%. You write this as
-
-P(100 fish | 5 marked recaptured) = 20%
-
-Combining the prior with data results in the posterior. P($\theta$ | D) $\propto$ P($\theta$) $\times$ P(D | $\theta$): Bayes Theorem.
-
-In this example you used a capture-recapture model with one parameter. But the general method works on any generative model and with any number of parameters. 
-
-The specific computational method (approximate Bayes calculation: ABC) you used only works in rare cases.
-
-Why use Bayesian data analysis?
-
-You can build more flexible models. You can use models to answer specific questions in a natural way. For example, what is the probability that the number of fish in the lake exceeds 200?
-```{r}
-sum(postNF > 200)/length(postNF) * 100
-```
-
-Less the 5% chance. Note: There is no reference null hypothesis or $p$-value.
-
-Suppose you get some additional data. Let's say you catch another sample of fish from the lake and find that 6 are marked. You can use your posterior distribution as the new prior distribution.
-```{r}
-nMarked <- NULL
-for(i in 1:length(postNF)) {
-  nMarked[i] <- pickFish(postNF[i])
-}
-
-post2NF <- postNF[nMarked == 6]
-```
-
-Again put the prior and posterior in a single data frame and plot.
-```{r}
-df <- data.frame(Distribution = rep(c("(A) Prior Distribution", "(B) Posterior Distribution"), 
-                                   c(length(postNF), length(post2NF))), 
-                 Values = c(postNF, post2NF))
-ggplot(data = df, 
-       mapping = aes(x = Values)) +
-  geom_histogram(aes(y = (..density..) * 20), 
-                 binwidth = 10, color = "white", 
-                 fill = "salmon") +
-  scale_x_continuous(limits = c(20, 250)) +
-  facet_wrap(~ Distribution, ncol = 1) +
-  xlab("Number of Fish in the Lake") +
-  ylab("Probability") +
-  ggtitle(label = "How many fish are there in the lake?") +
-  theme_minimal()
-```
-
-The new data pushes the posterior median toward a lower count relative to the posterior median from the original model. It also considerably reduces the uncertainty. Given this model, the probability that there are more than 200 fish in the lake is about .1%, down from 5%.
-```{r}
-median(post2NF)
-sum(post2NF > 200)/length(post2NF) * 100
-```
-
-Example: Percentage of survey signups
-
-Let's consider another example. You are studying attitudes toward race in America since the election of Trump and you want to determine the likely response rate before you send out a large survey on attitudes. I use the pronoun 'you' because I really want you to imagine yourself in this situation.
-
-Your adviser suggests that you will get the best response rate using an email listserv (your advisor is obviously older than you). So you ask 16 people on the listserv and get 6 positive responses (6 are willing to take your survey): 6/16 = 38%
-
-What is a good guess for the positive response rate when you start sending out the survey to everyone on the listserv? How uncertain is this guess? Perhaps 38% is good guess, but the uncertainty is large.
-
-Recall: A Bayesian data analysis requires three things: 1) Data, 2) Generative Model, and 3) Prior: information you have before examining the data.
-
-A generative model for people agreeing to take your survey
-
-A. Assume there is single underlying rate at which each person agrees to take your survey. Say 55%.
-B. "Ask" a number of people, where the chance of each person agreeing to take the survey is 55%.
-
-"Ask" is in quotes because you are not going to actual ask. Rather you will use a random number function where the probability of getting a 'yes' is 55% and the probability of getting 'no' is 45%.
-```{r}
-set.seed(3045)
-sample(c("yes", "no"), 
-       size = 16,
-       prob = c(.55, .45),
-       replace = TRUE)
-```
-
-C. Count how many people agreed to be surveyed. 
-
-In this case it is 9/16.
-
-This is your generative model. A model where you can plug in the rate (parameter of interest) and generate data. Parameter values (e.g., 55%) --> Ask 16 people --> Data (positive response rate).
-
-The problem is these simulated data are not really what you want. In fact you want just the opposite. You have data. You know that when you asked 16 actual people 6 of them said 'yes'.
-
-You want to go backwards. You have P(D|$\theta$) but you want P($\theta$|D). From the data you want to figure out what the response rate could be.  Data --> Parameter values (theta?). What are reasonable values for theta that would give you the data you have (6 out 16).
-
-The good news is you're almost there. You just need one more thing; a prior.
-
-Prior for the response rate
-
-What information do you have before seeing the data?
-
-You need to use probability to represent uncertainty in all parts of your model. You have already included uncertainty in the generative model (e.g., through the `sample` function). But you need to include it on the parameter.
-
-Here as before, you represent the uncertainty about the response rate as a uniform distribution between 0 and 1. Prior to seeing any data you assume that the response rate is equally likely to be any value between 0 and 100%.
-
-Generate values from the prior and plot the distribution. Always a good idea to look at the distribution of your prior. Is it reasonable?
-```{r}
-library(ggplot2)
-M <- 100000
-priorRate <- runif(n = M, min = 0, max = 1)
-ggplot(data = as.data.frame(priorRate), 
-       mapping = aes(x = priorRate)) +
-  geom_histogram(binwidth = .1, boundary = 1, 
-                 color = "white", fill = "gray") +
-  xlab("Response Rate") +
-  ggtitle(lab = "Prior distribution on the survey response rate") +
-  theme_minimal()
-```
-
-Define the generative model and simulate the data
-
-You could use the `sample()` function as before and then added up all the `yes` responses but here the `rbinom()` function does that for you. It returns the number of 1's in a sample of `size =` (here 16) when the probability of agreeing equals the `rate`.
-```{r}
-genModel <- function(rate){
-  nYes <- rbinom(1, size = 16, prob = rate)
-  nYes
-}
-
-nYes <- NULL
-for(i in 1:M) {
-  nYes[i] <- genModel(priorRate[i])
-}
-```
-
-Keep only those parameter values that resulted in the data that you actually observed (6 "yes"'s). Check that there are enough samples remaining (at least 1000).
-```{r}
-postRate <- priorRate[nYes == 6]
-length(postRate)
-```
-
-Plot a histogram from the posterior values.
-```{r}
-ggplot(data = as.data.frame(postRate), 
-       mapping = aes(x = postRate)) +
-  geom_histogram(binwidth = .05, boundary = 1, 
-                 color = "white", fill = "gray") +
-  scale_x_continuous(limits = c(0, 1)) +
-  xlab("Response Rate") +
-  ggtitle(lab = "Posterior distribution on the survey response rate") +
-  theme_minimal()
-```
-
-Use sample statistic functions to summarize information about the posterior distribution.
-```{r}
-median(postRate)
-quantile(postRate, probs = c(.25, .75))
-```
-
-A good estimate of the response rate is 39% with there being a 50% (75% - 25%) chance that the response rate will be between 31% and 46%. 
-
-There is slightly more than a 1% chance that you will do better than a 65% positive response rate.
-```{r}
-sum(postRate > .65)/length(postRate) * 100
-```
-
-Plot the prior and posterior distributions together.
-```{r}
-df <- data.frame(Distribution = rep(c("(A) Prior Distribution", 
-                                     "(B) Posterior Distribution"), 
-                                    c(M, length(postRate))), 
-                Rate = c(priorRate, postRate))
-ggplot(data = df, 
-       mapping = aes(x = Rate)) +
-  geom_histogram(aes(y = (..density..) * .1), binwidth = .05, boundary = 1,
-                 color = "white", fill = "gray") +
-  scale_x_continuous(limits = c(0, 1)) +
-  facet_wrap(~ Distribution, ncol = 1) +
-  ylab("Probability") + 
-  xlab("Response Rate") +
-  theme_minimal()
-```
-
-So how did you go from the prior to the posterior? Let's take a response rate of 35% as an example. First a response rate of 35% had to be drawn from the prior and it did it with some probability you denote P(35%). That is, the probability of drawing a response rate of 35% is P(35%).
-
-Now in order to keep this 35% it had to simulate data that matched the data you actually observed. And it did that with some probability that you denote P(6 "yes" | 35%). Probability of 6 positive responses (out of 16) given a response rate of 35%. Recall: the vertical line is read: "given".
-
-By multiplying these two probabilities you get the probability that 35% is the best estimate for the response rate given 6 yes responses, proportionally. That is, 
+Mathematically the slope is determined by
 $$
-P(35\% | 6 ) \propto P(35\%) \times P(6 | 35\%)
+\hat \beta_1 = \frac{\sum (x_i-\bar x)(y_i-\bar y)}{\sum (x_i-\bar x)^2}
 $$
 
-To turn that proportionality into an equality you need to divide by the sum of all parameter value probabilities given the data.
+And the y-intercept by
 $$
-P(35\% | 6 ) = \frac{P(35\%) \times P(6 | 35\%)}{\sum P(\theta\%) \times P(6 | \theta\%)}
+\hat \beta_0 = \bar y - \hat \beta_1 \bar x
 $$
 
-To review: You specified prior information $P(\theta)$, a generative model $P(D|\theta)$, and you calculated probabilities for the different parameter values given the data. In this case there was a single parameter value indicating the response rate.
-
-But the cool thing is this general method works for any generative model and any number of parameter values.
-\[
-P(\theta | D) = \frac{P(\theta) \times P(D|\theta)}{\sum P(\theta) \times P(D|\theta)}
-\]
-Bayes Theorem.
-
-Prediction
-
-Suppose the listserv you used had 100 people. What is the likely number of surveys that will get returned?
-
-1. The answer is not a single number but a distribution over probable number of survey takers. 
-2. As before, the binomial distribution is a good candidate for how many people are willing to take the survey out of the 100 possible.
-3. Don’t 'throw away' uncertainty, for example by using a summary of the posterior distribution. Instead use the full original posterior sample (all the values in the posterior).
-4. The general pattern when calculating 'derivatives' of posterior values is to go through the values one-by-one, and perform a transformation (say, plugging in the value in a binomial distribution), and collect the new values in a vector.
-
-For example the first six values in the vector of posterior values are:
+As a code chunk.
 ```{r}
-postRate[1:6]
+beta1 <- sum((x - mean(x)) * (y - mean(y)))/sum((x - mean(x))^2)
+beta1
+beta0 <- mean(y) - beta1 * mean(x)
+beta0
 ```
 
-You can multiply any of these by 100 (and round) to get a count. But what value do you choose? Also, given a rate the count is a random value.
+The `beta1` ($\beta_1$) and `beta0` ($\beta_0$) are called regression model coefficients. $\beta_1$ is the slope coefficient and $\beta_0$ is the y-intercept coefficient.
+
+The regression line goes through the point defined by the average value of `x` and the average value of `y`.
+
+You could use the above code chunk to determine the regression coefficients but you will always use the `lm()` function.  
+
+The notation is `lm(y ~ x)`. The `~` (tilde) in this notation is read "is modeled by" or "is conditional on". So the model formula `y ~ x` is read "y is modeled by x". If you use `lm(y ~ x)` then you say "y is modeled by x" in a linear way.
 ```{r}
-nSurveysX <- round(100 * postRate, 0)
+lm(y ~ x)
 ```
 
-To get a prediction about how many responses you need to take both these uncertainties into account.
+The value of $\beta_0$ is listed below the word (`Intercept`) and the value of $\beta_1$ is listed below the explanatory variable name (in this case, simply `x`).
 
-This can be done with a `for` loop.
+With this output you write that the mean of y = -0.8 + 0.76x.
+
+Question: Does `y` modeled by `x` give the same coefficient values as `x` modeled by `y`? Try it.
+
+Eyeballing a regression: https://sophieehill.shinyapps.io/eyeball-regression/
+
+Example: Increasing heart rates with age
+
+The maximum heart rate in beats per minute of a person declines with age. You say maximum heart rate is inversely related to the person's age. 
+
+Suppose 15 randomly chosen people of varying ages are tested for maximum heart rate and the following data are collected. Create a data frame and assign it to the object `df`.
 ```{r}
-nSurveys <- NULL
-for(i in 1:length(postRate)){
-  nSurveys[i] <- rbinom(n = 1, size = 100, 
-                       prob = postRate[i])
-}
+Age <- c(18, 23, 25, 35, 65, 54, 34, 56, 72, 19, 23, 42, 18, 39, 37)
+HR <- c(202, 186, 187, 180, 156, 169, 174, 172, 153, 199, 193, 174, 198, 183, 178)
+df <- data.frame(HR, Age)
 ```
 
-But since `rbinom()` is vectorized (calculations are done in tandem) you can simply write it like this:
-```{r}
-nSurveys <- rbinom(n = length(postRate), 
-                  size = 100, 
-                  prob = postRate)
+Age is in years and the heart rate is in beats per minute.
 
-ggplot(data = as.data.frame(nSurveys), 
-       mapping = aes(x = nSurveys)) +
-  geom_histogram(binwidth = 5, color = "white") +
-  xlab("Number of Responses") +
-  ggtitle(lab = "Posterior predicted number of responses", 
-          subtitle = "Given that 100 people were asked") +
-  theme_minimal()
-```
+The first question you need to ask is; which of the two variables is the response variable? The question is answered without regard to coding or statistics. It must be answered before you model the data.
 
-So you are most likely to get about 40 surveys returned but it could be anywhere between 20 and 60.
+With the heart rate data you want to _predict_ heart rate given someone's age. In this case `HR` is the response variable and `Age` is the explanatory variable.
 
-Compare with `nSurveysX` where only one source of uncertainty is included.
-```{r}
-df <- data.frame(Uncertainty = c(rep("Both", length(nSurveys)), rep("One", length(nSurveysX))), 
-                                 nSurveys = c(nSurveys, nSurveysX))
-ggplot(data = df, 
-       mapping = aes(x = nSurveys)) +
-  geom_histogram(binwidth = 5, color = "white") +
-  facet_wrap(~ Uncertainty) +
-  xlab("Number of Responses") +
-  ggtitle(lab = "Posterior predicted number of responses", 
-          subtitle = "Given that 100 people were asked") +
-  theme_minimal()
-```
+This is the difference between summarizing the values in your data and making inferences (like predictions). When making inferences you must first stop and think (e.g., what is my null hypothesis? What is my response variable? What are my explanatory variables?).
 
-The histogram is slightly wider when both sources of uncertainty are included. Quantitatively you can see this with
-```{r}
-quantile(nSurveys, probs = c(.25, .75))
-quantile(nSurveysX, probs = c(.25, .75))
-```
-  
-Approximate Bayesian computation
-
-The approximate Bayesian computation only works in rare cases. Conceptually easy, but very slow. Other much faster methods are available. All with the same end result (posterior distribution).
-
-You don't really need to worry about how they work precisely. They are just different ways of applying Bayes Theorem (combining the prior with the generative model (likelihood function) to get the posterior).
-
-What Bayesian data analysis is not
-
-A category of models (e.g., regression models, decision trees). Rather it is a way of thinking about and constructing models. You can do regression or machine learning with a Bayesian framework (e.g., Bayesian decision analysis).
-
-Not subjective. All statistics require you make assumptions. Results have to be interpreted in light of those assumptions.
-
-Nothing new. Thomas Bayes, Simon LaPlace, Ronald Fischer (first to use the term Bayesian statistics).
-
-Comparing two hypotheses
-
-Recall that your adviser suggested that you will get the best response rate using a listserv. So you asked 16 people on the listserv and get 6 to respond positively (they would be willing to take your survey).
-
-However, you feel that using social media might be better. So you direct message 16 randomly selected people from your twitter followers and get 10 people to respond positively.
-
-Which seems to be the better method? Yes, there is some evidence that using social media is better. But how certain or uncertain should you be that this is the case? 
-
-You want to specify and fit a Bayesian model to answer these questions. The cool thing is that all you need to do is copy and paste the single-rate model.
-
-Define and draw from the prior distributions.
-```{r}
-priorRate1 <- runif(n = M, min = 0, max = 1)
-priorRate2 <- runif(n = M, min = 0, max = 1)
-```
-
-Generate data.
-```{r}
-nYes1 = NULL
-nYes2 = NULL
-for(i in 1:M) {
-  nYes1[i] <- genModel(priorRate1[i])
-  nYes2[i] <- genModel(priorRate2[i])
-}
-```
-
-Keep only those parameter values that result in the data that you actually observed (6 "yes"'s with rate 1 and 10 "yes"'s with rate 2).
-```{r}
-postRate1 <- priorRate1[nYes1 == 6]
-postRate2 <- priorRate2[nYes2 == 10]
-difference <- postRate2 - postRate1
-
-ggplot(data = as.data.frame(difference), 
-       mapping = aes(x = difference)) +
-  geom_histogram(binwidth = .05, boundary = 0, color = "white") +
-  geom_vline(xintercept = 0, color = "red") +
-  xlab("Difference in Response Rates") +
-  ggtitle(lab = "Posterior distribution of difference in response rates") +
-  theme_minimal()
-```
-
-Positive differences indicate you are correct and that using social media will give you a better response rate.
-
-What is the probability you are correct? That is answered from the posterior values as the relative number of positive differences.
-```{r}
-sum(difference > 0)/length(difference) * 100
-```
-
-Example: Reaction times while driving
-
-Cell phone use while driving is believed to increase the chance of an accident due to slowed reaction time. Recall that the data set `reaction.time` {UsingR} gives the time it takes to react to an external event while driving by various groups.
-```{r}
-df <- UsingR::reaction.time
-str(df)
-```
-
-The numeric variable 'time' is the reaction time in seconds. This is the response variable. The factor variable 'control' has two groups 'C' control (not using cell phone) and 'T' (using cell). The groups are not paired. The data set is in the long format.
-
-Suppose you're asked to see if the reaction time is shorter for those not using a cell phone. Start with a box plot of reaction times for the two groups (`C`: control and `T`: cell phone users).
+Next you create a scatter plot of the data and add the regression line as a layer.
 ```{r}
 ggplot(data = df, 
-       mapping = aes(x = control, y = time)) +
-  geom_boxplot()
+       mapping = aes(x = Age, y = HR)) + 
+  geom_point(size = 2) +
+  xlab("Age [yr]") +
+  ylab("Heart Rate [bpm]") + 
+  geom_smooth(method = lm, se = FALSE)
 ```
 
-In the classical setting you use a $t$-test to examine whether the reaction time is slower for those not using a phone. In this setting the null hypothesis is that there is no difference in reaction times.
-
-You use the model syntax: response ~ explanatory as the first argument in the `t.test()` function. You include an argument that names the data frame where the columns `time` and `control` are located. Here the alternative hypothesis is the reaction time is shorter in the control group so you include the argument `alternative = 'less'`.
+Next you determine the equation for the line. You do this using the `lm()` function by typing
 ```{r}
-t.test(time ~ control, 
-       data = df, 
-       alternative = 'less')
+lm(HR ~ Age, data = df)
 ```
 
-The evidence in support of the null hypothesis that the reaction times are the same in the population is summarized by the $p$-value. The $p$-value is .0176, so you conclude there is moderate evidence indicating cell phone use slows reaction times.
+You interpret the model as follows: On average a person's maximum HR *decreases* by .8 beats per minute (bpm) every year. Or more easily understood as a decrease of 8 bpm every 10 years.
 
-In a Bayesian setting, you can answer the question: what is the probability that mean reaction time is longer when using the phone?
+## Making predictions with the regression model {-}
 
-The package {bayesAB} provides functions to analyze these kinds of comparison problems in a Bayesian framework. It is intended as a replacement for common hypothesis tests like the t-test and the chi-squared test.
+The model is useful for making predictions. Suppose you want to predict the maximum heart rate for 50-year old individuals. You apply the equation
 ```{r}
-control <- df$time[df$control == "C"]
-cellUse <- df$time[df$control == "T"]
-t.test(control, cellUse, alternative = 'less')
+210.0485 - 0.7977 * 50
 ```
 
-Here the hyper priors come from a normal-inverse-gamma distribution.
+The model predicts that a 50 year old person can expect to have a maximum heart rate of 170 bpm. More precisely, given a set of 50 year old people, the model predicts that, on average, the maximum heart rate of the set of people will be 170 bpm.
+
+Predictions with the model are made without typing the coefficients. Instead, first save the model as an object and then use the `predict()` function on the object. In the `predict()` function you _must_ specify the data as a data frame using the `newdata =` argument.
 ```{r}
-AB <- bayesAB::bayesTest(cellUse, control, 
-                         priors = c('mu' = 0, 'lambda' = 1, 'alpha' = 1, 'beta' = 1),
-                         distribution = "normal")
-summary(AB)
+model <- lm(HR ~ Age, 
+            data = df)
+predict(model, 
+        newdata = data.frame(Age = 50))
 ```
 
-The answer to our question is given after the `$Mu` in the output chunk that begins with `P(A > B) by (0, 0)%`: .79 or 79% plus or minus 5%.
-
-You can use the `plot` method on our `bayesAB` object to plot the prior and posterior distributions.
-```{r, eval=FALSE}
-plot(AB)
-```
-
-Example: Repeat the survey example
-
-Here you repeat the survey example using function from the {bayesAB} package.
+You can input a vector of age values for which you want predictions.
 ```{r}
-yourAdvisor <- c(1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-you <- c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0)
-AB <- bayesAB::bayesTest(you, yourAdvisor, 
-                         priors = c('alpha' = 1, 'beta' = 1), 
-                         distribution = "bernoulli")
-summary(AB)
+predict(model, 
+        newdata = data.frame(Age = seq(from = 40, to = 60, by = 10)))
 ```
 
-More information:
-[Bayes Theorem explained](https://www.youtube.com/watch?v=HZGCoVF3YvM).
+## Uncertainty about the regression model coefficients {-}
+
+Information about the model is obtained with the `summary()` method.
+```{r}
+summary(model)
+```
+
+The first bit of information is the code you used to create the model. 
+
+The second bit is a summary of the model residuals: observed value minus the modeled value.
+
+The most important output is the table of coefficients. The table shows the slope and intercept coefficients in the column labeled `Estimate`. The adjacent column labeled `Std. Error` lists the standard errors on these coefficients. The standard error (or margin of error) is a measure of the uncertainty surrounding the coefficient estimate. For the slope coefficient it is computed as
+$$
+s_{\beta_1} = \sqrt{ \frac{\frac{1}{n - 2}\sum_{i=1}^n \varepsilon_i^{\,2}} {\sum_{i=1}^n (x_i -\bar{x})^2} },
+$$
+where
+$$
+\varepsilon_i  = y_i - \beta_0 - \beta_1 x_i
+$$
+
+The best estimate for the (population) slope is -.798 with a margin of error of +/- .07.
+
+The uncertainty about the model coefficient is used to test hypotheses and to compute confidence intervals.  
+
+Interest typically centers on the null hypothesis that the slope = 0. A zero slope implies the line is horizontal and thus, in this case, that maximum heart rate is independent of how old an individual is.
+
+The $t$ value for the zero-slope hypothesis is computed as the slope value divided by its standard error. The $t$ value has a $t$ distribution with $n-2$ degrees of freedom if the slope is zero.
+
+Here the $t$ value is -11.4 which gives a $p$-value (Pr(>|t|)) of .0000000385 (3.85e-08). It is written this way, because the $p$-value is the probability of observing a more extreme $t$ value (positive or negative) assuming the null hypothesis is true (slope is zero).
+
+The symbols to the right indicate a category of confidence in the inference. The line below the table shows the definitions which you can interpret using our definition. Three asterisks: overwhelming, Two asterisks: convincing, One asterisk: moderate, Point: suggestive but inconclusive.
+
+So you have overwhelming evidence that, given these data, on average maximum heart rate depends on age.
+
+The next line of output from the `summary()` method gives the residual standard error. This tells you how close (on average) the observations are from the regression line. The degrees of freedom are again $n-2$.
+```{r}
+sqrt(sum(residuals(model)^2)/13)
+```
+
+Note the `resid()` [or `residual()`] outputs the residuals from the model object.
+```{r}
+resid(model)
+```
+
+The next line of output gives the multiple R-squared value. Also called the coefficient of determination. And the adjusted R-squared value. The multiple R-squared is equal to the square of the Pearson correlation coefficient. 
+
+The multiple R-squared = 1 - RSS/SSY, where RSS is the residual sum of squares and SSY is the total variation about a constant mean response.
+
+It is useful to see how these are computed. The RSS is the sum of the squared residuals. This is computed with the `deviance()` function.
+```{r}
+RSS <- sum(resid(model)^2)
+RSS
+deviance(model)
+```
+
+To compute the multiple R-squared you need SSY. SSY is the deviance from the constant mean model. This constant mean model is estimated using the `lm()` function as
+```{r}
+model0 <- lm(HR ~ 1, 
+             data = df)
+SSY <- deviance(model0)
+1 - RSS/SSY
+```
+
+One minus the ratio of the explained variation to the total variation.
+
+RSS is less than SSY so RSS/SSY will be less that 1. If RSS is much less than SSY then, RSS/SSY is close to zero so R squared is close to 1.
+
+The R-squared multiplied by 100% is the variance of the response variable explained (statistically) by the explanatory variable.
+
+The adjusted R-squared value is smaller than the R-squared value. How much smaller depends on how many variables are in the model.
+$$
+1 - \frac{n - 1}{n - p} (1 - R^2 )
+$$
+
+where $n$ is the sample size and $p$ is the number of parameters in the model. Note: The number of parameters in a regression is the number of coefficients plus one. The 'plus one' comes from the residual standard error.
+
+The adjusted R-squared is always smaller than the multiple R-squared, can decrease as new explanatory variables are added, and can even be negative for really poorly fitting models. It is important in the context of multiple regression.
+
+The final line of output is the F-value, degrees of freedom, and associated $p$-value.
+$$
+F_\hbox{statistic} = \frac{(SSY - RSS)/(p - 1)}{RSS/(n - p)}
+$$
+
+Under the null hypothesis that the regression is no better than the unconditional mean as a model for the data, the $F$ statistic comes from an $F$ distribution with ($p-1$) and $n$ degrees of freedom.
+
+```{r}
+pf(130, df1 = 1, df2 = 13, lower.tail = FALSE)
+```
+
+The $p$-value is very small (< .001) so you reject the null hypothesis that the mean model is better than the linear regression model.
+
+## Bootstrapping the uncertainty {-}
+
+Suppose you choose another 15 people and test for maximum heart rate and record ages. Will the slope be different? Almost certainly, yes. 
+
+Although you don't have access to a new set of people, you can create samples from the original set of subjects (bootstrapping).
+
+```{r}
+I1 <- sample(1:15, size = 15, replace = TRUE)
+```
+
+`I1` is a sample of the integers from 1 to 15 with repeats. Not all numbers are picked and some are picked more than once.
+```{r}
+I1
+table(I1)
+```
+
+To get a bootstrap sample you use these integers as indices in the vectors of `HR` and `Age`.
+```{r}
+bsHR <- df$HR[I1]
+bsAge <- df$Age[I1]
+bsHR; bsAge
+```
+
+You fit the regression model using the bootstrap sample as an index to select the individuals to include.
+```{r}
+modelBS1 <- lm(bsHR ~ bsAge)
+coef(modelBS1)
+coef(modelBS1)[2]
+```
+
+The slope value is different.
+
+You repeat this entire procedure (repeatedly selecting integers and corresponding values of the variables) 1000 times and create a histogram of the slope values.
+```{r}
+slope <- numeric()
+int <- numeric()
+for(i in 1:100){
+  I <- sample(1:15, size = 15, replace = TRUE)
+  models <- lm(HR ~ Age, data = df[I, ])
+  slope[i] <- coef(models)[2]
+  int[i] <- coef(models)[1]
+}
+ggplot(data = as.data.frame(slope), 
+       mapping = aes(slope)) +
+    geom_histogram(bins = 25)
+
+df2 <- data.frame(int, slope, bs = 1:100)
+ggplot(data = df, 
+       mapping = aes(x = Age, y = HR)) + 
+  geom_point() + 
+  geom_abline(mapping = aes(intercept = int, slope  = slope, group = bs), 
+              data = df2) +
+  geom_smooth(method = lm)
+```
+
+The standard deviation of all the slopes will be close to the standard error estimated (from statistical theory) on the original data.
+```{r}
+sd(slope)
+```
+
+Uncertainty bounds are estimated from a single sample without reference to statistical theory.

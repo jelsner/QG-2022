@@ -1,267 +1,567 @@
-# Thursday, October 6, 2022 {-}
+# Tuesday, October 11, 2022 {-}
 
 Today
 
-- Bayesian data analysis
+- More examples of Bayesian data analyses
 
-## Bayesian data analysis {-}
+## More examples of Bayesian data analyses {-}
 
-Bayesian methods are used in a variety of applications from predicting elections to directing self-driving cars.
+Example: How many fish are in the lake?
 
-Bayesian methods are important for applications where uncertainty needs to be quantified, and where there are many sources of information available about the subject of interest. 
+A common problem in wildlife management is the estimation of a species abundance. For example: Start by catching and marking 20 fish. Then after some time catch another 20 fish and count how many of them have a mark. Suppose that out of the 20 fish caught 5 are marked. How many fish are in the lake?
 
-Bayesian methods are not routinely taught in school. While there is an increasing number of excellent resources online, if you google "Bayesian" you might get lots of links to philosophical discussions about subjective vs objective methods, discourses on the differences and relative merits of frequentist vs Bayesian methods, discussions on $p$-values vs subjective probabilities, etc.
+Parameter = Number of fish in the lake (the unknown that you want to estimate)
+Generative Model: First mark 20 fish and release them back into the lake, then recapture 20 fish and count how many are marked.
 
-With this introduction you will (1) be able to identify the important components of a Bayesian data analysis, and (2) be able to interpret and explain the components.
+Data: Five of the 20 fish were marked.
 
-Distributions
+Here is what you will do to answer the question how many fish are in the lake.
 
-The first thing you need to appreciate is a distribution, and be familiar with some of the most common types. A distribution is like a Lego brick. It can be stacked together with other Lego bricks to create a variety of models.
+1. Draw a random sample from the prior distribution on the parameter.
+2. Plug in each sampled value (draw) into the generative model to get a vector of 'fake' data. For example: If the number of fish in the lake is 80 you might get four marked fish on our recapture sample. If the number of fish is only 30, you might get 13 marked fish on our sample, etc. That makes sense, right?
+3. Keep only those parameter values that generated the data that was actually observed (5 out of the 20 sampled).
 
-A distribution describes which values of a variable are common and which are less so. For example, averages taken from samples follow the bell-shaped normal distribution. Two-thirds of all averages are within one standard deviations of the overall mean. Averages greater than three standard deviations from the mean are rare.
-
-Normal distribution
-
-Formally, the normal distribution is defined by the following (probability) density function (pdf), where $\mu$ is the population mean and $\sigma^2$ is the variance.
-$$
-f(y) = \frac{1}{\sigma \sqrt{2\pi}} e^{\frac{-(y-\mu)^2}{2\sigma^2}}
-$$
-
-For any value $y$ the equation tells us what the density value $f(y)$ will be given $\mu$ and $\sigma$. $f(y)$ is largest when $y$ is close to $\mu$. Note: $e$ is the base of the natural logarithm (2.71828...).
-
-Fortunately you do not need to know this formula or any other distribution formula. You just need to understand its shape.
-
-If a variable $Y$ is described by a normal distribution, then you write:
-$$
-Y \sim N(\mu, \sigma^2)
-$$
-
-In particular, the normal distribution with $\mu$ = 0 and $\sigma$ = 1 is called the standard normal distribution, and is denoted as $N(0,1)$. It's shape is graphed as follows.
+Let's see this in action with code. Draw a large (`M = 100000`) sample from the prior distribution (discrete uniform) on the parameter representing the number of fish in the lake (`priorNF`). Here you use the `sample()` function on a vector of counts between 21 and 250.
 ```{r}
-x <- seq(-5, 5, length = 101)
-y <- dnorm(x, mean = 0, sd = 1)
-df <- data.frame(x, y)
+M <- 100000
+priorNF <- sample(21:250, size = M, replace = TRUE)
+head(priorNF, n = 20)
+```
 
+The result is a vector of length `M` containing counts with values between 21 and 250. What is the shape on the distribution of values?
+```{r}
+head(table(priorNF))
+tail(table(priorNF))
+```
+
+Plot a histogram of the parameter values.
+```{r}
 library(ggplot2)
-( p <- ggplot(df, mapping = aes(x = x, y = y)) +
-         geom_line() )
-```
 
-Assume that test scores of an exam fit normal distributions. And that the mean test score is 72, and the standard deviation is 15.2. What is our best estimate for the percentage of all students that will score at least 84 on the exam?
-
-Solution: You use the `pnorm()` function (density of the normal distribution) with argument mean equal to 72 and the argument standard deviation (`sd`) 15.2. Since you are looking for the percentage of students scoring AT LEAST 84, you are interested in the upper (right) tail of the normal distribution.
-```{r}
-pnorm(q = 84, mean = 72, sd = 15.2, 
-      lower.tail = FALSE)
-```
-
-The percentage of all students scoring at least 84 on the exam will be 21.5%.
-
-Effectively, the information contained in the sample of data is reduced to a distribution (model) with only two parameters.
-
-If the mean or standard deviation are changed, the curve changes but it remains a normal distribution (shape remains the same).
-```{r}
-y <- dnorm(x, mean = 1, sd = 1.5)
-df2 <- data.frame(x, y)
-p + geom_line(data = df2, 
-              mapping = aes(x = x, y = y), color = "blue")
-```
-
-The two curves are members of a distributional family all having the same shape.
-
-Uniform distribution
-
-The uniform distribution is one in which all intervals of the same width are equally likely. It has two parameters $a$, $b$ where $a$ < $b$ defining the end points.
-```{r}
-runif(n = 10, min = 1, max = 3)
-```
-
-The shape is described as flat.
-```{r}
-x <- seq(1, 3, length = 101)
-y <- dunif(x, min = 1, max = 3)
-df <- data.frame(x, y)
-ggplot(data = df, mapping = aes(x = x, y = y)) +
-  geom_line() +
-  scale_y_continuous(limits = c(0, 1))
-```
-
-The uniform distribution implies that all values are equally likely to occur. This contrasts with the normal distribution where values near the mean are more likely than those farther from it.
-
-The uniform distribution used in the Bayesian context describes the situation in which you are maximally 'non-committed.' In other words, there is no reason to prefer one value over another between the minimum and the maximum. 
-
-Think of voters who are not committed to either candidate A or B. If these are the only two choices then maximally non-committed implies that they are just as likely to vote for A as they are to vote for B. Now imagine an infinite number of candidates.
-
-A parametric model, like the uniform or Gaussian, is a family of distributions described using only a few parameters. Bayesian models are built from parametric models. 
-
-Bayesian models are 'generative.' If you know the parameters then you can generate data: Parameters ($\mu$, $\theta$, $\sigma$) --> generative model --> data (5, 3, 4, 0, 1, ...): Going from parameters to data is called _Monte Carlo simulation_. 
-
-Example: If you assume that the rate of hurricanes in the United States is 1.7 hurricanes/year ($\lambda$) and you assume our generative model is the Poisson distribution then you generate data using
-```{r}
-rpois(n = 100, lambda = 1.7)
-```
-
-Alternatively if you assume the rate of hurricanes is described by a gamma distribution with shape parameter = 3.5 and scale parameter = .5 then you generate data using
-```{r}
-lambda <- rgamma(n = 100, shape = 3.5, scale = .5)
-rpois(n = 100, lambda = lambda)
-```
-
-In this case you first generate a bunch of $\lambda$s from a gamma distribution and then for each $\lambda$ you generate a count.
-
-If you know the data then you can estimate the parameters: data (5, 3, 4, 0, 1, ...) --> generative model --> Parameters ($\mu$, $\theta$, $\sigma$): Going from data to parameters is called _Bayesian data analysis_.
-
-Example: How many blue marbles?
-
-Consider an example from _Statistical Rethinking_ (McElreth 2016). You have a bag containing four marbles. Each marble is either blue (B) or white (W). You don't know how many blue marbles are in the bag. 
-
-It could be either 0, 1, 2, 3, or 4. Only five possibilities. It can't be 5, 6, or 3.2.
-
-Your goal is to figure out the likely number of blue marbles given the evidence (data). What is the likely number before you have further evidence?
-
-You gather evidence (collect data) by drawing a sequence of three marbles. The marbles are pulled from the bag, one at a time, then returned to the bag, and the bag is shaken before drawing another. 
-
-Say you draw the sequence [B W B]. How many ways are their to produce this draw?
-
-If you conjecture that the bag contains 0 blue marbles, then how many ways could you have gotten [B W B]? Simple: zero.
-
-If you conjecture that the bag contains 1 blue and 3 white marbles (B W W W) then how many ways could you have gotten [B W B]? Starting from left to right in our sequence [B W B] you see there is only 1 way to get a blue, 3 ways to get a white, and again only 1 way to get a blue. You multiply these ways together 1 x 3 x 1 = 3 to get the total number of ways to get [B W B] GIVEN that the bag contains one blue and four white marbles (B W W W).
-
-If you conjecture that the bag contains 2 blue and 2 white marbles (B B W W) then how many ways could you have gotten [B W B]? Starting from left to right in our sequence [B W B] you see there is 2 ways to get a blue, 2 ways to get a white, and again 2 ways to get a blue. You multiply these ways together 2 x 2 x 2 = 8 to get the total number of ways to get [B W B] GIVEN that the bag contains two blue and two white marbles (B B W W).
-
-Here is the full table of ways to produce that draw given each possible bag composition. 
-
-| conjecture | ways to produce [B W B] |
-|------------|-------------------------|
-| (W W W W)  |  0 x 4 x 0 = 0          |
-| (B W W W)  |  1 x 3 x 1 = 3          |
-| (B B W W)  |  2 x 2 x 2 = 8          |
-| (B B B W)  |  3 x 1 x 3 = 9          |
-| (B B B B)  |  4 x 0 x 4 = 0          |
-
-So what is the most likely number of blue marbles now?
-
-What happens when you draw another marble? You update the counts. How? You multiply the prior counts by the new count. The old counts act as your prior counts. 
-
-Here is an example after drawing an additional blue marble [B].
-
-| conjecture  | ways to produce [B]  | previous counts  | new count  |
-|-------------|----------------------|------------------|------------|
-| (W W W W)   | 0                    | 0                | 0 x 0 = 0  |
-| (B W W W)   | 1                    | 3                | 1 x 3 = 3  |
-| (B B W W)   | 2                    | 8                | 2 x 8 = 16 |
-| (B B B W)   | 3                    | 9                | 3 x 9 = 27 |
-| (B B B B)   | 4                    | 0                | 0 x 4 = 0  |
-
-Now, out of the five possibilities concerning the frequency of blue and white marbles in the bag, the conjecture of three blues and one white has pulled further into the lead. 
-
-Logically, what you have done is expressed as: Plausibility of (B W W W) after seeing [B] is proportional to the ways (B W W W) can produce [B] X prior plausibility of (B W W W).
-
-But these are just counts and plausibilities; you want probabilities. To make this change first let's define $p$ as proportion of blue marbles in the bag and $D_{new}$ as the data. 
-
-You now have: Plausibility of $p$ after $D_{new}$ is proportional to the ways $p$ can produce $D_{new}$ X prior plausibility of $p$.
-
-You standardize the plausibility so that the sum of the plausibilities over all conjectures equals one. To standardize, you add all the ways to produce [B W B], one for each $p$, then divide each way by this sum. 
-
-For example there is three ways to produce [B W B] if the bag contains (B W W W), eights ways to produce [B W B] if the bag contains (B B W W) and nine ways to produce [B W B] if the bag contains (B B B W)  3 + 8 + 9 = 20. 3/20 = .15, 8/20 = .4, and 9/20 = .45.
-
-| possible combinations | $p$ | ways to produce data | probability |
-|-----------------------|-----|----------------------|-------------|
-| (W W W W) | 0         | 0   | 0                    | 0 %         |
-| (B W W W) | .25       | 3   | .15                  | 15 %        |
-| (B B W W) | .5        | 8   | .40                  | 40 %        |
-| (B B B W) | .75       | 9   | .45                  | 45 %        |
-| (B B B B) | 1         | 0   | 0                    | 0 %         |
-
-This process is equivalent to: Plausibility of $p$ after new data $D_{new}$ = (ways $p$ can produce $D_{new}$ X prior plausibility $p$) / sum of plausibilities.
-
-All these calculations correspond to quantities in applied probability theory.
-
-- The conjectured proportion of blue marbles, $p$, is called a _parameter_. 
-- The relative number of ways that $p$ can produce the data is called the _likelihood_.
-- The prior plausibility of a specific $p$ is called the _prior probability_.
-- The updated plausibility of any specific $p$ is called the _posterior probability_.
-
-Example: What percentage of the globe is covered by water?
-
-Imagine a globe of the world. You want to know how much of the globe is water. Your strategy is to throw the globe up, catch it, and note the surface (water or land) under the right index finger. Suppose you do this globe tossing 9 times.
-```{r}
-d <- data.frame(toss = c("w", "l", "w", "w", "w", "l", "w", "l", "w"))
-```
-
-On the first toss your finger touches water, on the next toss it touches land, etc.
-
-You then rephrase in terms of trials and the cumulative counts of water which you denote as the number of success (`n_success`).
-```{r}
-( d <- d |> 
- dplyr::mutate(n_trials  = 1:9,
-               n_success = cumsum(toss == "w")) )
-```
-
-To get the logic machine started you need to make assumptions. These assumptions constitute the model. An ideal loop for designing a Bayesian model has three steps
-
-1. Data story
-    - Describe aspects of the underlying reality as well as the sampling process. 
-    - Then translate into a formal probability model.
-
-Framework for interpretation. Helps with finding additional questions that must be answered because hypotheses are often vague.
-    
-2. Update
-    - Bayesian models begin with a set of plausibilities assigned to each possibility called the _prior_.
-    - Update those plausibilities based on the data to give _posterior_ plausibility.
-    
-3. Evaluate
-    - Certainty is no guarantee that the model is good or accurate.
-    - Critique the model.
-    - Check model's adequacy for some purpose, or in light of stuff you don't know.
-
-How did the data come to be? Describe aspects of the underlying reality as well as the sampling process, sufficient enough for specifying an algorithm to simulate new data. Write out the data story for this activity.
-
-A Bayesian model begins with one set of plausibilities assigned to each possible result, the prior plausibilities. These values are then updated in light of data to produce posterior plausibilities. This process is called `Bayesian updating`.
-
-Here is the code for our proportion of water example.
-```{r}
-sequence_length <- 50   # how many points to calculate probability for
-
-d |> 
-  tidyr::expand(n_trials, 
-         p_water = seq(from = 0, to = 1, length.out = sequence_length)) |> 
-  dplyr::left_join(d, by = "n_trials") |>
-  dplyr::group_by(p_water) |> 
-  # lag is the *previous* value
-  dplyr::mutate(lagged_n_success = dplyr::lag(n_success, k = 1), 
-                lagged_n_trials  = dplyr::lag(n_trials,  k = 1)) |> 
-  # if first time, flat prior. 
-  # otherwise use previous posterior as new prior.
-  dplyr::ungroup() |> 
-  dplyr::mutate(prior = ifelse(n_trials == 1, 
-                               .5,
-                               dbinom(x = lagged_n_success, 
-                               size = lagged_n_trials, 
-                               prob = p_water)),
-         strip = stringr::str_c("n = ", n_trials), # which draw is it?
-         likelihood = dbinom(x = n_success, 
-                             size = n_trials, 
-                             prob = p_water)) |> # calculate likelihood for current draw
-  # normalize the prior and the likelihood, making them probabilities 
-  dplyr::group_by(n_trials) |> 
-  dplyr::mutate(prior = prior / sum(prior),
-         likelihood = likelihood / sum(likelihood)) |>   
-  ggplot(mapping = aes(x = p_water)) +
-  geom_line(mapping = aes(y = prior), linetype = 2) +
-  geom_line(mapping = aes(y = likelihood)) +
-  scale_x_continuous("proportion water", breaks = c(0, .5, 1)) +
-  scale_y_continuous("probability", breaks = NULL) +
-  facet_wrap(~strip, scales = "free_y") +
+ggplot(data = as.data.frame(priorNF), 
+       mapping = aes(priorNF)) +
+  geom_histogram(binwidth = 10, boundary = 20, 
+                 color = "white", fill = "salmon") +
+  xlab("Number of Fish in the Lake") +
+  ggtitle(label = "Prior distribution on the number of fish in the lake") +
   theme_minimal()
 ```
 
-Look at the upper left panel. The dashed horizontal line is your prior probability before gathering any data. It codifies your lack of knowledge about the proportion of water by stating that it is equally likely to be any proportion (value between 0 and 1). 
+Uniform distribution. This is how you should start if you have no knowledge about how many fish are in the lake. You are maximally non-committal to any particular count.
 
-The solid line indicates the probabilities after you observe 'water' ("w") on our first trial (n = 1). The highest probability is that the entire globe is water and the lowest probability (0) is that there is no water so the line slopes from lower left to upper right.
+Next you define the generative model. Here you create a function that takes a value for the unknown parameter (number of fish in the lake) as input and returns a data value. The data value is the number of tagged fish on recapture.
 
-The next panel (n = 2) shows what happens to this diagonal line (now shown as dashed because it is now the prior) after you observe 'land' ("l") on your second trial. The highest probability is now .5 with lowest probabilities (0) for both the case of no water and no land. In the next panel (n = 3) you see that the probability distribution shifts again after observing 'water' on your third trial.
+Suppose for example that the number of fish in the lake is in fact 63. Then you set up a vector of length 63 where 20 are labeled as marked and 63 - 20 = 43 are labeled as not marked.
+```{r}
+fish <- rep(0:1, c(63 - 20, 20))
+fish
+```
 
-As more and more data are collected the difference between the prior (previous) and posterior (current) diminishes. Note that these Bayesian estimates are valid and interpretable at any sample size. This is in contrast to interpretations around a minimum number of samples in non-Bayesian contexts. In non-Bayesian contexts, statistical inference is justified by behavior at large samples sizes (this is called 'asymptotic behavior'). 
+Then you take a sample of size 20 without replacement (this is equivalent to catching 20 fish in a lake with 63 fish of which twenty of them are marked) from this vector and add the sampled values. This value represents the number of fish caught that were marked.
+```{r}
+sum(sample(fish, size = 20))
+```
 
-You get answers by counting things rather than by solving equations.
+Sample and sum again.
+
+Let's save 1000 of these and then make a histogram. The `for(){}` function is used to create a loop over this process of sampling and summing. Here it says to repeat the sample and sum 1000 times. `j` is used as a 'dummy' indexing the set of integers between 1 and 1000. Each time you get a sum `nM` you include it as an element in the vector `nMarked`.
+```{r}
+nMarked <- numeric()
+for(j in 1:1000){
+  nM <- sum(sample(fish, 20))
+  nMarked <- c(nMarked, nM)
+}
+
+ggplot(data = as.data.frame(nMarked), 
+       mapping = aes(nMarked)) +
+  geom_histogram(breaks = seq(-.5, 12.5, 1),
+    color = "white", fill = "salmon") +
+    xlab("Number of Recaptured Fish") +
+  ggtitle(label = "Conditional likelihood on the number of recaptured fish") +
+  theme_minimal()
+```
+
+This tells us that _IF_ the number of fish in the lake is 63, the _most likely_ number of marked recaptures would be either 6 or 7.
+
+But what if the number of fish in the lake is 64 or 74, or any other number? That is exactly what you want to estimate. So you create a function from your sampling code. 
+```{r}
+pickFish <- function(priorNF){
+  fish <- rep(0:1, c(priorNF - 20, 20))
+  sum(sample(fish, 20))
+  }
+```
+
+The `function()` function takes as it's single input the prior guess at the number of fish in the lake. The two lines of code between the left `{` and the right `}` samples and sums. The only thing returned by the function is the number of marked fish on recapture. The function is assigned to the object you call `pickFish()`. 
+
+To apply the function include a guess at the number of fish in the lake.
+```{r}
+pickFish(104)
+pickFish(priorNF[10])
+```
+
+Now you can simulate the data. The data are the number of marked fish on the recapture given a parameter value. The parameter values come from the prior distribution. You start by 'initializing' the object `nMarked`. 
+```{r}
+nMarked <- NULL
+for(i in 1:M) {
+  nMarked[i] <- pickFish(priorNF[i])
+}
+head(nMarked)
+```
+
+The `for` loop uses the `pickFish()` function for each count in the prior and there are `M` of them. The output of applying the function is saved, element by element, in the vector `nMarked`.
+
+Finally, you _keep_ only those parameter values that resulted in the data you actually observed (5 marked fish re-caught) and plot those as a histogram.
+```{r}
+postNF <- priorNF[nMarked == 5]
+ggplot(data = as.data.frame(postNF), 
+       mapping = aes(postNF)) +
+  geom_histogram(binwidth = 10, boundary = 20, 
+                 color = "white", fill = "salmon") +
+  xlab("Number of Fish in the Lake") +
+  ggtitle(label = "Posterior distribution on the number of fish in the lake") +
+  theme_minimal()
+```
+
+The result is a distribution on the unknown parameter (number of fish in the lake). It is called the posterior distribution. It shows us how many times the particular value of number of fish in the lake results in 5 out of 20 marked on recapture.
+
+It tells us that it is unlikely there are more than 200 or less than 50 fish in the lake.
+
+For insight, put the prior and posterior values into a data frame.
+```{r}
+df <- data.frame(Distribution = rep(c("(A) Prior Distribution", 
+                                      "(B) Posterior Distribution"), 
+                                    c(M, length(postNF))), 
+                 Values = c(priorNF, postNF))
+head(df)
+tail(df)
+```
+
+Then plot the prior and posterior distributions side by side.
+```{r}
+ggplot(data = df, 
+       mapping = aes(x = Values)) +
+  geom_histogram(aes(y = (..density..) * 20), 
+                 binwidth = 10, color = "white", 
+                 fill = "salmon") +
+  scale_x_continuous(limits = c(20, 250)) +
+  facet_wrap(~ Distribution, ncol = 1) +
+  xlab("Number of Fish in the Lake") +
+  ylab("Probability") +
+  ggtitle(label = "How many fish are there in the lake?") +
+  theme_minimal()
+```
+
+As an answer to the question how many fish are in the lake, you start by thinking that there is no preference for any number between 20 and 250. That uniform uncertainty is the prior. It is quantified as a uniform distribution.
+
+Then, after collecting data and combining the information with the prior, the uncertainty is reduced. The reduction in uncertainty is seen in the posterior distribution.
+
+The most likely value for the number of fish in the lake is somewhere between 70 and 120 as seen by location of the tallest bar in the histogram. There is a 50% chance that the number of fish in the lake is between 78 and 132. This is obtained by using the `quantile()` function on the posterior values stored in `postNF`.
+```{r}
+quantile(postNF, probs = c(.25, .75))
+```
+
+If you want to be 95% certain of the correct answer to the question then you increase the interval to 
+```{r}
+quantile(postNF, probs = c(.025, .975))
+```
+
+If you need to make a single best guess you take the median of the posterior.
+```{r}
+median(postNF)
+```
+
+Let's look at the bars centered on the value of 100 fish. You start with the prior. The probability that there are 100 fish (more precisely between 90 & 110 fish) in the lake before you mark and recapture is .09 (9%). You write this as
+
+P(100 fish) = 9%  
+
+After observing 5 marked fish in 20 on the recapture the probability increases to 20%. You write this as
+
+P(100 fish | 5 marked recaptured) = 20%
+
+Combining the prior with data results in the posterior. P($\theta$ | D) $\propto$ P($\theta$) $\times$ P(D | $\theta$): Bayes Theorem.
+
+In this example you used a capture-recapture model with one parameter. But the general method works on any generative model and with any number of parameters. 
+
+The specific computational method (approximate Bayes calculation: ABC) you used only works in rare cases.
+
+Why use Bayesian data analysis?
+
+You can build more flexible models. You can use models to answer specific questions in a natural way. For example, what is the probability that the number of fish in the lake exceeds 200?
+```{r}
+sum(postNF > 200)/length(postNF) * 100
+```
+
+Less the 5% chance. Note: There is no reference null hypothesis or $p$-value.
+
+Suppose you get some additional data. Let's say you catch another sample of fish from the lake and find that 6 are marked. You can use your posterior distribution as the new prior distribution.
+```{r}
+nMarked <- NULL
+for(i in 1:length(postNF)) {
+  nMarked[i] <- pickFish(postNF[i])
+}
+
+post2NF <- postNF[nMarked == 6]
+```
+
+Again put the prior and posterior in a single data frame and plot.
+```{r}
+df <- data.frame(Distribution = rep(c("(A) Prior Distribution", "(B) Posterior Distribution"), 
+                                   c(length(postNF), length(post2NF))), 
+                 Values = c(postNF, post2NF))
+ggplot(data = df, 
+       mapping = aes(x = Values)) +
+  geom_histogram(aes(y = (..density..) * 20), 
+                 binwidth = 10, color = "white", 
+                 fill = "salmon") +
+  scale_x_continuous(limits = c(20, 250)) +
+  facet_wrap(~ Distribution, ncol = 1) +
+  xlab("Number of Fish in the Lake") +
+  ylab("Probability") +
+  ggtitle(label = "How many fish are there in the lake?") +
+  theme_minimal()
+```
+
+The new data pushes the posterior median toward a lower count relative to the posterior median from the original model. It also considerably reduces the uncertainty. Given this model, the probability that there are more than 200 fish in the lake is about .1%, down from 5%.
+```{r}
+median(post2NF)
+sum(post2NF > 200)/length(post2NF) * 100
+```
+
+Example: Percentage of survey signups
+
+Let's consider another example. You are studying attitudes toward race in America since the election of Trump and you want to determine the likely response rate before you send out a large survey on attitudes. I use the pronoun 'you' because I really want you to imagine yourself in this situation.
+
+Your adviser suggests that you will get the best response rate using an email listserv (your advisor is obviously older than you). So you ask 16 people on the listserv and get 6 positive responses (6 are willing to take your survey): 6/16 = 38%
+
+What is a good guess for the positive response rate when you start sending out the survey to everyone on the listserv? How uncertain is this guess? Perhaps 38% is good guess, but the uncertainty is large.
+
+Recall: A Bayesian data analysis requires three things: 1) Data, 2) Generative Model, and 3) Prior: information you have before examining the data.
+
+A generative model for people agreeing to take your survey
+
+A. Assume there is single underlying rate at which each person agrees to take your survey. Say 55%.
+B. "Ask" a number of people, where the chance of each person agreeing to take the survey is 55%.
+
+"Ask" is in quotes because you are not going to actual ask. Rather you will use a random number function where the probability of getting a 'yes' is 55% and the probability of getting 'no' is 45%.
+```{r}
+set.seed(3045)
+sample(c("yes", "no"), 
+       size = 16,
+       prob = c(.55, .45),
+       replace = TRUE)
+```
+
+C. Count how many people agreed to be surveyed. 
+
+In this case it is 9/16.
+
+This is your generative model. A model where you can plug in the rate (parameter of interest) and generate data. Parameter values (e.g., 55%) --> Ask 16 people --> Data (positive response rate).
+
+The problem is these simulated data are not really what you want. In fact you want just the opposite. You have data. You know that when you asked 16 actual people 6 of them said 'yes'.
+
+You want to go backwards. You have P(D|$\theta$) but you want P($\theta$|D). From the data you want to figure out what the response rate could be.  Data --> Parameter values (theta?). What are reasonable values for theta that would give you the data you have (6 out 16).
+
+The good news is you're almost there. You just need one more thing; a prior.
+
+Prior for the response rate
+
+What information do you have before seeing the data?
+
+You need to use probability to represent uncertainty in all parts of your model. You have already included uncertainty in the generative model (e.g., through the `sample` function). But you need to include it on the parameter.
+
+Here as before, you represent the uncertainty about the response rate as a uniform distribution between 0 and 1. Prior to seeing any data you assume that the response rate is equally likely to be any value between 0 and 100%.
+
+Generate values from the prior and plot the distribution. Always a good idea to look at the distribution of your prior. Is it reasonable?
+```{r}
+library(ggplot2)
+M <- 100000
+priorRate <- runif(n = M, min = 0, max = 1)
+ggplot(data = as.data.frame(priorRate), 
+       mapping = aes(x = priorRate)) +
+  geom_histogram(binwidth = .1, boundary = 1, 
+                 color = "white", fill = "gray") +
+  xlab("Response Rate") +
+  ggtitle(lab = "Prior distribution on the survey response rate") +
+  theme_minimal()
+```
+
+Define the generative model and simulate the data
+
+You could use the `sample()` function as before and then added up all the `yes` responses but here the `rbinom()` function does that for you. It returns the number of 1's in a sample of `size =` (here 16) when the probability of agreeing equals the `rate`.
+```{r}
+genModel <- function(rate){
+  nYes <- rbinom(1, size = 16, prob = rate)
+  nYes
+}
+
+nYes <- NULL
+for(i in 1:M) {
+  nYes[i] <- genModel(priorRate[i])
+}
+```
+
+Keep only those parameter values that resulted in the data that you actually observed (6 "yes"'s). Check that there are enough samples remaining (at least 1000).
+```{r}
+postRate <- priorRate[nYes == 6]
+length(postRate)
+```
+
+Plot a histogram from the posterior values.
+```{r}
+ggplot(data = as.data.frame(postRate), 
+       mapping = aes(x = postRate)) +
+  geom_histogram(binwidth = .05, boundary = 1, 
+                 color = "white", fill = "gray") +
+  scale_x_continuous(limits = c(0, 1)) +
+  xlab("Response Rate") +
+  ggtitle(lab = "Posterior distribution on the survey response rate") +
+  theme_minimal()
+```
+
+Use sample statistic functions to summarize information about the posterior distribution.
+```{r}
+median(postRate)
+quantile(postRate, probs = c(.25, .75))
+```
+
+A good estimate of the response rate is 39% with there being a 50% (75% - 25%) chance that the response rate will be between 31% and 46%. 
+
+There is slightly more than a 1% chance that you will do better than a 65% positive response rate.
+```{r}
+sum(postRate > .65)/length(postRate) * 100
+```
+
+Plot the prior and posterior distributions together.
+```{r}
+df <- data.frame(Distribution = rep(c("(A) Prior Distribution", 
+                                     "(B) Posterior Distribution"), 
+                                    c(M, length(postRate))), 
+                Rate = c(priorRate, postRate))
+ggplot(data = df, 
+       mapping = aes(x = Rate)) +
+  geom_histogram(aes(y = (..density..) * .1), binwidth = .05, boundary = 1,
+                 color = "white", fill = "gray") +
+  scale_x_continuous(limits = c(0, 1)) +
+  facet_wrap(~ Distribution, ncol = 1) +
+  ylab("Probability") + 
+  xlab("Response Rate") +
+  theme_minimal()
+```
+
+So how did you go from the prior to the posterior? Let's take a response rate of 35% as an example. First a response rate of 35% had to be drawn from the prior and it did it with some probability you denote P(35%). That is, the probability of drawing a response rate of 35% is P(35%).
+
+Now in order to keep this 35% it had to simulate data that matched the data you actually observed. And it did that with some probability that you denote P(6 "yes" | 35%). Probability of 6 positive responses (out of 16) given a response rate of 35%. Recall: the vertical line is read: "given".
+
+By multiplying these two probabilities you get the probability that 35% is the best estimate for the response rate given 6 yes responses, proportionally. That is, 
+$$
+P(35\% | 6 ) \propto P(35\%) \times P(6 | 35\%)
+$$
+
+To turn that proportionality into an equality you need to divide by the sum of all parameter value probabilities given the data.
+$$
+P(35\% | 6 ) = \frac{P(35\%) \times P(6 | 35\%)}{\sum P(\theta\%) \times P(6 | \theta\%)}
+$$
+
+To review: You specified prior information $P(\theta)$, a generative model $P(D|\theta)$, and you calculated probabilities for the different parameter values given the data. In this case there was a single parameter value indicating the response rate.
+
+But the cool thing is this general method works for any generative model and any number of parameter values.
+\[
+P(\theta | D) = \frac{P(\theta) \times P(D|\theta)}{\sum P(\theta) \times P(D|\theta)}
+\]
+Bayes Theorem.
+
+Prediction
+
+Suppose the listserv you used had 100 people. What is the likely number of surveys that will get returned?
+
+1. The answer is not a single number but a distribution over probable number of survey takers. 
+2. As before, the binomial distribution is a good candidate for how many people are willing to take the survey out of the 100 possible.
+3. Don’t 'throw away' uncertainty, for example by using a summary of the posterior distribution. Instead use the full original posterior sample (all the values in the posterior).
+4. The general pattern when calculating 'derivatives' of posterior values is to go through the values one-by-one, and perform a transformation (say, plugging in the value in a binomial distribution), and collect the new values in a vector.
+
+For example the first six values in the vector of posterior values are:
+```{r}
+postRate[1:6]
+```
+
+You can multiply any of these by 100 (and round) to get a count. But what value do you choose? Also, given a rate the count is a random value.
+```{r}
+nSurveysX <- round(100 * postRate, 0)
+```
+
+To get a prediction about how many responses you need to take both these uncertainties into account.
+
+This can be done with a `for` loop.
+```{r}
+nSurveys <- NULL
+for(i in 1:length(postRate)){
+  nSurveys[i] <- rbinom(n = 1, size = 100, 
+                       prob = postRate[i])
+}
+```
+
+But since `rbinom()` is vectorized (calculations are done in tandem) you can simply write it like this:
+```{r}
+nSurveys <- rbinom(n = length(postRate), 
+                  size = 100, 
+                  prob = postRate)
+
+ggplot(data = as.data.frame(nSurveys), 
+       mapping = aes(x = nSurveys)) +
+  geom_histogram(binwidth = 5, color = "white") +
+  xlab("Number of Responses") +
+  ggtitle(lab = "Posterior predicted number of responses", 
+          subtitle = "Given that 100 people were asked") +
+  theme_minimal()
+```
+
+So you are most likely to get about 40 surveys returned but it could be anywhere between 20 and 60.
+
+Compare with `nSurveysX` where only one source of uncertainty is included.
+```{r}
+df <- data.frame(Uncertainty = c(rep("Both", length(nSurveys)), rep("One", length(nSurveysX))), 
+                                 nSurveys = c(nSurveys, nSurveysX))
+ggplot(data = df, 
+       mapping = aes(x = nSurveys)) +
+  geom_histogram(binwidth = 5, color = "white") +
+  facet_wrap(~ Uncertainty) +
+  xlab("Number of Responses") +
+  ggtitle(lab = "Posterior predicted number of responses", 
+          subtitle = "Given that 100 people were asked") +
+  theme_minimal()
+```
+
+The histogram is slightly wider when both sources of uncertainty are included. Quantitatively you can see this with
+```{r}
+quantile(nSurveys, probs = c(.25, .75))
+quantile(nSurveysX, probs = c(.25, .75))
+```
+  
+Approximate Bayesian computation
+
+The approximate Bayesian computation only works in rare cases. Conceptually easy, but very slow. Other much faster methods are available. All with the same end result (posterior distribution).
+
+You don't really need to worry about how they work precisely. They are just different ways of applying Bayes Theorem (combining the prior with the generative model (likelihood function) to get the posterior).
+
+What Bayesian data analysis is not
+
+A category of models (e.g., regression models, decision trees). Rather it is a way of thinking about and constructing models. You can do regression or machine learning with a Bayesian framework (e.g., Bayesian decision analysis).
+
+Not subjective. All statistics require you make assumptions. Results have to be interpreted in light of those assumptions.
+
+Nothing new. Thomas Bayes, Simon LaPlace, Ronald Fischer (first to use the term Bayesian statistics).
+
+Comparing two hypotheses
+
+Recall that your adviser suggested that you will get the best response rate using a listserv. So you asked 16 people on the listserv and get 6 to respond positively (they would be willing to take your survey).
+
+However, you feel that using social media might be better. So you direct message 16 randomly selected people from your twitter followers and get 10 people to respond positively.
+
+Which seems to be the better method? Yes, there is some evidence that using social media is better. But how certain or uncertain should you be that this is the case? 
+
+You want to specify and fit a Bayesian model to answer these questions. The cool thing is that all you need to do is copy and paste the single-rate model.
+
+Define and draw from the prior distributions.
+```{r}
+priorRate1 <- runif(n = M, min = 0, max = 1)
+priorRate2 <- runif(n = M, min = 0, max = 1)
+```
+
+Generate data.
+```{r}
+nYes1 = NULL
+nYes2 = NULL
+for(i in 1:M) {
+  nYes1[i] <- genModel(priorRate1[i])
+  nYes2[i] <- genModel(priorRate2[i])
+}
+```
+
+Keep only those parameter values that result in the data that you actually observed (6 "yes"'s with rate 1 and 10 "yes"'s with rate 2).
+```{r}
+postRate1 <- priorRate1[nYes1 == 6]
+postRate2 <- priorRate2[nYes2 == 10]
+difference <- postRate2 - postRate1
+
+ggplot(data = as.data.frame(difference), 
+       mapping = aes(x = difference)) +
+  geom_histogram(binwidth = .05, boundary = 0, color = "white") +
+  geom_vline(xintercept = 0, color = "red") +
+  xlab("Difference in Response Rates") +
+  ggtitle(lab = "Posterior distribution of difference in response rates") +
+  theme_minimal()
+```
+
+Positive differences indicate you are correct and that using social media will give you a better response rate.
+
+What is the probability you are correct? That is answered from the posterior values as the relative number of positive differences.
+```{r}
+sum(difference > 0)/length(difference) * 100
+```
+
+Example: Reaction times while driving
+
+Cell phone use while driving is believed to increase the chance of an accident due to slowed reaction time. Recall that the data set `reaction.time` {UsingR} gives the time it takes to react to an external event while driving by various groups.
+```{r}
+df <- UsingR::reaction.time
+str(df)
+```
+
+The numeric variable 'time' is the reaction time in seconds. This is the response variable. The factor variable 'control' has two groups 'C' control (not using cell phone) and 'T' (using cell). The groups are not paired. The data set is in the long format.
+
+Suppose you're asked to see if the reaction time is shorter for those not using a cell phone. Start with a box plot of reaction times for the two groups (`C`: control and `T`: cell phone users).
+```{r}
+ggplot(data = df, 
+       mapping = aes(x = control, y = time)) +
+  geom_boxplot()
+```
+
+In the classical setting you use a $t$-test to examine whether the reaction time is slower for those not using a phone. In this setting the null hypothesis is that there is no difference in reaction times.
+
+You use the model syntax: response ~ explanatory as the first argument in the `t.test()` function. You include an argument that names the data frame where the columns `time` and `control` are located. Here the alternative hypothesis is the reaction time is shorter in the control group so you include the argument `alternative = 'less'`.
+```{r}
+t.test(time ~ control, 
+       data = df, 
+       alternative = 'less')
+```
+
+The evidence in support of the null hypothesis that the reaction times are the same in the population is summarized by the $p$-value. The $p$-value is .0176, so you conclude there is moderate evidence indicating cell phone use slows reaction times.
+
+In a Bayesian setting, you can answer the question: what is the probability that mean reaction time is longer when using the phone?
+
+The package {bayesAB} provides functions to analyze these kinds of comparison problems in a Bayesian framework. It is intended as a replacement for common hypothesis tests like the t-test and the chi-squared test.
+```{r}
+control <- df$time[df$control == "C"]
+cellUse <- df$time[df$control == "T"]
+t.test(control, cellUse, alternative = 'less')
+```
+
+Here the hyper priors come from a normal-inverse-gamma distribution.
+```{r}
+AB <- bayesAB::bayesTest(cellUse, control, 
+                         priors = c('mu' = 0, 'lambda' = 1, 'alpha' = 1, 'beta' = 1),
+                         distribution = "normal")
+summary(AB)
+```
+
+The answer to our question is given after the `$Mu` in the output chunk that begins with `P(A > B) by (0, 0)%`: .79 or 79% plus or minus 5%.
+
+You can use the `plot` method on our `bayesAB` object to plot the prior and posterior distributions.
+```{r, eval=FALSE}
+plot(AB)
+```
+
+Example: Repeat the survey example
+
+Here you repeat the survey example using function from the {bayesAB} package.
+```{r}
+yourAdvisor <- c(1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+you <- c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0)
+AB <- bayesAB::bayesTest(you, yourAdvisor, 
+                         priors = c('alpha' = 1, 'beta' = 1), 
+                         distribution = "bernoulli")
+summary(AB)
+```
+
+More information:
+[Bayes Theorem explained](https://www.youtube.com/watch?v=HZGCoVF3YvM).
