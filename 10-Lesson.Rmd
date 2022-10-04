@@ -2,7 +2,7 @@
 
 A former PhD student from this department, who I supervised, is looking for a masters-level geographer to assist with disease mapping and basic spatial analysis as applied to livestock disease.
 
-To support non-spatial scientists (virologists, field epidemiologists) and post-docs (some with spatial analysis expertise) in the mapping and visualizing of disease occurrence data from across the US and encouraged to develop independent projects leading to publication. Flexible work location especially if working toward a PhD.
+To support non-spatial scientists (virologists, field epidemiologists) and post-docs (some with spatial analysis expertise) in mapping and visualizing disease occurrence. Encouraged to develop independent projects leading to publication. Flexible work location especially if working toward a PhD.
 
 Here's the link: <https://www.zintellect.com/Opportunity/Details/USDA-ARS-2022-0343>
 
@@ -27,7 +27,7 @@ Torn.sf <- sf::st_read(dsn = here::here("data", "1950-2020-torn-initpoint"),
 
 The result is a simple feature data frame with 66244 features (observations) and 23 columns.
 
-Each observation is a unique tornado. The coordinate reference system is geographic (longitude, latitude) with EPSG tag of 4326.
+Each observation is a unique tornado. The coordinate reference system is geographic (longitude, latitude) with EPSG number of 4326.
 
 You look inside the simple feature data frame with the `glimpse()` function from the {dplyr} package.
 
@@ -38,23 +38,25 @@ Torn.sf |>
 
 The first 22 columns are variables (attributes). The last column contains the geometry. The column labeled `geometry` is a simple feature column in well-known text (WKT) format.
 
-Each tornado is a coded as a `LINESTRING` with a start and end location. The simple feature column is where the `tmap::tm_shape()` and `gom_sf()` functions look for the mapping information.
+Each tornado is a coded as a `LINESTRING` with a start and end location. The simple feature column is where the `tmap::tm_shape()` and `geom_sf()` functions look for the spatial information.
 
-Here start by mapping the tracks of all tornadoes since 2011. First you filter `Torn.sf` keeping only tornadoes occurring after 2010.
+Start by mapping the tracks of all tornadoes since 2011. First filter `Torn.sf` keeping only tornadoes occurring after 2010.
 
 ```{r}
 Torn.sf <- Torn.sf |>
              dplyr::filter(yr >= 2011) 
 ```
 
-Next you get a boundary file of the lower 48 states borders using the `USAboundaries::us_states()` function. You remove rows corresponding to Hawaii, Alaska, and Puerto Rico.
+Next get a boundary file of the lower 48 states borders using the `USAboundaries::us_states()` function. remove rows corresponding to Hawaii, Alaska, and Puerto Rico.
 
 ```{r}
 USA_48.sf <- USAboundaries::us_states() |>
    dplyr::filter(!state_name %in% c("Hawaii", "Alaska", "Puerto Rico"))
 ```
 
-The objects `Torn.sf` and `USA_48.sf` are simple feature data frames so you map variables in them as layers with successive calls to the `tmap::tm_shape()` function. For example, you start with the boundaries of the lower 48 states using `tmap::tm_polygons()` and then overlay the tornadoes with `tmap::tm_shape()` and `tmap::tm_lines()`.
+The objects `Torn.sf` and `USA_48.sf` are simple feature data frames so you map variables in them as layers with successive calls to the `tmap::tm_shape()` function. 
+
+For example, here you start with the boundaries of the lower 48 states using `tmap::tm_polygons()` and then overlay the tornadoes with `tmap::tm_shape()` and `tmap::tm_lines()`.
 
 ```{r}
 tmap::tm_shape(shp = USA_48.sf) +
@@ -63,7 +65,9 @@ tmap::tm_shape(shp = Torn.sf) +
     tmap::tm_dots(col = "red")
 ```
 
-Let's try something a bit more complicated. Suppose you want a map displaying the number of tornadoes originating in each state. You first filter `Torn.sf` to include only tornadoes occurring in the lower 48 states, you then group by state and summarize with the `n()` function that returns the number of cases by the grouping variable (`st`). You rename the variable `st` to match the variable `state_abbr` variable in the `USA_48.sf`. Finally you remove the `sfc` with the `sf::st_drop_geometry()` function.
+Let's try something a bit more complicated. Suppose you want a map displaying the total number of tornadoes originating in each state since 2011. 
+
+First filter `Torn.sf` to include only tornadoes occurring in the lower 48 states, then group by state and summarize with the `n()` function that returns the number of cases by the grouping variable (`st`). Rename the variable `st` to match the variable `state_abbr` variable in the `USA_48.sf`. Then remove the `sfc` with the `sf::st_drop_geometry()` function.
 
 ```{r}
 Torn_Counts.df <- Torn.sf |>
@@ -77,9 +81,9 @@ Torn_Counts.df |>
   dplyr::glimpse()
 ```
 
-The resulting data frame contains the state abbreviation and the corresponding number of tornadoes. There were 609 tornadoes in Alabama since 2011, 326 in Arkansas, etc.
+The resulting data frame contains the state abbreviation and the corresponding total number of tornadoes since 2011. There were 609 tornadoes in Alabama, 326 in Arkansas, etc.
 
-You then join the counts data frame with the map boundary simple feature data frame using the `dplyr::left_join()` function. Note the `y =` argument to the function only works with data frames so that is why you dropped the geometry with `sf::st_drop_geometry()` above.
+Next join the counts data frame with the map boundary simple feature data frame using the `dplyr::left_join()` function. Note the `y =` argument to the function only works with data frames so that is why you dropped the geometry with `sf::st_drop_geometry()` above.
 
 ```{r}
 Count_Map.sf <- USA_48.sf |>
@@ -115,19 +119,20 @@ tmap::tm_shape(shp = Count_Map.sf) +
   tmap::tm_scale_bar(lwd = .5)
 ```
 
-Summary: The format of the {tmap} objects (meoms) are like those of the {ggplot2} geometric objects (geoms) making it easy to get to a publication-quality map. Fine details are worked out in production.
+Summary: The format of the {tmap} objects (meoms) are like those of the {ggplot2} geometric objects (geoms) making it easy to get to a publication-quality map that is reproducible. Fine details are worked out in production.
 
 [More information?](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html)
 
 ## Geo-computation on simple feature data frames {.unnumbered}
 
-Spatial data analysis often requires calculations on the geometry. Two of the most common are computing centroids (geographic centers) and buffers.
+Spatial data analysis often requires calculations on the geometry. Two of the most common are computing centroids (geographic centers) and computing buffers.
 
-Geo-computation should be done on coordinates that have been projected. To see what CRS the simple feature data frame has use `sf::st_crs()`.
+Geo-computation should be done on coordinates that have been projected. To see what CRS is currently assigned to the simple feature data frame you use the `sf::st_crs()` function.
 
 ```{r}
 sf::st_crs(USA_48.sf)
 ```
+The output is in well-known text format and includes the datum, shape of the Earth, and coordinates (geodetic).
 
 Note the length unit (`LENGTHUNIT[]`) is meter.
 
@@ -142,7 +147,7 @@ sf::st_crs(USA_48.sf)
 
 The centroid calculation locates the center of geographic objects representing the center of mass for the spatial object (think of balancing a plate on your finger).
 
-You calculate the geographic centroid of each of the lower 48 states with the `st_centroid()` function.
+You calculate the geographic centroid for each of the lower 48 states with the `sf::st_centroid()` function.
 
 ```{r}
 geo_centroid.sf <- USA_48.sf |>
@@ -160,9 +165,9 @@ head(geo_centroid.sf, n = 2)
 head(USA_48.sf, n = 2)
 ```
 
-The land area (`aland`) makes sense when the geometry is `MULTIPOLYGON` it is less congruent when the geometry is `POINT`.
+The land area (`aland`) makes sense when the geometry is `MULTIPOLYGON` it does not make when the geometry is `POINT`.
 
-You map the points using the `tm_dots()` function after first mapping the state borders.
+You map the points using the `tmap::tm_dots()` function after first mapping the state borders.
 
 ```{r}
 tmap::tm_shape(shp = USA_48.sf) +
@@ -263,7 +268,7 @@ FSU_map <- ggmap::get_stamenmap(bbox = FSU_bb,
 ggmap::ggmap(FSU_map)
 ```
 
-Add data to the raster map. Let's consider a map of Chicago.
+You can overlay data to the raster map. Let's consider a map of Chicago.
 
 ```{r, message=FALSE}
 CHI_bb <- c(left = -87.936287,
@@ -277,7 +282,7 @@ CHI_map <- ggmap::get_stamenmap(bbox = CHI_bb,
 ggmap::ggmap(CHI_map)
 ```
 
-The city of Chicago has a data portal publishing a large volume of public records. Here you look at crime data from 2017. The file `car_thefts.csv` is a spreadsheet obtained from that portal with a list of car thefts.
+Chicago has a data portal publishing a large volume of public records. Here you look at crime data from 2017. The file `car_thefts.csv` is a spreadsheet obtained from that portal with a list of car thefts.
 
 You read these data using the `readr::read_csv()` function.
 
@@ -361,6 +366,8 @@ The downtown region has the highest rate of vehicle theft. Not surprising given 
 More information: Fundamentals of data visualization <https://clauswilke.com/dataviz/> More information: Making maps with {rdeck} <https://www.mrworthington.com/articles/rstats/mapping-in-r/>
 
 ## Assignment #3 {.unnumbered}
+
+Download the `.Rmd` file from Canvas.
 
 Due: October 6 at 6 p.m.
 

@@ -9,7 +9,7 @@ Inferential statistics
 -   Graphical inference
 -   Two-sample test for a difference in population means
 -   Test for equal variance
--   Wilcoxon (Mann-Whitney U) non-parametric test for difference in poplation means
+-   Wilcoxon (Mann-Whitney U) non-parametric test for difference in population means
 
 How to apply common statistical tests and how to understand their meaning using graphs.
 
