@@ -176,7 +176,7 @@ $$
 Start with a plot.
 
 ```{r}
-ggplot(hur.df, 
+ggplot(data = hur.df, 
        mapping = aes(x = "", y = minP)) + 
   geom_boxplot() +
   geom_point(color = "blue") +
@@ -464,8 +464,7 @@ For example, is there evidence of more or fewer U.S. hurricanes recently? One wa
 
 ```{r}
 loc <- "http://myweb.fsu.edu/jelsner/temp/data/US.txt"
-LH.df <- read.table(loc, 
-                    header = TRUE)
+LH.df <- readr::read_table(loc)
 ```
 
 You consider the first half of the record as separate from the second half and ask is there a difference in hurricane counts between the two halves. The null hypothesis is that the sample means are the same.
@@ -637,7 +636,7 @@ t.test(time ~ control,
        alternative = 'less')
 ```
 
-The evidence in support of the null hypothesis that the reaction times are the same in the population is summarized by the $p$-value. The $p$-value is .009, so I conclude there is convincing evidence indicating cell phone use slows reaction times.
+Evidence in support of the null hypothesis that the reaction times are the same in the population is summarized by the $p$-value. The $p$-value is .009, so I conclude there is convincing evidence indicating cell phone use slows reaction times.
 
 The adjective 'convincing' comes from the following table: $p$-value as evidence against the null hypothesis.
 
@@ -648,9 +647,9 @@ The adjective 'convincing' comes from the following table: $p$-value as evidence
 
 ## Chi-squared test for independence {.unnumbered}
 
-This test is used when you have two categorical variables from a single population. It determines whether there is a significant association between the two variables.
+This test is used when you have two categorical variables from a single population and you want to determine whether there is a significant association between them.
 
-For example, in an election survey, voters might be classified by male or female and voting preference (Democrat, Republican, or Independent). You use a chi-squared test for independence to determine whether sex is related to voting preference.
+For example, in an election survey, voters might be classified by drinker or non-drinker and voting preference (Democrat, Republican, or Independent). You use a chi-squared test for independence to determine whether drinking is related to voting preference.
 
 The test is appropriate when the sampling method is random, the variables under study are each categorical, and the expected frequency count for each cell of the table is at least five.
 
