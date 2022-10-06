@@ -569,8 +569,8 @@ Effectively the paired test is a one-sample test where the hypothesized mean dif
 
 ```{r}
 ( df <- data.frame(matA, matB) |>
-  mutate(Diff = matA - matB,
-         Kid = 1:10) )
+  dplyr::mutate(Diff = matA - matB,
+                Kid = 1:10) )
 ```
 
 Then use the one-sample version of the $t$ test with `mu = 0`.
@@ -594,7 +594,7 @@ The variable `time` is the reaction time in seconds. This is the response variab
 
 Suppose I was asked to test the hypothesis that, on average, reaction time is *shorter* for those not using a cell phone.
 
-Here is my thought process:
+Here is my workflow:
 
 I would start by computing the mean for each group (C: control and T: phone user) from the sample of data I have.
 
@@ -605,14 +605,15 @@ df |>
                    sd(time))
 ```
 
-First I note that the control group has a shorter reaction time than the phone-user group, on average. If this was not the case I would be finished concluding that the sample of data provides no evidence in support of the hypothesis.
+I note that the control group has a shorter reaction time than the phone-user group, on average. If this was not the case I would be finished concluding that the sample of data provides no evidence in support of the hypothesis.
 
 Second I note that the difference in means is 6 hundredths of a second. And the standard deviations are of nearly the same magnitude as the difference in means.
 
 Third I plot the response variable (`time`) conditional on the control variable.
 
 ```{r}
-ggplot(df, aes(x = control, y = time)) +
+ggplot(data = df, 
+       mapping = aes(x = control, y = time)) +
   geom_boxplot() +
   geom_point() +
   scale_x_discrete(labels = c("No Cell Phone Use", "Cell Phone Use")) +
