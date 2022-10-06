@@ -2,18 +2,15 @@
 
 Today
 
-Inferential statistics
+Inferential statistics: How to apply common statistical tests in R and how to understand their meaning using graphs.
 
 -   One-sample test for the value of the population mean
--   About $p$-values
 -   Graphical inference
 -   Two-sample test for a difference in population means
--   Test for equal variance
--   Wilcoxon (Mann-Whitney U) non-parametric test for difference in population means
+-   A non-parametric test for difference in population means
 -   Paired observations
 -   Chi-squared test for independence
 
-How to apply common statistical tests and how to understand their meaning using graphs.
 
 This lesson marks a departure from the earlier lessons. You will continue to learn how to code in R, but you will do it in the context of statistical thinking, analysis, and modeling.
 
@@ -42,7 +39,7 @@ where H sub naught ($\hbox{H}_0$) is the null hypothesis stating that the unknow
 
 For example, given a sample of FSU students where heights are measured in centimeters, you test the hypothesis that the mean height of all students at FSU (the population) is 183 cm (6 feet).
 
-You should always start by plotting the data together with the hypothesis. Here first create a data frame using the vector of heights and number the students from 1 to n using the sequence operator `:`.
+You should start by plotting the data together with the hypothesis. Here first create a data frame using the vector of heights and number the students from 1 to n using the sequence operator `:`.
 
 ```{r}
 ht <- c(177, 180, 179, 174, 192, 186, 165, 183)
@@ -97,11 +94,13 @@ In code the $t$ value is
 
 The output also includes the degrees of freedom (7). The degrees of freedom on the $t$ value is the sample size minus one. There are eight student heights (sample size is 8) so `df = 7`.
 
-The *degrees of freedom* (dof, df) is a term that indicates the number of values in the calculation of a statistic that are 'free' to vary. Suppose you know the mean of a set of numbers (say it's 24) and how many numbers are used to calculate the mean (say there are five). What values could the five numbers have so that the mean is 24? Four of them could be any value, but the fifth one is constrained so that the mean value equals 24.
+The *degrees of freedom* (dof, df) is a term that indicates the number of values in the calculation of a statistic that are 'free' to vary. Suppose you know the mean value of a set of numbers (say the mean value is 24). Further, suppose you know how many numbers were used to calculate this mean (say there were five) but you don't know what the five values were. 
 
-Thus the mean is a statistic with n - 1 degrees of freedom.
+Now you ask, what values could the five numbers be so that the mean is 24? With a few moments thought you will conclude that four of them could be any value at all, but the fifth one is constrained so that the mean value equals 24.
 
-The output also includes the sample mean. The sample mean height of 179.5 cm is shorter than the hypothesized height of 183 cm. But, with only eight values, this amount of "shortness" does not provide us with enough evidence to reject the null hypothesis that the population height is 183 cm. So you conclude by stating that you fail to reject the null hypothesis.
+Thus the mean is a statistic with n-1 degrees of freedom.
+
+The output also includes the sample mean. The sample mean height of 179.5 cm is shorter than the hypothesized height of 183 cm. But, with only eight values, this amount of "shortness" does not provide you with enough evidence to reject the null hypothesis that the population height is 183 cm. So you conclude by stating that you fail to reject the null hypothesis.
 
 The $p$-value which quantifies the evidence in support of the null hypothesis. The smaller the $p$-value the less support there is for the null hypothesis. The $p$-value is the area under the $t$ distribution curve to left of the $t$ value (lower quantile value).
 
@@ -111,19 +110,15 @@ pt(q = -1.2239, df = 7) * 2
 
 The `pt()` function is the *cumulative distribution function* for the $t$ distribution. The degrees of freedom is the parameter so you need to include that as the `df =` argument.
 
-You multiply this probability by 2 because our alternative hypothesis is two-sided (not equal to $M$).
+You multiply this probability by 2 because your alternative hypothesis is two-sided (not equal to $M$).
 
 The output provides a 95% uncertainty interval about the sample mean. It includes the hypothesized mean height of 183 cm.
 
-The uncertainty (confidence) interval is a statistic that tells us how much uncertainty there is in using the sample mean as an estimate for the population mean. You conclude that, based on our sample of eight students, your best estimate for the mean height of all students at FSU is 179.5 cm with a 95% uncertainty interval that ranges from 172.7 to 186.3 cm.
+The uncertainty (confidence) interval is a statistic that tells you how much uncertainty there is in using the sample mean as an estimate for the population mean. You conclude that, based on the sample of eight students, your best estimate for the mean height of all students at FSU is 179.5 cm with a 95% uncertainty interval that ranges from 172.7 to 186.3 cm.
 
-## About p-values {.unnumbered}
+A $p$-value is an estimate of the probability that your data, or data more extreme than observed, could occur by chance if the null hypothesis is true. A small $p$-value tells you that the data is _unusual_ with respect to the particular null hypothesis.
 
-A $p$-value is an estimate of the probability that our data, or data more extreme than observed, could occur by chance if the null hypothesis is true. A small $p$-value tells us that our data is unusual with respect to the particular null hypothesis.
-
-A bit more explicitly, the $p$-value summarizes the evidence in support of the null hypothesis. The smaller the $p$-value, the less evidence exists in support of the null hypothesis.
-
-Interpretation of the $p$-value is stated as evidence AGAINST the null hypothesis. This is because our interest lies in the null hypothesis being untenable.
+Interpretation of the $p$-value is stated as evidence AGAINST the null hypothesis. This is because interest lies in the null hypothesis being untenable.
 
 | $p$-value        | Statement of evidence against the null |
 |------------------|----------------------------------------|
@@ -192,9 +187,9 @@ ggplot(hur.df,
 mean(hur.df$minP)
 ```
 
-You see that the data support our idea (hypothesis) that recent hurricanes have, on average, pressures below 915 mb.
+You see that the data support your idea (hypothesis) that recent hurricanes have, on average, pressures below 915 mb.
 
-You formally test the hypothesis with the `t.test()` function. The first argument is the data values as a vector (here `hur.df$minP`), the second argument is the hypothesized mean, and the `alternative =` argument is set to `"less"` because that is our alternative hypothesis.
+You formally test the hypothesis with the `t.test()` function. The first argument is the data values as a vector (here `hur.df$minP`), the second argument is the hypothesized mean, and the `alternative =` argument is set to `"less"` because that is your alternative hypothesis.
 
 ```{r}
 t.test(hur.df$minP, 
@@ -208,7 +203,7 @@ Given this amount of difference (the effect size) together with a sample size of
 
 ## Graphical inference {.unnumbered}
 
-Applying a $t$ test is an example of statistical inference. You draw conclusions about the population from the sample of data. This is why statistics is useful: you don't want our conclusions to apply only to a sample. You want them to apply to the population at large.
+Applying a $t$ test is an example of statistical inference. You draw conclusions about the population from the sample of data. This is why statistics is useful: you don't want your conclusions to apply only to a sample. You want them to apply to the population at large.
 
 There are two parts: Testing (is there a difference?) and estimation (how big is the difference?). Is there a difference is visual. "Is what you see really there?" More precisely, is what you see in a plot of the sample an accurate reflection of the entire population?
 
@@ -231,7 +226,8 @@ The function `null_dist()` generates another function based on your null hypothe
 ```{r}
 fun <- nullabor::null_dist(var = "Height", 
                            dist = 'normal', 
-                           params = list(mean = 183, sd = sd(ht)))
+                           params = list(mean = 183, 
+                                         sd = sd(ht)))
 ```
 
 The magic happens when you use the `lineup()` function that takes as it's arguments the saved function (here `fun`) and the true data frame (here `ht.df`) and returns a data frame in long format (here assigned to the object `dfL`).
@@ -294,7 +290,7 @@ The idea of comparing your actual data to a set of data generated under a null h
 
 Said another way: you have data and want to use it to say something about the world. You do this by comparing your data with data under other possible realities (hypotheticals--"what if?" or counterfactuals).
 
-The possible realities are generated with computer code using statistical distributions.
+The possible realities are generated with computer code using statistical distributions or resampling methods.
 
 Graphical inference can be used in a variety of applications. Here is an example from my tornado research. Here the innocent is a spatially random distribution of [genesis](http://myweb.fsu.edu/jelsner/temp/TornadoLineup.png). Can you pick out the actual data?
 
@@ -302,23 +298,23 @@ More information on the {nullabor} package [here](https://cran.r-project.org/web
 
 ## Two-sample test for a difference in population means {.unnumbered}
 
-With two data samples the null hypothesis is that the two samples have the same population mean. You assume both samples can be modeled with a normal distribution.
+With two samples of data the null hypothesis is often that the two samples have the same population mean where you assume both samples can be adequately described with normal distributions.
 
 You test the null hypothesis that the two samples have the same population mean by computing the $t$ value. In this case, the $t$ value is the difference in sample means divided by the standard error of the difference in means (SEDM).
 
 There are two ways to calculate SEDM.
 
-    (1) Assume equal variance: use the pooled standard deviation ($s$). Under the null hypothesis, the $t$ value will follow a $t$ distribution with n1 + n2 - 2 degrees of freedom (df).
+(1) Assume equal variance: use the pooled standard deviation ($s$). Under the null hypothesis, the $t$ value will follow a $t$ distribution with n1 + n2 - 2 degrees of freedom (df).
 
-    (2) Don't assume equal variances (this is the default assumption). Under the null hypothesis, the $t$ statistic approximates a $t$ distribution. In this case it is called the Welch procedure and the degrees of freedom is not an integer.
+(2) Don't assume equal variances (this is the default assumption). Under the null hypothesis, the $t$ statistic approximates a $t$ distribution. In this case it is called the Welch procedure and the degrees of freedom is not an integer.
 
-Usually the methods give similar results (unless group sizes and variances are widely different between the two samples).
+Usually the methods give similar results unless group sizes and variances are widely different across the two samples.
 
-Example: hurricanes in the North Atlantic and the eastern North Pacific
+Example: hurricanes occurring in the North Atlantic and the eastern North Pacific
 
 Are hurricanes that occur over the eastern North Pacific weaker (or stronger) than those that occur over the Atlantic? Let's look at the evidence.
 
-You add the data from the Pacific to the data frame `hur.df`. You do this by making a similar data frame then using the `rbind()` function to combine them.
+You add the data from the Pacific to the data frame `hur.df` by making a similar data frame and then using the `rbind()` function to combine them.
 
 ```{r}
 Names <- c("Trudy", "Gilma", "Olivia", "Guillermo", "Linda", "Juliette", "Elida", "Hernan", "Kenna", "Ioke", "Rick", "Celia", "Marie", "Odile", "Patricia", "Lane", "Walaka")
@@ -336,12 +332,13 @@ You start with a lineup of plots where you shuffle (permute) the minimum pressur
 fun <- nullabor::null_permute("Basin")
 inf <- nullabor::lineup(fun, hur.df, n = 12)
 
-ggplot(inf, aes(x = Basin, y = minP, color = Basin)) + 
- geom_boxplot() + 
- facet_wrap(~ .sample)
+ggplot(data = inf, 
+       mapping = aes(x = Basin, y = minP, color = Basin)) + 
+  geom_boxplot() + 
+  facet_wrap(~ .sample)
 ```
 
-Based on these plots, what do you anticipate you will conclude when you formalize this with a $t$ test? This is important.
+Based on these plots, what do you anticipate the conclusion will be when you formalize this with a $t$ test? Asking yourself what you expect the result will be before performing statistical tests is a good strategy to guard against interpreting non-sensical results.
 
 Let $\mu_{A}$ be the population mean of Atlantic hurricanes and $\mu_{P}$ be the population mean of Pacific hurricanes, you formally write the statistical test as 
 $$
@@ -357,11 +354,12 @@ t.test(minP ~ Basin,
        alternative = "two.sided")
 ```
 
-You write a summary and conclusion as follows: "The sample mean intensity of Atlantic hurricanes is 905.4 mb and the sample mean intensity of the Pacific hurricanes is 915.2 mb. Given this amount of difference (the effect size) together with a sample size of 29, you conclude there is moderate evidence that the mean hurricane intensity in the Atlantic is different than the mean hurricane intensity of the Pacific."
+You write a summary and conclusion as follows: "The sample mean intensity of Atlantic hurricanes is 905.4 mb and the sample mean intensity of the Pacific hurricanes is 915.2 mb. Given this amount of difference (the effect size) together with a sample size of 29, you conclude there is moderate evidence that the mean hurricane intensity in the Atlantic is different than the mean hurricane intensity of the Pacific with the difference in the direction of stronger (lower pressures) hurricanes in the Atlantic on average."
 
 Example: Palmer penguins
 
 Let $A$ be the length of Adelie penguin flippers and $C$ be the length of Chinstrap penguin flippers. Then you formally write the statistical test as 
+
 $$
 \hbox{H}_0: \mu_{A} = \mu_{C} \\
 \hbox{H}_A: \mu_{A} \lt \mu_{C}
@@ -394,15 +392,17 @@ ggplot(data = penguins,
   theme_minimal()
 ```
 
-You see that Adelie penguins have shorter flippers than Chinstrap penguins (on average), but there is substantial variability from one individual penguin to another.
+You see that Adelie penguins have shorter flippers than Chinstrap penguins on average, but there is substantial variability from one individual penguin to another.
 
 Again you start with a lineup of plots where you permute flipper length between the species.
 
 ```{r}
 fun <- nullabor::null_permute("species")
 inf <- nullabor::lineup(fun, penguins, n = 12)
-ggplot(inf, 
-       mapping = aes(x = species, color = species, y = flipper_length_mm)) + 
+ggplot(data = inf, 
+       mapping = aes(x = species, 
+                     color = species, 
+                     y = flipper_length_mm)) + 
   geom_boxplot() + 
   scale_color_manual(values = c("darkorange","purple")) +
   facet_wrap(~ .sample)
@@ -421,20 +421,7 @@ What do you write in your summary and conclusions?
 
 Adelie penguins in the sample have a mean flipper length of 190 mm, which is shorter than the mean flipper length of the Chinstrap penguins by about 6 mm. Given a sample size of 218 penguins this difference provides convincing evidence against the null hypothesis that population mean flipper length is the same (or longer) for the Chinstrap penguins.
 
-Your turn
-
-Perform a test of the hypothesis that females have shorter bill lengths.
-
-```{r, eval=FALSE}
-t.test(___ ~ ___, 
-       data = ___,
-       var.equal = TRUE,
-       alternative = ___)
-```
-
-## Test for equal variance {.unnumbered}
-
-In the test of the population means above you assumed that the variability among penguins is the same regardless of species (`var.equal = TRUE`).
+In the test above you assumed that the variability among penguins is the same regardless of species (`var.equal = TRUE`).
 
 You check this assumption by computing the variance by species.
 
@@ -461,13 +448,13 @@ Thus you conclude there is no statistical evidence of a difference in the variab
 
 The uncertainty interval includes the value of 1 and is quite wide.
 
-It should be kept in mind that the test of common variance is sensitive to small departures from a normal distribution and it is based on the assumption that the groups are independent. It should not be applied in the setting where the data are paired.
+This variance test is sensitive to small departures from a normal distribution and it is based on the assumption that the groups are independent. It should not be applied in the setting where the data are paired.
 
 The `t.test()` and `var.test()` functions are in the {stats} package as part of the base install of R.
 
 The {ctest} package contains all the "classical tests," and has several alternative tests for variance homogeneity, each with its own assumptions, benefits, and drawbacks.
 
-## Wilcoxon (Mann-Whitney U) non-parameteric test for difference in population means {.unnumbered}
+## A non-parameteric test for difference in population means {.unnumbered}
 
 You can avoid the distributional assumption (assume data have a normal distribution) by using a non-parametric test. The non-parametric alternative is the Wilcoxon test (aka Mann-Whitney U test).
 
@@ -560,7 +547,7 @@ t.test(matA, matB,
        alternative = "two.sided")
 ```
 
-Let's add a line layer to the plot where you group the points on the graph by `Kid`.
+You add a line layer to the plot where you group the points on the graph by `Kid`.
 
 ```{r}
 p + geom_line(mapping = aes(group = Kid), color = "black")
@@ -576,9 +563,9 @@ t.test(matA, matB,
        alternative = "two.sided")
 ```
 
-Now you find a $p$-value less than .01 so you conclude there is a significant difference in wear times between the two materials.
+Now you find a $p$-value less than .01 so you conclude there is a significant difference in wear times between the two materials. More precisely you state that there is compelling evidence against the hypothesis of no difference in wear times.
 
-The paired test is a one-sample test where the hypothesized mean difference is zero. To see this create a new vector as the difference in wear times.
+Effectively the paired test is a one-sample test where the hypothesized mean difference is zero. To see this create a new vector as the difference in wear times.
 
 ```{r}
 ( df <- data.frame(matA, matB) |>
@@ -594,7 +581,7 @@ t.test(df$Diff,
        alternative = "two.sided")
 ```
 
-Example: Reaction time while driving
+Example of how I would proceed in practice: Reaction time while driving. 
 
 Cell phone use while driving is believed to increase the chance of an accident due to slowed reaction time. The data set `reaction.time` in the package {UsingR} gives the time it takes to react to an external event while driving by various groups.
 
@@ -666,7 +653,8 @@ For example, in an election survey, voters might be classified by male or female
 
 The test is appropriate when the sampling method is random, the variables under study are each categorical, and the expected frequency count for each cell of the table is at least five.
 
-The hypothesis is: $$
+The hypothesis is: 
+$$
 \hbox{H}_0: \hbox{Variable A and Variable B are independent}\\
 \hbox{H}_A: \hbox{Variable A and Variable B are not independent}
 $$
@@ -675,7 +663,8 @@ The alternative hypothesis is that knowing the level of A can help us predict th
 
 The test statistic is a chi-squared random variable defined by $$
 \chi^2 = \sum_{r = 1}^{n_r} \sum_{c = 1}^{n_c} \frac{(O_{r,c} - E_{r,c})^2}{E_{r,c}}
-$$ where $O_{r,c}$ is the observed frequency count at level $r$ of variable A and level $c$ of variable B, and $E_{r,c}$ is the corresponding expected frequency count, where $$
+$$ 
+where $O_{r,c}$ is the observed frequency count at level $r$ of variable A and level $c$ of variable B, and $E_{r,c}$ is the corresponding expected frequency count, where $$
 E_{r,c} = \frac{n_r \times n_c}{n}
 $$ where $n_r$ is the total number of sample observations of variable A and $n_c$ is the total number of sample observations of variable B, and $n$ is the total sample size.
 
