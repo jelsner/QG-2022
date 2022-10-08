@@ -1,33 +1,36 @@
-# Thursday, October 6, 2022 {-}
+# Tuesday, October 11, 2022 {-}
+
+Assignment #4, Due October 13 at 6 p.m. posted on Canvas
 
 Today
 
-- Bayesian data analysis
+Bayesian data analysis
 
-## Bayesian data analysis {-}
+-   Distributions as building blocks
+-   Bayesian computation
+-   Real world example from wildlife management
+-   Why use Bayesian models?
 
-Bayesian methods are used in a variety of applications from predicting elections to directing self-driving cars.
+## Distributions as building blocks {-}
 
-Bayesian methods are important for applications where uncertainty needs to be quantified, and where there are many sources of information available about the subject of interest. 
+Bayesian methods are used in applications ranging from predicting elections to directing self-driving cars. They are particularly important in applications where uncertainty needs to be quantified, and where there are various sources of information available on the subject of interest. 
 
 Bayesian methods are not routinely taught in school. While there is an increasing number of excellent resources online, if you google "Bayesian" you get lots of links to philosophical discussions about subjective vs objective methods, discourses on the differences and relative merits of frequentist vs Bayesian methods, discussions on $p$-values vs subjective probabilities, etc.
 
 With this introduction you will (1) be able to identify the important components of a Bayesian data analysis, and (2) be able to interpret and explain the components.
 
-Distributions
+First you need to appreciate is the concept of a distribution and be familiar with common types of distributions. A distribution is like a Lego brick. It can be stacked together with other Lego bricks to create a large variety of models.
 
-The first thing you need to appreciate is a distribution, and be familiar with some of the most common types of distributions. A distribution is like a Lego brick. It can be stacked together with other Lego bricks to create a variety of models.
-
-A distribution describes which values of a variable are common and which are less so. For example, averages taken from samples follow the bell-shaped normal distribution. Two-thirds of all averages are within one standard deviations of the overall mean. Averages greater than three standard deviations from the mean are rare.
+A distribution describes which values of a variable are common and which are less so. Averages taken from samples follow the bell-shaped normal distribution, for example. Two-thirds of all averages are within one standard deviations of the overall mean. Averages greater than three standard deviations from the mean are rare.
 
 Formally, the normal distribution is defined by the following (probability) density function (pdf), where $\mu$ is the population mean and $\sigma^2$ is the variance.
 $$
 f(y) = \frac{1}{\sigma \sqrt{2\pi}} e^{\frac{-(y-\mu)^2}{2\sigma^2}}
 $$
 
-For any value $y$ the equation tells us what the density value $f(y)$ will be given $\mu$ and $\sigma$. $f(y)$ is largest when $y$ is close to $\mu$. Note: $e$ is the base of the natural logarithm (2.71828...).
+For any value $y$, the equation tells you what the density value $f(y)$ will be given $\mu$ and $\sigma$. Function values are largest when $y$ is close to $\mu$. Note: $e$ is the base of the natural logarithm (2.71828...).
 
-Fortunately you do not need to know this formula or any other distribution formula. You just need to understand its shape.
+Fortunately you do not need to know this formula. You just need to understand its shape.
 
 If a variable $Y$ is described by a normal distribution, then you write:
 $$
@@ -49,13 +52,15 @@ Assume that test scores of an exam fit normal distributions. And that the mean t
 
 Solution: You use the `pnorm()` function (density of the normal distribution) with argument mean equal to 72 and the argument standard deviation (`sd`) 15.2. Since you are looking for the percentage of students scoring AT LEAST 84, you are interested in the upper (right) tail of the normal distribution.
 ```{r}
-pnorm(q = 84, mean = 72, sd = 15.2, 
+pnorm(q = 84, 
+      mean = 72, 
+      sd = 15.2, 
       lower.tail = FALSE)
 ```
 
 The percentage of all students scoring at least 84 on the exam will be 21.5%.
 
-Effectively, the information contained in the sample of data is reduced to a distribution (model) with only two parameters.
+Effectively, the information contained in the sample of data is reduced to a distribution with only two parameters. This represents a model for the data.
 
 If the mean or standard deviation are changed, the curve changes but it remains a normal distribution (shape remains the same).
 ```{r}
@@ -65,7 +70,7 @@ p + geom_line(data = df2,
               mapping = aes(x = x, y = y), color = "blue")
 ```
 
-The two curves are members of a distributional family all having the same shape.
+The two curves on the plot are members of a distributional family all having the same shape.
 
 The uniform distribution is one in which all intervals of the same width are equally likely. It has two parameters $a$, $b$ where $a$ < $b$ defining the end points.
 ```{r}
@@ -84,15 +89,17 @@ ggplot(data = df, mapping = aes(x = x, y = y)) +
 
 The uniform distribution implies that all values are equally likely to occur. This contrasts with the normal distribution where values near the mean are more likely than those farther from it.
 
-The uniform distribution used in the Bayesian context describes the situation in which you are maximally 'non-committed.' In other words, there is no reason to prefer one value over another between the minimum and the maximum. 
+The uniform distribution used in the Bayesian context describes the situation in which you are maximally 'non-committed.' In other words, there is no reason to prefer one value over another between the minimum and the maximum.
 
-Think of voters who are not committed to either candidate A or B. If these are the only two choices then maximally non-committed implies that they are just as likely to vote for A as they are to vote for B. Now imagine an infinite number of candidates.
+Think of voters who are not committed to either candidate A or B. If these are the only two choices then maximally non-committed implies that they are just as likely to vote for A as they are to vote for B. Now imagine an infinite number of candidates. Then you have a uniform distribution.
 
-A parametric model, like the uniform or Gaussian, is a family of distributions described using only a few parameters. Bayesian models are built from parametric models. 
+A parametric model, like the uniform or Gaussian, is a family of distributions described using just a few parameters. Key idea: Bayesian models are built from parametric models.
+
+## Bayesian computation {-}
 
 Bayesian models are 'generative.' If you know the parameters then you can generate data: Parameters ($\mu$, $\theta$, $\sigma$) --> generative model --> data (5, 3, 4, 0, 1, ...): Going from parameters to data is called _Monte Carlo simulation_. 
 
-Example: If you assume that the rate of hurricanes in the United States is 1.7 hurricanes/year ($\lambda$) and you assume our generative model is the Poisson distribution then you generate data using
+Example: If you assume that the rate of hurricanes in the United States is 1.7 hurricanes/year ($\lambda$) and you assume the generative model is the Poisson distribution then you generate data using
 ```{r}
 rpois(n = 100, lambda = 1.7)
 ```
@@ -261,3 +268,224 @@ The next panel (n = 2) shows what happens to this diagonal line (now shown as da
 As more and more data are collected the difference between the prior (previous) and posterior (current) diminishes. Note that these Bayesian estimates are valid and can be interpreted for any sample size. This is in contrast to interpretations around a minimum number of samples in non-Bayesian contexts. In non-Bayesian contexts, statistical inference is justified by behavior at large samples sizes (this is called 'asymptotic behavior'). 
 
 You get answers by counting things rather than by solving equations.
+
+## Real world example from wildlife management {-}
+
+A common problem in wildlife management is the estimation of a species abundance. For example: Start by catching and marking 20 fish. Then after some time catch another 20 fish and count how many of them have a mark. Suppose that out of the 20 fish caught 5 are marked. How many fish are in the lake?
+
+Parameter = Number of fish in the lake (the unknown that you want to estimate)
+Generative Model: First mark 20 fish and release them back into the lake, then recapture 20 fish and count how many are marked.
+
+Data: Five of the 20 fish were marked.
+
+Here is what you will do to answer the question how many fish are in the lake.
+
+1. Draw a random sample from the prior distribution on the parameter.
+2. Plug in each sampled value (draw) into the generative model to get a vector of 'fake' data. For example: If the number of fish in the lake is 80 you might get four marked fish on our recapture sample. If the number of fish is only 30, you might get 13 marked fish on our sample, etc. That makes sense, right?
+3. Keep only those parameter values that generated the data that was actually observed (5 out of the 20 sampled).
+
+Let's see this in action with code. Draw a large (`M = 100000`) sample from the prior distribution (discrete uniform) on the parameter representing the number of fish in the lake (`priorNF`). Here you use the `sample()` function on a vector of counts between 21 and 250.
+```{r}
+M <- 100000
+priorNF <- sample(21:250, size = M, replace = TRUE)
+head(priorNF, n = 20)
+```
+
+The result is a vector of length `M` containing counts with values between 21 and 250. What is the shape on the distribution of values?
+```{r}
+head(table(priorNF))
+tail(table(priorNF))
+```
+
+Plot a histogram of the parameter values.
+```{r}
+library(ggplot2)
+
+ggplot(data = as.data.frame(priorNF), 
+       mapping = aes(priorNF)) +
+  geom_histogram(binwidth = 10, boundary = 20, 
+                 color = "white", fill = "salmon") +
+  xlab("Number of Fish in the Lake") +
+  ggtitle(label = "Prior distribution on the number of fish in the lake") +
+  theme_minimal()
+```
+
+Uniform distribution. This is how you should start if you have no knowledge about how many fish are in the lake. You are maximally non-committal to any particular count.
+
+Next you define the generative model. Here you create a function that takes a value for the unknown parameter (number of fish in the lake) as input and returns a data value. The data value is the number of tagged fish on recapture.
+
+Suppose for example that the number of fish in the lake is in fact 63. Then you set up a vector of length 63 where 20 are labeled as marked and 63 - 20 = 43 are labeled as not marked.
+```{r}
+fish <- rep(0:1, c(63 - 20, 20))
+fish
+```
+
+Then you take a sample of size 20 without replacement (this is equivalent to catching 20 fish in a lake with 63 fish of which twenty of them are marked) from this vector and add the sampled values. This value represents the number of fish caught that were marked.
+```{r}
+sum(sample(fish, size = 20))
+```
+
+Sample and sum again.
+
+Let's save 1000 of these and then make a histogram. The `for(){}` function is used to create a loop over this process of sampling and summing. Here it says to repeat the sample and sum 1000 times. `j` is used as a 'dummy' indexing the set of integers between 1 and 1000. Each time you get a sum `nM` you include it as an element in the vector `nMarked`.
+```{r}
+nMarked <- numeric()
+for(j in 1:1000){
+  nM <- sum(sample(fish, 20))
+  nMarked <- c(nMarked, nM)
+}
+
+ggplot(data = as.data.frame(nMarked), 
+       mapping = aes(nMarked)) +
+  geom_histogram(breaks = seq(-.5, 12.5, 1),
+    color = "white", fill = "salmon") +
+    xlab("Number of Recaptured Fish") +
+  ggtitle(label = "Conditional likelihood on the number of recaptured fish") +
+  theme_minimal()
+```
+
+This tells us that _IF_ the number of fish in the lake is 63, the _most likely_ number of marked recaptures would be either 6 or 7.
+
+But what if the number of fish in the lake is 64 or 74, or any other number? That is exactly what you want to estimate. So you create a function from your sampling code. 
+```{r}
+pickFish <- function(priorNF){
+  fish <- rep(0:1, c(priorNF - 20, 20))
+  sum(sample(fish, 20))
+  }
+```
+
+The `function()` function takes as it's single input the prior guess at the number of fish in the lake. The two lines of code between the left `{` and the right `}` samples and sums. The only thing returned by the function is the number of marked fish on recapture. The function is assigned to the object you call `pickFish()`. 
+
+To apply the function include a guess at the number of fish in the lake.
+```{r}
+pickFish(104)
+pickFish(priorNF[10])
+```
+
+Now you can simulate the data. The data are the number of marked fish on the recapture given a parameter value. The parameter values come from the prior distribution. You start by 'initializing' the object `nMarked`. 
+```{r}
+nMarked <- NULL
+for(i in 1:M) {
+  nMarked[i] <- pickFish(priorNF[i])
+}
+head(nMarked)
+```
+
+The `for` loop uses the `pickFish()` function for each count in the prior and there are `M` of them. The output of applying the function is saved, element by element, in the vector `nMarked`.
+
+Finally, you _keep_ only those parameter values that resulted in the data you actually observed (5 marked fish re-caught) and plot those as a histogram.
+```{r}
+postNF <- priorNF[nMarked == 5]
+ggplot(data = as.data.frame(postNF), 
+       mapping = aes(postNF)) +
+  geom_histogram(binwidth = 10, boundary = 20, 
+                 color = "white", fill = "salmon") +
+  xlab("Number of Fish in the Lake") +
+  ggtitle(label = "Posterior distribution on the number of fish in the lake") +
+  theme_minimal()
+```
+
+The result is a distribution on the unknown parameter (number of fish in the lake). It is called the posterior distribution. It shows us how many times the particular value of number of fish in the lake results in 5 out of 20 marked on recapture.
+
+It tells us that it is unlikely there are more than 200 or less than 50 fish in the lake.
+
+For insight, put the prior and posterior values into a data frame.
+```{r}
+df <- data.frame(Distribution = rep(c("(A) Prior Distribution", 
+                                      "(B) Posterior Distribution"), 
+                                    c(M, length(postNF))), 
+                 Values = c(priorNF, postNF))
+head(df)
+tail(df)
+```
+
+Then plot the prior and posterior distributions side by side.
+```{r}
+ggplot(data = df, 
+       mapping = aes(x = Values)) +
+  geom_histogram(aes(y = (..density..) * 20), 
+                 binwidth = 10, color = "white", 
+                 fill = "salmon") +
+  scale_x_continuous(limits = c(20, 250)) +
+  facet_wrap(~ Distribution, ncol = 1) +
+  xlab("Number of Fish in the Lake") +
+  ylab("Probability") +
+  ggtitle(label = "How many fish are there in the lake?") +
+  theme_minimal()
+```
+
+As an answer to the question how many fish are in the lake, you start by thinking that there is no preference for any number between 20 and 250. That uniform uncertainty is the prior. It is quantified as a uniform distribution.
+
+Then, after collecting data and combining the information with the prior, the uncertainty is reduced. The reduction in uncertainty is seen in the posterior distribution.
+
+The most likely value for the number of fish in the lake is somewhere between 70 and 120 as seen by location of the tallest bar in the histogram. There is a 50% chance that the number of fish in the lake is between 78 and 132. This is obtained by using the `quantile()` function on the posterior values stored in `postNF`.
+```{r}
+quantile(postNF, probs = c(.25, .75))
+```
+
+If you want to be 95% certain of the correct answer to the question then you increase the interval to 
+```{r}
+quantile(postNF, probs = c(.025, .975))
+```
+
+If you need to make a single best guess you take the median of the posterior.
+```{r}
+median(postNF)
+```
+
+Let's look at the bars centered on the value of 100 fish. You start with the prior. The probability that there are 100 fish (more precisely between 90 & 110 fish) in the lake before you mark and recapture is .09 (9%). You write this as
+
+P(100 fish) = 9%  
+
+After observing 5 marked fish in 20 on the recapture the probability increases to 20%. You write this as
+
+P(100 fish | 5 marked recaptured) = 20%
+
+Combining the prior with data results in the posterior. P($\theta$ | D) $\propto$ P($\theta$) $\times$ P(D | $\theta$): Bayes Theorem.
+
+In this example you used a capture-recapture model with one parameter. But the general method works on any generative model and with any number of parameters. 
+
+The specific computational method (approximate Bayes calculation: ABC) you used only works in rare cases.
+
+## Why use Bayesian models? {-}
+
+You can build more flexible models. You can use models to answer specific questions in a natural way. For example, what is the probability that the number of fish in the lake exceeds 200?
+```{r}
+sum(postNF > 200)/length(postNF) * 100
+```
+
+Less the 5% chance. Note: There is no reference null hypothesis or $p$-value.
+
+Suppose you get some additional data. Let's say you catch another sample of fish from the lake and find that 6 are marked. You can use your posterior distribution as the new prior distribution.
+```{r}
+nMarked <- NULL
+for(i in 1:length(postNF)) {
+  nMarked[i] <- pickFish(postNF[i])
+}
+
+post2NF <- postNF[nMarked == 6]
+```
+
+Again put the prior and posterior in a single data frame and plot.
+```{r}
+df <- data.frame(Distribution = rep(c("(A) Prior Distribution", "(B) Posterior Distribution"), 
+                                   c(length(postNF), length(post2NF))), 
+                 Values = c(postNF, post2NF))
+ggplot(data = df, 
+       mapping = aes(x = Values)) +
+  geom_histogram(aes(y = (..density..) * 20), 
+                 binwidth = 10, color = "white", 
+                 fill = "salmon") +
+  scale_x_continuous(limits = c(20, 250)) +
+  facet_wrap(~ Distribution, ncol = 1) +
+  xlab("Number of Fish in the Lake") +
+  ylab("Probability") +
+  ggtitle(label = "How many fish are there in the lake?") +
+  theme_minimal()
+```
+
+The new data pushes the posterior median toward a lower count relative to the posterior median from the original model. It also considerably reduces the uncertainty. Given this model, the probability that there are more than 200 fish in the lake is about .1%, down from 5%.
+```{r}
+median(post2NF)
+sum(post2NF > 200)/length(post2NF) * 100
+```
