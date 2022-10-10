@@ -415,3 +415,5 @@ sd(slope)
 ```
 
 Uncertainty bounds are estimated from a single sample without reference to statistical theory.
+
+See also: [Correlation and regression fundamentals with tidy data principles](https://www.tidymodels.org/learn/statistics/tidy-analysis/)
