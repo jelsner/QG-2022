@@ -1,10 +1,8 @@
 # Tuesday, October 11, 2022 {-}
 
-Assignment #4, Due October 13 at 6 p.m. posted on Canvas
+Assignment 4, Due October 13 at 6 p.m. It is posted on Canvas
 
-Today
-
-Bayesian data analysis
+Today: Bayesian data analysis
 
 -   Distributions as building blocks
 -   Bayesian computation
@@ -13,31 +11,36 @@ Bayesian data analysis
 
 ## Distributions as building blocks {-}
 
-Bayesian methods are used in applications ranging from predicting elections to directing self-driving cars. They are particularly important in applications where uncertainty needs to be quantified, and where there are various sources of information available on the subject of interest. 
+Bayesian methods are used in apps ranging from predicting elections to directing self-driving cars. They are particularly important in applications where uncertainty needs to be quantified, and where there are various sources of information available on the subject of interest. 
 
-Bayesian methods are not routinely taught in school. While there is an increasing number of excellent resources online, if you google "Bayesian" you get lots of links to philosophical discussions about subjective vs objective methods, discourses on the differences and relative merits of frequentist vs Bayesian methods, discussions on $p$-values vs subjective probabilities, etc.
+Bayesian methods are not routinely taught in school. While there is an increasing number of excellent resources online, if you Google "Bayesian" you get lots of links to philosophical discussions about subjective vs objective methods, discourses on the differences and relative merits of frequentist vs Bayesian methods, discussions on $p$-values vs subjective probabilities, etc.
 
-With this introduction you will (1) be able to identify the important components of a Bayesian data analysis, and (2) be able to interpret and explain the components.
+With this introduction you will (1) be able to identify the important components of a Bayesian data analysis, and (2) be able to interpret and explain them.
 
-First you need to appreciate is the concept of a distribution and be familiar with common types of distributions. A distribution is like a Lego brick. It can be stacked together with other Lego bricks to create a large variety of models.
+You need to understand the concept of a distribution and be familiar with common distribution types. 
+
+A distribution is like a Lego brick. It can be stacked together with other Lego bricks to create a large variety of models.
 
 A distribution describes which values of a variable are common and which are less so. Averages taken from samples follow the bell-shaped normal distribution, for example. Two-thirds of all averages are within one standard deviations of the overall mean. Averages greater than three standard deviations from the mean are rare.
 
 Formally, the normal distribution is defined by the following (probability) density function (pdf), where $\mu$ is the population mean and $\sigma^2$ is the variance.
+
 $$
 f(y) = \frac{1}{\sigma \sqrt{2\pi}} e^{\frac{-(y-\mu)^2}{2\sigma^2}}
 $$
 
-For any value $y$, the equation tells you what the density value $f(y)$ will be given $\mu$ and $\sigma$. Function values are largest when $y$ is close to $\mu$. Note: $e$ is the base of the natural logarithm (2.71828...).
+For any value $y$, the equation tells you what the density value $f(y)$ is given $\mu$ and $\sigma$. Density values are largest when $y$ is close to $\mu$. Note: $e$ is the base of the natural logarithm (2.71828...).
 
-Fortunately you do not need to know this formula. You just need to understand its shape.
+You do not need to remember this formula. You just need to understand its shape.
 
-If a variable $Y$ is described by a normal distribution, then you write:
+If a variable $Y$ is described by a normal distribution with mean $\mu$ and standard deviation $\sigma$, then you write:
+
 $$
 Y \sim N(\mu, \sigma^2)
 $$
 
-In particular, the normal distribution with $\mu$ = 0 and $\sigma$ = 1 is called the standard normal distribution, and is denoted as $N(0,1)$. It's shape is graphed as follows.
+In particular, the normal distribution with $\mu$ = 0 and $\sigma$ = 1 is called the standard normal distribution, and is denoted as $N(0,1)$. It's shape is shown as follows.
+
 ```{r}
 x <- seq(-5, 5, length = 101)
 y <- dnorm(x, mean = 0, sd = 1)
@@ -48,9 +51,10 @@ library(ggplot2)
          geom_line() )
 ```
 
-Assume that test scores of an exam fit normal distributions. And that the mean test score is 72, and the standard deviation is 15.2. What is our best estimate for the percentage of all students that will score at least 84 on the exam?
+Assume that test scores from an exam taken by 500 students are described by a normal distribution. Further, assume that the mean test score is 72, and the standard deviation is 15.2. What is the best estimate for the percentage of all students that score at least 84 on the exam?
 
 Solution: You use the `pnorm()` function (density of the normal distribution) with argument mean equal to 72 and the argument standard deviation (`sd`) 15.2. Since you are looking for the percentage of students scoring AT LEAST 84, you are interested in the upper (right) tail of the normal distribution.
+
 ```{r}
 pnorm(q = 84, 
       mean = 72, 
@@ -60,9 +64,10 @@ pnorm(q = 84,
 
 The percentage of all students scoring at least 84 on the exam will be 21.5%.
 
-Effectively, the information contained in the sample of data is reduced to a distribution with only two parameters. This represents a model for the data.
+Effectively, the information contained in the sample of data (e.g., 500 test scores) is reduced to a distribution with only two parameters. This represents a model for the data.
 
 If the mean or standard deviation are changed, the curve changes but it remains a normal distribution (shape remains the same).
+
 ```{r}
 y <- dnorm(x, mean = 1, sd = 1.5)
 df2 <- data.frame(x, y)
@@ -70,9 +75,10 @@ p + geom_line(data = df2,
               mapping = aes(x = x, y = y), color = "blue")
 ```
 
-The two curves on the plot are members of a distributional family all having the same shape.
+The two curves on the plot are members of a distributional family all having the same shape. There are an infinite number of such curves.
 
 The uniform distribution is one in which all intervals of the same width are equally likely. It has two parameters $a$, $b$ where $a$ < $b$ defining the end points.
+
 ```{r}
 runif(n = 10, min = 1, max = 3)
 ```
