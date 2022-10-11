@@ -1,4 +1,4 @@
-# Tuesday, October 11, 2022 {-}
+# Thursday, October 13, 2022 {-}
 
 Today
 
@@ -341,4 +341,7 @@ summary(AB)
 ```
 
 More information:
+
 [Bayes Theorem explained](https://www.youtube.com/watch?v=HZGCoVF3YvM).
+
+[Online Bayesian book using R](https://www.bayesrulesbook.com/)
