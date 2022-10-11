@@ -9,15 +9,17 @@ Today: Bayesian data analysis
 -   Real world example
 -   Why use Bayesian models?
 
-## Distributions as Lego bricks {.unnumbered}
-
 Bayesian methods are used in apps ranging from predicting elections to directing self-driving cars. They are particularly important in applications where uncertainty needs to be quantified, and where there are various sources of information available on the subject of interest.
 
 Bayesian methods are not routinely taught in school. While there is an increasing number of excellent resources online, if you Google "Bayesian" you get lots of links to philosophical discussions about subjective vs objective methods, discourses on the differences and relative merits of frequentist vs Bayesian methods, discussions on $p$-values vs subjective probabilities, etc.
 
 With this introduction you will (1) be able to identify the important components of a Bayesian data analysis, and (2) be able to interpret and explain them.
 
-You need to understand the concept of a distribution and be familiar with common distribution types.
+The goal is to make you aware of this alternative approach to quantitative geography.
+
+## Distributions as Lego bricks {.unnumbered}
+
+You need first to understand the concept of a distribution and be familiar with common distribution types.
 
 A distribution is like a Lego brick. It can be stacked together with other Lego bricks to create a large variety of models.
 
