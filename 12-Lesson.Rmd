@@ -473,7 +473,13 @@ After observing 5 marked fish in 20 on the recapture the probability increases t
 
 P(100 fish \| 5 marked recaptured) = 20%
 
-Combining the prior with data results in the posterior. P($\theta$ \| D) $\propto$ P($\theta$) $\times$ P(D \| $\theta$): Bayes Theorem.
+Combining the prior with data results in the posterior. 
+
+$$
+P(\theta | D) \propto P(\theta) \times P(D | \theta)
+$$
+
+Bayes Theorem
 
 In this example you used a capture-recapture model with one parameter. But the general method works on any generative model and with any number of parameters.
 
