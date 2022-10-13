@@ -370,9 +370,9 @@ Repeat using different priors.
 ```{r}
 test2 <- bayesAB::bayesTest(cellUse, control, 
                             priors = c('mu' = 0, 
-                                       'lambda' = 1, 
-                                        'alpha' = 2, 
-                                        'beta' = 3),
+                                       'lambda' = .1, 
+                                        'alpha' = .1, 
+                                        'beta' = .1),
                             distribution = "normal") 
 summary(test2)$probability
 
