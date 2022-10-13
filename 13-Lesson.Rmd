@@ -40,17 +40,17 @@ You want to go backwards. You have P(D|$\theta$) but you want P($\theta$|D). Fro
 
 The good news is you're almost there. You just need one more thing; a prior.
 
-Prior for the response rate
+Your prior is the information you have _before_ seeing the data?
 
-What information do you have before seeing the data?
+You need to use probability to represent uncertainty in all parts of your model. You have already included uncertainty in the generative model (e.g., through the `sample` function). But you need to include it on the prior.
 
-You need to use probability to represent uncertainty in all parts of your model. You have already included uncertainty in the generative model (e.g., through the `sample` function). But you need to include it on the parameter.
+Here you represent the uncertainty about the response rate as a uniform distribution between 0 and 1. Prior to seeing any data you assume that the response rate is equally likely to be any value between 0 and 100%.
 
-Here as before, you represent the uncertainty about the response rate as a uniform distribution between 0 and 1. Prior to seeing any data you assume that the response rate is equally likely to be any value between 0 and 100%.
+Generate values from the prior and plot the distribution. Always a good idea to look at the distribution of your prior. Does it look reasonable?
 
-Generate values from the prior and plot the distribution. Always a good idea to look at the distribution of your prior. Is it reasonable?
 ```{r}
 library(ggplot2)
+
 M <- 100000
 priorRate <- runif(n = M, min = 0, max = 1)
 ggplot(data = as.data.frame(priorRate), 
@@ -58,13 +58,15 @@ ggplot(data = as.data.frame(priorRate),
   geom_histogram(binwidth = .1, boundary = 1, 
                  color = "white", fill = "gray") +
   xlab("Response Rate") +
-  ggtitle(lab = "Prior distribution on the survey response rate") +
+  ggtitle(label = "Your prior distribution",
+          subtitle = "Survey response rate") +
   theme_minimal()
 ```
 
 Define the generative model and simulate the data
 
 You could use the `sample()` function as before and then added up all the `yes` responses but here the `rbinom()` function does that for you. It returns the number of 1's in a sample of `size =` (here 16) when the probability of agreeing equals the `rate`.
+
 ```{r}
 genModel <- function(rate){
   nYes <- rbinom(1, size = 16, prob = rate)
@@ -77,13 +79,15 @@ for(i in 1:M) {
 }
 ```
 
-Keep only those parameter values that resulted in the data that you actually observed (6 "yes"'s). Check that there are enough samples remaining (at least 1000).
+Keep only those parameter values that resulted in the data that you actually observed (6 "yes"'s out of 16). Check to see if there are enough samples remaining (at least 1000). If not, generate more samples.
+
 ```{r}
 postRate <- priorRate[nYes == 6]
 length(postRate)
 ```
 
 Plot a histogram from the posterior values.
+
 ```{r}
 ggplot(data = as.data.frame(postRate), 
        mapping = aes(x = postRate)) +
@@ -91,11 +95,13 @@ ggplot(data = as.data.frame(postRate),
                  color = "white", fill = "gray") +
   scale_x_continuous(limits = c(0, 1)) +
   xlab("Response Rate") +
-  ggtitle(lab = "Posterior distribution on the survey response rate") +
+  ggtitle(label = "Your posterior distribution",
+          subtitle = "Survey response rate") +
   theme_minimal()
 ```
 
 Use sample statistic functions to summarize information about the posterior distribution.
+
 ```{r}
 median(postRate)
 quantile(postRate, probs = c(.25, .75))
@@ -109,6 +115,7 @@ sum(postRate > .65)/length(postRate) * 100
 ```
 
 Plot the prior and posterior distributions together.
+
 ```{r}
 df <- data.frame(Distribution = rep(c("(A) Prior Distribution", 
                                      "(B) Posterior Distribution"), 
@@ -121,20 +128,20 @@ ggplot(data = df,
   scale_x_continuous(limits = c(0, 1)) +
   facet_wrap(~ Distribution, ncol = 1) +
   ylab("Probability") + 
-  xlab("Response Rate") +
+  xlab("Survey response rate") +
   theme_minimal()
 ```
 
-So how did you go from the prior to the posterior? Let's take a response rate of 35% as an example. First a response rate of 35% had to be drawn from the prior and it did it with some probability you denote P(35%). That is, the probability of drawing a response rate of 35% is P(35%).
+So how did you go from the prior to the posterior? Let's take a response rate of 35% as an example. First a response rate of 35% had to be drawn from your prior and it did it with some probability you denote P(35%). That is, the probability of drawing a response rate of 35% is P(35%).
 
-Now in order to keep this 35% it had to simulate data that matched the data you actually observed. And it did that with some probability that you denote P(6 "yes" | 35%). Probability of 6 positive responses (out of 16) given a response rate of 35%. Recall: the vertical line is read: "given".
+Now in order to keep this 35% it had to simulate data that matched the data you actually observed. And it did that with some probability that you denote P(6 "yes" | 35%). Probability of 6 positive responses (out of 16) given a response rate of 35%. Recall: the vertical line in P(X | Y) is read: "X given Y".
 
-By multiplying these two probabilities you get the probability that 35% is the best estimate for the response rate given 6 yes responses, proportionally. That is, 
+By multiplying these two probabilities you get the probability that 35% is the best estimate for the response rate given 6 yes responses, proportionally. That is,
 $$
 P(35\% | 6 ) \propto P(35\%) \times P(6 | 35\%)
 $$
 
-To turn that proportionality into an equality you need to divide by the sum of all parameter value probabilities given the data.
+To turn that proportionality ($\propto$) into an equality you need to divide by the sum of all parameter value probabilities given the data.
 $$
 P(35\% | 6 ) = \frac{P(35\%) \times P(6 | 35\%)}{\sum P(\theta\%) \times P(6 | \theta\%)}
 $$
@@ -142,9 +149,9 @@ $$
 To review: You specified prior information $P(\theta)$, a generative model $P(D|\theta)$, and you calculated probabilities for the different parameter values given the data. In this case there was a single parameter value indicating the response rate.
 
 But the cool thing is this general method works for any generative model and any number of parameter values.
-\[
+$$
 P(\theta | D) = \frac{P(\theta) \times P(D|\theta)}{\sum P(\theta) \times P(D|\theta)}
-\]
+$$
 Bayes Theorem.
 
 Prediction
@@ -169,6 +176,7 @@ nSurveysX <- round(100 * postRate, 0)
 To get a prediction about how many responses you need to take both these uncertainties into account.
 
 This can be done with a `for` loop.
+
 ```{r}
 nSurveys <- NULL
 for(i in 1:length(postRate)){
@@ -178,6 +186,7 @@ for(i in 1:length(postRate)){
 ```
 
 But since `rbinom()` is vectorized (calculations are done in tandem) you can simply write it like this:
+
 ```{r}
 nSurveys <- rbinom(n = length(postRate), 
                   size = 100, 
@@ -186,8 +195,8 @@ nSurveys <- rbinom(n = length(postRate),
 ggplot(data = as.data.frame(nSurveys), 
        mapping = aes(x = nSurveys)) +
   geom_histogram(binwidth = 5, color = "white") +
-  xlab("Number of Responses") +
-  ggtitle(lab = "Posterior predicted number of responses", 
+  xlab("Number of responses") +
+  ggtitle(label = "Posterior predicted number of responses", 
           subtitle = "Given that 100 people were asked") +
   theme_minimal()
 ```
@@ -202,7 +211,7 @@ ggplot(data = df,
        mapping = aes(x = nSurveys)) +
   geom_histogram(binwidth = 5, color = "white") +
   facet_wrap(~ Uncertainty) +
-  xlab("Number of Responses") +
+  xlab("Number of responses") +
   ggtitle(lab = "Posterior predicted number of responses", 
           subtitle = "Given that 100 people were asked") +
   theme_minimal()
@@ -210,15 +219,15 @@ ggplot(data = df,
 
 The histogram is slightly wider when both sources of uncertainty are included. Quantitatively you can see this with
 ```{r}
-quantile(nSurveys, probs = c(.25, .75))
-quantile(nSurveysX, probs = c(.25, .75))
+quantile(nSurveys, probs = c(.05, .95))
+quantile(nSurveysX, probs = c(.05, .95))
 ```
   
 Approximate Bayesian computation
 
 The approximate Bayesian computation only works in rare cases. Conceptually easy, but very slow. Other much faster methods are available. All with the same end result (posterior distribution).
 
-You don't really need to worry about how they work precisely. They are just different ways of applying Bayes Theorem (combining the prior with the generative model (likelihood function) to get the posterior).
+You don't really need to worry about how they work precisely. They are just different ways of applying Bayes Theorem, summarized as combining the prior distribution with the generative model (likelihood function) to get the posterior distribution.
 
 What Bayesian data analysis is not
 
@@ -239,6 +248,7 @@ Which seems to be the better method? Yes, there is some evidence that using soci
 You want to specify and fit a Bayesian model to answer these questions. The cool thing is that all you need to do is copy and paste the single-rate model.
 
 Define and draw from the prior distributions.
+
 ```{r}
 priorRate1 <- runif(n = M, min = 0, max = 1)
 priorRate2 <- runif(n = M, min = 0, max = 1)
@@ -264,7 +274,7 @@ ggplot(data = as.data.frame(difference),
        mapping = aes(x = difference)) +
   geom_histogram(binwidth = .05, boundary = 0, color = "white") +
   geom_vline(xintercept = 0, color = "red") +
-  xlab("Difference in Response Rates") +
+  xlab("Difference in response rates") +
   ggtitle(lab = "Posterior distribution of difference in response rates") +
   theme_minimal()
 ```
@@ -272,6 +282,7 @@ ggplot(data = as.data.frame(difference),
 Positive differences indicate you are correct and that using social media will give you a better response rate.
 
 What is the probability you are correct? That is answered from the posterior values as the relative number of positive differences.
+
 ```{r}
 sum(difference > 0)/length(difference) * 100
 ```
@@ -279,6 +290,7 @@ sum(difference > 0)/length(difference) * 100
 Example: Reaction times while driving
 
 Cell phone use while driving is believed to increase the chance of an accident due to slowed reaction time. Recall that the data set `reaction.time` {UsingR} gives the time it takes to react to an external event while driving by various groups.
+
 ```{r}
 df <- UsingR::reaction.time
 str(df)
@@ -304,44 +316,88 @@ t.test(time ~ control,
 
 The evidence in support of the null hypothesis that the reaction times are the same in the population is summarized by the $p$-value. The $p$-value is .0176, so you conclude there is moderate evidence indicating cell phone use slows reaction times.
 
-In a Bayesian setting, you can answer the question: what is the probability that mean reaction time is longer when using the phone?
+In a Bayesian setting, you can answer the question directly: what is the probability, given the data and your prior, that mean reaction time is longer when using a phone.
 
-The package {bayesAB} provides functions to analyze these kinds of comparison problems in a Bayesian framework. It is intended as a replacement for common hypothesis tests like the t-test and the chi-squared test.
+The package {bayesAB} provides functions to analyze these kinds of comparison problems in a Bayesian framework. It is intended as a replacement for common hypothesis tests like the t-test and the chi-squared test 
+
+Recall you can use the `t.test()` function in the format that accepts the two samples are in separate vectors. Here you use `control` and `cellUse`.
+
 ```{r}
 control <- df$time[df$control == "C"]
 cellUse <- df$time[df$control == "T"]
 t.test(control, cellUse, alternative = 'less')
 ```
 
-Here the hyper priors come from a normal-inverse-gamma distribution.
+The `bayesAB::bayesTest()` function only works with separate vectors (it does not work with the formula specification).
+
+You need to specify values for the priors (`mu`, `lambda`, `alpha`, and `beta`) which come from a normal-inverse-gamma distribution.
+
 ```{r}
-AB <- bayesAB::bayesTest(cellUse, control, 
-                         priors = c('mu' = 0, 'lambda' = 1, 'alpha' = 1, 'beta' = 1),
+test <- bayesAB::bayesTest(cellUse, control, 
+                           priors = c('mu' = 0, 
+                                      'lambda' = 1, 
+                                      'alpha' = 1, 
+                                      'beta' = 1),
                          distribution = "normal")
-summary(AB)
 ```
 
-The answer to our question is given after the `$Mu` in the output chunk that begins with `P(A > B) by (0, 0)%`: .79 or 79% plus or minus 5%.
+You examine the output with the `str()` function.
 
-You can use the `plot` method on our `bayesAB` object to plot the prior and posterior distributions.
+```{r}
+str(test)
+```
+The output includes the `inputs` (data, priors, number of samples, etc), the `prior` (normal inverse gamma), and the `posteriors` (`Mu` and `Sig_Sq`).
+
+You summarize the posterior samples with the `summary()` method.
+
+```{r}
+test.summary <- test |>
+  summary()
+```
+
+The answer to the question what is the probability, given the data and your prior, that mean reaction time is longer when using a phone is given in `test.summary$probability`.
+
+```{r}
+test.summary$probability
+```
+You can use the `plot` method applied to the output generates a series of graphs including the prior and posterior distributions.
+
 ```{r, eval=FALSE}
-plot(AB)
+plot(test)
+```
+
+Repeat using different priors.
+```{r}
+test2 <- bayesAB::bayesTest(cellUse, control, 
+                            priors = c('mu' = 0, 
+                                       'lambda' = 1, 
+                                        'alpha' = 2, 
+                                        'beta' = 3),
+                            distribution = "normal") 
+summary(test2)$probability
+
 ```
 
 Example: Repeat the survey example
 
-Here you repeat the survey example using function from the {bayesAB} package.
+Here you repeat the survey example using functions from the {bayesAB} package. This simplifies things considerably as you don't need to write your own functions.
+
 ```{r}
 yourAdvisor <- c(1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 you <- c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0)
-AB <- bayesAB::bayesTest(you, yourAdvisor, 
-                         priors = c('alpha' = 1, 'beta' = 1), 
-                         distribution = "bernoulli")
-summary(AB)
+test <- bayesAB::bayesTest(you, yourAdvisor, 
+                           priors = c('alpha' = 1, 
+                                      'beta' = 1), 
+                           distribution = "bernoulli")
+summary(test)
 ```
 
 More information:
 
 [Bayes Theorem explained](https://www.youtube.com/watch?v=HZGCoVF3YvM).
 
+Now that you've seen how to use functions from R to do a Bayesian analysis, this video explains the logic behind why these functions work.
+
 [Online Bayesian book using R](https://www.bayesrulesbook.com/)
+
+Many more examples are given in this excellent online source.
