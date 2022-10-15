@@ -10,7 +10,7 @@ Linear regression provides another way to implement a $t$ test on the difference
 - Motivation for the regression model
 - Making prediction with the regression model
 - Uncertainty about the regression model coefficients
-- Bootstrapping the uncertainty
+- Bootstrapping model uncertainty
 
 ## Linear regression: A t test by another name {-}
 
@@ -34,9 +34,10 @@ With 30 degrees of freedom (sample size = 32 and you loose one degree of freedom
 
 The average miles per gallon over the sample of cars is 17.1 and 24.4 mpg for automatic and manual transmissions, respectively.
 
-The test can be done with linear regression. Linear regression is a statistical model for data that uses a straight line to describe the relationship between variables.
+The same test can be done with linear regression. Linear regression is a statistical model for data that uses a straight line to describe the relationship between variables.
 
 The function for linear regression is `lm()`. The syntax is the same as the `t.test()` function except the assumption of equal variance is the default. Here you first assign the output of the `lm()` function to an object (call the object `model`). Then to see the output use the `summary()` method.
+
 ```{r}
 model <- lm(mpg ~ am, 
             data = mtcars)
@@ -52,12 +53,14 @@ Linear regression provides a way to generalize comparisons across any number of 
 ## Motivation for the regression model {-}
 
 Suppose you have the following values for variables `y` and `x`. Let `y` be the 'response' variable and `x` be the 'explanatory' variable.
+
 ```{r}
 y <- c(2.9, -2.1, -0.5, 2.9, 4.2)
 x <- 1:5
 ```
 
 You start with a scatter plot and assign the graph to an object called `p`.
+
 ```{r}
 df <- data.frame(x, y)
 
@@ -69,6 +72,7 @@ p
 ```
 
 Next you add a horizontal line to the graph at the mean of `y`. The mean of `y` is given by the `mean()` function. The `scale_y_continuous()` function is used to set the range on y-axis scale.
+
 ```{r, fig.keep='none'}
 p <- p + geom_hline(yintercept = mean(y)) +
            scale_y_continuous(limits = c(-6, 6))
@@ -82,20 +86,23 @@ The closer the points are to the line, the better the data fit the model. Closen
 Points above the line indicate values that are larger than the mean, so `y - mean(y)` is positive for these values. Points below the line indicate values that are smaller than the mean, so `y - mean(y)` is negative for these values.
 
 You include these distances on the graph using the `geom_segment()` layer. Aesthetics for this layer include the begin and end values for the x and y variables.
+
 ```{r}
 p <- p + geom_segment(mapping = aes(y = mean(y), yend = y, 
                                     x = x, xend = x))
 p
 ```
 
-The individual distances are called "errors." Statisticians call them "residuals." _Key idea_: A residual is always the observed value minus the modeled value.
+The individual distances are called "errors." Statisticians call them "residuals." _Key idea_: A residual is the observed value minus the modeled value.
 
-The sum of the five residuals is zero. 
+The sum of the five residuals is zero.
+
 ```{r}
 sum( y - mean(y) )
 ```
 
 If you sum the five residuals after squaring each of them you get a measure of how well the model fits the data. The smaller the sum, the better the fit. 
+
 ```{r}
 sum( (y - mean(y))^2 )
 ```
@@ -103,6 +110,7 @@ sum( (y - mean(y))^2 )
 This sum is called the _residual sum of squares_ (RSS) or the _mean squared error_. An RSS equal to 0 indicates that all points fall exactly on the line.
 
 You include the RSS value as a label on the plot using the `geom_label()` function.
+
 ```{r}
 RSS <- round(sum((y - mean(y))^2), 1)
 lab <- paste("RSS = ", RSS)
@@ -112,9 +120,10 @@ p + geom_label(x = 4, y = -2, label = lab)
 
 Notice the pattern. With the exception of the first, the residuals go from large negative with the 2nd value to large positive with the 5th value. 
 
-This pattern suggests that perhaps you can find a line through the data that has a smaller RSS. A line that is not horizontal but slopes upward. 
+This pattern in the residuals suggests that perhaps you can find a line through the data that has a smaller RSS. A line that is not horizontal but slopes upward. 
 
 Let's draw another graph.
+
 ```{r, fig.keep='none'}
 p1 <- ggplot(data = data.frame(x, y), 
              mapping = aes(x, y)) +
@@ -130,6 +139,7 @@ p1
 ```
 
 This is the regression line. You again plot the distance from a particular value to this new line (each distance is called a residual).
+
 ```{r, fig.keep='none'}
 p1 <- p1 + geom_segment(aes(y = predict(lm(y ~ x)), yend = y, 
                             x = x, xend = x))
@@ -137,9 +147,10 @@ p1
 ```
 
 The RSS for the regression model is
+
 ```{r}
-lrm <- lm(y ~ x)
-epsilon <- residuals(lrm)
+model <- lm(y ~ x)
+epsilon <- residuals(model)
 
 RSS <- sum(epsilon^2)
 RSS

@@ -1,418 +1,335 @@
-# Tuesday, October 25, 2022 {-}
+# Tuesday, November 1, 2022 {-}
 
-Today
+Today 
 
-Multiple variable linear regression
+- Predictive uncertainty with regression trees
+- The random forest algorithm
+- Cross validation
+- Classification trees
 
-- A regression plane
-- Fitting a multiple variable regression model
-- Removing a variable from the model
-- Checking model assumptions
-- Using the model to make predictions
-- Collinearity
-- Interactions
+Example: Let's return to the Palmer penguins data frame. You are interested in using machine learning (regression tree) to predict the body mass of male Gentoo penguins using the penguin's bill and flipper dimensions. 
 
-## A regression plane {-}
-
-Multiple variable (multi-variable) linear regression is used to model a dependent variable when there is more than one explanatory variable.
-
-Everything from simple (single explanatory variable) regression carries over to multiple variable linear regression. There is a slope coefficient for each explanatory variable. 
-
-Note: You regress the response variable onto the explanatory variables. You do not perform a regression of the variables or regress y AND x or regress y with respect to x. These are ambiguous at best and misleading at worse.
-
-With one explanatory variable the regression model is described with a straight line. With two explanatory variables the regression model is described with a flat surface.
-
-To see this consider a three dimensional scatter plot created with the `scatterplot3d()` from the {scatterplot3d} package and add the regression plane.
-
-The data comes from the `trees` data frame. You start with a (simple) linear regression. You regress timber volume (`Volume`) on tree girth (`Girth`) and add the model as a line on the scatter plot. 
-
-Here I use the `plot()` method and `abline()` are base R graphics functions.
+First you filter the data frame keeping only the male Gentoo penguins.
 ```{r}
-model1 <- lm(Volume ~ Girth, 
-             data = trees)
-plot(trees$Volume ~ trees$Girth, pch = 16, 
-     xlab = "Tree diameter (in)", 
-     ylab = "Timber volume (cubic ft)")
-abline(model1)
+Gentoo.df <- palmerpenguins::penguins |>
+  dplyr::filter(species == "Gentoo", 
+                sex == "male")
 ```
 
-Next you regress timber volume (`Volume`) on girth (`Girth`) and height (`Height`) and use the `scatterplot3d()` function to plot the scatter of points. The resulting `plane3d()` function takes the regression model and adds the surface.
+To train (fit) the model you use the `tree()` function from the {tree} package. The response variable is `body_mass_g` and the explanatory variables are `bill_length_mm`, `bill_depth_mm`, and `flipper_length_mm`.
+
+The first argument in the function is the model formula and the formula has the same format as that for fitting a linear regression model.
 ```{r}
-model2 <- lm(Volume ~ Girth + Height, data = trees)
-s3d <- scatterplot3d::scatterplot3d(trees, angle = 55, scale.y = .7, pch = 16, 
-                                    xlab = "Tree diameter (in)", 
-                                    zlab = "Timber volume (cubic ft)",
-                                    ylab = "Tree height (ft)")
-s3d$plane3d(model2)
+library(tree)
+
+model <- tree(body_mass_g ~ bill_length_mm + bill_depth_mm + flipper_length_mm,
+              data = Gentoo.df)
+model
 ```
 
-The graph shows that timber volume increases with tree diameter and tree height.
-
-By changing the view angle (`angle =`) you can see that some observations are above the surface and some are below.
-```{r, eval=FALSE}
-s3d <- scatterplot3d(trees, angle = 32, scale.y = .7, pch = 16, 
-                    xlab = "Tree diameter (in)", 
-                    zlab = "Timber volume (cubic ft)",
-                    ylab = "Tree height (ft)")
-s3d$plane3d(model2)
+A _tree diagram_ helps make sense of this output. Use the generic `plot()` method and add text with the `text()` function.
+```{r}
+plot(model)
+text(model)
 ```
 
-The distance along the vertical axis from the observation to the model surface is the residual. So even though there are two explanatory variables there is only one set of residuals as with simple regression.
+The most important variable in explaining body mass of the male Gentoo penguins is bill length. It is the variable named on the top of the tree diagram. For penguins with bills less than 47.45 mm, the next most important variable is bill depth (if the condition is true, then branch to the left). For those penguins with shorter bills if bill depth is less than 15.7 mm then the average body mass is 5131 grams and if the bill depth is greater or equal to 15.7 mm then the average body mass is larger at 5410 g. Again, if the condition is tree, then branch left.
 
-The multiple linear regression model is given by:
-$$
-\hat y = \hat \beta_0 + \hat \beta_1 x_{i1} + \hat \beta_2 x_{i2} + \cdots + \hat \beta_p x_{ip}
-$$
+For Gentoo penguins with a bills at least 47.45 mm in length, the next most important variable is flipper length. For these larger-billed penguins, if flippers are longer (at least 228.5 mm) then the average body mass is 5755 g. For these larger-bill length penguins, if flippers are shorter than 228.5 mm, then split on flipper length again.
 
-The explanatory variables are written with a double subscript (there are $p$ of them) to indicate the observation number (1st subscript) and the variable number (2nd subscript).
+As you move down the tree the branches get smaller (the vertical lines get shorter) indicating the splits are _less_ important in reducing the residual sum of squares (RSS). 
 
-Each explanatory variable gets a coefficient, so there are $p + 1$ of them (including $\hat \beta_0$, the y-intercept).
+Interpreting a tree regression is easier than interpreting a linear regression because the splits have the same units as the explanatory variables. In a linear regression the coefficients have units of response variable divided by the units of the explanatory variable.
 
-Now for each observation $i$ there is an observed response ($y_i$) and a predicted response ($\hat y_i$) and the difference is called the residual.
+Machine learning algorithms are often used solely for predictions. Given the branching structure of the tree, the predicted values are easy to anticipate.
 
-The residuals are given by the equation
-$$
-y_i - \hat y_i = \varepsilon_i
-$$
-and are assumed to be described by a set of normal distributions each centered on zero and having the same variance ($\sigma^2$).
+Prediction amounts to following the rules defined by the final model. You start with the value of the variable `bill_length_mm` and work your way down until you come to a terminal node (a branch that ends in a value rather than a split). The value is the _average of the response variable_ conditional on the splits.
 
-A grid of scatter plots
+For example, if `bill_length_mm` is less than 47.45 mm and `bill_depth_mm` is less than 15.7 mm, then the mass of the penguin is predicted to be 5131 grams. Said another way, 5131 is the average body mass for all male Gentoo penguins with bill length less than 47.45 and bill depth less than 15.7.
 
-As with simple linear regression, before you model the data you should make a scatter plot. With more than one explanatory variable you rely on a series of scatter plots.
-
-Consider the data set `PetrolConsumption.txt` that has gasoline consumption by state for a given year.
+You can check this as follows.
 ```{r}
-url <- "http://myweb.fsu.edu/jelsner/temp/data/PetrolConsumption.txt"
-PC.df <- readr::read_table(url)
-head(PC.df)
+Gentoo.df |>
+  dplyr::filter(bill_length_mm < 47.45 & bill_depth_mm < 15.7) |>
+  dplyr::summarize(mean(body_mass_g))
 ```
 
-Columns in the data frame include petrol (gas) tax (`Petrol.Tax`) [cents per gallon], per capita income (`Avg.Inc`) [$/10], miles of paved highway (`Pavement`), proportion of drivers (`Prop.DL`), and consumption of petrol (`Petrol.Consumption`) [millions of gallons].
-
-First create a panel of scatter plots using all the variables in the data frame with the `GGally::ggpairs()` function from the {GGally} package.
+The `predict()` method is used to make predictions with the model. The first argument is the model object and the next is the data frame containing the variables.
 ```{r}
-GGally::ggpairs(PC.df)
+predict(model, 
+        newdata = data.frame(bill_length_mm = 45,
+                             bill_depth_mm = 15,
+                             flipper_length_mm = 220))
+
+predict(model, 
+        newdata = data.frame(bill_length_mm = 45,
+                             bill_depth_mm = 16,
+                             flipper_length_mm = 220))
 ```
 
-The plots are arranged in a grid. The rows correspond to the variables as given from left to right in the data frame. The first column in the data set is `Petrol.Tax` then `Avg.Inc`, etc.
+Note that you need to specify values for all the explanatory variables (even if the variables are not involved with any of the splits).
 
-The plot in row 2, column 1 is shows `Avg.Inc` on the vertical axis and `Petrol.Tax` on the horizontal axis. The value in the diagonal panel (row 1, column 2) is the Pearson correlation coefficient between `Avg.Inc` and `Petrol.Tax`. 
+The uncertainty on the predicted value is more difficult to work out. You can use the standard error on the mean for that terminal node, but this error ignores the uncertainty surrounding what variable to split and at what value to make the split. Because of this limitation machine learning algorithms are not usually used for inference.
 
-The panel in row 3 column 1 shows `Pavement` on the vertical axis and `Petrol.Tax` on the horizontal axis.
+Another question that arises is can the tree be simplified? The question is answered by considering the trade-off between minimizing the bias and maximizing the variance explained in the response variable. 
 
-You want to quantify how much of the variation in gas consumption at the state level is statistically explained by the variables taxes, income, amount of pavement, and proportional of drivers.
+If the tree has many explanatory variables and lots of decision splits then it will explain more variance. But this will make the tree biased toward the particular data set used in the training and predictions made with the model on new data (data not used in the training) will be poor. On the other hand, if the tree is too simple (few variables and few splits), it will not explain much of the variance in the response.
 
-So gas consumption (the variable `Petrol.Consumption`) is your response variable and you focus on the subset of scatter plots (in row 5) where `Petrol.Consumption` is on the vertical axis in each plot.
+Pruning the tree solves for this trade-off. The `prune.tree()` function gives a sequence of smaller trees from the largest tree by removing the least important splits.
 
-By eye, which of the variables appears to you to be the most (least) related to gas consumption?
-
-The variable with the highest correlation with gas consumption is `Prop.DL`, the proportion of people with a drivers license. The correlation between these two variables is .7. With more people driving, gas consumption increases.
-
-Gas taxes have an inverse relationship with gas consumption. This is seen in the scatter plot in the lower left corner of the grid and by the negative correlation (-.45) in the upper right corner.
-
-Plots along the diagonal are density plots of each of the variables individually. 
-
-Correlations arranged in a matrix like the grid of scatter plots is printed using the `cor()` function.
+The function returns the tree size (number of terminal nodes), the total deviance for each tree, and the increase in deviance by going from a larger tree to a smaller tree.
 ```{r}
-cor(PC.df)
+prune.tree(model)
 ```
 
-The correlations between the explanatory variables and gas consumption are located in the last column of the matrix under `Petrol.Consumption`.
+From the output you see the largest tree (8 terminal nodes) results in the smallest deviance (`$dev`) (3452632). By pruning one branch the deviance increases (3536660) but only by a relatively small amount (84028 which is an increase of about 2.4%). Similarly by pruning a second branch the deviance increases, this time a bit more. 
 
-From the plots and the correlation matrix you anticipate the proportion of people with drivers licenses to be the most important variable in a regression model and the coefficient on this term will be a positive number. 
-
-Further you anticipate that the gas tax will be an important variable but the coefficient on this term will be a negative number.
-
-## Fitting a multiple variable regression model {-}
-
-You fit a multiple variable regression model to the gas data using the `lm()` function. You put the name of the response variable (`Petrol.Consumption`) to the left of the `~` and then the names of the explanatory variables to the right. After each variable you include a `+` sign (except for the last variable). 
-
-Here you assign the model to an object called `model1`.
+It is helpful to plot the deviance as a function of tree size.
 ```{r}
-model1 <- lm(Petrol.Consumption ~ Prop.DL + Pavement + Avg.Inc + Petrol.Tax,
-             data = PC.df)
-model1
+plot(prune.tree(model))
 ```
 
-You have four explanatory variables so the model has five coefficients. There is a coefficient for the y-intercept (`Intercept`).
+Deviance declines with increasing complexity. You see that the amount of decline (vertical line between the steps) generally diminishes with each node. You see that at a tree size of 6 branches the vertical lines are quite small.
 
-Looking only at the signs on the numbers under the variable names you see that gas consumption _increases_ with the proportion of drivers and _decreases_ with the amount of pavement, average income and gas tax. Why might gas consumption decrease with increasing income?
+_Code challenge:_ Recreate this plot using the grammar of graphs. Hint: save the prune tree object and then create a data frame from the object lists. Then use `scale_x_reverse()`.
 
-The model is interpreted as follows:
-
-Average gas consumption [millions of gallons] = 377.3 + 1336 * Prop.DL – 0.0024 * Pavement – 0.06659 * Avg.Inc – 34.79 * Petrol.Tax
-
-The model says that for every 1 percentage point increase in the proportion of drivers (to overall population), the mean gas consumption _increases_ by 1336 million gallons (1.336 billion gallons) assuming `Pavement`, `Avg.Inc` and `Petrol.Tax` are constant. 
-
-For every 1 cent/gallon increase in taxes, mean gas consumption _decreases_ by 34.79 million gallons assuming the three other variables are held constant.
-
-The statistically significant variables in the model for explaining gas consumption are identified by looking at the table of coefficients from the `summary()` function.
+Suppose you want a tree with six terminal nodes.
 ```{r}
-summary(model1)
+model2 <- prune.tree(model, 
+                     best = 6)
+plot(model2)
+text(model2)
 ```
 
-You ignore the `Intercept` term. It represents the value of the response variable where the model line intersects the $y$-axis.
+## Predictive uncertainty with regression trees {-}
 
-You see that three of the four coefficients have a $p$-value at or less than .01. Only the coefficient on the variable `Pavement` has a $p$-value greater than .15. Therefore this variable is not significant in explaining the variance in the response variable (the coefficient is not statistically significant from a value of zero).
+Let's look at another example. Predicting Atlantic hurricanes using a regression tree.
 
-The null hypothesis is that the variable is NOT important to the model. The $p$-value on the variable's coefficient is evidence in support of the null hypothesis. The larger the $p$-value the more evidence you have that the variable is not important to the model. 
-
-In determining which variables are most important in the regression model, the coefficient estimates (effect sizes) cannot be compared directly because they do not have the same units. 
-
-Key idea: A regression coefficient has units of the response variable divided by the units of the explanatory variable. But the explanatory variables have different units. For example, `Petrol.Tax` has units of cents per gallon and `Pavement` has units of miles.
-
-So instead of comparing the values of the coefficients directly (i.e., instead of looking in the column labeled `Estimate`) you look at the column labeled `t value`.
-
-The magnitude of the $t$ values are inter comparable. They are coefficients that have been _standardized_ by dividing by the corresponding standard error. Accordingly, `Avg.Inc` is more more important than `Petrol.Tax` even though .0666 is much smaller than 34.79.
-
-Key point: The order of the explanatory variables does not change the magnitude or the sign of the corresponding coefficients.
+Import the annual hurricane data and filter on years since 1950. Create a data frame containing only the basin-wide hurricane counts and Southern Oscillation Index (El Nino) and SST as the two explanatory variables. The SOI has units of standard deviation and the SST has units of degrees C.
 ```{r}
-summary(lm(Petrol.Consumption ~ Pavement + Petrol.Tax + Avg.Inc + Prop.DL, 
-           data = PC.df))
+df <- readr::read_table("http://myweb.fsu.edu/jelsner/temp/data/AnnualData.txt") |>
+  dplyr::filter(Year >= 1950) |>
+  dplyr::select(Year = Year, H = B.1, SOI = soi, SST = sst)
+head(df)
 ```
 
-Key point: The model does not change with a linear transformation of the variables. For example, if you multiply `Pavement` by 20, the coefficient and standard error change accordingly, but not the $t$ value or the corresponding $p$-value.
+Then fit a regression tree to these data with the annual count of hurricanes as the response variable and `SOI` and `SST` as the explanatory variables.
 ```{r}
-summary(lm(Petrol.Consumption ~ I(Pavement * 20) + Petrol.Tax + Avg.Inc + Prop.DL,
-           data = PC.df))
+model <- tree(H ~ SOI + SST, 
+              data = df)
+plot(model)
+text(model)
 ```
 
-Side note: Here the multiplication is done inside the function `I()` to restrict the interpretation of the operator `*` to multiplication rather than interaction.
-
-The multiple R-squared value is .68 which means the model explains 68% of the variation in gas consumption.  
-
-Note that the $p$-value on the model (given on the last line of the output) is small. The null hypothesis in this case is that none of the variables are important in explaining petrol consumption. You reject this null hypothesis.
-
-## Should you remove a variable from the model? {-}
-
-A model is said to be simpler if it has fewer explanatory variables.
-
-You try another model without the `Pavement` variable (the variable that was not significant in the previous model).
+The predicted number of hurricanes when `SOI` is -2 s.d. and when `SST` is .2C is found using the `predict()` method. 
 ```{r}
-model2 <- lm(Petrol.Consumption ~ Prop.DL + Avg.Inc + Petrol.Tax, 
-             data = PC.df)
+predict(model, 
+        newdata = data.frame(SOI = -2, SST = .2))
+```
+
+So, on average, you can expect between 7 and 8 hurricanes in the Atlantic in years with the SOI is -2 s.d. and the SST is .2C above normal.
+
+The predicted value depends on the tree, which in turn depends exactly on what values of SOI and SST are used to "grow" it. 
+
+To see this, you grow a new tree for hurricane count, but this time leaving the values of SOI and SST from the last year in the data frame out. 
+
+Since there are 61 years, leaving the last year out amounts to sub-setting the data frame as `df[-61, ]`.
+
+Then you fit a new tree model (`model2`) and make a prediction for the same values of `SOI` and `SST` (`SOI` = -2 s.d. and `SST` = .2C).
+```{r}
+model2 <- tree(H ~ SOI + SST, 
+               data = df[-61, ])
+predict(model2, 
+        newdata = data.frame(SOI = -2, SST = .2))
+```
+
+The predicted value is quite different even though you left out only one year of data!
+
+Predictive uncertainty occurs with any model, but the level of uncertainty is much larger with machine learning algorithms because they have many parameters. Each branch in a regression tree is a parameter and so is every split so with our two explanatory variables there are at least 10 parameters.
+
+For example, compare the predicted hurricane rates from a linear regression model with and without the last year.
+```{r}
+predict(lm(H ~ SOI + SST, data = df),
+        newdata = data.frame(SOI = -2, SST = .2))
+predict(lm(H ~ SOI + SST, data = df[-61, ]),
+        newdata = data.frame(SOI = -2, SST = .2))
+```
+
+The difference in predicted values is very small with a linear regression model. On the order of .2% `r (6.23 - 6.22)/6.23 * 100` compared with 22% (`(7.35 - 5.71)/7.35 * 100`) for the machine learning algorithm
+
+## The random forest algorithm {-}
+
+A random forest algorithm solves some of the problem of large predictive uncertainty by fitting many regression trees (a 'forest'). The algorithm takes many samples (e.g., 100) from the set of all observations and then using these samples fits many regression trees. Given a set of new values for the explanatory variables, each regression tree provides a predicted value. The average over all predicted values is taken as the random forest prediction.
+
+The `randomForest()` function in the {randomForest} package provides a random forest algorithm. 
+
+For comparison here you apply a random forest algorithm to the hurricane data frame. I use the word _algorithm_ because there is no single model. The number of trees is set at 500 (by default).
+```{r}
+rfa <- randomForest::randomForest(H ~ SOI + SST,
+                                  data = df,
+                                  ntree = 500)
+```
+
+Then to make a prediction you use (again) the `predict()` method. 
+```{r}
+predict(rfa, 
+        newdata = data.frame(SOI = -2, SST = .2))
+```
+
+The predicted value is less sensitive to removing single observations. To see this you apply the random forest algorithm with the last observation removed.
+```{r}
+rfa <- randomForest::randomForest(H ~ SOI + SST, 
+                                  data = df[-61, ],
+                                  ntree = 500)
+predict(rfa, 
+        newdata = data.frame(SOI = -2, SST = .2))
+```
+
+In summary: Regression trees tend to produce predicted values that are unstable, which means a small change in the data used to grow the tree results in a large difference in the predicted value. 
+
+The _in-sample error_ (the error made when using the model to predict the data that you used to fit the model) might be small, but the _out-of-sample error_ (the error made when using the model to predict new data) can be large. 
+
+A random forest algorithm solves some of the problem (but not all) of unstable predictions by growing many trees.
+
+## Cross validation {-}
+
+Why use a machine learning algorithm? They are useful when you have a large amount of data. They can find features in the data that are not accessible with linear regression.
+
+But how do you compare the predictive skill of a random forest algorithm against the predictive skill of another model?
+
+You use a method called _cross validation_. Cross validation helps you decide what model to use across the span of many models.
+
+Key idea: Cross validation is a method that removes noise specific to each observation and estimates how well the model/algorithm finds useful prediction rules when this coincident information is unavailable.
+
+For example, here you compare the skill of a random forest algorithm against the skill of a _Poisson_ regression model for predicting hurricane counts. You arrange the cross validation as follows.
+```{r}
+n <- length(df$H)
+rfx <- numeric(n)
+prx <- numeric(n)
+for(i in 1:n){
+  rfa <- randomForest::randomForest(H ~ SOI + SST, data = df[-i, ])
+  prm <- glm(H ~ SOI + SST, data = df[-i, ], 
+             family = "poisson")
+  new <- df[i, ]
+  rfx[i] <- predict(rfa, newdata = new)
+  prx[i] <- predict(prm, newdata = new, 
+                    type = "response")
+}
+```
+
+You compute the out-of-sample averaged prediction error squared (mean squared prediction error) for both models.
+```{r}
+mean((df$H - prx)^2)
+mean((df$H - rfx)^2)
+```
+
+The Poisson regression model performs slightly better than the random forest model in this case although the difference is not large.  
+
+Correlations between the actual and predicted value are
+```{r}
+cor(df$H, prx)
+cor(df$H, rfx)
+```
+
+The influence each of the two explanatory variables has on the hurricane counts is seen by plotting the predictions on a grid.
+```{r}
+newdat <- expand.grid(SST = seq(-.5, .7, .01), 
+                      SOI = seq(-5, 4, .1))
+z1 <- predict(rfa, newdata = newdat)
+prm <- glm(H ~ SOI + SST, data = df, family = "poisson")
+z2 <- predict(prm, newdata = newdat, type = "response")
+newdat$Hrf <- z1
+newdat$Hpr <- z2
+
+library(ggplot2)
+
+p1 <- ggplot(newdat, aes(x = SST, y = SOI, fill = Hrf)) + 
+        geom_tile() +
+        scale_fill_viridis_c(limits = c(0, 12)) +
+        labs(fill = "Rate") +
+        xlab("Atlantic Sea Surface Temperature (°C)") + 
+        ylab("Southern Oscillation Index (s.d.)") +
+        ggtitle(subtitle = "Random forest algorithm",
+                label = "Annual Atlantic hurricane rate") +
+        theme_minimal()
+p2 <- ggplot(newdat, aes(x = SST, y = SOI, fill = Hpr)) + 
+        geom_tile() +
+        scale_fill_viridis_c(limits = c(0, 12)) +
+        labs(fill = "Rate") +
+        xlab("Atlantic Sea Surface Temperature (°C)") + ylab("Southern Oscillation Index (s.d.)") +
+        ggtitle(subtitle = "Poisson regression model",
+                label = "Annual Atlantic hurricane rate") +
+        theme_minimal()
+
+library(patchwork)
+p1 + p2
+```
+
+Hurricane counts increase with SST and SOI but for high values of SOI the influence of SST is stronger. For high values of SST the influence of the SOI is more pronounced. The random forest algorithm is able to capture more subtle features (plaid pattern) but at the expense of interpreting some noise as signal as seen by the relative high count with SOI values near -3 s.d. and SST values near -.1C.
+
+## Classification trees {-}
+
+When the response variable is categorical (e.g., species) a regression tree is called a _classification tree_.  The classification tree is a set of if-then rules that results in a probability for each category.
+
+If instability is high and wind shear is strong, then predict a high chance of damaging tornadoes. If a patient's resting heart rate exceeds 120 bpm, then predict a high chance that the patient will suffer a heart attack within the next 5 years.
+
+Consider again the `penguins` data frame from the {palmerpenguins} package.
+```{r}
+head(palmerpenguins::penguins)
+```
+
+With `species` as the categorical response variable (there are three different penguin species) and the other columns as explanatory variables you can specify the model formula as `species ~ .`. The period after the tilde (`~`) indicating all other variables in the data frame.
+```{r}
+model <- tree(species ~ .,
+              data = palmerpenguins::penguins)
+plot(model)
+text(model)
+```
+
+From the plot you see that flipper length split at 206.5 mm is the most important variable in distinguishing the species. The next two branches are bill length split at 43.45 mm and island.
+
+Since island is a categorical explanatory variable there is a `:a` next to the name `island`. This indicates that the spit is on the first island in alphabetical order. The island names are
+```{r}
+unique(palmerpenguins::penguins$island)
+```
+
+Biscoe Island is the first in alphabetical order so the split says that if the island is Biscoe (yes, means branch left) then predict the species is Gentoo and if the island is not Biscoe (either Dream or Torgersen) then predict the species to be Chinstrap.
+
+After these three splits resulting in four branches, the branches become very small (the vertical lines are short) indicating that these additional splits do not reduce the RSS by much at all.
+
+So you prune the tree by setting `best = 4`. That is, you ask the model to grow a tree with the four most important branches.
+```{r}
+model2 <- prune.tree(model, 
+                     best = 4)
+plot(model2)
+text(model2)
+```
+
+You examine the model quantitatively by the misclassification error rate. This is given in the last line of the output from the `summary()` method.
+```{r}
 summary(model2)
 ```
 
-The remaining explanatory variables are significant. The values are slightly different as the variance in the gas consumption attributed to `Pavement` is now spread across the remaining variables. 
+You see that the model misclassifies the species in 12 of the 333 penguins resulting in a misclassification error rate of 3.6%.
 
-Key point: Removing an explanatory variable changes the coefficient values on the remain variables in the model.
+Note that the full model has a misclassification error rate of only 1.8% (6 out of the 333 penguins). But this requires twice as many nodes so the model has greater bias.
 
-The proportion of the population with licenses is the most important variable. It has the largest $t$ value (in absolute value).
+Suppose you are able to observe a penguin on Biscoe Island with a flipper length of 200 mm, a bill length of 44 mm, a bill depth 18 mm, and a body mass of 4000 g. What is the likely species?
 
-By removing a variable the R-squared statistic DECREASES to .675. This is always the case with a simpler model (fewer explanatory variables). Thus the R-squared statistic should not be used to compare models unless the models have the same number of explanatory variables.  
-
-One alternative for comparing models is the adjusted R squared. It is a modification of the R squared that accounts for the number of explanatory variables in the model.
-
-Key point: The adjusted R squared increases only if the new variable improves the model more than would be expected by chance. The adjusted R squared can be negative, and will always be less than or equal to R squared.
-
-To see the importance of the adjusted R squared, first note that `Petrol.Tax` has the smallest $t$ value. Suppose you remove it. What happens?
+You use the `predict()` method with the `newdata =` argument specified as a data frame. You must include by name all the variables in the model specification. This includes `island` and `sex` as factors along with `year`, `flipper_length_mm`, `bill_length_mm`, `bill_depth_mm`, and `body_mass_g` as integers or numeric values. Note that since the final tree only includes the variables `island`, `flipper_length_mm`, and `bill_length_mm` it does not matter what values you use for the other variables.
 ```{r}
-model3 <- lm(Petrol.Consumption ~ Prop.DL + Avg.Inc, 
-             data = PC.df)
-summary(model3)
+predict(model2,
+        newdata = data.frame(island = factor("Biscoe"),
+                             sex = factor("male"),
+                             year = 2020,
+                             flipper_length_mm = 200,
+                             bill_length_mm = 44,
+                             bill_depth_mm = 18,
+                             body_mass_g = 4000))
 ```
 
-The adjusted R squared is smaller, so you conclude that this variable should be kept in the model.
+The result says that there is a 92% chance that it is a Chinstrap penguin, a 6% chance that it is an Adelie penguin and a 2% chance that it is a Gentoo penguin.
 
-Thus you settle on a final model: 
-Average gas consumption [millions of gallons] = 307.3 + 1375 x Prop.DL - .06802 x Avg.Inc - 29.48 x Petrol.Tax
+The `ctree()` function in {party} package can be used to model binary, nominal, ordinal and numeric variables. 
 
-## Checking on the model assumptions {-}
-
-Next you need to check the model assumptions. Equal variance: You saw how to check this assumption by using the `cut()` function and creating side-by-side box plots. 
-
-Another way is to plot the standardized residuals on the vertical axis and the fitted values along the horizontal axis. Adding a smoothed curve and the y equal zero line makes it easy to see whether there is a pattern to the residuals.
-```{r}
-library(ggplot2)
-model2.df <- fortify(model2)
-ggplot(data = model2.df, 
-       mapping = aes(x = .fitted, y = .stdresid)) +
-  geom_point() +
-  geom_smooth() +
-  geom_hline(yintercept = 0)
-```
-
-In this case: no pattern in the residuals.
-
-Normality. First you use the `sm.density()` function.
-```{r}
-res <- residuals(model2)
-sm::sm.density(res, xlab = "Model Residuals", model = "Normal")
-```
-
-You also examine a quantile-normal plot of the residuals.
-```{r}
-qqnorm(model2$residuals)
-qqline(model2$residuals)
-```
-
-These plots indicate some evidence against normality and constant variance. The fact that the residuals do not exactly follow a normal distribution decreases the confidence you can place on your inferences (e.g., stating a particular variable is significant in explaining variations in the response variable).
-
-To improve model adequacy you might transform the response variable or use a weighted regression model. You will return to this shortly.
-
-## Using the model to make predictions {-}
-
-https://easystats.github.io/performance/reference/check_predictions.html
-
-Posterior predictive checks mean simulating replicated data under the fitted model and then comparing these to the observed data. Posterior predictive checks are used to look for systematic discrepancies between real and simulated data.
-
-The {performance} package gives posterior predictive check methods for a variety of frequentist and Bayesian models.
-```{r}
-performance::check_predictions(model2)
-```
-
-The model predicted lines should resemble the observed data line (smoothed density of response variable). Here you see that it looks pretty good, but improvements could be made.
-
-Example: Predicting house prices
-
-A Realtor can use multiple variable regression to justify a selling price for a house based on a list of features the house has. Here you consider a data file (`houseprice.txt`) containing a random sample of 107 home sales in Albuquerque, New Mexico during the period February 15 through April 30, 1993 (Albuquerque Board of Realtors, 1993).
-
-Get the data.
-```{r}
-url <- "http://myweb.fsu.edu/jelsner/temp/data/houseprice.txt"
-hp.df <- readr::read_table(url)
-head(hp.df)
-```
-
-The data include:
-
-* `price`: Selling price in \$100s
-* `sqft`: Square feet of living space
-* `custom`: Whether the house was built with custom features (1) or not (0)
-* `corner`: Whether the house sits on a corner lot (1) or not (0)
-* `taxes`: Annual taxes in \$
-
-Here you assume that taxes determine price. In some (many?) real estate contexts the causality would work in the opposite direction: selling price affects appraisals and hence taxes.
-
-Use the `ggpairs()` function from the {GGally} package to get a look at your data.
-```{r}
-GGally::ggpairs(hp.df)
-```
-
-As expected selling prices increase with size of the living space and with taxes. Scatter plots are not very informative for binary variables (variables with only two values).
-
-The response variable is selling price (`price`). You begin with living space (`sqft`) and whether the house was `custom` built as the two explanatory variables.
-```{r}
-model1 <- lm(price ~ sqft + custom, 
-             data = hp.df)
-summary(model1)
-```
-
-The model indicates that for a one square foot increase in living space, selling prices increase by \$54 controlling for whether or not it has custom features. You move the decimal place on the coefficient to the right two places because selling price is in 100s of dollars.
-
-The model also indicates that custom-featured houses (indicated with a value of 1 in the variable `custom`) sell for more by \$17,211 on average controlling for living space.
-
-To predict the selling price of a house that has custom features and has 3500 square feet of living space type
-```{r}
-predict(model1, 
-        newdata = data.frame(sqft = 3500, custom = 1), 
-        interval = "confidence")
-```
-
-The model predicts a selling price of \$219.5K with a 95% uncertainty interval between \$205.7K and \$233.3K.
-
-## Collinearity {-}
-
-With more than one explanatory variable in a regression model you need to consider the possibility that the model coefficients are imprecise (small changes in input can lead to large changes in the model) due to collinearity (multicollinearity). Collinearity is when explanatory variables are highly correlated.
-
-If collinearity exists then your ability to properly interpret the model is compromised.
-
-As an example, consider the data set called `fat.txt` containing measurements related to body fat from 47 individuals. 
-```{r}
-url <- "http://myweb.fsu.edu/jelsner/temp/data/fat.txt"
-bf.df <- readr::read_table(url)
-head(bf.df)
-```
-
-The response variable `bodyfat` is a percentage measured using special equipment. The four explanatory variables are circumferences of different body parts and are easy to measure. So you are interested in a model to predict `bodyfat` from these easier to measure variables.
-
-As always, you start with a grid of scatter plots.
-```{r}
-GGally::ggpairs(bf.df)
-```
-
-Here `abdomen` has the strongest linear relationship with `bodyfat`, but other variables have high direct (positive) correlation. Note the large correlation between the explanatory variables.
-
-Next you regress `bodyfat` onto the four explanatory variables and summarize the model.
-```{r}
-model1 <- lm(bodyfat ~ abdomen + biceps + forearm + wrist, 
-            data = bf.df)
-summary(model1)
-```
-
-What is wrong here?
-
-The negative coefficient on the variable `biceps` is opposite of the sign on the correlation between `bodyfat` and `biceps`.
-```{r}
-cor(bf.df$bodyfat, bf.df$biceps)
-```
-
-This is an indication of collinearity. The problem is that there is a large correlation between `abdomen` and `biceps` leading to a model that may not make physical sense.
-
-Key idea: The rule is that when the correlation between two explanatory variables exceeds .6, collinearity can be a problem.
-
-
-When explanatory variables have large correlation then estimates of the model parameters are not precise. A model with imprecise parameter estimates is not useful. The best way to proceed in this situation is to reduce the set of explanatory variables. 
-
-Remove the explanatory variable that makes the least sense from physical arguments. For these data, it is probably best to remove all variables except `abdomen`.
-
-## Interactions {-}
-
-Sometimes the _relationship_ between an explanatory variable and the response variable _depends on_ another explanatory variable. In this case you say there is an _interaction_ between the two explanatory variables.
-
-For instance, the relationship between selling price and living space might depend on whether the house was custom built. To see if the interaction might need to be included in the regression model first make a plot.
-```{r}
-ggplot(data = hp.df, 
-       mapping = aes(y = price, x = sqft, color = factor(custom))) +
-  geom_point() +
-  geom_smooth(method = lm, se = FALSE) +
-  xlab("Living Space (sq ft)") +
-  ylab("Selling Price ($100)")
-```
-
-Here the conditioning variable must be a factor. You see both regression lines have about the same slope. This implies the relationship between selling price and living space does not depend on whether the house has custom features.
-
-In contrast, whether or not the house is on the corner influences the relationship between selling price and living space.
-```{r}
-ggplot(data = hp.df, 
-       mapping = aes(y = price, x = sqft, color = factor(corner))) +
-  geom_point() +
-  geom_smooth(method = lm, se = FALSE) +
-  xlab("Living Space (sq ft)") +
-  ylab("Selling Price ($100)")
-```
-
-The slope of the regression line between selling price and house living space is different for corner and non-corner houses. The regression lines have different slopes and cross. This is indicates an interaction between the continuous variable of living space and the categorical variable of corner.
-
-To add an interaction term to the model, you use the `:` notation. You need to know how the categorical variable is coded to correctly interpret the model [On a corner lot (1), or not (0)]
-```{r}
-model1 <- lm(price ~ sqft + corner + sqft:corner, 
-             data = hp.df)
-summary(model1)
-```
-
-Or, you can use the notation `*` to add both the main effects and the interaction effect to the model. Models with interaction effects should also include the main effects, even if these main effects are not significant.
-```{r}
-model1b <- lm(price ~ sqft * corner, 
-              data = hp.df)
-summary(model1b)
-```
-
-The model indicates that for a one square foot increase in living space, selling prices increase by \$75 for the non-corner houses. The coefficient for the interaction is -.453 which is the difference in slope between the non-corner and corner houses, i.e., the slope for the corner houses is .752 - .453 = .299 (~\$30).
-
-Lastly the coefficient on the corner term of 629 is the difference in the intercepts between non-corner and corner. Or the difference in the y-intercept when living space has a value of zero. The coefficient is significant when living space is zero but this is not realistic. You transform the variables and refit the model.
-```{r}
-model1c <- lm(price ~ I(sqft - mean(sqft)) + corner + 
-               I(sqft - mean(sqft)):corner, 
-             data = hp.df)
-summary(model1c)
-
-model1d <- lm(price ~ I(sqft - 1500) + corner + I(sqft - 1500):corner,
-             data = hp.df)
-summary(model1d)
-```
-
-In both cases the intercept difference is negative. In the second case it is insignificant. 
-
-When interpreting the results from models that contain interaction terms, the rule is to not interpret the coefficients on the main effects (marginal coefficients). As demonstrated the presence of interactions implies that the meaning of coefficients for terms vary depending on the values of the other variables and thus are not easily interpreted.
+The {rpart} packages contains additional functions for modeling our data with decision trees. See also: http://rstatistics.net/decision-trees-with-r/

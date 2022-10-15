@@ -1,379 +1,465 @@
-# Thursday, November 3, 2022 {-}
+# Thursday, November 10, 2022 {-}
 
-Today 
+Today
 
-Logistic regression
+- Statistical significance of spatial autocorrelation
+- A Monte Carlo approach to inference
+- Spatial autocorrelation in model residuals
 
-- Binary outcomes and probability
-- The logistic regression model
-
-Linear regression is one of the most powerful tools in data science. But it's utility is limited to response variables that can be approximated with a normal distribution. 
-
-When the response variable is binary (only two outcomes) a linear regression model should not be used.
-
-Many scientific research questions involve binary outcomes, and there is often a need to predict the probability that something will happen. The probability you will get a virus.
-
-Fortunately, with only a small modification to the linear regression model you can get a _logistic regression_ model that describes how a binary response variable is related to a set of explanatory variables.
-
-The mechanics of fitting a logistic regression model are the same as with fitting a linear regression. The model coefficients are determined using the _method of maximum likelihood_. 
-
-The method of maximum likelihood answers the question, what is the probability of our data given the model. A model that assigns the highest probability to our data is the model that is chosen.
-
-## Binary outcomes and probabilities {-}
-
-A key understanding here is that the _average value_ over a set of binary responses is a number between 0 and 1. To see this, here you generate a set of random binary responses using the `rbinom()` function. `r` for random and `binom` for binomial distribution with a long-run probability of .2.
+As a review let us consider another data set where you start by computing spatial autocorrelation. The data are sudden infant deaths (SIDS) rates in the 100 counties of North Carolina for the period July 1, 1979 to June 30, 1984. Download and unzip the data in your working directory.
 ```{r}
-rbinom(n = 100, 
-       size = 1, 
-       prob = .2)
+url <- "http://myweb.fsu.edu/jelsner/temp/data/sids2.zip"
+download.file(url,
+              destfile = here::here("data", "sids2.zip"))
+unzip(zipfile = here::here("data", "sids2.zip"),
+      exdir = here::here("data"))
 ```
 
-The `n = 100` is the number of binary responses to generate, `size = 1` indicates two choices (`0` or `1`), and `prob = .2` is the long-run probability of getting a `1`.
-
-If you say that an outcome of `1` is a success and that an outcome of `0` is a failure, then the average taken over all outcomes is the sample probability of success.
-
-Here yiu compute averages over a samples of binary outcomes where the probability of a `1` (success) is .2, .5, and .9.
+Then import the data with the `read_sf()` function from the {sf} package. Set the coordinate reference system to WGS 1984 with latitude/longitude coordinates using the ESPG code of 4326.
 ```{r}
-mean(rbinom(n = 100, size = 1, prob = .2))
-mean(rbinom(n = 100, size = 1, prob = .5))
-mean(rbinom(n = 100, size = 1, prob = .9))
+SIDS.sf <- sf::read_sf(dsn = here::here("data", "sids2"))
+sf::st_crs(SIDS.sf) <- 4326
+
+head(SIDS.sf)
 ```
 
-Repeat. You see that the sample means are close to the long-run probabilities.
-
-Recall that a regression model predicts the conditional mean values of the response variable. When the response variable is binary, the mean values are probabilities, so a logistic regression predicts the conditional probability of something happening. For example, the probability of getting COVID-19 given your social distancing and mask-wearing habits.
-
-Probabilities are bounded between 0 and 1, but the linear regression line is not.
-
-Example: Consider data collected from the recovered solid booster rockets of the 23 previous shuttle flights (before the Challenger Space Shuttle disaster in 1986). The temperature in F at launch time and whether there was (`1`) or was not (`0`) damage to the O-rings on the booster.
+The column `SIDR79` contains the death rate per 1000 live births (1979-84) from sudden infant death syndrome. Create a choropleth map of the SIDS rates.
 ```{r}
-Temperature <- c(66, 70, 69, 68, 67, 72, 73, 70, 57, 63, 70, 78, 67, 53, 67, 75, 70, 81, 76, 79, 75, 76, 58)
-Damage <- c(0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1)
+library(tmap)
+
+tm_shape(SIDS.sf) +
+  tm_fill("SIDR79", title = "") +
+  tm_borders(col = "gray70") +
+  tm_layout(title = "SIDS Rates 1979-84 [per 1000]",
+            legend.outside = TRUE)
 ```
 
-The variable `Damage` is the response variable and `Temperature` is the explanatory variable.
+Counties with the highest rates are noted in the southern and western parts of the state. There appears to be some clustering. Counties with high rates tend to be surrounded by counties also with high rates and counties with low rates tend to be surrounded by counties also with low rates.
 
-Start with a scatter plot of these two variables along with the linear regression line.
+To quantify the amount of clustering you first create a neighborhood list (`nb`) and a `listw` object (`wts`). To visualize the connectivity you graph the neighborhood network.
 ```{r}
-df <- data.frame(Damage, Temperature)
+nbs <- spdep::poly2nb(SIDS.sf)
+wts <- spdep::nb2listw(nbs)
+plot(nbs, sf::st_centroid(SIDS.sf)$geometry)
+plot(SIDS.sf$geometry, add = TRUE)
+```
 
+Next you compute Moran's I with the `moran()` function from the {spdep} package.
+```{r}
+m <- length(SIDS.sf$SIDR79)
+s <- spdep::Szero(wts)
+spdep::moran(SIDS.sf$SIDR79, 
+             listw = wts, 
+             n = m, 
+             S0 = s)
+```
+
+I is .14 and K is 4.4. A normal distribution has a kurtosis of 3. Values less than about 2 or greater than about 4 indicate that inferences about autocorrelation based on the assumption of normality are suspect.
+
+Weights are specified using the `style =` argument in the `nb2listw()` function. The default "W" is row standardized (sum of the weights over all links equals the number of polygons).
+
+"B" is binary (each neighbor gets a weight of one). "S" is a variance stabilizing scheme. 
+
+Each style gives a slightly different value for I.
+```{r}
+x <- SIDS.sf$SIDR79
+spdep::moran.test(x, spdep::nb2listw(nbs, style = "W"))$estimate[1]
+spdep::moran.test(x, spdep::nb2listw(nbs, style = "B"))$estimate[1]  # binary
+spdep::moran.test(x, spdep::nb2listw(nbs, style = "S"))$estimate[1]  # variance-stabilizing
+```
+
+Thus when reporting Moran's I you need to indicate what weighting scheme you used.
+
+Moran's I is the slope of a regression of the spatial lag variable onto the variable itself.
+
+The spatial lag variable consists of the average of the neighboring values. To compute the spatial lag variable you use the `lag.listw()` function from the {spdep} package.
+
+Let `sids` be the SIDS rate in each county then the first argument in the `lab.listw()` function is the `listw` object and the second is the vector of sids values.
+```{r}
+sids <- SIDS.sf$SIDR79
+Wsids <- spdep::lag.listw(wts, 
+                          var = sids)
+```
+
+For each value in the vector `sids` there is a corresponding value in the object `Wsids` representing the neighborhood average SIDS rate. 
+```{r}
+Wsids[1]
+j <- wts$neighbours[[1]]
+j
+sum(SIDS.sf$SIDR79[j])/length(j)
+```
+
+The weight for county one is `Wsids[1]` = 2.659. The neighbor indexes for this county are in the vector `wts$neighbours[[1]]` of length 3. Add the SIDS rates from those counties and divide by the length.
+
+A scatter plot of the neighborhood average SIDS rate versus the actual SIDS rate in each region.
+```{r}
 library(ggplot2)
 
+data.frame(sids, Wsids) |>
+ggplot(mapping = aes(x = sids, y = Wsids)) + 
+  geom_point() + 
+  geom_smooth(method = lm) +
+  xlab("SIDS") + ylab("Spatial Lag of SIDS") +
+  theme_minimal()
+```
+
+The slope of the regression line is upward indicating positive autocorrelation. The value of the slope is I. To check this type
+```{r}
+lm(Wsids ~ sids)
+```
+
+## Statistical significance of spatial autocorrelation {-}
+
+Even if the county SIDS rates are randomly distributed across the state, the value of Moran's I will not necessarily be close to zero (-1/(n-1)). If you want to use I to establish statistically significant clustering, you need a way to guard against this randomness.
+
+Said another way: Is the value of Moran's I significant with respect to the null hypothesis of no spatial autocorrelation? 
+
+One way to answer this question is to draw an uncertainty band on the regression line and see if a horizontal line can be placed within the band. If not, then I is statistically different than what you would expect if the null hypothesis of no spatial autocorrelation were true.
+
+More formally the question is answered by comparing the standard deviate ($z$ value) of the I statistic with a standard normal deviate. This is done using the `moran.test()` function, where the $z$ value is the difference between I and the expected value of I divided by the square root of the variance of I. 
+
+The function takes a variable name or numeric vector and a spatial weights list object in that order. The argument `randomisation = FALSE` means the variance of I is computed under the assumption of normally distributed SIDS rates.
+```{r}
+( mt <- spdep::moran.test(sids, 
+                          listw = wts,
+                          randomisation = FALSE) )
+```
+
+I is .143 with a variance of .0043. The $z$ value for the I statistic is 2.3438 giving a $p$ value slightly less than .01 under the null hypothesis of no spatial autocorrelation. 
+
+Thus you reject the null hypothesis and conclude there is weak (I is small) but significant spatial autocorrelation in SIDS rates across North Carolina at the county level.
+
+Look at the output in the object `mt` with the `str()` function.
+```{r}
+str(mt)
+```
+
+The element called `estimate` is a vector of length three containing Moran's I statistic, the expected value of Moran's I under the assumption of uncorrelated normally distributed SIDS rates, and the variance of Moran's I. 
+
+The $z$ value is the difference between the statistic and it's expected value divided by the square root of the variance.
+```{r}
+( mt$estimate[1] - mt$estimate[2] ) / sqrt(mt$estimate[3])
+```
+
+The $p$ value is the area under a standard normal distribution curve to the right (`lower.tail = FALSE`) of 2.3438 (`mt$statistic`).
+```{r}
+pnorm(mt$statistic, 
+      lower.tail = FALSE)
+
+curve(dnorm(x), from = -4, to = 4, lwd = 2)
+abline(v = mt$statistic, col = 'red')
+```
+
+So slightly less than 1% ($p$ value of .0095) of the area lies to the right of the red line.
+
+Recall the $p$ value summarizes the evidence in support of the null hypothesis. The smaller the $p$ value, the less evidence there is to support the null hypothesis. 
+
+In this case it is the probability that the county SIDS rates could have been arranged at random across the state. The small $p$ value tells us that the spatial arrangement of our data is unusual with respect to the null hypothesis.
+
+The interpretation of the $p$ value is stated as evidence AGAINST the null hypothesis. This is because your interest lies in the null hypothesis being unsupported.
+
+$p$ value        | Statement of evidence against the null
+---------------- | ---------------------
+less than  .01   | convincing
+.01 - .05        | moderate 
+.05 - .15        | suggestive, but inconclusive
+greater than .15 | no
+
+Under the assumption of normal distributed and uncorrelated data, the expected value for Moran's I is -1/(n-1) where n is the number of counties. 
+
+A check on the distribution of SIDS rates indicates that normality is suspect. Recall a good way to check the normality assumption is to use the `sm.density()` function from the {sm} package.
+```{r}
+sm::sm.density(sids, 
+               model = "Normal",
+               xlab = "SIDS Rates 1979-84 [per 1000]")
+```
+
+The SIDS rates are more "peaked" (higher kurtosis) than a normal distribution. In this case it is better to use the default `randomisation = TRUE` argument.
+
+Further, the assumptions underlying the test are sensitive to the form of the graph of neighbor relationships and other factors so results should be checked against a test that involves permutations.
+
+## A Monte Carlo approach to inference about spatial autocorrelation {-}
+
+A permutation test to examine the statistical significance of spatial autocorrelation is performed with the `moran.mc()` function. MC stands for Monte Carlo which refers to the city of Monte Carlo in Monaco famous for its gambling casinos. The MC procedure refers to random sampling.
+
+The name of the data vector and the weights list object (`listw`) are required arguments as is the number of permutations (`nsim`). Each permutation is a  rearrangement of the SIDS rates across the counties. This rearrangement removes the spatial autocorrelation but keeps the non-spatial distribution of the SIDS rates. The neighbor topology and weights remain the same.
+
+For each permutation (shuffle or simulation), I is computed and saved. The $p$ value is obtained as the ratio of the number of permuted I values greater or exceeding the observed I over the number of permutation plus one. In the case where there are 5 permuted I values greater or equal to the observed value based on 99 simulations, the $p$ value is 5/(99 + 1) = .05.
+
+For example, if you want draw inference on your value for I using 99 simulations you type
+```{r}
+set.seed(4102)
+
+( mP <- spdep::moran.mc(sids, 
+                        listw = wts,
+                        nsim = 99) )
+```
+
+You see that only two of the 99 simulations give a Moran's I value exceeding .1428.
+Thus the $p$ value, as evidence in support of the null hypothesis, (the true value for is close to zero) is .02.
+
+Note: here you initiate the random number generator with a seed value (4102) with the `set.seed()` function so that the set of random permutations of the values across the domain will be the same each time you run the simulations. This is not needed but it is important for reproducibility. The default random number generator seed value is determined from the current time (internal clock) and so no two sets of permutations will be identical.
+
+The values of I computed for each permutation are saved in the vector `mP$res`.
+```{r}
+head(mP$res)
+tail(mP$res)
+```
+
+The last value in the vector is I computed using the data in the correct counties. So the $p$ value as evidence in support of the null hypothesis that I is close to zero is given as
+```{r}
+sum(mP$res > mP$res[100])/99
+```
+
+A density graph shows the distribution of permuted I values. To see this create 999 simulations and then plot a density curve adding a vertical line at the value of Moran's I computed from the data at the correct counties.
+```{r}
+mP <- spdep::moran.mc(sids, 
+                      listw = wts, 
+                      nsim = 999)
+
+df <- data.frame(mp = mP$res[-1000])
 ggplot(data = df, 
-       mapping = aes(x = Temperature, y = Damage)) +
-  geom_point() +
-  geom_smooth(method = lm, se = FALSE) +
-  scale_y_continuous(limits = c(0, 1))
+       mapping = aes(mp)) + 
+  geom_density() + 
+  geom_rug() + 
+  geom_vline(xintercept = mP$res[1000], 
+             color = "red", size = 2) +
+  theme_minimal()
 ```
 
-The plot shows more points at a value of 1 (at least some damage to the O-rings) when temperatures are lower and more more points at a value of 0 (no damage) when the temperatures are higher.
+Only a handful simulations give a Moran's I value exceeding .143 (tic marks to the right of the red vertical line). The density curve is centered just to the left of zero which is consistent with the true mean being slightly less than zero (-.01). 
 
-The linear regression line indicates this inverse relationship. The line slopes from upper left to lower right. You conclude that there is less chance of O-ring damage when temperatures are higher. But you note that the straight line does not capture this relationship very well.
+Note that the right tail of the distribution is fatter than the left tail. This is due to the skewness of the rates used in the calculation of I.
 
-You fit a linear regression model to these data.
+What do you do with the knowledge that the SIDS rates have significant spatial autocorrelation? By itself not much, but it can be a warning that something is going on a larger scale (larger than the scale of the counties).
+
+More typically the knowledge is useful after other known factors are considered in the analysis. In the language of statistics, knowledge of significant spatial autocorrelation in the residuals from a model can help you better specify the relationships defined by the model.
+
+## Spatial autocorrelation in model residuals {-}
+
+A spatial regression model might be needed when the residuals resulting from an aspatial (non-spatial) regression model exhibit significant spatial autocorrelation. 
+
+A common way to proceed is to regress the response variable onto the explanatory variables and check for spatial autocorrelation in the residuals.
+
+If the residuals are spatially uncorrelated then a spatial regression model is not needed.
+
+Let's return to the Columbus crime data and fit a linear regression model with `CRIME` as the response variable and `INC` and `HOVAL` as the explanatory variables.
 ```{r}
-lrm <- lm(Damage ~ Temperature, 
-          data = df)
-summary(lrm)
+CC.sf <- sf::read_sf(dsn = here::here("data", "columbus"), 
+                     layer = "columbus")
 ```
 
-The model diagnostics indicate temperature is significant in explaining O-ring damage. 
-
-Looking at the slope coefficient you state that for every one degree F _decrease_ in temperature the chance of damage increases by 3.7 percentage points.
-
-You interpret the predicted damage as the probability of damage for a given temperature (conditional mean). 
-
-You use the `predict()` method to predict the probability of damage when the launch temperatures are 77 F, 65 F, and 51 F. You multiply the predicted mean values by 100 so that the probabilities are in percentages.
+Start with a choropleth map displaying the crime rates across the city at the tract level.
 ```{r}
-predict(lrm, 
-        newdata = data.frame(Temperature = c(77, 65, 51))) * 100
+tm_shape(CC.sf) +
+  tm_fill("CRIME",
+          title = "") +
+  tm_borders(col = "gray70") +
+  tm_layout(title = "Burglary & Vehicle Thefts\n/1000 Households",
+            legend.outside = TRUE)
 ```
 
-Predictions make sense. When the launch temperature is 77 F, the chance of O-ring damage is quite small (2.6%) but when the launch temperature is 51 F, the change of O-ring damage is quite large (99.8%).
-
-Although this appears to be a reasonable prediction equation, it leads to nonsensical forecasts. For example, what does the linear regression model predict when the temperature is 85 F and when it is 45 F?
+Next compute Moran's I on the `CRIME` variable using row-standardized weights (default option in the `nb2listw()` function).
 ```{r}
-predict(lrm, 
-        newdata = data.frame(Temperature = c(85, 45))) * 100
+nbs <- spdep::poly2nb(CC.sf)
+wts <- spdep::nb2listw(nbs)
+
+spdep::moran(CC.sf$CRIME,
+             listw = wts,
+             n = length(nbs),
+             S0 = spdep::Szero(wts))
 ```
 
-These values do not make sense since probabilities are constrained to be between 0 and 100 (0 and 1).
+Is the spatial autocorrelation you detect due to a clustering of income and housing values across the city? Said another way, after accounting for income and housing values, do crime rates still cluster? 
 
-Key point: Linear regression can not capture the bounded nature of probabilities.
-
-## Logistic regression {-}
-
-A regression model has a response function and a regression structure. The response function is specified on the left side of the regression equation and the regression structure on the right side of the equation.
-
-With linear regression, the response function is the identity function. That is, for any value of $y$ the function returns the value of $y$. You write it as
-$$
-f(y) = y
-$$
-
-With logistic regression, the response function is the _logit_ function. Said another way, logistic regression is a generalization of the linear regression model where the response function is the _logit_ function.
-
-The _logit_ function is written as
-$$
-f(y) = \hbox{logit}(y)
-$$
-
-The logit is the logarithm of the odds ratio. The odds ratio is the probability of a thing happening to the probability it won't happen. Using math
-$$
-\hbox{logit}(\pi) = \log\left(\frac{\pi}{1 - \pi}\right).
-$$
-
-You write odds as _for:against_. If there is a 2:1 odds of something happening, then the probability it will happen is 2/(1 + 2) or 2/3 (67%).
-
-The inverse of the logit function is the logistic function. With logit($\pi$) = $z$, you have
-$$
-\pi = \frac{\exp(z)}{1 + \exp(z)} = \frac{1}{1 + \exp(-z)}.
-$$
-
-To make a graph of the logistic function you use the `curve()` function.
+This is answered by fitting a regression model to the crime rates with income and housing values as explanatory variables.
 ```{r}
-curve(1/(1 + exp(-x)), 
-      from = -6, to = 6, 
-      col = "red", ylab = "logistic function of z", xlab = "z")
-abline(h = 1, lty = 2)
-abline(h = 0, lty = 2)
+model.lm <- lm(CRIME ~ INC + HOVAL, 
+               data = CC.sf)
+summary(model.lm)
 ```
 
-The logistic function takes as input any value from negative infinity to positive infinity and returns a value between 0 and 1.
+Income and housing values vary indirectly with values of crime. Higher income tracts and tracts with higher housing values have less crime. The model statistically explains 55% of the variation in crime. 
 
-The variable $z$ can be thought of as the exposure to some set of risk factors, while the logistic function represents the chance of a particular outcome given the exposure.
-
-The variable $z$ is a measure of the total contribution (weighted sum) of all the risk factors (explanatory variables). It is defined as
-$$
-z = \beta_0 + \beta_1  x_1 + \beta_2  x_2 + \ldots + \beta_p x_p
-$$
-where the regression coefficients are $\beta_0$,..., $\beta_p$ and the risk factors are $x_1$,..., $x_p$. The intercept $\beta_0$ is the value of $z$ when there is no risk (base rate).
-
-The regression coefficient quantifies the amount of contribution the associated variable makes to the overall risk. For example, the magnitude of $\beta_1$ quantifies the amount of contribution variable $x_1$ makes to the overall risk.
-
-A positive regression coefficient means the variable increases the probability of the outcome. If the outcome is getting COVID-19, then the variable indicating that you don't wear a mask in public, increases the probability of that outcome.
-
-A negative regression coefficient means the variable decreases the probability of that outcome.
-
-A large regression coefficient means the variable strongly influences the probability of that outcome; while a near-zero regression coefficient means the variable has little influence on the probability of that outcome.
-
-Example: Who survives in the Donner Party?
-
-The Donner and Reed families from Springfield, Illinois headed to California in 1846. The group, which became know as the 'Donner Party', was stranded in the Sierra Nevada mountains by heavy late October snows. By the time the last survivor was rescued in April 1847, 40 of the 87 members had died from famine and exposure to the cold.
- 
-The data file `DonnerParty.txt` contains a list of individuals in the Donner Party along with their age, sex, and whether or not they survived. 
+You use the `residuals()` method to extract the vector of residuals from the model.
 ```{r}
-DP.df <- readr::read_table(file = "http://myweb.fsu.edu/jelsner/temp/data/DonnerParty.txt") |>
-  dplyr::mutate(Survival = as.factor(Survival))
-str(DP.df)
+res <- residuals(model.lm)
 ```
 
-The data frame contains the `Name`, `Sex`, `Age`, and `Survival` status of all individuals that were at least 15 years old.
+There are 49 residuals, one residual for every tract. A residual is defined as the difference between the observed value and the model predicted value. A tract with a residual that is greater than zero indicates that there is more crime than the model predicts for that location.
 
-How many individuals are coded as `female` and how many are coded as `male`?
+You next check on the distribution of the residuals relative to a normal distribution.
 ```{r}
-table(DP.df$Sex)
+sm::sm.density(res, 
+               model = "Normal")
 ```
 
-How many survived?
+Since the black lines falls completely within the blue envelope (defined by a normal distribution) you find no evidence to reject the assumption of normally distributed model residuals.
+
+Next you plot a choropleth map of the model residuals. Are there clusters of high and low residuals? First add the vector of residuals as a column in the simple feature data frame. Call this new column `residuals` then use functions from the {tmap} package.
 ```{r}
-table(DP.df$Survival)
+CC.sf$residuals <- res
+
+tm_shape(CC.sf) +
+  tm_fill("residuals") +
+  tm_borders(col = "gray70") +
+  tm_layout(title = "Regression Residuals")
 ```
 
-What was the average age in the party?
+There appears to be distinct regions where the model over predicts crime (yellow to green tracts) conditional on household income and housing values and where it under predicts crime (yellow to red tracts).
+
+The amount of clustering appears to be is less than the crime rates themselves. That is, after accounting for regional factors related to crime the spatial autocorrelation is reduced.
+
+To determine how much less clustering you compute I on the residuals with the `lm.morantest()` function. You need to include the model object and the spatial weights object.
 ```{r}
-mean(DP.df$Age)
+spdep::lm.morantest(model = model.lm, 
+                    listw = wts)
 ```
 
-What is the relationship between an individual's age and whether or not they survived?
+Moran's I on the model residuals is .222. This compares with the value of .5 on crime alone. Part of the spatial autocorrelation is absorbed by the explanatory factors.
+
+The output gives a $p$ value on I of .002, thus you reject the null hypothesis of no spatial autocorrelation in the residuals and conclude that a spatial regression model would improve the model.
+
+The $z$-value takes into account the fact that these are residuals so the variance is adjusted accordingly.
+
+The next step is to choose the type of spatial regression model. Before that, let's look at one more example.
+
+Example: Percentage of folks identifying as white in Mississippi counties
+
+Download the county-level police data. Import the data as a simple feature data frame and assign the geometry a geographic CRS. The file _police.zip_ contains shapefiles in a folder on my website. 
 ```{r}
-ggplot(data = DP.df, 
-       mapping = aes(x = Survival, y = Age)) + 
-  geom_boxplot()
+url <- "http://myweb.fsu.edu/jelsner/temp/data/police.zip"
+download.file(url,
+              destfile = here::here("data", "police.zip"))
+
+unzip(zipfile = here::here("data", "police.zip"),
+      exdir = here::here("data"))
+
+PE.sf <- sf::read_sf(dsn = here::here("data", "police"), 
+                 layer = "police")
+sf::st_crs(PE.sf) <- 4326
+names(PE.sf)
 ```
 
-Age appears to be a factor in explaining whether or not someone survived. Younger members of the party appear to have had a better chance of survival.
+Variables include police expenditures (`POLICE`), crime (`CRIME`), income (`INC`), unemployment (`UNEMP`) and other socio-economic characteristics across Mississippi at the county level. The police expenditures are per capita 1982 (dollars per person). The personal income per county resident, 1982 (dollars per person). The crime is the number of serious crimes per 100,000 residents, 1981. Unemployment is percent unemployed in 1980.
 
-What about sex as an explanatory variable?
+The geometries are polygons defining the county borders.
 ```{r}
-table(DP.df$Sex, DP.df$Survival)
+plot(PE.sf$geometry)
 ```
 
-The table shows that of the 15 women, 5 perished and 10 survived. This compares with 20 deaths and 10 survivors among the men. It appears that sex is also important. Relatively more women survived than men.
-
-Logistic regression quantifies these risk factors (sex and age) in terms of survival probability.
-
-The variable `Survival` is our dependent (response) variable coded as `no` and `yes`. The two risk factors are `Sex` coded as `male` and `female` and `Age` in years.
-
-So you fit a logistic model to these data with `Survival` as your response variable. You use the `glm()` function (generalized linear model) and specify `family = binomial`.
+Again, you need to assign the neighborhoods and the associated weights between the each region and each neighbor of that region.
 ```{r}
-logrm <- glm(factor(Survival) ~ Age + Sex, 
-             data = DP.df, 
-             family = binomial)
-logrm
+nbs <- spdep::poly2nb(PE.sf)
+wts <- spdep::nb2listw(nbs)
 ```
 
-You write the model, where $\pi$ represents survival probability, as
-$$
-\hbox{logit}(\pi) = 3.23 - .0782 \times \hbox{Age} - 1.597 \times \hbox{Sex}
-$$
-
-You interpret the value of 3.23 as the base rate when `Age` is zero and `Sex` is zero. Although `Sex` is coded as a factor variable `female` comes before `male` alphabetically so `female` is zero. 
-
-You take the value of 3.23 as input to the logistic function and get
+Another way to do this is to specify the number of neighbors and define who the neighbors are based on distance. You do this with the `knearneigh()` function. First extract the coordinates of the polygon centroids.
 ```{r}
-exp(3.23)/(1 + exp(3.23))
+coords <- PE.sf |>
+  sf::st_geometry() |>
+  sf::st_centroid() |>
+  sf::st_coordinates()
+head(coords)
 ```
 
-The resulting value tells you that a newborn (`Age` = 0) girl would have a 96% chance of survival.
-
-You get this answer directly with the `predict()` method by typing
+You can specify that each county for example has six neighbors where the neighbors are based on proximity. Since the CRS is geographic you include the `longlat = TRUE` argument so the distances are based on great circles.
 ```{r}
-predict(logrm, 
-        newdata = data.frame(Age = 0, Sex = "female"),
-        type = "response")
+knn <- spdep::knearneigh(coords, 
+                         k = 6, 
+                         longlat = TRUE)
+head(knn$nn)
 ```
 
-Without the `type =` argument you get the logit value of 3.23.
+The output is a list of five elements with the first being a matrix of dimension number of counties by the number of neighbors. You see here that the neighborhoods are non-symmetric. County 3 is a neighbor of county 2, but county 2 is not a neighbor of county 3. This is important since some spatial regression models require symmetric neighborhood definitions.
 
-You can also interpret the model in terms of the odds ratio. For example, the model tells you that the odds ratio of a 20-year old surviving relative to a 50-year old is
-$$
-\exp(-.0782 \times (20 - 50))
-$$
-
-With code
+You turn this list into a neighborhood object (class `nb`) with the `knn2nb()` function. 
 ```{r}
-exp(-.0782 * (20 - 50))
+nbs2 <- spdep::knn2nb(knn)
+summary(nbs2)
 ```
 
-The odds of a 20-year old surviving is more than 10 times the odds of a 50-year old surviving regardless of whether the person is a man or woman.
-
-If an explanatory variable increases by one unit while the other explanatory variables remain constant, the odds will change by a _multiplicative_ amount given by the exponent of the coefficient.
-
-The odds of a woman (`Sex = 0`) surviving relative to the odds of a man (`Sex = 1`) of the same age is
+The argument `sym = TRUE` forces the output neighbors list to be symmetric. Create another neighborhood object.
 ```{r}
-exp(-1.597 * (0 - 1))
+nbs3 <- spdep::knn2nb(knn,
+                      sym = TRUE)
+summary(nbs3)
 ```
 
-Thus, the survival odds of a women are about 5 times the survival odds of a man both at the same age.
+Compare the neighborhood topologies.
+```{r, eval=FALSE}
+par(mfrow = c(1, 2))
 
-You get uncertainty intervals on the coefficients using an extractor function.
+plot(sf::st_geometry(PE.sf), border = "grey")
+plot(nbs, coords, add = TRUE)
+
+plot(sf::st_geometry(PE.sf), border = "grey")
+plot(nbs2, coords, add = TRUE)
+```
+
+Create weight matrices for these alternative neighborhood definitions using the same `nb2listw()` function.
 ```{r}
-confint(logrm)
+wts2 <- spdep::nb2listw(nbs2)
+wts3 <- spdep::nb2listw(nbs3)
 ```
 
-You see that the 95% uncertainty intervals for both factors do not include the value of zero. This indicates that `Age` and `Sex` are significant in statistically explaining survivability.
-
-You can also check the importance of the variables with the `summary()` method on the model object.
+You then compute Moran I for the variable percentage white (`WHITE`) with the `moran()` function. And you do it separately for the three different weight matrices.
 ```{r}
-summary(logrm)
+spdep::moran(PE.sf$WHITE,
+             listw = wts,
+             n = length(nbs),
+             S0 = spdep::Szero(wts))
+
+spdep::moran(PE.sf$WHITE,
+             listw = wts2,
+             n = length(nbs2),
+             S0 = spdep::Szero(wts2))
+
+spdep::moran(PE.sf$WHITE,
+             listw = wts3,
+             n = length(nbs3),
+             S0 = spdep::Szero(wts3))
 ```
 
-You see that `Age` and `Sex` are significant variables in explaining the probability of survival ($p$ values less than .05).
+Values of Moran I are constrained between -1 and +1. In this case the neighborhood definition has little impact on inferences made about spatial autocorrelation. The kurtosis is between 2 and 4 consistent with a set of values from a normal distribution.
 
-The smaller the residual deviance, the better the logistic model fits. Output shows a null deviance of 61.827 on 44 degrees of freedom. The null deviance is the deviance of a model with a constant (no explanatory variables) survival probability (44%; 20 out of 45 survived).
-
-The residual deviance for the model with `Age` and `Sex` as explanatory variables is 51.256 on 42 degrees of freedom. The difference in deviance between the null and the full model is: 61.827 - 51.256 = 10.571. The difference in degrees of freedom is 44 - 42 = 2. 
-
-You compare this drop in deviance to a value from the chi-squared distribution with 2 degrees of freedom.
+In a similar way you compute Geary's c statistic.
 ```{r}
-pchisq(10.571, 
-       df = 2, 
-       lower.tail = FALSE)
+spdep::geary(PE.sf$WHITE, 
+             listw = wts,
+             n = length(nbs), 
+             S0 = spdep::Szero(wts), 
+             n1 = length(nbs) - 1)
 ```
 
-This is the $p$ value for the model as a whole. Since it is less than .01 you state that there is convincing evidence that the model helps statistically explain survivability given these data.
+Values of Geary's c are between 0 and 2 with values less than one indicating positive autocorrelation. If the interpretation on the amount of spatial autocorrelation based on Geary's c is different than the interpretation on the amount of autocorrelation based on Moran I then it is a good idea to examine local variations in autocorrelation.
 
-Here you predict the survival probability of a 50-year old man.
+Finally, recall that to create a Moran scatter plot. You first assign to `white` the percentage of whites in each county (variable `WHITE`) and to `Wwhite` the spatial lagged value of percentage of whites. You then use `ggplot()` as follows.
 ```{r}
-predict(logrm, 
-        newdata = data.frame(Age = 50, 
-                             Sex = "male"))
+white <- PE.sf$WHITE
+Wwhite <- spdep::lag.listw(wts, 
+                           white)
+
+library(ggplot2)
+data.frame(white, Wwhite) |>
+ggplot(mapping = aes(x = white, y = Wwhite)) + 
+  geom_point() + 
+  geom_smooth(method = lm) +
+  scale_x_continuous(limits = c(0, 100)) +
+  scale_y_continuous(limits = c(0, 100)) +
+  xlab("% White") + ylab("Avg of % White in the Neighborhood\n(Spatial Lag)") +
+  theme_minimal()
 ```
 
-By default the predicted value is the logarithm of the odds. To convert this to a probability you use the logistic function or you include the `type = "response"` argument in the `predict()` method.
+The line is the best-fit linear regression of `Wwhite` onto `white` and it's slope is equal to the value of Moran I. This is true regardless of the neighborhood definition.
 ```{r}
-exp(-2.277)/(1 + exp(-2.277))
-
-predict(logrm, 
-        newdata = data.frame(Age = 50, 
-                             Sex = "male"),
-        type = "response")
+lm(Wwhite ~ white)
 ```
 
-You see that, based on the data and the model, you would predict a survival probability of 9.3% for a 50-year old man.
-
-What is the survival probability for a 50-year old woman? A 25-year old woman?
+You test for significant spatial autocorrelation with the `moran.test()` function.
 ```{r}
-predict(logrm, 
-        newdata = data.frame(Age = c(50, 25), 
-                             Sex = "female"),
-        type = "response",
-        se.fit = TRUE)
+spdep::moran.test(white, 
+                  listw = wts)
 ```
 
-You include the argument `se.fit = TRUE` to get a standard error on the predicted survival probability.
-
-Assessing the adequacy of a linear regression model involves plots of the residuals. Similar diagnostics are available for assessing the adequacy of logistic regression, but they are often more difficult to interpret. For instance how do you examine the linearity assumption when the linearity is on the log of the odds?
-
-Residual deviance: Returning to the output from `summary(logrm)`, you find that the residual deviance is 51.256 on 42 degrees of freedom. A $p$ value from a $\chi^2$ distribution with a quantile value of 51.256 with this many degrees of freedom provides evidence against the null hypothesis. The null hypothesis is that the model is adequate. 
-
-Thus a small $p$ value in this case is evidence _against_ the null hypothesis, which is that the model is adequate.
-```{r}
-pchisq(q = 51.256, 
-       df = 42, 
-       lower.tail = FALSE)
-```
-
-Since the $p$ value exceeds .05 you fail to reject the null hypothesis that the model is adequate and report that there is no compelling evidence that the model needs to be improved.
-
-Example: Probability of rocket damage on liftoff
-
-Returning to the data on the Space Shuttle O-ring damage and launch time temperature. The recovered booster rockets were checked for damage to the rings. A damaged rocket booster is coded as `1`.
-```{r}
-Temperature <- c(66, 70, 69, 68, 67, 72, 73, 70, 57, 63, 70, 78, 67, 53, 67, 75, 70, 81, 76, 79, 75, 76, 58)
-Damage <- c(0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1)
-ORings.df <- data.frame(Temperature, Damage)
-```
-
-A logistic regression model is used to predict the probability of damage given the temperature.
-
-Fit a logistic regression model to the data.
-```{r}
-logrm <- glm(Damage ~ Temperature, 
-             data = ORings.df,
-             family = binomial)
-summary(logrm)
-```
-
-The negative sign on the `Temperature` coefficient indicates that the chance of O-ring damages decreases with increasing temperature.
-
-You interpret the magnitude of the coefficient by first applying the exponentiation function (`exp()`).
-```{r}
-exp(-.2322)
-```
-
-The value of .79 tells you that for every 1 degree increase in temperature the chance of O-ring damage is only 79% of it's previous value (given the model).
-
-For example, to determine how much more likely there is to be damage when the temperature is 65 F compared to when the temperature is 69 F you use
-```{r}
-round(exp(-.2322 * (65 - 69)), 1)
-```
-
-Thus, on average, there is a 2.5 times increase in the chance of O-ring damage when launch temperatures are 65 F compared to when they are 69 F.
-
-```{r}
-predict(logrm,
-        newdata = data.frame(Temperature = c(45, 95)),
-        type = "response")
-```
-
-With generalized linear models, model adequacy is determined by the residual deviance. No plots are needed. 
-
-The residual deviance is 20.315 on 21 degrees of freedom. A $p$ value from a $\chi^2$ distribution with this quantile value and this many degrees of freedom is evidence in favor of the null hypothesis that the model is adequate.
-```{r}
-pchisq(q = 20.315, 
-       df = 21,
-       lower.tail = FALSE)
-```
-
-The large $p$ value gives you no reason to question the adequacy of the model.
+You see that the value of .56 is much larger than the expected value under the null hypothesis of no autocorrelation (-.012 = -1/(n-1)).
