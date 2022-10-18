@@ -1,10 +1,14 @@
-# Thursday, October 13, 2022 {-}
+# Tuesday, October 18, 2022 {-}
 
 Today
 
 Topics in linear regression with an emphasis on using R.
 
 Linear regression provides another way to implement a $t$ test on the difference in means, but it can be used for a wide range of inference problems. Here you learn how to fit a regression model, make predictions, interpret the output, and quantify the uncertainty about the model (coefficients) and about predictions made from the model. This is the start of a series of lessons on modeling data.
+
+Recommended R resources for statistics Quick-R by Robert Kabacoff <https://www.statmethods.net/stats/index.html>
+
+R reference card by Tom Short <https://www.kimnicholas.com/uploads/2/5/7/6/25766487/r-refcard.pdf>
 
 - A $t$ test by another name
 - Motivation for the regression model
@@ -21,7 +25,7 @@ Consider again the `mtcars` data frame.
 head(mtcars)
 ```
 
-You test the null hypothesis that there is no difference in average miles per gallon (`mpg` variable) between cars with and without automatic transmission (`am` variable). If you assume the variance in the gas mileage is the same for both groups (recall the box plots will look similar) then you implement the test as follows. 
+You test the null hypothesis that there is no difference in average miles per gallon (`mpg` variable) between cars with and without automatic transmission (`am` variable). If you assume the variance in the gas mileage is the same for both groups (recall the box plots will look similar) then you implement the test as follows.
 ```{r}
 t.test(mpg ~ am, 
        data = mtcars, 
@@ -48,7 +52,7 @@ You see the $p$-value from the linear regression is identical to the $p$-value f
 
 In the table of coefficients you see the value of `7.245` next to `am` in the column labeled `Estimate`. This is the difference in average mpg grouped by transmission (`mean in group 1` minus `mean in group 0`).
 
-Linear regression provides a way to generalize comparisons across any number of groups (not just two as is the case with a $t$ test).
+Linear regression provides a way to generalize comparisons across an infinite number of groups (not just two as is the case with a $t$ test, or multiple cases as is the case with ANOVA).
 
 ## Motivation for the regression model {-}
 
