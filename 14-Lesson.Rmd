@@ -168,6 +168,7 @@ epsilon <- residuals(model)
 ```
 
 Include this value on the plot.
+
 ```{r}
 lab <- paste("RSS = ", RSS)
 p1 + geom_label(x = 4, y = -2, label = lab)
@@ -275,7 +276,7 @@ The model is useful for making predictions. Suppose you want to predict the maxi
 
 The model predicts that a 50 year old person can expect to have a maximum heart rate of 170 bpm. More precisely, given a set of 50 year old people, the model predicts that, _on average_, the maximum heart rate of the set of people will be 170 bpm.
 
-Predictions with the model are made without typing the coefficient values. Instead, first save the model as an object and then use the `predict()` function on the object. _Key_: In the `predict()` function you _must_ specify the data as a data frame using the `newdata =` argument.
+Predictions with the model are made without typing the coefficient values. Instead, first save the model as an object and then use the `predict()` method on the object. _Key_: In the `predict()` function you _must_ specify the data as a data frame using the `newdata =` argument.
 
 ```{r}
 model <- lm(HR ~ Age, 
@@ -402,7 +403,7 @@ The $p$-value is very small (< .001) so you reject the null hypothesis that the 
 
 ## Bootstrapping the uncertainty {-}
 
-Suppose you choose another 15 people and test for maximum heart rate and record ages. Will the slope be different? Almost certainly. 
+Suppose you choose another 15 people and test for maximum heart rate and record ages. Will the slope be different? Almost certainly.
 
 Although you don't have access to a new set of people, you can create samples from the original set of subjects. Creating samples from the original sample is called re-sampling. Re-sampling is the first step in a procedure called "bootstrapping."
 
