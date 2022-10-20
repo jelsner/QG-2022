@@ -47,6 +47,7 @@ That is bill depth _increases_ with increasing bill length. So you conclude that
 The paradox is resolved when the relations are appropriately addressed in the statistical modeling.
 
 See also Berkson's paradox https://en.wikipedia.org/wiki/Berkson%27s_paradox
+
 ## A regression plane {-}
 
 Multiple variable (multi-variable) linear regression is used to model a dependent variable when there is more than one explanatory variable.
@@ -194,19 +195,19 @@ The null hypothesis is that the variable is NOT important to the model. The $p$-
 
 In determining which variables are most important in the regression model, the coefficient estimates (effect sizes) cannot be compared directly because they do not have the same units. 
 
-Key idea: A regression coefficient has units of the response variable divided by the units of the explanatory variable. But the explanatory variables have different units. For example, `Petrol.Tax` has units of cents per gallon and `Pavement` has units of miles.
+_Key idea_: A regression coefficient has units of the response variable divided by the units of the explanatory variable. But the explanatory variables have different units. For example, `Petrol.Tax` has units of cents per gallon and `Pavement` has units of miles.
 
 So instead of comparing the values of the coefficients directly (i.e., instead of looking in the column labeled `Estimate`) you look at the column labeled `t value`.
 
 The magnitude of the $t$ values are inter comparable. They are coefficients that have been _standardized_ by dividing by the corresponding standard error. Accordingly, `Avg.Inc` is more more important than `Petrol.Tax` even though .0666 is much smaller than 34.79.
 
-Key point: The order of the explanatory variables does not change the magnitude or the sign of the corresponding coefficients.
+_Key point_: The order of the explanatory variables does not change the magnitude or the sign of the corresponding coefficients.
 ```{r}
 summary(lm(Petrol.Consumption ~ Pavement + Petrol.Tax + Avg.Inc + Prop.DL, 
            data = PC.df))
 ```
 
-Key point: The model does not change with a linear transformation of the variables. For example, if you multiply `Pavement` by 20, the coefficient and standard error change accordingly, but not the $t$ value or the corresponding $p$-value.
+_Key point_: The model does not change with a linear transformation of the variables. For example, if you multiply `Pavement` by 20, the coefficient and standard error change accordingly, but not the $t$ value or the corresponding $p$-value.
 ```{r}
 summary(lm(Petrol.Consumption ~ I(Pavement * 20) + Petrol.Tax + Avg.Inc + Prop.DL,
            data = PC.df))
@@ -231,7 +232,7 @@ summary(model2)
 
 The remaining explanatory variables are significant. The values are slightly different as the variance in the gas consumption attributed to `Pavement` is now spread across the remaining variables. 
 
-Key point: Removing an explanatory variable changes the coefficient values on the remain variables in the model.
+_Key point_: Removing an explanatory variable changes the coefficient values on the remain variables in the model.
 
 The proportion of the population with licenses is the most important variable. It has the largest $t$ value (in absolute value).
 
@@ -239,7 +240,7 @@ By removing a variable the R-squared statistic DECREASES to .675. This is always
 
 One alternative for comparing models is the adjusted R squared. It is a modification of the R squared that accounts for the number of explanatory variables in the model.
 
-Key point: The adjusted R squared increases only if the new variable improves the model more than would be expected by chance. The adjusted R squared can be negative, and will always be less than or equal to R squared.
+_Key point_: The adjusted R squared increases only if the new variable improves the model more than would be expected by chance. The adjusted R squared can be negative, and will always be less than or equal to R squared.
 
 To see the importance of the adjusted R squared, first note that `Petrol.Tax` has the smallest $t$ value. Suppose you remove it. What happens?
 ```{r}
