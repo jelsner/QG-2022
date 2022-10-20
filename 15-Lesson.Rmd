@@ -1,22 +1,22 @@
-# Thursday, October 20, 2022 {-}
+# Thursday, October 20, 2022 {.unnumbered}
 
 Last time you learned how to fit a simple (one explanatory variable) regression model in R and how to interpret the output. You saw that estimated regression coefficients are the parameters (intercept and slope) of the best-fit line through the two-dimensional scatter plot of the response variable on the vertical axis and the explanatory variable on the x-axis.
 
-You saw that the level of uncertainty on the coefficients can be estimated from sampling theory and from a bootstrap procedure. 
+You saw that the level of uncertainty on the coefficients can be estimated from sampling theory and from a bootstrap procedure.
 
-Today 
+Today
 
-- Predictive uncertainty
-- Model adequacy
-- Regression examples
-- Outliers
-- Simpson's paradox
+-   Predictive uncertainty
+-   Model adequacy
+-   Regression examples
+-   Outliers
+-   Simpson's paradox
 
-## Predictive uncertainty {-}
+## Predictive uncertainty {.unnumbered}
 
-The `predict()` function (method) is used to make a prediction with the regression model. You need to specify the values of the explanatory variable for which you want predictions as a data frame.
+The `predict()` function (method) is used to make a prediction with the regression model. You need to specify the values of the explanatory variable as a data frame.
 
-Suppose you are interested in predicting maximum heart rate by age using 15 randomly chosen people who are tested for maximum heart rate. Age is in years and heart rate is in beats per minute. 
+Suppose you are interested in predicting maximum heart rate by age using 15 randomly chosen people who are tested for maximum heart rate. Age is in years and heart rate is in beats per minute.
 
 Create a data frame called `heart.df` and fit a linear regression model to the data regression heart rate onto age.
 
@@ -49,9 +49,10 @@ To get uncertainty intervals about the predicted value include the `level =` and
 
 The lower (`lwr`) and upper (`upr`) bounds represent the 95% uncertainty interval about the location of the line for the particular value of the explanatory variable `Age`.
 
-You state that the best prediction for average maximum heart rate for a set of  50 year old people is 170 beats per minute (bpm) with a 95% uncertainty interval between 167 and 173 bpm. Thus if you repeat the sampling 100 times and make the same prediction, your CI on the prediction will cover the true (but unknown) predicted value 95 times.
+You state that the best prediction for average maximum heart rate for a set of 50 year old people is 170 beats per minute (bpm) with a 95% uncertainty interval between 167 and 173 bpm. Thus if you repeat the sampling 100 times and make the same prediction, your CI on the prediction will cover the true (but unknown) predicted value 95 times.
 
-These so called "point wise" uncertainty intervals are used to construct the gray ribbon when you use the `geom_smooth()` layer. To see this you plot the point wise interval for heart rates for 50-yr old people using the `geom_segment()` layer.
+These are called "point wise" uncertainty intervals and are used to construct the gray ribbon when you use the `geom_smooth()` layer. To see this you plot the point wise interval for heart rates for 50-yr old people using the `geom_segment()` layer.
+
 ```{r}
 ggplot(data = heart.df, 
        mapping = aes(x = Age, y = HR)) +
@@ -64,27 +65,31 @@ ggplot(data = heart.df,
 
 By default `se = TRUE` in the `geom_smooth()` function so the ribbon is plotted. The default uncertainty width is specified with `level = .95`. If you want greater certainty you increase the level toward 1. This makes the ribbon wider.
 
-Notes:
-1. Repeated sampling is not the same as bootstrap sampling. Repeated sampling refers to a theoretical idea of there being a true model, while bootstrap sampling is a way to estimate the variation about a statistic computed from a sample of data.
-2. In this context (frequentist) the uncertainty interval is a random variable.
+Notes: 1. Repeated sampling is not the same as bootstrap sampling. Repeated sampling refers to a theoretical idea of there being a true model, while bootstrap sampling is a way to estimate the variation about a statistic computed from a sample of data. 2. In this context (frequentist) the uncertainty interval is a random variable.
 
-The uncertainty about a particular predicted value is the product of two sources of uncertainty. The uncertainty associated with the mean value GIVEN the person's age AND the uncertainty associated with a particular maximum heart rate GIVEN the conditional mean.  
+The uncertainty about a *particular* predicted value is the product of two sources of uncertainty. The uncertainty associated with the mean value GIVEN the person's age AND the uncertainty associated with a particular maximum heart rate GIVEN the conditional mean.
 
 With `interval = "prediction"` in the `predict()` method you get a 95% 'prediction' interval. Here you estimate the prediction interval for a 60-yr old patient.
+
 ```{r}
 predict(model, data.frame(Age = 60), 
-        level = .95, interval = "prediction")
+        level = .95, 
+        interval = "prediction")
 ```
 
 The prediction interval is wider than the 'confidence' interval as it represents both sources of uncertainty.
 
 To plot a prediction band, first add the prediction intervals to the original data frame, assigning the result to a new data frame. Then order the observations in this new data frame by the rank of the explanatory variable.
+
 ```{r}
-heart.df2 <- data.frame(heart.df, predict(model, interval = "prediction"))
+heart.df2 <- data.frame(heart.df, 
+                        predict(model, 
+                                interval = "prediction"))
 heart.df2 <- heart.df2[order(heart.df2$Age), ]
 ```
 
 Finally to plot the uncertainty about the model and about a future prediction type include a `geom_ribbon()` layer.
+
 ```{r}
 ggplot(data = heart.df2, 
        mapping = aes(x = Age, y = HR)) + 
@@ -98,11 +103,14 @@ Example: Predicting body mass from fipper length
 You can imagine that measuring the body mass of a penguin is more difficult than measuring the length of its flipper. So you might want to infer body mass from flipper length.
 
 Consider the `penguins` data frame from the {palmerpenguins} package.
+
 ```{r}
 df <- palmerpenguins::penguins
 df
 ```
+
 Note that some columns have missing data (coded as `NA`). You create a new data frame keeping only rows with complete data for the columns `flipper_length_mm`, `body_mass_g`, `species` and `sex`.
+
 ```{r}
 df <- df |>
   dplyr::select(flipper_length_mm, body_mass_g, species, sex) |>
@@ -111,7 +119,8 @@ df <- df |>
 
 The correlation between body mass and flipper length is `cor(df$body_mass_g, df$flipper_length_mm)`.
 
-* Graph the data as a scatter plot and include the regression line. 
+-   Graph the data as a scatter plot and include the regression line.
+
 ```{r}
 ggplot(data = df, 
        mapping = aes(x = flipper_length_mm, y = body_mass_g)) +
@@ -124,7 +133,8 @@ As anticipated from the high correlation value, their is a fairly tight relation
 
 Next you quantify this relationship.
 
-* Obtain the coefficients from a regression model and interpret the slope coefficient
+-   Obtain the coefficients from a regression model and interpret the slope coefficient.
+
 ```{r}
 model <- lm(body_mass_g ~ flipper_length_mm, 
             data = df)
@@ -133,37 +143,40 @@ model
 
 On average, every one millimeter (mm) increase in flipper length is associated with a 50 gram increase in body mass
 
-* Use the model to predict the body mass for penguins with measured flipper lengths of 180, 200, and 220 millimeters.
+-   Use the model to predict the body mass for penguins with measured flipper lengths of 180, 200, and 220 millimeters.
+
 ```{r}
 predict(model, 
         newdata = data.frame(flipper_length_mm = c(180, 200, 220))) 
 ```
 
-## Model a {-}
+## Model adequacy {.unnumbered}
 
-By definition the linear regression model is the "best fit" line through the data as defined by the smallest RSS. However the best fit line may not be adequate for your data. 
+By definition the linear regression model is the "best fit" line through the data as defined by the smallest RSS. However the best fit line may not be adequate for your data.
 
-Model adequacy is about the _quality_ of the inferences you can make with the model. It says nothing about the strength of the relationship between the response and explanatory variable. 
+Model adequacy is about the *quality* of the inferences you can make with the model. It says nothing about the strength of the relationship between the response and explanatory variable.
 
 Checks on model adequacy alert you to where/how the model can be improved (e.g., transform the data, add a nonlinear term, etc).
 
 When using a linear regression model for making inferences you are implicitly making four assumptions. All four assumptions imply that the residuals (observed values minus predicted values) should 'look' a certain way, or equivalently that the distribution of Y (response variable) conditional on X (explanatory variable) should look a certain way.
 
-* Linearity: Average values of Y in ordered intervals of X should be a straight-line function of X. Each interval creates a 'sub-population' of Y values. 
-* Constant variance: Sub-populations of Y should all have about the same standard deviation.
-* Normality: Values from each sub-population can be described with a normal distribution.
-* Independence: Each observation is independent from the other observations.
+-   Linearity: Average values of Y in ordered intervals of X should be a straight-line function of X. Each interval creates a 'sub-population' of Y values.
+-   Constant variance: Sub-populations of Y should all have about the same standard deviation.
+-   Normality: Values from each sub-population can be described with a normal distribution.
+-   Independence: Each observation is independent from the other observations.
 
-To the extent these assumptions are valid, the model is said to be _adequate_ in representing the data. A model can be statistically significant, but not adequate.
+To the extent these assumptions are valid, the model is said to be *adequate* in representing the data.\_ *Key idea*: A model can be statistically significant, but not adequate.
 
 The first three assumptions are best examined with graphs. Note: You never prove an assumption. Instead, you check to see if there is evidence to question its validity.
 
 Consider the `cars` data frame.
+
 ```{r}
 head(cars)
 ```
 
 The data contains two columns `speed` and `dist` giving the speed (miles per hour) and the corresponding distance (feet) needed to stop. The data were recorded in the 1920s.
+
 ```{r}
 cor(cars$speed, cars$dist)
 ```
@@ -171,24 +184,27 @@ cor(cars$speed, cars$dist)
 The correlation tells us there is a strong relationship between the two variables. The faster the car is moving, the more distance it needs to come to a stop.
 
 You are interested in the breaking distance given the forward speed so `dist` is your response variable. Knowing which variable is the response variable, you make a scatter plot.
+
 ```{r}
 ggplot(data = cars, 
        mapping = aes(x = speed, y = dist)) + 
   geom_point() +
   geom_smooth(method = lm, se = FALSE) +
-  xlab("Speed (mph)") + ylab("Breaking distance (ft)")
+  xlab("Speed (mph)") + 
+  ylab("Breaking distance (ft)")
 ```
 
 The scatter of points shows a near linear relationship between the breaking distance and the forward speed of the car for this sample of data.
 
 Fit a regression model to the data. Since distance is your response variable, you regress stopping distance onto forward speed.
+
 ```{r}
 model1 <- lm(dist ~ speed, 
              data = cars)
 summary(model1)
 ```
 
-The model indicates a statistically significant relationship ($p$-value is less than .01) between breaking distance and speed. In fact, 65% of the variation in average breaking distance is associated with differences in speed.  
+The model indicates a statistically significant relationship ($p$-value is less than .01) between breaking distance and speed. In fact, 65% of the variation in average breaking distance is associated with differences in speed.
 
 The statistically significant effect of speed on breaking distance suggests it is unlikely that in the population of cars there is no relationship between speed and breaking distance.
 
@@ -196,9 +212,10 @@ The model looks pretty good, so you write up our results. Let's take a closer lo
 
 There tends to be more values of breaking distance below the line than above the line over the range of speeds between 10 and 20 mph. Also, the spread of the residuals appears to get larger as speed increases. There is more variation in the response for larger values of speed.
 
-One way to see this is to divide the explanatory variable into non-overlapping intervals and display the set of corresponding response values as a box plot. 
+One way to see this is to divide the explanatory variable into non-overlapping intervals and display the set of corresponding response values as a box plot.
 
 The variable is divided using the `cut()` function. Here you cut the `speed` into 5 intervals.
+
 ```{r}
 cut(cars$speed, breaks = 5)
 cars$speed[1]
@@ -207,12 +224,14 @@ cars$speed[1]
 The first value of `speed` is 4 mph and it falls in the interval (3.98, 8.2]. Greater than 3.98 (indicated by `(`) and less than or equal to 8.2 (indicated by `]`). And so on.
 
 You include these cuts as a ordered factor variable to the original `cars` data frame.
+
 ```{r}
 cars <- cars |>
   dplyr::mutate(x_bins = cut(speed, breaks = 5))
 ```
 
 You then map the `x_bins` variable to the x aesthetic and draw box plots.
+
 ```{r}
 ggplot(data = cars, 
        mapping = aes(x = x_bins, y = dist)) + 
@@ -224,7 +243,8 @@ By binning the explanatory variable you create sub-samples of the data. A sample
 
 Here you see evidence against the assumption of linearity. Further you see that the box size is increasing. That is the IQR range of breaking distance (depth of the box) is larger for faster moving cars. This creates doubt that the assumption of constant variance is valid.
 
-What about the assumption of normality? Although the normality assumption about the residuals is that the _conditional_ distribution of the residuals at each $x_i$ is adequately described by a normal distribution, in practice the residuals are examined together. The residuals are obtained by using the `resid()` function.
+What about the assumption of normality? Although the normality assumption about the residuals is that the *conditional* distribution of the residuals at each $x_i$ is adequately described by a normal distribution, in practice the residuals are examined together. The residuals are obtained by using the `resid()` function.
+
 ```{r}
 res <- resid(model1)
 res
@@ -233,6 +253,7 @@ res
 There are other extractor functions (like `coef()`) that output information from the model as vectors or matrices.
 
 The `fortify()` function from the {ggplot2} package makes a data frame from the model object using several extractor functions.
+
 ```{r}
 model.df <- fortify(model1)
 head(model.df)
@@ -241,6 +262,7 @@ head(model.df)
 The data frame resulting from the `fortify()` function has a column labeled `.resid` containing the vector of residuals. The residuals are the observed distance minus the predicted (fitted) distance (`dist` column minus `.fitted` column).
 
 Create a histogram and density of the model's residuals by typing
+
 ```{r}
 ggplot(data = model.df, 
        mapping = aes(.resid)) +
@@ -252,9 +274,10 @@ You can see that the histogram is not symmetric. There are more values to the ri
 
 Since departures from normality can occur simply because of sampling variation, the question arises as to whether that apparent skewness (asymmetry) you see in this set of residuals is significantly larger than expected by chance.
 
-One approach to visualizing the expected variation from a reference distribution is to add an uncertainty band on the density plot.  
+One approach to visualizing the expected variation from a reference distribution is to add an uncertainty band on the density plot.
 
 The `sm.density()` function from the {sm} package provides a way to plot the uncertainty band. The first argument is a vector of residuals and the argument `model = "Normal"` draws a band around a normal distribution centered on zero with a variance equal to the variance of the residuals.
+
 ```{r}
 sm::sm.density(res, model = "Normal")
 ```
@@ -266,6 +289,7 @@ The blue ribbon is the uncertainty surrounding a normal density curve.
 In summary, the linear regression model may not be adequate. The assumptions of linearity, equal variance, and normally distributed residuals are not entirely reasonable for these data.
 
 What should you do? The relationship appears to be non-linear. So you use the square root of the breaking distance as the response variable instead.
+
 ```{r}
 ggplot(data = cars, 
        mapping = aes(x = speed, y = sqrt(dist))) + 
@@ -276,6 +300,7 @@ ggplot(data = cars,
 ```
 
 Fit another model. First make a copy of the original data frame and add a column called `distSR`. Check the assumption of linearity.
+
 ```{r}
 cars2 <- cars
 cars2$distSR <- sqrt(cars$dist)
@@ -290,6 +315,7 @@ ggplot(data = cars2,
 It looks good.
 
 Fit the new model and extract and make a histogram of the residuals.
+
 ```{r}
 model2 <- lm(distSR ~ speed, data = cars2)
 res2 <- resid(model2)
@@ -302,41 +328,43 @@ ggplot(data = model2.df,
 ```
 
 Distribution of residuals is still skewed but it is better. In fact now the black line is completely inside the uncertainty ribbon of a normal density plot.
+
 ```{r}
 sm::sm.density(res2, model = "Normal")
 ```
 
 The cars example uses a square-root transformation of the response variable. This is appropriate when the response variable has a physical connection to the explanatory variable (e.g., timber volume as a response variable to tree diameter at breast height).
 
-* Limitations
+-   Limitations
 
-    + Cannot be applied to negative numbers
-    + Transforms numbers < 1 and > 1 in different ways
+    -   Cannot be applied to negative numbers
+    -   Transforms numbers \< 1 and \> 1 in different ways
 
 A more common situation is to take logarithms (natural or common) of the response variable.
-  
-* Appropriate
 
-    + When the SD of the residuals is directly proportional to the fitted values (and not to some power of the fitted values)
-    + When the relationship is close to exponential
-    
-* Limitations
-    +  How to transform zero values? Add a constant such as 1 or 0.00001 or remove zero values from analysis (not recommended)
-    
-Family of transformations 
+-   Appropriate
 
-* Box-Cox (Power) Transformation
-    + More about this later
+    -   When the SD of the residuals is directly proportional to the fitted values (and not to some power of the fitted values)
+    -   When the relationship is close to exponential
+
+-   Limitations
+
+    -   How to transform zero values? Add a constant such as 1 or 0.00001 or remove zero values from analysis (not recommended)
+
+Family of transformations
+
+-   Box-Cox (Power) Transformation
+    -   More about this later
 
 If your response variable is counts (e.g., the number of hurricanes in a season) then it is better to use a generalized linear regression model than to transform the counts to normality.
 
-## Regression examples {-}
+## Regression examples {.unnumbered}
 
-_Key idea_: A model can be statistically significant but not adequate.
+*Key idea*: A model can be statistically significant but not adequate.
 
 Example: Average income vs percent college graduates at the state level
 
-The file _Inc.txt_ on my website contains average annual household income vs percentage of college graduates by state. Fit a linear regression model to these data and check the model assumption. Does the linear model appear to be adequate?
+The file *Inc.txt* on my website contains average annual household income vs percentage of college graduates by state. Fit a linear regression model to these data and check the model assumption. Does the linear model appear to be adequate?
 
 ```{r}
 url <- "http://myweb.fsu.edu/jelsner/temp/data/Inc.txt"
@@ -345,6 +373,7 @@ head(Inc.df)
 ```
 
 What is the type and strength of the relationship between percent college graduates and income? These are answered by a scatter plot and correlation, respectively.
+
 ```{r}
 cor(Inc.df$College, Inc.df$Income)
 
@@ -362,6 +391,7 @@ The plot shows that there is a linear relationship between percent college gradu
 The relationship is quite strong (the correlation value is .78), with few, if any, of the states deviating from the linear pattern.
 
 When the data have a spatial component it's a good idea to make a map. Here you create a choropleth map using functions from the {tmap} package.
+
 ```{r}
 library(tmap)
 library(USAboundaries)
@@ -383,17 +413,19 @@ tm_shape(states.sf) +
 ```
 
 Regress annual household income on percent of college graduates.
+
 ```{r}
 model1 <- lm(Income ~ College, 
              data = Inc.df)
 summary(model1)
 ```
 
-Results indicate a significant relationship ($p$-value < .001). Percent college graduates explains 60% of the variation in average income by state. The significant effect implies it is unlikely that income and education have no relationship.
+Results indicate a significant relationship ($p$-value \< .001). Percent college graduates explains 60% of the variation in average income by state. The significant effect implies it is unlikely that income and education have no relationship.
 
-Not only is the effect significant but it is large. For every 1 percentage point increase in graduates, average annual household income increases by $545.
+Not only is the effect significant but it is large. For every 1 percentage point increase in graduates, average annual household income increases by \$545.
 
 From the small standard error (relative to the estimate) on the slope extracted as
+
 ```{r}
 summary(model1)$coefficients[2, 2]
 ```
@@ -401,6 +433,7 @@ summary(model1)$coefficients[2, 2]
 You can say that the effect is quite precise.
 
 This precision shows in the narrow uncertainty interval for the slope estimate.
+
 ```{r}
 confint(model1)
 ```
@@ -408,6 +441,7 @@ confint(model1)
 Is the model adequate?
 
 Check linearity and equal spread.
+
 ```{r}
 ggplot(data = Inc.df, 
        mapping = aes(x = cut(College, breaks = 6), y = Income)) + 
@@ -419,6 +453,7 @@ ggplot(data = Inc.df,
 It looks favorable for these two assumptions. Although the effect seems to level off for the highest percentage of graduates.
 
 Next look at the distribution of the residuals. Does the distribution look like a normal distribution?
+
 ```{r}
 res <- residuals(model1)
 sm::sm.density(res, 
@@ -427,9 +462,10 @@ sm::sm.density(res,
 
 The black curve falls within the blue envelope of a normal distribution, so you have no reason to suspect the assumption of normally distributed residuals.
 
-Another check is to use the quantile-quantile plot. A quantile-quantile plot (or Q-Q plot) is a graph of the quantiles of one distribution against the quantiles of another distribution.  If the distributions have similar shapes, the points on the plot fall roughly along the straight line.
+Another check is to use the quantile-quantile plot. A quantile-quantile plot (or Q-Q plot) is a graph of the quantiles of one distribution against the quantiles of another distribution. If the distributions have similar shapes, the points on the plot fall roughly along the straight line.
 
 To check the normality assumption of a regression model you want to compare the quantiles of the residuals against the quantiles of a normal distribution. You do that with the `qqnorm()` function.
+
 ```{r}
 qqnorm(res)
 qqline(res)
@@ -441,14 +477,14 @@ Interpreting Q-Q plots is somewhat subjective. Here are the common situations.
 
 Description: interpretation
 
-* All but a few points fall on a line: few outliers in the data
-* Left end of pattern is below the line; right end of pattern is above the line: long tails at both ends of the distribution
-* Left end of pattern is above the line; right end of pattern is below the line: short tails at both ends of the data distribution
-* Curved pattern with slope increasing from left to right: data is skewed to the right
-* Curved pattern with slope decreasing from left to right: data is skewed to the left
-* Staircase pattern (plateaus and gaps): data have been rounded or are discrete
+-   All but a few points fall on a line: few outliers in the data
+-   Left end of pattern is below the line; right end of pattern is above the line: long tails at both ends of the distribution
+-   Left end of pattern is above the line; right end of pattern is below the line: short tails at both ends of the data distribution
+-   Curved pattern with slope increasing from left to right: data is skewed to the right
+-   Curved pattern with slope decreasing from left to right: data is skewed to the left
+-   Staircase pattern (plateaus and gaps): data have been rounded or are discrete
 
-## Outliers {-}
+## Outliers {.unnumbered}
 
 What state is most/least favorable with respect to income after graduating from college? These are the states where incomes for a given % graduates fall farthest from the regression line.
 
@@ -457,6 +493,7 @@ The residuals are what is left over once percent graduated is in the model---or 
 The above assumptions concern the conditional distribution of the residuals. The residuals for each of the observations are computed when you use the `lm()` function to fit the model.
 
 In the code below, the `fortify()` function from the {ggplot2} package creates a data frame with elements computed from the fitted model.
+
 ```{r}
 model1.df <- fortify(model1)
 head(model1.df)
@@ -465,9 +502,10 @@ model1.df$State <- Inc.df$stusps
 
 The variables in the model are given in the first two columns with information about the regression that is specific to each of the cases (observations) given in the next six columns.
 
-The first three of those columns contain information that allows you to assess how influential that observation is to the model. If that particularly observation is removed and the regression model refit without it, how much difference would it make in terms of the coefficients?  If removing an observation changes the coefficients a lot then that observation is said to be influential.
+The first three of those columns contain information that allows you to assess how influential that observation is to the model. If that particularly observation is removed and the regression model refit without it, how much difference would it make in terms of the coefficients? If removing an observation changes the coefficients a lot then that observation is said to be influential.
 
 A plot of the model residuals as a function of the explanatory variables lets us easily identify which states have the largest positive and negative residuals. To make the plot more readable use the `geom_label_repel()` function from the {ggrepel} package. This labels the points while avoiding overlapping labels.
+
 ```{r}
 library(ggrepel)
 
@@ -483,6 +521,7 @@ ggplot(data = model1.df,
 Nevada and Connecticut stand out as states where the model underestimates income from percent graduation rates. While Utah, New Mexico, and Montana are states where the model over estimates income.
 
 Statistically significant outliers are those that are outside +/- 2 standard deviations from the regression line. The standardized residuals are plotted and the corresponding significance lines drawn.
+
 ```{r}
 ggplot(data = model1.df, 
        mapping = aes(x = College, y = .stdresid)) +
@@ -499,27 +538,28 @@ Summary
 
 (1) Regression modeling is statistical control.
 
-* You often want to do more than just summarize the relationship between variables. That is go beyond reporting the correlation.
-* Regression provides a strategy to control for effects of an explanatory variable to see what is left over.
-* These left overs (residuals) are interpreted as "controlled observations" (e.g. percent income controlling for percent graduates).
+-   You often want to do more than just summarize the relationship between variables. That is go beyond reporting the correlation.
+-   Regression provides a strategy to control for effects of an explanatory variable to see what is left over.
+-   These left overs (residuals) are interpreted as "controlled observations" (e.g. percent income controlling for percent graduates).
 
 (2) Observations that result in large residuals are called outliers. Outliers can distort regression results or they can be interesting on their own (e.g. unusually destructive tornadoes).
 
-* Inspect scatter plots and plots of residuals to determine whether there are outliers that have a strong influence on the regression line.
-* If there are you should re-fit the regression model without those observations and compare results.
-* Regardless of how you decide to handle them, you need to let our readers know about these unusual cases.
+-   Inspect scatter plots and plots of residuals to determine whether there are outliers that have a strong influence on the regression line.
+-   If there are you should re-fit the regression model without those observations and compare results.
+-   Regardless of how you decide to handle them, you need to let our readers know about these unusual cases.
 
 (3) When interpreting a regression model fit to our data, you are making some implicit assumptions.
 
-* Before accepting a model you need to examine those assumptions to make sure they are tenable.
-* The model fit may be excellent, but you can't be sure your conclusions are correct unless you can defend the assumptions.
-* Examining the model residuals helps you defend (if warranted) the assumptions.
+-   Before accepting a model you need to examine those assumptions to make sure they are tenable.
+-   The model fit may be excellent, but you can't be sure your conclusions are correct unless you can defend the assumptions.
+-   Examining the model residuals helps you defend (if warranted) the assumptions.
 
 Example: A regression model for trend
 
 The rate at which something is changing over time is called a trend. Trend analysis is common in climate change studies and it often involves fitting a linear regression model to quantify the trend where the "explanatory variable" is some index of time.
 
 Returning to the Florida precipitation data. Import the data and make a line plot showing March values each year. Add the best-fit line through these values.
+
 ```{r}
 loc <- "http://myweb.fsu.edu/jelsner/temp/data/FLprecip.txt"
 FLp <- readr::read_table(loc, na = "-9.900")
@@ -535,6 +575,7 @@ ggplot(FLp, aes(x = Year, y = Mar)) +
 There is an upward trend (increasing precipitation) but you can see that the uncertainty ribbon would allow a horizontal line. Thus you do not anticipate a significant trend term in a regression model.
 
 To check on this expectation, you regress March precipitation onto year.
+
 ```{r}
 model <- lm(Mar ~ Year, 
             data = FLp)
@@ -544,6 +585,7 @@ summary(model)
 You see that the statewide annual average precipitation has been increasing by .01 inches per year. This upward trend has a $p$-value of .04 providing suggestive but inconclusive evidence against the null hypothesis of no trend. The larger the $p$-value the more evidence you have that the trend is not significant.
 
 You can fit regression models for all months. First convert the wide to a long data frame.
+
 ```{r}
 FLpL <- FLp |>
   tidyr::pivot_longer(cols = Jan:Dec,
@@ -552,7 +594,8 @@ FLpL <- FLp |>
  
 ```
 
-Then to fit trend models _separately_ for each month you use the `do()` function from the {dplyr} package together with the `tidy()` function from the {broom} package.
+Then to fit trend models *separately* for each month you use the `do()` function from the {dplyr} package together with the `tidy()` function from the {broom} package.
+
 ```{r}
 FLpL |> 
   dplyr::mutate(MonthF = factor(Month, levels = month.abb)) |>
@@ -562,21 +605,22 @@ FLpL |>
 
 The table shows the intercept and slope coefficients for each month.
 
-## Simpson's paradox {-}
+## Simpson's paradox {.unnumbered}
 
-The four assumptions that under gird a linear regression model include (1) linearity, (2) equal variance, (3) normality of residuals, and (4) independence of observations. 
+The four assumptions that under gird a linear regression model include (1) linearity, (2) equal variance, (3) normality of residuals, and (4) independence of observations.
 
 But even if those assumptions are valid, another issue is that of scale.
 
 Simpson's paradox occurs when a trend appears in different groups of data but disappears or reverses when the groups are combined.
 
-It is encountered in social-science and medical-science statistics and is problematic when data are aggregated at various scales (spatial or otherwise). 
+It is encountered in social-science and medical-science statistics and is problematic when data are aggregated at various scales (spatial or otherwise).
 
 The paradox can be resolved when causal relations are appropriately addressed in the statistical modeling.
 
 As an example, consider again the relationship between bill length and bill depth in the Palmer penguins data without regards to species.
 
 You start with a scatter plot and a linear regression model.
+
 ```{r}
 library(palmerpenguins)
 
@@ -592,6 +636,7 @@ lm(bill_depth_mm ~ bill_length_mm,
 The plot shows an inverse relationship between bill depth and bill length. And the regression model shows a statistically significant relationship with bill depth decreasing by .85 cm for every one mm increase in bill length.
 
 However the relationship is across all species of penguins. If you group by species you see that for each species the relationship is the opposite.
+
 ```{r}
 p + 
   geom_point(mapping = aes(y = bill_depth_mm, x = bill_length_mm, color = species)) +
@@ -600,8 +645,8 @@ p +
   scale_color_manual(values = c("darkorange", "purple", "cyan4"))
 ```
 
-That is bill depth _increases_ with increasing bill length. So you conclude that the negative relationship is an artifact of grouping the penguins with different body masses together.
+That is bill depth *increases* with increasing bill length. So you conclude that the negative relationship is an artifact of grouping the penguins with different body masses together.
 
 The paradox is resolved when the relations are appropriately addressed in the statistical modeling.
 
-See also Berkson's paradox https://en.wikipedia.org/wiki/Berkson%27s_paradox
+See also Berkson's paradox <https://en.wikipedia.org/wiki/Berkson%27s_paradox>
