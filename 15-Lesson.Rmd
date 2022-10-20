@@ -54,11 +54,15 @@ You state that the best prediction for average maximum heart rate for a set of 5
 These are called "point wise" uncertainty intervals and are used to construct the gray ribbon when you use the `geom_smooth()` layer. To see this you plot the point wise interval for heart rates for 50-yr old people using the `geom_segment()` layer.
 
 ```{r}
+library(ggplot2)
+
 ggplot(data = heart.df, 
        mapping = aes(x = Age, y = HR)) +
   geom_point() +
-  geom_smooth(method = lm) +
-  geom_segment(mapping = aes(x = 50, xend = 50, y = predictedMean[2], yend = predictedMean[3]),
+  geom_smooth(method = lm, level = .95) +
+  geom_segment(mapping = aes(x = 50, xend = 50, 
+                             y = predictedMean[2], 
+                             yend = predictedMean[3]),
                color = "red")
 
 ```
@@ -72,7 +76,7 @@ The uncertainty about a *particular* predicted value is the product of two sourc
 With `interval = "prediction"` in the `predict()` method you get a 95% 'prediction' interval. Here you estimate the prediction interval for a 60-yr old patient.
 
 ```{r}
-predict(model, data.frame(Age = 60), 
+predict(model, data.frame(Age = 50), 
         level = .95, 
         interval = "prediction")
 ```
@@ -98,7 +102,7 @@ ggplot(data = heart.df2,
   geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = .2)
 ```
 
-Example: Predicting body mass from fipper length
+Example: Predicting body mass from flipper length
 
 You can imagine that measuring the body mass of a penguin is more difficult than measuring the length of its flipper. So you might want to infer body mass from flipper length.
 
@@ -165,7 +169,7 @@ When using a linear regression model for making inferences you are implicitly ma
 -   Normality: Values from each sub-population can be described with a normal distribution.
 -   Independence: Each observation is independent from the other observations.
 
-To the extent these assumptions are valid, the model is said to be *adequate* in representing the data.\_ *Key idea*: A model can be statistically significant, but not adequate.
+To the extent these assumptions are valid, the model is said to be *adequate* in representing the data. *Key idea*: A model can be statistically significant, but not adequate.
 
 The first three assumptions are best examined with graphs. Note: You never prove an assumption. Instead, you check to see if there is evidence to question its validity.
 
@@ -335,7 +339,8 @@ ggplot(data = model2.df,
 Distribution of residuals is still skewed but it is better. In fact now the black line is completely inside the uncertainty ribbon of a normal density plot.
 
 ```{r}
-sm::sm.density(res2, model = "Normal")
+res2 |>
+  sm::sm.density(model = "Normal")
 ```
 
 The cars example uses a square-root transformation of the response variable. This is appropriate when the response variable has a physical connection to the explanatory variable (e.g., timber volume as a response variable to tree diameter at breast height).
@@ -545,15 +550,15 @@ Summary
 
 -   You often want to do more than just summarize the relationship between variables. That is go beyond reporting the correlation.
 -   Regression provides a strategy to control for effects of an explanatory variable to see what is left over.
--   These left overs (residuals) are interpreted as "controlled observations" (e.g. percent income controlling for percent graduates).
+-   These left overs (residuals) are interpreted as "controlled observations" (e.g. income controlling for percent graduates).
 
 (2) Observations that result in large residuals are called outliers. Outliers can distort regression results or they can be interesting on their own (e.g. unusually destructive tornadoes).
 
 -   Inspect scatter plots and plots of residuals to determine whether there are outliers that have a strong influence on the regression line.
 -   If there are you should re-fit the regression model without those observations and compare results.
--   Regardless of how you decide to handle them, you need to let our readers know about these unusual cases.
+-   Regardless of how you decide to handle them, you need to let your readers know about these unusual cases.
 
-(3) When interpreting a regression model fit to our data, you are making some implicit assumptions.
+(3) When interpreting a regression model fit to your data, you are making some implicit assumptions.
 
 -   Before accepting a model you need to examine those assumptions to make sure they are tenable.
 -   The model fit may be excellent, but you can't be sure your conclusions are correct unless you can defend the assumptions.
@@ -609,49 +614,3 @@ FLpL |>
 ```
 
 The table shows the intercept and slope coefficients for each month.
-
-## Simpson's paradox {.unnumbered}
-
-The four assumptions that under gird a linear regression model include (1) linearity, (2) equal variance, (3) normality of residuals, and (4) independence of observations.
-
-But even if those assumptions are valid, another issue is that of scale.
-
-Simpson's paradox occurs when a trend appears in different groups of data but disappears or reverses when the groups are combined.
-
-It is encountered in social-science and medical-science statistics and is problematic when data are aggregated at various scales (spatial or otherwise).
-
-The paradox can be resolved when causal relations are appropriately addressed in the statistical modeling.
-
-As an example, consider again the relationship between bill length and bill depth in the Palmer penguins data without regards to species.
-
-You start with a scatter plot and a linear regression model.
-
-```{r}
-library(palmerpenguins)
-
-( p <- ggplot(data = penguins,
-            mapping = aes(y = bill_depth_mm, x = bill_length_mm)) +
-       geom_point() +
-       geom_smooth(method = lm) )
-
-lm(bill_depth_mm ~ bill_length_mm,
-   data = penguins)
-```
-
-The plot shows an inverse relationship between bill depth and bill length. And the regression model shows a statistically significant relationship with bill depth decreasing by .85 cm for every one mm increase in bill length.
-
-However the relationship is across all species of penguins. If you group by species you see that for each species the relationship is the opposite.
-
-```{r}
-p + 
-  geom_point(mapping = aes(y = bill_depth_mm, x = bill_length_mm, color = species)) +
-  geom_smooth(method = lm, 
-              mapping = aes(color = species)) +
-  scale_color_manual(values = c("darkorange", "purple", "cyan4"))
-```
-
-That is bill depth *increases* with increasing bill length. So you conclude that the negative relationship is an artifact of grouping the penguins with different body masses together.
-
-The paradox is resolved when the relations are appropriately addressed in the statistical modeling.
-
-See also Berkson's paradox <https://en.wikipedia.org/wiki/Berkson%27s_paradox>
