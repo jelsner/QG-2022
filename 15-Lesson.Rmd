@@ -246,8 +246,8 @@ Here you see evidence against the assumption of linearity. Further you see that 
 What about the assumption of normality? Although the normality assumption about the residuals is that the *conditional* distribution of the residuals at each $x_i$ is adequately described by a normal distribution, in practice the residuals are examined together. The residuals are obtained by using the `resid()` function.
 
 ```{r}
-res <- resid(model1)
-res
+( res <- model1 |>
+  residuals() )
 ```
 
 There are other extractor functions (like `coef()`) that output information from the model as vectors or matrices.
@@ -255,7 +255,9 @@ There are other extractor functions (like `coef()`) that output information from
 The `fortify()` function from the {ggplot2} package makes a data frame from the model object using several extractor functions.
 
 ```{r}
-model.df <- fortify(model1)
+model.df <- model1 |>
+  fortify()
+
 head(model.df)
 ```
 
@@ -279,7 +281,8 @@ One approach to visualizing the expected variation from a reference distribution
 The `sm.density()` function from the {sm} package provides a way to plot the uncertainty band. The first argument is a vector of residuals and the argument `model = "Normal"` draws a band around a normal distribution centered on zero with a variance equal to the variance of the residuals.
 
 ```{r}
-sm::sm.density(res, model = "Normal")
+res |>
+  sm::sm.density(model = "Normal")
 ```
 
 The black curve representing the residuals is shifted left relative to a normal density and goes outside the blue ribbon in the right tail indicating that the residuals may not be adequately described by a normal distribution although deviation from normality is small.
@@ -317,7 +320,9 @@ It looks good.
 Fit the new model and extract and make a histogram of the residuals.
 
 ```{r}
-model2 <- lm(distSR ~ speed, data = cars2)
+model2 <- lm(distSR ~ speed, 
+             data = cars2)
+
 res2 <- resid(model2)
 
 model2.df = fortify(model2)
