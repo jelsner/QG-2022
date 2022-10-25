@@ -2,6 +2,8 @@
 
 Today
 
+Topics in linear regression
+
 -   Simpson's paradox
 -   Multiple variable regression
 -   Fitting a multiple variable regression model
@@ -9,7 +11,7 @@ Today
 -   Checking model assumptions
 -   Using the model to make predictions
 -   Collinearity and what to do about it
--   How to include and interpret interactions
+-   How to include and interpret interaction terms
 
 ## Simpson's paradox {.unnumbered}
 
@@ -442,7 +444,7 @@ Again you start with a grid of scatter plots.
 GGally::ggpairs(bf.df)
 ```
 
-Here `abdomen` has the strongest linear relationship with `bodyfat`, but other variables have high direct (positive) correlation. Note the large correlation between the explanatory variables.
+Here `abdomen` circumference has the strongest linear relationship with `bodyfat`, but other variables have high direct (positive) correlation. Note the large correlation between the explanatory variables.
 
 Next you regress `bodyfat` onto the four explanatory variables and summarize the model.
 
@@ -457,7 +459,7 @@ summary(model1)
 
 What is wrong here?
 
-The negative coefficient on the variable `biceps` is opposite of the sign on the correlation between `bodyfat` and `biceps`.
+The negative coefficient on the variable `biceps` circumference is opposite of the sign on the correlation between `bodyfat` and `biceps`.
 
 ```{r}
 cor(bf.df$bodyfat, bf.df$biceps)
@@ -465,13 +467,13 @@ cor(bf.df$bodyfat, bf.df$biceps)
 
 This is an indication of collinearity. The problem is that there is a large correlation between `abdomen` and `biceps` leading to a model that may not make physical sense.
 
-_Key idea_: The rule is that when the correlation between two explanatory variables exceeds .6, collinearity can be a problem.
+_Key idea_: A rule of thumb is that when the correlation between two explanatory variables exceeds .6, collinearity can be a problem.
 
-When explanatory variables have large correlation then estimates of the model parameters are not precise. A model with imprecise parameter estimates is not useful. The best way to proceed in this situation is to reduce the set of explanatory variables.
+When explanatory variables have large correlation estimates of the model parameters are not precise. It is risky to make inferences using a model with imprecise parameter estimates. The best way to proceed in this situation is to reduce the set of explanatory variables.
 
-Remove the explanatory variable that makes the least sense from physical arguments. For these data, it is probably best to remove all variables except `abdomen`.
+Remove the explanatory variable that makes the least sense for inclusion in the model from physical arguments. For these data, it is probably best to remove all variables except `abdomen`. That is, abdomen circumference is the best indicator of body fat and the other variables do not add any additional new information in understanding body fat.
 
-## How to include and interpret interactions {.unnumbered}
+## How to include and interpret interactions terms {.unnumbered}
 
 Sometimes the *relationship* between an explanatory variable and the response variable *depends on* another explanatory variable. In this case you say there is an *interaction* between the two explanatory variables.
 
