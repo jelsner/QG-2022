@@ -47,7 +47,7 @@ The inverse relationship is confirmed with a regression model.
                  data = penguins) )
 ```
 
-The model shows a significant relationship with bill depth decreasing by .85 cm for every one mm increase in bill length.
+The model shows a significant relationship with bill depth decreasing by .85 mm for every one cm increase in bill length.
 
 Checking on the model residuals
 
@@ -76,6 +76,7 @@ Bill depth *increases* with increasing bill length. So you conclude that the neg
 The paradox is resolved when the relations are addressed in the statistical modeling.
 
 See also Berkson's paradox <https://en.wikipedia.org/wiki/Berkson%27s_paradox>
+The correlation between talent and attractiveness should be close to zero, but if you ignore folks with low talent and low attractiveness (example, non-celebrities) you might find a negative correlation.
 
 ## Multiple variable regression {.unnumbered}
 
@@ -83,13 +84,13 @@ Multiple variable (multi-variable) linear regression is used to model a dependen
 
 Everything from simple (single explanatory variable) regression carries over to multiple variable linear regression. There is a slope coefficient for each explanatory variable.
 
-Note: You regress the response variable onto the explanatory variables. You do not perform a regression of the variables or regress y AND x or regress y with respect to x. These are ambiguous at best and misleading at worse.
+Note: You regress the response variable onto the explanatory variables. You do not perform a regression of the variables or regress y AND x or regress y with respect to x. These are ambiguous at best and misleading at worst.
 
 With one explanatory variable the regression model is described with a straight line. With two explanatory variables the regression model is described with a flat surface.
 
 To see this consider a three dimensional scatter plot created with the `scatterplot3d()` from the {scatterplot3d} package and add the regression plane.
 
-The data comes from the `trees` data frame. You start with a (simple) linear regression. You regress timber volume (`Volume`) on tree girth (`Girth`) and add the model as a line on the scatter plot.
+The data comes from the `trees` data frame. Start with a single-variable linear regression. You regress timber volume (`Volume`) on tree girth (`Girth`) and add the model as a line on the scatter plot.
 
 Here I use the `plot()` method and `abline()` are base R graphics functions.
 
@@ -105,7 +106,9 @@ abline(model1)
 Next you regress timber volume (`Volume`) on girth (`Girth`) and height (`Height`) and use the `scatterplot3d()` function to plot the scatter of points. The resulting `plane3d()` function takes the regression model and adds the surface.
 
 ```{r}
-model2 <- lm(Volume ~ Girth + Height, data = trees)
+model2 <- lm(Volume ~ Girth + 
+                      Height, 
+             data = trees)
 s3d <- scatterplot3d::scatterplot3d(trees, angle = 55, 
                     scale.y = .7, pch = 16, 
                     xlab = "Tree diameter (in)", 
@@ -132,7 +135,7 @@ The distance along the vertical axis from the observation to the model surface i
 The multiple linear regression model is given by: 
 
 $$
-\hat y = \hat \beta_0 + \hat \beta_1 x_{i1} + \hat \beta_2 x_{i2} + \cdots + \hat \beta_p x_{ip}
+\hat y_{i} = \hat \beta_0 + \hat \beta_1 x_{i1} + \hat \beta_2 x_{i2} + \cdots + \hat \beta_p x_{ip}
 $$
 
 The explanatory variables are written with a double subscript (there are $p$ of them) to indicate the observation number (1st subscript) and the variable number (2nd subscript).
@@ -236,7 +239,8 @@ For every 1 cent/gallon increase in taxes, mean gas consumption *decreases* by 3
 The statistically significant variables in the model for explaining gas consumption are identified by looking at the table of coefficients from the `summary()` function.
 
 ```{r}
-summary(model1)
+model1 |>
+  summary()
 ```
 
 You ignore the `Intercept` term as it represents the value of the response variable where the model line intersects the $y$-axis.
@@ -403,14 +407,15 @@ As expected selling prices increase with size of the living space and with taxes
 The response variable is selling price (`price`). You begin with living space (`sqft`) and whether the house was `custom` built as the two explanatory variables.
 
 ```{r}
-model1 <- lm(price ~ sqft + custom, 
+model1 <- lm(price ~ sqft + 
+                     custom, 
              data = hp.df)
 summary(model1)
 ```
 
 The model indicates that for a one square foot increase in living space, selling prices increase by \$54 controlling for whether or not it has custom features. Note: you move the decimal place on the coefficient to the right two places because selling price is in 100s of dollars.
 
-The model also indicates that custom-featured houses (indicated with a value of 1 in the variable `custom`) sell for more by \$17,211 on average controlling for living space.
+The model also indicates that custom-featured houses (indicated with a value of 1 in the variable `custom`) sell for more by \$17,221 on average controlling for living space.
 
 To predict the selling price of a house that has custom features and has 3500 square feet of living space type
 
@@ -559,6 +564,6 @@ Now the intercept difference is close to zero and insignificant.
 
 Centering explanatory variables has no influence on the main effects in a regression model with only main effects. In contrast, centering has an influence on the main effects in a regression model that includes interaction terms.  
 
-When interpreting the results from models that contain interaction terms, the rule is to NOT interpret the coefficients on the main effects. The presence of interactions implies that the meaning of coefficients for terms vary depending on the values of the other variables and thus cannot be interpreted directly.
+*Key idea*: When interpreting the results from models that contain interaction terms, the rule is to NOT interpret the coefficients on the main effects. The presence of interactions implies that the meaning of coefficients for terms vary depending on the values of the other variables and thus cannot be interpreted directly.
 
 Thursday: Assignment #5 in class.
