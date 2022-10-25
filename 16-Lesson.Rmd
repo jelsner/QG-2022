@@ -13,15 +13,13 @@ Today
 
 ## Simpson's paradox {.unnumbered}
 
-The four assumptions that under gird a linear regression model include (1) linearity, (2) equal variance, (3) normality of residuals, and (4) independence of observations.
+The four assumptions that under gird a linear regression model include (1) linearity, (2) equal variance, (3) normality, and (4) independence.
 
-But even if those assumptions are valid, another issue is that of scale.
+Even if those assumptions are valid, another issue is that of scale. Scale can be spatial regions or other groupings.
 
-Simpson's paradox occurs when a trend appears in different groups of data but disappears or reverses when the groups are combined.
+Simpson's paradox occurs when a relationship appears in different groups of data but disappears or reverses when the groups are combined.
 
 It is encountered in social-science and medical-science statistics and is problematic when data are aggregated at various scales (spatial or otherwise).
-
-The paradox can be resolved when causal relations are appropriately addressed in the statistical modeling.
 
 As an example, consider again the relationship between bill length and bill depth in the Palmer penguins data without regards to species.
 
@@ -32,29 +30,48 @@ library(palmerpenguins)
 library(ggplot2)
 
 ( p <- ggplot(data = penguins,
-            mapping = aes(y = bill_depth_mm, x = bill_length_mm)) +
+            mapping = aes(y = bill_depth_mm, 
+                          x = bill_length_mm)) +
        geom_point() +
        geom_smooth(method = lm) )
-
-lm(bill_depth_mm ~ bill_length_mm,
-   data = penguins)
 ```
 
-The plot shows an inverse relationship between bill depth and bill length. And the regression model shows a statistically significant relationship with bill depth decreasing by .85 cm for every one mm increase in bill length.
+The plot shows an inverse relationship between bill depth and bill length. 
 
-However the relationship is across all species of penguins. If you group by species you see that for each species the relationship is the opposite.
+The inverse relationship is confirmed with a regression model.
+
+```{r}
+( model.lr <- lm(bill_depth_mm ~ bill_length_mm,
+                 data = penguins) )
+```
+
+The model shows a significant relationship with bill depth decreasing by .85 cm for every one mm increase in bill length.
+
+Checking on the model residuals
+
+```{r}
+sm::sm.density(residuals(model.lr), model = "Normal")
+```
+
+You find no strong evidence to reject the assumption of normality.
+
+However the relationship is based on using data across all species of penguins. If you group by species you see that for each species the relationship is the opposite.
 
 ```{r}
 p + 
-  geom_point(mapping = aes(y = bill_depth_mm, x = bill_length_mm, color = species)) +
+  geom_point(mapping = aes(y = bill_depth_mm, 
+                           x = bill_length_mm, 
+                           color = species)) +
   geom_smooth(method = lm, 
               mapping = aes(color = species)) +
-  scale_color_manual(values = c("darkorange", "purple", "cyan4"))
+  scale_color_manual(values = c("darkorange", 
+                                "purple", 
+                                "cyan4"))
 ```
 
-That is bill depth *increases* with increasing bill length. So you conclude that the negative relationship is an artifact of grouping the penguins with different body masses together.
+Bill depth *increases* with increasing bill length. So you conclude that the negative relationship is an artifact of grouping the penguins with different body masses together.
 
-The paradox is resolved when the relations are appropriately addressed in the statistical modeling.
+The paradox is resolved when the relations are addressed in the statistical modeling.
 
 See also Berkson's paradox <https://en.wikipedia.org/wiki/Berkson%27s_paradox>
 
@@ -87,10 +104,11 @@ Next you regress timber volume (`Volume`) on girth (`Girth`) and height (`Height
 
 ```{r}
 model2 <- lm(Volume ~ Girth + Height, data = trees)
-s3d <- scatterplot3d::scatterplot3d(trees, angle = 55, scale.y = .7, pch = 16, 
-                                    xlab = "Tree diameter (in)", 
-                                    zlab = "Timber volume (cubic ft)",
-                                    ylab = "Tree height (ft)")
+s3d <- scatterplot3d::scatterplot3d(trees, angle = 55, 
+                    scale.y = .7, pch = 16, 
+                    xlab = "Tree diameter (in)", 
+                    zlab = "Timber volume (cubic ft)",
+                    ylab = "Tree height (ft)")
 s3d$plane3d(model2)
 ```
 
@@ -99,7 +117,8 @@ The graph shows that timber volume increases with tree diameter and tree height.
 By changing the view angle (`angle =`) you can see that some observations are above the surface and some are below.
 
 ```{r, eval=FALSE}
-s3d <- scatterplot3d(trees, angle = 32, scale.y = .7, pch = 16, 
+s3d <- scatterplot3d::scatterplot3d(trees, angle = 32, 
+                    scale.y = .7, pch = 16, 
                     xlab = "Tree diameter (in)", 
                     zlab = "Timber volume (cubic ft)",
                     ylab = "Tree height (ft)")
@@ -108,7 +127,9 @@ s3d$plane3d(model2)
 
 The distance along the vertical axis from the observation to the model surface is the residual. So even though there are two explanatory variables there is only one set of residuals as with simple regression.
 
-The multiple linear regression model is given by: $$
+The multiple linear regression model is given by: 
+
+$$
 \hat y = \hat \beta_0 + \hat \beta_1 x_{i1} + \hat \beta_2 x_{i2} + \cdots + \hat \beta_p x_{ip}
 $$
 
@@ -118,9 +139,12 @@ Each explanatory variable gets a coefficient, so there are $p + 1$ of them (incl
 
 Now for each observation $i$ there is an observed response ($y_i$) and a predicted response ($\hat y_i$) and the difference is called the residual.
 
-The residuals are given by the equation $$
+The residuals are given by the equation 
+
+$$
 y_i - \hat y_i = \varepsilon_i
-$$ and are assumed to be described by a set of normal distributions each centered on zero and having the same variance ($\sigma^2$).
+$$ 
+and are assumed to be described by a set of normal distributions each centered on zero and having the same variance ($\sigma^2$).
 
 A grid of scatter plots
 
@@ -142,7 +166,7 @@ First create a panel of scatter plots using all the variables in the data frame 
 GGally::ggpairs(PC.df)
 ```
 
-The plots are arranged in a grid. The rows correspond to the variables as given from left to right in the data frame. The first column in the data set is `Petrol.Tax` then `Avg.Inc`, etc.
+The plots are arranged as a matrix. The rows correspond to the variables as given from left to right in the data frame. The first column in the data set is `Petrol.Tax` then `Avg.Inc`, etc.
 
 The plot in row 2, column 1 is shows `Avg.Inc` on the vertical axis and `Petrol.Tax` on the horizontal axis. The value in the diagonal panel (row 1, column 2) is the Pearson correlation coefficient between `Avg.Inc` and `Petrol.Tax`.
 
@@ -172,14 +196,25 @@ From the plots and the correlation matrix you anticipate the proportion of peopl
 
 Further you anticipate that the gas tax will be an important variable but the coefficient on this term will be a negative number.
 
+Another nice visualization is to use the `corrplot::corrplot()` function applied to the output of the `cor()` function.
+
+```{r}
+PC.df |>
+  cor() |>
+  corrplot::corrplot()
+```
+
 ## Fitting a multiple variable regression model {.unnumbered}
 
-You fit a multiple variable regression model to the gas data using the `lm()` function. You put the name of the response variable (`Petrol.Consumption`) to the left of the `~` and then the names of the explanatory variables to the right. After each variable you include a `+` sign (except for the last variable).
+You fit a multiple variable regression model to the gas data using the `lm()` function. You put the name of the response variable (`Petrol.Consumption`) to the left of the `~` and then the names of the explanatory variables to the right. Between each variable you include a `+` sign.
 
 Here you assign the model to an object called `model1`.
 
 ```{r}
-model1 <- lm(Petrol.Consumption ~ Prop.DL + Pavement + Avg.Inc + Petrol.Tax,
+model1 <- lm(Petrol.Consumption ~ Prop.DL + 
+                                  Pavement + 
+                                  Avg.Inc + 
+                                  Petrol.Tax,
              data = PC.df)
 model1
 ```
@@ -202,35 +237,41 @@ The statistically significant variables in the model for explaining gas consumpt
 summary(model1)
 ```
 
-You ignore the `Intercept` term. It represents the value of the response variable where the model line intersects the $y$-axis.
+You ignore the `Intercept` term as it represents the value of the response variable where the model line intersects the $y$-axis.
 
-You see that three of the four coefficients have a $p$-value at or less than .01. Only the coefficient on the variable `Pavement` has a $p$-value greater than .15. Therefore this variable is not significant in explaining the variance in the response variable (the coefficient is not statistically significant from a value of zero).
+You see that three of the four coefficients have a $p$-value at or less than .01. Only the coefficient on the variable `Pavement` has a $p$-value greater than .15. Therefore this variable is not significant in explaining the variance in the response variable (the coefficient is not statistically different from zero).
 
 The null hypothesis is that the variable is NOT important to the model. The $p$-value on the variable's coefficient is evidence in support of the null hypothesis. The larger the $p$-value the more evidence you have that the variable is not important to the model.
 
-In determining which variables are most important in the regression model, the coefficient estimates (effect sizes) cannot be compared directly because they do not have the same units.
+In determining which variables are most important in the regression model, the coefficient estimates (effect sizes) cannot be compared directly because they do not all have the same units.
 
 *Key idea*: A regression coefficient has units of the response variable divided by the units of the explanatory variable. But the explanatory variables have different units. For example, `Petrol.Tax` has units of cents per gallon and `Pavement` has units of miles.
 
 So instead of comparing the values of the coefficients directly (i.e., instead of looking in the column labeled `Estimate`) you look at the column labeled `t value`.
 
-The magnitude of the $t$ values are inter comparable. They are coefficients that have been *standardized* by dividing by the corresponding standard error. Accordingly, `Avg.Inc` is more more important than `Petrol.Tax` even though .0666 is much smaller than 34.79.
+The magnitude of the $t$ values are comparable. They are coefficients that have been *standardized* by dividing by the corresponding standard error. Accordingly, `Avg.Inc` is more more important than `Petrol.Tax` even though .0666 is much smaller than 34.79.
 
 *Key point*: The order of the explanatory variables does not change the magnitude or the sign of the corresponding coefficients.
 
 ```{r}
-summary(lm(Petrol.Consumption ~ Pavement + Petrol.Tax + Avg.Inc + Prop.DL, 
+summary(lm(Petrol.Consumption ~ Pavement +
+                                Petrol.Tax + 
+                                Avg.Inc + 
+                                Prop.DL, 
            data = PC.df))
 ```
 
 *Key point*: The model does not change with a linear transformation of the variables. For example, if you multiply `Pavement` by 20, the coefficient and standard error change accordingly, but not the $t$ value or the corresponding $p$-value.
 
 ```{r}
-summary(lm(Petrol.Consumption ~ I(Pavement * 20) + Petrol.Tax + Avg.Inc + Prop.DL,
+summary(lm(Petrol.Consumption ~ I(Pavement * 20) + 
+                                Petrol.Tax + 
+                                Avg.Inc + 
+                                Prop.DL,
            data = PC.df))
 ```
 
-Side note: Here the multiplication is done inside the function `I()` to restrict the interpretation of the operator `*` to multiplication rather than interaction.
+Note: Here the multiplication is done inside the function `I()` to restrict the interpretation of the operator `*` to multiplication rather than interaction.
 
 The multiple R-squared value is .68 which means the model explains 68% of the variation in gas consumption.
 
@@ -243,7 +284,9 @@ A model is said to be simpler if it has fewer explanatory variables.
 You try another model without the `Pavement` variable (the variable that was not significant in the previous model).
 
 ```{r}
-model2 <- lm(Petrol.Consumption ~ Prop.DL + Avg.Inc + Petrol.Tax, 
+model2 <- lm(Petrol.Consumption ~ Prop.DL + 
+                                  Avg.Inc + 
+                                  Petrol.Tax, 
              data = PC.df)
 summary(model2)
 ```
@@ -254,16 +297,19 @@ The remaining explanatory variables are significant. The values are slightly dif
 
 The proportion of the population with licenses is the most important variable. It has the largest $t$ value (in absolute value).
 
-By removing a variable the R-squared statistic DECREASES to .675. This is always the case with a simpler model (fewer explanatory variables). Thus the R-squared statistic should not be used to compare models unless the models have the same number of explanatory variables.
+By removing a variable the R-squared statistic DECREASES to .675. This is always the case with a simpler model (fewer explanatory variables). 
 
-One alternative for comparing models is the adjusted R squared. It is a modification of the R squared that accounts for the number of explanatory variables in the model.
+Because of this, the R-squared statistic should not be used to compare models unless the models have the same number of explanatory variables.
 
-*Key point*: The adjusted R squared increases only if the new variable improves the model more than would be expected by chance. The adjusted R squared can be negative, and will always be less than or equal to R squared.
+An alternative for comparing models is the adjusted R squared. It is a modification of the R squared that accounts for the number of explanatory variables in the model.
+
+*Key point*: The adjusted R squared increases only if the new variable _improves_ the model more than would be expected by chance. The adjusted R squared can be negative, and will always be less than or equal to R squared.
 
 To see the importance of the adjusted R squared, first note that `Petrol.Tax` has the smallest $t$ value. Suppose you remove it. What happens?
 
 ```{r}
-model3 <- lm(Petrol.Consumption ~ Prop.DL + Avg.Inc, 
+model3 <- lm(Petrol.Consumption ~ Prop.DL + 
+                                  Avg.Inc, 
              data = PC.df)
 summary(model3)
 ```
@@ -276,24 +322,24 @@ Thus you settle on a final model: Average gas consumption [millions of gallons] 
 
 Next you need to check the model assumptions. Equal variance: You saw how to check this assumption by using the `cut()` function and creating side-by-side box plots.
 
-Another way is to plot the standardized residuals on the vertical axis and the fitted values along the horizontal axis. Adding a smoothed curve and the y equal zero line makes it easy to see whether there is a pattern to the residuals.
+Another way is to plot the standardized residuals on the vertical axis and the fitted values along the horizontal axis. Adding a smoothed curve and the y-equal-zero line makes it easy to see whether there is a pattern to the residuals.
 
 ```{r}
-library(ggplot2)
-model2.df <- fortify(model2)
-ggplot(data = model2.df, 
-       mapping = aes(x = .fitted, y = .stdresid)) +
+model2 |> 
+  fortify() |>
+ggplot(mapping = aes(x = .fitted, y = .stdresid)) +
   geom_point() +
   geom_smooth() +
   geom_hline(yintercept = 0)
 ```
 
-In this case: no pattern in the residuals.
+The standardized residuals (`.stdresid`) are located on either side of the 0 line independent of the predicted values (`.fitted`). So in this case you conclude there is no pattern in the residuals.
 
-Normality. First you use the `sm.density()` function.
+To check on normality you again use the `sm::sm.density()` function.
 
 ```{r}
-res <- residuals(model2)
+res <- model2 |>
+  residuals()
 sm::sm.density(res, xlab = "Model Residuals", model = "Normal")
 ```
 
@@ -304,25 +350,25 @@ qqnorm(model2$residuals)
 qqline(model2$residuals)
 ```
 
-These plots indicate some evidence against normality and constant variance. The fact that the residuals do not exactly follow a normal distribution decreases the confidence you can place on your inferences (e.g., stating a particular variable is significant in explaining variations in the response variable).
+These plots indicate some weak evidence against normality (longer right tail). This evidence decreases the confidence you can place on your inferences (e.g., stating a particular variable is significant in explaining variations in the response variable).
 
 To improve model adequacy you might transform the response variable or use a weighted regression model. You will return to this shortly.
 
 ## Using the model to make predictions {.unnumbered}
 
-<https://easystats.github.io/performance/reference/check_predictions.html>
-
 Posterior predictive checks mean simulating replicated data under the fitted model and then comparing these to the observed data. Posterior predictive checks are used to look for systematic discrepancies between real and simulated data.
 
-The {performance} package gives posterior predictive check methods for a variety of frequentist and Bayesian models.
+The {performance} package gives posterior predictive check methods using the `check_predictions()` function. The function works for a variety of frequentist and Bayesian models. 
+
+Note: To get a plot make sure you have the package {see} available.
 
 ```{r}
 performance::check_predictions(model2)
 ```
 
-The model predicted lines should resemble the observed data line (smoothed density of response variable). Here you see that it looks pretty good, but improvements could be made.
+The model predicted lines (blued) should resemble the observed data line (smoothed density of response variable). Here you see that it looks pretty good, but improvements could be made by removing the right skew.
 
-Example: Predicting house prices
+Example: Predicting house prices.
 
 A Realtor can use multiple variable regression to justify a selling price for a house based on a list of features the house has. Here you consider a data file (`houseprice.txt`) containing a random sample of 107 home sales in Albuquerque, New Mexico during the period February 15 through April 30, 1993 (Albuquerque Board of Realtors, 1993).
 
@@ -360,7 +406,7 @@ model1 <- lm(price ~ sqft + custom,
 summary(model1)
 ```
 
-The model indicates that for a one square foot increase in living space, selling prices increase by \$54 controlling for whether or not it has custom features. You move the decimal place on the coefficient to the right two places because selling price is in 100s of dollars.
+The model indicates that for a one square foot increase in living space, selling prices increase by \$54 controlling for whether or not it has custom features. Note: you move the decimal place on the coefficient to the right two places because selling price is in 100s of dollars.
 
 The model also indicates that custom-featured houses (indicated with a value of 1 in the variable `custom`) sell for more by \$17,211 on average controlling for living space.
 
@@ -390,7 +436,7 @@ head(bf.df)
 
 The response variable `bodyfat` is a percentage measured using special equipment. The four explanatory variables are circumferences of different body parts and are easy to measure. So you are interested in a model to predict `bodyfat` from these easier to measure variables.
 
-As always, you start with a grid of scatter plots.
+Again you start with a grid of scatter plots.
 
 ```{r}
 GGally::ggpairs(bf.df)
@@ -401,8 +447,11 @@ Here `abdomen` has the strongest linear relationship with `bodyfat`, but other v
 Next you regress `bodyfat` onto the four explanatory variables and summarize the model.
 
 ```{r}
-model1 <- lm(bodyfat ~ abdomen + biceps + forearm + wrist, 
-            data = bf.df)
+model1 <- lm(bodyfat ~ abdomen + 
+                       biceps + 
+                       forearm +
+                       wrist, 
+             data = bf.df)
 summary(model1)
 ```
 
@@ -416,7 +465,7 @@ cor(bf.df$bodyfat, bf.df$biceps)
 
 This is an indication of collinearity. The problem is that there is a large correlation between `abdomen` and `biceps` leading to a model that may not make physical sense.
 
-Key idea: The rule is that when the correlation between two explanatory variables exceeds .6, collinearity can be a problem.
+_Key idea_: The rule is that when the correlation between two explanatory variables exceeds .6, collinearity can be a problem.
 
 When explanatory variables have large correlation then estimates of the model parameters are not precise. A model with imprecise parameter estimates is not useful. The best way to proceed in this situation is to reduce the set of explanatory variables.
 
@@ -426,24 +475,33 @@ Remove the explanatory variable that makes the least sense from physical argumen
 
 Sometimes the *relationship* between an explanatory variable and the response variable *depends on* another explanatory variable. In this case you say there is an *interaction* between the two explanatory variables.
 
-For instance, the relationship between selling price and living space might depend on whether the house was custom built. To see if the interaction might need to be included in the regression model first make a plot.
+There are two questions you should ask before including interaction in your model 
+
+(1) Does this interaction make sense conceptually?
+(2) Is the interaction term statistically significant? Or, whether or not we believe the slopes of the regression lines are significantly different.
+
+For instance, returning to the housing prices data frame, the relationship between selling price and living space might depend on whether the house was custom built. To see if the interaction might need to be included in the regression model first make a plot.
 
 ```{r}
 ggplot(data = hp.df, 
-       mapping = aes(y = price, x = sqft, color = factor(custom))) +
+       mapping = aes(y = price, 
+                     x = sqft, 
+                     color = factor(custom))) +
   geom_point() +
   geom_smooth(method = lm, se = FALSE) +
   xlab("Living Space (sq ft)") +
   ylab("Selling Price ($100)")
 ```
 
-Here the conditioning variable must be a factor. You see both regression lines have about the same slope. This implies the relationship between selling price and living space does not depend on whether the house has custom features.
+Here the conditioning variable must be a factor. You see both regression lines have about the same slope. This implies the relationship between selling price and living space does NOT depend on whether the house has custom features.
 
 In contrast, whether or not the house is on the corner influences the relationship between selling price and living space.
 
 ```{r}
 ggplot(data = hp.df, 
-       mapping = aes(y = price, x = sqft, color = factor(corner))) +
+       mapping = aes(y = price, 
+                     x = sqft, 
+                     color = factor(corner))) +
   geom_point() +
   geom_smooth(method = lm, se = FALSE) +
   xlab("Living Space (sq ft)") +
@@ -455,36 +513,50 @@ The slope of the regression line between selling price and house living space is
 To add an interaction term to the model, you use the `:` notation. You need to know how the categorical variable is coded to correctly interpret the model [On a corner lot (1), or not (0)]
 
 ```{r}
-model1 <- lm(price ~ sqft + corner + sqft:corner, 
-             data = hp.df)
-summary(model1)
+lm(price ~ sqft + 
+           corner + 
+           sqft:corner, 
+   data = hp.df) |>
+summary()
 ```
 
 Or, you can use the notation `*` to add both the main effects and the interaction effect to the model. Models with interaction effects should also include the main effects, even if these main effects are not significant.
 
 ```{r}
-model1b <- lm(price ~ sqft * corner, 
-              data = hp.df)
-summary(model1b)
+lm(price ~ sqft * corner, 
+   data = hp.df) |>
+summary()
 ```
 
 The model indicates that for a one square foot increase in living space, selling prices increase by \$75 for the non-corner houses. The coefficient for the interaction is -.453 which is the difference in slope between the non-corner and corner houses, i.e., the slope for the corner houses is .752 - .453 = .299 (\~\$30).
 
-Lastly the coefficient on the corner term of 629 is the difference in the intercepts between non-corner and corner. Or the difference in the y-intercept when living space has a value of zero. The coefficient is significant when living space is zero but this is not realistic. You transform the variables and refit the model.
+Lastly the coefficient on the corner term of 629 is the difference in the intercepts between non-corner and corner houses. Or the difference in the y-intercept when living space has a value of zero. The coefficient is significant when living space is zero but this is not realistic. 
+
+You transform the square footage variable by centering it about the mean value and refit the model.
 
 ```{r}
-model1c <- lm(price ~ I(sqft - mean(sqft)) + corner + 
-               I(sqft - mean(sqft)):corner, 
-             data = hp.df)
-summary(model1c)
-
-model1d <- lm(price ~ I(sqft - 1500) + corner + I(sqft - 1500):corner,
-             data = hp.df)
-summary(model1d)
+lm(price ~ I(sqft - mean(sqft)) + 
+           corner + 
+           I(sqft - mean(sqft)):corner, 
+   data = hp.df) |>
+summary()
 ```
 
-In both cases the intercept difference is negative. In the second case it is insignificant.
+Now the coefficient on the corner term is negative and still significant.
 
-When interpreting the results from models that contain interaction terms, the rule is to not interpret the coefficients on the main effects (marginal coefficients). As demonstrated the presence of interactions implies that the meaning of coefficients for terms vary depending on the values of the other variables and thus are not easily interpreted.
+If you look back at the plot above showing the two slope lines for corner versus non-corner houses you see that the lines intersect about a value of 1500 square feet. So you center on 1500 and refit the model.
+
+```{r}
+lm(price ~ I(sqft - 1500) + 
+           corner + 
+           I(sqft - 1500):corner,
+   data = hp.df) |>
+summary()
+```
+Now the intercept difference is close to zero and insignificant.
+
+Centering explanatory variables has no influence on the main effects in a regression model with only main effects. In contrast, centering has an influence on the main effects in a regression model that includes interaction terms.  
+
+When interpreting the results from models that contain interaction terms, the rule is to NOT interpret the coefficients on the main effects. The presence of interactions implies that the meaning of coefficients for terms vary depending on the values of the other variables and thus cannot be interpreted directly.
 
 Thursday: Assignment #5 in class.

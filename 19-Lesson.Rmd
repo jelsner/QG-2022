@@ -377,3 +377,9 @@ pchisq(q = 20.315,
 ```
 
 The large $p$ value gives you no reason to question the adequacy of the model.
+
+## Cluster analysis
+
+<https://github.com/EmilHvitfeldt/tidyclust/blob/main/vignettes/articles/k_means.Rmd>
+
+<https://www.youtube.com/watch?v=vsXJBO6-nQk>
