@@ -7,7 +7,7 @@ Today
 - Cross validation
 - Classification trees
 
-Example: Let's return to the Palmer penguins data frame. You are interested in using machine learning (regression tree) to predict the body mass of male Gentoo penguins using the penguin's bill and flipper dimensions. 
+Example: Let's again look at the Palmer penguins data frame. You are interested in using machine learning (regression tree) to predict the body mass of male Gentoo penguins using the penguin's bill and flipper dimensions. 
 
 First you filter the data frame keeping only the male Gentoo penguins.
 ```{r}
