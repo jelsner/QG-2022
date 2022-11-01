@@ -11,19 +11,21 @@ Today
 
 ## Removing variables from a regression model {.unnumbered}
 
-Often you start with a model that includes many explanatory variables. This is because you are not sure what variables are important in statistically explaining the response variable.
+Often you start with a model that includes many explanatory variables. This is because you are not sure what variables are important in statistically explaining the response.
 
-A model with all explanatory variables is called a 'full model'. With linear regression, the R squared value is largest when all variables are included in the model. But there is a cost. This cost is called 'model bias'. The model is biased toward the particular set of data you used to create the model.
+A model with all explanatory variables is called a 'full model'. With linear regression, the R squared value is largest when all variables are included in the model. But there is a cost. This cost is called 'model bias'. The model is biased toward the particular set of data used to create the model.
 
-If there is too much bias then the model will make poor predictions when given another set of data.
+If there is too much model bias then the model will make poor predictions when given a new set of data.
 
-When you remove a variable from a model, you decrease the variance explained but you add a degree of freedom. This makes the model less biased. It is less tuned to the data you have.
+When you remove a variable from a model, you decrease the variance explained, but you add a degree of freedom. This makes the model less biased. It is less tuned to the particular set of data you have.
 
-A balance is achieved in this trade-off between minimizing bias and maximizing variance explained by considering the *adjusted* R squared value. You choose a model that has the *largest* adjusted R squared.
+A balance of this trade-off between minimizing bias and maximizing variance explained is achieved by considering the *adjusted* R squared value. You choose a model that has the *largest* adjusted R squared.
 
 If the adjusted R squared gets smaller AFTER you remove a *particular* explanatory variable from the full model, then you should keep that variable in the model.
 
-The AIC (Akaike Information Criterion) is similar to the adjusted R squared. It helps achieve a balance between maximizing the variance explained and minimizing the bias. Using math, AIC = $2 k - 2 \log(L)$, where $k$ is the number of model parameters (1 + number of explanatory variables) and $L$ is the highest value from the likelihood function.
+The AIC (Akaike Information Criterion) is similar to the adjusted R squared. It helps achieve a balance between maximizing the variance explained and minimizing the model bias. 
+
+The AIC is defined as $2k - 2\log(L)$, where $k$ is the number of model parameters (1 + number of explanatory variables) and $L$ is the highest value from the likelihood function.
 
 The likelihood function (or simply, the likelihood) is the probability of observing the data you have, given the model.
 
@@ -78,7 +80,7 @@ After the first row, successive rows show what happens to the AIC value after th
 
 The row labeled `Prop.DL` tells us what happens when the explanatory variable `Prop.DL` is removed. The RSS increases to 401405 (from 189050) and you gain one degree of freedom (less bias). Said another way, the value of 212355 in the `Sum of Sq` column indicates how much the variable `Prop.DL` is worth to the model. By removing `Prop.DL` from the full model, the RSS increases from 189050 to 401405; a difference of 212355. But the AIC is 441.51, which *exceeds* 407.37 (the goal line) so `Prop.DL` should be kept in the model.
 
-The next row labeled `Pavement` gives the same information but for the `Pavement` variable. By removing `Pavement` from the full model, the RSS increases from 189050 to 19130; a difference of 2252. But the AIC is 405.04, which *falls short* of 407.37 (the goal line) so `Pavement` should be removed from the model.
+The next row labeled `Pavement` gives the same information but for the `Pavement` variable. By removing `Pavement` from the full model, the RSS increases from 189050 to 191302; a difference of 2252. But the AIC is 405.04, which *falls short* of 407.37 (the goal line) so `Pavement` should be removed from the model.
 
 The AIC column keeps the score on which variables should be kept and which should be removed. The AIC for the model having all the explanatory variables is 407.37. A model without `Prop.DL` has an AIC of 441.51, which is LARGER than the AIC for the full model, so you keep `Prop.DL` in the model. In contrast, a model without `Pavement` has an AIC of 405.94, which is SMALLER than the AIC for the full model, so you remove `Pavement` from the model.
 
@@ -192,7 +194,7 @@ The response variable `Pollution` (SO2 concentration in ppm) can not be adequate
 
 Raising a variable $y$ to some power is common. A family of transformations using this idea, called power transformations, help to make the data histogram look more like a normal distribution. 
 
-Let $y$ be the original response variable and $\lambda$ be the value of some power (e.g., 2 for squared and .5 for square root). Then a power tranformation of $y$ to $y_\lambda$ is given by
+Let $y$ be the original response variable and $\lambda$ be the value of some power (e.g., 2 for squared and .5 for square root). Then a power transformation of $y$ to $y_\lambda$ is given by
 
 $$
 y_\lambda' =  \frac{y^\lambda-1}{\lambda} 
@@ -251,7 +253,7 @@ MASS::boxcox(Pollution ~
                           length = 10))
 ```
 
-From the graph you can see that choosing a $\lambda$ between 0 and about -.6 will result in residuals that are normally distributed.
+From the graph you can see that choosing a $\lambda$ between .2 and about -.8 will result in residuals that are normally distributed.
 
 ## Fitting a regression tree model {.unnumbered}
 
@@ -387,7 +389,7 @@ How a regression tree is trained. For a given explanatory variable, the algorith
 
 The importance of a split to the regression tree is the reduction in the deviance. The importance is represented on the tree plot as the length of the hanging branch. The longer the branch, the more important the split. The reduction in deviance is larger for the split on `Population` than for the split on `Wet.days.`
 
-The two key components of the training algorithm are: (1) Which variables to use in the split, and (2) how to best achieve the split given a variable. Tree regression is similar to forward selection in the stepwise regression procedure. Include the most important variable (the one that explains the most variance in the response) first then see if additional variables decrease the deviance keeping track of the cost associated with the loss of the degree of freedom.
+The two key components of the training algorithm are: (1) Which variables to use in the split, and (2) how to best achieve the split value given a variable. Tree regression is similar to forward selection in the stepwise regression procedure. Include the most important variable (the one that explains the most variance in the response) first then see if additional variables decrease the deviance keeping track of the cost associated with the loss of the degree of freedom.
 
 Model output from a trained regression tree is printed by typing the name of the model object.
 
@@ -403,7 +405,7 @@ At the root node the mean is 30.05 (`mean(Pollution))` with a deviance of 22040 
 
 Note how the nodes are nested: within node 2, for example, node 4 is terminal but node 5 is not; within node 5 node 10 is terminal but node 11 is not; within node 11, node 23 is terminal but node 22 is not, and so on.
 
-The highest mean value of `Pollution` according to this tree regression is 67 (node 3) and the lowest is 12 (node 10).
+The highest mean value of `Pollution` according to this tree regression is 67 (node 3) and the lowest is 11 (node 11).
 
 The most extreme observations of `Industry` stand alone in leading to a large level of pollution. For the rest, `Population` is the most important variable, but it is low populations that are associated with the highest levels of pollution.
 
@@ -417,15 +419,15 @@ Regression trees are used mainly for predictions. Predicted values are easy to a
 
 ```{r}
 model.tr |>
-predict(newdata = data.frame(Industry = 750, 
-                             Population = 0, 
-                             Wet.days = 0, 
-                             Temp = 0, 
-                             Wind = 0, 
-                             Rain = 0))
+  predict(newdata = data.frame(Industry = 750, 
+                               Population = 0, 
+                               Wet.days = 0, 
+                               Temp = 0, 
+                               Wind = 0, 
+                               Rain = 0))
 model.tr |>
-predict(newdata = data.frame(Industry = 740, 
-                             Population = 180, 
+  predict(newdata = data.frame(Industry = 740, 
+                             Population = 180,
                              Wet.days = 0, 
                              Temp = 0, 
                              Wind = 0,
@@ -461,7 +463,7 @@ model.tr |>
   prune.tree()
 ```
 
-Here you see the largest tree (6 terminal nodes) results in the smallest deviance (8877). By pruning one branch the deviance increases (9240) but only by a relatively small amount (364 or 4%). Similarly by pruning a second branch the deviance increases, this time a bit more. It is helpful to plot the deviance as a function of tree size.
+Here you see the largest tree (6 terminal nodes) results in the smallest deviance (8633). By pruning one branch the deviance increases (9183) but only by a relatively small amount (364 or 4%). Similarly by pruning a second branch the deviance increases, this time a bit more. It is helpful to plot the deviance as a function of tree size.
 
 ```{r}
 model.tr |>
