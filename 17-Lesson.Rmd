@@ -2,22 +2,20 @@
 
 *Please remember to vote next Tuesday!*
 
-Today {-}
+Today
 
--   Removing variable from a regression model
--   The stepwise selection procedure
--   Transforming a response variable
--   Regression trees
+-   Removing variables from a regression model
+-   Automatic selection of variables
+-   Transforming the response variable
+-   Fitting a regression tree model
 
 ## Removing variables from a regression model {.unnumbered}
 
-Often you start with a model that includes many explanatory variables. This is because you are not sure what variables are important in explaining the response variable.
+Often you start with a model that includes many explanatory variables. This is because you are not sure what variables are important in statistically explaining the response variable.
 
-A model with all the possible explanatory variables is called a 'full model'. The R squared value is largest when all explanatory variables are included in the model. But there is a cost. This cost is called 'model bias'. The model is biased toward the particular set of data you used to create the model.
+A model with all explanatory variables is called a 'full model'. With linear regression, the R squared value is largest when all variables are included in the model. But there is a cost. This cost is called 'model bias'. The model is biased toward the particular set of data you used to create the model.
 
 If there is too much bias then the model will make poor predictions when given another set of data.
-
-Model bias/not data bias.
 
 When you remove a variable from a model, you decrease the variance explained but you add a degree of freedom. This makes the model less biased. It is less tuned to the data you have.
 
@@ -27,7 +25,7 @@ If the adjusted R squared gets smaller AFTER you remove a *particular* explanato
 
 The AIC (Akaike Information Criterion) is similar to the adjusted R squared. It helps achieve a balance between maximizing the variance explained and minimizing the bias. Using math, AIC = $2 k - 2 \log(L)$, where $k$ is the number of model parameters (1 + number of explanatory variables) and $L$ is the highest value from the likelihood function.
 
-The likelihood function (likelihood) is the probability of observing the data you have, given the model.
+The likelihood function (or simply, the likelihood) is the probability of observing the data you have, given the model.
 
 The AIC rewards good fitting models with a penalty for the size of the model (number of explanatory variables). Put simply: given a set of candidate models for your data, you should choose the one with the lowest AIC.
 
@@ -36,7 +34,9 @@ Let's see how this works. Returning to the model for gas consumption at the stat
 ```{r}
 url <- "http://myweb.fsu.edu/jelsner/temp/data/PetrolConsumption.txt"
 PC.df <- readr::read_table(url)
-head(PC.df)
+
+PC.df |>
+  head()
 ```
 
 First you fit a full model that includes all four explanatory variables for explaining the variation in gas consumption. They are `Prop.DL`, `Pavement`, `Avg.Inc`, and `Petrol.Tax`. You regress gas consumption onto these four variables and save the object as `modelFull`.
@@ -100,11 +100,11 @@ modelReduced |>
 
 Now all the AIC values *exceed* the value given in the row labeled `<none>`, so you conclude there is no reason to remove any of the remaining variables so you are finished and this is your final model.
 
-## The stepwise selection procedure {.unnumbered}
+## Automatic selection of variables {.unnumbered}
 
-With only a handful of variables to check the `drop1()` function is recommended. With a large number of variables an automated procedure is preferred.
+With only a handful of variables to check, the `drop1()` function is recommended. With a large number of variables an automated procedure is preferred.
 
-Stepwise selection (sometimes called stepwise regression) is a procedure (not a model) that automates this. It finds the best model from a set of candidate models when the models are nested, and it can be useful for sifting through a large number of explanatory variables.
+Stepwise selection (sometimes called stepwise regression) is a procedure (not a model) that automates this process. It finds the 'best' model from a set of candidate models when the models are nested, and it can be useful for sifting through a large number of explanatory variables.
 
 Stepwise regression can be done by backward deletion of variables or by forward selection of the variables. Backward deletion amounts to automating the `drop1()` function and forward selection amounts to automating the `add1()` function.
 
@@ -143,21 +143,23 @@ modelFull |>
 
 Backward deletion of variables is the default method with the `step()` function. That is a successive application of the `drop1()` function. In the case of having a large number of explanatory variables it's a good idea to also try forward selection to see if the results are the same. This is done with the argument `direction = "forward"`.
 
-A strong word of caution about automated variable selection concerns final model stability or the robustness of the selected model to small perturbations of the data set. Bootstrap sampling with replacement or sub=sampling without replacement are needed to investigate and quantify model stability of selected models. The basic idea is to draw B samples from the original data set and to repeat the variable selection procedure on each of the samples.
+A big concern about using automated variable selection is whether the final model is stable. A stable (robust) model is one that will remain approximately the same when different but similar data are used in the fitting procedure.
 
-Important types of quantities that this approach can provide are (i) bootstrap inclusion frequencies to quantify how likely a variable is selected, (ii) sampling distributions of regression coefficients, (iii) model selection frequencies to quantify how likely a particular set of variables is selected, and (iv) pairwise inclusion frequencies, evaluating whether pairs of (correlated) variables are competing for selection.
+Bootstrap sampling with replacement and sub-sampling (without replacement) are procedures that help you investigate and quantify the stability of a model. The idea is to draw samples from the original data set and to repeat the variable selection procedure on each of the samples.
 
-Alternatively instead of automated variable selection you can 
+These approaches provide things like (i) bootstrap inclusion frequencies to quantify how likely a variable is selected, (ii) sampling distributions of regression coefficients, (iii) model selection frequencies to quantify how likely a particular set of variables is selected, and (iv) pairwise inclusion frequencies, evaluating whether pairs of (correlated) variables are competing for selection.
 
-* Use a data reduction method (principal components) to reduce the number of explanatory variables (p much less than n) 
-* Use the literature to eliminate unimportant variables
+Alternatively instead of automated variable selection you can:
+
+* Use a data reduction method (principal components) to reduce the number of explanatory variables
+* Use the literature to help you identify unimportant variables
 * Eliminate variables whose distributions are too narrow
 * Eliminate variables with many missing observations
-* Don't use the response variable to decide which explanatory variables to use
+* But, don't use the response variable to decide which explanatory variables to use
 
-## Transforming a response variable {.unnumbered}
+## Transforming the response variable {.unnumbered}
 
-When the response variable can't be adequately described by a normal distribution often a simple transformation of the variable can make it approximately normal.
+When the response variable can't be adequately described by a normal distribution a simple transformation of the variable often can make it approximately normal.
 
 Consider the following data set containing city pollution levels in file *pollute.txt*. The response variable is the level of pollution in 41 cities and the explanatory variables including average temperature, the amount of industry, the population, the average wind speed, the amount of rain, and the number of wet days.
 
@@ -169,7 +171,7 @@ pollute.df |>
   head()
 ```
 
-Here you want to fit a multiple regression model that can predict pollution levels (`Pollution`) from the explanatory variables including average temperature, the amount of industry, the population, the average wind speed, the amount of rain, and the number of wet days.
+Here you want to fit a multiple regression model that can be used to predict pollution levels (`Pollution`) from the explanatory variables including average temperature, the amount of industry, the population, the average wind speed, the amount of rain, and the number of wet days.
 
 Start with a histogram and a density plot of the response variable `Pollution`.
 
@@ -186,9 +188,11 @@ sm::sm.density(pollute.df$Pollution,
                model = "Normal")
 ```
 
-The response variable `Pollution` (SO2 concentration in ppm) can not be described by a normal distribution. You can still use regression but you should transform the response variable to make the distribution look more like a normal distribution. What transform should you use?
+The response variable `Pollution` (SO2 concentration in ppm) can not be adequately described by a normal distribution. You can still use regression but you should transform the response variable first to make the distribution look more like a normal distribution. What transform should you use?
 
-Raising a variable $y$ to some power is most common. Box and Cox (1964) suggested a family of transformations, called the power transformations, to make the data histogram look more like a normal distribution. 
+Raising a variable $y$ to some power is common. A family of transformations using this idea, called power transformations, help to make the data histogram look more like a normal distribution. 
+
+Let $y$ be the original response variable and $\lambda$ be the value of some power (e.g., 2 for squared and .5 for square root). Then a power tranformation of $y$ to $y_\lambda$ is given by
 
 $$
 y_\lambda' =  \frac{y^\lambda-1}{\lambda} 
@@ -196,7 +200,9 @@ $$
 
 The particular transformation depends on the value of $\lambda$. The choice of which value of $\lambda$ to use is determined using the `boxcox()` function from the {MASS} package.
 
-The first argument is a `lm()` formula. Also needed are the data and a sequence of potential value for $\lambda$ (`lambda`). Here you are interested in the response variable `Pollution` without any explanatory variables so the model formula is `Pollution ~ 1`.
+The first argument in the `boxcox()` function is the model formula. Also needed are the data and a range of potential values for $\lambda$ (`lambda`). 
+
+Here you are interested in the response variable `Pollution` without any explanatory variables so the model formula is `Pollution ~ 1`.
 
 ```{r}
 MASS::boxcox(Pollution ~ 1, 
@@ -206,7 +212,7 @@ MASS::boxcox(Pollution ~ 1,
                     length = 10))
 ```
 
-The output is a plot of the likelihood as a function of possible values for $lambda$. The likelihood represents the chance of observing the data given the transformation and the normal distribution as the model.
+The output is a plot of the likelihood as a function of the range of values for $lambda$ you specified. The likelihood value represents the chance of observing the data given the transformation and the normal distribution as the model. Since likelihood values are usually very small they are given on a log scale.
 
 You choose the `lambda` that maximizes the likelihood. In this case it is -.25 where the logarithm of the likelihood is about -61.
 
@@ -226,9 +232,9 @@ sm::sm.density(pollute.df$Pollution2,
                model = "Normal")
 ```
 
-The variable `Pollution2` can be described by a normal distribution.
+The new variable `Pollution2` can be adequately described by a normal distribution.
 
-More precisely the concern is the distribution of the model residuals. The distribution of the response variable is not of big concern. The normality assumption under girding accurate inferences made with the model is that the distribution of residuals are described by a normal distribution.
+Usually the distribution of the response variable is not of central concern. The normality assumption under girding accurate inferences made with the model is that the distribution of the model residuals are adequately described by a normal distribution.
 
 To determine the appropriate Box-Cox transformation on your response variable so that the model residuals can be described as normal use the model formula inside the `boxcox()` function.
 
@@ -245,15 +251,17 @@ MASS::boxcox(Pollution ~
                           length = 10))
 ```
 
-## Regression trees {.unnumbered}
+From the graph you can see that choosing a $\lambda$ between 0 and about -.6 will result in residuals that are normally distributed.
 
-A regression tree (decision tree) is a type of machine learning algorithm. When using a machine learning algorithm you are often focused on prediction rather than on making inference or understanding causality.
+## Fitting a regression tree model {.unnumbered}
 
-Linear regression is a prediction model for the conditional mean. The conditional mean is the average response for specific values of the explanatory variables. For example, the average maximum heart rate for specific values of age.
+A regression tree (decision tree) is a type of machine learning model. When using a machine learning model you are often focused on prediction rather than on making inference or understanding causality.
 
-A regression tree is also a prediction model for the conditional mean. But with a regression tree the *conditioning* is done by dividing the space defined by the explanatory variables into distinct groups.
+Linear regression is a model for the conditional mean. The conditional mean is the average response for specific values of the explanatory variables. For example, the average maximum heart rate for specific values of age.
 
-Given a set of data a regression tree is trained to predict what the average response will be for specific values of the explanatory variables within the data set.
+A regression tree is also a model for the conditional mean. But with a regression tree the *conditioning* is done by dividing the space defined by the explanatory variables into distinct subgroups.
+
+A regression tree is fit on a set of data (trained in ML parlance) to predict what the average response will be for specific values of the explanatory variables within the data set.
 
 To train a regression tree you can use the `tree()` function from the {tree} package. As an example you train a regression tree on the response variable `Pollution` from the data frame `pollute.df`.
 
@@ -275,8 +283,10 @@ The output is a table listing the explanatory variables, splits, number of cases
 A plot helps make sense of this output. Here you use the `plot()` method and add text with the `text()` function.
 
 ```{r}
-plot(model.tr)
-text(model.tr)
+model.tr |>
+  plot()
+model.tr |>
+  text()
 ```
 
 The plot looks like an upside down tree. The branches (called splits) are the rules. Rules (involve the 'less than' symbol) are applied to the explanatory variables. Branches end with leaves. The value at the leaf is the mean of the response variable for that subset of observations.
@@ -323,7 +333,7 @@ ggplot(data = pollute.df,
                y = 24.92, yend = 24.92)
 ```
 
-The graph shows that the split of `Pollution` on `Industry` \< 748 results in two means for `Pollution` that are different. The split results in less than 6 observations of `Pollution` for `Industry` \>= 748, so a terminal node results and the mean value of `Pollution` for these (5) observations is 67.
+The graph shows that the split of `Pollution` on `Industry` < 748 results in two means for `Pollution` that are different. The split results in less than 6 observations of `Pollution` for `Industry` >= 748, so a terminal node results and the mean value of `Pollution` for these (5) observations is 67.
 
 To check if the split is statistically significant by typing
 
@@ -332,7 +342,7 @@ t.test(Pollution ~ split,
        data = pollute.df)
 ```
 
-The relatively large $t$ value (greater than 3) results in a small $p$-value (less than .05) indicating you can safely reject the null hypothesis.
+The relatively large $t$ value (greater than 3) results in a small $p$-value (less than .05) indicating you can reject the null hypothesis.
 
 Let's try another split. What do you find?
 
@@ -375,13 +385,13 @@ How a regression tree is trained. For a given explanatory variable, the algorith
 -   Repeats this procedure on each subset of the data on either side of the first split.
 -   Keeps going until no additional reduction in deviance is obtained, or there are too few data values to merit further divisions.
 
-The importance of a split to the regression tree is the reduction in the deviance and the importance is represented on the tree plot as the length of the hanging branch. The reduction in deviance is larger for the split on `Population` than for the split on `Wet.days.`
+The importance of a split to the regression tree is the reduction in the deviance. The importance is represented on the tree plot as the length of the hanging branch. The longer the branch, the more important the split. The reduction in deviance is larger for the split on `Population` than for the split on `Wet.days.`
 
 The two key components of the training algorithm are: (1) Which variables to use in the split, and (2) how to best achieve the split given a variable. Tree regression is similar to forward selection in the stepwise regression procedure. Include the most important variable (the one that explains the most variance in the response) first then see if additional variables decrease the deviance keeping track of the cost associated with the loss of the degree of freedom.
 
 Model output from a trained regression tree is printed by typing the name of the model object.
 
-```{r, eval=FALSE}
+```{r}
 model.tr
 ```
 
@@ -406,15 +416,15 @@ This kind of nuanced and contingent explanation of how the explanatory variables
 Regression trees are used mainly for predictions. Predicted values are easy to anticipate. For example it is obvious that, given the model, if `Industry` exceeds 748, then the `Pollution` level is predicted to be 67. If `Industry` is less than 748 and `Population` is less than 190, then the `Pollution` level is predicted to be 43.43. The `predict()` method works like it does for a linear regression model object. The first argument is the model object and the next is the data frame containing the variables.
 
 ```{r}
-predict(model.tr, 
-        newdata = data.frame(Industry = 750, 
+model.tr |>
+predict(newdata = data.frame(Industry = 750, 
                              Population = 0, 
                              Wet.days = 0, 
                              Temp = 0, 
                              Wind = 0, 
                              Rain = 0))
-predict(model.tr, 
-        newdata = data.frame(Industry = 740, 
+model.tr |>
+predict(newdata = data.frame(Industry = 740, 
                              Population = 180, 
                              Wet.days = 0, 
                              Temp = 0, 
@@ -422,11 +432,11 @@ predict(model.tr,
                              Rain = 0))
 ```
 
-Note that you need to specify all the explanatory variables even if they are not involved with the final predicted value.
+You need to specify all the explanatory variables even if they are not involved with the final predicted value.
 
 ```{r}
-predict(model.tr, 
-        newdata = data.frame(Industry = 740, 
+model.tr |>
+predict(newdata = data.frame(Industry = 740, 
                              Population = 200, 
                              Wet.days = 120, 
                              Temp = 50, 
