@@ -22,18 +22,23 @@ The first argument in the function is the model formula and the formula has the 
 ```{r}
 library(tree)
 
-model <- tree(body_mass_g ~ bill_length_mm + bill_depth_mm + flipper_length_mm,
+model.tr <- tree(body_mass_g ~ 
+                  bill_length_mm + 
+                  bill_depth_mm + 
+                  flipper_length_mm,
               data = Gentoo.df)
-model
+model.tr
 ```
 
 A _tree diagram_ helps make sense of this output. Use the generic `plot()` method and add text with the `text()` function.
 ```{r}
-plot(model)
-text(model)
+model.tr |>
+  plot()
+model.tr |>
+  text()
 ```
 
-The most important variable in explaining body mass of the male Gentoo penguins is bill length. It is the variable named on the top of the tree diagram. For penguins with bills less than 47.45 mm, the next most important variable is bill depth (if the condition is true, then branch to the left). For those penguins with shorter bills if bill depth is less than 15.7 mm then the average body mass is 5131 grams and if the bill depth is greater or equal to 15.7 mm then the average body mass is larger at 5410 g. Again, if the condition is tree, then branch left.
+The most important variable in explaining body mass of the male Gentoo penguins is bill length. It is the variable named on the top of the tree diagram. For penguins with bills less than 47.45 mm, the next most important variable is bill depth (if the condition is true, then branch to the left). For those penguins with shorter bills if bill depth is less than 15.7 mm then the average body mass is 5131 grams and if the bill depth is greater or equal to 15.7 mm then the average body mass is larger at 5410 g. Again, if the condition is true, then branch left.
 
 For Gentoo penguins with a bills at least 47.45 mm in length, the next most important variable is flipper length. For these larger-billed penguins, if flippers are longer (at least 228.5 mm) then the average body mass is 5755 g. For these larger-bill length penguins, if flippers are shorter than 228.5 mm, then split on flipper length again.
 
@@ -48,21 +53,23 @@ Prediction amounts to following the rules defined by the final model. You start 
 For example, if `bill_length_mm` is less than 47.45 mm and `bill_depth_mm` is less than 15.7 mm, then the mass of the penguin is predicted to be 5131 grams. Said another way, 5131 is the average body mass for all male Gentoo penguins with bill length less than 47.45 and bill depth less than 15.7.
 
 You can check this as follows.
+
 ```{r}
 Gentoo.df |>
-  dplyr::filter(bill_length_mm < 47.45 & bill_depth_mm < 15.7) |>
+  dplyr::filter(bill_length_mm < 47.45 & 
+                bill_depth_mm < 15.7) |>
   dplyr::summarize(mean(body_mass_g))
 ```
 
 The `predict()` method is used to make predictions with the model. The first argument is the model object and the next is the data frame containing the variables.
 ```{r}
-predict(model, 
-        newdata = data.frame(bill_length_mm = 45,
-                             bill_depth_mm = 15,
-                             flipper_length_mm = 220))
+model.tr |>
+  predict(newdata = data.frame(bill_length_mm = 45,
+                               bill_depth_mm = 15,
+                               flipper_length_mm = 220))
 
-predict(model, 
-        newdata = data.frame(bill_length_mm = 45,
+model.tr |>
+predict(newdata = data.frame(bill_length_mm = 45,
                              bill_depth_mm = 16,
                              flipper_length_mm = 220))
 ```
@@ -79,26 +86,21 @@ Pruning the tree solves for this trade-off. The `prune.tree()` function gives a 
 
 The function returns the tree size (number of terminal nodes), the total deviance for each tree, and the increase in deviance by going from a larger tree to a smaller tree.
 ```{r}
-prune.tree(model)
+model.tr |>
+  prune.tree()
 ```
 
 From the output you see the largest tree (8 terminal nodes) results in the smallest deviance (`$dev`) (3452632). By pruning one branch the deviance increases (3536660) but only by a relatively small amount (84028 which is an increase of about 2.4%). Similarly by pruning a second branch the deviance increases, this time a bit more. 
 
-It is helpful to plot the deviance as a function of tree size.
-```{r}
-plot(prune.tree(model))
-```
-
-Deviance declines with increasing complexity. You see that the amount of decline (vertical line between the steps) generally diminishes with each node. You see that at a tree size of 6 branches the vertical lines are quite small.
-
-_Code challenge:_ Recreate this plot using the grammar of graphs. Hint: save the prune tree object and then create a data frame from the object lists. Then use `scale_x_reverse()`.
-
 Suppose you want a tree with six terminal nodes.
 ```{r}
-model2 <- prune.tree(model, 
-                     best = 6)
-plot(model2)
-text(model2)
+model2.tr <- model.tr |>
+  prune.tree(best = 6)
+
+model2.tr |>
+  plot()
+model2.tr |>
+  text()
 ```
 
 ## Predictive uncertainty with regression trees {-}
@@ -110,44 +112,56 @@ Import the annual hurricane data and filter on years since 1950. Create a data f
 df <- readr::read_table("http://myweb.fsu.edu/jelsner/temp/data/AnnualData.txt") |>
   dplyr::filter(Year >= 1950) |>
   dplyr::select(Year = Year, H = B.1, SOI = soi, SST = sst)
+
 head(df)
 ```
 
 Then fit a regression tree to these data with the annual count of hurricanes as the response variable and `SOI` and `SST` as the explanatory variables.
 ```{r}
-model <- tree(H ~ SOI + SST, 
+model.tr <- tree(H ~ 
+                 SOI +
+                 SST, 
               data = df)
-plot(model)
-text(model)
+model.tr |>
+  plot()
+model.tr |>
+  text()
 ```
 
 The predicted number of hurricanes when `SOI` is -2 s.d. and when `SST` is .2C is found using the `predict()` method. 
 ```{r}
-predict(model, 
-        newdata = data.frame(SOI = -2, SST = .2))
+model.tr |>
+predict(newdata = data.frame(SOI = -2, 
+                             SST = .2))
 ```
 
 So, on average, you can expect between 7 and 8 hurricanes in the Atlantic in years with the SOI is -2 s.d. and the SST is .2C above normal.
 
-The predicted value depends on the tree, which in turn depends exactly on what values of SOI and SST are used to "grow" it. 
+The predicted value depends on the tree, which in turn depends exactly on what values of SOI and SST are used to train it. 
 
-To see this, you grow a new tree for hurricane count, but this time leaving the values of SOI and SST from the last year in the data frame out. 
+To see this, you train a new tree for hurricane count, but this time leaving out the values of SOI and SST from the last year in the data frame. 
 
 Since there are 61 years, leaving the last year out amounts to sub-setting the data frame as `df[-61, ]`.
 
 Then you fit a new tree model (`model2`) and make a prediction for the same values of `SOI` and `SST` (`SOI` = -2 s.d. and `SST` = .2C).
+
 ```{r}
-model2 <- tree(H ~ SOI + SST, 
-               data = df[-61, ])
-predict(model2, 
-        newdata = data.frame(SOI = -2, SST = .2))
+model2.tr <- tree(H ~ 
+                    SOI + 
+                    SST, 
+                  data = df[-61, ])
+
+model2.tr |>
+  predict(newdata = data.frame(SOI = -2, 
+                               SST = .2))
 ```
 
-The predicted value is quite different even though you left out only one year of data!
+The predicted value is quite different even though you left out only one year of data when training this new tree!
 
 Predictive uncertainty occurs with any model, but the level of uncertainty is much larger with machine learning algorithms because they have many parameters. Each branch in a regression tree is a parameter and so is every split so with our two explanatory variables there are at least 10 parameters.
 
 For example, compare the predicted hurricane rates from a linear regression model with and without the last year.
+
 ```{r}
 predict(lm(H ~ SOI + SST, data = df),
         newdata = data.frame(SOI = -2, SST = .2))
