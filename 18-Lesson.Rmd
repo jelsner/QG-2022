@@ -30,7 +30,8 @@ model.tr <- tree(body_mass_g ~
 model.tr
 ```
 
-A _tree diagram_ helps make sense of this output. Use the generic `plot()` method and add text with the `text()` function.
+A _tree diagram_ helps you interpret this output. Use the `plot()` method and add text with the `text()` function.
+
 ```{r}
 model.tr |>
   plot()
@@ -40,11 +41,11 @@ model.tr |>
 
 The most important variable in explaining body mass of the male Gentoo penguins is bill length. It is the variable named on the top of the tree diagram. For penguins with bills less than 47.45 mm, the next most important variable is bill depth (if the condition is true, then branch to the left). For those penguins with shorter bills if bill depth is less than 15.7 mm then the average body mass is 5131 grams and if the bill depth is greater or equal to 15.7 mm then the average body mass is larger at 5410 g. Again, if the condition is true, then branch left.
 
-For Gentoo penguins with a bills at least 47.45 mm in length, the next most important variable is flipper length. For these larger-billed penguins, if flippers are longer (at least 228.5 mm) then the average body mass is 5755 g. For these larger-bill length penguins, if flippers are shorter than 228.5 mm, then split on flipper length again.
+For male Gentoo penguins with a bills at least 47.45 mm in length, the next most important variable is flipper length. For these larger-billed penguins, if flippers are longer (at least 228.5 mm) then the average body mass is 5755 g. For these larger-bill length penguins, if flippers are shorter than 228.5 mm, then split on flipper length again.
 
 As you move down the tree the branches get smaller (the vertical lines get shorter) indicating the splits are _less_ important in reducing the residual sum of squares (RSS). 
 
-Interpreting a tree regression is easier than interpreting a linear regression because the splits have the same units as the explanatory variables. In a linear regression the coefficients have units of response variable divided by the units of the explanatory variable.
+Interpreting a tree regression is easier than interpreting a linear regression because the splits have the same units as the explanatory variables. In a linear regression the coefficient has units of response variable divided by the units of the explanatory variable.
 
 Machine learning algorithms are often used solely for predictions. Given the branching structure of the tree, the predicted values are easy to anticipate.
 
@@ -62,6 +63,7 @@ Gentoo.df |>
 ```
 
 The `predict()` method is used to make predictions with the model. The first argument is the model object and the next is the data frame containing the variables.
+
 ```{r}
 model.tr |>
   predict(newdata = data.frame(bill_length_mm = 45,
@@ -74,7 +76,7 @@ predict(newdata = data.frame(bill_length_mm = 45,
                              flipper_length_mm = 220))
 ```
 
-Note that you need to specify values for all the explanatory variables (even if the variables are not involved with any of the splits).
+Note that you need to specify values for all the explanatory variables.
 
 The uncertainty on the predicted value is more difficult to work out. You can use the standard error on the mean for that terminal node, but this error ignores the uncertainty surrounding what variable to split and at what value to make the split. Because of this limitation machine learning algorithms are not usually used for inference.
 
@@ -85,6 +87,7 @@ If the tree has many explanatory variables and lots of decision splits then it w
 Pruning the tree solves for this trade-off. The `prune.tree()` function gives a sequence of smaller trees from the largest tree by removing the least important splits.
 
 The function returns the tree size (number of terminal nodes), the total deviance for each tree, and the increase in deviance by going from a larger tree to a smaller tree.
+
 ```{r}
 model.tr |>
   prune.tree()
@@ -92,7 +95,8 @@ model.tr |>
 
 From the output you see the largest tree (8 terminal nodes) results in the smallest deviance (`$dev`) (3452632). By pruning one branch the deviance increases (3536660) but only by a relatively small amount (84028 which is an increase of about 2.4%). Similarly by pruning a second branch the deviance increases, this time a bit more. 
 
-Suppose you want a tree with six terminal nodes.
+Suppose you want a tree with six terminal nodes. You specify this with the `best = 6` argument in the `prune.tree()` function.
+
 ```{r}
 model2.tr <- model.tr |>
   prune.tree(best = 6)
@@ -108,6 +112,7 @@ model2.tr |>
 Let's look at another example. Predicting Atlantic hurricanes using a regression tree.
 
 Import the annual hurricane data and filter on years since 1950. Create a data frame containing only the basin-wide hurricane counts and Southern Oscillation Index (El Nino) and SST as the two explanatory variables. The SOI has units of standard deviation and the SST has units of degrees C.
+
 ```{r}
 df <- readr::read_table("http://myweb.fsu.edu/jelsner/temp/data/AnnualData.txt") |>
   dplyr::filter(Year >= 1950) |>
@@ -117,6 +122,7 @@ head(df)
 ```
 
 Then fit a regression tree to these data with the annual count of hurricanes as the response variable and `SOI` and `SST` as the explanatory variables.
+
 ```{r}
 model.tr <- tree(H ~ 
                  SOI +
@@ -129,6 +135,7 @@ model.tr |>
 ```
 
 The predicted number of hurricanes when `SOI` is -2 s.d. and when `SST` is .2C is found using the `predict()` method. 
+
 ```{r}
 model.tr |>
 predict(newdata = data.frame(SOI = -2, 
@@ -156,7 +163,7 @@ model2.tr |>
                                SST = .2))
 ```
 
-The predicted value is quite different even though you left out only one year of data when training this new tree!
+The predicted value is quite different even though you left out only one year of data when training this tree!
 
 Predictive uncertainty occurs with any model, but the level of uncertainty is much larger with machine learning algorithms because they have many parameters. Each branch in a regression tree is a parameter and so is every split so with our two explanatory variables there are at least 10 parameters.
 
@@ -178,19 +185,22 @@ A random forest algorithm solves some of the problem of large predictive uncerta
 The `randomForest()` function in the {randomForest} package provides a random forest algorithm. 
 
 For comparison here you apply a random forest algorithm to the hurricane data frame. I use the word _algorithm_ because there is no single model. The number of trees is set at 500 (by default).
+
 ```{r}
 rfa <- randomForest::randomForest(H ~ SOI + SST,
                                   data = df,
                                   ntree = 500)
 ```
 
-Then to make a prediction you use (again) the `predict()` method. 
+Then to make a prediction you use (again) the `predict()` method.
+
 ```{r}
 predict(rfa, 
         newdata = data.frame(SOI = -2, SST = .2))
 ```
 
 The predicted value is less sensitive to removing single observations. To see this you apply the random forest algorithm with the last observation removed.
+
 ```{r}
 rfa <- randomForest::randomForest(H ~ SOI + SST, 
                                   data = df[-61, ],
@@ -213,15 +223,17 @@ But how do you compare the predictive skill of a random forest algorithm against
 
 You use a method called _cross validation_. Cross validation helps you decide what model to use across the span of many models.
 
-Key idea: Cross validation is a method that removes noise specific to each observation and estimates how well the model/algorithm finds useful prediction rules when this coincident information is unavailable.
+_Key idea_: Cross validation is a method that removes noise specific to each observation and estimates how well the model/algorithm finds useful prediction rules when this coincident information is unavailable.
 
 For example, here you compare the skill of a random forest algorithm against the skill of a _Poisson_ regression model for predicting hurricane counts. You arrange the cross validation as follows.
+
 ```{r}
 n <- length(df$H)
 rfx <- numeric(n)
 prx <- numeric(n)
 for(i in 1:n){
-  rfa <- randomForest::randomForest(H ~ SOI + SST, data = df[-i, ])
+  rfa <- randomForest::randomForest(H ~ SOI + SST, 
+                                    data = df[-i, ])
   prm <- glm(H ~ SOI + SST, data = df[-i, ], 
              family = "poisson")
   new <- df[i, ]
@@ -240,12 +252,14 @@ mean((df$H - rfx)^2)
 The Poisson regression model performs slightly better than the random forest model in this case although the difference is not large.  
 
 Correlations between the actual and predicted value are
+
 ```{r}
 cor(df$H, prx)
 cor(df$H, rfx)
 ```
 
 The influence each of the two explanatory variables has on the hurricane counts is seen by plotting the predictions on a grid.
+
 ```{r}
 newdat <- expand.grid(SST = seq(-.5, .7, .01), 
                       SOI = seq(-5, 4, .1))
@@ -279,7 +293,7 @@ library(patchwork)
 p1 + p2
 ```
 
-Hurricane counts increase with SST and SOI but for high values of SOI the influence of SST is stronger. For high values of SST the influence of the SOI is more pronounced. The random forest algorithm is able to capture more subtle features (plaid pattern) but at the expense of interpreting some noise as signal as seen by the relative high count with SOI values near -3 s.d. and SST values near -.1C.
+Hurricane counts increase with SST and SOI but for high values of SOI the influence of SST is stronger. For high values of SST the influence of the SOI is more pronounced. The random forest algorithm is able to capture more subtle features (plaid pattern) but at the expense of interpreting some noise as signal as seen by the relative high count with SOI values near -3 s.d. and SST values near -.1 C.
 
 ## Classification trees {-}
 
@@ -287,12 +301,14 @@ When the response variable is categorical (e.g., species) a regression tree is c
 
 If instability is high and wind shear is strong, then predict a high chance of damaging tornadoes. If a patient's resting heart rate exceeds 120 bpm, then predict a high chance that the patient will suffer a heart attack within the next 5 years.
 
-Consider again the `penguins` data frame from the {palmerpenguins} package.
+Returning again the `penguins` data frame from the {palmerpenguins} package.
+
 ```{r}
 head(palmerpenguins::penguins)
 ```
 
 With `species` as the categorical response variable (there are three different penguin species) and the other columns as explanatory variables you can specify the model formula as `species ~ .`. The period after the tilde (`~`) indicating all other variables in the data frame.
+
 ```{r}
 model <- tree(species ~ .,
               data = palmerpenguins::penguins)
@@ -303,6 +319,7 @@ text(model)
 From the plot you see that flipper length split at 206.5 mm is the most important variable in distinguishing the species. The next two branches are bill length split at 43.45 mm and island.
 
 Since island is a categorical explanatory variable there is a `:a` next to the name `island`. This indicates that the spit is on the first island in alphabetical order. The island names are
+
 ```{r}
 unique(palmerpenguins::penguins$island)
 ```
@@ -312,6 +329,7 @@ Biscoe Island is the first in alphabetical order so the split says that if the i
 After these three splits resulting in four branches, the branches become very small (the vertical lines are short) indicating that these additional splits do not reduce the RSS by much at all.
 
 So you prune the tree by setting `best = 4`. That is, you ask the model to grow a tree with the four most important branches.
+
 ```{r}
 model2 <- prune.tree(model, 
                      best = 4)
@@ -320,6 +338,7 @@ text(model2)
 ```
 
 You examine the model quantitatively by the misclassification error rate. This is given in the last line of the output from the `summary()` method.
+
 ```{r}
 summary(model2)
 ```
@@ -331,6 +350,7 @@ Note that the full model has a misclassification error rate of only 1.8% (6 out 
 Suppose you are able to observe a penguin on Biscoe Island with a flipper length of 200 mm, a bill length of 44 mm, a bill depth 18 mm, and a body mass of 4000 g. What is the likely species?
 
 You use the `predict()` method with the `newdata =` argument specified as a data frame. You must include by name all the variables in the model specification. This includes `island` and `sex` as factors along with `year`, `flipper_length_mm`, `bill_length_mm`, `bill_depth_mm`, and `body_mass_g` as integers or numeric values. Note that since the final tree only includes the variables `island`, `flipper_length_mm`, and `bill_length_mm` it does not matter what values you use for the other variables.
+
 ```{r}
 predict(model2,
         newdata = data.frame(island = factor("Biscoe"),
@@ -349,3 +369,5 @@ The `ctree()` function in {party} package can be used to model binary, nominal, 
 The {rpart} packages contains additional functions for modeling our data with decision trees. See also: http://rstatistics.net/decision-trees-with-r/
 
 Summary: It is relative easy to fit (train) statistical and machine learning models in R. We saw how to train a random forest model. Predictive uncertainty is harder to work out especially for more complex models. Cross validation provides one way to do this. It removes noise specific to each observation and estimates how well the model finds useful prediction rules when this coincident information is unavailable.
+
+Next time: logistic regression and cluster analysis
