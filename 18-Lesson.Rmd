@@ -10,6 +10,7 @@ Today
 Example: Let's again look at the Palmer penguins data frame. You are interested in using machine learning (regression tree) to predict the body mass of male Gentoo penguins using the penguin's bill and flipper dimensions. 
 
 First you filter the data frame keeping only the male Gentoo penguins.
+
 ```{r}
 Gentoo.df <- palmerpenguins::penguins |>
   dplyr::filter(species == "Gentoo", 
@@ -49,9 +50,9 @@ Interpreting a tree regression is easier than interpreting a linear regression b
 
 Machine learning algorithms are often used solely for predictions. Given the branching structure of the tree, the predicted values are easy to anticipate.
 
-Prediction amounts to following the rules defined by the final model. You start with the value of the variable `bill_length_mm` and work your way down until you come to a terminal node (a branch that ends in a value rather than a split). The value is the _average of the response variable_ conditional on the splits.
+Prediction amounts to following the rules defined by the final model. You start with the value of the variable `bill_length_mm` and work your way down until you come to a terminal node (a branch that ends in a value rather than a split). The value is the _average of the response value_ conditional on the splits.
 
-For example, if `bill_length_mm` is less than 47.45 mm and `bill_depth_mm` is less than 15.7 mm, then the mass of the penguin is predicted to be 5131 grams. Said another way, 5131 is the average body mass for all male Gentoo penguins with bill length less than 47.45 and bill depth less than 15.7.
+For example, if `bill_length_mm` is less than 47.45 mm and `bill_depth_mm` is less than 15.7 mm, then the mass of the penguin is predicted to be 5131 grams. Said another way, 5131 g is the average body mass for all male Gentoo penguins with bill length less than 47.45 and bill depth less than 15.7.
 
 You can check this as follows.
 
@@ -71,9 +72,9 @@ model.tr |>
                                flipper_length_mm = 220))
 
 model.tr |>
-predict(newdata = data.frame(bill_length_mm = 45,
-                             bill_depth_mm = 16,
-                             flipper_length_mm = 220))
+  predict(newdata = data.frame(bill_length_mm = 45,
+                               bill_depth_mm = 16,
+                               flipper_length_mm = 220))
 ```
 
 Note that you need to specify values for all the explanatory variables.
@@ -90,7 +91,8 @@ The function returns the tree size (number of terminal nodes), the total devianc
 
 ```{r}
 model.tr |>
-  prune.tree()
+  prune.tree() |>
+  plot()
 ```
 
 From the output you see the largest tree (8 terminal nodes) results in the smallest deviance (`$dev`) (3452632). By pruning one branch the deviance increases (3536660) but only by a relatively small amount (84028 which is an increase of about 2.4%). Similarly by pruning a second branch the deviance increases, this time a bit more. 
@@ -138,8 +140,8 @@ The predicted number of hurricanes when `SOI` is -2 s.d. and when `SST` is .2C i
 
 ```{r}
 model.tr |>
-predict(newdata = data.frame(SOI = -2, 
-                             SST = .2))
+  predict(newdata = data.frame(SOI = -2, 
+                               SST = .2))
 ```
 
 So, on average, you can expect between 7 and 8 hurricanes in the Atlantic in years with the SOI is -2 s.d. and the SST is .2C above normal.
@@ -176,7 +178,7 @@ predict(lm(H ~ SOI + SST, data = df[-61, ]),
         newdata = data.frame(SOI = -2, SST = .2))
 ```
 
-The difference in predicted values is very small with a linear regression model. On the order of .2% `r (6.23 - 6.22)/6.23 * 100` compared with 22% (`(7.35 - 5.71)/7.35 * 100`) for the machine learning algorithm
+The difference in predicted values is very small with a linear regression model. On the order of .2% `r (6.23 - 6.22)/6.23 * 100` compared with 22% (`(7.35 - 5.71)/7.35 * 100`) for the machine learning algorithm.
 
 ## The random forest algorithm {-}
 
@@ -195,8 +197,8 @@ rfa <- randomForest::randomForest(H ~ SOI + SST,
 Then to make a prediction you use (again) the `predict()` method.
 
 ```{r}
-predict(rfa, 
-        newdata = data.frame(SOI = -2, SST = .2))
+rfa |>
+  predict(newdata = data.frame(SOI = -2, SST = .2))
 ```
 
 The predicted value is less sensitive to removing single observations. To see this you apply the random forest algorithm with the last observation removed.
@@ -233,7 +235,8 @@ rfx <- numeric(n)
 prx <- numeric(n)
 for(i in 1:n){
   rfa <- randomForest::randomForest(H ~ SOI + SST, 
-                                    data = df[-i, ])
+                                    data = df[-i, ],
+                                    ntree = 1000)
   prm <- glm(H ~ SOI + SST, data = df[-i, ], 
              family = "poisson")
   new <- df[i, ]
@@ -310,10 +313,10 @@ head(palmerpenguins::penguins)
 With `species` as the categorical response variable (there are three different penguin species) and the other columns as explanatory variables you can specify the model formula as `species ~ .`. The period after the tilde (`~`) indicating all other variables in the data frame.
 
 ```{r}
-model <- tree(species ~ .,
+model.ct <- tree(species ~ .,
               data = palmerpenguins::penguins)
-plot(model)
-text(model)
+plot(model.ct)
+text(model.ct)
 ```
 
 From the plot you see that flipper length split at 206.5 mm is the most important variable in distinguishing the species. The next two branches are bill length split at 43.45 mm and island.
@@ -331,16 +334,16 @@ After these three splits resulting in four branches, the branches become very sm
 So you prune the tree by setting `best = 4`. That is, you ask the model to grow a tree with the four most important branches.
 
 ```{r}
-model2 <- prune.tree(model, 
+model2.ct <- prune.tree(model.ct, 
                      best = 4)
-plot(model2)
-text(model2)
+plot(model2.ct)
+text(model2.ct)
 ```
 
 You examine the model quantitatively by the misclassification error rate. This is given in the last line of the output from the `summary()` method.
 
 ```{r}
-summary(model2)
+summary(model2.ct)
 ```
 
 You see that the model misclassifies the species in 12 of the 333 penguins resulting in a misclassification error rate of 3.6%.
@@ -352,7 +355,7 @@ Suppose you are able to observe a penguin on Biscoe Island with a flipper length
 You use the `predict()` method with the `newdata =` argument specified as a data frame. You must include by name all the variables in the model specification. This includes `island` and `sex` as factors along with `year`, `flipper_length_mm`, `bill_length_mm`, `bill_depth_mm`, and `body_mass_g` as integers or numeric values. Note that since the final tree only includes the variables `island`, `flipper_length_mm`, and `bill_length_mm` it does not matter what values you use for the other variables.
 
 ```{r}
-predict(model2,
+predict(model2.ct,
         newdata = data.frame(island = factor("Biscoe"),
                              sex = factor("male"),
                              year = 2020,
@@ -366,7 +369,7 @@ The result says that there is a 92% chance that it is a Chinstrap penguin, a 6% 
 
 The `ctree()` function in {party} package can be used to model binary, nominal, ordinal and numeric variables. 
 
-The {rpart} packages contains additional functions for modeling our data with decision trees. See also: http://rstatistics.net/decision-trees-with-r/
+The {rpart} packages contains additional functions for modeling data with decision trees.
 
 Summary: It is relative easy to fit (train) statistical and machine learning models in R. We saw how to train a random forest model. Predictive uncertainty is harder to work out especially for more complex models. Cross validation provides one way to do this. It removes noise specific to each observation and estimates how well the model finds useful prediction rules when this coincident information is unavailable.
 
