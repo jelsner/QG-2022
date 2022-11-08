@@ -347,3 +347,5 @@ The result says that there is a 92% chance that it is a Chinstrap penguin, a 6% 
 The `ctree()` function in {party} package can be used to model binary, nominal, ordinal and numeric variables. 
 
 The {rpart} packages contains additional functions for modeling our data with decision trees. See also: http://rstatistics.net/decision-trees-with-r/
+
+Summary: It is relative easy to fit (train) statistical and machine learning models in R. We saw how to train a random forest model. Predictive uncertainty is harder to work out especially for more complex models. Cross validation provides one way to do this. It removes noise specific to each observation and estimates how well the model finds useful prediction rules when this coincident information is unavailable.
