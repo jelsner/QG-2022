@@ -1,16 +1,4 @@
-# Tuesday October 4, 2022 {.unnumbered}
-
-**"You haven't mastered a tool until you understand when it should not be used."** -- Kelsey Hightower
-
-A former PhD student from this department, who I had the pleasure to supervise, is looking for a masters-level geographer to assist with disease mapping and basic spatial analysis as applied to livestock disease.
-
-To support non-spatial scientists (virologists, field epidemiologists) and post-docs (some with spatial analysis expertise) in the mapping and visualizing of disease occurrence data from across the US and encouraged to develop independent projects leading to publication. Flexible work location especially if working toward a PhD.
-
-Here's the link: <https://www.zintellect.com/Opportunity/Details/USDA-ARS-2022-0343>
-
-My answers to Lab 2 are on Canvas.
-
-Making maps with {rdeck} <https://www.mrworthington.com/articles/rstats/mapping-in-r/> Excellent resource on data visualization <https://clauswilke.com/dataviz/>
+# Thursday November 17, 2022 {.unnumbered}
 
 Today
 
@@ -18,8 +6,6 @@ Today
 -   Computing spatial autocorrelation
 -   Spatial lag and its relation to autocorrelation
 -   Other neighbor definitions
-
-This lesson marks a departure. You will continue to learn how to code in R, but you will do it in the context of statistical thinking, analysis, and modeling. I find statistics to be a natural extension to how I think about the world, but I realize this comes with experience and may not be natural to you.
 
 ## Defining spatial neighborhoods and spatial weights {.unnumbered}
 
