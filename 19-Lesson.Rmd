@@ -2,8 +2,6 @@
 
 Today
 
-Logistic regression
-
 -   Binary outcomes and probability
 -   The logistic regression model
 -   Assignment 6
@@ -12,7 +10,7 @@ Logistic regression
 
 Linear regression is a powerful tool in data science. But it's use is limited to response variables that can be approximated with a normal distribution.
 
-When the response variable is binary (only two outcomes) a linear regression model should not be used.
+When the response is binary (only two outcomes) a linear regression model should not be used.
 
 But many scientific research questions involve binary outcomes, and there is often a need to predict the probability that something will happen. The probability you will catch a virus given certain risk factors.
 
@@ -29,6 +27,7 @@ rbinom(n = 100,
        size = 1, 
        prob = .2)
 ```
+
 The `n = 100` is the number of binary responses to generate, `size = 1` indicates two choices (`0` or `1`), and `prob = .2` is the probability of getting a `1`.
 
 With the outcome of `1` as a success and an outcome of `0` as a failure, then the average over all outcomes is the sample probability of success.
@@ -36,17 +35,17 @@ With the outcome of `1` as a success and an outcome of `0` as a failure, then th
 Here you compute averages over three separate samples of binary outcomes where the probability of a `1` (success) is .2, .5, and .9.
 
 ```{r}
-rbinom(n = 100, size = 1, prob = .2) |>
+rbinom(n = 1000, size = 1, prob = .2) |>
   mean()
-rbinom(n = 100, size = 1, prob = .5) |>
+rbinom(n = 1000, size = 1, prob = .5) |>
   mean()
-rbinom(n = 100, size = 1, prob = .9) |>
+rbinom(n = 1000, size = 1, prob = .9) |>
   mean()
 ```
 
 Repeat. The sample means are close to the probabilities given in the `prob =` argument.
 
-Recall that a regression model predicts the conditional mean of the response variable. When the response variable is binary, the mean the probability of 'success', so a logistic regression predicts the conditional probability of 'success.' For example, the probability of getting COVID-19 given your social distancing and mask-wearing habits.
+Recall that a regression model predicts the conditional _mean_ of the response variable. When the response variable is binary, the mean is the probability of 'success', so a logistic regression predicts the conditional probability of 'success.' For example, the probability of getting COVID-19 given your social distancing and mask-wearing habits.
 
 Probabilities are bounded between 0 and 1, but the linear regression line is not.
 
@@ -282,9 +281,7 @@ exp(-.0782 * (20 - 50))
 
 The odds of a 20-year old surviving is more than 10 times the odds of a 50-year old surviving regardless of whether the person is a man or woman.
 
-If an explanatory variable increases by one unit while the other
-explanatory variables remain constant, the odds will change by a
-*multiplicative* amount given by the exponent of the coefficient.
+If an explanatory variable increases by one unit while the other explanatory variables remain constant, the odds will change by a *multiplicative* amount given by the exponent of the coefficient.
 
 The odds of a woman (`Sex = 0`) surviving relative to the odds of a man (`Sex = 1`) of the same age is
 
@@ -297,17 +294,17 @@ Thus, the survival odds of a women are about 5 times the survival odds of a man 
 You get uncertainty intervals on the coefficients using the function `confint()`.
 
 ```{r}
-confint(model.logr)
+model.logr |>
+  confint()
 ```
 
-You see that the 95% uncertainty intervals for both factors do not
-include the value of zero. This indicates that `Age` and `Sex` are
-significant in statistically explaining who survives.
+You see that the 95% uncertainty intervals for both factors do not include the value of zero. This indicates that `Age` and `Sex` are significant in statistically explaining who survives.
 
 You can also check the importance of the variables with the `summary()` method on the model object.
 
 ```{r}
-summary(model.logr)
+model.logr |>
+  summary()
 ```
 
 You see that `Age` and `Sex` are significant variables in explaining the probability of survival ($p$ values less than .05).
@@ -316,8 +313,7 @@ The smaller the residual deviance, the better the logistic model fits. Output sh
 
 The residual deviance for the model with `Age` and `Sex` as explanatory variables is 51.256 on 42 degrees of freedom. The difference in deviance between the null and the full model is: 61.827 - 51.256 = 10.571. The difference in degrees of freedom is 44 - 42 = 2.
 
-You compare this drop in deviance to a value from the chi-squared
-distribution with 2 degrees of freedom.
+You compare this drop in deviance to a value from the chi-squared distribution with 2 degrees of freedom.
 
 ```{r}
 pchisq(10.571, 
@@ -346,8 +342,7 @@ predict(model.logr,
         type = "response")
 ```
 
-You see that, based on the data and the model, you would predict a
-survival probability of 9.3% for a 50-year old man.
+You see that, based on the data and the model, you would predict a survival probability of 9.3% for a 50-year old man.
 
 What is the survival probability for a 50-year old woman? A 25-year old woman?
 
@@ -405,8 +400,7 @@ You interpret the magnitude of the coefficient by first applying the exponentiat
 exp(-.2322)
 ```
 
-The value of .79 tells says that for every 1 degree increase in
-temperature the chance of O-ring damage is only 79% of it's previous value (given the model).
+The value of .79 tells says that for every 1 degree increase in temperature the chance of O-ring damage is only 79% of it's previous value (given the model).
 
 For example, to determine how much more likely there is to be damage when the temperature is 65 F compared to when the temperature is 69 F you use
 
@@ -450,7 +444,7 @@ Total Points: 40
 `island = factor("Dream", levels = levels(PP.df$island)`
 `flipper_length_mm = 180`
 `bill_length_mm = 35`
-`bill_depth_mm = 14`. (5)
+`bill_depth_mm = 15`. (5)
 
 (d) Use the random forest algorithm from part (b) to predict the body mass of a female Adelie penguin from Dream island whose bill length is 35 mm, bill depth is 15 mm, and flipper length is 180 mm [the attributes from part (c)]. (5)
 
