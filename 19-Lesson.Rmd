@@ -10,19 +10,19 @@ Logistic regression
 
 ## Binary outcomes and probabilities {.unnumbered}
 
-Linear regression is one of the most powerful tools in data science. But it's utility is limited to response variables that can be approximated with a normal distribution.
+Linear regression is a powerful tool in data science. But it's use is limited to response variables that can be approximated with a normal distribution.
 
 When the response variable is binary (only two outcomes) a linear regression model should not be used.
 
-Many scientific research questions involve binary outcomes, and there is often a need to predict the probability that something will happen. The probability you will get a virus.
+But many scientific research questions involve binary outcomes, and there is often a need to predict the probability that something will happen. The probability you will catch a virus given certain risk factors.
 
-Fortunately, with only a small modification to the linear regression model you can get a *logistic regression* model that describes how a binary response variable is related to a set of explanatory variables.
+Fortunately, with only a small modification to the linear regression model you can get a _logistic regression_ model that describes how a binary response variable is related to a set of explanatory variables.
 
-The mechanics of fitting a logistic regression model are the same as with fitting a linear regression. The model coefficients are determined using the *method of maximum likelihood*.
+The mechanics of fitting a logistic regression model are the same as with fitting a linear regression. The model coefficients are determined using the _method of maximum likelihood_.
 
 The method of maximum likelihood answers the question, what is the probability of your data given the model. A model that assigns the highest probability to your data is the model that is chosen.
 
-A key understanding here is that the *average value* over a set of binary responses is a number between 0 and 1. To see this, here you generate a set of random binary responses using the `rbinom()` function. `r` for random and `binom` for binomial distribution with a probability of .2.
+A key understanding is that the _average value_ over a set of binary responses is a number between 0 and 1. To see this, generate a set of random binary responses using the `rbinom()` function. `r` for random and `binom` for binomial distribution with a probability of success (`1`) at .2 (20%).
 
 ```{r}
 rbinom(n = 100, 
@@ -31,23 +31,26 @@ rbinom(n = 100,
 ```
 The `n = 100` is the number of binary responses to generate, `size = 1` indicates two choices (`0` or `1`), and `prob = .2` is the probability of getting a `1`.
 
-If you say that an outcome of `1` is a success and that an outcome of `0` is a failure, then the average taken over all outcomes is the sample probability of success.
+With the outcome of `1` as a success and an outcome of `0` as a failure, then the average over all outcomes is the sample probability of success.
 
-Here you compute averages over a samples of binary outcomes where the probability of a `1` (success) is .2, .5, and .9.
+Here you compute averages over three separate samples of binary outcomes where the probability of a `1` (success) is .2, .5, and .9.
 
 ```{r}
-mean(rbinom(n = 100, size = 1, prob = .2))
-mean(rbinom(n = 100, size = 1, prob = .5))
-mean(rbinom(n = 100, size = 1, prob = .9))
+rbinom(n = 100, size = 1, prob = .2) |>
+  mean()
+rbinom(n = 100, size = 1, prob = .5) |>
+  mean()
+rbinom(n = 100, size = 1, prob = .9) |>
+  mean()
 ```
 
-Repeat. You see that the sample means are close to the  probabilities given by `prob =`.
+Repeat. The sample means are close to the probabilities given in the `prob =` argument.
 
-Recall that a regression model predicts the conditional mean values of the response variable. When the response variable is binary, the mean values are probabilities, so a logistic regression predicts the conditional probability of something happening. For example, the probability of getting COVID-19 given your social distancing and mask-wearing habits.
+Recall that a regression model predicts the conditional mean of the response variable. When the response variable is binary, the mean the probability of 'success', so a logistic regression predicts the conditional probability of 'success.' For example, the probability of getting COVID-19 given your social distancing and mask-wearing habits.
 
 Probabilities are bounded between 0 and 1, but the linear regression line is not.
 
-Example: Consider data collected from the recovered solid booster rockets of the 23 previous shuttle flights (before the Challenger Space Shuttle disaster in 1986). The temperature in F at launch time and whether there was (`1`) or was not (`0`) damage to the O-rings on the booster.
+Example: Consider data collected from the recovered solid booster rockets of the 23 shuttle flights before the Challenger Space Shuttle disaster in 1986. The temperature in °F at launch time and whether there was (`1`) or was not (`0`) damage to the O-rings on the booster.
 
 ```{r}
 Temperature <- c(66, 70, 69, 68, 67, 72, 73, 70, 57, 63, 70, 78, 67, 53, 67, 75, 70, 81, 76, 79, 75, 76, 58)
@@ -55,9 +58,9 @@ Temperature <- c(66, 70, 69, 68, 67, 72, 73, 70, 57, 63, 70, 78, 67, 53, 67, 75,
 Damage <- c(0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1)
 ```
 
-The variable `Damage` is the response variable and `Temperature` is the explanatory variable.
+`Damage` is the response variable and `Temperature` is the explanatory variable.
 
-Start with a scatter plot of these two variables along with the linear regression line.
+Start with a scatter plot of these two variables that includes the linear regression line.
 
 ```{r}
 df <- data.frame(Damage, Temperature)
@@ -65,9 +68,11 @@ df <- data.frame(Damage, Temperature)
 library(ggplot2)
 
 ggplot(data = df, 
-       mapping = aes(x = Temperature, y = Damage)) +
+       mapping = aes(x = Temperature, 
+                     y = Damage)) +
   geom_point() +
   geom_smooth(method = lm, se = FALSE) +
+  xlab("Temperature (°F)") +
   scale_y_continuous(limits = c(0, 1))
 ```
 
@@ -85,7 +90,7 @@ summary(model.lm)
 
 The model diagnostics indicate temperature is significant in explaining O-ring damage.
 
-Looking at the slope coefficient you state that for every one degree F *decrease* in temperature, the chance of damage increases by 3.7 percentage points.
+Looking at the slope coefficient you state that for every one degree F _increase_ in temperature, the chance of damage _decreases_ by 3.7 percentage points.
 
 You interpret the predicted damage as the probability of damage for a given temperature (conditional mean).
 
@@ -107,7 +112,7 @@ model.lm |>
 
 These values do not make sense since probabilities are constrained to be between 0 and 100 (0 and 1).
 
-_Key point_: Linear regression can not capture the bounded nature of probabilities (or percentages).
+_Key point_: A linear regression model can not capture the bounded nature of probabilities (or percentages).
 
 ## Logistic regression {.unnumbered}
 
@@ -173,8 +178,7 @@ A large regression coefficient means the variable strongly influences the probab
 
 Example: Who survives in the Donner Party?
 
-The Donner and Reed families from Springfield, Illinois headed to California in 1846. The group, which became know as the 'Donner Party', was stranded in the Sierra Nevada mountains by heavy late October snows. By the time the last survivor was rescued in April 1847, 40 of the 87
-members had died from famine and exposure to the cold.
+The Donner and Reed families from Springfield, Illinois headed to California in 1846. The group, which became know as the 'Donner Party', was stranded in the Sierra Nevada mountains by heavy late October snows. By the time the last survivor was rescued in April 1847, 40 of the 87 members had died from famine and exposure to the cold.
 
 The data file `DonnerParty.txt` contains a list of individuals in the Donner Party along with their age, sex, and whether or not they survived.
 
@@ -188,7 +192,7 @@ str(DP.df)
 
 The data frame contains the `Last` and `First` names, `Sex`, `Age`, and `Survival` status of all individuals that were at least 15 years old.
 
-How many people are `female` and how many are `male`?
+How many people are labeled `female` and how many are labeled `male`?
 
 ```{r}
 table(DP.df$Sex)
@@ -224,7 +228,7 @@ table(DP.df$Sex, DP.df$Survival)
 
 The table shows that of the 15 women, 5 perished and 10 survived. This compares with 20 deaths and 10 survivors among the men. It appears that sex is also important. Relatively more women survived than men.
 
-Logistic regression quantifies these risk factors (sex and age) in terms of survival probability.
+Logistic regression quantifies these risk factors (sex and age) in terms of survival probabilities.
 
 The variable `Survival` is your dependent (response) variable coded as `no` and `yes`. The two risk factors are `Sex` coded as `male` and `female` and `Age` in years.
 
@@ -237,7 +241,9 @@ model.logr <- glm(Survival ~ Age + Sex,
 model.logr
 ```
 
-You write the model, where $\pi$ represents survival probability, as $$
+You write the model, where $\pi$ represents survival probability, as 
+
+$$
 \hbox{logit}(\pi) = 3.23 - .0782 \times \hbox{Age} - 1.597 \times \hbox{Sex}
 $$
 
@@ -288,8 +294,7 @@ exp(-1.597 * (0 - 1))
 
 Thus, the survival odds of a women are about 5 times the survival odds of a man both at the same age.
 
-You get uncertainty intervals on the coefficients using an extractor
-function.
+You get uncertainty intervals on the coefficients using the function `confint()`.
 
 ```{r}
 confint(model.logr)
@@ -401,11 +406,9 @@ exp(-.2322)
 ```
 
 The value of .79 tells says that for every 1 degree increase in
-temperature the chance of O-ring damage is only 79% of it's previous
-value (given the model).
+temperature the chance of O-ring damage is only 79% of it's previous value (given the model).
 
-For example, to determine how much more likely there is to be damage
-when the temperature is 65 F compared to when the temperature is 69 F you use
+For example, to determine how much more likely there is to be damage when the temperature is 65 F compared to when the temperature is 69 F you use
 
 ```{r}
 round(exp(-.2322 * (65 - 69)), 1)
@@ -432,3 +435,32 @@ pchisq(q = 20.315,
 The large $p$ value gives you no reason to question the adequacy of the model.
 
 ## Assigment 6
+
+Total Points: 40
+
+**1** Apply a random forest algorithm to predict the body mass of Palmer penguins from bill and flipper characteristics, species, and island.
+
+(a) Start by creating another data frame called `PP.df` that has no missing values using the `tidyr::drop_na()` function. (5)
+
+(b) Apply the random forest algorithm to this new data frame with `body_mass_g` as the response variable and all others as explanatory variables. Set the number of trees to 1000. Save the output in an object called `rfa`. (5)
+
+(c) Create a new data frame called `new.df` with the function `data.frame()` that contains the following attribute columns:
+`species = factor("Adelie", levels = levels(PP.df$species)`
+`sex = factor("female", levels = levels(PP.df$sex)`
+`island = factor("Dream", levels = levels(PP.df$island)`
+`flipper_length_mm = 180`
+`bill_length_mm = 35`
+`bill_depth_mm = 14`. (5)
+
+(d) Use the random forest algorithm from part (b) to predict the body mass of a female Adelie penguin from Dream island whose bill length is 35 mm, bill depth is 15 mm, and flipper length is 180 mm [the attributes from part (c)]. (5)
+
+
+**2** Fit a logistic regression model to predict the sex of Gentoo penguins using body mass and flipper length as explanatory variables.
+
+(a) Start by creating a new data frame called `GP.df` containing only Gentoo penguins and no missing values. (5)
+
+(b) Next create side-by-side box plots with the `geom_boxplot()` function mapping `sex` to the x aesthetic and `body_mass_g` to the y aesthetic. (5)
+
+(c) Fit a logistic regression model  using the `glm()` function with `sex` as the response variable and `body_mass_g` and `flipper_length_mm` as the explanatory variables. Save the model object as `model.logr`. (5)
+
+(d) Use the model from part (c) to predict the sex of a Gentoo penguin having a body mass of 5300 g and a flipper length of 210 mm. Note `male` gets coded as `TRUE` so you interpret the predicted probability as the chance of the penguin being male. (5)
