@@ -2,8 +2,6 @@
 
 _Announcement_ Starting today all remaining lessons will be via Zoom. I will start the lesson at 3:05 p.m. and record it so you can watch it live or later at your convenience.
 
-See Lesson 9 ASS
-
 -   Defining spatial neighborhoods and spatial weights
 -   Computing spatial autocorrelation
 -   Spatial lag and its relation to autocorrelation

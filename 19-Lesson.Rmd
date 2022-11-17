@@ -4,7 +4,6 @@ Today
 
 -   Binary outcomes and probability
 -   The logistic regression model
--   Assignment 6
 
 ## Binary outcomes and probabilities {.unnumbered}
 
@@ -427,34 +426,3 @@ pchisq(q = 20.315,
 ```
 
 The large $p$ value gives you no reason to question the adequacy of the model.
-
-## Assigment 6
-
-Total Points: 40
-
-**1** Apply a random forest algorithm to predict the body mass of Palmer penguins from bill and flipper characteristics, species, and island.
-
-(a) Start by creating another data frame called `PP.df` that has no missing values using the `tidyr::drop_na()` function. (5)
-
-(b) Apply the random forest algorithm to this new data frame with `body_mass_g` as the response variable and all others as explanatory variables. Set the number of trees to 1000. Save the output in an object called `rfa`. (5)
-
-(c) Create a new data frame called `new.df` with the function `data.frame()` that contains the following attribute columns:
-`species = factor("Adelie", levels = levels(PP.df$species)`
-`sex = factor("female", levels = levels(PP.df$sex)`
-`island = factor("Dream", levels = levels(PP.df$island)`
-`flipper_length_mm = 180`
-`bill_length_mm = 35`
-`bill_depth_mm = 15`. (5)
-
-(d) Use the random forest algorithm from part (b) to predict the body mass of a female Adelie penguin from Dream island whose bill length is 35 mm, bill depth is 15 mm, and flipper length is 180 mm [the attributes from part (c)]. (5)
-
-
-**2** Fit a logistic regression model to predict the sex of Gentoo penguins using body mass and flipper length as explanatory variables.
-
-(a) Start by creating a new data frame called `GP.df` containing only Gentoo penguins and no missing values. (5)
-
-(b) Next create side-by-side box plots with the `geom_boxplot()` function mapping `sex` to the x aesthetic and `body_mass_g` to the y aesthetic. (5)
-
-(c) Fit a logistic regression model  using the `glm()` function with `sex` as the response variable and `body_mass_g` and `flipper_length_mm` as the explanatory variables. Save the model object as `model.logr`. (5)
-
-(d) Use the model from part (c) to predict the sex of a Gentoo penguin having a body mass of 5300 g and a flipper length of 210 mm. Note `male` gets coded as `TRUE` so you interpret the predicted probability as the chance of the penguin being male. (5)
