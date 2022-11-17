@@ -1,6 +1,6 @@
 # Thursday November 17, 2022 {.unnumbered}
 
-_Announcement_ Starting today all remaining lessons will be via Zoom. I will start the lesson at 3:05 p.m. and record it so you can watch it live or later at your convenience.
+_Announcement_ Starting today all lessons will be via Zoom. I will start at 3:05 p.m. and record it so you can watch it live or watch it later at your convenience.
 
 -   Defining spatial neighborhoods and spatial weights
 -   Computing spatial autocorrelation
@@ -13,7 +13,7 @@ Autocorrelation plays a central role in spatial statistics. It quantifies the de
 
 Things include values of variables (attributes) aggregated to polygons (or raster cells) as well as the spatial locations of objects. How autocorrelation gets estimated depends on the geometry of the spatial data.
 
-Things tend to cluster because of:
+Things tend to cluster because of
 
 -   Association: whatever causes an attribute to have a certain value in one area causes the same attribute to have a similar value in areas nearby. Crime rates in nearby neighborhoods might tend to cluster due to similar factors.
 
@@ -21,7 +21,7 @@ Things tend to cluster because of:
 
 -   Interaction: the movement of people, goods or information creates relationships between areas. COVID spreads through areas through the movement of people.
 
-Spatial statistics focuses on quantifying, and conditioning on, autocorrelation but it is silent about physical causes. Understanding the reason for autocorrelation in your data is important for inference because the causal mechanism might be confounded by its presence. Divorce rates tend to cluster high in southern states, but so does the number of Waffle Houses. Understanding causation requires domain specific knowledge.
+Spatial statistics focuses on quantifying autocorrelation but it is silent about physical causes. Understanding the reason for autocorrelation in your data is important for inference because the causal mechanism might be confounded by its presence. Divorce rates tend to cluster in the South, but so do Waffle Houses. Understanding causation requires domain specific knowledge.
 
 When a variable's values are aggregated (summed or averaged) to regions, autocorrelation is quantified by calculating how similar a value in region $i$ is to the value in region $j$ and weighting this similarity by how 'close' region $i$ is to region $j$. Closer regions are given greater weight.
 
@@ -33,9 +33,11 @@ A general spatial autocorrelation index (SAI) is given by
 $$
 \hbox{SAI} = \frac{\sum_{i,j=1}^N w_{ij}\hbox{sim}_{ij}}{\sum_{i,j=1}^N w_{ij}}
 $$ 
-which represents the weighted similarity between regions. The set of weights ($w_{ij}$) is called a spatial weights matrix. The spatial weights matrix defines the neighbors for each region and defines the strength of each association.
+which represents a weighted similarity between regions. The set of weights ($w_{ij}$) is called a spatial weights matrix. The spatial weights matrix (1) defines the neighbors for each region and (2) defines the strength of each association.
 
-For cells in a raster under the rook-contiguity criterion, $w_{ij}$ = 1 if cell $i$ and $j$ share a boundary, and 0 if they don't share a boundary. In this case $w_{ij}$ = $w_{ji}$. Also, a cell is not a neighbor of itself so $w_{ii}$ = 0.
+For cells in a raster under the _rook-contiguity_ criterion, $w_{ij}$ = 1 if cell $i$ and $j$ share more than one boundary point, and 0 if not. For cells in a raster under the _queen-contiguity_ criterion, $w_{ij}$ = 1 if cell $i$ and $j$ share at least one point. [Rook (left) and queen contiguity illustrated using a checkerboard](figures/contiguity.png).
+
+In these cases $w_{ij}$ = $w_{ji}$. Also, a cell is not a neighbor of itself so $w_{ii}$ = 0.
 
 Alternatively you can define center locations from a set of polygon regions and let $w_{ij}$ = 1 if the center of region $i$ is near the center of region $j$ and 0 otherwise. In this case you need to decide on the number of nearest neighbors.
 

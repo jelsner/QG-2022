@@ -270,7 +270,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#binary-outcomes-and-probabilities"><i class="fa fa-check"></i>Binary outcomes and probabilities</a></li>
 <li class="chapter" data-level="" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#logistic-regression"><i class="fa fa-check"></i>Logistic regression</a></li>
-<li class="chapter" data-level="0.1" data-path="tuesday-november-15-2022.html"><a href="tuesday-november-15-2022.html#assigment-6"><i class="fa fa-check"></i><b>0.1</b> Assigment 6</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="thursday-november-17-2022.html"><a href="thursday-november-17-2022.html"><i class="fa fa-check"></i>Thursday November 17, 2022</a>
 <ul>
@@ -318,7 +317,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="thursday-november-17-2022" class="section level1 unnumbered hasAnchor">
 <h1>Thursday November 17, 2022<a href="thursday-november-17-2022.html#thursday-november-17-2022" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><em>Announcement</em> Starting today all remaining lessons will be via Zoom. I will start the lesson at 3:05 p.m. and record it so you can watch it live or later at your convenience.</p>
+<p><em>Announcement</em> Starting today all lessons will be via Zoom. I will start at 3:05 p.m. and record it so you can watch it live or watch it later at your convenience.</p>
 <ul>
 <li>Defining spatial neighborhoods and spatial weights</li>
 <li>Computing spatial autocorrelation</li>
@@ -329,13 +328,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Defining spatial neighborhoods and spatial weights<a href="thursday-november-17-2022.html#defining-spatial-neighborhoods-and-spatial-weights" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Autocorrelation plays a central role in spatial statistics. It quantifies the degree to which things nearby tend to cluster.</p>
 <p>Things include values of variables (attributes) aggregated to polygons (or raster cells) as well as the spatial locations of objects. How autocorrelation gets estimated depends on the geometry of the spatial data.</p>
-<p>Things tend to cluster because of:</p>
+<p>Things tend to cluster because of</p>
 <ul>
 <li><p>Association: whatever causes an attribute to have a certain value in one area causes the same attribute to have a similar value in areas nearby. Crime rates in nearby neighborhoods might tend to cluster due to similar factors.</p></li>
 <li><p>Causality: something within a given area directly influences outcomes within nearby areas. Non-infectious diseases (e.g., lung cancer) have similar rates in neighborhoods close to an oil refinery.</p></li>
 <li><p>Interaction: the movement of people, goods or information creates relationships between areas. COVID spreads through areas through the movement of people.</p></li>
 </ul>
-<p>Spatial statistics focuses on quantifying, and conditioning on, autocorrelation but it is silent about physical causes. Understanding the reason for autocorrelation in your data is important for inference because the causal mechanism might be confounded by its presence. Divorce rates tend to cluster high in southern states, but so does the number of Waffle Houses. Understanding causation requires domain specific knowledge.</p>
+<p>Spatial statistics focuses on quantifying autocorrelation but it is silent about physical causes. Understanding the reason for autocorrelation in your data is important for inference because the causal mechanism might be confounded by its presence. Divorce rates tend to cluster in the South, but so do Waffle Houses. Understanding causation requires domain specific knowledge.</p>
 <p>When a variable’s values are aggregated (summed or averaged) to regions, autocorrelation is quantified by calculating how similar a value in region <span class="math inline">\(i\)</span> is to the value in region <span class="math inline">\(j\)</span> and weighting this similarity by how ‘close’ region <span class="math inline">\(i\)</span> is to region <span class="math inline">\(j\)</span>. Closer regions are given greater weight.</p>
 <p>High similarities with high weight (similar values close together) yield high values of spatial autocorrelation. Low similarities with high weight (dissimilar values close together) yield low values of spatial autocorrelation.</p>
 <p>Let <span class="math inline">\(\hbox{sim}_{ij}\)</span> denote the similarity between values <span class="math inline">\(Y_i\)</span> and <span class="math inline">\(Y_j\)</span>, and let <span class="math inline">\(w_{ij}\)</span> denote a set of weights describing the ‘distance’ between regions <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>, for <span class="math inline">\(i\)</span>, <span class="math inline">\(j\)</span> = 1, …, <span class="math inline">\(N\)</span>.</p>
@@ -343,8 +342,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="math display">\[
 \hbox{SAI} = \frac{\sum_{i,j=1}^N w_{ij}\hbox{sim}_{ij}}{\sum_{i,j=1}^N w_{ij}}
 \]</span>
-which represents the weighted similarity between regions. The set of weights (<span class="math inline">\(w_{ij}\)</span>) is called a spatial weights matrix. The spatial weights matrix defines the neighbors for each region and defines the strength of each association.</p>
-<p>For cells in a raster under the rook-contiguity criterion, <span class="math inline">\(w_{ij}\)</span> = 1 if cell <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> share a boundary, and 0 if they don’t share a boundary. In this case <span class="math inline">\(w_{ij}\)</span> = <span class="math inline">\(w_{ji}\)</span>. Also, a cell is not a neighbor of itself so <span class="math inline">\(w_{ii}\)</span> = 0.</p>
+which represents a weighted similarity between regions. The set of weights (<span class="math inline">\(w_{ij}\)</span>) is called a spatial weights matrix. The spatial weights matrix (1) defines the neighbors for each region and (2) defines the strength of each association.</p>
+<p>For cells in a raster under the <em>rook-contiguity</em> criterion, <span class="math inline">\(w_{ij}\)</span> = 1 if cell <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> share more than one boundary point, and 0 if not. For cells in a raster under the <em>queen-contiguity</em> criterion, <span class="math inline">\(w_{ij}\)</span> = 1 if cell <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> share at least one point. <a href="figures/contiguity.png">Rook (left) and queen contiguity illustrated using a checkerboard</a>.</p>
+<p>In these cases <span class="math inline">\(w_{ij}\)</span> = <span class="math inline">\(w_{ji}\)</span>. Also, a cell is not a neighbor of itself so <span class="math inline">\(w_{ii}\)</span> = 0.</p>
 <p>Alternatively you can define center locations from a set of polygon regions and let <span class="math inline">\(w_{ij}\)</span> = 1 if the center of region <span class="math inline">\(i\)</span> is near the center of region <span class="math inline">\(j\)</span> and 0 otherwise. In this case you need to decide on the number of nearest neighbors.</p>
 <p>You can also define neighbors by distance. For example, if <span class="math inline">\(d_{ij}\)</span> is the distance between centers <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>, you can let <span class="math inline">\(w_{ij}\)</span> = 1 if <span class="math inline">\(d_{ij}\)</span> &lt; <span class="math inline">\(\delta\)</span> and 0 otherwise.</p>
 <p>Consider crime data at the tract level in the city of Columbus, Ohio. The tract polygons are planar projected with arbitrary spatial coordinates.</p>
