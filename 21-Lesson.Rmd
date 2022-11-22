@@ -1,12 +1,6 @@
 # Tuesday November 22, 2022 {.unnumbered}
 
-- Other neighborhood definitions
-- Assessing the statistical significance of autocorrelation
-- Bivariate spatial autocorrelation
-- Local indicators of spatial autocorrelation
-- Constraining group membership based on spatial autocorrelation
-
-## Other neighborhood definitions {.unnumbered}
+## Other neighborhood definitions {-}
 
 Autocorrelation plays a central role in spatial statistics by quantifying the degree to which nearby things tend to cluster. Moran's I is one metric of spatial clustering. 
 
