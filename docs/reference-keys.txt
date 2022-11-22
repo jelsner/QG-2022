@@ -4,3 +4,4 @@ assignment-1
 piping-your-commands
 cluster-analysis
 assigment-6
+example-of-bivariate-correlation-population-and-tornado-reports
