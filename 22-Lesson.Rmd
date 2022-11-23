@@ -89,6 +89,9 @@ cor.test(lpop, rate)
 
 The bi-variate spatial autocorrelation is assessed using the Lee statistic. A formal non-parametric test under the null hypothesis of no bi-variate spatial autocorrelation is done using a Monte Carlo simulation.
 
+Use `dplyr::sample_n()` to generate one shuffle and make a map.
+
+
 ```{r}
 nbs <- spdep::poly2nb(Counties.sf)
 wts <- spdep::nb2listw(nbs)

@@ -265,6 +265,8 @@ A random sampling approach to inference is made with the `spdep::moran.mc()` fun
 
 The name of the data vector and the weights list object (`listw`) are required as is the number of permutations (`nsim`). Each permutation is a random rearrangement of the unemployment rates across the counties. This removes the spatial autocorrelation but keeps the non-spatial distribution of the unemployment rates. The neighbor topology and weights remain the same.
 
+Use `dplyr::sample_n()` to generate one shuffle and make a map.
+
 For each permutation (random shuffle of the data values), I is computed and saved. The $p$-value is obtained as the ratio of the number of permuted I values equal to or exceeding the observed I over the number of permutation plus one. In the case where there are 5 permuted I values greater or equal to the observed value based on 99 simulations, the $p$-value is 5/(99 + 1) = .05.
 
 For example, if you want inference on I using 9999 permutations type
