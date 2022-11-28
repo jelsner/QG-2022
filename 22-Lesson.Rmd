@@ -6,11 +6,11 @@
 
 ## Estimating spatial autocorrelation in model residuals {.unnumbered}
 
-Previous focus has been on estimating the amount of spatial autocorrelation in a variable aggregated at some areal-unit level. You saw examples of crime rates and police expenditures aggregated at the county level. This is important for hot-spot analysis or spatial sampling.
+Previously focus was on computing spatial autocorrelation in a variable aggregated at some areal-unit level. You saw examples Moran's I computed on crime rates and police expenditures aggregated at the county level. This is important for hot-spot analysis or spatial sampling.
 
-However, if you want a model for a response variable as a function of explanatory variables across a set of areal units then focus shifts to estimating the spatial autocorrelation in the model residuals.
+However, if you want a model for a response variable as a function of explanatory variables across a set of areal units then focus needs to shift to computing spatial autocorrelation in model residuals.
 
-The model of first choice is a linear regression, but when the residuals from a linear regression model exhibit significant spatial autocorrelation then you should consider a _spatial_ regression model.
+The model of choice is a linear regression, but when the residuals from a linear regression exhibit significant spatial autocorrelation then you should consider a _spatial_ regression model.
 
 So the workflow starts by fitting a linear regression model where you regress the response variable onto the explanatory variables. You then check for spatial autocorrelation in the residuals.
 
@@ -30,14 +30,13 @@ Set the formula assigning it to the object `f`, then use the formula as the firs
 ```{r}
 f <- CRIME ~ INC + HOVAL
 
-model.lm <- lm(f, 
-                data = CC.sf)
+model.lm <- lm(f, data = CC.sf)
 
 model.lm |>
   summary()
 ```
 
-The output shows that the linear regression model statistically explains 55% of the variation in crime.(multiple R-squared). 
+The output shows that the regression model statistically explains 55% of the variation in crime (multiple R-squared). 
 
 Looking at the coefficients (values under the `Estimate` column), you see that _higher_ incomes are associated with _lower_ values of crime (negative coefficient) and _higher_ housing values are associated with _lower_ crime. The marginal effect of income on crime is -1.6 and the marginal effect of housing value on crime is -.27.
 
@@ -71,6 +70,7 @@ CC.sf$res <- res
 CC.sf |>
   head()
 ```
+
 Now you make two maps using the functions from the {tmap} package, one showing the crime rates and the other showing the residuals from the linear model of crime.
 
 ```{r}
@@ -136,7 +136,7 @@ where $Wy$ is the weighted average of the neighborhood response values with $W$ 
 
 _Note_: $Wy$ is the spatial lag variable you compute with the `spdep::lag.listw()` function and $\rho$ is Moran's I. Thus the model is also called a spatial lag model (SLM).
 
-Justification for the spatial lag model comes from domain specific but is motivated by a 'diffusion' process. The response variable $y_i$ is influenced by the explanatory variables at location $i$ and by explanatory variables at locations $j$.
+Justification for the spatial lag model comes from domain specific knowledge but is motivated by a 'diffusion' process. The response variable $y_i$ is influenced by the explanatory variables at location $i$ and by explanatory variables at locations $j$.
 
 $\rho Wy$ is called the _spatial signal_ term and $\beta X$ is called the _trend_ term.
 
@@ -252,7 +252,7 @@ With a spatially-lagged Y model a change in the value of an explanatory variable
 
 The indirect effect gives the impact of a change in income has on crime averaged over all *other* tracts. The indirect effect represent spillovers. The influences on the dependent variable $y$ in a region rendered by change in $x$ in some *other* region. For example, if all tracts $i \ne j$ (i not equal to j) increase their income, what will be the impact on crime in region $i$?
 
-The total effect (TE) is the sum of the direct and indirect effects. It measures the total cumulative impact on crime arising from one tract $j$ increasing its income over all other tracts (on average). It is given by 
+The total effect (TE) is the sum of the direct and indirect effects. It measures the cumulative impact on crime arising from one tract $j$ increasing its income over all other tracts (on average). It is given by 
 
 $$
 \hbox{TE} = \left(\frac{\beta_k}{1-\rho^2}\right)\left(1 + \rho\right)
@@ -303,7 +303,8 @@ Compare the spatial lag model to a spatial error model. Here you use the `spatia
 model.sem <- spatialreg::errorsarlm(formula = f, 
                                     data = CC.sf, 
                                     listw = wts)
-summary(model.sem)
+model.sem |>
+  summary()
 ```
 
 You find the coefficient of spatial autocorrelation ($\lambda$) is significant, but the log likelihood value from the model is smaller (-183.7) and the AIC value is larger (377.5) compared with corresponding values from the lag model. This is consistent with the Lagrange multiplier (LM) tests indicating the spatial lag model is more appropriate.
@@ -319,7 +320,7 @@ With a value of .04 you conclude that there is good improvement of the lag model
 
 With the spatial error model the coefficients can be interpreted as marginal effects like with the linear model.
 
-If there are large differences (e.g., different signs) between the coefficient estimate from SEM and the linear model, this suggests that neither model is yielding parameters estimates matching the underlying parameters of the data generating process.
+If there are large differences (e.g., different signs) between the coefficient estimate from SEM and the linear model, this suggests that neither model is yielding parameters estimates matching the underlying the data generating process.
 
 You test whether there is a significant difference in coefficient estimates with the Hausman test under the hypothesis of no difference.
 
@@ -446,7 +447,9 @@ model.slxm |>
 You get the impact measures and their standard errors, z-values and $p$-values with the `summary()` method applied to the output of the `impacts()` function.
 
 ```{r}
-summary(spatialreg::impacts(model.slxm, listw = wts))
+model.slxm |>
+  spatialreg::impacts(listw = wts) |>
+  summary()
 ```
 
 Results show that income has a significant direct *and* indirect effect on crime rates, but housing values only show a significant direct effect and not a significant indirect effect.
