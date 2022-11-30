@@ -16,25 +16,49 @@ The analogy is local measures of spatial autocorrelation where you estimate an a
 
 The approach is called geographically weighted regression (GWR) or simply geographic regression. GWR is used in epidemiology, particularly for research on infectious diseases and for evaluating health policies and programs.
 
-Since GWR fits separate regression models at every spatial location in the dataset, it is not a single model but a procedure for fitting a set of models. This is different from the spatial regression such as the spatially-lagged Y model, which are single models with spatial terms.
+Since GWR fits a regression model at every observation location, it is not a single model but a procedure for fitting a set of models. This is different from spatial regression. A spatially-lagged Y model, for example, is a single model with spatial terms.
 
-Observations across the entire domain contribute to the model fit at a particular location, but nearby observations are given higher weight than observations farther away. Weighting is based on a Gaussian function (kernel) and a bandwidth. The bandwidth is specified as a single parameter or it is determined through a cross-validation procedure. The bandwidth can also be a function of location.
+Observations across the domain contribute to the model fit at a particular observation location with nearby observations given more weight than observations farther away. 
 
-Said another way, linear regression is a model for the conditional mean. The mean of the response variable depends on the explanatory variables. Geographic regressions show how this dependency varies by location. GWR is used as an exploratory technique for determining where local regression coefficients are different from corresponding global values.
+Weighting is done with a Gaussian function (kernel) defined by a bandwidth. The bandwidth is defined as the distance across the kernel at the inflection points (2nd derivative goes through zero).
 
-Continuing with the Columbus crime data.
+```{r}
+library(ggplot2)
+
+x <- seq(from = -1, to = 1, by = .01 )
+y <- extremefit::Gaussian.kernel(x)
+dydx <- DTWBI::local.derivative.ddtw(y)
+dy2dx2 <- DTWBI::local.derivative.ddtw(dydx)
+
+data.frame(x, y, dydx, dy2dx2) |>
+ggplot(mapping = aes(x = x, y = y)) +
+  geom_line() +
+  geom_segment(x = -.33, y = .73, 
+               xend = .33, yend = .73, 
+               color = "red") +
+  theme_minimal()
+```
+
+The bandwidth distance is a given fixed value or it is determined through a cross-validation procedure based on the average distance between observation locations. It can also be a function of location.
+
+Linear regression is a model for the conditional mean. The mean of the response variable depends on the explanatory variables. Geographic regressions show how this dependency varies by location. 
+
+GWR is used as an exploratory technique for determining where local regression coefficients are different from their corresponding global values.
+
+Returning to the Columbus crime data.
 
 ```{r}
 ( CC.sf <- sf::st_read(dsn = here::here("data", "columbus"),
                        layer = "columbus") )
 ```
 
-Start by fitting a 'global' ordinary-least-squares (OLS) linear regression to the crime rates using income and housing values, as you did earlier.
+Start by fitting a 'global' linear regression to the crime rates using income and housing values, as you did earlier. First save the model formula as `f`.
 
 ```{r}
 f <- CRIME ~ INC + HOVAL
-( model.ols <- lm(formula = f,
-                  data = CC.sf) )
+
+( model.lm <- lm(formula = f,
+                 data = CC.sf) )
 ```
 
 The coefficients on the two explanatory variables indicate that crime decreases in areas of higher income and higher housing values.
@@ -54,14 +78,15 @@ Locations <- CC.sf |>
   sf::st_centroid() |>
   sf::st_coordinates()
 
-#Locations <- sf::st_coordinates(sf::st_centroid(CC.sf))
-
-head(Locations)
+Locations |>
+  head()
 ```
 
 These are the X and Y coordinate values specifying the centroid for the first six tracts (out of 49).
 
-To determine the optimal bandwidth for the Gaussian kernel (weighting function) you use the `spgwr::gwr.sel()` function. You need to specify the arguments, model formula (`formula =`), the data frame (`data =`), and the coordinates (`coords =`) as part of the function call. The argument `coords =` is the matrix of coordinates of points representing the spatial locations of the observations. It can be omitted if the data is an S4 spatial data frame from the {sp} package.
+To determine the bandwidth for the Gaussian kernel (weighting function) you use the `spgwr::gwr.sel()` function. You need to specify the arguments, model formula (`formula =`), the data frame (`data =`), and the coordinates (`coords =`) as part of the function call. 
+
+The argument `coords =` is the matrix of coordinates of points representing the spatial locations of the observations. It can be omitted if the data is an S4 spatial data frame from the {sp} package.
 
 ```{r}
 ( bw <- spgwr::gwr.sel(formula = f, 
@@ -69,15 +94,19 @@ To determine the optimal bandwidth for the Gaussian kernel (weighting function) 
                        coords = Locations) )
 ```
 
-The procedure makes an initial guess at the optimal bandwidth distance and then fits local regression models at each location using weights that decay defined by the kernel (Gaussian by default) and that bandwidth (distance).
+The procedure makes an initial guess at the bandwidth distance and then fits local regression models at each location using weights that decay defined by the kernel and that bandwidth.
 
-The output shows that the first bandwidth chosen was 2.22 in arbitrary distance units. The resulting prediction skill from fitting 49 regression models with that bandwidth is 7474 units. The resulting CV score is based on cross validation whereby skill is computed at each location when data from that location is not used to fit the regression models.
+The output shows that the first bandwidth chosen was 2.22 in arbitrary distance units. The resulting prediction skill from fitting 49 regression models with that bandwidth is 7474 units. 
 
-The procedure continues by increasing the bandwidth distance (to 3.59) and then computing a new CV score after refitting the regression models. Since the new CV score is higher (7480) than the initial CV score (7474), the bandwidth is changed in the other direction (decreasing from 2.22 to 1.37) and the models again are refit. With that bandwidth, the CV score is 7404, which is lower than the initial bandwidth so the bandwidth is decreased again. The procedure continues until no additional improvement in prediction skill occurs. 
+The resulting CV score is based on cross validation whereby skill is computed at each location when data from that location is not used to fit the regression models.
 
-The output shows that no additional improvement in skill occurs at a bandwidth distance of .404 units, and this single value is assigned to the object you called `bw`.
+The procedure continues by increasing the bandwidth distance (to 3.59) and then computing a new CV score after refitting the regression models. Since the new CV score is higher (7480) than the initial CV score (7474), the bandwidth is changed in the other direction (decreasing from 2.22 to 1.37) and the models again are refit. 
 
-Once the bandwidth distance is determined you use the `spgwr::gwr()` function to fit the regressions using that bandwidth. The arguments are the same as before but includes the `bandwidth =` argument where you specify the object `bw`.
+With that new bandwidth, the CV score is 7404, which is lower than the initial bandwidth so the bandwidth is decreased again. The procedure continues until no additional improvement in the CV score occurs. 
+
+The output shows that no additional improvement in score occurs at a bandwidth distance of .404 units, and this single value is assigned to the object you called `bw`.
+
+Once the bandwidth distance is determined you use the `spgwr::gwr()` function to fit the regressions using that bandwidth. The arguments are the same as before but now includes the `bandwidth =` argument where you specify the object `bw`.
 
 ```{r}
 models.gwr <- spgwr::gwr(formula = f, 
@@ -89,7 +118,8 @@ models.gwr <- spgwr::gwr(formula = f,
 The model and observed data are assigned to a list object with element names listed using the `names()` function.
 
 ```{r}
-names(models.gwr)
+models.gwr |>
+  names()
 ```
 
 The first element is `SDF` containing the model output as a S4 spatial data frame.
@@ -108,23 +138,23 @@ str(models.gwr$SDF,
 Here there are five slots with the first slot labeled `@data` indicating that it is a data frame. The number of rows and columns in the data frame are listed with the `dim()` function.
 
 ```{r}
-dim(models.gwr$SDF)
+models.gwr$SDF |>
+  dim()
 ```
 
 There are 49 rows and 7 columns. Each row corresponds to a tract and information about the regressions localized to the tract is given in the columns. Column names are listed with the `names()` function.
 
 ```{r}
-names(models.gwr$SDF)
+models.gwr$SDF |>
+  names()
 ```
 
-They include the sum of the weights `sum.w` (the larger the sum the more often the tract is included in the local regressions--favoring smaller counties and ones farther from the borders of the spatial domain), the three regression coefficients one for each of the  explanatory variables (`INC` and `HOVAL`) and an intercept term, the residual (`gwr.e`), the predicted value (`pred`) and the local goodness-of-fit (`localR2`).
+They include the sum of the weights `sum.w` (the larger the sum the more often the tract is included in the local regressions--favoring smaller counties and ones farther from the borders of the domain), the three regression coefficients one for each of the  explanatory variables (`INC` and `HOVAL`) and an intercept term, the residual (`gwr.e`), the predicted value (`pred`) and the local goodness-of-fit (`localR2`).
 
 You create a map displaying where income has the most and least influence on crime by first attaching the income coefficient from the data frame (column labeled `INC`) to the simple feature data frame since the order of the rows in the `SDF` matches the order in the simple feature data frame and then using functions from the {ggplot2} package.
 
 ```{r}
 CC.sf$INCcoef <- models.gwr$SDF$INC
-
-library(ggplot2)
 
 ggplot(CC.sf) +
   geom_sf(aes(fill = INCcoef)) +
