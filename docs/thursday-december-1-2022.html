@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Thursday December 1, 2022 | GEO5156: Quantitative Geography</title>
   <meta name="description" content="Thursday December 1, 2022 | GEO5156: Quantitative Geography" />
-  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Thursday December 1, 2022 | GEO5156: Quantitative Geography" />
   <meta property="og:type" content="book" />
@@ -350,8 +350,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="thursday-december-1-2022.html#cb2-1" aria-hidden="true" tabindex="-1"></a>( CC.sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="at">dsn =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;columbus&quot;</span>),</span>
 <span id="cb2-2"><a href="thursday-december-1-2022.html#cb2-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">layer =</span> <span class="st">&quot;columbus&quot;</span>) )</span></code></pre></div>
 <pre><code>## Reading layer `columbus&#39; from data source 
-##   `/Users/jameselsner/Desktop/ClassNotes/QG-2022/data/columbus&#39; 
-##   using driver `ESRI Shapefile&#39;
+##   `/Users/jelsner/Desktop/ClassNotes/QG-2022/data/columbus&#39; using driver `ESRI Shapefile&#39;
 ## Simple feature collection with 49 features and 20 fields
 ## Geometry type: POLYGON
 ## Dimension:     XY
@@ -535,6 +534,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This type of nuanced exploratory analysis is made possible with GWR.</p>
 <p>Also, when fitting a regression model to data that vary spatially you are assuming an underlying stationary process. This means you believe the explanatory variables ‘provoke’ the same response (statistically) across the domain. If this is not the case then it shows up in a map of correlated residuals.</p>
 <p>So a way to check the assumption of a stationary process is to use geographic regression. If the coefficients from the geographic regressions match closely the global coefficients then you can assume a stationary process.</p>
+<p>That wraps up the material for this semester. I hope you learned a few things and are now comfortable working with data in R. I also hope you sign up for my Applied Spatial Statistics course this spring. You will learn more about spatial statistical analyses and modeling and continue your journey through R’s ecosystem for spatial statistics. The notes for are also on my GitHub site.</p>
+<p>Have a wonderful holiday break!</p>
 
 </div>
 </div>

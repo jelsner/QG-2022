@@ -205,3 +205,7 @@ This type of nuanced exploratory analysis is made possible with GWR.
 Also, when fitting a regression model to data that vary spatially you are assuming an underlying stationary process. This means you believe the explanatory variables 'provoke' the same response (statistically) across the domain. If this is not the case then it shows up in a map of correlated residuals. 
 
 So a way to check the assumption of a stationary process is to use geographic regression. If the coefficients from the geographic regressions match closely the global coefficients then you can assume a stationary process.
+
+That wraps up the material for this semester. I hope you learned a few things and are now comfortable working with data in R. I also hope you sign up for my Applied Spatial Statistics course this spring. You will learn more about spatial statistical analyses and modeling and continue your journey through R's ecosystem for spatial statistics. The notes for are also on my GitHub site. 
+
+Have a wonderful holiday break!
