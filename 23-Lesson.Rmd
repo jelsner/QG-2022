@@ -4,11 +4,11 @@
 
 In the last lesson you learned that if the residuals from a linear regression model have significant spatial autocorrelation then inferences made with the model will be suspect. 
 
-A common approach to remedy this situation is to modify the linear regression by including a spatial term. The spatial term takes the form of a spatially lagged variable. The spatially lagged variable can be on the response variable or it can be on the residuals or both.
+A common approach to remedy this situation is to modify the linear regression to include a spatial term. The spatial term takes the form of a spatially lagged variable. The spatially lagged variable can be on the response or it can be on the residuals or both.
 
-In the absence of domain specific knowledge of what is the best form of the spatial regression model, statistical tests can be used to help you determine the best model.
+In the absence of domain specific knowledge of what is the best form of the spatial regression model, statistical tests are used to help you determine the best model.
 
-Another approach is to assume that the _relationships_ between the response variable and the explanatory variables are modified by contextual factors that depend on location. In this case you fit _separate_ regression models at each geographic location.
+Another approach is to assume that the _relationships_ between the response variable and the explanatory variables are modified by local contextual factors that depend on location (e.g., neighborhood pride). In this case you fit _separate_ regression models at each geographic location.
 
 This approach is quite useful for exploratory analysis (e.g., to show where the explanatory variables are most strongly related to the response variable).
 
@@ -157,7 +157,7 @@ You create a map displaying where income has the most and least influence on cri
 CC.sf$INCcoef <- models.gwr$SDF$INC
 
 ggplot(CC.sf) +
-  geom_sf(aes(fill = INCcoef)) +
+  geom_sf(mapping = aes(fill = INCcoef)) +
   scale_fill_viridis_c()
 ```
 
@@ -186,7 +186,7 @@ tmap::tm_shape(CC.sf) +
   tmap::tm_layout(legend.outside = TRUE)
 ```
 
-The geographic regressions capture the spatial pattern of crimes across the city. The spread of predicted values matches the observed spread better than the linear model. The pattern of predicted crime is also smoother than with a global OLS regression.
+The geographic regressions capture the spatial pattern of crimes across the city. The spread of predicted values matches the observed spread better than the linear model. The pattern of predicted crime is also smoother than with a global linear regression.
 
 Where is the relationship between crime and the two explanatory variables the tightest? This is answered by mapping the R squared coefficient for each of the models.
 
